@@ -49,8 +49,9 @@ $ vi /etc/apache2/sites-available/docs.conf
 ```
 To Clone a particular branch with your local:
 
-git clone <repo url> --branch <branch name>
-
+```
+$git clone <repo url> --branch <branch name>
+```
 `git stash` can be used if your header is far behind than the remote.
 And you could use 'commit' command to merge with remote.
 You wouldbe using `stash` only if `pull` or `merge` fails.
