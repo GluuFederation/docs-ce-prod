@@ -1,0 +1,1910 @@
+
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documenation for Gluu Server">
+      
+      
+      
+      
+        <link rel="shortcut icon" href="../../favicon.ico">
+      
+      <meta name="generator" content="mkdocs+mkdocs-material#1.0.3">
+    
+    
+      
+        <title>Log Management - Gluu Docs</title>
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr-facb31f4a3.js"></script>
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application-f3ab63f78a.css">
+      
+      
+    
+    
+  </head>
+  
+  
+  
+  
+    <body>
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+	 <div class="md-flex__cell md-flex__cell--shrink">
+	    <a href="https://gluu.org/docs/" title="Gluu Docs" class=" md-logo  md-header-nav__button">
+          
+            <img src="../../gluu.jpg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+                <span class="md-header-nav__parent">
+                  Operation Guide
+                </span>
+              
+            
+            Log Management
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+          
+<div class="md-search" data-md-component="search">
+  <div class="md-search__overlay"></div>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" accesskey="s" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false">
+      <label class="md-icon md-search__icon" for="search"></label>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+              
+
+
+  
+
+
+  <a href="https://github.com/GluuFederation/docs-3.0.1" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+            
+          </div>
+      </div>
+    </div>
+<!-- Second Nav Bar 
+<nav class="md-secondary-header-nav md-grid" style="
+    height: 58px;
+    background: white;
+	color: #555555;
+	font-weight: bold;
+	font-size; 8px
+	overflow: hidden;
+">
+<div class="md-flex-secondary" style="
+    display: table;
+    padding: 10px;
+">
+<label for="Versions">Ver:<select id="versions" onchange="window.location.href=this.value;" style="
+    position: relative;
+    display: inline-block;
+    min-width: 100%;
+    /* width: 120%; */
+    height: 34px;
+    padding: 6px 30px 6px 15px;
+    color: #555555;
+    border: none;
+    background: transparent;
+    outline: none;
+    -webkit-appearance: none;
+    z-index: 99;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border: 1px;
+">
+  <option value="/docs">Latest</option>
+  <option value="/docs/2.4.4">2.4.4</option>
+    </select> 
+</label>
+ </div>
+ </nav>-->
+   </nav>
+</header>
+    
+    <div class="md-container">
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary">
+
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <i class=" md-logo  md-nav__button">
+      
+        <img src="../../gluu.jpg">
+      
+    </i>
+    Gluu Docs
+	<label for="Versions">Ver:
+	  <select id="versions" onchange="window.location.href=this.value;" style="
+		position: inherit;
+		display: inline;
+		min-width: 25%;
+		/* width: 120%; */
+		height: 22px;
+		padding: 5px 15px 5px 5px;
+		color: black;
+		border: none;
+		background: transparent;
+		outline: none;
+		-webkit-appearance: none;
+		z-index: 99;
+		cursor: pointer;
+		font-size: 10px;
+		margin-bottom: 10px;
+		border: 1px solid black;
+		overflow: auto
+	">
+	  <option value="/docs/ce/latest">3.0.1</option>
+	  <!-- <option value="/docs/ce/3.0.0">3.0.0</option> -->
+	  <option value="/docs/ce/2.4.4">2.4.4</option>
+	  <option value="/docs">All Versions</option>
+		</select> 
+	</label>
+  </label>
+    
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/GluuFederation/docs-3.0.1" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  <li class="md-nav__item">
+    
+      <a href="../.." title="Home" class="md-nav__link">
+        Home
+      </a>
+    
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item">
+    
+      <a href="../intro/" title="Whats new in 3.x" class="md-nav__link">
+        Whats new in 3.x
+      </a>
+    
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Installation Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-3">
+        Installation Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../installation-guide/" title="Preparing VM" class="md-nav__link">
+        Preparing VM
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../installation-guide/install/" title="Install Gluu Server" class="md-nav__link">
+        Install Gluu Server
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../installation-guide/setup_py/" title="Setup Script Options" class="md-nav__link">
+        Setup Script Options
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Upgrade/Patch Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-3-4">
+        Upgrade/Patch Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../upgrade/" title="Upgrade Gluu Server" class="md-nav__link">
+        Upgrade Gluu Server
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../upgrade/manual-update/" title="Upgrade Gluu Server with OpenDJ" class="md-nav__link">
+        Upgrade Gluu Server with OpenDJ
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../upgrade/update-war/" title="Updating a War File" class="md-nav__link">
+        Updating a War File
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Administration Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-4">
+        Administration Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/oxtrust-ui/" title="oxTrust admin UI" class="md-nav__link">
+        oxTrust admin UI
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/custom-script/" title="Interception Scripts" class="md-nav__link">
+        Interception Scripts
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      User Authentication Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-4-3">
+        User Authentication Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/intro/" title="User Authentication Introduction" class="md-nav__link">
+        User Authentication Introduction
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/basic/" title="Basic Authenticatoin" class="md-nav__link">
+        Basic Authenticatoin
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/passport/" title="Social Authentication" class="md-nav__link">
+        Social Authentication
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/supergluu/" title="Super Gluu" class="md-nav__link">
+        Super Gluu
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/U2F/" title="FIDO U2F" class="md-nav__link">
+        FIDO U2F
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/duo/" title="Duo Security" class="md-nav__link">
+        Duo Security
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/cert-auth/" title="Certificate Authentication" class="md-nav__link">
+        Certificate Authentication
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/google/" title="Google+ OAuth 2.0" class="md-nav__link">
+        Google+ OAuth 2.0
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/otp/" title="HOTP/TOTP" class="md-nav__link">
+        HOTP/TOTP
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/customauthn/" title="Custom Authentication" class="md-nav__link">
+        Custom Authentication
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/attribute/" title="Attributes" class="md-nav__link">
+        Attributes
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/user-group/" title="User Management" class="md-nav__link">
+        User Management
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/session/" title="Session Management" class="md-nav__link">
+        Session Management
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/saml/" title="SAML" class="md-nav__link">
+        SAML
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/openid-connect/" title="OpenID Connect" class="md-nav__link">
+        OpenID Connect
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/uma/" title="UMA" class="md-nav__link">
+        UMA
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/scim-uma/" title="SCIM protected by UMA" class="md-nav__link">
+        SCIM protected by UMA
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/certificate/" title="Certificate Management" class="md-nav__link">
+        Certificate Management
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Integration Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5">
+        Integration Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/" title="Introduction" class="md-nav__link">
+        Introduction
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Client SDKs
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-2">
+        Client SDKs
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/oauth2/" title="oxd OAuth2" class="md-nav__link">
+        oxd OAuth2
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/oauth-js-implicit/" title="OAuth2.0 js Implicit Flow" class="md-nav__link">
+        OAuth2.0 js Implicit Flow
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      Web Server Integrations
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-3">
+        Web Server Integrations
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/saml-sp/" title="Shibboleth SP" class="md-nav__link">
+        Shibboleth SP
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/openidc-rp/" title="mod_auth_openidc" class="md-nav__link">
+        mod_auth_openidc
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-4" type="checkbox" id="nav-5-4">
+    
+    <label class="md-nav__link" for="nav-5-4">
+      SaaS Integrations
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-4">
+        SaaS Integrations
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/google/" title="Google Apps" class="md-nav__link">
+        Google Apps
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/office/" title="Office 365" class="md-nav__link">
+        Office 365
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/salesforce/" title="Salesforce" class="md-nav__link">
+        Salesforce
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/dropbox/" title="Dropbox" class="md-nav__link">
+        Dropbox
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/github-enterprise/" title="GitHub Enterprise" class="md-nav__link">
+        GitHub Enterprise
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Reference
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6">
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1">
+    
+    <label class="md-nav__link" for="nav-6-1">
+      Gluu API Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6-1">
+        Gluu API Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/api/" title="Custom ID Generation" class="md-nav__link">
+        Custom ID Generation
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/openid-connect-api/" title="OpenID Connect API" class="md-nav__link">
+        OpenID Connect API
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/scim-api/" title="SCIM API Configuration" class="md-nav__link">
+        SCIM API Configuration
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/uma-api/" title="UMA API" class="md-nav__link">
+        UMA API
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-2" type="checkbox" id="nav-6-2">
+    
+    <label class="md-nav__link" for="nav-6-2">
+      JSON Properties
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6-2">
+        JSON Properties
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/JSON-oxtrust-prop/" title="OxTrust JSON Properties" class="md-nav__link">
+        OxTrust JSON Properties
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/JSON-oxauth-prop/" title="OxAuth JSON Properties" class="md-nav__link">
+        OxAuth JSON Properties
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-3" type="checkbox" id="nav-6-3">
+    
+    <label class="md-nav__link" for="nav-6-3">
+      Gluu LDAP Schema
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6-3">
+        Gluu LDAP Schema
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/oxldap/" title="Ox LDAP Properties" class="md-nav__link">
+        Ox LDAP Properties
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/schema/" title="OpenLDAP Schema" class="md-nav__link">
+        OpenLDAP Schema
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
+    
+    <label class="md-nav__link" for="nav-7">
+      Operation Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-7">
+        Operation Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../backup/" title="Backups" class="md-nav__link">
+        Backups
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../find-gluu-version/" title="Find your Gluu Version" class="md-nav__link">
+        Find your Gluu Version
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../ports/" title="Ports" class="md-nav__link">
+        Ports
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../logout/" title="Single Logout (SLO)" class="md-nav__link">
+        Single Logout (SLO)
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Log Management
+      </label>
+    
+    <a href="./" title="Log Management" class="md-nav__link md-nav__link--active">
+      Log Management
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#view-log-file" title="View Log File" class="md-nav__link">
+    View Log File
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-levels" title="Log Levels" class="md-nav__link">
+    Log Levels
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-logs" title="Setup Logs" class="md-nav__link">
+    Setup Logs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-logs" title="Core logs" class="md-nav__link">
+    Core logs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oxauth-logs" title="oxAuth logs" class="md-nav__link">
+    oxAuth logs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oxtrust-logs" title="oxTrust logs" class="md-nav__link">
+    oxTrust logs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-logs" title="System logs" class="md-nav__link">
+    System logs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-server-logs" title="Web Server logs" class="md-nav__link">
+    Web Server logs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-logs_1" title="System Logs" class="md-nav__link">
+    System Logs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-server-logs_1" title="Web Server logs" class="md-nav__link">
+    Web Server logs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openldap-logs" title="OpenLDAP Logs" class="md-nav__link">
+    OpenLDAP Logs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openldap-log-level" title="OpenLDAP Log Level" class="md-nav__link">
+    OpenLDAP Log Level
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../custom-loginpage/" title="Customize Public Pages" class="md-nav__link">
+        Customize Public Pages
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../faq/" title="FAQ & Troubleshooting" class="md-nav__link">
+        FAQ & Troubleshooting
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Developer Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-8">
+        Developer Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../developer-guide/oxtrust-eclipse/" title="Build oxTrust with Eclipse" class="md-nav__link">
+        Build oxTrust with Eclipse
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#view-log-file" title="View Log File" class="md-nav__link">
+    View Log File
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-levels" title="Log Levels" class="md-nav__link">
+    Log Levels
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-logs" title="Setup Logs" class="md-nav__link">
+    Setup Logs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-logs" title="Core logs" class="md-nav__link">
+    Core logs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oxauth-logs" title="oxAuth logs" class="md-nav__link">
+    oxAuth logs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oxtrust-logs" title="oxTrust logs" class="md-nav__link">
+    oxTrust logs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-logs" title="System logs" class="md-nav__link">
+    System logs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-server-logs" title="Web Server logs" class="md-nav__link">
+    Web Server logs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-logs_1" title="System Logs" class="md-nav__link">
+    System Logs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-server-logs_1" title="Web Server logs" class="md-nav__link">
+    Web Server logs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openldap-logs" title="OpenLDAP Logs" class="md-nav__link">
+    OpenLDAP Logs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openldap-log-level" title="OpenLDAP Log Level" class="md-nav__link">
+    OpenLDAP Log Level
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+               
+                 <a href="https://github.com/GluuFederation/docs-3.0.1/blob/master/source/operation\logs.md" title="Edit this page" class="md-icon md-content__edit">edit</a>
+               
+              
+                
+                <h1 id="gluu-server-logs">Gluu Server Logs<a class="headerlink" href="#gluu-server-logs" title="Permanent link">#</a></h1>
+<p>When it comes to troubleshooting issues in the Gluu Server-from service 
+hiccups to outages-logs are the best place to start. </p>
+<p>The Gluu Server administrator can investigate logs from the oxTrust 
+<a href="../../admin-guide/oxtrust-ui/#view-log-file">View Logs</a> feature or directly 
+with SSH access to the Gluu-Server container. </p>
+<h2 id="view-log-file">View Log File<a class="headerlink" href="#view-log-file" title="Permanent link">#</a></h2>
+<p>The log files configured in the earlier section can be viewed using the
+<strong>View log file</strong> feature. This feature can be accessed through the
+configuration menu using <strong>Configuration --&gt; View Log File</strong>.</p>
+<p><img alt="view-log" src="../../img/admin-guide/logs/view-log.png" /></p>
+<p>The <strong>Display last lines count</strong> field contains the lines that will be
+displayed in the Web GUI. If the field contains the value <strong>400</strong>, then
+the Gluu Server will show the last 400 lines of the log in the GUI. The
+screenshot below shows an according example.</p>
+<p><img alt="tail-log" src="../../img/admin-guide/logs/tail-log.png" /></p>
+<h2 id="log-levels">Log Levels<a class="headerlink" href="#log-levels" title="Permanent link">#</a></h2>
+<p><strong>Logging Levels configuration through OxTrust UI</strong></p>
+<p>These logging levels can also be set in oxTrust UI.</p>
+<ol>
+<li>Login to oxTrust UI as <code>admin</code> or with an administrator account.</li>
+<li>Navigate to Configuration &gt; JSON Configuration &gt; OxTrust Configuration Tab.
+<img alt="JSONConfig" src="../../img/admin-guide/logs/json_config.png" /></li>
+<li>Scroll to the very bottom of the page.</li>
+<li>Click on the <code>logging level</code> and select the levels from the drop down.
+<img alt="logginglevel" src="../../img/admin-guide/logs/logginglevel.png" /></li>
+<li>Default value will be set to <code>Default</code>, you can change the level as per your requirement for extensive
+troubleshooting.</li>
+<li>Click on <code>Save Configuration</code> to save the configuration.
+<img alt="save" src="../../img/admin-guide/logs/saveconf.png" /></li>
+</ol>
+<p><strong>Changing Log Levels using log4j2.xml</strong></p>
+<p>Gluu Server logs use the log4j2 logging levels which can be changed in the <code>log4j2.xml</code> file.
+<code>log4j2.xml</code> can be found in below path</p>
+<p><code>/opt/jetty-9.3/temp/jetty-localhost-8082-identity.war-_identity-any-8516765662711672787.dir</code></p>
+<p>And also the same file can be found in all incorporated Gluu apps, 
+i.e oxauth, asimba, idp, oxauth-rp and identity</p>
+<p>The available logging levels are :</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ALL</td>
+<td>All log levels are documented</td>
+</tr>
+<tr>
+<td>DEBUG</td>
+<td>Detailed events useful to debug application</td>
+</tr>
+<tr>
+<td>ERROR</td>
+<td>Errors are documented</td>
+</tr>
+<tr>
+<td>INFO</td>
+<td>Logs informational messages as the application runs</td>
+</tr>
+<tr>
+<td>OFF</td>
+<td>No logs are recorded</td>
+</tr>
+<tr>
+<td>TRACE</td>
+<td>Logs detailed events; more than DEBUG</td>
+</tr>
+</tbody>
+</table>
+<p>The following files define the log levels in Gluu Server. Please edit the 
+file with the levels given above and restart the <code>jetty</code> server. 
+The following section is taken from a live Gluu Server <code>log4j.xml</code> file 
+showing different log levels for different logs. The changes made this section will reflect in the logs.</p>
+<pre><code>&lt;category name=&quot;org.xdi.oxauth&quot;&gt;
+        &lt;priority value=&quot;TRACE&quot; /&gt;
+    &lt;/category&gt;
+
+    &lt;!- ############### Gluu ################# -&gt;
+    &lt;category name=&quot;org.gluu&quot;&gt;
+        &lt;priority value=&quot;TRACE&quot; /&gt;
+    &lt;/category&gt;
+
+    &lt;!- ############### opnexdi ################# -&gt;
+    &lt;category name=&quot;org.openxdi&quot;&gt;
+        &lt;priority value=&quot;TRACE&quot; /&gt;
+    &lt;/category&gt;
+
+    &lt;!- ############### oxTrust ################# -&gt;
+    &lt;category name=&quot;org.gluu.oxtrust&quot;&gt;
+        &lt;priority value=&quot;TRACE&quot; /&gt;
+    &lt;/category&gt;
+
+    &lt;!- ############### Embedded JBoss AS ################# -&gt;
+    &lt;category name=&quot;org.jboss&quot;&gt;
+        &lt;priority value=&quot;ERROR&quot; /&gt;
+    &lt;/category&gt;
+    &lt;category name=&quot;com.arjuna&quot;&gt;
+        &lt;priority value=&quot;ERROR&quot; /&gt;
+    &lt;/category&gt;
+
+</code></pre>
+
+<p>Please restart the specific service after any change in log levels to 
+allow the changes to take effect. Use the following command to restart tomcat:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is recommended to use OxTrust UI to change the logging levels.</p>
+</div>
+<h2 id="setup-logs">Setup Logs<a class="headerlink" href="#setup-logs" title="Permanent link">#</a></h2>
+<p>The setup logs are stored inside the <code>/install/community-edition-setup/</code> folder. There are two logs available, one detailing the setup process and the other documenting the errors:</p>
+<ol>
+<li>setup.log</li>
+<li>setup_error.log</li>
+</ol>
+<h2 id="core-logs">Core logs<a class="headerlink" href="#core-logs" title="Permanent link">#</a></h2>
+<p>The available log files for Gluu Server Community Edition inside the <code>chroot</code> 
+environment are listed below.</p>
+<table>
+<thead>
+<tr>
+<th>Log File</th>
+<th>Component</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>/install/community-edition-setup</em>/<strong>setup.log</strong></td>
+<td>Setup detail log</td>
+</tr>
+<tr>
+<td>/install/community-edition-setup_/<strong>setup_error.log</strong></td>
+<td>Setup error log</td>
+</tr>
+<tr>
+<td><em>/opt/gluu/jetty/idp/logs</em>/<strong>start.log</strong></td>
+<td>Logs time-stamp when IDP starts</td>
+</tr>
+<tr>
+<td><em>/opt/shibboleth-idp/logs</em>/<strong>idp-warn.log</strong><br/><em>/opt/shibboleth-idp/logs</em>/<strong>idp-process.log</strong></td>
+<td>IDP diagonostic log <a href="https://wiki.shibboleth.net/confluence/display/IDP30/LoggingConfiguration">Read more..</a></td>
+</tr>
+<tr>
+<td><em>/opt/shibboleth-idp/logs</em>/<strong>idp-audit.log</strong></td>
+<td>General audit log <a href="https://wiki.shibboleth.net/confluence/display/IDP30/LoggingConfiguration">Read more..</a></td>
+</tr>
+<tr>
+<td><em>/opt/shibboleth-idp/logs</em>/<strong>idp-consent-audit.log</strong></td>
+<td>Consent audit log <a href="https://wiki.shibboleth.net/confluence/display/IDP30/LoggingConfiguration">Read more..</a></td>
+</tr>
+<tr>
+<td><em>/opt/gluu/node/passport/node_modules/redis-parser</em>/<strong>isolate-0x3615b50-v8.log</strong><br/><em>/opt/gluu/node/passport/node_modules/redis-parser</em>/<strong>isolate-0x28e7b50-v8.log</strong></td>
+<td>Passport log</td>
+</tr>
+<tr>
+<td><em>/opt/gluu/jetty/asimba/logs</em>/<strong>start.log</strong></td>
+<td>Logs time-stamp when ASIMBA starts</td>
+</tr>
+<tr>
+<td><em>/opt/gluu/jetty/oxauth/logs</em>/<strong>start.log</strong></td>
+<td>Logs time-stamp when oxAuth starts</td>
+</tr>
+<tr>
+<td><em>/opt/gluu/jetty/oxauth/logs</em>/<strong>oxauth_audit.log</strong></td>
+<td>General audit log</td>
+</tr>
+<tr>
+<td><em>/opt/gluu/jetty/oxauth/logs</em>/<strong>oxauth_persistence.log</strong></td>
+<td>Logs connection with LDAP</td>
+</tr>
+<tr>
+<td><em>/opt/gluu/jetty/oxauth/logs</em>/<strong>oxauth_script.log</strong></td>
+<td>Logs for oxAuth custom script execution</td>
+</tr>
+<tr>
+<td><em>/opt/gluu/jetty/oxauth/logs</em>/<strong>oxauth.log</strong></td>
+<td>General log for oxAuth service</td>
+</tr>
+<tr>
+<td><em>/opt/gluu/jetty/oxauth-rp/logs</em>/<strong>start.log</strong></td>
+<td>Logs time-stamp when oxAuthRP starts</td>
+</tr>
+<tr>
+<td><em>/opt/gluu/jetty/oxauth-rp/logs</em>/<strong>oxauth-rp.log</strong></td>
+<td>General oxAuthRP log</td>
+</tr>
+<tr>
+<td><em>/opt/gluu/jetty/identity/logs</em>/<strong>start.log</strong></td>
+<td>Logs time-stamp when oxTrust starts</td>
+</tr>
+<tr>
+<td><em>/opt/gluu/jetty/identity/logs</em>/<strong>oxtrust_script.log</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><em>/opt/gluu/jetty/identity/logs</em>/<strong>oxtrust.log</strong></td>
+<td>Logs for oxTrust custom script execution</td>
+</tr>
+<tr>
+<td><em>/opt/gluu/jetty/identity/logs</em>/<strong>oxtrust_persistence.log</strong></td>
+<td>Logs connection with LDAP</td>
+</tr>
+<tr>
+<td><em>/opt/gluu/jetty/identity/logs</em>/<strong>oxtrust_cache_refresh.log</strong></td>
+<td>Logs events relating to cache refresh</td>
+</tr>
+<tr>
+<td><em>/var/log/openldap</em>/<strong>ldap.log</strong></td>
+<td>OpenLDAP Log, contains everything related to OpenLDAP</td>
+</tr>
+</tbody>
+</table>
+<h3 id="oxauth-logs">oxAuth logs<a class="headerlink" href="#oxauth-logs" title="Permanent link">#</a></h3>
+<p>The oxauth logs contain the information about oxAuth authentication process and errors. 
+The key oxauth logs are</p>
+<ol>
+<li>
+<p><code>oxauth.log</code> under <code>/opt/gluu/jetty/oxauth/logs/</code>
+This log is gathering most of the authentication related information. 
+Generally this is the first log to review for any authentication-related troubleshooting, 
+like authentication failure or missing clients etc. Here's an example showing a 
+successful user authentication:</p>
+<pre><code>2016-07-16 15:43:28,232 INFO  [org.xdi.oxauth.auth.Authenticator] Authentication success for Client: '@!EFCB.890F.FB6C.2603!0001!0A49.F454!0008!F047.7275'
+2016-07-16 15:43:28,232 TRACE [org.xdi.oxauth.auth.Authenticator] Authentication successfully for '@!EFCB.890F.FB6C.2603!0001!0A49.F454!0008!F047.7275'
+2016-07-16 15:43:28,238 DEBUG [xdi.oxauth.token.ws.rs.TokenRestWebServiceImpl] Attempting to request access token: grantType = authorization_code, code = 61ba3c0d-42c4-4f1f-8420-fd5f6707f1b1, redirectUri = https://test.gluu.org/identity/authentication/authcode, username = null, refreshToken = null, clientId = null, ExtraParams = {grant_type=[Ljava.lang.String;@1add2a62, redirect_uri=[Ljava.lang.String;@2e0995b5, code=[Ljava.lang.String;@7743b5af}, isSecure = true, codeVerifier = null
+2016-07-16 15:43:28,249 DEBUG [org.xdi.oxauth.service.UserService] Getting user information from LDAP: userId = zico
+</code></pre>
+</li>
+<li>
+<p><code>oxauth_script.log</code> under <code>/opt/gluu/jetty/oxauth/logs/</code>
+Most of the custom script's initialization and few more information are 
+loaded here in this script. In the sample log below we can see 'Super Gluu' 2FA 
+has been loaded in the Gluu Server:</p>
+<pre><code>2016-07-16 19:06:32,705 INFO  [org.xdi.service.PythonService] (pool-2-thread-2) oxPush2. Initialization
+2016-07-16 19:06:32,713 INFO  [org.xdi.service.PythonService] (pool-2-thread-2) oxPush2. Initialize notification services
+2016-07-16 19:06:32,750 INFO  [org.xdi.service.PythonService] (pool-2-thread-2) oxPush2. Initialized successfully. oneStep: 'False', twoStep: 'True', pushNotifications: 'False'
+</code></pre>
+</li>
+</ol>
+<h3 id="oxtrust-logs">oxTrust logs<a class="headerlink" href="#oxtrust-logs" title="Permanent link">#</a></h3>
+<ol>
+<li>
+<p><code>oxtrust.log</code> under <code>/opt/gluu/jetty/identity/logs</code>
+This log gather logs related to Gluu Server Admin panel (called oxTrust). 
+For example, what is the clientID of an oxTrust session? Or, what scopes are 
+being used, etc. In the example below, you can see an admin user has successfuly 
+logged into the <code>test.gluu.org</code> Gluu Server admin panel, has the proper authorizationCode, 
+a redirectURI, and the user's role:</p>
+<pre><code>2016-07-16 16:41:55,690 INFO  [org.gluu.oxtrust.action.Authenticator] authorizationCode : 555a7586-6ca2-4b39-ab39-2ac78ec81524
+2016-07-16 16:41:55,690 INFO  [org.gluu.oxtrust.action.Authenticator]  scopes : user_name email openid profile
+2016-07-16 16:41:55,691 INFO  [org.gluu.oxtrust.action.Authenticator] clientID : @!EFCB.890F.FB6C.2603!0001!0A49.F454!0008!F047.7275
+2016-07-16 16:41:55,691 INFO  [org.gluu.oxtrust.action.Authenticator] getting accessToken
+2016-07-16 16:41:55,691 INFO  [org.gluu.oxtrust.action.Authenticator] tokenURL : https://test.gluu.org/oxauth/seam/resource/restv1/oxauth/token
+2016-07-16 16:41:55,691 INFO  [org.gluu.oxtrust.action.Authenticator] Sending request to token endpoint
+2016-07-16 16:41:55,692 INFO  [org.gluu.oxtrust.action.Authenticator] redirectURI : https://test.gluu.org/identity/authentication/authcode
+2016-07-16 16:41:55,919 DEBUG [org.gluu.oxtrust.action.Authenticator]  tokenResponse : org.xdi.oxauth.client.TokenResponse@1914b8d
+</code></pre>
+</li>
+<li>
+<p><code>oxtrust_script.log</code> under <code>/opt/gluu/jetty/identity/logs</code> <br />
+This log collects information on oxTrust related scripts and their operations. 
+For example, if an organization uses a custom attribute which populates values 
+for every user, then the Gluu Server Administrator needs to use a custom script 
+for their 'Cache Refresh' process. This log will receive information when the custom script runs.</p>
+</li>
+<li>
+<p><code>oxtrust_cache_refresh.log</code> under <code>/opt/gluu/jetty/identity/logs</code>  <br />
+Cache Refresh related information such as status, primary failure, etc., 
+is available in this log. In the sample snippet below we see the total number of 
+users that have been synced into the Gluu Server, number of failures, and total number of updated users. </p>
+<pre><code>2016-07-16 17:18:17,691 DEBUG [gluu.oxtrust.ldap.cache.service.CacheRefreshTimer] (pool-1-thread-9) Updated person '@!EFCB.890F.FB6C.2603!0001!0A49.F454!0000!40EB.AB8E'
+2016-07-16 17:18:17,691 INFO  [gluu.oxtrust.ldap.cache.service.CacheRefreshTimer] (pool-1-thread-9) Updated '2,002' entries
+2016-07-16 17:18:17,722 INFO  [gluu.oxtrust.ldap.cache.service.CacheRefreshTimer] (pool-1-thread-9) Failed to update '0' entries
+2016-07-16 17:18:17,738 DEBUG [gluu.oxtrust.ldap.cache.service.CacheRefreshTimer] (pool-1-thread-9) Keep external persons: 'true'
+2016-07-16 17:18:17,739 DEBUG [gluu.oxtrust.ldap.cache.service.CacheRefreshTimer] (pool-1-thread-9) Count entries '0' for removal from target server
+2016-07-16 17:18:17,739 INFO  [gluu.oxtrust.ldap.cache.service.CacheRefreshTimer] (pool-1-thread-9) Removed '0' persons from target server
+2016-07-16 17:18:17,739 INFO  [gluu.oxtrust.ldap.cache.service.CacheRefreshTimer] (pool-1-thread-9) There are '2,002' entries before updating inum list
+2016-07-16 17:18:17,740 INFO  [gluu.oxtrust.ldap.cache.service.CacheRefreshTimer] (pool-1-thread-9) There are '2,002' entries after removal '0' entries
+</code></pre>
+</li>
+</ol>
+<h4 id="system-logs">System logs<a class="headerlink" href="#system-logs" title="Permanent link">#</a></h4>
+<ul>
+<li>For Ubuntu: <code>/var/log/syslog</code></li>
+<li>For RPM based systems: <code>/var/log/messages</code></li>
+</ul>
+<h4 id="web-server-logs">Web Server logs<a class="headerlink" href="#web-server-logs" title="Permanent link">#</a></h4>
+<ul>
+<li>For Debian: <code>/var/log/apache2/</code></li>
+<li>For RPM based systems: <code>/var/log/httpd/</code></li>
+</ul>
+<h2 id="system-logs_1">System Logs<a class="headerlink" href="#system-logs_1" title="Permanent link">#</a></h2>
+<p>Sometimes it worthy to check system logs like <code>/var/log/messages</code>. These logs contain global system messages.</p>
+<h2 id="web-server-logs_1">Web Server logs<a class="headerlink" href="#web-server-logs_1" title="Permanent link">#</a></h2>
+<p>Apache httpd / apache2 logs are available in <code>/var/log/httpd</code> or <code>/var/log/apache2</code> for Ubuntu.</p>
+<ol>
+<li>
+<p><code>access_log</code>: This log contains information about requests coming into the Gluu Server, 
+success status or requests, execution time for any request etc.     </p>
+</li>
+<li>
+<p><code>error_log</code>: This log shows error messages if the web server encounter any issue while 
+processing incoming requests.    </p>
+</li>
+<li>
+<p><code>other_vhosts_access.log</code>: This log is specific to the Gluu Server setup and those links 
+which are being requested by a user from a web browser. An example below:     </p>
+<pre><code>test.gluu.org:443 192.168.201.184 - - [17/Jul/2016:18:25:21 +0000] "GET /index.html HTTP/1.1" 200 13239 "-" "Java/1.7.0_95"
+test.gluu.org:443 192.168.201.1 - - [17/Jul/2016:18:25:56 +0000] "GET / HTTP/1.1" 302 2185 "-" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36"
+test.gluu.org:443 192.168.201.1 - - [17/Jul/2016:18:25:56 +0000] "GET /identity/ HTTP/1.1" 200 583 "-" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36"
+test.gluu.org:443 192.168.201.1 - - [17/Jul/2016:18:25:56 +0000] "GET /identity/home.htm HTTP/1.1" 302 272 "https://test.gluu.org/identity/" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36"
+test.gluu.org:443 192.168.201.1 - - [17/Jul/2016:18:25:56 +0000] "GET /identity/login?cid=4 HTTP/1.1" 302 474 "https://test.gluu.org/identity/" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36"
+test.gluu.org:443 192.168.201.1 - - [17/Jul/2016:18:25:56 +0000] "GET /oxauth/authorize?scope=openid+profile+email+user_name&amp;response_type=code+id_token&amp;nonce=nonce&amp;redirect_uri=https%3A%2F%2Ftest.gluu.org%2Fidentity%2Fauthentication%2Fauthcode&amp;client_id=%40%21EFCB.890F.FB6C.2603%210001%210A49.F454%210008%21F047.7275 HTTP/1.1" 302 450 "https://test.gluu.org/identity/" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36"
+</code></pre>
+</li>
+<li>
+<p>There are few other logs like <code>ssl_access_log</code> , <code>ssl_error_log</code> , and <code>ssl_request_log</code> 
+which are collecting information on port 443 specifically.      </p>
+</li>
+</ol>
+<p>Remember the initial <code>GET</code> request will hit the Apache server first, and 
+then be proxied via the AJP port 8082 to . If you see traffic on the web server, 
+but not on Jetty, this is a good place to check to see if something is wrong. 
+For example, you might want to check if the firewall is blocking port 8082 
+if you see somthing like this:</p>
+<pre><code>    [Thu Jul 14 23:49:19 2016] [error] ajp_read_header: ajp_ilink_receive failed
+    [Thu Jul 14 23:49:19 2016] [error] (70007)The timeout specified has expired: proxy: read response failed from (null) (localhost)
+    [Thu Jul 14 23:49:20 2016] [error] (70007)The timeout specified has expired: ajp_ilink_receive() can't receive header
+    [Thu Jul 14 23:49:20 2016] [error] ajp_read_header: ajp_ilink_receive failed
+    [Thu Jul 14 23:49:20 2016] [error] (70007)The timeout specified has expired: proxy: read response failed from (null) (localhost)
+    [Thu Jul 14 23:49:20 2016] [error] (70007)The timeout specified has expired: ajp_ilink_receive() can't receive header
+    [Thu Jul 14 23:49:20 2016] [error] ajp_read_header: ajp_ilink_receive failed
+    [Thu Jul 14 23:49:20 2016] [error] (70007)The timeout specified has expired: proxy: read response failed from (null) (localhost)
+</code></pre>
+<h2 id="openldap-logs">OpenLDAP Logs<a class="headerlink" href="#openldap-logs" title="Permanent link">#</a></h2>
+<p>OpenLDAP logs are enabled by default. And OpenLDAP by is configured to capture logs by syslog
+from the operating system. However, if one has to disable logging (which we dont recommend), are done in sladp.conf
+stored under following directory. For more details on OpenLDAP 
+slapd configuration view <a href="http://www.openldap.org/doc/admin24/slapdconfig.html">here</a></p>
+<p><code>/opt/symas/etc/openldap/slapd.conf file</code></p>
+<p>The logs for OpenLDAP are stored under the below directory.</p>
+<p><code>/var/logs/openldap/ldap.log</code></p>
+<blockquote>
+<p>Note: OpenLDAP logs are not populated within Gluu container, its stored and generated under the host system</p>
+</blockquote>
+<h3 id="openldap-log-level">OpenLDAP Log Level<a class="headerlink" href="#openldap-log-level" title="Permanent link">#</a></h3>
+<p>By default Log Level of OpenLDAP is set to <code>stats sync</code>. If one has to change the log level, 
+it could be performed by modifying the slapd.conf file under the above mentioned directory. </p>
+<p><code>loglevel stats sync</code></p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Keyword</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-1</td>
+<td>any</td>
+<td>enable all debugging</td>
+</tr>
+<tr>
+<td>0</td>
+<td><em>blank</em></td>
+<td>no debugging</td>
+</tr>
+<tr>
+<td>1</td>
+<td>trace</td>
+<td>trace function calls</td>
+</tr>
+<tr>
+<td>2</td>
+<td>packets</td>
+<td>debug packet handling</td>
+</tr>
+<tr>
+<td>4</td>
+<td>args</td>
+<td>heavy trace debugging</td>
+</tr>
+<tr>
+<td>8</td>
+<td>conns</td>
+<td>connection management</td>
+</tr>
+<tr>
+<td>16</td>
+<td>BER</td>
+<td>print out packets sent and received</td>
+</tr>
+<tr>
+<td>32</td>
+<td>filter</td>
+<td>search filter processing</td>
+</tr>
+<tr>
+<td>64</td>
+<td>config</td>
+<td>configuration processing</td>
+</tr>
+<tr>
+<td>128</td>
+<td>ACL</td>
+<td>access control list processing</td>
+</tr>
+<tr>
+<td>256</td>
+<td>stats</td>
+<td>stats log connections/operations/results</td>
+</tr>
+<tr>
+<td>512</td>
+<td>stats2</td>
+<td>stats log entries sent</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>shell</td>
+<td>print communication with shell backends</td>
+</tr>
+<tr>
+<td>2048</td>
+<td>parse</td>
+<td>print entry parsing debugging</td>
+</tr>
+<tr>
+<td>16384</td>
+<td>sync</td>
+<td>syncrepl consumer processing</td>
+</tr>
+<tr>
+<td>32768</td>
+<td>none</td>
+<td>only messages that get logged whatever log level is set</td>
+</tr>
+</tbody>
+</table>
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../logout/" title="Single Logout (SLO)" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Single Logout (SLO)
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../custom-loginpage/" title="Customize Public Pages" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Customize Public Pages
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2017, Gluu, Inc.
+          </div>
+        
+        powered by
+        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        and
+        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application-2afe21e0b2.js"></script>
+      <script>var config={url:{base:"../.."}},app=new Application(config);app.initialize()</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

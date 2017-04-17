@@ -1,0 +1,1673 @@
+
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documenation for Gluu Server">
+      
+      
+      
+      
+        <link rel="shortcut icon" href="../../favicon.ico">
+      
+      <meta name="generator" content="mkdocs+mkdocs-material#1.0.3">
+    
+    
+      
+        <title>FAQ & Troubleshooting - Gluu Docs</title>
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr-facb31f4a3.js"></script>
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application-f3ab63f78a.css">
+      
+      
+    
+    
+  </head>
+  
+  
+  
+  
+    <body>
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+	 <div class="md-flex__cell md-flex__cell--shrink">
+	    <a href="https://gluu.org/docs/" title="Gluu Docs" class=" md-logo  md-header-nav__button">
+          
+            <img src="../../gluu.jpg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+                <span class="md-header-nav__parent">
+                  Operation Guide
+                </span>
+              
+            
+            FAQ & Troubleshooting
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+          
+<div class="md-search" data-md-component="search">
+  <div class="md-search__overlay"></div>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" accesskey="s" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false">
+      <label class="md-icon md-search__icon" for="search"></label>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+              
+
+
+  
+
+
+  <a href="https://github.com/GluuFederation/docs-3.0.1" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+            
+          </div>
+      </div>
+    </div>
+<!-- Second Nav Bar 
+<nav class="md-secondary-header-nav md-grid" style="
+    height: 58px;
+    background: white;
+	color: #555555;
+	font-weight: bold;
+	font-size; 8px
+	overflow: hidden;
+">
+<div class="md-flex-secondary" style="
+    display: table;
+    padding: 10px;
+">
+<label for="Versions">Ver:<select id="versions" onchange="window.location.href=this.value;" style="
+    position: relative;
+    display: inline-block;
+    min-width: 100%;
+    /* width: 120%; */
+    height: 34px;
+    padding: 6px 30px 6px 15px;
+    color: #555555;
+    border: none;
+    background: transparent;
+    outline: none;
+    -webkit-appearance: none;
+    z-index: 99;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border: 1px;
+">
+  <option value="/docs">Latest</option>
+  <option value="/docs/2.4.4">2.4.4</option>
+    </select> 
+</label>
+ </div>
+ </nav>-->
+   </nav>
+</header>
+    
+    <div class="md-container">
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary">
+
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <i class=" md-logo  md-nav__button">
+      
+        <img src="../../gluu.jpg">
+      
+    </i>
+    Gluu Docs
+	<label for="Versions">Ver:
+	  <select id="versions" onchange="window.location.href=this.value;" style="
+		position: inherit;
+		display: inline;
+		min-width: 25%;
+		/* width: 120%; */
+		height: 22px;
+		padding: 5px 15px 5px 5px;
+		color: black;
+		border: none;
+		background: transparent;
+		outline: none;
+		-webkit-appearance: none;
+		z-index: 99;
+		cursor: pointer;
+		font-size: 10px;
+		margin-bottom: 10px;
+		border: 1px solid black;
+		overflow: auto
+	">
+	  <option value="/docs/ce/latest">3.0.1</option>
+	  <!-- <option value="/docs/ce/3.0.0">3.0.0</option> -->
+	  <option value="/docs/ce/2.4.4">2.4.4</option>
+	  <option value="/docs">All Versions</option>
+		</select> 
+	</label>
+  </label>
+    
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/GluuFederation/docs-3.0.1" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  <li class="md-nav__item">
+    
+      <a href="../.." title="Home" class="md-nav__link">
+        Home
+      </a>
+    
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item">
+    
+      <a href="../intro/" title="Whats new in 3.x" class="md-nav__link">
+        Whats new in 3.x
+      </a>
+    
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Installation Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-3">
+        Installation Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../installation-guide/" title="Preparing VM" class="md-nav__link">
+        Preparing VM
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../installation-guide/install/" title="Install Gluu Server" class="md-nav__link">
+        Install Gluu Server
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../installation-guide/setup_py/" title="Setup Script Options" class="md-nav__link">
+        Setup Script Options
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Upgrade/Patch Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-3-4">
+        Upgrade/Patch Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../upgrade/" title="Upgrade Gluu Server" class="md-nav__link">
+        Upgrade Gluu Server
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../upgrade/manual-update/" title="Upgrade Gluu Server with OpenDJ" class="md-nav__link">
+        Upgrade Gluu Server with OpenDJ
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../upgrade/update-war/" title="Updating a War File" class="md-nav__link">
+        Updating a War File
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Administration Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-4">
+        Administration Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/oxtrust-ui/" title="oxTrust admin UI" class="md-nav__link">
+        oxTrust admin UI
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/custom-script/" title="Interception Scripts" class="md-nav__link">
+        Interception Scripts
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      User Authentication Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-4-3">
+        User Authentication Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/intro/" title="User Authentication Introduction" class="md-nav__link">
+        User Authentication Introduction
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/basic/" title="Basic Authenticatoin" class="md-nav__link">
+        Basic Authenticatoin
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/passport/" title="Social Authentication" class="md-nav__link">
+        Social Authentication
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/supergluu/" title="Super Gluu" class="md-nav__link">
+        Super Gluu
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/U2F/" title="FIDO U2F" class="md-nav__link">
+        FIDO U2F
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/duo/" title="Duo Security" class="md-nav__link">
+        Duo Security
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/cert-auth/" title="Certificate Authentication" class="md-nav__link">
+        Certificate Authentication
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/google/" title="Google+ OAuth 2.0" class="md-nav__link">
+        Google+ OAuth 2.0
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/otp/" title="HOTP/TOTP" class="md-nav__link">
+        HOTP/TOTP
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/customauthn/" title="Custom Authentication" class="md-nav__link">
+        Custom Authentication
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/attribute/" title="Attributes" class="md-nav__link">
+        Attributes
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/user-group/" title="User Management" class="md-nav__link">
+        User Management
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/session/" title="Session Management" class="md-nav__link">
+        Session Management
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/saml/" title="SAML" class="md-nav__link">
+        SAML
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/openid-connect/" title="OpenID Connect" class="md-nav__link">
+        OpenID Connect
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/uma/" title="UMA" class="md-nav__link">
+        UMA
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/scim-uma/" title="SCIM protected by UMA" class="md-nav__link">
+        SCIM protected by UMA
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/certificate/" title="Certificate Management" class="md-nav__link">
+        Certificate Management
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Integration Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5">
+        Integration Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/" title="Introduction" class="md-nav__link">
+        Introduction
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Client SDKs
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-2">
+        Client SDKs
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/oauth2/" title="oxd OAuth2" class="md-nav__link">
+        oxd OAuth2
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/oauth-js-implicit/" title="OAuth2.0 js Implicit Flow" class="md-nav__link">
+        OAuth2.0 js Implicit Flow
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      Web Server Integrations
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-3">
+        Web Server Integrations
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/saml-sp/" title="Shibboleth SP" class="md-nav__link">
+        Shibboleth SP
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/openidc-rp/" title="mod_auth_openidc" class="md-nav__link">
+        mod_auth_openidc
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-4" type="checkbox" id="nav-5-4">
+    
+    <label class="md-nav__link" for="nav-5-4">
+      SaaS Integrations
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-4">
+        SaaS Integrations
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/google/" title="Google Apps" class="md-nav__link">
+        Google Apps
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/office/" title="Office 365" class="md-nav__link">
+        Office 365
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/salesforce/" title="Salesforce" class="md-nav__link">
+        Salesforce
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/dropbox/" title="Dropbox" class="md-nav__link">
+        Dropbox
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/github-enterprise/" title="GitHub Enterprise" class="md-nav__link">
+        GitHub Enterprise
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Reference
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6">
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1">
+    
+    <label class="md-nav__link" for="nav-6-1">
+      Gluu API Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6-1">
+        Gluu API Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/api/" title="Custom ID Generation" class="md-nav__link">
+        Custom ID Generation
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/openid-connect-api/" title="OpenID Connect API" class="md-nav__link">
+        OpenID Connect API
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/scim-api/" title="SCIM API Configuration" class="md-nav__link">
+        SCIM API Configuration
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/uma-api/" title="UMA API" class="md-nav__link">
+        UMA API
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-2" type="checkbox" id="nav-6-2">
+    
+    <label class="md-nav__link" for="nav-6-2">
+      JSON Properties
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6-2">
+        JSON Properties
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/JSON-oxtrust-prop/" title="OxTrust JSON Properties" class="md-nav__link">
+        OxTrust JSON Properties
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/JSON-oxauth-prop/" title="OxAuth JSON Properties" class="md-nav__link">
+        OxAuth JSON Properties
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-3" type="checkbox" id="nav-6-3">
+    
+    <label class="md-nav__link" for="nav-6-3">
+      Gluu LDAP Schema
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6-3">
+        Gluu LDAP Schema
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/oxldap/" title="Ox LDAP Properties" class="md-nav__link">
+        Ox LDAP Properties
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/schema/" title="OpenLDAP Schema" class="md-nav__link">
+        OpenLDAP Schema
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
+    
+    <label class="md-nav__link" for="nav-7">
+      Operation Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-7">
+        Operation Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../backup/" title="Backups" class="md-nav__link">
+        Backups
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../find-gluu-version/" title="Find your Gluu Version" class="md-nav__link">
+        Find your Gluu Version
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../ports/" title="Ports" class="md-nav__link">
+        Ports
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../logout/" title="Single Logout (SLO)" class="md-nav__link">
+        Single Logout (SLO)
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../logs/" title="Log Management" class="md-nav__link">
+        Log Management
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../custom-loginpage/" title="Customize Public Pages" class="md-nav__link">
+        Customize Public Pages
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        FAQ & Troubleshooting
+      </label>
+    
+    <a href="./" title="FAQ & Troubleshooting" class="md-nav__link md-nav__link--active">
+      FAQ & Troubleshooting
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general" title="General" class="md-nav__link">
+    General
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logs" title="Logs" class="md-nav__link">
+    Logs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-change-the-hostnameip-addresslistening-port-of-gluu-server" title="How to change the hostname/IP address/listening port of Gluu Server" class="md-nav__link">
+    How to change the hostname/IP address/listening port of Gluu Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-set-the-port-to-something-other-than-443" title="How to set the port to something other than 443" class="md-nav__link">
+    How to set the port to something other than 443
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-customize-idp-to-ask-for-email-instead-of-username" title="How to customize IDP to ask for Email instead of username" class="md-nav__link">
+    How to customize IDP to ask for Email instead of username
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-add-additional-roles-to-oxtrust-and-change-permissions-for-existing-ones" title="How to add additional roles to oxTrust and change permissions for existing ones" class="md-nav__link">
+    How to add additional roles to oxTrust and change permissions for existing ones
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-install-a-patch-to-my-server" title="How do I install a patch to my server?" class="md-nav__link">
+    How do I install a patch to my server?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" title="Troubleshooting" class="md-nav__link">
+    Troubleshooting
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-admin-for-gluu-server" title="Add admin for Gluu server" class="md-nav__link">
+    Add admin for Gluu server
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connectivity-issues" title="Connectivity Issues" class="md-nav__link">
+    Connectivity Issues
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dns-names-not-resolving" title="DNS names not resolving!" class="md-nav__link">
+    DNS names not resolving!
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forgot-the-admin-password" title="Forgot the admin password!" class="md-nav__link">
+    Forgot the admin password!
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revert-authentication-method" title="Revert Authentication Method" class="md-nav__link">
+    Revert Authentication Method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-admin-access-after-cache-refresh" title="No admin access after Cache Refresh?" class="md-nav__link">
+    No admin access after Cache Refresh?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Developer Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-8">
+        Developer Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../developer-guide/oxtrust-eclipse/" title="Build oxTrust with Eclipse" class="md-nav__link">
+        Build oxTrust with Eclipse
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general" title="General" class="md-nav__link">
+    General
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logs" title="Logs" class="md-nav__link">
+    Logs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-change-the-hostnameip-addresslistening-port-of-gluu-server" title="How to change the hostname/IP address/listening port of Gluu Server" class="md-nav__link">
+    How to change the hostname/IP address/listening port of Gluu Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-set-the-port-to-something-other-than-443" title="How to set the port to something other than 443" class="md-nav__link">
+    How to set the port to something other than 443
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-customize-idp-to-ask-for-email-instead-of-username" title="How to customize IDP to ask for Email instead of username" class="md-nav__link">
+    How to customize IDP to ask for Email instead of username
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-add-additional-roles-to-oxtrust-and-change-permissions-for-existing-ones" title="How to add additional roles to oxTrust and change permissions for existing ones" class="md-nav__link">
+    How to add additional roles to oxTrust and change permissions for existing ones
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-install-a-patch-to-my-server" title="How do I install a patch to my server?" class="md-nav__link">
+    How do I install a patch to my server?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" title="Troubleshooting" class="md-nav__link">
+    Troubleshooting
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-admin-for-gluu-server" title="Add admin for Gluu server" class="md-nav__link">
+    Add admin for Gluu server
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connectivity-issues" title="Connectivity Issues" class="md-nav__link">
+    Connectivity Issues
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dns-names-not-resolving" title="DNS names not resolving!" class="md-nav__link">
+    DNS names not resolving!
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forgot-the-admin-password" title="Forgot the admin password!" class="md-nav__link">
+    Forgot the admin password!
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revert-authentication-method" title="Revert Authentication Method" class="md-nav__link">
+    Revert Authentication Method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-admin-access-after-cache-refresh" title="No admin access after Cache Refresh?" class="md-nav__link">
+    No admin access after Cache Refresh?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+               
+                 <a href="https://github.com/GluuFederation/docs-3.0.1/blob/master/source/operation\faq.md" title="Edit this page" class="md-icon md-content__edit">edit</a>
+               
+              
+                
+                <h1 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">#</a></h1>
+<h2 id="general">General<a class="headerlink" href="#general" title="Permanent link">#</a></h2>
+<h3 id="logs">Logs<a class="headerlink" href="#logs" title="Permanent link">#</a></h3>
+<p>When it comes to troubleshooting issues in the Gluu Server--from service hiccups to outages--your <a href="../logs/">server logs</a> are the best place to gather relevant information.</p>
+<h3 id="how-to-change-the-hostnameip-addresslistening-port-of-gluu-server">How to change the hostname/IP address/listening port of Gluu Server<a class="headerlink" href="#how-to-change-the-hostnameip-addresslistening-port-of-gluu-server" title="Permanent link">#</a></h3>
+<p>It is not recommended to change the hostname or IP address or the listening port of any installed Gluu Server instance. The hostname and the IP address is used in many settings stored in LDAP configuration entries, Apache/Jetty configuration and into the custom authentication script. It is strongly recommended to use a fresh install in a new VM. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please use static IP address with reverse proxy or load balancer or simple port forwarding.</p>
+</div>
+<h3 id="how-to-set-the-port-to-something-other-than-443">How to set the port to something other than 443<a class="headerlink" href="#how-to-set-the-port-to-something-other-than-443" title="Permanent link">#</a></h3>
+<p>Ports other than 443 are not supported as the port is used by Apache Web Server. In theory, the change must reflect in the SAML and OpenID Connect metadata and still there might be errors.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please use a virtual ethernet interface and a different IP address on your server</p>
+</div>
+<h3 id="how-to-customize-idp-to-ask-for-email-instead-of-username">How to customize IDP to ask for Email instead of username<a class="headerlink" href="#how-to-customize-idp-to-ask-for-email-instead-of-username" title="Permanent link">#</a></h3>
+<p>In oxTrust navigate to the Manage Authentication tab within the Configuration section. By default the Primary Key and Local Key are set to <code>uid</code>. Set those va    lues to <code>mail</code> and now your Gluu Server will expect email as the identifier instead of username.</p>
+<p><img alt="change2mail" src="../../img/admin-guide/faq/change2mail.png" /></p>
+<p>Now you will want to update your IDP login page to display <code>Email Address</code> as the requested identifier. In order to do that you need to modify the <code>login.xhtm    l</code> file, which is located in <code>/opt/tomcat/webapps/oxauth/</code>. Insert <code>Email Address</code> as the value for <code>outputLabel</code>; this snippet is under the <code>dialog</code> class. S    ee the screenshot below.</p>
+<p><img alt="update-login" src="../../img/admin-guide/faq/update-login.png" /></p>
+<h3 id="how-to-add-additional-roles-to-oxtrust-and-change-permissions-for-existing-ones">How to add additional roles to oxTrust and change permissions for existing ones<a class="headerlink" href="#how-to-add-additional-roles-to-oxtrust-and-change-permissions-for-existing-ones" title="Permanent link">#</a></h3>
+<p>The additional role requires the implementation of dynamic rules in Jboss SEAM and then uitlize them in oxTrust as the available <em>manager</em> and <em>user</em> roles are defined within the <code>securit.drl</code> hard-coded into oxTrust. The file checks for the <em>maanger</em> group membership and adds the role to the web context. This is currently out of the scope of support. </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>oxTrust is a tool for administrators and it must nto be used as a user facing application.</p>
+</div>
+<h3 id="how-do-i-install-a-patch-to-my-server">How do I install a patch to my server?<a class="headerlink" href="#how-do-i-install-a-patch-to-my-server" title="Permanent link">#</a></h3>
+<p>Follow the documentation for <a href="../../upgrade/update-war/">updating a .war file</a>. </p>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">#</a></h2>
+<h3 id="add-admin-for-gluu-server">Add admin for Gluu server<a class="headerlink" href="#add-admin-for-gluu-server" title="Permanent link">#</a></h3>
+<p>Please follow these steps to restore your Gluu admin account (you will
+probably need to substitute actual port, bind names and hostnames with
+ones used by your installation):</p>
+<p>1) Login into Gluu's chroot environment with the command below:</p>
+<pre><code># service gluu-server login
+</code></pre>
+
+<p>2) Run this command:</p>
+<pre><code>#/opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -b o=gluu gluuGroupType=gluuManagerGroup 1.1
+</code></pre>
+
+<p>and remember the displayed dn of the Gluu Manager Group for future use.</p>
+<p>3) Run this command:</p>
+<pre><code># /opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -b o=gluu ou=people 1.1
+</code></pre>
+
+<p>and remember the displayed dn of the People ou for future use.</p>
+<p>4) While staying in the chrooted environment, create the file
+<code>~/add_user.ldif</code> using your favorite text editor, and copy the
+following lines to it:</p>
+<pre><code>dn: inum=tempadmin,ou=people,o=@!F9CC.D762.4778.1032!0001!2C72.BB87,o=gluu
+changetype: add
+uid: tempadmin
+objectClass: gluuPerson
+objectClass: top
+givenName: tempadmin
+sn: tempadmin
+inum: tempadmin
+gluuStatus: active
+userPassword: 1q2w3e
+</code></pre>
+
+<p>Please note the string's segment marked with bold: you will have to
+substitute it with dn of your own People ou which you've acquired in
+step 3).</p>
+<p>5) Run this command:</p>
+<pre><code># /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/add_user.ldif
+</code></pre>
+
+<p>This will create new user tempadmin with attributes provided via file
+created in step 4).</p>
+<p>6) Now create file <code>add_2_group.ldif</code> in your home ("~/") directory and
+copy the following lines to it:</p>
+<pre><code>dn: inum=@!F9CC.D762.4778.1032!0001!2C72.BB87!0003!60B7,ou=groups,o=@!f9cc.d762.4778.1032!0001!2c72.bb87,o=gluu
+changetype: modify
+add: member
+member: inum=tempadmin,ou=people,o=@!f9cc.d762.4778.1032!0001!2c72.bb87,o=gluu
+</code></pre>
+
+<p>Again, please note the strings' segment marked with bold: you will have
+to substitute contents of the "dn:" string with dn of your own Gluu
+Manager Group which you've acquired in step 2), and for "member:" string
+you will have to use the dn of tempadmin user (the one you already
+specified in the 1st line of the file in step 4).</p>
+<p>7) Run this command:</p>
+<pre><code># /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/add_2_group.ldif
+</code></pre>
+
+<p>This will add tempadmin user to the IdP managers group and you can then
+login and assign another user to act as admin.</p>
+<h2 id="connectivity-issues">Connectivity Issues<a class="headerlink" href="#connectivity-issues" title="Permanent link">#</a></h2>
+<h3 id="dns-names-not-resolving">DNS names not resolving!<a class="headerlink" href="#dns-names-not-resolving" title="Permanent link">#</a></h3>
+<p>It is possible that even after configuring everything there is a <code>DNS</code> resolve error in Gluu Server.
+The reason is the <code>DNS</code> used inside the chroot container; the <code>dns</code> used by the container is the Google DNS servers 
+and the <code>DNS</code> for the host OS is not used. Therefore to fix this issue:</p>
+<ul>
+<li>Change the DNS inside the container by editing the <code>/etc/resolv.conf</code> file and adding the DNS used by your organization</li>
+</ul>
+<h3 id="forgot-the-admin-password">Forgot the admin password!<a class="headerlink" href="#forgot-the-admin-password" title="Permanent link">#</a></h3>
+<p>Gluu Server stores the admin password in the file <code>/install/community-edition-setup/setup.properties.last</code> under the
+property <code>ldapPass</code>. Retrieve the data using the following command:</p>
+<pre><code># grep ldapPass= /install/community-edition-setup/*.last
+</code></pre>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It is strongly recommended to remove the file from any production environment or encrypt the file</p>
+</div>
+<h3 id="revert-authentication-method">Revert Authentication Method<a class="headerlink" href="#revert-authentication-method" title="Permanent link">#</a></h3>
+<p>While testing authentication scripts and mechanisms it is not unlikely that you will find yourself locked out of the Gluu Server. In such a case the following method can be used to revert back to the previous authentication method:</p>
+<blockquote>
+<p>Same commands can be used for OpenLDAP as well.</p>
+</blockquote>
+<ol>
+<li>
+<p>Run the following command to collect the <code>inum</code> for the Gluu Server installation:   </p>
+<p><code>$/opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -j ~/.pw -b "ou=appliances,o=gluu" -s one "objectclass=*" oxAuthenticationMode</code></p>
+</li>
+<li>
+<p>Create a <code>LDIF</code> file with the contents below:</p>
+<p><code>dn: inum=@!1E3B.F133.14FA.5062!0002!4B66.CF9C,ou=appliances,o=gluu</code></p>
+<p><code>changetype: modify</code></p>
+<p><code>replace: oxAuthenticationMode</code></p>
+<p><code>oxAuthenticationMode: internal</code></p>
+<p>As an example, we shall call this file <code>changeAuth.ldif</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Replace the <code>inum</code> from the example above with the <code>inum</code> of your Gluu Server from the <code>ldapsearch</code> command.</p>
+</div>
+</li>
+<li>
+<p>Replace the the authentication mode using <code>ldapmodify</code> command.
+    <code>$/opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/changeAuth.ldif</code></p>
+</li>
+</ol>
+<blockquote>
+<p>Reverting authentication could also done using LDAP browser and modifiying oxAuthenticationMode to 'internal'</p>
+</blockquote>
+<h3 id="no-admin-access-after-cache-refresh">No admin access after Cache Refresh?<a class="headerlink" href="#no-admin-access-after-cache-refresh" title="Permanent link">#</a></h3>
+<p>Add the password for your admin account to <code>~/.pw</code> and then use the commands below to add yourself as an admin.</p>
+<pre><code class="bash"># set this to your actual user name
+export newgluuadmin='myusername'
+
+# this is the file that will hold the info to be imported
+export ldiffile='addManagers.ldif'
+
+# run this and verify that the output is for your account
+/opt/opendj/bin/ldapsearch -h localhost -p 1636 -D &quot;cn=directory manager&quot; -j ~/.pw -Z -X -b &quot;o=gluu&quot; &quot;uid=$newgluuadmin&quot; uid givenName sn cn
+
+dn: inum=@!134D.3C3D.796E.FECE!0001!E022.CC3C!0000!A8F2.DE1E.D7FB,ou=people,o=@!134D.
+ 3C3D.796E.FECE!0001!E022.CC3C,o=gluu
+uid: myusername
+givenName: John
+sn: Doe
+cn: John Doe
+</code></pre>
+
+<p>Now you can run these commands to make the file above:</p>
+<pre><code class="bash">head -n1 /opt/opendj/ldif/groups.ldif &gt; $ldiffile
+echo 'changetype: modify' &gt;&gt; $ldiffile
+echo 'add: member' &gt;&gt; $ldiffile
+echo &quot;member: $(/opt/opendj/bin/ldapsearch -h localhost -p 1636 -D &quot;cn=directory manager&quot; -j ~/.pw -Z -X -b &quot;o=gluu&quot; &quot;uid=$newgluuadmin&quot; uid givenName sn cn |grep -A1 dn |cut -d ' ' -f 2- | sed 'N;s/\n//')&quot; &gt;&gt; $ldiffile
+</code></pre>
+
+<p>The resulting ldif will look like this:</p>
+<pre><code class="bash">dn: inum=@!134D.3C3D.796E.FECE!0001!E022.CC3C!0003!60B7,ou=groups,o=@!134D.3C3D.796E.FECE!0001!E022.CC3C,o=gluu
+changetype: modify
+add: member
+member: inum=@!134D.3C3D.796E.FECE!0001!E022.CC3C!0000!A8F2.DE1E.D7FB,ou=people,o=@!134D.3C3D.796E.FECE!0001!E022.CC3C,o=gluu
+</code></pre>
+
+<p>Once the ldif looks right, run this to grant your account admin rights in Gluu:</p>
+<pre><code class="bash">/opt/opendj/bin/ldapmodify -h localhost -p 1636 -D &quot;cn=directory manager&quot; -j ~/.pw -Z -X -f addManagers.ldif
+</code></pre>
+
+<p>Log into the web interface and pick up where you left off :)</p>
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../custom-loginpage/" title="Customize Public Pages" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Customize Public Pages
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../developer-guide/oxtrust-eclipse/" title="Build oxTrust with Eclipse" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Build oxTrust with Eclipse
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2017, Gluu, Inc.
+          </div>
+        
+        powered by
+        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        and
+        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application-2afe21e0b2.js"></script>
+      <script>var config={url:{base:"../.."}},app=new Application(config);app.initialize()</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

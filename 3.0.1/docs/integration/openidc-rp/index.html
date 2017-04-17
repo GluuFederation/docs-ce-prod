@@ -1,0 +1,2437 @@
+
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documenation for Gluu Server">
+      
+      
+      
+      
+        <link rel="shortcut icon" href="../../favicon.ico">
+      
+      <meta name="generator" content="mkdocs+mkdocs-material#1.0.3">
+    
+    
+      
+        <title>mod_auth_openidc - Gluu Docs</title>
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr-facb31f4a3.js"></script>
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application-f3ab63f78a.css">
+      
+      
+    
+    
+  </head>
+  
+  
+  
+  
+    <body>
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+	 <div class="md-flex__cell md-flex__cell--shrink">
+	    <a href="https://gluu.org/docs/" title="Gluu Docs" class=" md-logo  md-header-nav__button">
+          
+            <img src="../../gluu.jpg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+                <span class="md-header-nav__parent">
+                  Integration Guide
+                </span>
+              
+                <span class="md-header-nav__parent">
+                  Web Server Integrations
+                </span>
+              
+            
+            mod_auth_openidc
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+          
+<div class="md-search" data-md-component="search">
+  <div class="md-search__overlay"></div>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" accesskey="s" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false">
+      <label class="md-icon md-search__icon" for="search"></label>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+              
+
+
+  
+
+
+  <a href="https://github.com/GluuFederation/docs-3.0.1" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+            
+          </div>
+      </div>
+    </div>
+<!-- Second Nav Bar 
+<nav class="md-secondary-header-nav md-grid" style="
+    height: 58px;
+    background: white;
+	color: #555555;
+	font-weight: bold;
+	font-size; 8px
+	overflow: hidden;
+">
+<div class="md-flex-secondary" style="
+    display: table;
+    padding: 10px;
+">
+<label for="Versions">Ver:<select id="versions" onchange="window.location.href=this.value;" style="
+    position: relative;
+    display: inline-block;
+    min-width: 100%;
+    /* width: 120%; */
+    height: 34px;
+    padding: 6px 30px 6px 15px;
+    color: #555555;
+    border: none;
+    background: transparent;
+    outline: none;
+    -webkit-appearance: none;
+    z-index: 99;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border: 1px;
+">
+  <option value="/docs">Latest</option>
+  <option value="/docs/2.4.4">2.4.4</option>
+    </select> 
+</label>
+ </div>
+ </nav>-->
+   </nav>
+</header>
+    
+    <div class="md-container">
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary">
+
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <i class=" md-logo  md-nav__button">
+      
+        <img src="../../gluu.jpg">
+      
+    </i>
+    Gluu Docs
+	<label for="Versions">Ver:
+	  <select id="versions" onchange="window.location.href=this.value;" style="
+		position: inherit;
+		display: inline;
+		min-width: 25%;
+		/* width: 120%; */
+		height: 22px;
+		padding: 5px 15px 5px 5px;
+		color: black;
+		border: none;
+		background: transparent;
+		outline: none;
+		-webkit-appearance: none;
+		z-index: 99;
+		cursor: pointer;
+		font-size: 10px;
+		margin-bottom: 10px;
+		border: 1px solid black;
+		overflow: auto
+	">
+	  <option value="/docs/ce/latest">3.0.1</option>
+	  <!-- <option value="/docs/ce/3.0.0">3.0.0</option> -->
+	  <option value="/docs/ce/2.4.4">2.4.4</option>
+	  <option value="/docs">All Versions</option>
+		</select> 
+	</label>
+  </label>
+    
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/GluuFederation/docs-3.0.1" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  <li class="md-nav__item">
+    
+      <a href="../.." title="Home" class="md-nav__link">
+        Home
+      </a>
+    
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item">
+    
+      <a href="../../operation/intro/" title="Whats new in 3.x" class="md-nav__link">
+        Whats new in 3.x
+      </a>
+    
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Installation Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-3">
+        Installation Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../installation-guide/" title="Preparing VM" class="md-nav__link">
+        Preparing VM
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../installation-guide/install/" title="Install Gluu Server" class="md-nav__link">
+        Install Gluu Server
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../installation-guide/setup_py/" title="Setup Script Options" class="md-nav__link">
+        Setup Script Options
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Upgrade/Patch Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-3-4">
+        Upgrade/Patch Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../upgrade/" title="Upgrade Gluu Server" class="md-nav__link">
+        Upgrade Gluu Server
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../upgrade/manual-update/" title="Upgrade Gluu Server with OpenDJ" class="md-nav__link">
+        Upgrade Gluu Server with OpenDJ
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../upgrade/update-war/" title="Updating a War File" class="md-nav__link">
+        Updating a War File
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Administration Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-4">
+        Administration Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/oxtrust-ui/" title="oxTrust admin UI" class="md-nav__link">
+        oxTrust admin UI
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/custom-script/" title="Interception Scripts" class="md-nav__link">
+        Interception Scripts
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      User Authentication Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-4-3">
+        User Authentication Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/intro/" title="User Authentication Introduction" class="md-nav__link">
+        User Authentication Introduction
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/basic/" title="Basic Authenticatoin" class="md-nav__link">
+        Basic Authenticatoin
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/passport/" title="Social Authentication" class="md-nav__link">
+        Social Authentication
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/supergluu/" title="Super Gluu" class="md-nav__link">
+        Super Gluu
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/U2F/" title="FIDO U2F" class="md-nav__link">
+        FIDO U2F
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/duo/" title="Duo Security" class="md-nav__link">
+        Duo Security
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/cert-auth/" title="Certificate Authentication" class="md-nav__link">
+        Certificate Authentication
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/google/" title="Google+ OAuth 2.0" class="md-nav__link">
+        Google+ OAuth 2.0
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/otp/" title="HOTP/TOTP" class="md-nav__link">
+        HOTP/TOTP
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/customauthn/" title="Custom Authentication" class="md-nav__link">
+        Custom Authentication
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/attribute/" title="Attributes" class="md-nav__link">
+        Attributes
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/user-group/" title="User Management" class="md-nav__link">
+        User Management
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/session/" title="Session Management" class="md-nav__link">
+        Session Management
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/saml/" title="SAML" class="md-nav__link">
+        SAML
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/openid-connect/" title="OpenID Connect" class="md-nav__link">
+        OpenID Connect
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/uma/" title="UMA" class="md-nav__link">
+        UMA
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/scim-uma/" title="SCIM protected by UMA" class="md-nav__link">
+        SCIM protected by UMA
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/certificate/" title="Certificate Management" class="md-nav__link">
+        Certificate Management
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Integration Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5">
+        Integration Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../" title="Introduction" class="md-nav__link">
+        Introduction
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Client SDKs
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-2">
+        Client SDKs
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../oauth2/" title="oxd OAuth2" class="md-nav__link">
+        oxd OAuth2
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../oauth-js-implicit/" title="OAuth2.0 js Implicit Flow" class="md-nav__link">
+        OAuth2.0 js Implicit Flow
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3" checked>
+    
+    <label class="md-nav__link" for="nav-5-3">
+      Web Server Integrations
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-3">
+        Web Server Integrations
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../saml-sp/" title="Shibboleth SP" class="md-nav__link">
+        Shibboleth SP
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        mod_auth_openidc
+      </label>
+    
+    <a href="./" title="mod_auth_openidc" class="md-nav__link md-nav__link--active">
+      mod_auth_openidc
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-web-server-installation" title="Basic Web Server Installation" class="md-nav__link">
+    Basic Web Server Installation
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apache-web-server" title="Apache Web Server" class="md-nav__link">
+    Apache Web Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-configuration" title="SSL Configuration" class="md-nav__link">
+    SSL Configuration
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-apache-to-use-ssl" title="Configure Apache to use SSL" class="md-nav__link">
+    Configure Apache to use SSL
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-of-mod_auth_openidc" title="Configuration of mod_auth_openidc" class="md-nav__link">
+    Configuration of mod_auth_openidc
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation" title="Installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client-registration" title="Client Registration" class="md-nav__link">
+    Client Registration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-cgi-script" title="Install CGI script" class="md-nav__link">
+    Install CGI script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-the-apache-virtualhost" title="Configuring the Apache VirtualHost" class="md-nav__link">
+    Configuring the Apache VirtualHost
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation_1" title="Installation" class="md-nav__link">
+    Installation
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-epel-repository" title="Add EPEL Repository" class="md-nav__link">
+    Add EPEL Repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apache-web-server_1" title="Apache Web Server" class="md-nav__link">
+    Apache Web Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-ssl-module" title="Configure SSL Module" class="md-nav__link">
+    Configure SSL Module
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-authentication-module" title="Load Authentication Module" class="md-nav__link">
+    Load Authentication Module
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-cgi-script_1" title="Install CGI Script" class="md-nav__link">
+    Install CGI Script
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#client-registration_1" title="Client Registration" class="md-nav__link">
+    Client Registration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-the-apache-virtualhost" title="Configure the Apache Virtualhost" class="md-nav__link">
+    Configure the Apache Virtualhost
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oxray" title="oxRay" class="md-nav__link">
+    oxRay
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" title="Overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment" title="Deployment" class="md-nav__link">
+    Deployment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploying-war-file-using-maven" title="Deploying WAR file using Maven" class="md-nav__link">
+    Deploying WAR file using Maven
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-liferay-plugin-sdk-with-ant" title="Using LifeRay Plugin SDK With Ant" class="md-nav__link">
+    Using LifeRay Plugin SDK With Ant
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-binary-from-repository" title="Using Binary From Repository" class="md-nav__link">
+    Using Binary From Repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client-registration_2" title="Client Registration" class="md-nav__link">
+    Client Registration
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modifying-portalproperties" title="Modifying portal.properties" class="md-nav__link">
+    Modifying portal.properties
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#login-using-the-liferay-front-end" title="Login Using the LifeRay Front End" class="md-nav__link">
+    Login Using the LifeRay Front End
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-openid-connect-to-authenticate-a-person-in-java" title="Using OpenID Connect to authenticate a person in Java" class="md-nav__link">
+    Using OpenID Connect to authenticate a person in Java
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discovery" title="Discovery" class="md-nav__link">
+    Discovery
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#client-registration_3" title="Client Registration" class="md-nav__link">
+    Client Registration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtaining-the-id_token" title="Obtaining the id_token" class="md-nav__link">
+    Obtaining the id_token
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logout" title="Logout" class="md-nav__link">
+    Logout
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-openid-connect-from-javascript" title="Using OpenID Connect from JavaScript" class="md-nav__link">
+    Using OpenID Connect from JavaScript
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-4" type="checkbox" id="nav-5-4">
+    
+    <label class="md-nav__link" for="nav-5-4">
+      SaaS Integrations
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-4">
+        SaaS Integrations
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../google/" title="Google Apps" class="md-nav__link">
+        Google Apps
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../office/" title="Office 365" class="md-nav__link">
+        Office 365
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../salesforce/" title="Salesforce" class="md-nav__link">
+        Salesforce
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../dropbox/" title="Dropbox" class="md-nav__link">
+        Dropbox
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../github-enterprise/" title="GitHub Enterprise" class="md-nav__link">
+        GitHub Enterprise
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Reference
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6">
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1">
+    
+    <label class="md-nav__link" for="nav-6-1">
+      Gluu API Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6-1">
+        Gluu API Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/api/" title="Custom ID Generation" class="md-nav__link">
+        Custom ID Generation
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/openid-connect-api/" title="OpenID Connect API" class="md-nav__link">
+        OpenID Connect API
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/scim-api/" title="SCIM API Configuration" class="md-nav__link">
+        SCIM API Configuration
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/uma-api/" title="UMA API" class="md-nav__link">
+        UMA API
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-2" type="checkbox" id="nav-6-2">
+    
+    <label class="md-nav__link" for="nav-6-2">
+      JSON Properties
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6-2">
+        JSON Properties
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/JSON-oxtrust-prop/" title="OxTrust JSON Properties" class="md-nav__link">
+        OxTrust JSON Properties
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/JSON-oxauth-prop/" title="OxAuth JSON Properties" class="md-nav__link">
+        OxAuth JSON Properties
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-3" type="checkbox" id="nav-6-3">
+    
+    <label class="md-nav__link" for="nav-6-3">
+      Gluu LDAP Schema
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6-3">
+        Gluu LDAP Schema
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/oxldap/" title="Ox LDAP Properties" class="md-nav__link">
+        Ox LDAP Properties
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/schema/" title="OpenLDAP Schema" class="md-nav__link">
+        OpenLDAP Schema
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Operation Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-7">
+        Operation Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/backup/" title="Backups" class="md-nav__link">
+        Backups
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/find-gluu-version/" title="Find your Gluu Version" class="md-nav__link">
+        Find your Gluu Version
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/ports/" title="Ports" class="md-nav__link">
+        Ports
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/logout/" title="Single Logout (SLO)" class="md-nav__link">
+        Single Logout (SLO)
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/logs/" title="Log Management" class="md-nav__link">
+        Log Management
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/custom-loginpage/" title="Customize Public Pages" class="md-nav__link">
+        Customize Public Pages
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/faq/" title="FAQ & Troubleshooting" class="md-nav__link">
+        FAQ & Troubleshooting
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Developer Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-8">
+        Developer Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../developer-guide/oxtrust-eclipse/" title="Build oxTrust with Eclipse" class="md-nav__link">
+        Build oxTrust with Eclipse
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-web-server-installation" title="Basic Web Server Installation" class="md-nav__link">
+    Basic Web Server Installation
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apache-web-server" title="Apache Web Server" class="md-nav__link">
+    Apache Web Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-configuration" title="SSL Configuration" class="md-nav__link">
+    SSL Configuration
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-apache-to-use-ssl" title="Configure Apache to use SSL" class="md-nav__link">
+    Configure Apache to use SSL
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-of-mod_auth_openidc" title="Configuration of mod_auth_openidc" class="md-nav__link">
+    Configuration of mod_auth_openidc
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation" title="Installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client-registration" title="Client Registration" class="md-nav__link">
+    Client Registration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-cgi-script" title="Install CGI script" class="md-nav__link">
+    Install CGI script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-the-apache-virtualhost" title="Configuring the Apache VirtualHost" class="md-nav__link">
+    Configuring the Apache VirtualHost
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation_1" title="Installation" class="md-nav__link">
+    Installation
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-epel-repository" title="Add EPEL Repository" class="md-nav__link">
+    Add EPEL Repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apache-web-server_1" title="Apache Web Server" class="md-nav__link">
+    Apache Web Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-ssl-module" title="Configure SSL Module" class="md-nav__link">
+    Configure SSL Module
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-authentication-module" title="Load Authentication Module" class="md-nav__link">
+    Load Authentication Module
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-cgi-script_1" title="Install CGI Script" class="md-nav__link">
+    Install CGI Script
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#client-registration_1" title="Client Registration" class="md-nav__link">
+    Client Registration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-the-apache-virtualhost" title="Configure the Apache Virtualhost" class="md-nav__link">
+    Configure the Apache Virtualhost
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oxray" title="oxRay" class="md-nav__link">
+    oxRay
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" title="Overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment" title="Deployment" class="md-nav__link">
+    Deployment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploying-war-file-using-maven" title="Deploying WAR file using Maven" class="md-nav__link">
+    Deploying WAR file using Maven
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-liferay-plugin-sdk-with-ant" title="Using LifeRay Plugin SDK With Ant" class="md-nav__link">
+    Using LifeRay Plugin SDK With Ant
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-binary-from-repository" title="Using Binary From Repository" class="md-nav__link">
+    Using Binary From Repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client-registration_2" title="Client Registration" class="md-nav__link">
+    Client Registration
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modifying-portalproperties" title="Modifying portal.properties" class="md-nav__link">
+    Modifying portal.properties
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#login-using-the-liferay-front-end" title="Login Using the LifeRay Front End" class="md-nav__link">
+    Login Using the LifeRay Front End
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-openid-connect-to-authenticate-a-person-in-java" title="Using OpenID Connect to authenticate a person in Java" class="md-nav__link">
+    Using OpenID Connect to authenticate a person in Java
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discovery" title="Discovery" class="md-nav__link">
+    Discovery
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#client-registration_3" title="Client Registration" class="md-nav__link">
+    Client Registration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtaining-the-id_token" title="Obtaining the id_token" class="md-nav__link">
+    Obtaining the id_token
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logout" title="Logout" class="md-nav__link">
+    Logout
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-openid-connect-from-javascript" title="Using OpenID Connect from JavaScript" class="md-nav__link">
+    Using OpenID Connect from JavaScript
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+               
+                 <a href="https://github.com/GluuFederation/docs-3.0.1/blob/master/source/integration\openidc-rp.md" title="Edit this page" class="md-icon md-content__edit">edit</a>
+               
+              
+                
+                <h1 id="mod_auth_openidc-rp-integration">mod_auth_openidc RP Integration<a class="headerlink" href="#mod_auth_openidc-rp-integration" title="Permanent link">#</a></h1>
+<h2 id="basic-web-server-installation">Basic Web Server Installation<a class="headerlink" href="#basic-web-server-installation" title="Permanent link">#</a></h2>
+<p>Before you can install mod_auth_openidc, you need to have an Apache
+HTTPD server running with SSL enabled. </p>
+<h3 id="apache-web-server">Apache Web Server<a class="headerlink" href="#apache-web-server" title="Permanent link">#</a></h3>
+<p>It is assumed that all the hostnames will be dns resolvable. If not, 
+then add the entries in <code>/etc/hosts</code> file on both the web server
+and Gluu Server. </p>
+<p>If you don't have the Apache HTTPD server installed, use apt-get
+to install the Ubuntu standard distribution:</p>
+<pre><code class="text"># apt-get install apache2
+# service apache2 start
+</code></pre>
+
+<h3 id="ssl-configuration">SSL Configuration<a class="headerlink" href="#ssl-configuration" title="Permanent link">#</a></h3>
+<p>The SSL Module is necessary for the Apache OpenID Connect Module. Please 
+use the following commands to activate the <code>ssl module</code>.</p>
+<pre><code class="text"># a2enmod ssl
+</code></pre>
+
+<p>The next step is to create a self-signed SSL Certificate.</p>
+<ul>
+<li>Create a directory to put the generate the ssl certificate</li>
+</ul>
+<pre><code class="text"># mkdir /etc/apache2/ssl`
+# openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+</code></pre>
+
+<ul>
+<li>Answer the questions that are asked. A template is given below</li>
+</ul>
+<pre><code class="text">    Country Name (2 letter code) [AU]:US
+    State or Province Name (full name) [Some-State]:TX
+    Organization Name (eg, company) [Internet Widgits Pty Ltd]:Acme Inc.
+    Organizational Unit Name (eg, section) []:
+    Common Name (e.g. server FQDN or YOUR name) []:www.mydomain.com
+    Email Address []:help@mydomain.com
+</code></pre>
+
+<h4 id="configure-apache-to-use-ssl">Configure Apache to use SSL<a class="headerlink" href="#configure-apache-to-use-ssl" title="Permanent link">#</a></h4>
+<p>This section will guide you through the steps to configure apache to 
+use the SSL module</p>
+<ol>
+<li>Open the <code>default-ssl.conf</code> file</li>
+</ol>
+<pre><code class="text"># vim /etc/apache2/sites-available/default-ssl.conf`
+
+</code></pre>
+
+<ol>
+<li>
+<p>Update the certificate locations with the newly created certificates 
+<code>/etc/apache2/ssl/apache.key</code> and <code>/etc/apache2/ssl/apache.crt</code></p>
+</li>
+<li>
+<p>Activate the SSL Virtual Host and CGI</p>
+</li>
+</ol>
+<pre><code class="text"># a2ensite default-ssl.conf
+# a2enmod cgid
+# service apache2 restart
+
+</code></pre>
+
+<p>At this point, its a good time to test to make sure SSL and CGI are 
+working. Point your browser at 
+https://www.mydomain.com/cgi-bin/printHeaders.cgi
+You should see a list of current environment variables. </p>
+<h2 id="configuration-of-mod_auth_openidc">Configuration of mod_auth_openidc<a class="headerlink" href="#configuration-of-mod_auth_openidc" title="Permanent link">#</a></h2>
+<h3 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">#</a></h3>
+<p><code>mod_auth_openidc</code> module depends on the Ubuntu package <code>libjansson4</code>: </p>
+<pre><code class="text"># apt-get install libjansson
+
+</code></pre>
+
+<p>You'll also need the mod_auth_openidc and libjose packages which can 
+be downloaded from the <a href="https://github.com/pingidentity/mod_auth_openidc/releases">Releases Page</a>.</p>
+<p>For example, at this time the current release is 2.1.3, so the command would be:</p>
+<pre><code class="text"># wget https://github.com/pingidentity/mod_auth_openidc/releases/download/v2.1.3/libcjose_0.4.1-1ubuntu1.trusty.1_amd64.deb
+# wget https://github.com/pingidentity/mod_auth_openidc/releases/download/v2.1.3/libapache2-mod-auth-openidc_2.1.3-1ubuntu1.trusty.1_amd64.deb
+# dpkg -i libcjose_0.4.1-1ubuntu1.trusty.1_amd64.deb
+# dpkg -i libapache2-mod-auth-openidc_2.1.3-1ubuntu1.trusty.1_amd64.deb
+
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Get the latest packages here: https://github.com/pingidentity/mod_auth_openidc/releases</p>
+</div>
+<p>Note, if you like to build from source, you can clone the project at <a href="https://github.com/pingidentity/mod_auth_openidc">Github Page</a></p>
+<p>Now you can enable the module</p>
+<pre><code class="text"># sudo a2enmod auth_openidc
+# sudo service apache2 restart
+
+</code></pre>
+
+<h3 id="client-registration">Client Registration<a class="headerlink" href="#client-registration" title="Permanent link">#</a></h3>
+<p>There are two methods for client registration:</p>
+<ol>
+<li>Dynamic Client Registration</li>
+<li>Manual Client Registration</li>
+</ol>
+<p>For this example, let's create the client manually in the Gluu Server.
+When you add the client, use the following parameters:</p>
+<pre><code class="text">Name: mod_auth_openidc
+Client Secret: something-sufficiently-unguessable
+Application Type: Web
+Pre-Authorization: Enabled
+login uri: https://www.mydomain.com/callback
+Subject Type: Public
+Scopes: openid, profile, email
+Response Types: code
+
+</code></pre>
+
+<p>Make a note of the <code>client_secret</code> (you won't get to see it again)! You'll
+also need the <code>client_id</code> for the next step.</p>
+<h3 id="install-cgi-script">Install CGI script<a class="headerlink" href="#install-cgi-script" title="Permanent link">#</a></h3>
+<p>This cgi-script makes for a good test page! </p>
+<pre><code class="text"># vi /usr/lib/cgi-bin/printHeaders.cgi
+
+</code></pre>
+
+<p>Then paste in this code</p>
+<pre><code class="python">#!/usr/bin/python
+
+import os
+
+d = os.environ
+k = d.keys()
+k.sort()
+
+print &quot;Content-type: text/html\n\n&quot;
+
+print &quot;&lt;HTML&gt;&lt;Head&gt;&lt;TITLE&gt;Print Env Variables&lt;/TITLE&gt;&lt;/Head&gt;&lt;BODY&gt;&quot;
+print &quot;&lt;h1&gt;Environment Variables&lt;/H1&gt;&quot;
+for item in k:
+    print &quot;&lt;p&gt;&lt;B&gt;%s&lt;/B&gt;: %s &lt;/p&gt;&quot; % (item, d[item])
+print &quot;&lt;/BODY&gt;&lt;/HTML&gt;&quot;
+
+</code></pre>
+
+<p>Then you'll need to make the script executable by the Apache2</p>
+<pre><code class="text"># chown www-data:www-data /usr/lib/cgi-bin/printHeaders.cgi
+# chmod ug+x /usr/lib/cgi-bin/printHeaders.cgi
+
+</code></pre>
+
+<h3 id="configuring-the-apache-virtualhost">Configuring the Apache VirtualHost<a class="headerlink" href="#configuring-the-apache-virtualhost" title="Permanent link">#</a></h3>
+<p>You are almost done! You'll need to configure mod_auth_openidc to
+protect your server.</p>
+<pre><code class="text"># vi /etc/apache2/sites-available/default-ssl.conf
+
+</code></pre>
+
+<p>Add the following right under <code>&lt;VirtualHost _default_:443&gt;</code></p>
+<pre><code class="apacheconf">OIDCProviderMetadataURL https://idp.mydomain.com/.well-known/openid-configuration
+OIDCClientID (client-id-you-got-back-when-you-added-the-client)
+OIDCClientSecret (your-client-secret)
+OIDCRedirectURI https://www.mydomain.com/callback
+OIDCResponseType code
+OIDCScope &quot;openid profile email&quot;
+OIDCSSLValidateServer Off
+OIDCCryptoPassphrase (a-random-seed-value)
+OIDCPassClaimsAs environment
+OIDCClaimPrefix USERINFO_
+OIDCPassIDTokenAs payload
+&lt;Location &quot;/&quot;&gt;
+    Require valid-user
+    AuthType openid-connect
+&lt;/Location&gt;
+
+</code></pre>
+
+<p>Then restart Apache to effect the changes</p>
+<pre><code class="text"># service apache2 restart
+
+</code></pre>
+
+<p>The most confusing part here is the <code>OIDCRedirectURI</code>--don't set this
+to a path used by your server. The apache-filter uses the redirect_uri 
+to process the response from the OpenID Provider (Gluu Server). </p>
+<p>Now you're ready to test. Open your web browser, and point it at 
+<code>https://www.mydomain.com/cgi-bin/printHeaders.cgi</code> </p>
+<p>If you're not logged in already, you should be redirected to 
+the authentication page. If you are logged in, you should just see
+an html page with the <code>REMOTE_USER</code> variable populated. Also
+check out the <code>OIDC_id_token_payload</code> and all the claims for 
+<code>USERINFO_</code> </p>
+<h2 id="installation_1">Installation<a class="headerlink" href="#installation_1" title="Permanent link">#</a></h2>
+<p>We assume that all the hostnames will be dns resolvable. If not, then
+add the according entries in <code>/etc/hosts</code>, please.</p>
+<h3 id="add-epel-repository">Add EPEL Repository<a class="headerlink" href="#add-epel-repository" title="Permanent link">#</a></h3>
+<p>Run the following command to <strong>Add EPEL Repo</strong>.</p>
+<ul>
+<li><code># rpm -ivh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm</code></li>
+</ul>
+<h3 id="apache-web-server_1">Apache Web Server<a class="headerlink" href="#apache-web-server_1" title="Permanent link">#</a></h3>
+<p>To setup <strong>Apache2 SSL</strong>, run the following commands:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the hiredis package is not found by the <code>yum</code> command, please download it manually from <a href="https://centos.pkgs.org/6/puias-unsupported-x86_64/hiredis-0.12.1-1.sdl6.x86_64.rpm.html">this page</a> and install it.</p>
+</div>
+<pre><code># yum install httpd mod_ssl
+# yum install curl hiredis jansson
+</code></pre>
+
+<h3 id="configure-ssl-module">Configure SSL Module<a class="headerlink" href="#configure-ssl-module" title="Permanent link">#</a></h3>
+<p>This section will guide you to create SSL certificates.
+Use the following commands to crete a  directory and generate the certificates.</p>
+<pre><code># mkdir /etc/httpd/ssl
+# openssl req -new -x509 -sha256 -days 365 -nodes -out /etc/httpd/ssl/httpd.pem -keyout /etc/httpd/ssl/httpd.key
+</code></pre>
+
+<p>You will be prompted to enter some values such as company name, country etc. Please enter them and your certificate will be ready. A template is given below</p>
+<pre><code class="text">    Country Name (2 letter code) [XX]:US
+    State or Province Name (full name) []:TX
+    Locality Name (eg, city) [Default City]:Austin
+    Organization Name (eg, company) [Default Company Ltd]:Gluu
+    Organizational Unit Name (eg, section) []:
+    Common Name (eg, your name or your server's hostname) []:modauth-centos.info
+    Email Address []:support@gluu.org
+</code></pre>
+
+<p>The next step is to configure Apache to use the certificates and use the following command to edit the <code>ssl.conf</code> file. </p>
+<pre><code># vi /etc/httpd/conf.d/ssl.conf
+</code></pre>
+
+<p>The important part of the configuration is to enter the path to the created SSL certificates. The example is given below.<br/>
+<strong>Note:</strong> Please make sure to use the correct server name in the configuration file.</p>
+<pre><code>    SSLCertificateFile /etc/httpd/ssl/httpd.pem
+    SSLCertificateKeyFile /etc/httpd/ssl/httpd.key
+    ServerAdmin support@gluu.org
+    ServerName gluu.org
+</code></pre>
+
+<p>Restart Apache Server and you are done configuring the SSL Module. Use the command below to restart the Apache Server.</p>
+<pre><code># service httpd restart
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The latest version of the apache OpenID Connect module is available from <a href="https://github.com/pingidentity/mod_auth_openidc/releases">this page</a></p>
+</div>
+<p>The latest package for the apache module might have multiple dependencies which must be installed first.</p>
+<p>Run the following command to install the <code>mod_auth_openidc</code> module:</p>
+<pre><code>rpm -ivh https://github.com/pingidentity/mod_auth_openidc/releases/download/v1.8.2/mod_auth_openidc-1.8.2-1.el6.x86_64.rpm
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If there are any difficulties installing <code>hiredis</code> and <code>jansson</code>,</p>
+</div>
+<p>try to update the package database of your system using the command below.</p>
+<pre><code># yum upgrade
+</code></pre>
+
+<h4 id="load-authentication-module">Load Authentication Module<a class="headerlink" href="#load-authentication-module" title="Permanent link">#</a></h4>
+<p>Please make sure that the following shared-object file exists by running the following command:</p>
+<pre><code>ls -l /usr/lib64/httpd/modules/mod_auth_openidc.so
+</code></pre>
+
+<h2 id="install-cgi-script_1">Install CGI Script<a class="headerlink" href="#install-cgi-script_1" title="Permanent link">#</a></h2>
+<p>The test page is made using the cgi-script. Please use the following command to create the script.</p>
+<pre><code># vi /var/www/cgi-bin/printHeaders.cgi
+</code></pre>
+
+<p>Please paste the following code to prepare the script</p>
+<pre><code class="python">#!/usr/bin/python
+
+import os
+
+d = os.environ
+k = d.keys()
+k.sort()
+
+print &quot;Content-type: text/html\n\n&quot;
+
+print &quot;&lt;HTML&gt;&lt;Head&gt;&lt;TITLE&gt;Print Env Variables&lt;/TITLE&gt;&lt;/Head&gt;&lt;BODY&gt;&quot;
+print &quot;&lt;h1&gt;Environment Variables&lt;/H1&gt;&quot;
+for item in k:
+    print &quot;&lt;p&gt;&lt;B&gt;%s&lt;/B&gt;: %s &lt;/p&gt;&quot; % (item, d[item])
+    print &quot;&lt;/BODY&gt;&lt;/HTML&gt;&quot;
+
+</code></pre>
+
+<p>The next step is to make the script executable by HTTPD</p>
+<pre><code class="text"># chown apache:apache /var/www/cgi-bin/printHeaders.cgi
+# chmod ug+x /var/www/cgi-bin/printHeaders.cgi
+</code></pre>
+
+<h3 id="client-registration_1">Client Registration<a class="headerlink" href="#client-registration_1" title="Permanent link">#</a></h3>
+<p>There are two methods for client registration:</p>
+<ol>
+<li>Dynamic Client Registration</li>
+<li>Manual Client Registration</li>
+</ol>
+<p>You can use any of the methods to register the client.
+For this example, let's create the client manually in the Gluu Server.
+Please use the following parameters to create the client:</p>
+<pre><code class="text">Name: mod_auth_openidc
+Client Secret: something-sufficiently-unguessable
+Application Type: Web
+Pre-Authorization: Enabled
+login uri: https://www.mydomain.com/callback
+Subject Type: Public
+Scopes: openid, profile, email
+Response Types: code
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>client_secret</code> should be noted after creating the client in Gluu Server as it is used later.</p>
+</div>
+<h3 id="configure-the-apache-virtualhost">Configure the Apache Virtualhost<a class="headerlink" href="#configure-the-apache-virtualhost" title="Permanent link">#</a></h3>
+<p>The apache module is confgured in the defautl ssl configuration file. Please use the command below to open the file</p>
+<pre><code class="text"># vi /etc/httpd/conf.d/ssl.conf 
+</code></pre>
+
+<p>Please add the following at the bottom of the file</p>
+<pre><code class="text">OIDCProviderMetadataURL https://idp.mydomain.com/.well-known/openid-configuration
+OIDCClientID (client-id-you-got-back-when-you-added-the-client)
+OIDCClientSecret (your-client-secret)
+OIDCRedirectURI https://www.mydomain.com/callback
+OIDCResponseType code
+OIDCScope &quot;openid profile email&quot;
+OIDCSSLValidateServer Off
+OIDCCryptoPassphrase (a-random-seed-value)
+OIDCPassClaimsAs environment
+OIDCClaimPrefix USERINFO_
+OIDCPassIDTokenAs payload
+&lt;Location &quot;/&quot;&gt;
+    Require valid-user
+    AuthType openid-connect
+&lt;/Location&gt;
+</code></pre>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please remember to populate the <code>OIDCRedirectURI</code> with a value that is not used by the server. The apache-filter uses the redirect_uri to process the response from the OpenID Provider (Gluu Server).</p>
+</div>
+<p>Please restart the HTTPD server for the changes to take effect</p>
+<pre><code class="text"># service httpd restart
+</code></pre>
+
+<p>Now you're ready to test. Open your web browser, and point it at
+https://www.mydomain.com/cgi-bin/printHeaders.cgi`</p>
+<h2 id="oxray">oxRay<a class="headerlink" href="#oxray" title="Permanent link">#</a></h2>
+<p><a href="https://en.wikipedia.org/wiki/Liferay" title="LifeRay, Wikipedia">LifeRay</a> OpenID Connect plugin to authenticate users using
+Gluu IdP.</p>
+<h3 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">#</a></h3>
+<p>The oxAuth LifeRay plugin is used to authenticate and auto-log users
+from Gluu Server into <a href="https://en.wikipedia.org/wiki/Liferay" title="LifeRay, Wikipedia">LifeRay</a> with the same credentials. It
+is built on top of oxAuth, the OpenID Connect provider by Gluu.</p>
+<p>The oxAuth plugin intercepts any attempt to login from anywhere in the
+LifeRay and redirects the request and the user to an oxAuth server where
+the identification takes place, actually. If the user has authorized the
+server to share some of his basic information with the oxAuth plugin,
+the user will be redirected back to the LifeRay CMS, and logged in,
+automatically.</p>
+<p>The goal of this project is to use the LifeRay CMS as the basis for an
+organizational personal data store service.</p>
+<p>Note: This plugin does not support auto-user creation from information
+supplied by the oxAuth Plugin. Instead, it can be implemented by
+extending the plugin.</p>
+<h3 id="deployment">Deployment<a class="headerlink" href="#deployment" title="Permanent link">#</a></h3>
+<p>The plugin is provided in two variants--<a href="https://en.wikipedia.org/wiki/Apache_Maven" title="Apache Maven, Wikipedia">Maven</a> and <a href="https://en.wikipedia.org/wiki/Apache_Ant" title="Apache Ant, Wikipedia">Ant</a>.
+You can either use Maven or the LifeRay plugin SDK to build and deploy
+this plugin as a standard LifeRay hot deployable WAR file.</p>
+<h3 id="deploying-war-file-using-maven">Deploying WAR file using Maven<a class="headerlink" href="#deploying-war-file-using-maven" title="Permanent link">#</a></h3>
+<p>This requires a prerequisite: make sure that you have <a href="https://en.wikipedia.org/wiki/Apache_Maven" title="Apache Maven, Wikipedia">Maven</a>
+installed on your system to build this plugin from source.</p>
+<ol>
+<li>
+<p>Checkout the Maven source from the [oxRay Repository][https://github.com/GluuFederation/oxRay/tree/master/6.2.x/maven/gluu-openid-connect-hook].</p>
+</li>
+<li>
+<p>Open the file <code>pom.xml</code> in <code>gluu-openid-connect-hook</code>, and update
+your local LifeRay Tomcat bundle path. This is required for building the
+WAR file and deploying to the LifeRay Tomcat bundle.</p>
+</li>
+</ol>
+<p><img alt="configure_pom_xml" src="../../img/integration/configure_pom_xml.jpg" /></p>
+<ol>
+<li>Run the following command in the <code>gluu/6.2.x/maven/gluu-openid-connect-hook</code> 
+directory:</li>
+</ol>
+<pre><code>mvn clean install package liferay:deploy
+</code></pre>
+
+<p>This will take a few seconds to download the dependency <code>jar</code> files, and
+generate the LifeRay-compiled deployable WAR file. It will be placed
+within your <code>&lt;liferay-bundle-folder&gt;/deploy</code> directory, and the hot
+deployable process will start.</p>
+<h3 id="using-liferay-plugin-sdk-with-ant">Using LifeRay Plugin SDK With Ant<a class="headerlink" href="#using-liferay-plugin-sdk-with-ant" title="Permanent link">#</a></h3>
+<p>This requires a prerequisite: we assume that you have the plugin SDK
+both installed and configured with LifeRay bundle.</p>
+<ol>
+<li>
+<p>Checkout the gluu-openid-connect-hook plugin source from the
+repository, and place these files in your local directory for the plugin
+SDK. Usually, this is <code>liferay-plugins-sdk-6.2.0-ce-ga1/hooks</code>.</p>
+</li>
+<li>
+<p>Run the following command in the folder <code>liferay-plugins-sdk-6.2.0-ce-ga1/hooks/gluu-openid-connect-hook</code>:</p>
+</li>
+</ol>
+<pre><code>ant clean deploy
+</code></pre>
+
+<h3 id="using-binary-from-repository">Using Binary From Repository<a class="headerlink" href="#using-binary-from-repository" title="Permanent link">#</a></h3>
+<p>You can also download a compiled binary as a standard LifeRay deployable
+WAR file from the following location:</p>
+<p><a href="https://github.com/GluuFederation/oxRay/blob/master/6.2.x/binary/gluu-openid-connect-hook-6.2.0.1.war">oxRay LifeRay Deployable War File</a></p>
+<p>Copy this WAR file in your LifeRay bundle. Usually, this is located at
+<code>liferay-portal-6.2.0-ce-ga1/deploy</code>.</p>
+<p>Once the plugin is deployed as a WAR file either using Maven or Ant, you
+will see the following success message in your LifeRay Tomcat server:</p>
+<p><img alt="deploy_success" src="../../img/integration/deploy_success.jpg" /></p>
+<h3 id="client-registration_2">Client Registration<a class="headerlink" href="#client-registration_2" title="Permanent link">#</a></h3>
+<p>A LifeRay application needs to be registered with the Authorization
+server before initiating an authentication request/response with OAuth
+IdP server.</p>
+<p>The following steps are necessary to obtain both a client id and a
+client secret. These data will be used within the LifeRay portal
+properties.</p>
+<ol>
+<li>Go to the location <code>https://seed.gluu.org/oxauth-rp/home.seam</code>.</li>
+<li>You will see the Dynamic Client Registration Section.</li>
+<li>Enter the Registration Endpoint uri, for example
+<code>https://idp.example.org/oxauth/seam/resource/restv1/oxauth/authorize</code>.<ul>
+<li>You can derive this uri from your IdP auto-discovery uri which is
+like that: <code>https://&lt;Your IDP Server Domain&gt;/.well-known/openid-configuration</code>.</li>
+<li>You can search for the registration endpoint, and copy that uri here.</li>
+</ul>
+</li>
+<li>Enter the redirect uris as <code>http://localhost:8080/openidconnect/callback</code>:<ul>
+<li>Replace your domain name with <code>localhost:8080</code></li>
+<li>This will be your LifeRay handler for logging a user into LifeRay,
+automatically, when a redirect comes back from the OAuth server.</li>
+</ul>
+</li>
+<li>Select the Response Types: CODE</li>
+<li>Select the Application Type: WEB</li>
+<li>For development purposes use: NATIVE (if you are testing on a local
+machine with <code>localhost:8080</code> domain)</li>
+<li>Enter Client Name: LifeRay App (you can choose any name here).</li>
+<li>All other options can be left as they are--please see the attached
+screenshot:</li>
+</ol>
+<p><img alt="client_registration" src="../../img/integration/dynamic_client_registration_screen1.jpg" /></p>
+<ol>
+<li>Click <code>Submit</code>, and both the following <code>Registration Request</code> and
+<code>Registration Response</code> will be displayed:</li>
+</ol>
+<p><img alt="json-request-response" src="../../img/integration/json-request-response.jpg" /></p>
+<ol>
+<li>Save the Registration Response to your local system. The parameters
+<code>client_id</code> and <code>client_secret</code> are used in LifeRay when configuring
+<code>portal-ext.properties</code>.</li>
+</ol>
+<h4 id="modifying-portalproperties">Modifying portal.properties<a class="headerlink" href="#modifying-portalproperties" title="Permanent link">#</a></h4>
+<p>It is necessary to modify <code>portal-ext.properties</code> file to reflect oxAuth
+server client credentials and server's URL. It can be accomplished by
+navigating into the <code>liferay-portal-6.2.0-ce-ga1</code> folder, where the file
+<code>portal-ext.properties</code> is stored.</p>
+<p>Note: To either activate or deactivate the oxAuth plugin put the value
+<code>true</code> (to activate) or <code>false</code> (to deactivate), respectively.</p>
+<pre><code>gluu.openidconnect.auth.enabled=true
+</code></pre>
+
+<ul>
+<li>oxAuth client ID and client secret:</li>
+</ul>
+<pre><code>gluu.openidconnect.client.id=@!1111!0008!51CE.1E59
+gluu.openidconnect.client.secret=65777eb7-87a8-4d60-9dbc-d31d43971f2b
+</code></pre>
+
+<ul>
+<li>OAuth server domain</li>
+</ul>
+<pre><code>gluu.openidconnect.idp.domain=https://idp.gluu.org`
+</code></pre>
+
+<ul>
+<li>OAuth server auto discovery uri</li>
+</ul>
+<pre><code>gluu.openidconnect.url.discovery=https://idp.gluu.org/.well-known/openid-configuration
+</code></pre>
+
+<ul>
+<li>Your OAuth server logout uri (typically, this will be used to logout a
+user from OAuth when a user logs out from LifeRay)</li>
+</ul>
+<pre><code>gluu.openidconnect.idp.logout=https://idp.gluu.org/identity/logout
+</code></pre>
+
+<ul>
+<li>LifeRay server callback uri that will be used as a handling response
+by the OAuth server after authentication:</li>
+<li>replace the <code>localhost:8080</code> with your LifeRay domain name:</li>
+</ul>
+<pre><code>gluu.openidconnect.client.redirect.url=http://localhost:8080/openidconnect/callback
+</code></pre>
+
+<pre><code> This page will be invoked when the user does not exist in the
+ LifeRay database, but gets authenticated from the OAuth Server.
+</code></pre>
+<ul>
+<li>Typically, create a LifeRay page with the name <code>/no-such-user-found</code>,
+  or redirect to the LifeRay registration page uri like that:</li>
+</ul>
+<pre><code>gluu.openidconnect.no.such.user.redirect.url=http://localhost:8080/no-such-user-found
+</code></pre>
+
+<p>Restart the LifeRay server after editing the file
+<code>portal-ext.properties</code>.</p>
+<h3 id="login-using-the-liferay-front-end">Login Using the LifeRay Front End<a class="headerlink" href="#login-using-the-liferay-front-end" title="Permanent link">#</a></h3>
+<ul>
+<li>
+<p>Server Bootup</p>
+<ul>
+<li>Once the LifeRay server is restarted, open your browser and
+  navigate to the uri <code>http://localhost:8080</code>.</li>
+</ul>
+</li>
+<li>
+<p>Login uri</p>
+<ul>
+<li>Once the LifeRay page successfully loaded navigate to the OpenID
+  connect page at <code>http://localhost:8080/openidconnect/login</code>.</li>
+</ul>
+</li>
+</ul>
+<p>Note: you can edit the theme code, and link to the login uri as
+<code>http://localhost:8080/openidconnect/login</code>. In result the user will
+always redirect to the OAuth server for authentication.</p>
+<ul>
+<li>OAuth authentication<ul>
+<li>The LifeRay login uri will redirect users to the OAuth IdP server
+  for user authentication. Internally, passing the oAuth client id 
+  as the following screen:</li>
+</ul>
+</li>
+</ul>
+<p><img alt="oauth-login" src="../../img/integration/oauth_login.jpg" /></p>
+<ul>
+<li>Request for permission<ul>
+<li>This screen can be configured depending upon your OAuth Server
+  implementation.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="oauth_info_confirm" src="../../img/integration/oauth_info_confirm.jpg" /></p>
+<ul>
+<li>OAuth callback (user auto-login to LifeRay)<ul>
+<li>After a successful authentication with the OAuth server, IdP will
+send a callback to LifeRay with a specific code as a parameter:</li>
+</ul>
+</li>
+</ul>
+<pre><code>http://localhost:8080/openidconnect/callback?code=xxx`
+</code></pre>
+
+<p>This will be intercepted by our oxAuth LifeRay plugin. Upon validation
+of the token with the Gluu IdP, it will result in a login of the user to
+the LifeRay. The user will be redirected to his respective start page.</p>
+<p><img alt="liferay_success_login" src="../../img/integration/liferay_success_login.jpg" /></p>
+<h2 id="using-openid-connect-to-authenticate-a-person-in-java">Using OpenID Connect to authenticate a person in Java<a class="headerlink" href="#using-openid-connect-to-authenticate-a-person-in-java" title="Permanent link">#</a></h2>
+<p>The <a href="https://openid.net/connect/">OpenID Connect</a> Protocol offers Java
+developers a way to authenticate a person at any Internet domain that
+supports the standard. To accomplish this, the domain must provide a way
+to register clients--the website and mobile applications that use the
+authentication API offered by the domain.</p>
+<h2 id="discovery">Discovery<a class="headerlink" href="#discovery" title="Permanent link">#</a></h2>
+<p>Discovery is the first step! Luckily, its super-easy! All you have to 
+do is make a get request to
+<code>https://{domain}/.well-known/openid-configuration</code>.</p>
+<p>This will return a JSON object, as described in the
+<a href="http://openid.net/specs/openid-connect-discovery-1_0.html">specification</a>.
+For example, you can see Gluu's OpenID Connect discovery
+<a href="https://idp.gluu.org/.well-known/openid-configuration">url</a>.</p>
+<p>This will tell you everything you need to know about this OpenID Connect
+provider, like what are the endpoints (URLs), what crypto is supported,
+and what user claims can you ask for.</p>
+<p>An <a href="../../integration/OpenIdConnectDiscoveryAction.java">example</a>
+of a Discovery Request, using the oxAuth RP library.</p>
+<h3 id="client-registration_3">Client Registration<a class="headerlink" href="#client-registration_3" title="Permanent link">#</a></h3>
+<p>In SAML, the website was called a "Service Provider." In OpenID Connect,
+the website (or mobile application) is called a "Client". Clients can be
+registered manually by the OP, but more frequently, clients use the
+<a href="http://openid.net/specs/openid-connect-registration-1_0.html">Dynamic Registration
+API</a> to
+automate the process.</p>
+<h3 id="obtaining-the-id_token">Obtaining the id_token<a class="headerlink" href="#obtaining-the-id_token" title="Permanent link">#</a></h3>
+<p>After your client is registered, it is time to get down to business.
+OpenID Connect offers two common workflows for authentication: basic
+(where the person is using a browser, and can be re-directed) and
+implicit where the client sends the credentials, including the secret.
+There is a useful implements guide for
+<a href="http://openid.net/specs/openid-connect-basic-1_0.html">basic</a> and
+<a href="http://openid.net/specs/openid-connect-implicit-1_0.html">implicit</a>.</p>
+<h3 id="logout">Logout<a class="headerlink" href="#logout" title="Permanent link">#</a></h3>
+<p>OpenID Connect defines a mechanism for <a href="http://openid.net/specs/openid-connect-session-1_0.html">Session
+Management</a>.
+The idea is that JavaScript in a web tab can detect that another tab has
+logged out. One detection of a logout event, the Web application can
+cleanup sessions in any backend systems as necessary. It is not 100%
+effective. If the tab is closed when the logout occurs in another tab,
+the event may not be detected, and the backend systems are advised to
+timeout sessions.</p>
+<h2 id="using-openid-connect-from-javascript">Using OpenID Connect from JavaScript<a class="headerlink" href="#using-openid-connect-from-javascript" title="Permanent link">#</a></h2>
+<p>See <a href="http://www.gluu.co/.qqh2">OpenID Connect plugin for Passport</a> for further details.</p>
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../saml-sp/" title="Shibboleth SP" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Shibboleth SP
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../google/" title="Google Apps" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Google Apps
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2017, Gluu, Inc.
+          </div>
+        
+        powered by
+        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        and
+        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application-2afe21e0b2.js"></script>
+      <script>var config={url:{base:"../.."}},app=new Application(config);app.initialize()</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

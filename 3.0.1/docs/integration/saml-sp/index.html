@@ -1,0 +1,2345 @@
+
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documenation for Gluu Server">
+      
+      
+      
+      
+        <link rel="shortcut icon" href="../../favicon.ico">
+      
+      <meta name="generator" content="mkdocs+mkdocs-material#1.0.3">
+    
+    
+      
+        <title>Shibboleth SP - Gluu Docs</title>
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr-facb31f4a3.js"></script>
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application-f3ab63f78a.css">
+      
+      
+    
+    
+  </head>
+  
+  
+  
+  
+    <body>
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+	 <div class="md-flex__cell md-flex__cell--shrink">
+	    <a href="https://gluu.org/docs/" title="Gluu Docs" class=" md-logo  md-header-nav__button">
+          
+            <img src="../../gluu.jpg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+                <span class="md-header-nav__parent">
+                  Integration Guide
+                </span>
+              
+                <span class="md-header-nav__parent">
+                  Web Server Integrations
+                </span>
+              
+            
+            Shibboleth SP
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+          
+<div class="md-search" data-md-component="search">
+  <div class="md-search__overlay"></div>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" accesskey="s" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false">
+      <label class="md-icon md-search__icon" for="search"></label>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+              
+
+
+  
+
+
+  <a href="https://github.com/GluuFederation/docs-3.0.1" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+            
+          </div>
+      </div>
+    </div>
+<!-- Second Nav Bar 
+<nav class="md-secondary-header-nav md-grid" style="
+    height: 58px;
+    background: white;
+	color: #555555;
+	font-weight: bold;
+	font-size; 8px
+	overflow: hidden;
+">
+<div class="md-flex-secondary" style="
+    display: table;
+    padding: 10px;
+">
+<label for="Versions">Ver:<select id="versions" onchange="window.location.href=this.value;" style="
+    position: relative;
+    display: inline-block;
+    min-width: 100%;
+    /* width: 120%; */
+    height: 34px;
+    padding: 6px 30px 6px 15px;
+    color: #555555;
+    border: none;
+    background: transparent;
+    outline: none;
+    -webkit-appearance: none;
+    z-index: 99;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border: 1px;
+">
+  <option value="/docs">Latest</option>
+  <option value="/docs/2.4.4">2.4.4</option>
+    </select> 
+</label>
+ </div>
+ </nav>-->
+   </nav>
+</header>
+    
+    <div class="md-container">
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary">
+
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <i class=" md-logo  md-nav__button">
+      
+        <img src="../../gluu.jpg">
+      
+    </i>
+    Gluu Docs
+	<label for="Versions">Ver:
+	  <select id="versions" onchange="window.location.href=this.value;" style="
+		position: inherit;
+		display: inline;
+		min-width: 25%;
+		/* width: 120%; */
+		height: 22px;
+		padding: 5px 15px 5px 5px;
+		color: black;
+		border: none;
+		background: transparent;
+		outline: none;
+		-webkit-appearance: none;
+		z-index: 99;
+		cursor: pointer;
+		font-size: 10px;
+		margin-bottom: 10px;
+		border: 1px solid black;
+		overflow: auto
+	">
+	  <option value="/docs/ce/latest">3.0.1</option>
+	  <!-- <option value="/docs/ce/3.0.0">3.0.0</option> -->
+	  <option value="/docs/ce/2.4.4">2.4.4</option>
+	  <option value="/docs">All Versions</option>
+		</select> 
+	</label>
+  </label>
+    
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/GluuFederation/docs-3.0.1" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  <li class="md-nav__item">
+    
+      <a href="../.." title="Home" class="md-nav__link">
+        Home
+      </a>
+    
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item">
+    
+      <a href="../../operation/intro/" title="Whats new in 3.x" class="md-nav__link">
+        Whats new in 3.x
+      </a>
+    
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Installation Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-3">
+        Installation Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../installation-guide/" title="Preparing VM" class="md-nav__link">
+        Preparing VM
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../installation-guide/install/" title="Install Gluu Server" class="md-nav__link">
+        Install Gluu Server
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../installation-guide/setup_py/" title="Setup Script Options" class="md-nav__link">
+        Setup Script Options
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Upgrade/Patch Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-3-4">
+        Upgrade/Patch Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../upgrade/" title="Upgrade Gluu Server" class="md-nav__link">
+        Upgrade Gluu Server
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../upgrade/manual-update/" title="Upgrade Gluu Server with OpenDJ" class="md-nav__link">
+        Upgrade Gluu Server with OpenDJ
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../upgrade/update-war/" title="Updating a War File" class="md-nav__link">
+        Updating a War File
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Administration Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-4">
+        Administration Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/oxtrust-ui/" title="oxTrust admin UI" class="md-nav__link">
+        oxTrust admin UI
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/custom-script/" title="Interception Scripts" class="md-nav__link">
+        Interception Scripts
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      User Authentication Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-4-3">
+        User Authentication Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/intro/" title="User Authentication Introduction" class="md-nav__link">
+        User Authentication Introduction
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/basic/" title="Basic Authenticatoin" class="md-nav__link">
+        Basic Authenticatoin
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/passport/" title="Social Authentication" class="md-nav__link">
+        Social Authentication
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/supergluu/" title="Super Gluu" class="md-nav__link">
+        Super Gluu
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/U2F/" title="FIDO U2F" class="md-nav__link">
+        FIDO U2F
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/duo/" title="Duo Security" class="md-nav__link">
+        Duo Security
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/cert-auth/" title="Certificate Authentication" class="md-nav__link">
+        Certificate Authentication
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/google/" title="Google+ OAuth 2.0" class="md-nav__link">
+        Google+ OAuth 2.0
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/otp/" title="HOTP/TOTP" class="md-nav__link">
+        HOTP/TOTP
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/customauthn/" title="Custom Authentication" class="md-nav__link">
+        Custom Authentication
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/attribute/" title="Attributes" class="md-nav__link">
+        Attributes
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/user-group/" title="User Management" class="md-nav__link">
+        User Management
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/session/" title="Session Management" class="md-nav__link">
+        Session Management
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/saml/" title="SAML" class="md-nav__link">
+        SAML
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/openid-connect/" title="OpenID Connect" class="md-nav__link">
+        OpenID Connect
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/uma/" title="UMA" class="md-nav__link">
+        UMA
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/scim-uma/" title="SCIM protected by UMA" class="md-nav__link">
+        SCIM protected by UMA
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../admin-guide/certificate/" title="Certificate Management" class="md-nav__link">
+        Certificate Management
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Integration Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5">
+        Integration Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../" title="Introduction" class="md-nav__link">
+        Introduction
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Client SDKs
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-2">
+        Client SDKs
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../oauth2/" title="oxd OAuth2" class="md-nav__link">
+        oxd OAuth2
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../oauth-js-implicit/" title="OAuth2.0 js Implicit Flow" class="md-nav__link">
+        OAuth2.0 js Implicit Flow
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3" checked>
+    
+    <label class="md-nav__link" for="nav-5-3">
+      Web Server Integrations
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-3">
+        Web Server Integrations
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Shibboleth SP
+      </label>
+    
+    <a href="./" title="Shibboleth SP" class="md-nav__link md-nav__link--active">
+      Shibboleth SP
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#apache-saml" title="Apache SAML" class="md-nav__link">
+    Apache SAML
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-apache-shibboleth-sp-in-centos" title="Configuring Apache Shibboleth SP in CentOS" class="md-nav__link">
+    Configuring Apache Shibboleth SP in CentOS
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-preparation" title="System Preparation" class="md-nav__link">
+    System Preparation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shibboleth-sp-installation" title="Shibboleth SP Installation" class="md-nav__link">
+    Shibboleth SP Installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-and-configure-httpd" title="Install and Configure httpd" class="md-nav__link">
+    Install and Configure httpd
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation" title="Installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" title="Configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#httpd-testing" title="Httpd Testing" class="md-nav__link">
+    Httpd Testing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sp-key-certificate" title="SP Key Certificate" class="md-nav__link">
+    SP Key Certificate
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shibboleth-sp-configuration" title="Shibboleth SP Configuration" class="md-nav__link">
+    Shibboleth SP Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shibboleth-manual-configuration-one-physical-sp" title="Shibboleth Manual Configuration (one Physical SP):" class="md-nav__link">
+    Shibboleth Manual Configuration (one Physical SP):
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#super-quick-ubuntu-shib-apache-install" title="Super Quick Ubuntu Shib Apache Install" class="md-nav__link">
+    Super Quick Ubuntu Shib Apache Install
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-apache" title="Configure Apache" class="md-nav__link">
+    Configure Apache
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../openidc-rp/" title="mod_auth_openidc" class="md-nav__link">
+        mod_auth_openidc
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-4" type="checkbox" id="nav-5-4">
+    
+    <label class="md-nav__link" for="nav-5-4">
+      SaaS Integrations
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-4">
+        SaaS Integrations
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../google/" title="Google Apps" class="md-nav__link">
+        Google Apps
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../office/" title="Office 365" class="md-nav__link">
+        Office 365
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../salesforce/" title="Salesforce" class="md-nav__link">
+        Salesforce
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../dropbox/" title="Dropbox" class="md-nav__link">
+        Dropbox
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../github-enterprise/" title="GitHub Enterprise" class="md-nav__link">
+        GitHub Enterprise
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Reference
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6">
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1">
+    
+    <label class="md-nav__link" for="nav-6-1">
+      Gluu API Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6-1">
+        Gluu API Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/api/" title="Custom ID Generation" class="md-nav__link">
+        Custom ID Generation
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/openid-connect-api/" title="OpenID Connect API" class="md-nav__link">
+        OpenID Connect API
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/scim-api/" title="SCIM API Configuration" class="md-nav__link">
+        SCIM API Configuration
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/uma-api/" title="UMA API" class="md-nav__link">
+        UMA API
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-2" type="checkbox" id="nav-6-2">
+    
+    <label class="md-nav__link" for="nav-6-2">
+      JSON Properties
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6-2">
+        JSON Properties
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/JSON-oxtrust-prop/" title="OxTrust JSON Properties" class="md-nav__link">
+        OxTrust JSON Properties
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/JSON-oxauth-prop/" title="OxAuth JSON Properties" class="md-nav__link">
+        OxAuth JSON Properties
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-3" type="checkbox" id="nav-6-3">
+    
+    <label class="md-nav__link" for="nav-6-3">
+      Gluu LDAP Schema
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6-3">
+        Gluu LDAP Schema
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/oxldap/" title="Ox LDAP Properties" class="md-nav__link">
+        Ox LDAP Properties
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/schema/" title="OpenLDAP Schema" class="md-nav__link">
+        OpenLDAP Schema
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Operation Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-7">
+        Operation Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/backup/" title="Backups" class="md-nav__link">
+        Backups
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/find-gluu-version/" title="Find your Gluu Version" class="md-nav__link">
+        Find your Gluu Version
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/ports/" title="Ports" class="md-nav__link">
+        Ports
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/logout/" title="Single Logout (SLO)" class="md-nav__link">
+        Single Logout (SLO)
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/logs/" title="Log Management" class="md-nav__link">
+        Log Management
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/custom-loginpage/" title="Customize Public Pages" class="md-nav__link">
+        Customize Public Pages
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/faq/" title="FAQ & Troubleshooting" class="md-nav__link">
+        FAQ & Troubleshooting
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Developer Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-8">
+        Developer Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../developer-guide/oxtrust-eclipse/" title="Build oxTrust with Eclipse" class="md-nav__link">
+        Build oxTrust with Eclipse
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#apache-saml" title="Apache SAML" class="md-nav__link">
+    Apache SAML
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-apache-shibboleth-sp-in-centos" title="Configuring Apache Shibboleth SP in CentOS" class="md-nav__link">
+    Configuring Apache Shibboleth SP in CentOS
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-preparation" title="System Preparation" class="md-nav__link">
+    System Preparation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shibboleth-sp-installation" title="Shibboleth SP Installation" class="md-nav__link">
+    Shibboleth SP Installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-and-configure-httpd" title="Install and Configure httpd" class="md-nav__link">
+    Install and Configure httpd
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation" title="Installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" title="Configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#httpd-testing" title="Httpd Testing" class="md-nav__link">
+    Httpd Testing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sp-key-certificate" title="SP Key Certificate" class="md-nav__link">
+    SP Key Certificate
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shibboleth-sp-configuration" title="Shibboleth SP Configuration" class="md-nav__link">
+    Shibboleth SP Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shibboleth-manual-configuration-one-physical-sp" title="Shibboleth Manual Configuration (one Physical SP):" class="md-nav__link">
+    Shibboleth Manual Configuration (one Physical SP):
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#super-quick-ubuntu-shib-apache-install" title="Super Quick Ubuntu Shib Apache Install" class="md-nav__link">
+    Super Quick Ubuntu Shib Apache Install
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-apache" title="Configure Apache" class="md-nav__link">
+    Configure Apache
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+               
+                 <a href="https://github.com/GluuFederation/docs-3.0.1/blob/master/source/integration\saml-sp.md" title="Edit this page" class="md-icon md-content__edit">edit</a>
+               
+              
+                
+                <h1 id="saml-sp-integration">SAML SP Integration<a class="headerlink" href="#saml-sp-integration" title="Permanent link">#</a></h1>
+<h2 id="apache-saml">Apache SAML<a class="headerlink" href="#apache-saml" title="Permanent link">#</a></h2>
+<h2 id="configuring-apache-shibboleth-sp-in-centos">Configuring Apache Shibboleth SP in CentOS<a class="headerlink" href="#configuring-apache-shibboleth-sp-in-centos" title="Permanent link">#</a></h2>
+<h3 id="system-preparation">System Preparation<a class="headerlink" href="#system-preparation" title="Permanent link">#</a></h3>
+<p><strong>Add Shibboleth repository for CentOS</strong></p>
+<ul>
+<li>The file <code>shib.repo</code> contains the following entry:</li>
+</ul>
+<pre><code>[security_shibboleth]
+name=Shibboleth (CentOS_CentOS-6)
+type=rpm-md
+baseurl=http://download.opensuse.org/repositories/security:/shibboleth/CentOS_CentOS-6/
+gpgcheck=1
+gpgkey=http://download.opensuse.org/repositories/security:/shibboleth/CentOS_CentOS-6/repodata/repomd.xml.key
+enabled=1
+</code></pre>
+
+<ul>
+<li>Download the Shibboleth security repo key from here:</li>
+</ul>
+<pre><code>http://download.opensuse.org/repositories/security:/shibboleth/CentOS_CentOS-6/security:shibboleth.repo
+</code></pre>
+
+<h3 id="shibboleth-sp-installation">Shibboleth SP Installation<a class="headerlink" href="#shibboleth-sp-installation" title="Permanent link">#</a></h3>
+<p>To install the Shibboleth SP, run the following commands in a terminal:</p>
+<pre><code># yum install shibboleth
+# service shibd start
+# chkconfig shibd on
+</code></pre>
+
+<h3 id="install-and-configure-httpd">Install and Configure httpd<a class="headerlink" href="#install-and-configure-httpd" title="Permanent link">#</a></h3>
+<h4 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">#</a></h4>
+<p>The following commands will both install, and start the Apache web
+server on your machine/Linux environment:</p>
+<pre><code># yum install httpd
+# service httpd start
+# service iptables stop 
+</code></pre>
+
+<h4 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">#</a></h4>
+<p>Edit the file <code>httpd.conf</code>, and do the following changes:</p>
+<ul>
+<li>
+<p>Change the <code>ServerName</code> directive to the server name of the SP.</p>
+</li>
+<li>
+<p>Set <code>UseCanonicalName On</code>.</p>
+</li>
+<li>
+<p>Restart the httpd service using the command <code>service httpd restart</code>.</p>
+</li>
+</ul>
+<h4 id="httpd-testing">Httpd Testing<a class="headerlink" href="#httpd-testing" title="Permanent link">#</a></h4>
+<ul>
+<li>
+<p>Create an <code>index.html</code> file inside the directory <code>/var/www/html</code>.</p>
+</li>
+<li>
+<p>Restart the httpd service using the command <code>service httpd restart</code>.</p>
+</li>
+<li>
+<p>Check from your browser if the file <code>index.html</code> is visible.</p>
+</li>
+</ul>
+<h4 id="sp-key-certificate">SP Key Certificate<a class="headerlink" href="#sp-key-certificate" title="Permanent link">#</a></h4>
+<ul>
+<li>
+<p>Create both a private key, and a certificate, and place those in the
+  file <code>/etc/shibboleth</code>.</p>
+</li>
+<li>
+<p>Change the permissions of these files so that the web server can read
+  the files.</p>
+</li>
+</ul>
+<h3 id="shibboleth-sp-configuration">Shibboleth SP Configuration<a class="headerlink" href="#shibboleth-sp-configuration" title="Permanent link">#</a></h3>
+<p>This section describes how to configure the file <code>shibboleth2.xml</code>.</p>
+<ul>
+<li>
+<p>Provide the <code>entityID</code> of the according SP in:</p>
+<ul>
+<li><code>&lt;ApplicationDefaults entityID="http://sp.example.org/Shibboleth"&gt; section</code></li>
+</ul>
+</li>
+<li>
+<p>Provide the <code>entityID</code> of the IdP in:</p>
+<ul>
+<li><code>&lt;SSO entityID="https://idp.gluu.org/idp/shibboleth"&gt; section</code></li>
+</ul>
+</li>
+<li>
+<p>Adjust the entry of the metadata provider. In most cases this is the
+  Gluu IdP metadata link:</p>
+<ul>
+<li><code>&lt;MetadataProvider type="XML" uri="https://idp.gluu.org/idp/shibboleth"&gt; section</code></li>
+</ul>
+</li>
+<li>
+<p>Provide both the key and certificate of the SP in:</p>
+<ul>
+<li><code>&lt;CredentialResolver type="File" key="spkey.key" certificate="spcrt.crt"&gt; section</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="shibboleth-manual-configuration-one-physical-sp">Shibboleth Manual Configuration (one Physical SP):<a class="headerlink" href="#shibboleth-manual-configuration-one-physical-sp" title="Permanent link">#</a></h3>
+<ul>
+<li>
+<p>Create a directory named under <code>/var/www/secure</code>.</p>
+</li>
+<li>
+<p>Change the permissions for that directory <code>secure</code> to
+  <code>apache:apache</code> (owner and group of the web server).</p>
+</li>
+<li>
+<p><code>httpd.conf</code></p>
+<ul>
+<li>
+<p>change the ServerName <code>&lt;hostname_of_server&gt;</code></p>
+</li>
+<li>
+<p>Define the Location, and the authorization type:</p>
+<p><code>&lt;Location /secure&gt;
+    AuthType shibboleth
+    ShibRequestSetting requireSession 1
+    ShibUseHeaders on
+    Require valid-user
+&lt;/Location&gt;</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>configure <code>shibboleth2.xml</code></p>
+<ul>
+<li>
+<p>Set the EntityID of the SP: <code>ApplicationDefaults entityID="http://hostname/secure"</code></p>
+</li>
+<li>
+<p>Provide the EntityID of the IDP: <code>SSO entityID="https://idp.gluu.org/idp/shibboleth"</code></p>
+</li>
+<li>
+<p>Set both the Metadata Provider, and the IDP: <code>MetadataProvider type="XML" uri="https://idp.gluu.org/idp/shibboleth"</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Restart both shibd and Apache2 using these lines:</p>
+</li>
+</ul>
+<pre><code>service shibd restart
+service httpd restart
+</code></pre>
+
+<ul>
+<li>Create a Trust Relationship for this SP in your desired IdP.</li>
+</ul>
+<h2 id="super-quick-ubuntu-shib-apache-install">Super Quick Ubuntu Shib Apache Install<a class="headerlink" href="#super-quick-ubuntu-shib-apache-install" title="Permanent link">#</a></h2>
+<p>Need to protect a test Apache folder using SAML on an Ubuntu server?
+Hate to read? This article is for you. Replace both <code>minnow</code> and
+<code>minnow.gluu.info</code> with your desired website hostname.</p>
+<h2 id="configure-apache">Configure Apache<a class="headerlink" href="#configure-apache" title="Permanent link">#</a></h2>
+<p>These are the steps to configure your Apache webserver properly:</p>
+<pre><code># apt-get install apache2 libshibsp6 libapache2-mod-shib2
+# a2enmod cgi
+# a2enmod ssl
+# a2enmod shib2
+# a2ensite default-ssl
+# mkdir /etc/certs
+# cd /etc/certs
+# openssl genrsa -des3 -out minnow.key 2048
+# openssl rsa -in minnow.key -out minnow.key.insecure
+# mv minnow.key.insecure minnow.key
+# openssl req -new -key minnow.key -out minnow.csr
+# openssl x509 -req -days 365 -in minnow.csr -signkey minnow.key -out minnow.crt
+# shib-metagen -c /etc/certs/minnow.crt -h minnow.gluu.info &gt; /etc/shibboleth/minnow-metadata.xml
+# service apache2 start
+# service shibd start
+</code></pre>
+
+<p>Download <code>minnow-metadata.xml</code> to your machine. You will need this file
+later when you create the Trust Relationship in the Gluu Server.</p>
+<pre><code># mkdir /var/www/protected
+# touch /var/www/protected/printHeaders.py
+# chmod ugo+x /var/www/protected/printHeaders.py
+</code></pre>
+
+<p>Edit <code>printHeaders.py</code>, and add this simple script. It will show you the
+HTTP headers:</p>
+<pre><code>#!/usr/bin/python
+
+import os
+
+d = os.environ
+k = d.keys()
+k.sort()
+
+print &quot;Content-type: text/html\n\n&quot;
+
+print &quot;&lt;HTML&gt;&lt;HEAD&gt;&lt;TITLE&gt;Print Env Variables&lt;/TITLE&gt;&lt;/Head&gt;&lt;BODY&gt;&quot;
+print &quot;&lt;h1&gt;Environment Variables&lt;/H1&gt;&quot;
+for item in k:
+    print &quot;&lt;p&gt;&lt;B&gt;%s&lt;/B&gt;: %s &lt;/p&gt;&quot; % (item, d[item])
+print &quot;&lt;/BODY&gt;&lt;/HTML&gt;&quot;
+</code></pre>
+
+<p>Edit the default site at <code>/etc/apache2/sites-available/default-ssl.conf</code>, 
+and add this part:</p>
+<pre><code>ScriptAlias /protected/ /var/www/protected/
+&lt;Directory /var/www/protected&gt;
+    AddHandler cgi-script .py
+    Options +ExecCGI
+    SSLOptions +StdEnvVars
+    AuthType shibboleth
+    ShibRequestSetting requireSession 1
+    Require valid-user
+&lt;/Directory&gt;
+</code></pre>
+
+<h1 id="configure-the-shibboleth-sp">Configure the Shibboleth SP<a class="headerlink" href="#configure-the-shibboleth-sp" title="Permanent link">#</a></h1>
+<p>Use this for <code>shibboleth2.xml</code> and replace <code>squid.gluu.info</code> with the
+hostname of your SP, and <code>albacore.gluu.info</code> with the hostname of your
+IDP.</p>
+<pre><code>&lt;SPConfig xmlns=&quot;urn:mace:shibboleth:2.0:native:sp:config&quot;
+    xmlns:conf=&quot;urn:mace:shibboleth:2.0:native:sp:config&quot;
+    xmlns:saml=&quot;urn:oasis:names:tc:SAML:2.0:assertion&quot;
+    xmlns:samlp=&quot;urn:oasis:names:tc:SAML:2.0:protocol&quot;    
+    xmlns:md=&quot;urn:oasis:names:tc:SAML:2.0:metadata&quot;
+    logger=&quot;syslog.logger&quot; clockSkew=&quot;180&quot;&gt;
+    &lt;OutOfProcess logger=&quot;shibd.logger&quot;&gt;&lt;/OutOfProcess&gt;
+    &lt;UnixListener address=&quot;shibd.sock&quot;/&gt;
+    &lt;StorageService type=&quot;Memory&quot; id=&quot;mem&quot; cleanupInterval=&quot;900&quot;/&gt;
+    &lt;SessionCache type=&quot;StorageService&quot; StorageService=&quot;mem&quot; cacheAssertions=&quot;false&quot;
+                  cacheAllowance=&quot;900&quot; inprocTimeout=&quot;900&quot; cleanupInterval=&quot;900&quot;/&gt;
+    &lt;ReplayCache StorageService=&quot;mem&quot;/&gt;
+    &lt;RequestMapper type=&quot;Native&quot;&gt;
+        &lt;RequestMap&gt;
+            &lt;Host name=&quot;squid.gluu.info&quot;&gt;
+                &lt;Path name=&quot;protected&quot; authType=&quot;shibboleth&quot; requireSession=&quot;true&quot;/&gt;
+            &lt;/Host&gt;
+        &lt;/RequestMap&gt;
+    &lt;/RequestMapper&gt;
+    &lt;ApplicationDefaults entityID=&quot;https://squid.gluu.info/shibboleth&quot;
+                         REMOTE_USER=&quot;uid&quot;
+                         metadataAttributePrefix=&quot;Meta-&quot;
+                         sessionHook=&quot;/Shibboleth.sso/AttrChecker&quot;
+                         signing=&quot;false&quot; encryption=&quot;false&quot;&gt;
+
+        &lt;Sessions lifetime=&quot;28800&quot; timeout=&quot;3600&quot; checkAddress=&quot;true&quot;
+            handlerURL=&quot;/Shibboleth.sso&quot; handlerSSL=&quot;true&quot; cookieProps=&quot;https&quot; relayState=&quot;ss:mem&quot;&gt;
+
+            &lt;SessionInitiator type=&quot;Chaining&quot; Location=&quot;/Login&quot; isDefault=&quot;true&quot; id=&quot;Login&quot;
+                              entityID=&quot;https://albacore.gluu.info/idp/shibboleth&quot;&gt;
+                &lt;SessionInitiator type=&quot;SAML2&quot; template=&quot;bindingTemplate.html&quot;/&gt;
+            &lt;/SessionInitiator&gt;
+
+            &lt;md:AssertionConsumerService Location=&quot;/SAML2/POST-SimpleSign&quot; index=&quot;2&quot;
+                Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign&quot;/&gt;
+            &lt;md:AssertionConsumerService Location=&quot;/SAML2/POST&quot; index=&quot;1&quot;
+                Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&quot;/&gt;
+
+            &lt;LogoutInitiator type=&quot;Chaining&quot; Location=&quot;/Logout&quot;&gt;
+                &lt;LogoutInitiator type=&quot;SAML2&quot; template=&quot;bindingTemplate.html&quot;/&gt;
+                &lt;LogoutInitiator type=&quot;Local&quot;/&gt;
+            &lt;/LogoutInitiator&gt;
+
+            &lt;md:SingleLogoutService Location=&quot;/SLO/Redirect&quot; conf:template=&quot;bindingTemplate.html&quot;
+                Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect&quot;/&gt;
+            &lt;md:SingleLogoutService Location=&quot;/SLO/POST&quot; conf:template=&quot;bindingTemplate.html&quot;
+                Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&quot;/&gt;
+
+            &lt;Handler type=&quot;Status&quot; Location=&quot;/Status&quot;/&gt;
+            &lt;Handler type=&quot;Session&quot; Location=&quot;/Session&quot; showAttributeValues=&quot;false&quot;/&gt;
+            &lt;Handler type=&quot;AttributeChecker&quot; Location=&quot;/AttrChecker&quot; template=&quot;attrChecker.html&quot;
+                attributes=&quot;uid&quot; flushSession=&quot;true&quot;/&gt;
+        &lt;/Sessions&gt;
+
+        &lt;Errors supportContact=&quot;root@localhost&quot;
+            helpLocation=&quot;/about.html&quot;
+            styleSheet=&quot;/shibboleth-sp/main.css&quot;/&gt;
+
+        &lt;MetadataProvider type=&quot;XML&quot; file=&quot;albacore.xml&quot;/&gt;
+        &lt;TrustEngine type=&quot;ExplicitKey&quot;/&gt;
+        &lt;TrustEngine type=&quot;PKIX&quot;/&gt;
+        &lt;AttributeExtractor type=&quot;XML&quot; validate=&quot;true&quot; reloadChanges=&quot;false&quot; path=&quot;attribute-map.xml&quot;/&gt;
+        &lt;AttributeExtractor type=&quot;Metadata&quot; errorURL=&quot;errorURL&quot; DisplayName=&quot;displayName&quot;/&gt;
+        &lt;AttributeResolver type=&quot;Query&quot; subjectMatch=&quot;true&quot;/&gt;
+        &lt;AttributeFilter type=&quot;XML&quot; validate=&quot;true&quot; path=&quot;attribute-policy.xml&quot;/&gt;
+        &lt;CredentialResolver type=&quot;File&quot; key=&quot;/etc/certs/squid.key&quot; certificate=&quot;/etc/certs/squid.crt&quot;/&gt;
+    &lt;/ApplicationDefaults&gt;
+    &lt;SecurityPolicyProvider type=&quot;XML&quot; validate=&quot;true&quot; path=&quot;security-policy.xml&quot;/&gt;
+    &lt;ProtocolProvider type=&quot;XML&quot; validate=&quot;true&quot; reloadChanges=&quot;false&quot; path=&quot;protocols.xml&quot;/&gt;
+
+&lt;/SPConfig&gt;
+</code></pre>
+
+<p>Copy this file into <code>/etc/shibboleth/attribute-map.xml</code>:</p>
+<pre><code>
+&lt;Attributes xmlns=&quot;urn:mace:shibboleth:2.0:attribute-map&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+    &lt;Attribute name=&quot;urn:oid:2.5.4.42&quot; id=&quot;givenName&quot;/&gt;
+    &lt;Attribute name=&quot;urn:oid:2.5.4.4&quot; id=&quot;sn&quot;/&gt;
+    &lt;Attribute name=&quot;urn:oid:2.16.840.1.113730.3.1.241&quot; id=&quot;displayName&quot;/&gt;
+    &lt;Attribute name=&quot;urn:oid:0.9.2342.19200300.100.1.1&quot; id=&quot;uid&quot;/&gt;
+&lt;/Attributes&gt;
+</code></pre>
+
+<p>Now you need to create a Trust Relationship in your Gluu Server. Login,
+go to SAML / Trust Relationships, and "Add Relationship":</p>
+<p><img alt="image" src="../../img/integration/minnow-saml-trust-relationship-shibboleth-sp.png" /></p>
+<p>Then, configure for SAML2SSO profile. Click on the checkbox to
+"Configure specific RelyingParty":</p>
+<p><img alt="image" src="../../img/integration/configure_rp.png" /></p>
+<p>Then, click to add the SAML2SSO profile:</p>
+<p><img alt="image" src="../../img/integration/saml_sso-profile.png" /></p>
+<p>Then "Save" and "Update." Wait 5 minutes for the Shibboleth IDP to detect reload the metadata or
+stop and start tomcat.</p>
+<h2 id="test">Test<a class="headerlink" href="#test" title="Permanent link">#</a></h2>
+<p>Test the CGI script at <code>https://minnow.gluu.info/protected/printHeaders.py</code>.
+Enter both the valid username and password (like <code>admin</code> and your
+initial admin password). The output will contain something like this:</p>
+<pre><code>**Environment Variables**
+
+AUTH_TYPE: shibboleth
+CONTEXT_DOCUMENT_ROOT: /var/www/protected/
+CONTEXT_PREFIX: /protected/
+DOCUMENT_ROOT: /var/www/html
+GATEWAY_INTERFACE: CGI/1.1
+HTTPS: on
+HTTP_ACCEPT: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+HTTP_ACCEPT_ENCODING: gzip, deflate, sdch
+HTTP_ACCEPT_LANGUAGE: en-US,en;q=0.8
+HTTP_CONNECTION: keep-alive
+HTTP_COOKIE: _shibsession_64656661756c7468747470733a2f2f6d696e6e6f772e676c75752e696e666f2f73686962626f6c657468=_6aab7e287072bcc123989d8bf5f0ed5e
+HTTP_DNT: 1
+HTTP_HOST: minnow.gluu.info
+HTTP_UPGRADE_INSECURE_REQUESTS: 1
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36
+PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+QUERY_STRING:
+REMOTE_ADDR: 192.168.88.1
+REMOTE_PORT: 52140
+REMOTE_USER: mike
+REQUEST_METHOD: GET
+REQUEST_SCHEME: https
+REQUEST_URI: /protected/printHeaders.py
+SCRIPT_FILENAME: /var/www/protected/printHeaders.py
+SCRIPT_NAME: /protected/printHeaders.py
+SERVER_ADDR: 192.168.88.133
+SERVER_ADMIN: webmaster@localhost
+SERVER_NAME: minnow.gluu.info
+SERVER_PORT: 443
+SERVER_PROTOCOL: HTTP/1.1
+SERVER_SIGNATURE:
+Apache/2.4.7 (Ubuntu) Server at minnow.gluu.info Port 443
+SERVER_SOFTWARE: Apache/2.4.7 (Ubuntu)
+SHIB_Shib_Application_ID: default
+SHIB_Shib_Authentication_Instant: 2015-09-17T01:13:23.278Z
+SHIB_Shib_Authentication_Method: urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport
+SHIB_Shib_AuthnContext_Class: urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport
+SHIB_Shib_Identity_Provider: https://brookie.gluu.info/idp/shibboleth
+SHIB_Shib_Session_ID: _6aab7e287072bcc123989d8bf5f0ed5e
+SHIB_Shib_Session_Index: _40e4b17668a13e0d406e41cc9f6bf116
+SHIB_displayName: Mike Schwartz
+SHIB_givenName: Michael
+SHIB_mail: mike@gmail.com
+SHIB_sn: Schwartz
+SHIB_uid: mike
+SSL_CIPHER: ECDHE-RSA-AES128-GCM-SHA256
+SSL_CIPHER_ALGKEYSIZE: 128
+SSL_CIPHER_EXPORT: false
+SSL_CIPHER_USEKEYSIZE: 128
+SSL_CLIENT_VERIFY: NONE
+SSL_COMPRESS_METHOD: NULL
+SSL_PROTOCOL: TLSv1.2
+SSL_SECURE_RENEG: true
+SSL_SERVER_A_KEY: rsaEncryption
+SSL_SERVER_A_SIG: sha256WithRSAEncryption
+SSL_SERVER_I_DN: emailAddress=mike@gluu.org,CN=minnow.gluu.info,O=Gluu,L=Austin,ST=TX,C=US
+SSL_SERVER_I_DN_C: US
+SSL_SERVER_I_DN_CN: minnow.gluu.info
+SSL_SERVER_I_DN_Email: mike@gmail.com
+SSL_SERVER_I_DN_L: Austin
+SSL_SERVER_I_DN_O: Gluu
+SSL_SERVER_I_DN_ST: TX
+SSL_SERVER_M_SERIAL: 9F5E4F891590BB53
+SSL_SERVER_M_VERSION: 1
+SSL_SERVER_S_DN: emailAddress=mike@gluu.org,CN=minnow.gluu.info,O=Gluu,L=Austin,ST=TX,C=US
+SSL_SERVER_S_DN_C: US
+SSL_SERVER_S_DN_CN: minnow.gluu.info
+SSL_SERVER_S_DN_Email: mike@gmail.com
+SSL_SERVER_S_DN_L: Austin
+SSL_SERVER_S_DN_O: Gluu
+SSL_SERVER_S_DN_ST: TX
+SSL_SERVER_V_END: Sep 10 18:46:32 2016 GMT
+SSL_SERVER_V_START: Sep 11 18:46:32 2015 GMT
+SSL_SESSION_RESUMED: Initial
+SSL_TLS_SNI: minnow.gluu.info
+SSL_VERSION_INTERFACE: mod_ssl/2.4.7
+SSL_VERSION_LIBRARY: OpenSSL/1.0.1f
+</code></pre>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">#</a></h2>
+<ul>
+<li>
+<p>Make sure you update your hosts file on the Gluu Server, Apache
+   server, and your workstation--this won't work with IP addresses,
+   only.</p>
+</li>
+<li>
+<p>Check the Shibboleth log file <code>/opt/idp/logs/idp-process.log</code> if you
+   don't see the headers or REMOTE_USER environment variables. Also,
+   restart the Apache Tomcat service by <code>service tomcat restart</code> to 
+   make sure the new Shibboleth IDP xml files were loaded.</p>
+</li>
+<li>
+<p>Clear the cookies in your web browser for both the Apache site, and 
+   the Gluu Server if you are logging in and logging out a lot with 
+   lots of server restarts.</p>
+</li>
+</ul>
+<h2 id="iis-saml-configuration">IIS SAML Configuration<a class="headerlink" href="#iis-saml-configuration" title="Permanent link">#</a></h2>
+<h3 id="iis-configuration-in-windows-7">IIS Configuration in Windows 7<a class="headerlink" href="#iis-configuration-in-windows-7" title="Permanent link">#</a></h3>
+<ol>
+<li>
+<p>Start --&gt; Control Panel --&gt; Programs --&gt; "Turn Windows features on or off"</p>
+</li>
+<li>
+<p>Select (i) IIS (ii) Web Management Tools (iii) II6 Management Compatibility (iv) IIS Management Console (v) IIS Management Scripts and Tools (vi) IIS Management Service</p>
+</li>
+<li>
+<p>Select (i) World Wide Web Services (ii) CGI (iii) ISAPI Filters (iv) ISAPI Extensions --&gt; Press OK.
+<img alt="IIS 7 Setup" src="../../img/integration/admin_sp_iis7setup.png" /></p>
+</li>
+<li>
+<p>Test IIS to see if it is installed in your system with "127.0.0.1" in the web browser. For our test case, we used IIS7.
+<img alt="Test IIS" src="../../img/integration/admin_sp_iis7test.png" /></p>
+</li>
+</ol>
+<h2 id="isapi-filter-configuration">ISAPI Filter Configuration<a class="headerlink" href="#isapi-filter-configuration" title="Permanent link">#</a></h2>
+<ol>
+<li>
+<p>Open IIS Manager (Start --&gt; Administrative Tools --&gt; Internet Information Service/IIS Manager)</p>
+</li>
+<li>
+<p>Double click on "ISAPI and CGI Restrictions"
+<img alt="ISAPI and CGI" src="../../img/integration/admin_sp_isapicgi.png" /></p>
+</li>
+<li>
+<p>Add a new Filter</p>
+</li>
+</ol>
+<p>a. Click Actions --&gt; Add (upper right corner)</p>
+<p>b. Select "\opt\shibboleth-sp\lib\shibboleth\isapi_shib.dll"</p>
+<p>c. Description: "Shibboleth"</p>
+<p>d. Click "Allow" (from the right hand side)</p>
+<p><img alt="ISAPI Path" src="../../img/integration/apache_sp_isapipath.png" /></p>
+<p>e. Back to IIS Manager --&gt; ISAPI Filters</p>
+<p><img alt="ISAPI Filters" src="../../img/integration/apache_sp_isapifilter.png" /></p>
+<pre><code>    1. Click "Add" (upper right corner)
+
+    2. Filter Name: Shibboleth
+
+    3. Executable: "\opt\shibboleth-sp\lib\shibboleth\isapi_shib.dll"
+</code></pre>
+<p><img alt="ISAPI Edit" src="../../img/integration/apache_sp_isapiedit.png" /></p>
+<p>f. SSO file extension mapping</p>
+<pre><code>    1. Click on "Handler Mapping" from main page
+</code></pre>
+<p><img alt="SP Handler" src="../../img/integration/admin_sp_handlermapping.png" /></p>
+<pre><code>    2. Click "Add Script Map" from Action
+</code></pre>
+<p><img alt="Script Map" src="../../img/integration/admin_sp_addscriptmap.png" /></p>
+<pre><code>    3. Request Path :".sso"
+
+    4. Executable should be pointed to "isapi_shib.dll"
+</code></pre>
+<p><img alt="Executable" src="../../img/integration/admin_sp_executable.png" /></p>
+<p>g. Restart IIS</p>
+<p>h. Check Status</p>
+<p>Check Status by typing in "http://127.0.0.1/Shibboleth.sso/Status" in the web browser. If it displays an XML document, then the Shibboleth SP Installation in Windows IIS7 in complete.
+<img alt="Status Check" src="../../img/integration/admin_sp_checkstatus.png" /></p>
+<h2 id="shibboleth-sp-setup-in-windows-2008-r2-with-iis7">Shibboleth SP Setup in Windows 2008 R2 with IIS7<a class="headerlink" href="#shibboleth-sp-setup-in-windows-2008-r2-with-iis7" title="Permanent link">#</a></h2>
+<ol>
+<li>Open up "Server Manager", scroll down and click on "Add Roles".</li>
+</ol>
+<p><img alt="Add Role" src="../../img/integration/iis_setup_addrole.png" /></p>
+<ol>
+<li>Hit "Next"</li>
+</ol>
+<p><img alt="Next" src="../../img/integration/iis_setup_next.png" /></p>
+<ol>
+<li>Select "Web Server (IIS)", hit "Next"</li>
+</ol>
+<p><img alt="Web Server" src="../../img/integration/iis_setup_webserver.png" /></p>
+<ol>
+<li>Select (i) CGI</li>
+</ol>
+<p>(ii) ISAPI Extensions</p>
+<p>(iii) ISAPI Filters</p>
+<p>(iv) Management Tools</p>
+<p>(a) IIS Management Console</p>
+<p>(b) IIS Management Scripts and Tools</p>
+<p>(c) Management Service</p>
+<p>(v) All IIS6 Management Compatibility</p>
+<p><img alt="Selection" src="../../img/integration/iis_setup_selection.png" /></p>
+<p><img alt="Selection" src="../../img/integration/iis_setup_selection1.png" /></p>
+<ol>
+<li>Hit "Next", for the confirmation, check the list of plugins.</li>
+</ol>
+<p><img alt="Plugin" src="../../img/integration/iis_setup_plugin.png" /></p>
+<p><img alt="Management Tools" src="../../img/integration/iis_setup_managementtools.png" /></p>
+<ol>
+<li>Hit "Install" and Windows 2008 will complete the installation. A confirmation window shall appear which resembles the screenshot below.</li>
+</ol>
+<p><img alt="Confirmation" src="../../img/integration/iis_setup_confirmation.png" /></p>
+<p>7.Test IIS7 setup from the Internet.</p>
+<p><img alt="Test" src="../../img/integration/iis_setup_test.png" /></p>
+<h3 id="shibboleth-sp-25x-setup">Shibboleth SP 2.5.x Setup<a class="headerlink" href="#shibboleth-sp-25x-setup" title="Permanent link">#</a></h3>
+<ol>
+<li>
+<p>Down the <a href="http://www.shibboleth.net/downloads/service-provider/latest/">Shibboleth SP 2.5.x</a></p>
+</li>
+<li>
+<p>Start the installation, keep the default path, Select "Install ISAPI modules into IIS", IIS Script Extension must be ".sso" and Hit "Next".</p>
+</li>
+</ol>
+<p><img alt="Shib Setup" src="../../img/integration/iis_setup_shibsetup.png" /></p>
+<ol>
+<li>After the completion of the installation, the system will ask to reboot the system; hit "Yes".</li>
+</ol>
+<p><img alt="Restart" src="../../img/integration/iis_setup_restart.png" /></p>
+<ol>
+<li>Test the Shibboleth SP installation from the SP VM using the URL "localhost/Shibboleth.sso/Status" in the address bar of the Web Browser.</li>
+</ol>
+<p><img alt="Status" src="../../img/integration/iis_setup_status.png" /></p>
+<h3 id="trust-relationship-in-idp">Trust Relationship in IdP<a class="headerlink" href="#trust-relationship-in-idp" title="Permanent link">#</a></h3>
+<ol>
+<li>Create a Trust Relationship for the new SP in the IdP. It is necessary to upload the Public Certificate of the new SP in the IdP. Please note that the CN of the public certificate MUST BE the same as <em>Hostname</em> of the SP. Hit "Add".</li>
+</ol>
+<p><img alt="Add TR" src="../../img/integration/iis_setup_addtr.png" /></p>
+<ol>
+<li>Download the IdP generated configuration files for Shib SP modification.</li>
+</ol>
+<p><img alt="Download" src="../../img/integration/iis_setup_download.png" /></p>
+<h3 id="sp-configuration">SP Configuration<a class="headerlink" href="#sp-configuration" title="Permanent link">#</a></h3>
+<ol>
+<li>
+<p>The files from the IdP must be placed in the SP Configuration.</p>
+</li>
+<li>
+<p>Before placing them inside the SP Configuration please check</p>
+</li>
+</ol>
+<p>(a) The "spcert.crt" file has the CN same as the SP hostname.</p>
+<p>(b) The "spcert.crt" and "spkey.key" has the same <em>md5sum</em> value.</p>
+<p>(c) The IdP-metadata is perfectly placed inside the SP Configuration.</p>
+<p>(d) The downloaded "shibboleth2.xml" file has values resembling the file content below.</p>
+<ol>
+<li>For testing purpose, we are going to protect a directory named "secure" with the IdP.  Create a folder/directory in the IIS Root Directory and restart Shibd and IIS.</li>
+</ol>
+<p><img alt="Secure" src="../../img/integration/iis_setup_secure.png" /></p>
+<h3 id="sso-testing">SSO Testing<a class="headerlink" href="#sso-testing" title="Permanent link">#</a></h3>
+<ol>
+<li>
+<p>Place the following URL in the web browser: "https://SP_Name/secure"</p>
+</li>
+<li>
+<p>It will redirect the user to the IdP for authentication.</p>
+</li>
+<li>
+<p>After the authentication is complete, the user will be shown the protected page. For this case, the page is the IIS7 index page.</p>
+<p><SPConfig xmlns="urn:mace:shibboleth:2.0:native:sp:config"
+      xmlns:conf="urn:mace:shibboleth:2.0:native:sp:config"
+      xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+      xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"  <br />      xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+      logger="syslog.logger" clockSkew="180"></p>
+<p><!-- The OutOfProcess section contains properties affecting the shibd daemon. -->
+      <OutOfProcess logger="shibd.logger">
+      </OutOfProcess></p>
+<p><!-- The InProcess section conrains settings affecting web server modules/filters. -->
+      <InProcess logger="native.logger">
+        <ISAPI normalizeRequest="true" safeHeaderNames="true">
+              <Site id="1" name="SP_HOSTNAME_WITHOUT_HTTP_OR_HTTPS"/>
+        </ISAPI>
+      </InProcess></p>
+<p><!-- Only one listener can be defined, to connect in-process modules to shibd. -->
+      <TCPListener address="127.0.0.1" port="1600" acl="127.0.0.1"/>
+      <!-- <UnixListener address="shibd.sock"/> --></p>
+<p><!-- This set of components stores sessions and other persistent data in daemon memory. -->
+      <StorageService type="Memory" id="mem" cleanupInterval="900"/>
+      <SessionCache type="StorageService" StorageService="mem" cacheTimeout="3600" inprocTimeout="900" cleanupInterval="900"/>
+      <ReplayCache StorageService="mem"/>
+      <ArtifactMap artifactTTL="180"/></p>
+<p><!-- To customize behavior, map hostnames and path components to applicationId and other settings. -->
+      <RequestMapper type="Native">
+        <RequestMap applicationId="default">
+                <Host name="SP_HOSTNAME_WITHOUT_HTTP_OR_HTTPS">
+                <Path name="secure" authType="shibboleth" requireSession="true"/>
+                </Host>
+        </RequestMap>
+      </RequestMapper></p>
+<p><!--
+      The ApplicationDefaults element is where most of Shibboleths SAML bits are defined.
+      Resource requests are mapped by the RequestMapper to an applicationId that
+      points into to this section.
+      -->
+  <ApplicationDefaults id="default" policyId="default"
+        entityID="DAxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx867"
+        REMOTE_USER="eppn persistent-id targeted-id uid mail"
+        signing="false" encryption="false" attributePrefix="AJP_"></p>
+<pre><code>&lt;!--
+    Controls session lifetimes, address checks, cookie handling, and the protocol handlers.
+    You MUST supply an effectively unique handlerURL value for each of your applications.
+    The value can be a relative path, a URL with no hostname (https:///path) or a full URL.
+    The system can compute a relative value based on the virtual host. Using handlerSSL="true"
+    will force the protocol to be https. You should also add a cookieProps setting of "; path=/; secure"
+    in that case. Note that while we default checkAddress to "false", this has a negative
+    impact on the security of the SP. Stealing cookies/sessions is much easier with this disabled.
+    --&gt;
+&lt;Sessions lifetime="28800" timeout="3600" checkAddress="false"
+            handlerURL="https://SP_HOSTNAME/Shibboleth.sso" handlerSSL="false"
+            exportLocation="http://localhost/Shibboleth.sso/GetAssertion" exportACL="127.0.0.1"
+            idpHistory="false" idpHistoryDays="7" cookieProps="; path=/; secure; httpOnly"&gt;
+
+    &lt;!--
+            SessionInitiators handle session requests and relay them to a Discovery page,
+            or to an IdP if possible. Automatic session setup will use the default or first
+            element (or requireSessionWith can specify a specific id to use).
+            --&gt;
+
+    &lt;!-- Default example directs to a specific IdPs SSO service (favoring SAML 2 over Shib 1). --&gt;
+            &lt;SessionInitiator type="Chaining" Location="/Login" isDefault="true" id="gluu"
+                    relayState="cookie" entityID="https://IDP_HOSTNAME/idp/shibboleth"&gt;
+               &lt;SessionInitiator type="SAML2" acsIndex="1" template="bindingTemplate.html"/&gt;
+               &lt;SessionInitiator type="Shib1" acsIndex="5"/&gt;
+            &lt;/SessionInitiator&gt;
+
+    &lt;!--
+            md:AssertionConsumerService locations handle specific SSO protocol bindings,
+            such as SAML 2.0 POST or SAML 1.1 Artifact. The isDefault and index attributes
+            are used when sessions are initiated to determine how to tell the IdP where and
+            how to return the response.
+            --&gt;
+    &lt;md:AssertionConsumerService Location="/SAML2/POST" index="1"
+            Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"/&gt;
+            &lt;md:AssertionConsumerService Location="/SAML2/POST-SimpleSign" index="2"
+            Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign"/&gt;
+            &lt;md:AssertionConsumerService Location="/SAML2/Artifact" index="3"
+            Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact"/&gt;
+            &lt;md:AssertionConsumerService Location="/SAML2/ECP" index="4"
+            Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS"/&gt;
+            &lt;md:AssertionConsumerService Location="/SAML/POST" index="5"
+            Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post"/&gt;
+            &lt;md:AssertionConsumerService Location="/SAML/Artifact" index="6"
+            Binding="urn:oasis:names:tc:SAML:1.0:profiles:artifact-01"/&gt;
+
+    &lt;!-- LogoutInitiators enable SP-initiated local or global/single logout of sessions. --&gt;
+            &lt;LogoutInitiator type="Chaining" Location="/Logout" relayState="cookie"&gt;
+            &lt;LogoutInitiator type="SAML2" template="bindingTemplate.html"/&gt;
+            &lt;LogoutInitiator type="Local"/&gt;
+            &lt;/LogoutInitiator&gt;
+
+    &lt;!-- md:SingleLogoutService locations handle single logout (SLO) protocol messages. --&gt;
+            &lt;md:SingleLogoutService Location="/SLO/SOAP"
+            Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"/&gt;
+            &lt;md:SingleLogoutService Location="/SLO/Redirect" conf:template="bindingTemplate.html"
+            Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"/&gt;
+            &lt;md:SingleLogoutService Location="/SLO/POST" conf:template="bindingTemplate.html"
+            Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"/&gt;
+            &lt;md:SingleLogoutService Location="/SLO/Artifact" conf:template="bindingTemplate.html"
+            Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact"/&gt;
+
+    &lt;!-- md:ManageNameIDService locations handle NameID management (NIM) protocol messages. --&gt;
+            &lt;md:ManageNameIDService Location="/NIM/SOAP"
+            Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"/&gt;
+            &lt;md:ManageNameIDService Location="/NIM/Redirect" conf:template="bindingTemplate.html"
+            Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"/&gt;
+            &lt;md:ManageNameIDService Location="/NIM/POST" conf:template="bindingTemplate.html"
+            Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"/&gt;
+            &lt;md:ManageNameIDService Location="/NIM/Artifact" conf:template="bindingTemplate.html"
+            Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact"/&gt;
+
+    &lt;!--
+            md:ArtifactResolutionService locations resolve artifacts issued when using the
+            SAML 2.0 HTTP-Artifact binding on outgoing messages, generally uses SOAP.
+            --&gt;
+            &lt;md:ArtifactResolutionService Location="/Artifact/SOAP" index="1"
+            Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"/&gt;
+
+    &lt;!-- Extension service that generates "approximate" metadata based on SP configuration. --&gt;
+            &lt;Handler type="MetadataGenerator" Location="/Metadata" signing="false"/&gt;
+
+            &lt;!-- Status reporting service. --&gt;
+            &lt;Handler type="Status" Location="/Status" acl="127.0.0.1"/&gt;
+
+            &lt;!-- Session diagnostic service. --&gt;
+            &lt;Handler type="Session" Location="/Session" showAttributeValues="false"/&gt;
+
+&lt;/Sessions&gt;
+
+&lt;!--
+    Allows overriding of error template filenames. You can also add attributes with values
+    that can be plugged into the templates.
+    --&gt;
+    &lt;Errors supportContact="support@gluu.org"
+            logoLocation="/shibboleth-sp/logo.jpg"
+            styleSheet="/shibboleth-sp/main.css"/&gt;
+
+&lt;!-- Uncomment and modify to tweak settings for specific IdPs or groups. --&gt;
+    &lt;RelyingParty Name="IDP_HOSTNAME_WITHOUT_HTTP_OR_HTTPS" keyName="IDP_HOSTNAME_WITHOUT_HTTP_OR_HTTPS"/&gt;
+
+&lt;!-- Chains together all your metadata sources. --&gt;
+    &lt;MetadataProvider type="Chaining"&gt;
+    &lt;MetadataProvider type="XML" file="C:\opt\shibboleth-sp\etc\shibboleth\idp-metadata.xml"/&gt;
+    &lt;/MetadataProvider&gt;
+
+&lt;!-- Chain the two built-in trust engines together. --&gt;
+    &lt;TrustEngine type="Chaining"&gt;
+            &lt;TrustEngine type="ExplicitKey"/&gt;
+            &lt;TrustEngine type="PKIX"/&gt;
+    &lt;/TrustEngine&gt;
+
+&lt;!-- Map to extract attributes from SAML assertions. --&gt;
+    &lt;AttributeExtractor type="XML" validate="true" path="attribute-map.xml"/&gt;
+
+    &lt;!-- Use a SAML query if no attributes are supplied during SSO. --&gt;
+    &lt;AttributeResolver type="Query" subjectMatch="true"/&gt;
+
+    &lt;!-- Default filtering policy for recognized attributes, lets other data pass. --&gt;
+    &lt;AttributeFilter type="XML" validate="true" path="attribute-policy.xml"/&gt;
+
+&lt;!-- Simple file-based resolver for using a single keypair. --&gt;
+    &lt;!-- &lt;CredentialResolver type="File" key="sp-key.pem" certificate="sp-cert.pem"/&gt; --&gt;
+
+    &lt;!-- TODO is password needed? --&gt;
+    &lt;CredentialResolver type="File" key="C:\opt\shibboleth-sp\etc\shibboleth\spkey.key"
+                    certificate="C:\opt\shibboleth-sp\etc\shibboleth\spcert.crt" /&gt;
+
+&lt;/ApplicationDefaults&gt;
+
+&lt;!-- Each policy defines a set of rules to use to secure messages. --&gt;
+    &lt;SecurityPolicies&gt;
+    &lt;!--
+    The predefined policy enforces replay/freshness, standard
+    condition processing, and permits signing and client TLS.
+    --&gt;
+&lt;Policy id="default" validate="false"&gt;
+            &lt;PolicyRule type="MessageFlow" checkReplay="true" expires="60"/&gt;
+            &lt;PolicyRule type="Conditions"&gt;
+                &lt;PolicyRule type="Audience"/&gt;
+                &lt;!-- Enable Delegation rule to permit delegated access. --&gt;
+                &lt;!-- &lt;PolicyRule type="Delegation"/&gt; --&gt;
+            &lt;/PolicyRule&gt;
+            &lt;PolicyRule type="ClientCertAuth" errorFatal="true"/&gt;
+            &lt;PolicyRule type="XMLSigning" errorFatal="true"/&gt;
+            &lt;PolicyRule type="SimpleSigning" errorFatal="true"/&gt;
+    &lt;/Policy&gt;
+    &lt;/SecurityPolicies&gt;
+</code></pre>
+<p></SPConfig></p>
+</li>
+</ol>
+<h2 id="configuring-apache-shibboleth-sp-in-windows">Configuring Apache Shibboleth SP in Windows<a class="headerlink" href="#configuring-apache-shibboleth-sp-in-windows" title="Permanent link">#</a></h2>
+<h3 id="shibboleth-sp-installation_1">Shibboleth SP Installation<a class="headerlink" href="#shibboleth-sp-installation_1" title="Permanent link">#</a></h3>
+<ol>
+<li>
+<p>Download the MSI of Shibboleth-SP from:
+   http://www.shibboleth.net/downloads/service-provider/latest/ .</p>
+</li>
+<li>
+<p>Start the installation</p>
+</li>
+</ol>
+<p><img alt="IMAGE" src="../../img/integration/admin_sp_click.png" /></p>
+<ol>
+<li>Define the destination folder (by default it is: C:\opt\shibboleth-sp).</li>
+</ol>
+<p><img alt="IMAGE" src="../../img/integration/admin_sp_destination.png" /></p>
+<ol>
+<li>Select the Shibboleth Daemon port. By default it is 1600, and you may
+   keep it for testing it, locally.</li>
+</ol>
+<p><img alt="IMAGE" src="../../img/integration/admin_sp_port.png" /></p>
+<ol>
+<li>
+<p>Now, there are two options. According to your target you will have to
+choose one.</p>
+<ol>
+<li>
+<p>Option 1: If you install Shibboleth for the Apache Web Server</p>
+</li>
+<li>
+<p>Option 2: If you install Shibboleth for Microsoft IIS Web Server</p>
+<p>a. For the Microsoft IIS Web Server, CHECK “Install ISAPI filter
+and configure IIS”. Remember to put the file Extension ”.sso” --
+this is necessary.</p>
+</li>
+</ol>
+</li>
+</ol>
+<p><img alt="IMAGE" src="../../img/integration/admin_sp_microsoft.png" /></p>
+<pre><code>    b. For the Apache Web Server, UNCHECK "Install ISAPI filter and
+    configure IIS".
+</code></pre>
+<p><img alt="IMAGE" src="../../img/integration/admin_sp_apachesetup.png" /></p>
+<pre><code>3. UAC of Windows 7 may block this program, so allow it.
+</code></pre>
+<p><img alt="IMAGE" src="../../img/integration/admin_sp_uac.png" /></p>
+<h2 id="apache-configuration">Apache Configuration<a class="headerlink" href="#apache-configuration" title="Permanent link">#</a></h2>
+<ol>
+<li>Download the Apache HTTP server MSI Installer with OpenSSL:
+   http://httpd.apache.org/download.cgi#apache22 .</li>
+</ol>
+<p><img alt="IMAGE" src="../../img/integration/admin_sp_apacheclick.png" /></p>
+<ol>
+<li>Select the destination. You can keep the default destination for your
+local testing. But, make sure that there is no other “Apache Software
+Foundation” directory in your current “C:\Program Files\” location.</li>
+</ol>
+<p><img alt="IMAGE" src="../../img/integration/admin_sp_apachedestination.png" /></p>
+<ol>
+<li>Provide the Server Information. For local testing you can use
+   <code>localdomain/localhost</code>.</li>
+</ol>
+<p><img alt="IMAGE" src="../../img/integration/admin_sp_serverinfo.png" /></p>
+<ol>
+<li>Test whether the Apache web server is installed or not. Open your web
+browser and use <code>localhost</code>. If you see something like the image shown
+below--you are done!</li>
+</ol>
+<p>a<img alt="IMAGE" src="../../img/integration/admin_sp_apachetest.png" /></p>
+<h3 id="shibboleth-and-apache-configuration">Shibboleth and Apache Configuration<a class="headerlink" href="#shibboleth-and-apache-configuration" title="Permanent link">#</a></h3>
+<ol>
+<li>
+<p>Change the permission of the Apache installation directory, and
+   provide “write” access.</p>
+</li>
+<li>
+<p><code>httpd.conf</code> configuration</p>
+<ol>
+<li>
+<p>Change “ServerName localhost:80” (for your local testing)</p>
+</li>
+<li>
+<p>Copy <code>apache22.conf</code> from the Shibboleth directory to <code>~/apache/conf/extra/</code></p>
+</li>
+</ol>
+</li>
+<li>
+<p><code>Shibboleth2.xml</code> configuration</p>
+<ol>
+<li>
+<p>Change: Host name=“localhost” (for local testing)</p>
+</li>
+<li>
+<p>Change: entityID=“https://localhost/shibboleth” (for local testing)</p>
+</li>
+<li>
+<p>Change: ApplicationOverride id=“admin” entityID=“https://localhost/shibboleth/”</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Reboot your windows machine.</p>
+</li>
+</ol>
+<h2 id="test-sp-installation-with-windows-and-apache">Test SP Installation with Windows and Apache<a class="headerlink" href="#test-sp-installation-with-windows-and-apache" title="Permanent link">#</a></h2>
+<ol>
+<li>Open the web browser, and provide the address:
+   <code>localhost/Shibboleth.sso/Status</code></li>
+<li>If you can see some XML page like the one shown below--you are done
+   with your SP installation in Windows through Apache2.</li>
+</ol>
+<p>a<img alt="IMAGE" src="../../img/integration/admin_sp_checkstatus.png" /></p>
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../oauth-js-implicit/" title="OAuth2.0 js Implicit Flow" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                OAuth2.0 js Implicit Flow
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../openidc-rp/" title="mod_auth_openidc" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                mod_auth_openidc
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2017, Gluu, Inc.
+          </div>
+        
+        powered by
+        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        and
+        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application-2afe21e0b2.js"></script>
+      <script>var config={url:{base:"../.."}},app=new Application(config);app.initialize()</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

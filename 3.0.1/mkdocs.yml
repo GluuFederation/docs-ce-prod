@@ -1,0 +1,88 @@
+site_name: Gluu Docs
+site_description: Documenation for Gluu Server
+site_favicon: 'favicon.ico'
+copyright: Copyright &copy; 2017, Gluu, Inc.
+docs_dir: source
+repo_url: https://github.com/GluuFederation/docs-3.0.1
+theme_dir: theme/material
+extra:
+    version: '3.0.1'
+    logo: 'gluu.jpg'
+markdown_extensions:
+- admonition
+- toc:
+     permalink: '#'
+pages:
+- Home: 'index.md'
+- Whats new in 3.x: 'operation/intro.md'
+- Installation Guide:
+        - 'Preparing VM': 'installation-guide/index.md'
+        - 'Install Gluu Server': 'installation-guide/install.md'
+#        - 'Cluster with CE': 'installation-guide/cluster.md'
+        - 'Setup Script Options': 'installation-guide/setup_py.md'
+        - Upgrade/Patch Guide:
+          - 'Upgrade Gluu Server' : 'upgrade/index.md'
+          - 'Upgrade Gluu Server with OpenDJ': 'upgrade/manual-update.md'
+#        - 'Patch Gluu Server' : 'upgrade/update.md'
+          - 'Updating a War File': 'upgrade/update-war.md'
+- Administration Guide:
+        - 'oxTrust admin UI' : 'admin-guide/oxtrust-ui.md'
+        - 'Interception Scripts': 'admin-guide/custom-script.md'
+        - User Authentication Guide:
+            - 'User Authentication Introduction': 'authn-guide/intro.md'
+            - 'Basic Authenticatoin': 'authn-guide/basic.md'
+            - 'Social Authentication': 'authn-guide/passport.md'
+            - 'Super Gluu': 'authn-guide/supergluu.md'
+            - 'FIDO U2F': 'authn-guide/U2F.md'
+            - 'Duo Security': 'authn-guide/duo.md'
+            - 'Certificate Authentication': 'authn-guide/cert-auth.md'
+            - 'Google+ OAuth 2.0': 'authn-guide/google.md'
+            - 'HOTP/TOTP': 'authn-guide/otp.md'
+            - 'Custom Authentication': 'authn-guide/customauthn.md'
+        - 'Attributes' : 'admin-guide/attribute.md'
+        - 'User Management' : 'admin-guide/user-group.md'
+        - 'Session Management': 'admin-guide/session.md'
+        - 'SAML' : 'admin-guide/saml.md'
+        #        - 'OAuth2 Grants' : 'admin-guide/oauth2.md'
+        - 'OpenID Connect' : 'admin-guide/openid-connect.md'
+        - 'UMA' : 'admin-guide/uma.md'
+        - 'SCIM protected by UMA' : 'admin-guide/scim-uma.md'
+        - 'Certificate Management' : 'admin-guide/certificate.md'
+- Integration Guide:
+        - 'Introduction': 'integration/index.md'
+        - 'Client SDKs':
+            - 'oxd OAuth2': 'integration/oauth2.md'
+            - 'OAuth2.0 js Implicit Flow': 'integration/oauth-js-implicit.md'
+        - 'Web Server Integrations':
+            - 'Shibboleth SP': 'integration/saml-sp.md'
+            - 'mod_auth_openidc': 'integration/openidc-rp.md'    
+        - 'SaaS Integrations':
+            - 'Google Apps': 'integration/google.md'
+            - 'Office 365': 'integration/office.md'
+#    - 'Hobsons Education Sol': 'integration/hobsons.md'
+            - 'Salesforce': 'integration/salesforce.md'
+            - 'Dropbox': 'integration/dropbox.md'
+            - 'GitHub Enterprise': 'integration/github-enterprise.md'
+- Reference:
+        - Gluu API Guide:
+            - 'Custom ID Generation': 'api-guide/api.md'
+            - 'OpenID Connect API': 'api-guide/openid-connect-api.md'
+            - 'SCIM API Configuration': 'api-guide/scim-api.md'
+            - 'UMA API': 'api-guide/uma-api.md'
+        - 'JSON Properties':
+            - 'OxTrust JSON Properties': 'reference/JSON-oxtrust-prop.md'
+            - 'OxAuth JSON Properties': 'reference/JSON-oxauth-prop.md'
+        - 'Gluu LDAP Schema':
+            - 'Ox LDAP Properties': 'reference/oxldap.md'
+            - 'OpenLDAP Schema': 'reference/schema.md'
+- Operation Guide:
+        - 'Backups': 'operation/backup.md'
+        - 'Find your Gluu Version': 'operation/find-gluu-version.md'
+        - 'Ports': 'operation/ports.md'
+        - 'Single Logout (SLO)': 'operation/logout.md'
+        - 'Log Management' : 'operation/logs.md'
+        - 'Customize Public Pages': 'operation/custom-loginpage.md'
+        - 'FAQ & Troubleshooting': 'operation/faq.md'
+        #       - 'Fine Tuning Gluu Server' : 'admin-guide/fine-tuning.md'
+- Developer Guide:
+        - 'Build oxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'

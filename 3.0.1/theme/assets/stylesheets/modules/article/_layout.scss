@@ -1,0 +1,640 @@
+
+
+/* ----------------------------------------------------------------------------
+ * Article layout
+ * ------------------------------------------------------------------------- */
+
+/*
+ * Article
+ */
+.article {
+  font-size: 14px;
+  line-height: 1.7em;
+
+  /* [tablet landscape+]: Indent to account for drawer */
+  @include break-from-device(tablet landscape) {
+    margin-left: 262px;
+  }
+
+  /*
+   * Clearfix
+   */
+  &:after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+
+  /*
+   * Article wrapper
+   */
+  .wrapper {
+    padding: 116px 16px 92px;
+
+    /* [tablet portait+]: Increase top spacing */
+    @include break-from-device(tablet portrait) {
+      padding: 128px 24px 96px;
+    }
+  }
+
+  /*
+   * Enable overflow scrolling in iOS web application
+   */
+  .ios.standalone & {
+    @include position(absolute, 56px 0 0 0);
+
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+
+    /* [orientation: portrait]: Account for status bar in portrait mode */
+    @include break-at-orientation(portrait) {
+      @include position(absolute, (56px + 20px) 0 0 0);
+    }
+
+    /*
+     * Article wrapper
+     */
+    .wrapper {
+      position: relative;
+      min-height: 100%;
+      padding-top: 60px;
+      margin-bottom: 2px;
+    }
+  }
+
+  /*
+   * Article headline
+   */
+  h1 {
+    font-size: 24px;
+    line-height: 1.333334em;
+    padding: 20px 0 42px;
+  }
+
+  /*
+   * Article chapters
+   */
+  h2 {
+    font-size: 20px;
+    line-height: 1.4em;
+    padding-top: (36px + 56px);
+    margin-top: (0px - 56px);
+
+    /*
+     * No offset correction in iOS web application
+     */
+    .ios.standalone & {
+      padding-top: 36px;
+      margin: 0;
+    }
+  }
+
+  /*
+   * Sub headlines
+   */
+  h3, h4 {
+    font-size: 18px;
+    padding-top: (20px + 56px);
+    margin-top: (0 - 56px);
+
+    /*
+     * No offset correction in iOS web application
+     */
+    .ios.standalone & {
+      padding-top: 20px;
+      margin-top: 0;
+    }
+  }
+
+  /*
+   * Align permalinks on the right
+   */
+  .headerlink {
+    float: right;
+    margin-left: 20px;
+    font-size: 14px;
+
+    /*
+     * Hide permalink to main headline
+     */
+    h1 & {
+      display: none;
+    }
+  }
+
+  /*
+   * Paragraphs and section titles
+   */
+  p, ul, ol {
+    margin-top: 1.5em;
+  }
+
+  /*
+   * Smaler top spacing for nested lists
+   */
+  li ul, li ol {
+    margin-top: 0.75em;
+  }
+
+  /*
+   * List elements
+   */
+  li {
+    margin-top: 0.75em;
+    margin-left: 18px;
+
+    /*
+     * Inline paragraphs in list elements
+     */
+    p {
+      display: inline;
+    }
+  }
+
+  /*
+   * Add icon for elements of an unordered list
+   */
+  ul > li:before {
+    content: "\e602";
+    display: block;
+    float: left;
+    font-family: 'Icon';
+    font-size: 16px;
+    width: 1.2em;
+    margin-left: -1.2em;
+    vertical-align: -0.1em;
+  }
+
+  /*
+   * Inline code snippets must not wrap
+   */
+  p > code {
+    white-space: nowrap;
+  }
+
+  /*
+   * Add spacing at top of separator
+   */
+  hr {
+    margin-top: 1.5em;
+  }
+
+  /*
+   * Limit images to article container
+   */
+  img {
+    max-width: 100%;
+    -webkit-border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    -ms-border-radius: 0.3em;
+    -o-border-radius: 0.3em;
+    border-radius: 0.3em;
+    -webkit-box-shadow: rgba(0,0,0,0.15) 0 1px 4px;
+    -moz-box-shadow: rgba(0,0,0,0.15) 0 1px 4px;
+    box-shadow: rgba(0,0,0,0.15) 0 1px 4px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: #efefef 0.5em solid;
+  }
+
+  /*
+   * Code listing container
+   */
+  pre {
+    padding: 16px;
+    margin: 1.5em -16px 0;
+    line-height: 1.5em;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /*
+   * Data tables
+   */
+  table {
+    margin: 3.0em 0 1.5em;
+    font-size: 13px;
+
+    /*
+     * The semi-cool solution, in case javascript is not available
+     */
+    .no-js & {
+      display: inline-block;
+      max-width: 100%;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /*
+     * Table heading
+     */
+    th {
+      min-width: 100px;
+      padding: 12px 16px;
+      font-size: 12px;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    /*
+     * Table cell
+     */
+    td {
+      padding: 12px 16px;
+      white-space: nowrap;
+    }
+  }
+
+  /*
+   * Data table wrapper, in case javascript is available
+   */
+  .data {
+    margin: 1.5em -16px;
+    padding: 1.5em 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    text-align: center;
+
+    /*
+     * Data table
+     */
+    table {
+      display: inline-block;
+      margin: 0 16px;
+      text-align: left;
+    }
+
+    /* [tablet portait+]: Increase spacing */
+    @include break-from-device(tablet portrait) {
+      margin: 1.5em -24px;
+
+      /*
+       * Data table
+       */
+      table {
+        margin: 0 24px;
+      }
+    }
+  }
+
+  /* [tablet portait+]: Increase spacing */
+  @include break-from-device(tablet portrait) {
+
+    /*
+     * Account for larged header bar and anchors
+     */
+    h2 {
+      padding-top: (28px + 72px);
+      margin-top: (8px - 72px);
+
+      /*
+       * No offset correction in iOS web application
+       */
+      .ios.standalone & {
+        padding-top: 28px;
+        margin-top: 8px;
+      }
+    }
+
+    /*
+     * Sub headlines
+     */
+    h3, h4 {
+      padding-top: (20px + 64px);
+      margin-top: (0 - 64px);
+
+      /*
+       * No offset correction in iOS web application
+       */
+      .ios.standalone & {
+        padding-top: 20px;
+        margin-top: 0;
+      }
+    }
+
+    /*
+     * Increase spacing for code blocks
+     */
+    pre {
+      padding: 1.5em 24px;
+      margin: 1.5em -24px 0;
+    }
+  }
+}
+
+/*
+ * Article footer
+ */
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0 4px;
+
+  /* [tablet portait+]: Larger spacing */
+  @include break-from-device(tablet portrait) {
+    padding: 0 8px;
+  }
+
+  /* [tablet landscape+]: Stretch footer to viewport */
+  @include break-from-device(tablet landscape) {
+    z-index: 5;
+  }
+}
+
+/*
+ * Copyright and theme information
+ */
+.copyright {
+  margin: 1.5em 0;
+
+  /* [tablet landscape+]: Add bottom spacing */
+  @include break-from-device(tablet landscape) {
+    margin-bottom: 64px;
+  }
+}
+
+/*
+ * Pagination
+ */
+.pagination {
+  max-width: 1184px;
+  height: 92px;
+  padding: 4px 0;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+
+  /* [tablet portait+]: Larger pagination and spacing */
+  @include break-from-device(tablet portrait) {
+    height: 96px;
+    padding: 8px 0;
+  }
+
+  /*
+   * Links should span icons entirely
+   */
+  a {
+    display: block;
+    height: 100%;
+  }
+
+  /*
+   * Previous and next page
+   */
+  .previous,
+  .next {
+    position: relative;
+    float: left;
+    height: 100%;
+  }
+
+  /*
+   * Previous page
+   */
+  .previous {
+    width: 25%;
+
+    /*
+     * Hide direction
+     */
+    .direction {
+      display: none;
+    }
+
+    /*
+     * Hide title
+     */
+    .stretch {
+      display: none;
+    }
+  }
+
+  /*
+   * Next page
+   */
+  .next {
+    width: 75%;
+    text-align: right;
+  }
+
+  /*
+   * Link to page
+   */
+  .page {
+    display: table;
+    position: absolute;
+    bottom: 4px;
+  }
+
+  /*
+   * Put direction over page title
+   */
+  .direction {
+    display: block;
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    font-size: 15px;
+    line-height: 20px;
+    padding: 0 52px;
+  }
+
+  /*
+   * Decrease indent for stretching content
+   */
+  .stretch {
+    padding: 0 4px;
+
+    /*
+     * Correct vertical spacing
+     */
+    .title {
+      font-size: 18px;
+      padding: 11px 0 13px;
+    }
+  }
+
+  /* [mobile landscape+]: Proportional width for pagination */
+  @include break-from-device(mobile landscape) {
+
+    /*
+     * Previous and next page
+     */
+    .previous,
+    .next {
+      width: 50%;
+    }
+
+    /*
+     * Previous page
+     */
+    .previous {
+      width: 50%;
+
+      /*
+       * Show direction
+       */
+      .direction {
+        display: block;
+      }
+
+      /*
+       * Show title
+       */
+      .stretch {
+        display: table;
+      }
+    }
+  }
+
+  /* [tablet portrait+]: Increase vertical spacing */
+  @include break-from-device(tablet portrait) {
+
+    /*
+     * Increase vertical spacing
+     */
+    .direction {
+      padding: 0 56px;
+      bottom: 40px;
+    }
+
+    /*
+     * Increase vertical spacing
+     */
+    .stretch {
+      padding: 0 8px;
+    }
+  }
+}
+
+/*
+ * Admonition support
+ */
+.admonition {
+  margin: 30px 0;
+  margin-left: -30px;
+  padding: 20px 20px 24px;
+  padding-left: 50px;
+  border-radius: 0 5px 5px 0;
+  position: relative;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, .3), inset 0 1px 0 rgba(255,255,255,.2), inset 0 -1px 0 rgba(0,0,0,.3);
+  background: #7e6d42;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzdlNmQ0MiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1YzRlMzUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top,  #7e6d42 0%, #5c4e35 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7e6d42), color-stop(100%,#5c4e35));
+  background: -webkit-linear-gradient(top,  #7e6d42 0%,#5c4e35 100%);
+  background: -o-linear-gradient(top,  #7e6d42 0%,#5c4e35 100%);
+  background: -ms-linear-gradient(top,  #7e6d42 0%,#5c4e35 100%);
+  background: linear-gradient(to bottom,  #7e6d42 0%,#5c4e35 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7e6d42', endColorstr='#5c4e35',GradientType=0 );
+}
+
+@media (max-width: 568px){
+  .admonition {
+    margin-right: -30px;
+  }
+}
+
+@media (min-width: 768px){
+  .admonition {
+    margin-left: -35px;
+  }
+}
+
+.admonition:before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0px;
+  border-color: transparent #222 #222 transparent;
+  border-style: solid;
+  border-width: 5px;
+  width: 0;
+  height: 0;
+}
+
+.admonition .admonition-title, .admonition p {
+  margin: 0;
+  color: #fff;
+}
+
+.admonition p {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.admonition .admonition-title {
+  margin: 0px 0px 15px 0px;
+  line-height: 0.3em;
+  font-size: 18px;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.admonition:after {
+  content: "!!";
+  color: #fc0;
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-size: 28px;
+  font-weight: bold;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+}
+
+.note {
+  background: #0389aa;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAzODlhYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDYxN2YiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top,  #0389aa 0%, #1E88E5 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0389aa), color-stop(100%,#1E88E5));
+  background: -webkit-linear-gradient(top,  #0389aa 0%,#1E88E5 100%);
+  background: -o-linear-gradient(top,  #0389aa 0%,#1E88E5 100%);
+  background: -ms-linear-gradient(top,  #0389aa 0%,#1E88E5 100%);
+  background: linear-gradient(to bottom,  #0389aa 0%,#1E88E5 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0389aa', endColorstr='#1E88E5',GradientType=0 );
+}
+
+.warning {
+  background: #9e2812;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzllMjgxMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM2ZjBkMGQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top,  #9e2812 0%, #e84e40 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#9e2812), color-stop(100%,#e84e40));
+  background: -webkit-linear-gradient(top,  #9e2812 0%,#e84e40 100%);
+  background: -o-linear-gradient(top,  #9e2812 0%,#e84e40 100%);
+  background: -ms-linear-gradient(top,  #9e2812 0%,#e84e40 100%);
+  background: linear-gradient(to bottom,  #9e2812 0%,#e84e40 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9e2812', endColorstr='#e84e40',GradientType=0 );
+}
+
+.note:before {
+  border-color: transparent #1E88E5 #1E88E5 transparent;
+}
+
+.warning:before {
+  border-color: transparent #e84e40 #e84e40 transparent;
+}
+
+.note:after {
+  content: "ⓘ";
+  color: #fff;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+}
+
+.warning:after {
+  content: "!!";
+  color: #fc0;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+}

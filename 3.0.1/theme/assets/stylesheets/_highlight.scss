@@ -1,0 +1,54 @@
+
+
+/* ----------------------------------------------------------------------------
+ * Code highlighter
+ * ------------------------------------------------------------------------- */
+
+/*
+ * Code block
+ */
+pre {
+  background: rgba($black, 0.05);
+
+  /*
+   * Ensure correct color
+   */
+  &, code {
+    color: $black;
+  }
+}
+
+/*
+ * Operators and comments
+ */
+.o, .c, .c1, .cm {
+  color: $black-light;
+}
+
+/*
+ * Keywords
+ */
+.k, .kn {
+  color: #A71D5D;
+}
+
+/*
+ * Types and functions
+ */
+.kt, .kd, .n.f {
+  color: #0086B3;
+}
+
+/*
+ * Strings
+ */
+.s, .s1 {
+  color: #183691;
+}
+
+/*
+ * Constants and numbers
+ */
+.mi, .bp {
+  color: #9575CD;
+}

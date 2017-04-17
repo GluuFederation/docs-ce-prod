@@ -1,0 +1,61 @@
+
+
+/* ----------------------------------------------------------------------------
+ * Drawer animation
+ * ------------------------------------------------------------------------- */
+
+/*
+ * Drawer container
+ */
+.drawer {
+
+  /* [tablet landscape-]: Hide menu */
+  @include break-to-device(tablet landscape) {
+    transform: translate3d(-262px, 0, 0);
+    transition: transform .25s cubic-bezier(.4, 0, .2, 1);
+
+    /*
+     * Just hide drawer, if browser doesn't support 3D transforms
+     */
+    .no-csstransforms3d & {
+      display: none;
+    }
+  }
+
+  /*
+   * Expanded drawer
+   */
+  #toggle-drawer:checked ~ .main &,
+  .toggle-drawer & {
+    transform: translate3d(0, 0, 0);
+
+    /*
+     * Just show drawer, if browser doesn't support 3D transforms
+     */
+    .no-csstransforms3d & {
+      display: block;
+    }
+  }
+}
+
+/*
+ * No color transition for project link
+ */
+.project {
+  transition: none;
+}
+
+/*
+ * Project logo image
+ */
+.project .logo img {
+  transition: box-shadow .4s;
+}
+
+/*
+ * Repository buttons
+ */
+.repo a {
+  transition: box-shadow .4s,
+              opacity    .4s;
+}
