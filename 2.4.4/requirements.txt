@@ -1,0 +1,9 @@
+Jinja2==2.7.1
+Markdown==2.3.1
+PyYAML==3.10
+watchdog==0.7.0
+ghp-import==0.4.1
+markupsafe
+argh==0.8.1
+pathtools==0.1.1
+mkdocs==0.9

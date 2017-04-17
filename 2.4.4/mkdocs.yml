@@ -1,0 +1,94 @@
+site_name: Gluu Docs
+site_description: Documenation for Gluu Server
+site_favicon: 'favicon.ico'
+copyright: Copyright &copy; 2017, Gluu, Inc.
+docs_dir: source
+repo_url: https://github.com/GluuFederation/docs-2.4.4
+theme_dir: theme/material
+extra:
+    version: '2.4.4'
+    logo: 'gluu.jpg'
+markdown_extensions:
+- admonition
+- toc:
+     permalink: '#'
+pages:
+- Home: 'index.md'
+- Gluu Introduction:
+        - 'Histroy': 'introduction/history.md'
+        - 'Design Goals': 'introduction/design.md'
+        - 'Gluu Server Architecture': 'introduction/architecture.md'
+#- Whats new in 3.0: 'operation/intro.md'
+- Installation Guide:
+        - 'Preparing VM': 'installation-guide/index.md'
+        - 'Install Gluu Server': 'installation-guide/install.md'
+#        - 'Cluster with CE': 'installation-guide/cluster.md'
+        - 'Setup Script Options': 'installation-guide/setup_py.md'
+        - Upgrade/Patch Guide:
+            - 'Upgrade Gluu Server' : 'upgrade/upgrading.md'
+#          - 'Patch Gluu Server' : 'upgrade/update.md'
+            - 'Updating Gluu Server': 'upgrade/updating.md'
+        -  Cluster Configuration:
+            - 'Requirements: csync2 Installation': 'cluster/csync-installation.md'
+            - 'Clustering with CE': 'cluster/index.md'
+- Administration Guide:
+        - 'oxTrust admin UI' : 'admin-guide/oxtrust-ui.md'
+        - 'Interception Scripts': 'admin-guide/custom-script.md'
+        - User Authentication Guide:
+            - 'User Authentication Introduction': 'admin-guide/user-authentications.md'
+            - 'Social Authentication': 'authn-guide/passport.md'
+            - 'Super Gluu': 'authn-guide/supergluu.md'
+            - 'FIDO U2F': 'authn-guide/U2F.md'
+            - 'Duo Security': 'authn-guide/duo.md'
+            - 'Certificate Authentication': 'authn-guide/cert-auth.md'
+            - 'Google': 'authn-guide/google.md'
+            - 'HOTP/TOTP': 'authn-guide/otp.md'
+            - 'Custom Authentication': 'authn-guide/customauthn.md'
+            - 'Custom Attributes': 'admin-guide/attributes.md'
+        - 'User Management' : 'admin-guide/user-group.md'
+        - 'Session timeout Configuration': 'admin-guide/config.md'
+#       - 'SSO Protocols' : 'admin-guide/auth-protocol.md'
+#       - 'Gluu for Mobile' : 'admin-guide/mobile.md'
+#       - 'Self-Services for Users' : 'admin-guide/self-service.md'
+        - 'SAML' : 'admin-guide/saml.md'
+        - 'OAuth2 Grants' : 'admin-guide/oauth2.md'
+        - 'OpenID Connect' : 'admin-guide/openid-connect.md'
+        - 'UMA' : 'admin-guide/uma.md'
+        - 'SCIM protected by UMA' : 'admin-guide/scim-uma.md'
+        - 'Certificate Management' : 'admin-guide/certificates.md'
+- Integration Guide:
+#    - 'Integration in Gluu Server': 'integration/index.md'
+        - 'Developer Guide':
+            - 'oxd OAuth2': 'integration/oauth2.md'
+            - 'OAuth2.0 js Implicit Flow': 'integration/oauth-js-implicit.md'
+        - 'Web Server Integrations':
+            - 'Shibboleth SP': 'integration/saml-sp.md'
+            - 'mod_auth_openidc': 'integration/openidc-rp.md'
+        - 'SaaS Integrations':
+            - 'Google SSO': 'integration/google.md'
+            - 'Office 365': 'integration/office.md'
+            - 'Hobsons Education Sol': 'integration/hobsons.md'
+            - 'Salesforce': 'integration/salesforce.md'
+            - 'Dropbox': 'integration/dropbox.md'
+- Reference:
+        - Gluu API Guide:
+            - 'Custom ID Generation': 'api-guide/api.md'
+            - 'OpenID Connect API': 'api-guide/openid-connect-api.md'
+            - 'SCIM API Configuration': 'api-guide/scim-api.md'
+            - 'UMA API': 'api-guide/uma-api.md'
+        - 'JSON Properties':
+            - 'OxTrust JSON Properties': 'reference/JSON-oxtrust-prop.md'
+            - 'OxAuth JSON Properties': 'reference/JSON-oxauth-prop.md'
+        #- 'Ox LDAP Properties':
+        - 'Gluu LDAP Schema':
+            - 'OpenLDAP Schema': 'reference/schema.md'
+- Operation Guide:
+        - 'Backups': 'operation/backup.md'
+        - 'Find your Gluu Version': 'operation/find-gluu-server-version.md'
+        - 'Ports': 'operation/ports.md'
+        - 'Single Logout (SLO)': 'operation/logout.md'
+        - 'Log Management' : 'operation/logs.md'
+        - 'Customize Gluu Login Page': 'operation/design.md'
+        - 'FAQ & Troubleshooting' : 'operation/faq.md'
+        - 'Tuning LDAP, Tomcat': 'operation/fine-tuning.md'
+        - 'Update Certificate': 'operation/update-certificate.md'

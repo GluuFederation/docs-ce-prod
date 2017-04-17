@@ -1,0 +1,13 @@
+MANIFEST.in
+README
+_version.py
+setup.cfg
+setup.py
+argh/__init__.py
+argh/decorators.py
+argh/exceptions.py
+argh/helpers.py
+argh.egg-info/PKG-INFO
+argh.egg-info/SOURCES.txt
+argh.egg-info/dependency_links.txt
+argh.egg-info/top_level.txt
