@@ -1,0 +1,2378 @@
+
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documenation for Gluu Server">
+      
+      
+      
+      
+        <link rel="shortcut icon" href="../../favicon.ico">
+      
+      <meta name="generator" content="mkdocs+mkdocs-material#1.0.3">
+    
+    
+      
+        <title>SAML - Gluu Docs</title>
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr-facb31f4a3.js"></script>
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application-f3ab63f78a.css">
+      
+      
+    
+    
+  </head>
+  
+  
+  
+  
+    <body>
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+	 <div class="md-flex__cell md-flex__cell--shrink">
+	    <a href="https://gluu.org/docs/" title="Gluu Docs" class=" md-logo  md-header-nav__button">
+          
+            <img src="../../gluu.jpg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+                <span class="md-header-nav__parent">
+                  Administration Guide
+                </span>
+              
+            
+            SAML
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+          
+<div class="md-search" data-md-component="search">
+  <div class="md-search__overlay"></div>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" accesskey="s" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false">
+      <label class="md-icon md-search__icon" for="search"></label>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+              
+
+
+  
+
+
+  <a href="https://github.com/GluuFederation/docs-dev" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+            
+          </div>
+      </div>
+    </div>
+<!-- Second Nav Bar 
+<nav class="md-secondary-header-nav md-grid" style="
+    height: 58px;
+    background: white;
+	color: #555555;
+	font-weight: bold;
+	font-size; 8px
+	overflow: hidden;
+">
+<div class="md-flex-secondary" style="
+    display: table;
+    padding: 10px;
+">
+<label for="Versions">Ver:<select id="versions" onchange="window.location.href=this.value;" style="
+    position: relative;
+    display: inline-block;
+    min-width: 100%;
+    /* width: 120%; */
+    height: 34px;
+    padding: 6px 30px 6px 15px;
+    color: #555555;
+    border: none;
+    background: transparent;
+    outline: none;
+    -webkit-appearance: none;
+    z-index: 99;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border: 1px;
+">
+  <option value="/docs">Latest</option>
+  <option value="/docs/2.4.4">2.4.4</option>
+    </select> 
+</label>
+ </div>
+ </nav>-->
+   </nav>
+</header>
+    
+    <div class="md-container">
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary">
+
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <i class=" md-logo  md-nav__button">
+      
+        <img src="../../gluu.jpg">
+      
+    </i>
+    Gluu Docs
+	<label for="Versions">Ver:
+	  <select id="versions" onchange="window.location.href=this.value;" style="
+		position: inherit;
+		display: inline;
+		min-width: 25%;
+		/* width: 120%; */
+		height: 22px;
+		padding: 5px 15px 5px 5px;
+		color: Black;
+		border: none;
+		background: transparent;
+		outline: none;
+		-webkit-appearance: none;
+		z-index: 99;
+		cursor: pointer;
+		font-size: 10px;
+		margin-bottom: 10px;
+		border: 1px solid black;
+		overflow: auto
+	">
+	  <option value="/docs/ce/3.0.2">3.0.2</option>
+	  <option value="/docs/ce/3.0.1">3.0.1</option>
+	  <option value="/docs/ce/2.4.4">2.4.4</option>
+	  <option value="/docs">All Versions</option>
+		</select> 
+	</label>
+  </label>
+    
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/GluuFederation/docs-dev" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  <li class="md-nav__item">
+    
+      <a href="../.." title="Home" class="md-nav__link">
+        Home
+      </a>
+    
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item">
+    
+      <a href="../../operation/intro/" title="Whats new in 3.x" class="md-nav__link">
+        Whats new in 3.x
+      </a>
+    
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Installation Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-3">
+        Installation Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../installation-guide/" title="Preparing VM" class="md-nav__link">
+        Preparing VM
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../installation-guide/install/" title="Install Gluu Server" class="md-nav__link">
+        Install Gluu Server
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../installation-guide/setup_py/" title="Setup Script Options" class="md-nav__link">
+        Setup Script Options
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Upgrade/Patch Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-3-4">
+        Upgrade/Patch Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../upgrade/" title="Upgrade Gluu Server" class="md-nav__link">
+        Upgrade Gluu Server
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../upgrade/manual-update/" title="Upgrade Gluu Server with OpenDJ" class="md-nav__link">
+        Upgrade Gluu Server with OpenDJ
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../upgrade/update-war/" title="Updating a War File" class="md-nav__link">
+        Updating a War File
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Administration Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-4">
+        Administration Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../oxtrust-ui/" title="oxTrust admin UI" class="md-nav__link">
+        oxTrust admin UI
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../custom-script/" title="Interception Scripts" class="md-nav__link">
+        Interception Scripts
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      User Authentication Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-4-3">
+        User Authentication Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/intro/" title="User Authentication Introduction" class="md-nav__link">
+        User Authentication Introduction
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/basic/" title="Basic Authenticatoin" class="md-nav__link">
+        Basic Authenticatoin
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/passport/" title="Social Authentication" class="md-nav__link">
+        Social Authentication
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/supergluu/" title="Super Gluu" class="md-nav__link">
+        Super Gluu
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/U2F/" title="FIDO U2F" class="md-nav__link">
+        FIDO U2F
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/duo/" title="Duo Security" class="md-nav__link">
+        Duo Security
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/cert-auth/" title="Certificate Authentication" class="md-nav__link">
+        Certificate Authentication
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/google/" title="Google+ OAuth 2.0" class="md-nav__link">
+        Google+ OAuth 2.0
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/otp/" title="HOTP/TOTP" class="md-nav__link">
+        HOTP/TOTP
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/customauthn/" title="Custom Authentication" class="md-nav__link">
+        Custom Authentication
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../user-group/" title="User Management" class="md-nav__link">
+        User Management
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../session/" title="Session Timeout" class="md-nav__link">
+        Session Timeout
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        SAML
+      </label>
+    
+    <a href="./" title="SAML" class="md-nav__link md-nav__link--active">
+      SAML
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" title="Overview" class="md-nav__link">
+    Overview
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#outbound-vs-inbound-saml" title="Outbound vs. Inbound SAML" class="md-nav__link">
+    Outbound vs. Inbound SAML
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outbound-saml-shibboleth" title="Outbound SAML (Shibboleth)" class="md-nav__link">
+    Outbound SAML (Shibboleth)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trust-relationship-requirements" title="Trust Relationship Requirements" class="md-nav__link">
+    Trust Relationship Requirements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saml-attributes" title="SAML Attributes" class="md-nav__link">
+    SAML Attributes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attrubute-in-oxtrust" title="Attrubute in oxTrust" class="md-nav__link">
+    Attrubute in oxTrust
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-nameid" title="Custom NameID" class="md-nav__link">
+    Custom NameID
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defining-nameid" title="Defining NameID" class="md-nav__link">
+    Defining NameID
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-trust-relationship-in-the-gluu-server" title="Create a Trust Relationship in the Gluu Server" class="md-nav__link">
+    Create a Trust Relationship in the Gluu Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relying-party-configuration" title="Relying Party Configuration" class="md-nav__link">
+    Relying Party Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#federation-configuration" title="Federation Configuration" class="md-nav__link">
+    Federation Configuration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inbound-saml-asimba" title="Inbound SAML (Asimba)" class="md-nav__link">
+    Inbound SAML (Asimba)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-setup" title="Required Setup" class="md-nav__link">
+    Required Setup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-custom-script" title="Add Custom Script" class="md-nav__link">
+    Add Custom Script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-external-idp" title="Add External IDP" class="md-nav__link">
+    Add External IDP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-sp-requestor" title="Add SP Requestor" class="md-nav__link">
+    Add SP Requestor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-trust-relationship" title="Add Trust Relationship" class="md-nav__link">
+    Add Trust Relationship
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-sso" title="Test SSO" class="md-nav__link">
+    Test SSO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../openid-connect/" title="OpenID Connect" class="md-nav__link">
+        OpenID Connect
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../uma/" title="UMA" class="md-nav__link">
+        UMA
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../scim-uma/" title="SCIM protected by UMA" class="md-nav__link">
+        SCIM protected by UMA
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../certificate/" title="Certificate Management" class="md-nav__link">
+        Certificate Management
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Integration Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5">
+        Integration Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/" title="Introduction" class="md-nav__link">
+        Introduction
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Mobile Apps
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-2">
+        Mobile Apps
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/mobile/appauth-oauth2.0-android/" title="Android" class="md-nav__link">
+        Android
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/mobile/App-Auth-IOS/" title="iOS" class="md-nav__link">
+        iOS
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      Single Page Apps
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-3">
+        Single Page Apps
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/spa/angular/" title="Angular" class="md-nav__link">
+        Angular
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/spa/javascript/" title="JavaScript" class="md-nav__link">
+        JavaScript
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/spa/jquery/" title="jQuery" class="md-nav__link">
+        jQuery
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/spa/react/" title="React" class="md-nav__link">
+        React
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-4" type="checkbox" id="nav-5-4">
+    
+    <label class="md-nav__link" for="nav-5-4">
+      Web Apps
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-4">
+        Web Apps
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/webapps/apache/" title="Apache" class="md-nav__link">
+        Apache
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/webapps/csharp/" title="C Sharp" class="md-nav__link">
+        C Sharp
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/webapps/go/" title="GO" class="md-nav__link">
+        GO
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/webapps/java/" title="Java" class="md-nav__link">
+        Java
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/webapps/play/" title="Java Play" class="md-nav__link">
+        Java Play
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/webapps/springmvc/" title="Java Spring MVC" class="md-nav__link">
+        Java Spring MVC
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/webapps/springsecurity/" title="Java Spring Security" class="md-nav__link">
+        Java Spring Security
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/webapps/net/" title=".NET" class="md-nav__link">
+        .NET
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/webapps/node/" title="Node" class="md-nav__link">
+        Node
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/webapps/nginx/" title="Nginx" class="md-nav__link">
+        Nginx
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/webapps/perl/" title="Perl" class="md-nav__link">
+        Perl
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/webapps/python/" title="Python" class="md-nav__link">
+        Python
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/webapps/flask/" title="Python Flask" class="md-nav__link">
+        Python Flask
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/webapps/ruby/" title="Ruby" class="md-nav__link">
+        Ruby
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/webapps/rails/" title="Ruby On Rails" class="md-nav__link">
+        Ruby On Rails
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/saml-sp/" title="Shibboleth SP" class="md-nav__link">
+        Shibboleth SP
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/openidc-rp/" title="mod_auth_openidc" class="md-nav__link">
+        mod_auth_openidc
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-5" type="checkbox" id="nav-5-5">
+    
+    <label class="md-nav__link" for="nav-5-5">
+      Backend APIs
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-5">
+        Backend APIs
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/api/intro/" title="api" class="md-nav__link">
+        api
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-6" type="checkbox" id="nav-5-6">
+    
+    <label class="md-nav__link" for="nav-5-6">
+      Off-the-Shelf Apps
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-6">
+        Off-the-Shelf Apps
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-6-1" type="checkbox" id="nav-5-6-1">
+    
+    <label class="md-nav__link" for="nav-5-6-1">
+      SaaS
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-6-1">
+        SaaS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/saas/google/" title="Google SSO" class="md-nav__link">
+        Google SSO
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/saas/office/" title="Office 365" class="md-nav__link">
+        Office 365
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/saas/salesforce/" title="Salesforce" class="md-nav__link">
+        Salesforce
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/saas/dropbox/" title="Dropbox" class="md-nav__link">
+        Dropbox
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-6-2" type="checkbox" id="nav-5-6-2">
+    
+    <label class="md-nav__link" for="nav-5-6-2">
+      FOSS
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-6-2">
+        FOSS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/foss/drupal/" title="Drupal" class="md-nav__link">
+        Drupal
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/foss/magento/" title="Magento" class="md-nav__link">
+        Magento
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/foss/nextcloud/" title="NextCloud" class="md-nav__link">
+        NextCloud
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/foss/opencart/" title="OpenCart" class="md-nav__link">
+        OpenCart
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/foss/roundcube/" title="RoundCube" class="md-nav__link">
+        RoundCube
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/foss/sugarcrm/" title="SugarCRM" class="md-nav__link">
+        SugarCRM
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/foss/suitecrm/" title="SuiteCRM" class="md-nav__link">
+        SuiteCRM
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/foss/shopify/" title="Shopify" class="md-nav__link">
+        Shopify
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/foss/wordpress/" title="Wordpress" class="md-nav__link">
+        Wordpress
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Reference
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6">
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1">
+    
+    <label class="md-nav__link" for="nav-6-1">
+      Gluu API Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6-1">
+        Gluu API Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/api/" title="Custom ID Generation" class="md-nav__link">
+        Custom ID Generation
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/openid-connect-api/" title="OpenID Connect API" class="md-nav__link">
+        OpenID Connect API
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/scim-api/" title="SCIM API Configuration" class="md-nav__link">
+        SCIM API Configuration
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/uma-api/" title="UMA API" class="md-nav__link">
+        UMA API
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-2" type="checkbox" id="nav-6-2">
+    
+    <label class="md-nav__link" for="nav-6-2">
+      JSON Properties
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6-2">
+        JSON Properties
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/JSON-oxtrust-prop/" title="OxTrust JSON Properties" class="md-nav__link">
+        OxTrust JSON Properties
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/JSON-oxauth-prop/" title="OxAuth JSON Properties" class="md-nav__link">
+        OxAuth JSON Properties
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-3" type="checkbox" id="nav-6-3">
+    
+    <label class="md-nav__link" for="nav-6-3">
+      Gluu LDAP Schema
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6-3">
+        Gluu LDAP Schema
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/oxldap/" title="Ox LDAP Properties" class="md-nav__link">
+        Ox LDAP Properties
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/schema/" title="OpenLDAP Schema" class="md-nav__link">
+        OpenLDAP Schema
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Operation Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-7">
+        Operation Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/backup/" title="Backups" class="md-nav__link">
+        Backups
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/find-gluu-version/" title="Find your Gluu Version" class="md-nav__link">
+        Find your Gluu Version
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/ports/" title="Ports" class="md-nav__link">
+        Ports
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/logout/" title="Single Logout (SLO)" class="md-nav__link">
+        Single Logout (SLO)
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/logs/" title="Log Management" class="md-nav__link">
+        Log Management
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/faq/" title="FAQ & Troubleshooting" class="md-nav__link">
+        FAQ & Troubleshooting
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/custom-loginpage/" title="Customize Login Page" class="md-nav__link">
+        Customize Login Page
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Developer Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-8">
+        Developer Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../developer-guide/oxtrust-eclipse/" title="Build OxTrust with Eclipse" class="md-nav__link">
+        Build OxTrust with Eclipse
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" title="Overview" class="md-nav__link">
+    Overview
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#outbound-vs-inbound-saml" title="Outbound vs. Inbound SAML" class="md-nav__link">
+    Outbound vs. Inbound SAML
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outbound-saml-shibboleth" title="Outbound SAML (Shibboleth)" class="md-nav__link">
+    Outbound SAML (Shibboleth)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trust-relationship-requirements" title="Trust Relationship Requirements" class="md-nav__link">
+    Trust Relationship Requirements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saml-attributes" title="SAML Attributes" class="md-nav__link">
+    SAML Attributes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attrubute-in-oxtrust" title="Attrubute in oxTrust" class="md-nav__link">
+    Attrubute in oxTrust
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-nameid" title="Custom NameID" class="md-nav__link">
+    Custom NameID
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defining-nameid" title="Defining NameID" class="md-nav__link">
+    Defining NameID
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-trust-relationship-in-the-gluu-server" title="Create a Trust Relationship in the Gluu Server" class="md-nav__link">
+    Create a Trust Relationship in the Gluu Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relying-party-configuration" title="Relying Party Configuration" class="md-nav__link">
+    Relying Party Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#federation-configuration" title="Federation Configuration" class="md-nav__link">
+    Federation Configuration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inbound-saml-asimba" title="Inbound SAML (Asimba)" class="md-nav__link">
+    Inbound SAML (Asimba)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-setup" title="Required Setup" class="md-nav__link">
+    Required Setup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-custom-script" title="Add Custom Script" class="md-nav__link">
+    Add Custom Script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-external-idp" title="Add External IDP" class="md-nav__link">
+    Add External IDP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-sp-requestor" title="Add SP Requestor" class="md-nav__link">
+    Add SP Requestor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-trust-relationship" title="Add Trust Relationship" class="md-nav__link">
+    Add Trust Relationship
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-sso" title="Test SSO" class="md-nav__link">
+    Test SSO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+               
+                 <a href="https://github.com/GluuFederation/docs-dev/blob/master/source/admin-guide\saml.md" title="Edit this page" class="md-icon md-content__edit">edit</a>
+               
+              
+                
+                <h1 id="saml">SAML<a class="headerlink" href="#saml" title="Permanent link">#</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">#</a></h2>
+<p>SAML is an XML-based, open-standard data format for exchanging 
+authentication and authorization data between an identity provider 
+(like the Gluu Server) and a service provider (like Dropbox, O365, etc.). 
+SAML is a stable and mature standard, and is well supported at many of the 
+Internet's largest domains. However, the last major release of SAML was in 2005! 
+Therefore it is important to understand when to use SAML and when to use a 
+newer protocol like OpenID Connect to achieve your identity goals. </p>
+<p>Refer to these four considerations to determine which protocol 
+to use for single sign-on (SSO):</p>
+<ul>
+<li>If you have an application that already supports SAML, use SAML.</li>
+<li>If you need to support user login at an external IDP (like a customer or partner IDP), use SAML.</li>
+<li>If you have a mobile application, use OpenID Connect.</li>
+<li>If you are writing a new application, use OpenID Connect.</li>
+</ul>
+<p>If you are continuing with the SAML documentation it is presumed your use case aligns with one or both of the first two bullet points above. If not, we recommend that you review the <a href="../openid-connect/">OpenID Connect</a> portion of the Gluu Server docs. </p>
+<h3 id="outbound-vs-inbound-saml">Outbound vs. Inbound SAML<a class="headerlink" href="#outbound-vs-inbound-saml" title="Permanent link">#</a></h3>
+<p>There are two main SAML authentication workflows: outbound SAML and inbound SAML. 
+Outbound SAML can also be called SP-initiated Single Sign-On (SSO) or traditional SAML. 
+In an outbound SAML transaction a website or application (SP) redirects a user to a 
+designated Identity Provider (IDP) for authentication and authorization. 
+The IDP asks for the user's credentials and upon successful authentication redirects the user to the protected content. </p>
+<p>Inbound SAML enables an organization to offer SAML authentication as a front door to their digital service. Inbound SAML is a common requirement for SaaS providers who need to support the authentication requirements of large enterprise customers.</p>
+<p>The Gluu Server bundles separate components to support both workflows (installation of each component is optional during Gluu Server deployment):</p>
+<ul>
+<li>
+<p>For outbound SAML, the Gluu Server bundles the <a href="#outbound-saml-shibboleth">Shibboleth SAML IDP</a>. </p>
+</li>
+<li>
+<p>For inbound SAML, the Gluu Server bundles the <a href="#inbound-saml-asimba">Asimba SAML Proxy</a>. </p>
+</li>
+</ul>
+<p>Documentation for each service follows in the sections below. </p>
+<h2 id="outbound-saml-shibboleth">Outbound SAML (Shibboleth)<a class="headerlink" href="#outbound-saml-shibboleth" title="Permanent link">#</a></h2>
+<p>Outbound SAML can also be called SP-initiated Single Sign-On (SSO) 
+or traditional SAML. In an outbound SAML transaction a website or application (SP) 
+redirects a user to a designated Identity Provider (IDP) for authentication 
+and authorization. The IDP will ask for the user's credentials and upon successful 
+authentication, the user is sent back to the SP logged in. </p>
+<p>In order for this transaction to happen successfully there must be pre-established 
+trust between the IDP and the SP. In the Gluu Server, the IDPs SSO configuration is 
+called a Trust Relationship (TR). The following sections cover how to create a TR in the Gluu Server. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For any outbound SAML transaction, a trust relationship must be created in the IDP.</p>
+</div>
+<h3 id="trust-relationship-requirements">Trust Relationship Requirements<a class="headerlink" href="#trust-relationship-requirements" title="Permanent link">#</a></h3>
+<p>Each Trust Relationship requires the infomation listed below.</p>
+<p><strong>Metadata of the SP</strong>     <br />
+Metadata is an XML file which has configuration data used to establish trust between the website (SP) and IDP (Gluu Server). Websites (SP) can provide metadata via a URL or as a separate file. Metadata can change, so a static URL typically requires the least amount of ongoing maintenance. </p>
+<p><strong>Metadata of the Gluu Server</strong>     <br />
+The Gluu Server's SAML metadata may be needed from time to time. It can be found at <code>https://hostname/idp/shibboleth</code>.</p>
+<p><strong>Required Attributes</strong>    <br />
+Each SP may require one or many attributes in order to grant a user access. 
+Required attributes vary depending on the application, and should be 
+explicitly listed in the application's documentation. The Gluu Server ships with 
+certain preconfigured attributes and also supports the creation of custom attributes. 
+Once the attributes are available in the Gluu Server, the administrator only needs 
+to click on the desired attribute(s) and it will be released to the SP upon 
+successful user authentication.</p>
+<h3 id="saml-attributes">SAML Attributes<a class="headerlink" href="#saml-attributes" title="Permanent link">#</a></h3>
+<h3 id="attrubute-in-oxtrust">Attrubute in oxTrust<a class="headerlink" href="#attrubute-in-oxtrust" title="Permanent link">#</a></h3>
+<p>An <em>Active</em> attribute list can be seen from the Configuration &gt; Attributes section.</p>
+<p><img alt="Attribute Menu" src="../../img/admin-guide/attribute/admin_attribute_menu.png" /></p>
+<p>The Gluu Server has a large LDAP tree which includes all standard
+attributes. It is not necessary for all of them to be <em>Active</em>. The
+active LDAP trees can be sorted using the <em>Show only Active Attributes</em>
+link.</p>
+<p><img alt="Show Active Attribute" src="../../img/admin-guide/attribute/admin_attribute_show.png" /></p>
+<p>The Gluu Server administrator can make changes, such as changing the
+status to active/inactive, to an attribute after clicking on it.</p>
+<p><img alt="Attributes" src="../../img/admin-guide/attribute/admin_attribute_attribute.png" /></p>
+<p>Additional custom attributes can be added in below way</p>
+<ul>
+<li>Add custom attribute to /opt/gluu/schema/openldap/custom.schema </li>
+<li>In this below example 'customTest' is our custom attribute : </li>
+</ul>
+<pre><code>attributetype ( oxAttribute:1003 NAME 'customTest'
+        SUBSTR caseIgnoreSubstringsMatch EQUALITY caseIgnoreMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15        
+       X-ORIGIN 'Gluu - custom person attribute' )
+</code></pre>
+
+<ul>
+<li>Add custom attribute to gluuCustomPerson objectClass</li>
+<li>Example: </li>
+</ul>
+<pre><code>objectclass ( oxObjectClass:101 NAME 'gluuCustomPerson' SUP top AUXILIARY MAY (customTest) X-ORIGIN 'Gluu - Custom person objectclass' )
+
+</code></pre>
+
+<ul>
+<li>Stop LDAP server with command <code>service solserver stop</code></li>
+<li>Create custom configuration holder with <code>mkdir -p /opt/symas/etc/openldap/slapd.d</code></li>
+<li>Test custom configuration with <code>/opt/symas/bin/slaptest -f /opt/symas/etc/openldap/slapd.conf -F /opt/symas/etc/openldap/slapd.d</code></li>
+<li>Start LDAP server with command <code>service solserver start</code></li>
+</ul>
+<p>Register new attribute with Gluu Server GUI, oxTrust, by
+clicking the <strong>Register Attribute</strong> button. Then, the following screen will
+appear:</p>
+<p><img alt="Add Attribute Screen" src="../../img/admin-guide/attribute/admin_attribute_add.png" /></p>
+<ul>
+<li>
+<p><em>Name:</em> This field defines the name of the custom attribute which must
+  be unique in the Gluu Server LDAP tree.</p>
+</li>
+<li>
+<p><em>SAML1 URI:</em> This field contains the SAML1 uri for the custom attribute.</p>
+</li>
+<li>
+<p><em>SAML2 URI:</em> This field contains the SAML2 uri for the custom attribute.</p>
+</li>
+<li>
+<p><em>Display Name:</em> This display name can be anything that is human readable.</p>
+</li>
+<li>
+<p><em>Type:</em> The attribute type should be selected from the drop-down menu.
+  There are four attribute types supported by Gluu:</p>
+</li>
+<li>Text</li>
+<li>Numeric</li>
+<li>Photo</li>
+<li>
+<p>Date</p>
+</li>
+<li>
+<p><em>Edit Type:</em> This field controls which type of an user is allowed to edit
+  corresponding attribute at his/her "Profile" page of the web UI (when feature
+"User can edit own profile" is enabled).</p>
+</li>
+<li>
+<p><em>View Type:</em> This field controls which type of an user is allowed to view
+  corresponding attribute at his/her "Profile" page of the web UI.</p>
+</li>
+<li>
+<p><em>Privacy Level:</em> Please select the desired privacy level from the
+  drop-down menu. The privacy level has a specific range of 1 to 5.</p>
+</li>
+<li>
+<p><em>Multivalued:</em> Please select multivalue in this field if the attribute
+  contains more than one value.</p>
+</li>
+<li>
+<p><em>SCIM Attributes:</em> If the attribute is a part of SCIM architecture select true.</p>
+</li>
+<li>
+<p><em>Description:</em> This contains a few words to describe the attribute.</p>
+</li>
+<li>
+<p><em>Status:</em> The status, when selected active, will release and publish
+  the attribute in IdP.</p>
+</li>
+</ul>
+<h3 id="custom-nameid">Custom NameID<a class="headerlink" href="#custom-nameid" title="Permanent link">#</a></h3>
+<p>Gluu Server comes with the <code>transientID</code> attribute which is the default <code>NameID</code>.
+If there are other <code>NameID</code> requirements, it is possible to create them as well.
+The custom attribute must be created in oxTrust first before defining it as the <code>NameID</code>.
+Please see the <a href="#using-oxtrust">oxTrust custom attribute guide</a> to create the custom attribute in oxTrust.</p>
+<h3 id="defining-nameid">Defining NameID<a class="headerlink" href="#defining-nameid" title="Permanent link">#</a></h3>
+<p>The template file for <code>NameID</code> definitions are located in the <code>attribute-resolver.xml.vm</code> file under <code>/opt/gluu/jetty/identity/conf/shibboleth3/idp/</code>.
+  The example below adds <code>testcustomattribute</code> as <code>NameID</code> based on UID attribute. The following are put into the <code>attribute-resolver.xml.vm</code> file.</p>
+<ul>
+<li>Add declaration for the new attribute
+  <code>if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('testcustomattribute') ) )</code></li>
+<li>Add definition for the new attribute</li>
+</ul>
+<pre><code> &lt;resolver:AttributeDefinition id=&quot;testcustomattribute&quot; xsi:type=&quot;Simple&quot;
+                              xmlns=&quot;urn:mace:shibboleth:2.0:resolver:ad&quot;
+                              sourceAttributeID=&quot;uid&quot;&gt;
+
+        &lt;resolver:Dependency ref=&quot;siteLDAP&quot;/&gt;
+        &lt;resolver:AttributeEncoder xsi:type=&quot;SAML2StringNameID&quot;
+                                xmlns=&quot;urn:mace:shibboleth:2.0:attribute:encoder&quot;
+                                nameFormat=&quot;urn:oasis:names:tc:SAML:2.0:nameid-format:persistent&quot; /&gt;
+&lt;/resolver:AttributeDefinition&gt; 
+</code></pre>
+
+<ul>
+<li>Restart identity service using below command</li>
+</ul>
+<p><code>service identity restart</code> </p>
+<p>However it is recommended to stop and start service using </p>
+<p><code>service identity stop</code></p>
+<p><code>service identity start</code></p>
+<h3 id="create-a-trust-relationship-in-the-gluu-server">Create a Trust Relationship in the Gluu Server<a class="headerlink" href="#create-a-trust-relationship-in-the-gluu-server" title="Permanent link">#</a></h3>
+<ul>
+<li>Go to <code>SAML</code> &gt; <code>Trust Relationships</code></li>
+<li>Click on <code>Add Trust Relationship</code></li>
+<li>A new page will appear where you can provide all the required information to create a Trust
+  Relationship(TR).</li>
+</ul>
+<p><img alt="newTR" src="../../img/saml/newTR.png" /></p>
+<ul>
+<li><em>Display Name</em>: Name of the Trust Relationship (it should be unique for every trust relationship)     </li>
+<li><em>Description</em>: Little description. Purpose and SSO link can be added here.    </li>
+<li>
+<p><em>Metadata Type</em>: There are four available options to choose from. The correct Type depends on how the SP is delivering Metadata to your IDP.      </p>
+<ul>
+<li><em>File</em>: Choose File if the SP has provided an uploadable metadata document in XML format.</li>
+<li><em>URI</em>: Chose URI if the SP metadata is hosted on a URI that is accessible from the Internet.</li>
+<li><em>Generate</em>: Choose Generate if the SP is an "inhouse application" or the “Shibboleth SP” is going to be installed in the target application (SP). This option will generate a how-to guide for installing the Shibboleth SP. If you plan on using the Generate method, please note the following:        <br />
+        * <em>URL</em> : This is the hostname of the SP.   <br />
+        * <em>Public certificate</em> : You must provide the certificate, which is a Base64 encoded ASCII file, and contain "-----BEGIN CERTIFICATE-----" and "-----END CERTIFICATE-----". This certificate <strong>can not</strong> be password protected.             <br />
+        * After creating the Trust Relationship, download the generated configuration files from the <code>Download Shibboleth2 configuration files</code> link and place these configuration files inside your SP configuration.         </li>
+<li><em>Federation</em>: Choose this option if the target application (SP) is affiliated with a federation service (e.g. InCommon, NJEdge etc.). Once you select “Federation” as the Metadata Type, another drop down menu called “Select Federation” will appear. From this drop menu you can select the appropriate federation. After selecting the “Federation Name”, a new link called “Click to select
+entity id” will appear. Use this link to find and select the SP entityIDs that you wish to create SSO with. Learn how to establish trust with a federation <a href="#federation-configuration">below</a>.     </li>
+</ul>
+</li>
+<li>
+<p><em>Released</em>: The SPs required attributes must be added to this panel. The required attributes can be selected from the menu on the left with the heading “Release Additional Attributes”.     </p>
+</li>
+</ul>
+<p>The Trust Relationship(TR) is added by clicking the <code>Add</code> button located in the lower left side of the page.     </p>
+<h3 id="relying-party-configuration">Relying Party Configuration<a class="headerlink" href="#relying-party-configuration" title="Permanent link">#</a></h3>
+<p>If the target application does not already support SAML, the Relying Party software must be configured. The relying party configuration is accessible on the TR Creation page. The checkbox <code>Configure specific Relying Party</code> must be checked.     </p>
+<p><img alt="enable-relying-party.png" src="../../img/saml/enable-relying-party.png" />     </p>
+<p>The checkbox will result in a link which can be accessed to find information about configuring the relying party for the TR. The image below shows the relying party config panel from which the administrator can add the specific option.     </p>
+<p><img alt="tr-relying-party" src="../../img/saml/tr-relying-party.png" />     </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the target application does not already support a federation standard like SAML, and you or the developer are planning on adding federation to the application, we strongly recommend using OpenID Connect rather than SAML. OpenID Connect is newer, easier to use, and follows modern best practices. Learn more in our blog: <a href="http://gluu.co/oauth-saml-openid">OAuth vs. SAML vs. OpenID Connect</a>.</p>
+</div>
+<h3 id="federation-configuration">Federation Configuration<a class="headerlink" href="#federation-configuration" title="Permanent link">#</a></h3>
+<p>If the SP is part of an identity federation such as InCommon, the administrator must add the federation as an SP in the Gluu Server. This will enable the administrator to more easily create TRs with SPs in the federation. The example below shows how an administrator would add a TR for the InCommon Federation.</p>
+<p><img alt="federationTR" src="../../img/saml/federationTR.png" /></p>
+<p>Once a TR has been established with the federation, the Gluu Server administrator can easily create TRs with any SP included in the federation by selecting the federation from the <code>Federation Name</code> drop down menu and selecting the entity-id for the SP.</p>
+<p><img alt="federation-entityid.png" src="../../img/saml/federation-entityid.png" /></p>
+<h2 id="inbound-saml-asimba">Inbound SAML (Asimba)<a class="headerlink" href="#inbound-saml-asimba" title="Permanent link">#</a></h2>
+<p>Inbound SAML allows users from external domains to login at their home identity provider to gain access to resources protected by the Gluu Server. The Gluu Server uses an open source product called <a href="http://www.asimba.org/site/">Asimba</a> to normalize inbound SAML. </p>
+<p>The following documentation provides a step-by-step guide for configuring Asimba with two (2) IDPs and a single (1) SP. The guide includes use of a SAML interception script which is shipped with the Gluu Server and simplifies the process of using Asimba. The administrator can add multiple IDPs or SPs (as required) using the method outlined below. Each SP and IDP must be connected to the IDP that has the Asimba module enabled.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A description of the SAML interception script is available <a href="https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations/saml">here</a>.</p>
+</div>
+<p><img alt="asimba-overview" src="../../img/asimba/overview.png" /></p>
+<h3 id="required-setup">Required Setup<a class="headerlink" href="#required-setup" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setup hostname</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>https://sp.gluu.org/protected/print.py</code></td>
+<td>This is a shibboleth SP connected to <code>https://test.gluu.org</code></td>
+</tr>
+<tr>
+<td><code>https://test.gluu.org</code></td>
+<td>This is a Gluu Server with Asimba installed</td>
+</tr>
+<tr>
+<td><code>https://nest.gluu.org</code></td>
+<td>This is a second Gluu Server with Shibboleth installed that is connected to <code>https://test.gluu.org</code></td>
+</tr>
+</tbody>
+</table>
+<p>The Gluu Server with hostname <code>https://test.gluu.org</code> must include Asimba. The Gluu Server with hostname <code>https://nest.gluu.org</code> must include Shibboleth. This is done by entering <code>yes</code> to the respective options while running the <a href="../../installation-guide/setup_py/">setup script prompt</a> during installation. </p>
+<h3 id="add-custom-script">Add Custom Script<a class="headerlink" href="#add-custom-script" title="Permanent link">#</a></h3>
+<p>Login to the Gluu Server with hostname <code>https://test.gluu.org</code> and add the SAML script: </p>
+<ul>
+<li>Log into the oxTrust interface as <code>admin</code></li>
+<li>Navigate to <code>Configuration</code> &gt; <code>Manage Custom Scripts</code></li>
+<li>In the <code>Person Authentication</code> tab Select/Add <code>saml</code> script </li>
+</ul>
+<p><img alt="custom-script-person-authentication" src="../../img/asimba/add_idp_asimba.png" /></p>
+<ul>
+<li>Name: asimba<ul>
+<li>Description: Inbound Saml via Asimba Authentication module</li>
+<li>Programming Language: Python</li>
+<li>Level: 50</li>
+<li>Location Type: LDAP</li>
+<li>Usage Type: Web</li>
+<li>Custom property (key/value)</li>
+<li>asimba_saml_certificate_file: /etc/certs/saml/pem</li>
+<li>asimba_entity_id: {gluu ce url}/saml eg; https://gluu-ubuntu.workgroup.com/saml</li>
+<li>saml_deployment_type: enroll</li>
+<li>saml_idp_sso_target_url: <code>https://test.gluu.org/asimba/profiles/saml2/sso/web</code></li>
+<li>saml_validate_response: false</li>
+<li>asimba_entity_id: <code>https://test.gluu.org/saml</code></li>
+<li>asimba_saml_certificate_file: <code>/etc/certs/saml.pem</code><ul>
+<li>note: Deployer need to copy 'asimba.crt' in 'saml.pem' without the 'BEGIN CERTIFICATE' and 'END CERTIFICATE' tag. </li>
+</ul>
+</li>
+<li>user_object_classes: <code>eduPerson</code></li>
+<li>saml_idp_attributes_mapping: { "attribute_name": ["attribute_name", "SAML2 URI"] } <ul>
+<li>example: <code>{"uid": ["uid", "urn:oid:0.9.2342.19200300.100.1.1"], "mail": ["mail", "urn:oid:0.9.2342.19200300.100.1.3"], "givenName": ["givenName", "urn:oid:2.5.4.42"], "sn": ["sn", "urn:oid:2.5.4.4"], "eduPersonPrincipalName": ["eduPersonPrincipalName", "urn:oid:1.3.6.1.4.1.5923.1.1.1.6"] }</code></li>
+</ul>
+</li>
+<li>enforce_uniqueness_attr_list: <code>attribute1</code>, <code>attribute2</code><ul>
+<li>example: <code>edupersonprincipalname, uid, mail, givenName</code></li>
+</ul>
+</li>
+<li>saml_use_authn_context: false</li>
+<li>saml_generate_name_id: true</li>
+<li>Script: Please copy the <a href="https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/saml/SamlExternalAuthenticator.py">SAML Script</a> from Github. </li>
+<li>Enabled: True</li>
+</ul>
+</li>
+</ul>
+<h3 id="add-external-idp">Add External IDP<a class="headerlink" href="#add-external-idp" title="Permanent link">#</a></h3>
+<p>Login to the Gluu Server with hostname <code>https://test.gluu.org</code> and add the external IDP: </p>
+<ul>
+<li>Log into the oxTrust interface</li>
+<li>Navigate to <code>SAML</code> &gt; <code>IDP</code></li>
+<li>Click <code>Add IDP</code>  <br />
+<img alt="image" src="../../img/asimba/add_idp.png" />  </li>
+<li>
+<p>Fill in the form with the following information:</p>
+<ul>
+<li>
+<p>ID: The entityID of the remote ID/ADFS </p>
+<ul>
+<li>Example: <code>https:nest.gluu.org/idp/shibboleth</code>  </li>
+</ul>
+</li>
+<li>
+<p>Friendly Name: Provide a human-readable name, like an organization or site name.</p>
+</li>
+<li>
+<p>Metadata URL: Leave this field blank, we will upload metadata</p>
+</li>
+<li>
+<p>Metadata Timeout: Leave this field as is. </p>
+</li>
+<li>
+<p>Metadata File: Download the remote IDPs metadata and upload that XML file. </p>
+<ul>
+<li>Example: The metadata for a Gluu IDP can be downloaded using <code>wget -c https:&lt;hostname_of_gluu_server&gt;/idp/shibboleth</code></li>
+</ul>
+</li>
+<li>
+<p>Trust Certificate File: Get the SAML cert from the remote IDP and upload that x509 certificate</p>
+<ul>
+<li>Example: You can get a Gluu Server's SAML certificate in the metadata or in <code>/etc/certs/shibIDP.crt</code></li>
+</ul>
+</li>
+<li>
+<p>NameIDFormat: If the remote IDP is a Gluu Server use SAML2 URI nameID format. If not ask for the nameID format.</p>
+<ul>
+<li>Example: <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code></li>
+</ul>
+</li>
+<li>
+<p>Enabled: Yes</p>
+</li>
+<li>
+<p>Send Scoping: Yes</p>
+</li>
+<li>
+<p>AllowCreate: Yes</p>
+</li>
+<li>
+<p>Disable SSO for IDP: No</p>
+</li>
+<li>
+<p>ACS index: Yes</p>
+</li>
+<li>
+<p>Send NameIDPolicy: Yes</p>
+</li>
+<li>
+<p>Avoid Subject Confirmations: No</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="add-sp-requestor">Add SP Requestor<a class="headerlink" href="#add-sp-requestor" title="Permanent link">#</a></h3>
+<p>Login to the Gluu Server with hostname <code>https://test.gluu.org</code> and add the SP Requestor: </p>
+<ul>
+<li>Log into oxTrust interface</li>
+<li>Navigate to <code>SAML</code> &gt; <code>SP Requestor</code></li>
+<li>Click <code>Add SP Requestor</code>
+<img alt="image" src="../../img/asimba/add_sp2mod.png" /></li>
+<li>Fill in the form with the information below:<ul>
+<li>Select parent SP Pool: requestorpool.1</li>
+<li>ID: https://test.gluu.org/saml</li>
+<li>Friendly Name: oxAuth SAML</li>
+<li>Metadata URL: Not required</li>
+<li>Metadata Timeout: -1</li>
+<li>Metadata File: Create a SAML metadata like below and save it as 'saml_oxauth_metadata.xml'. Upload this metadata. </li>
+<li>Trust Certificate File: Not required</li>
+<li>Properties: Not required</li>
+<li>Enabled: Yes</li>
+<li>Signing: No</li>
+<li>metadata snippet: </li>
+</ul>
+</li>
+</ul>
+<pre><code>&lt;md:EntityDescriptor xmlns:md=&quot;urn:oasis:names:tc:SAML:2.0:metadata&quot; entityID=&quot;https://test.gluu.org/saml&quot;&gt;
+  &lt;md:SPSSODescriptor protocolSupportEnumeration=&quot;urn:oasis:names:tc:SAML:2.0:protocol&quot;&gt;
+    &lt;md:AssertionConsumerService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&quot; Location=&quot;https://test.gluu.org/oxauth/postlogin&quot; index=&quot;0&quot;/&gt;
+  &lt;/md:SPSSODescriptor&gt;
+  &lt;md:Organization&gt;
+    &lt;md:OrganizationName xml:lang=&quot;en&quot;&gt;Gluu&lt;/md:OrganizationName&gt;
+    &lt;md:OrganizationDisplayName xml:lang=&quot;en&quot;&gt;Gluu - Open Source Access Management&lt;/md:OrganizationDisplayName&gt;
+    &lt;md:OrganizationURL xml:lang=&quot;en&quot;&gt;http://www.gluu.org&lt;/md:OrganizationURL&gt;
+  &lt;/md:Organization&gt;
+  &lt;md:ContactPerson contactType=&quot;technical&quot;&gt;
+    &lt;md:GivenName&gt;Administrator&lt;/md:GivenName&gt;
+    &lt;md:EmailAddress&gt;support@gluu.org&lt;/md:EmailAddress&gt;
+  &lt;/md:ContactPerson&gt;
+&lt;/md:EntityDescriptor&gt; 
+</code></pre>
+
+<h3 id="add-trust-relationship">Add Trust Relationship<a class="headerlink" href="#add-trust-relationship" title="Permanent link">#</a></h3>
+<p>Login to the Gluu Server with hostname <code>https://nest.gluu.org</code> and create a Trust Relationship for all SPs which are included in the SAML Proxy SSO workflow. Documentation for creating a Trust Relationship is available in <a href="#2.1-outbound-saml">Section 2.1</a>. </p>
+<p>In our test setup we have created a Trust Relationship for one remote SP with the entityID <code>https://sp.gluu.org/shibboleth</code>.</p>
+<ul>
+<li>The Asimba metadata can be retrieved and downloaded from <code>https://test.gluu.org/asimba/profiles/saml2</code></li>
+<li>While creating the Trust Relationship, choose <code>File</code> as the <code>Metadata Type</code> and upload the Asumba metadata. </li>
+<li>Relying Party Configuration: <code>SAML2SSO</code> Profile </li>
+</ul>
+<p><img alt="enable-replying-party" src="../../img/saml/enable-relying-party.png" />
+<img alt="saml2sso" src="../../img/saml/saml2sso.png" /></p>
+<pre><code>- example: 
+    - includeAttributeStatement: Yes
+    - assertionLifeTime: 300000
+    - assertionProxyCount: 0
+    - signResponses: conditional
+    - signAssertions: never`
+    - signRequests: conditional
+    - encryptAssertions: never
+    - encryptNameIds: never
+</code></pre>
+<ul>
+<li>Attribute: Any attribute Service Providers require. Any kind of nameID from below list is mandatory. <ul>
+<li>nameID: <ul>
+<li><code>nameIDFormat="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"</code></li>
+<li><code>nameIDFormat="urn:oasis:names:tc:SAML:2.0:nameid-format:transient"</code></li>
+<li><code>nameIDFormat="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"</code></li>
+</ul>
+</li>
+<li>How to create nameID in Gluu Server is available <a href="https://gluu.org/docs/customize/attributes/#custom-nameid">here</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="test-sso">Test SSO<a class="headerlink" href="#test-sso" title="Permanent link">#</a></h3>
+<p>Here is a <a href="https://youtu.be/YEyrOWJu0yo">quick video</a> to demonstrate how SSO should look with everything properly configured. In this video the protected resource is <code>https://sp.gluu.org/protected/print.py</code>. When we try to access the page SSO is initiated and we are redirected to the SAML Proxy discovery page on <code>https://test.gluu.org</code>. From there we select <code>Nest</code> as our desired authentication server and get directed to <code>https://nest.gluu.org/oxAuth/login</code>. After logging in we are redirected and able to access to the protected resource. </p>
+<ul>
+<li><a href="https://youtu.be/YEyrOWJu0yo">Youtube Video Link</a></li>
+</ul>
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../session/" title="Session Timeout" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Session Timeout
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../openid-connect/" title="OpenID Connect" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                OpenID Connect
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2017, Gluu, Inc.
+          </div>
+        
+        powered by
+        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        and
+        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application-2afe21e0b2.js"></script>
+      <script>var config={url:{base:"../.."}},app=new Application(config);app.initialize()</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

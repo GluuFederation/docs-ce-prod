@@ -1,0 +1,27 @@
+
+
+/* ----------------------------------------------------------------------------
+ * Palette
+ * ------------------------------------------------------------------------- */
+
+/*
+ * Primary and accent color
+ */
+$primary: $blue-600   !default;
+$accent:  $teal-a700 !default;
+
+/*
+ * Black opacities
+ */
+$black:          rgba(black, 0.87);
+$black-light:    rgba(black, 0.54);
+$black-lighter:  rgba(black, 0.26);
+$black-lightest: rgba(black, 0.12);
+
+/*
+ * White opacities
+ */
+$white:          rgba(white, 1.00);
+$white-light:    rgba(white, 0.70);
+$white-lighter:  rgba(white, 0.30);
+$white-lightest: rgba(white, 0.12);

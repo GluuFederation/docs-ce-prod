@@ -1,0 +1,80 @@
+<nav aria-label="Navigation">
+
+  {% set home = config.extra.home_url | default("/", true)%}
+  <a href="{{ repo_url }}" class="project">
+    <div class="banner">
+      {% if config.extra.logo %}
+        <div class="logo">
+          <img src="{{ base_url }}/{{ config.extra.logo }}">
+        </div>
+      {% endif %}
+      <div class="name">
+        <strong>{{ site_name }}</strong><br>
+        version: {{ config.extra.version }}
+        {% if repo_name == "GitHub" and repo_id %}
+          <br>
+          {{ repo_id }}
+        {% endif %}
+      </div>
+    </div>
+  </a>
+  <div class="scrollable">
+    <div class="wrapper">
+      <ul class="repo">
+        {% if home %}
+        <li class="home">
+          <a href="{{ home }}" title="Home">
+            <div class="home-image">
+            <i class="fa fa-home"></i> Doc Home</div>
+          </a>
+        </li>
+        {% endif %}
+        {% if repo_name == "Gitlab" and repo_url %}
+        <li class="repo-download">
+          <a href="{{ repo_url }}" target="_blank" title="Source Repo">
+            <i class="icon icon-star"></i>
+          </a>
+        </li>
+        {% endif %}
+        {% if repo_name == "GitHub" and repo_url %}
+        <li class="repo-download">
+          {% set version = config.extra.version | default("master") %}
+          <a href="{{ repo_url }}/archive/{{ version }}.zip" target="_blank" title="Download" data-action="download">
+            <i class="icon icon-download"></i> Download
+          </a>
+        </li>
+        {% endif %}
+		
+      </ul>
+      <div class="toc">
+        <ul>
+          {% for nav_item in nav %}
+            {% include "nav.html" %}
+          {% endfor %}
+        </ul>
+        {% if config.extra.author %}
+          <hr>
+          <span class="section">The author</span>
+          <ul>
+            {% if config.extra.author.twitter %}
+              {% set author = config.extra.author.twitter %}
+              <li>
+                <a href="https://twitter.com/{{ author }}" target="_blank" title="@{{ author }} on Twitter">
+                  @{{ author }} on Twitter
+                </a>
+              </li>
+            {% endif %}
+            {% if config.extra.author.github %}
+              {% set author = config.extra.author.github %}
+              <li>
+                <a href="https://github.com/{{ author }}" target="_blank" title="@{{ author }} on GitHub">
+                  @{{ author }} on GitHub
+                </a>
+              </li>
+            {% endif %}
+          </ul>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,123 @@
+
+
+/* ----------------------------------------------------------------------------
+ * Resets
+ * ------------------------------------------------------------------------- */
+
+/*
+ * Enfore correct box model - the prefixed versions are necessary for older
+ * browsers, i.e. Chrome < 10, Firefox < 29, Safari < 6 and Android < 4
+ */
+html {
+          box-sizing: border-box;
+     -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+/*
+ * All elements shall inherit the document default
+ */
+*, *:before, *:after {
+          box-sizing: inherit;
+     -moz-box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+}
+
+/*
+ * 16px --> 10px, browser default
+ */
+html {
+  font-size: 62.5%;
+  text-size-adjust: none;
+}
+
+/*
+ * Reset spacing and borders for all tags
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup, main,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/*
+ * Reset list styles
+ */
+ul {
+  list-style: none;
+}
+
+/*
+ * Reset table styles
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/*
+ * Reset table cell styles
+ */
+td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/*
+ * Reset (native) button styles
+ */
+button {
+  outline: 0;
+  padding: 0;
+
+  background: transparent;
+  border: none;
+
+  font-size: inherit;
+}
+
+/*
+ * Reset (native) input styles
+ */
+input {
+  @include appearance(none);
+
+  outline: none;
+  border: none;
+}
+
+/*
+ * Reset link styles
+ */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/*
+ * Reset tap outlines on iOS and Android
+ */
+a, button, label, input {
+  -webkit-tap-highlight-color: rgba(white, 0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/*
+ * Reset headlines
+ */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: inherit;
+}

@@ -1,0 +1,114 @@
+
+
+/* ----------------------------------------------------------------------------
+ * Search animation
+ * ------------------------------------------------------------------------- */
+
+/*
+ * Animate header bar in offset and opacity
+ */
+.bar {
+  transform: translate3d(0, 0, 0);
+  transition: opacity   .2s cubic-bezier(.75, 0, .25, 1),
+              transform .4s cubic-bezier(.75, 0, .25, 1);
+
+  /*
+   * Active search mode
+   */
+  #toggle-search:checked ~ .header &,
+  .toggle-search & {
+    transform: translate3d(0, -56px, 0);
+  }
+
+  /*
+   * Search animations
+   */
+  &.search {
+
+    /*
+     * Hide reset button by default
+     */
+    .button-reset {
+      transform: scale(0.5, 0.5);
+      transition: opacity   .4s cubic-bezier(.1, .7, .1, 1),
+                  transform .4s cubic-bezier(.1, .7, .1, 1);
+      opacity: 0;
+    }
+
+    /*
+     * Show reset button if search is not empty
+     */
+    &.non-empty .button-reset {
+      transform: scale(1.0, 1.0);
+      opacity: 1;
+    }
+  }
+}
+
+/*
+ * Search results
+ */
+.results {
+  transition: opacity .3s .1s,
+              width   .0s .4s,
+              height  .0s .4s;
+
+  /*
+   * Active search mode
+   */
+  #toggle-search:checked ~ .main &,
+  .toggle-search & {
+    transition: opacity .4s,
+                width   .0s,
+                height  .0s;
+  }
+
+  /*
+   * Search result item link
+   */
+  .list a {
+    transition: background .25s;
+  }
+}
+
+/*
+ * Just hide and show bars, if browser doesn't support 3D transforms
+ */
+.no-csstransforms3d {
+
+  /*
+   * Show default bar
+   */
+  .bar.default {
+    display: table;
+  }
+
+  /*
+   * Hide search bar
+   */
+  .bar.search {
+    display: none;
+    margin-top: 0;
+  }
+
+  /*
+   * Active search mode
+   */
+  #toggle-search:checked ~ .header,
+  .toggle-search {
+
+    /*
+     * Hide default bar
+     */
+    .bar.default {
+      display: none;
+    }
+
+    /*
+     * Show search bar
+     */
+    .bar.search {
+      display: table;
+    }
+  }
+}
