@@ -10,4 +10,4 @@ echo "Entered Task: $text"
 
 git add -A
 git commit -m "updated site & - $text"
-git push origin master
+git push origin 3.0.2
