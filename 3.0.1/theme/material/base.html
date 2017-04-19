@@ -107,7 +107,7 @@
           <div class="md-content">
             <article class="md-content__inner md-typeset">
                {% if config.edit_uri %}
-                 <a href="{{ config.repo_url}}/blob/master/source/{{ page.input_path }}" title="{{ lang.t('edit.link.title') }}" class="md-icon md-content__edit">edit</a>
+                 <a href="{{ config.repo_url}}/source/{{ page.input_path }}" title="{{ lang.t('edit.link.title') }}" class="md-icon md-content__edit">edit</a>
                {% endif %}
               {% block content %}
                 {% if not "\x3ch1 id=" in page.content %}

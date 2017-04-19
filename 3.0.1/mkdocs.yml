@@ -3,7 +3,7 @@ site_description: Documenation for Gluu Server
 site_favicon: 'favicon.ico'
 copyright: Copyright &copy; 2017, Gluu, Inc.
 docs_dir: source
-repo_url: https://github.com/GluuFederation/docs-3.0.1
+repo_url: https://github.com/GluuFederation/docs-ce-prod/tree/3.0.1/3.0.1
 theme_dir: theme/material
 extra:
     version: '3.0.1'
