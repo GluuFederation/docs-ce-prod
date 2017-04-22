@@ -9,6 +9,9 @@ installation procedure is similar across all the distributions:
 
 !!! Note
     Make sure your VM or server meets the [minimum requirements](../installation-guide/index.md) to deploy the Gluu Server.  
+    
+!!! Warning
+    You must use a FQDN. You can't use localhost to install the Gluu Server.
 
 ## Install Gluu Server Package
 
