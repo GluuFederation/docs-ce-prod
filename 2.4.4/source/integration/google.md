@@ -68,12 +68,12 @@ specific to an organization account. The following is a template of the Google m
 
 ```
 <EntityDescriptor entityID="google.com/a/domain.com" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
-<SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
-<NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</NameIDFormat>
-<AssertionConsumerService index="1" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
-Location="https://www.google.com/a/domain.com/acs" ></AssertionConsumerService>
-</SPSSODescriptor>
+        <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+            <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</NameIDFormat>
+               <AssertionConsumerService index="1" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST Location="https://www.google.com/a/domain.com/acs" ></AssertionConsumerService>
+        </SPSSODescriptor>
 </EntityDescriptor>
+
 ```
 
 Got the metadata? Great, we are ready to move forward. 
