@@ -19,6 +19,9 @@ LDAP server if a local account does not already exist. In this way,
 the Gluu SAML and OpenID Connect providers can gather claims and maintain
 SSO as normal.
 
+!!! Note
+    During installation of the Gluu Server select `yes` to install Passport.js when prompted.
+
 ## Sequence Diagram
 
 Below is a sequence diagram to help clarify the workflow for user
