@@ -81,7 +81,7 @@ Got the metadata? Great, we are ready to move forward.
 * Create Trust Relationship for Google Apps: 
 
    * How to create a trust relationship can be found [here](../admin-guide/saml.md#how-to-create-trust-relationship). We need to follow the "File" method for Google Apps trust relationship.
-    * Required attributes: Generally a nameID attributes is required. [Here](https://gluu.org/docs/customize/attributes/#custom-nameid) is how you can create custom nameID in Gluu Server. 
+    * Required attributes: Generally a nameID attributes is required. [Here](https://gluu.org/docs/ce/2.4.4/admin-guide/attributes/#custom-nameid) is how you can create custom nameID in Gluu Server. 
     * Relying Party Configuration: Yes, SAML2SSO should be configured. 
         * includeAttributeStatement: check
         * assertionLifetime: default 
