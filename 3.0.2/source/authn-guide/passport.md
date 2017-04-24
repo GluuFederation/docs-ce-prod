@@ -20,7 +20,7 @@ the Gluu SAML and OpenID Connect providers can gather claims and maintain
 SSO as normal.
 
 !!! Note
-    During installation of the Gluu Server select `yes` to install Passport.js when prompted.
+    During installation of the Gluu Server select `yes` when prompted to install Passport.js.
 
 ## Sequence Diagram
 
@@ -39,7 +39,7 @@ authentication and provisioning.
 
 ## Setup Passport.js with Gluu
 
-During installation of the Gluu Server select `yes` to install Passport.js when prompted.
+During installation of the Gluu Server select `yes` when prompted to install Passport.js.
 
 1. Navigate to `Configuration` > `Manage Custom Scripts`.
 2. Enable passport script in `Person Authentication` Tab.![Enable passport1](../img/user-authn/passport/enable-passport.png)
