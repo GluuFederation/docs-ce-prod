@@ -1294,12 +1294,12 @@ Google Apps, and the protocol used is SAML.</p>
 Google Apps. This metadata can be collected from Google. It's generally
 specific to an organization account. The following is a template of the Google metadata.</p>
 <pre><code>&lt;EntityDescriptor entityID=&quot;google.com/a/domain.com&quot; xmlns=&quot;urn:oasis:names:tc:SAML:2.0:metadata&quot;&gt;
-&lt;SPSSODescriptor protocolSupportEnumeration=&quot;urn:oasis:names:tc:SAML:2.0:protocol&quot;&gt;
-&lt;NameIDFormat&gt;urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified&lt;/NameIDFormat&gt;
-&lt;AssertionConsumerService index=&quot;1&quot; Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&quot;
-Location=&quot;https://www.google.com/a/domain.com/acs&quot; &gt;&lt;/AssertionConsumerService&gt;
-&lt;/SPSSODescriptor&gt;
+        &lt;SPSSODescriptor protocolSupportEnumeration=&quot;urn:oasis:names:tc:SAML:2.0:protocol&quot;&gt;
+            &lt;NameIDFormat&gt;urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified&lt;/NameIDFormat&gt;
+               &lt;AssertionConsumerService index=&quot;1&quot; Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST Location=&quot;https://www.google.com/a/domain.com/acs&quot; &gt;&lt;/AssertionConsumerService&gt;
+        &lt;/SPSSODescriptor&gt;
 &lt;/EntityDescriptor&gt;
+
 </code></pre>
 
 <p>Got the metadata? Great, we are ready to move forward. </p>
@@ -1310,7 +1310,7 @@ Location=&quot;https://www.google.com/a/domain.com/acs&quot; &gt;&lt;/AssertionC
 <li>
 <p>How to create a trust relationship can be found <a href="../../admin-guide/saml/#how-to-create-trust-relationship">here</a>. We need to follow the "File" method for Google Apps trust relationship.</p>
 <ul>
-<li>Required attributes: Generally a nameID attributes is required. <a href="https://gluu.org/docs/customize/attributes/#custom-nameid">Here</a> is how you can create custom nameID in Gluu Server. </li>
+<li>Required attributes: Generally a nameID attributes is required. <a href="https://gluu.org/docs/ce/2.4.4/admin-guide/attributes/#custom-nameid">Here</a> is how you can create custom nameID in Gluu Server. </li>
 <li>Relying Party Configuration: Yes, SAML2SSO should be configured. <ul>
 <li>includeAttributeStatement: check</li>
 <li>assertionLifetime: default </li>
