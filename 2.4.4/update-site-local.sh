@@ -1,9 +1,6 @@
 #! /bin/bash
 git pull origin 2.4.4
 mkdocs build
-rm -rf docs/
-rm -rf 2.4.4/
-mv site/ 2.4.4/
 echo -n "Enter task Performed >"
 read text
 echo "Entered Task: $text"
