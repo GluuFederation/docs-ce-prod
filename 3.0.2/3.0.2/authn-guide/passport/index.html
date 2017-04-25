@@ -1725,6 +1725,10 @@ this script uses just-in-time provisioning to add users to the Gluu
 LDAP server if a local account does not already exist. In this way, 
 the Gluu SAML and OpenID Connect providers can gather claims and maintain
 SSO as normal.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>During installation of the Gluu Server select <code>yes</code> when prompted to install Passport.js.</p>
+</div>
 <h2 id="sequence-diagram">Sequence Diagram<a class="headerlink" href="#sequence-diagram" title="Permanent link">#</a></h2>
 <p>Below is a sequence diagram to help clarify the workflow for user
 authentication and provisioning. </p>
@@ -1739,7 +1743,7 @@ authentication and provisioning. </p>
 <li>Gluu server’s interception script will check if the user exists in LDAP server. If the user exists then the user will be logged into the system. If not, the interception script will create a new user with the required details and log the user into the system.</li>
 </ol>
 <h2 id="setup-passportjs-with-gluu">Setup Passport.js with Gluu<a class="headerlink" href="#setup-passportjs-with-gluu" title="Permanent link">#</a></h2>
-<p>During installation of the Gluu Server select <code>yes</code> to install Passport.js when prompted.</p>
+<p>During installation of the Gluu Server select <code>yes</code> when prompted to install Passport.js.</p>
 <ol>
 <li>Navigate to <code>Configuration</code> &gt; <code>Manage Custom Scripts</code>.</li>
 <li>Enable passport script in <code>Person Authentication</code> Tab.<img alt="Enable passport1" src="../../img/user-authn/passport/enable-passport.png" /></li>
