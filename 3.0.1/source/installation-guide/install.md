@@ -15,8 +15,7 @@ installation procedure is similar across all the distributions:
 
 ## Install Gluu Server Package
 
-!!! Note
-    Installation of the Gluu server will be done under `/root`. The Gluu Server will create its file system under `/root/` and will be installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) remain the same as the host.
+Installation of the Gluu server will be done under `/root`. The Gluu Server will create its file system under `/root/` and will be installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) remain the same as the host.
    
 ### Ubuntu Server 14.04.x
 
@@ -124,28 +123,27 @@ table should help you answer the questions correctly.
 
 | Question                |  Explanation                               |
 |-------------------------|--------------------------------------------|
-| Enter IP Address | Used primarily by Apache HTTPD for the [Listen](https://httpd.apache.org/docs/2.4/bind.html) directive|
-| Enter hostname | Internet-facing hostname, FQDN or CNAME whichever your organization follows to be used to generate certificates and metadata. **Don't use an IP address or localhost here** |
-| Enter your city or locality | Used to generate X.509 certificates |
-| Enter your state or province two letter code | Used to generate X.509 certificates |
-| Enter two letter Country Code | Used to generate X.509 certificates |
-| Enter Organization Name | Used to generate X.509 certificates |
-| Enter email address for support at your organization | Used to generate X.509 certificates | 
-| Optional: enter password for oxTrust and LDAP superuser | Used as the LDAP directory manager password, and for the default admin user for oxTrust |
-| Install oxAuth OAuth2 Authorization Server | Required|
-| Install oxTrust Admin UI | Required |
-| Install LDAP Server | Required |
+| Enter IP Address | Used primarily by Apache HTTPD for the [Listen](https://httpd.apache.org/docs/2.4/bind.html) directive.|
+| Enter hostname | Internet-facing hostname, FQDN, or CNAME whichever your organization follows to be used to generate certificates and metadata. **Do not use an IP address or localhost.** |
+| Enter your city or locality | Used to generate X.509 certificates. |
+| Enter your state or province two letter code | Used to generate X.509 certificates. |
+| Enter two letter Country Code | Used to generate X.509 certificates. |
+| Enter Organization Name | Used to generate X.509 certificates. |
+| Enter email address for support at your organization | Used to generate X.509 certificates. | 
+| Optional: enter password for oxTrust and LDAP superuser | Used as the LDAP directory manager password, and for the default admin user for oxTrust. |
+| Install oxAuth OAuth2 Authorization Server | Required. Includes Gluu's OpenID Connect provider (OP) and UMA authorization server (AS) implementations.|
+| Install oxTrust Admin UI | Required. This is the Gluu server admin dashboard. |
+| Install LDAP Server | Required. LDAP is used to store user info and configuration data. |
 | Install Apache HTTPD Server | Required |
-| Install Shibboleth SAML IDP | Optional: install only if you want outbound SAML |
-| Install Asimba SAML Proxy | Optional: install only if you are supporting SAML from other domains' IDPs. |
-| Install CAS | Deprecated: install only if you have existing CAS apps |
+| Install Shibboleth SAML IDP | Optional: only install if you need to a SAML identity provider. |
+| Install Asimba SAML Proxy | Optional: only install if you need to send users to external SAML IDPs for authentication. |
 | Install oxAuth RP | OpenID Connect test client: recommended for test enviornments, for more details see [here](../admin-guide/openid-connect/#oxauth-rp) |
-| Install Passport | Component used for social login |
+| Install Passport |  Install if you want to offer users social login. |
 
 After answering these questions, `setup.py` will show you your 
-selections, and ask you if you want to continue. 
+selections and ask you if you want to continue. 
 
-The easiest place to go wrong is with the first two questions. Don't 
+The easiest place to go wrong is with the first two questions. Do not 
 use `localhost` for either the IP address or hostname. And use a real
 hostname--you can always manage via host file entries even if you don't 
 want to mess with DNS for testing. If you are deploying a cluster, use
@@ -153,7 +151,7 @@ the hostname of the cluster--that is used by the clients connecting
 to the Gluu Server.
 
 !!! Warning
-	Changing of hostname after installation is not supported. 
+	Changing the hostname after installation is not supported. 
 
 ## Uninstallation
 
