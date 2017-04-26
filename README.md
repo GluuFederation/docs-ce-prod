@@ -33,7 +33,8 @@ The built site is synced in the webserver created to publish the documentation w
  However, merging of the branches should be done separately.
  
 ```
-$git initgit remote add -f origin <repo url>
+$git init
+$git remote add -f origin <repo url>
 $git config core.sparseCheckout true
 $echo "3.0.2/" >> .git/info/sparse-checkout
 $echo "another/sub/tree" >> .git/info/sparse-checkout
