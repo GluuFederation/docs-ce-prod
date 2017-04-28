@@ -1,0 +1,1977 @@
+
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documenation for Gluu Server">
+      
+      
+      
+      
+        <link rel="shortcut icon" href="../../favicon.ico">
+      
+      <meta name="generator" content="mkdocs+mkdocs-material#1.0.3">
+    
+    
+      
+        <title>Interception Scripts - Gluu Docs</title>
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr-facb31f4a3.js"></script>
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application-f3ab63f78a.css">
+      
+      
+    
+    
+  </head>
+  
+  
+  
+  
+    <body>
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+	 <div class="md-flex__cell md-flex__cell--shrink">
+	    <a href="https://gluu.org/docs/" title="Gluu Docs" class=" md-logo  md-header-nav__button">
+          
+            <img src="../../gluu.jpg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+                <span class="md-header-nav__parent">
+                  Administration Guide
+                </span>
+              
+            
+            Interception Scripts
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+          
+<div class="md-search" data-md-component="search">
+  <div class="md-search__overlay"></div>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" accesskey="s" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false">
+      <label class="md-icon md-search__icon" for="search"></label>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+              
+
+
+  
+
+
+  <a href="https://github.com/GluuFederation/docs-ce-prod/tree/3.0.1/3.0.1" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+            
+          </div>
+      </div>
+    </div>
+<!-- Second Nav Bar 
+<nav class="md-secondary-header-nav md-grid" style="
+    height: 58px;
+    background: white;
+	color: #555555;
+	font-weight: bold;
+	font-size; 8px
+	overflow: hidden;
+">
+<div class="md-flex-secondary" style="
+    display: table;
+    padding: 10px;
+">
+<label for="Versions">Ver:<select id="versions" onchange="window.location.href=this.value;" style="
+    position: relative;
+    display: inline-block;
+    min-width: 100%;
+    /* width: 120%; */
+    height: 34px;
+    padding: 6px 30px 6px 15px;
+    color: #555555;
+    border: none;
+    background: transparent;
+    outline: none;
+    -webkit-appearance: none;
+    z-index: 99;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border: 1px;
+">
+  <option value="/docs">Latest</option>
+  <option value="/docs/2.4.4">2.4.4</option>
+    </select> 
+</label>
+ </div>
+ </nav>-->
+   </nav>
+</header>
+    
+    <div class="md-container">
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary">
+
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <i class=" md-logo  md-nav__button">
+      
+        <img src="../../gluu.jpg">
+      
+    </i>
+    Gluu Docs
+	<label for="Versions">Ver:
+	  <select id="versions" onchange="window.location.href=this.value;" style="
+		position: inherit;
+		display: inline;
+		min-width: 25%;
+		/* width: 120%; */
+		height: 22px;
+		padding: 5px 15px 5px 5px;
+		color: black;
+		border: none;
+		background: transparent;
+		outline: none;
+		-webkit-appearance: none;
+		z-index: 99;
+		cursor: pointer;
+		font-size: 10px;
+		margin-bottom: 10px;
+		border: 1px solid black;
+		overflow: auto
+	">
+	  <option value="/docs/ce/latest">3.0.1</option>
+	  <!-- <option value="/docs/ce/3.0.0">3.0.0</option> -->
+	  <option value="/docs/ce/2.4.4">2.4.4</option>
+	  <option value="/docs">All Versions</option>
+		</select> 
+	</label>
+  </label>
+    
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/GluuFederation/docs-ce-prod/tree/3.0.1/3.0.1" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  <li class="md-nav__item">
+    
+      <a href="../.." title="Home" class="md-nav__link">
+        Home
+      </a>
+    
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item">
+    
+      <a href="../../operation/intro/" title="Whats new in 3.x" class="md-nav__link">
+        Whats new in 3.x
+      </a>
+    
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Installation Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-3">
+        Installation Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../installation-guide/" title="Preparing VM" class="md-nav__link">
+        Preparing VM
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../installation-guide/install/" title="Install Gluu Server" class="md-nav__link">
+        Install Gluu Server
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../installation-guide/setup_py/" title="Setup Script Options" class="md-nav__link">
+        Setup Script Options
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Upgrade/Patch Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-3-4">
+        Upgrade/Patch Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../upgrade/" title="Upgrade Gluu Server" class="md-nav__link">
+        Upgrade Gluu Server
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../upgrade/manual-update/" title="Upgrade Gluu Server with OpenDJ" class="md-nav__link">
+        Upgrade Gluu Server with OpenDJ
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../upgrade/update-war/" title="Updating a War File" class="md-nav__link">
+        Updating a War File
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Administration Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-4">
+        Administration Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../oxtrust-ui/" title="oxTrust admin UI" class="md-nav__link">
+        oxTrust admin UI
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Interception Scripts
+      </label>
+    
+    <a href="./" title="Interception Scripts" class="md-nav__link md-nav__link--active">
+      Interception Scripts
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" title="Overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interception-script-methods" title="Interception Script Methods" class="md-nav__link">
+    Interception Script Methods
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interception-script-logs" title="Interception Script Logs" class="md-nav__link">
+    Interception Script Logs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#person-authentication" title="Person Authentication" class="md-nav__link">
+    Person Authentication
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#certificate-authentication" title="Certificate Authentication" class="md-nav__link">
+    Certificate Authentication
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-user" title="Update User" class="md-nav__link">
+    Update User
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-registration" title="User Registration" class="md-nav__link">
+    User Registration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#client-registration" title="Client Registration" class="md-nav__link">
+    Client Registration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamic-scopes" title="Dynamic Scopes" class="md-nav__link">
+    Dynamic Scopes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#id-generator" title="ID Generator" class="md-nav__link">
+    ID Generator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cache-refresh" title="Cache Refresh" class="md-nav__link">
+    Cache Refresh
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uma-authorization-policies" title="UMA Authorization Policies" class="md-nav__link">
+    UMA Authorization Policies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#application-session-management" title="Application Session Management" class="md-nav__link">
+    Application Session Management
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      User Authentication Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-4-3">
+        User Authentication Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/intro/" title="User Authentication Introduction" class="md-nav__link">
+        User Authentication Introduction
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/basic/" title="Basic Authenticatoin" class="md-nav__link">
+        Basic Authenticatoin
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/passport/" title="Social Authentication" class="md-nav__link">
+        Social Authentication
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/supergluu/" title="Super Gluu" class="md-nav__link">
+        Super Gluu
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/U2F/" title="FIDO U2F" class="md-nav__link">
+        FIDO U2F
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/duo/" title="Duo Security" class="md-nav__link">
+        Duo Security
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/cert-auth/" title="Certificate Authentication" class="md-nav__link">
+        Certificate Authentication
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/google/" title="Google+ OAuth 2.0" class="md-nav__link">
+        Google+ OAuth 2.0
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/otp/" title="HOTP/TOTP" class="md-nav__link">
+        HOTP/TOTP
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../authn-guide/customauthn/" title="Custom Authentication" class="md-nav__link">
+        Custom Authentication
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../attribute/" title="Attributes" class="md-nav__link">
+        Attributes
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../user-group/" title="User Management" class="md-nav__link">
+        User Management
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../session/" title="Session Management" class="md-nav__link">
+        Session Management
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../saml/" title="SAML" class="md-nav__link">
+        SAML
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../openid-connect/" title="OpenID Connect" class="md-nav__link">
+        OpenID Connect
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../uma/" title="UMA" class="md-nav__link">
+        UMA
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../scim-uma/" title="SCIM protected by UMA" class="md-nav__link">
+        SCIM protected by UMA
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../certificate/" title="Certificate Management" class="md-nav__link">
+        Certificate Management
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Integration Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5">
+        Integration Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/" title="Introduction" class="md-nav__link">
+        Introduction
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Client SDKs
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-2">
+        Client SDKs
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/oauth2/" title="oxd OAuth2" class="md-nav__link">
+        oxd OAuth2
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/oauth-js-implicit/" title="OAuth2.0 js Implicit Flow" class="md-nav__link">
+        OAuth2.0 js Implicit Flow
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      Web Server Integrations
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-3">
+        Web Server Integrations
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/saml-sp/" title="Shibboleth SP" class="md-nav__link">
+        Shibboleth SP
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/openidc-rp/" title="mod_auth_openidc" class="md-nav__link">
+        mod_auth_openidc
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-4" type="checkbox" id="nav-5-4">
+    
+    <label class="md-nav__link" for="nav-5-4">
+      SaaS Integrations
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-5-4">
+        SaaS Integrations
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/google/" title="Google Apps" class="md-nav__link">
+        Google Apps
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/office/" title="Office 365" class="md-nav__link">
+        Office 365
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/salesforce/" title="Salesforce" class="md-nav__link">
+        Salesforce
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/dropbox/" title="Dropbox" class="md-nav__link">
+        Dropbox
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../integration/github-enterprise/" title="GitHub Enterprise" class="md-nav__link">
+        GitHub Enterprise
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Reference
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6">
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1">
+    
+    <label class="md-nav__link" for="nav-6-1">
+      Gluu API Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6-1">
+        Gluu API Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/api/" title="Custom ID Generation" class="md-nav__link">
+        Custom ID Generation
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/openid-connect-api/" title="OpenID Connect API" class="md-nav__link">
+        OpenID Connect API
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/scim-api/" title="SCIM API Configuration" class="md-nav__link">
+        SCIM API Configuration
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../api-guide/uma-api/" title="UMA API" class="md-nav__link">
+        UMA API
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-2" type="checkbox" id="nav-6-2">
+    
+    <label class="md-nav__link" for="nav-6-2">
+      JSON Properties
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6-2">
+        JSON Properties
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/JSON-oxtrust-prop/" title="OxTrust JSON Properties" class="md-nav__link">
+        OxTrust JSON Properties
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/JSON-oxauth-prop/" title="OxAuth JSON Properties" class="md-nav__link">
+        OxAuth JSON Properties
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-3" type="checkbox" id="nav-6-3">
+    
+    <label class="md-nav__link" for="nav-6-3">
+      Gluu LDAP Schema
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-6-3">
+        Gluu LDAP Schema
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/oxldap/" title="Ox LDAP Properties" class="md-nav__link">
+        Ox LDAP Properties
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../reference/schema/" title="OpenLDAP Schema" class="md-nav__link">
+        OpenLDAP Schema
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Operation Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-7">
+        Operation Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/backup/" title="Backups" class="md-nav__link">
+        Backups
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/find-gluu-version/" title="Find your Gluu Version" class="md-nav__link">
+        Find your Gluu Version
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/ports/" title="Ports" class="md-nav__link">
+        Ports
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/logout/" title="Single Logout (SLO)" class="md-nav__link">
+        Single Logout (SLO)
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/logs/" title="Log Management" class="md-nav__link">
+        Log Management
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/custom-loginpage/" title="Customize Public Pages" class="md-nav__link">
+        Customize Public Pages
+      </a>
+    
+  </li>
+
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../operation/faq/" title="FAQ & Troubleshooting" class="md-nav__link">
+        FAQ & Troubleshooting
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Developer Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible">
+      <label class="md-nav__title" for="nav-8">
+        Developer Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+  <li class="md-nav__item">
+    
+      <a href="../../developer-guide/oxtrust-eclipse/" title="Build oxTrust with Eclipse" class="md-nav__link">
+        Build oxTrust with Eclipse
+      </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" title="Overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interception-script-methods" title="Interception Script Methods" class="md-nav__link">
+    Interception Script Methods
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interception-script-logs" title="Interception Script Logs" class="md-nav__link">
+    Interception Script Logs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#person-authentication" title="Person Authentication" class="md-nav__link">
+    Person Authentication
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#certificate-authentication" title="Certificate Authentication" class="md-nav__link">
+    Certificate Authentication
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-user" title="Update User" class="md-nav__link">
+    Update User
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-registration" title="User Registration" class="md-nav__link">
+    User Registration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#client-registration" title="Client Registration" class="md-nav__link">
+    Client Registration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamic-scopes" title="Dynamic Scopes" class="md-nav__link">
+    Dynamic Scopes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#id-generator" title="ID Generator" class="md-nav__link">
+    ID Generator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cache-refresh" title="Cache Refresh" class="md-nav__link">
+    Cache Refresh
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uma-authorization-policies" title="UMA Authorization Policies" class="md-nav__link">
+    UMA Authorization Policies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#application-session-management" title="Application Session Management" class="md-nav__link">
+    Application Session Management
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+               
+                 <a href="https://github.com/GluuFederation/docs-ce-prod/tree/3.0.1/3.0.1/source/admin-guide\custom-script.md" title="Edit this page" class="md-icon md-content__edit">edit</a>
+               
+              
+                
+                <h1 id="interception-scripts">Interception Scripts<a class="headerlink" href="#interception-scripts" title="Permanent link">#</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">#</a></h2>
+<p>Interception scripts allow the Gluu Server to support unique requirements for many aspects of a central authentication and authorization service. Interception scripts can be written in <a href="http://www.jython.org/docs/tutorial/indexprogress.html">Jython</a>. Jython was chosen because an interpreted language facilitates dynamic creation of business logic, and makes it easier to distribute this logic to a cluster of Gluu servers. Jython enables developers to use either Java or Python classes. Combined with the option of calling web services from Python or Java, this enables the Gluu Server to support any business-driven policy requirement.</p>
+<p>The web interface for Custom Scripts can be accessed by navigating to <code>Configuration</code> &gt; <code>Manage Custom Scritps</code>.</p>
+<h2 id="interception-script-methods">Interception Script Methods<a class="headerlink" href="#interception-script-methods" title="Permanent link">#</a></h2>
+<p>There are three methods that inherit a base interface</p>
+<table>
+<thead>
+<tr>
+<th>Inherited Methods</th>
+<th>Method description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>def init(self, configurationAttributes)</code></td>
+<td>This method is only called once during the script initialization. It can be used for global script initialization, initiate objects etc</td>
+</tr>
+<tr>
+<td><code>def destroy(self, configurationAttributes)</code></td>
+<td>This method is called once to destroy events. It can be used to free resource and objects created in the <code>init()</code> method</td>
+</tr>
+<tr>
+<td><code>def getApiVersion(self)</code></td>
+<td>The <code>getApiVersion</code> method allows API changes in order to do transparent migration from an old script to a new API. Currently all scripts should return <code>1</code></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>configurationAttributes</code> parameter is <code>java.util.Map&lt;String, SimpleCustomProperty&gt;</code> with properties specified in <code>oxConfigurationProperty</code> attributes.</p>
+<p>The script manager only loads enabled scripts. Hence, after enabling or disabling a
+script, the script manager should trigger an event to either load or
+destroy a script, respectively. All scripts are stored in LDAP in the
+<code>ou=scripts,o=&lt;org_inum&gt;,o=gluu</code> branch.</p>
+<p>Here is a sample entry:</p>
+<pre><code>    dn: inum=@!1111!031C.4A65,ou=scripts,o=@!1111,o=gluu
+    objectClass: oxCustomScript
+    objectClass: top
+    description: &lt;custom_script_description&gt;
+    displayName: &lt;display_name&gt;
+    gluuStatus: true
+    inum: @!1111!031C.4A65
+    oxLevel: &lt;priority&gt;
+    oxModuleProperty: {&quot;value1&quot;:&quot;module_property_name&quot;,&quot;value2&quot;:&quot;module_property_value&quot;,&quot;description&quot;:&quot;&quot;}
+    oxConfigurationProperty: {&quot;value1&quot;:&quot;configuration_property_name&quot;,&quot;value2&quot;:&quot;configuration_property_value&quot;,&quot;description&quot;:&quot;&quot;}
+    oxRevision: &lt;revision&gt;
+    oxScript: &lt;custom_script&gt;
+    oxScriptType: &lt;script_type&gt;
+    programmingLanguage: python
+</code></pre>
+
+<p>The script manager reloads scripts automatically without needing to
+restart the application once <code>oxRevision</code> is increased.</p>
+<h2 id="interception-script-logs">Interception Script Logs<a class="headerlink" href="#interception-script-logs" title="Permanent link">#</a></h2>
+<p>The log files regarding interception scripts are stored in the
+<code>oxauth.log</code> file. The logs are separated according to the module they
+affect. The oxAuth custom script logs are stored in <code>oxauth_script.log</code>
+and the oxTrust custom script logs are stored in the
+<code>oxtrust_script.log</code>. Please refer to these log files to troubleshoot errors in
+the interception scripts or following the workflow of the script.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A <code>print</code> statement may not work on some environments if the <code>PYTHON_HOME</code> environment variable is not set. Make sure it points to a valid python installation.</p>
+</div>
+<p>More details on Logs can be found in <a href="../../operation/logs/">Log Management</a></p>
+<h2 id="person-authentication">Person Authentication<a class="headerlink" href="#person-authentication" title="Permanent link">#</a></h2>
+<p><strong>For a list of pre-written, open source Gluu authentication scripts, 
+view our <a href="https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations">server integrations</a></strong></p>
+<p>An authentication script enables you to customize the user
+authentication experience. For example, you can write a script that
+enables a two-factor authentication mechanism like Duo Security. By
+default oxAuth offers basic username/password authentication. Authentication 
+scripts allow an admin to implement more secure workflows to meet
+an organizations security requirements. It extends the base script type
+with the <code>init</code>, <code>destroy</code> and <code>getApiVersion</code> methods but also adds the
+following methods:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th><code>isValidAuthenticationMethod(self, usageType, configurationAttributes)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Description</strong></td>
+<td>This method is used to check if the authentication method is in a valid state. For example we can check there if a 3rd party mechanism is available to authenticate users. As a result it should either return <code>True</code> or <code>False</code></td>
+</tr>
+<tr>
+<td>Method Parameter</td>
+<td><code>usageType</code> is <code>org.xdi.model.AuthenticationScriptUsageType</code><br/><code>configurationAttributes</code> is <code>java.util.Map&lt;String, SimpleCustomProperty&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th><code>def getAlternativeAuthenticationMethod(self, usageType, configurationAttributes)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Description</strong></td>
+<td>This method is called only if the current authentication method is in an invalid state. Hence authenticator calls it only if <code>isValidAuthenticationMethod</code> returns False. As a result it should return the reserved authentication method name</td>
+</tr>
+<tr>
+<td>Method Parameter</td>
+<td><code>uageType</code> is <code>org.xdi.model.AuthenticationScriptUsageType</code><br/><code>configurationAttributes</code> is <code>java.util.Map&lt;String, SimpleCustomProperty&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th><code>def authenticate(self, configurationAttributes, requestParameters, step)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Description</strong></td>
+<td>This method is the key method within the person authentication script. It checks if the user has passed the specified step or not. As a result it should either return <code>True</code> or <code>False</code></td>
+</tr>
+<tr>
+<td>Method Parameter</td>
+<td><code>requestParameters</code> is <code>java.util.Map&lt;String, String[]&gt;</code><br/><code>step</code> is java integer<br/><code>configurationAttributes</code> is <code>java.util.Map&lt;String, SimpleCustomProperty&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th><code>def prepareForStep(self, configurationAttributes, requestParameters, step)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Description</strong></td>
+<td>This method can be used to prepare variables needed to render the login page and store them in an according event context. As a result it should either return <code>True</code> or <code>False</code></td>
+</tr>
+<tr>
+<td>Method Parameter</td>
+<td><code>requestParameters</code> is <code>java.util.Map&lt;String, String[]&gt;</code><br/><code>step</code> is a java integer<br/><code>configurationAttributes</code> is <code>java.util.Map&lt;String, SimpleCustomProperty&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th><code>def getCountAuthenticationSteps(self, configurationAttributes)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Description</strong></td>
+<td>This method should return an integer value with the number of steps in the authentication workflow</td>
+</tr>
+<tr>
+<td>Method Parameter</td>
+<td><code>configurationAttributes</code> is <code>java.util.Map&lt;String, SimpleCustomProperty&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th><code>def getExtraParametersForStep(self, configurationAttributes, step)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Description</strong></td>
+<td>This method provides a way to notify the authenticator that it should store specified event context parameters event in the oxAuth session. It is needed in a few cases, for example when an authentication script redirects the user to a 3rd party authentication system and expects the workflow to resume after that. As a result it should return a java array of strings</td>
+</tr>
+<tr>
+<td>Method Parameter</td>
+<td><code>configurationAttributes</code> is <code>java.util.Map&lt;String, SimpleCustomProperty&gt;</code><br/><code>step</code> is a java integer</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th><code>def getPageForStep(self, configurationAttributes, step)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Description</strong></td>
+<td>This method allows the admin to render a required page for a specified authentication step. It should return a string value with a path to an XHTML page. If the return value is empty or null, the authenticator should render the default log in page <code>/login.xhtml</code></td>
+</tr>
+<tr>
+<td>Method Parameter</td>
+<td><code>configurationAttributes</code> is <code>java.util.Map&lt;String, SimpleCustomProperty&gt;</code><br/><code>step</code> is a java integer</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th><code>def logout(self, configurationAttributes, requestParameters)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Description</strong></td>
+<td>This method is not mandatory. It can be used in cases when you need to execute specific logout logic within the authentication script when oxAuth receives an end session request. Also, it allows oxAuth to stop processing the end session request workflow if it returns <code>False</code>. As a result it should either return <code>True</code> or <code>False</code></td>
+</tr>
+<tr>
+<td>Method Parameters</td>
+<td><code>configurationAttributes</code> is <code>java.util.Map&lt;String, SimpleCustomProperty&gt;</code><br/><code>requestParameters</code> is <code>java.util.Map&lt;String, String[]&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>This script can be used in oxAuth application only.</p>
+<ul>
+<li><a href="../sample-authentication-script.py">Sample Authentication Script</a></li>
+</ul>
+<h3 id="certificate-authentication">Certificate Authentication<a class="headerlink" href="#certificate-authentication" title="Permanent link">#</a></h3>
+<p>Gluu Server CE offers a person authentication module enabling Certificate Authentication.
+The image below contains the design diagram for this module.</p>
+<p><img alt="image" src="../../img/admin-guide/Cert%20design.jpg" /></p>
+<p>The script has a few properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Allowed Values</th>
+<th>example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>chain_cert_file_path</code></td>
+<td>mandatory property pointing to certificate chains in <a href="https://en.wikipedia.org/wiki/Privacy-enhanced_Electronic_Mail" title="Privacy-enhanced Electronic Mail">pem</a> format</td>
+<td>file path</td>
+<td><code>/etc/certs/chain_cert.pem</code></td>
+</tr>
+<tr>
+<td><code>map_user_cert</code></td>
+<td>specifies if the script should map new user to local account</td>
+<td>true/false</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>use_generic_validator</code></td>
+<td>enable/disable specific certificate validation</td>
+<td>true/false</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>use_path_validator</code></td>
+<td>enable/disable specific certificate validation</td>
+<td>true/false</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>use_oscp_validator</code></td>
+<td>enable/disable specific certificate validation</td>
+<td>true/false</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>use_crl_validator</code></td>
+<td>enable/disable specific certificate validation</td>
+<td>true/false</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>crl_max_response_size</code></td>
+<td>specifies the maximum allowed size of [CRL][crl] response</td>
+<td>Integer &gt; 0</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><a href="../UserCertExternalAuthenticator.py">Sample Certificate Authentication Script</a>        </li>
+</ul>
+<h2 id="update-user">Update User<a class="headerlink" href="#update-user" title="Permanent link">#</a></h2>
+<p>oxTrust allows an admin to add and modify users which belong to groups.
+In order to simplify this process and apply repeating actions, oxTrust
+supports an Update User script. In this script it is possible to modify
+a person entry before it is stored in LDAP.</p>
+<p>This script type adds only one method to the base script type:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th><code>def updateUser(self, user, persisted, configurationAttributes)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Description</strong></td>
+<td>This method updates the user</td>
+</tr>
+<tr>
+<td>Method Parameter</td>
+<td><code>user</code> is <code>org.gluu.oxtrust.model.GluuCustomPerson</code><br/>persisted is a boolean value to specify the operation type: add/modify<br/><code>configurationAttributes</code> is <code>java.util.Map&lt;String, SimpleCustomProperty&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>This script can be used in an oxTrust application only.</p>
+<ul>
+<li><a href="../sample-update-user-script.py">Sample Update User Script</a></li>
+</ul>
+<h2 id="user-registration">User Registration<a class="headerlink" href="#user-registration" title="Permanent link">#</a></h2>
+<p>oxTrust allows users to perform self-registration. In order to
+control/validate user registrations there is the user registration
+script type.</p>
+<p>This script type adds three methods to the base script type:</p>
+<table>
+<thead>
+<tr>
+<th>Methods</th>
+<th><code>def initRegistration(self, user, requestParameters, configurationAttributes)</code><br/><code>def preRegistration(self, user, requestParameters, configurationAttributes)</code><br/><code>def postRegistration(self, user, requestParameters, configurationAttributes)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Description</strong></td>
+<td>This method enables/disables user account based on the custom property's value</td>
+</tr>
+<tr>
+<td>Method Parameters</td>
+<td><code>user</code> is <code>org.gluu.oxtrust.model.GluuCustomPerson</code><br/><code>requestParameters</code> is <code>java.util.Map&lt;String, String[]&gt;</code><br/><code>configurationAttributes</code> is <code>java.util.Map&lt;String, SimpleCustomProperty&gt;</code></td>
+</tr>
+<tr>
+<td>Custom Property</td>
+<td><code>enable_user</code>--&gt; defaults to <code>false</code></td>
+</tr>
+<tr>
+<td>Description</td>
+<td>It controls whether or not this user account will be ready for loggin into the Gluu Server CE instance</td>
+</tr>
+</tbody>
+</table>
+<p>The methods are executed in the following order:</p>
+<table>
+<thead>
+<tr>
+<th>Order</th>
+<th>Method</th>
+<th>Expected Return</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First</td>
+<td><code>initRegistration()</code></td>
+<td>True/False</td>
+</tr>
+<tr>
+<td>Second</td>
+<td><code>preRegistration()</code></td>
+<td>True/False</td>
+</tr>
+<tr>
+<td>Third</td>
+<td><code>postRegistration()</code></td>
+<td>True/False</td>
+</tr>
+</tbody>
+</table>
+<p>First oxTrust executes the <code>initRegistration</code> method to do an initial
+user entry update. The <code>preRegistration</code> method is called before storing
+the user entry in LDAP. Hence in this script it is possible to validate
+the user entry. The <code>postRegistration</code> method is called after
+successfully storing the user entry in LDAP. In this method, for
+example, the script can send an e-mail or send notifications to other
+organization systems about the new user entry.</p>
+<ul>
+<li><a href="../sample-user-registration-script.py">Sample User Registration Script</a></li>
+</ul>
+<h2 id="client-registration">Client Registration<a class="headerlink" href="#client-registration" title="Permanent link">#</a></h2>
+<p>oxAuth implements the <a href="https://openid.net/specs/openid-connect-registration-1_0.html">OpenID Connect dynamic client
+registration</a>
+specification. All new clients have the same default access scopes and
+attributes except password and client ID. The Client Registration script
+allows an admin to modify this limitation. In this script it is possible
+to get a registration request, analyze it, and apply customizations to
+registered clients. For example, a script can give access to specified
+scopes if <code>redirect_uri</code> belongs to a specified service or domain.</p>
+<p>This script type adds only one method to the base script type:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th><code>def updateClient(self, registerRequest, client, configurationAttributes)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Method Parameter</strong></td>
+<td><code>registerRequest</code> is <code>org.xdi.oxauth.client.RegisterRequest</code><br/><code>client</code> is <code>org.xdi.oxauth.model.registration.Client</code><br/><code>configurationAttributes</code> is <code>java.util.Map&lt;String, SimpleCustomProperty&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>This script can be used in an oxAuth application only.</p>
+<ul>
+<li><a href="../sample-client-registration-script">Sample Client Registration Script</a></li>
+</ul>
+<h2 id="dynamic-scopes">Dynamic Scopes<a class="headerlink" href="#dynamic-scopes" title="Permanent link">#</a></h2>
+<p>The dynamic scope custom script allows the parsing of token returned from <code>user_info endpoint</code> into 
+LDAP attributes. The <code>id_token</code> is returned from <code>user_info endpoint</code> and the values are dynamically placed 
+in the LDAP attributes in Gluu Server.</p>
+<ul>
+<li><a href="../sample-dynamic-script.py">Sample Dynamic Scope Script</a> </li>
+</ul>
+<h2 id="id-generator">ID Generator<a class="headerlink" href="#id-generator" title="Permanent link">#</a></h2>
+<p>By default oxAuth/oxTrust uses an internal method to generate unique
+identifiers for new person/client, etc. entries. In most cases the
+format of the ID is:</p>
+<p><code>'!' + idType.getInum() + '!' + four_random_HEX_characters + '.' + four_random_HEX_characters.</code></p>
+<p>The ID generation script enables an admin to implement custom ID
+generation rules.</p>
+<p>This script type adds only one method to the base script type:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th><code>def generateId(self, appId, idType, idPrefix, configurationAttributes)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Method Parameter</strong></td>
+<td><code>appId</code> is application ID<br/><code>idType</code> is ID Type<br/><code>idPrefix</code> is ID Prefix<br/><code>user</code> is <code>org.gluu.oxtrust.model.GluuCustomPerson</code><br/><code>configurationAttributes</code> is <code>java.util.Map&lt;String, SimpleCustomProperty&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>This script can be used in an oxTrust application only.</p>
+<ul>
+<li><a href="../sample-id-generation.py">Sample ID Generation Script</a>      </li>
+</ul>
+<h2 id="cache-refresh">Cache Refresh<a class="headerlink" href="#cache-refresh" title="Permanent link">#</a></h2>
+<p>In order to integrate an interception script with an existing
+authentication server oxTrust provides a mechanism called <a href="../../admin-guide/user-group/#ldap-synchronization">Cache
+Refresh</a> to copy
+user data to the local LDAP server. During this process it is possible
+to specify key attribute(s) and specify attribute name transformations.
+There are also cases when it can be used to overwrite attribute values
+or to add new attributes based on other attribute values.</p>
+<p>This script type adds only one method to the base script type:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th><code>def updateUser(self, user, configurationAttributes)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Method Parameter</strong></td>
+<td><code>user</code> is <code>org.gluu.oxtrust.model.GluuCustomPerson</code><br/><code>configurationAttributes</code> is <code>java.util.Map&lt;String, SimpleCustomProperty&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>This script can be used in an oxTrust application only.</p>
+<ul>
+<li><a href="../sample-cache-refresh-script.py">Sample Cache Refresh Script</a></li>
+</ul>
+<h2 id="uma-authorization-policies">UMA Authorization Policies<a class="headerlink" href="#uma-authorization-policies" title="Permanent link">#</a></h2>
+<p>This is a special script for UMA. It allows an admin to protect UMA
+scopes with policies. It is possible to add more than one UMA policy to
+an UMA scope. On requesting access to a specified resource, the
+application should call specified UMA policies in order to grant or deny
+access.</p>
+<p>This script type adds only one method to the base script type:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th><code>def authorize(self, authorizationContext, configurationAttributes)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Method Parameter</strong></td>
+<td><code>authorizationContext</code> is <code>org.xdi.oxauth.service.uma.authorization.AuthorizationContext</code><br/><code>configurationAttributes</code> is <code>java.util.Map&lt;String, SimpleCustomProperty&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>This script can be used in an oxAuth application only.</p>
+<ul>
+<li><a href="../sample-uma-authorization-script.py">Sample Authorization Script</a></li>
+</ul>
+<h2 id="application-session-management">Application Session Management<a class="headerlink" href="#application-session-management" title="Permanent link">#</a></h2>
+<p>This script allows an admin to notify 3rd party systems about requests
+to end an OAuth session. This method is triggered by an oxAuth call to
+the <code>end_session</code> endpoint. It's possible to add multiple scripts with
+this type. The application should call all of them according to the
+level.</p>
+<p>This script type adds only one method to the base script type:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th><code>def endSession(self, httpRequest, authorizationGrant, configurationAttributes)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Method Parameter</strong></td>
+<td><code>httpRequest</code> is <code>javax.servlet.http.HttpServletRequest</code><br/><code>authorizationGrant</code> is <code>org.xdi.oxauth.model.common.AuthorizationGrant</code><br/><code>configurationAttributes</code> is <code>java.util.Map&lt;String, SimpleCustomProperty&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>This script can be used in an oxAuth application only.</p>
+<ul>
+<li><a href="../sample-application-session-script.py">Sample Application Session Management Script</a></li>
+</ul>
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../oxtrust-ui/" title="oxTrust admin UI" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                oxTrust admin UI
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../authn-guide/intro/" title="User Authentication Introduction" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                User Authentication Introduction
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2017, Gluu, Inc.
+          </div>
+        
+        powered by
+        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        and
+        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application-2afe21e0b2.js"></script>
+      <script>var config={url:{base:"../.."}},app=new Application(config);app.initialize()</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
