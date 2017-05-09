@@ -7,7 +7,7 @@ This API Guide will discuss few API's used in Gluu Server for ID generation
 ### Overview
 
 The API convention is set as _id_ followed by _prefix_ and _type_ or `/id/{prefix}/{type}/`.
-Please se the following table to specify what type you are generating. The `prefix` is used in the 
+Please see the following table to specify what type you are generating. The `prefix` is used in the 
 inum to make it possible to know the type of object just by looking at the identifier.
 
 | `prefix` | `type`               | `description`                          |
