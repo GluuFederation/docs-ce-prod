@@ -55,8 +55,6 @@ Gluu Server allows the administrator to import users from a file. This can be ac
 
 * The file needs to be validated before it can be imported. Click on the `Validate` button.
 
-![import](../img/admin-guide/user/import-people_import.png)
-
 * Click on the `Import` button to complete the import of users.
 
 #### File Structure
@@ -91,8 +89,7 @@ Set the `enable_user` value to `true` so that the user can login as soon as the 
 
 Click `Enable` checkbox at the bottom of the page.
 
-![image]
-(../img/admin-guide/user/config-manage-script_check.png)
+![image](../img/admin-guide/user/config-manage-script_check.png)
 
 Now users should be able to self-register through the user registration link, which should be available at `<hostname>/identity/register`.
 
