@@ -125,164 +125,196 @@ The following documentation provides a step-by-step guide for configuring Asimba
 !!! Note 
     A description of the SAML interception script is available [here](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations/saml).
 
-![asimba-overview](../img/asimba/overview.png)
+![asimba-overview](../img/asimba/Asimba_graph.jpg)
   
-### Required Setup     
-
-|Setup hostname|Description|
-|--------------|-----------|
-|`https://sp.gluu.org/protected/print.py`| This is a shibboleth SP connected to `https://test.gluu.org`|
-|`https://test.gluu.org`| This is a Gluu Server with Asimba installed|
-|`https://nest.gluu.org`| This is a second Gluu Server with Shibboleth installed that is connected to `https://test.gluu.org`|
+### Notes
+  - For this documentation and we used three demo servers:
+     - `https://[proxy_hostname]` is the proxy Gluu server with Shibboleth and Asimba installed.
+     - `https://[idp_hostname]` is the remote authentication Gluu server with Shibboleth installed.
+     - `https://[sp_hostname]` is the remote SP Gluu Server with the Shibboleth SP installed.
+  - For this documentation we use the Gluu Server version 2.4.4.2 and the Shibboleth SP version 2.6.
   
-The Gluu Server with hostname `https://test.gluu.org` must include Asimba and Shibboleth. The Gluu Server with hostname `https://nest.gluu.org` must include Shibboleth. This is done by entering `yes` to the respective options while running the [setup script prompt](../installation-guide/setup_py.md) during installation. 
 
-### Add Custom Script
+### Gluu-Asimba Server Configuration
 
-Login to the Gluu Server with hostname `https://test.gluu.org` and add the SAML script: 
+#### Custom Interception script named saml/asimba configuration
 
-* Log into the oxTrust interface as `admin`
-* Navigate to `Configuration` > `Manage Custom Scripts`
-* In the `Person Authentication` tab Select/Add `saml` script 
+ - Log into oxTrust
+ - Configuration -> Manage Custom Scripts
+ - Script name 'saml'
+   - Custom property ( key/value ):
+     - asimba_entity_id: `https://[proxy_hostname]/saml`
+     - enforce_uniqueness_attr_list: issuerIDP, uid
+     - saml_deployment_type: enroll_all_attr
+     - saml_idp_attributes_mapping: { "attribute_name": ["attribute_name", "SAML2 URI"] }
+       - example: ``` {"uid": ["uid", "urn:oid:0.9.2342.19200300.100.1.1"], "mail": ["mail", "urn:oid:0.9.2342.19200300.100.1.3"], "issuerIDP": ["issuerIDP" ] } ```
+     - saml_idp_sso_target_url: `https://[proxy_hostname]/asimba/profiles/saml2/sso/web`
+     - saml_update_user: true
+     - user_object_classes: gluuPerson, ox-1A1EAA99F942902300012AE17F0A [ This 'ox-1A1EAA99F942902300012AE17F0A' OC value is different for your server. To get your own value, search for                                                 'gluuAttributeOrigin' in ldap ]
+     - saml_use_authn_context: false
+     - saml_generate_name_id: true
+     - asimba_saml_certificate_file: /etc/certs/saml.pem [ You need to create a 'saml.pem' cert inside /etc/certs/ location. The ingredient of this pem will be asimba.crt without 'BEGIN'                                                 and 'END' tag. Permissin of this pem will be tomcat:tomcat ]
+     - saml_validate_response: false
+   - Script: Script is attached below. named 'SAML script'.
 
-![custom-script-person-authentication](../img/asimba/cspa.png)
+#### SP Requestor
 
-   - Name: saml
-    - Description: Saml Authentication module
-    - Programming Language: Python
-    - Level: 1
-    - Location Type: LDAP
-    - Usage Type: Web
-    - Custom property (key/value)
-       - saml_deployment_type: enroll
-       - saml_idp_sso_target_url: `https://test.gluu.org/asimba/profiles/saml2/sso/web`
-       - saml_validate_response: false
-       - asimba_entity_id: `https://test.gluu.org/saml`
-       - asimba_saml_certificate_file: `/etc/certs/saml.pem`
-         - note: Deployer need to copy 'asimba.crt' in 'saml.pem' without the 'BEGIN CERTIFICATE' and 'END CERTIFICATE' tag. 
-       - user_object_classes: `eduPerson`
-       - saml_idp_attributes_mapping: { "attribute_name": ["attribute_name", "SAML2 URI"] } 
-         - example: ```{"uid": ["uid", "urn:oid:0.9.2342.19200300.100.1.1"], "mail": ["mail", "urn:oid:0.9.2342.19200300.100.1.3"], "givenName": ["givenName", "urn:oid:2.5.4.42"], "sn": ["sn", "urn:oid:2.5.4.4"], "eduPersonPrincipalName": ["eduPersonPrincipalName", "urn:oid:1.3.6.1.4.1.5923.1.1.1.6"] } ```
-       - enforce_uniqueness_attr_list: `attribute1`, `attribute2`
-         - example: ```edupersonprincipalname, uid, mail, givenName```
-       - saml_use_authn_context: false
-       - saml_generate_name_id: true
-    - Script: Please copy the [SAML Script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/saml/SamlExternalAuthenticator.py) from Github. 
-    - Enabled: True
+ - SAML -> SP Requestors
+ - 'Add SP Requestor'
+   - ID: `https://[proxy_hostname]/saml`
+   - Friendly Name: oxAuth SAML
+   - Metadata URL: Not required
+   - Metadata Timeout: -1
+   - Metadata File: Create a SAML metadata like below and save it as 'saml_oxauth_metadata.xml'. Upload this metadata. Replace entityID and ACS Location with your hostname.
+      - Sample metadata attached below. Named 'SAML oxAuth metadata'
+    - Trust Certificate File: Not required
+    - Properties: Not required
+    - Enabled: Yes
+    - Signing: No
 
-### Add External IDP    
+#### Add External IDP
 
-Login to the Gluu Server with hostname `https://test.gluu.org` and add the external IDP: 
+ - SAML -> IDPs
+ - 'Add IDP'
+   - ID: EntityID of remote IDP. i.e. `https://[idp_hostname]/idp/shibboleth`
+   - Friendly Name: Remote AuthN Server 1
+   - Metadata URL: Not required
+   - Metadata Timeout: -1
+   - Metadata File: Upload metadata
+   - Trust Certificate File: Grab SAML metadata from remote IDP and upload that. This certificate must be no password protected and x509 format crt. If remote IDP is another Gluu Server                                                 then grab 'shibIDP.crt' from /etc/certs/ of that server.
+   - NameIDFormat: urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+   - Enabled: Yes
+   - Send Scoping: Yes
+   - AllowCreate: Yes
+   - Disable SSO for IDP: No
+   - ACS Index: Yes
+   - Send NameIDPolicy: Yes
+   - Avoid Subject Confirmations: No
+   - Add
 
-* Log into the oxTrust interface
-* Navigate to `SAML` > `IDP`
-* Click `Add IDP`    
-![image](../img/asimba/add_idp.png)  
-* Fill in the form with the following information:
+ #### asimba.xml file configuration
 
-    * ID: The entityID of the remote ID/ADFS 
+  - SSH into VM
+  - Log into Gluu Server container
+  - As user 'tomcat', open 'asimba.xml'. Location: /opt/tomcat/webapps/asimba/WEB-INF/conf
+  - Uncomment
+       ```
+       <gather>
+           <attribute name="whitelist-attribute-name" />
+       </gather>
+       ```
+   - Add `attribute name="*"` in attribute release class and restart tomcat
 
-        - Example: `https:nest.gluu.org/idp/shibboleth`  
+```
+        <attributerelease class="com.alfaariss.oa.engine.attribute.release.configuration.ConfigurationFactory">
+                <policy id="asimba.releasepolicy.1" friendlyname="Default Attribute Release policy" enabled="true">
+                        <attribute name="firstname" />
+                        <attribute name="lastname" />
+                        <attribute name="email" />
+                        <attribute name="role" />
+                        <attribute name="country" />
+                        <attribute name="*" />
+                        
+ ```
 
-    * Friendly Name: Provide a human-readable name, like an organization or site name.
+#### Create custom attribute named 'issuerIDP'
 
-    * Metadata URL: Leave this field blank, we will upload metadata
+  - Log into oxTrust
+  - Configuration -> Attributes
+  - 'Add Attribute'
+    - Name: issuerIDP
+    - SAML1 URI: nothing
+    - SAML2 URI: nothing
+    - Display Name: issuerIDP
+    - Type: Text
+    - Edit Type: admin
+    - View Type: admin + user
+    - Usage Type: Not defined
+    - Multivalued: False
+    - oxAuth claim name: blank
+    - SCIM Attribute: False
+    - Description: Custom attribute to grab issuerIDP info
+    - Status: Active
+    - 'Update'
 
-    * Metadata Timeout: Leave this field as is. 
+### Remote Authentication Server configuration
 
-    * Metadata File: Download the remote IDPs metadata and upload that XML file. 
-    
-        - Example: The metadata for a Gluu IDP can be downloaded using `wget -c https:<hostname_of_gluu_server>/idp/shibboleth`
+#### Create Trust Relationship
 
-    * Trust Certificate File: Get the SAML cert from the remote IDP and upload that x509 certificate
+  - Download you Asimba server's metadata with `https://[proxy_hostname]/asimba/profiles/saml2` and save it as 'gluu_asimba_server_metadata.xml'
+  - Log into Authentication Server's oxTrust
+  - Create a new trust relationship with this metadata which you just downloaded.
+  - RelyingParty configuration:
+    - SAML2SSO profile:
+      - signResponses: conditional
+      - signAssertions: never
+      - signRequests: conditional
+      - encryptAssertions: never
+      - encryptNameIds: never
+  - Attribute: Release transientID and Username attribute
 
-        - Example: You can get a Gluu Server's SAML certificate in the metadata or in `/etc/certs/shibIDP.crt`
 
-    * NameIDFormat: If the remote IDP is a Gluu Server use SAML2 URI nameID format. If not ask for the nameID format.
+#### New test user registration
 
-        - Example: `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`
+##### Enable 'User Registration' module
 
-    * Enabled: Yes
+ - Log into oxTrust
+ - 'Manage Custom Scripts'
+ - 'User Registration' tab
+   - Custom property: enable_user = true
+   - 'Enabled' it
+   - Hit 'Update'
 
-    * Send Scoping: Yes
+##### New user registration
 
-    * AllowCreate: Yes
+  - Hit `https://[idp_hostname]/identity/register`
+  - Fill up the form and new user will be registered
+  - We will use this user to test SSO.
 
-    * Disable SSO for IDP: No
+### Remote SP configuration
 
-    * ACS index: Yes
+#### Shibboleth SP installation
 
-    * Send NameIDPolicy: Yes
+ - Install SP by following: https://gluu.org/docs/ce/2.4.4/integration/saml-sp/#super-quick-ubuntu-shib-apache-install doc
 
-    * Avoid Subject Confirmations: No
+#### shibboleth2.xml configuration
 
-### Add SP Requestor
-
-Login to the Gluu Server with hostname `https://test.gluu.org` and add the SP Requestor: 
-
-* Log into oxTrust interface
-* Navigate to `SAML` > `SP Requestor`
-* Click `Add SP Requestor`
-![image](../img/asimba/add_sp2mod.png)
-* Fill in the form with the information below:
-     - Select parent SP Pool: requestorpool.1
-     - ID: https://test.gluu.org/saml
-     - Friendly Name: oxAuth SAML
-     - Metadata URL: Not required
-     - Metadata Timeout: -1
-     - Metadata File: Create a SAML metadata like below and save it as 'saml_oxauth_metadata.xml'. Upload this metadata. 
-     - Trust Certificate File: Not required
-     - Properties: Not required
-     - Enabled: Yes
-     - Signing: No
-     - metadata snippet: 
-``` 
-<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="https://test.gluu.org/saml">
-  <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
-    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://test.gluu.org/oxauth/postlogin" index="0"/>
-  </md:SPSSODescriptor>
-  <md:Organization>
-    <md:OrganizationName xml:lang="en">Gluu</md:OrganizationName>
-    <md:OrganizationDisplayName xml:lang="en">Gluu - Open Source Access Management</md:OrganizationDisplayName>
-    <md:OrganizationURL xml:lang="en">http://www.gluu.org</md:OrganizationURL>
-  </md:Organization>
-  <md:ContactPerson contactType="technical">
-    <md:GivenName>Administrator</md:GivenName>
-    <md:EmailAddress>support@gluu.org</md:EmailAddress>
-  </md:ContactPerson>
-</md:EntityDescriptor> 
+ - Download Shibboleth metadata of your Gluu-Asimba Server with `https://[proxy_hostname]/idp/shibboleth`
+ - Put it inside /etc/shibboleth/ location
+ - Modify shibboleth2 xml file like below:
+    - SSO entityID:
+```
+   <SSO entityID="https://[proxy_hostname]/idp/shibboleth"
+       discoveryProtocol="SAMLDS" discoveryURL="https://ds.example.org/DS/WAYF">
+       SAML2 SAML1
+   </SSO>
 ```
 
-### Add Trust Relationship
+   - Metadata provider:
 
-Login to the Gluu Server with hostname `https://nest.gluu.org` and create a Trust Relationship for all SPs which are included in the SAML Proxy SSO workflow. Documentation for creating a Trust Relationship is available in [Section 2.1](#2.1-outbound-saml). 
+```
+<MetadataProvider type="XML" validate="true" file="proxy_server_metadata.xml"/>
+```
 
-In our test setup we have created a Trust Relationship for one remote SP with the entityID `https://sp.gluu.org/shibboleth`.
+- Restart shibd and apache2
 
-  - The Asimba metadata can be retrieved and downloaded from `https://test.gluu.org/asimba/profiles/saml2`
-  - While creating the Trust Relationship, choose `File` as the `Metadata Type` and upload the Asumba metadata. 
-  - Relying Party Configuration: `SAML2SSO` Profile 
+ ### Trust relationship in Gluu-Asimba server
 
-![enable-replying-party](../img/saml/enable-relying-party.png)
-![saml2sso](../img/saml/saml2sso.png)
+ We need to create a trust relationship in Gluu-Asimba server with Shibboleth SP metadata.
 
-    - example: 
-        - includeAttributeStatement: Yes
-        - assertionLifeTime: 300000
-        - assertionProxyCount: 0
-        - signResponses: conditional
-        - signAssertions: never`
-        - signRequests: conditional
-        - encryptAssertions: never
-        - encryptNameIds: never
-  - Attribute: Any attribute Service Providers require. Any kind of nameID from below list is mandatory. 
-     - nameID: 
-        - `nameIDFormat="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"`
-        - `nameIDFormat="urn:oasis:names:tc:SAML:2.0:nameid-format:transient"`
-        - `nameIDFormat="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"`
-     - How to create nameID in Gluu Server is available [here](https://gluu.org/docs/customize/attributes/#custom-nameid)
+  - Log into Gluu-Asimba server
+  - Grab Shibboleth SP metadata. You can get that with `https://[sp_hostname]/Shibboleth.sso/Metadata`
 
-### Test SSO
-Here is a [quick video](https://youtu.be/YEyrOWJu0yo) to demonstrate how SSO should look with everything properly configured. In this video the protected resource is `https://sp.gluu.org/protected/print.py`. When we try to access the page SSO is initiated and we are redirected to the SAML Proxy discovery page on `https://test.gluu.org`. From there we select `Nest` as our desired authentication server and get directed to `https://nest.gluu.org/oxAuth/login`. After logging in we are redirected and able to access to the protected resource. 
+
+ ### Test SSO
+
+  - Log into Gluu-Asimba server and enable 'basic' script from 'Manage Custom Scripts' section.
+  - Go to 'Manage Authentication'
+    - 'Default Authentication Method'
+      - Authentication mode: saml
+      - oxTrust authentication mode: basic
+      - Hit 'Update'
+   - Try SP SSO link ( for our case it's `https://[sp_hostname]/protected/printHeaders.py` ). Note: for testing you need to use the test user you registered in auth.gluu.org.
+
 
 * [Youtube Video Link](https://youtu.be/YEyrOWJu0yo)
