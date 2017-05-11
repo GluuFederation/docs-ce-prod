@@ -212,7 +212,7 @@ into the conf subdirectory you created (e.g. C:\home\gluu\conf\ox-ldap.propertie
 
 ### Install and configure Symas OpenLDAP
 
-1\. Download Silver Edition from: https://downloads.symas.com/SDLPWeb
+1\. Download Silver Edition from [Symas Download](https://downloads.symas.com/products/symas-openldap-directory-silver-edition/)
 
 2\. Create folder for custom Gluu schema: `C:\Program Files (x86)\symas-openldap\etc\openldap\schema`
 
