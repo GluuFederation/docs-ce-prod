@@ -11,7 +11,7 @@ Enter your state or province two letter code : TX
 Enter two letter Country Code : US
 Enter Organization Name : Gluu
 Enter email address for support at your organization : support@gluu.org
-Enter maximum RAM for tomcat in MB [3072] :
+Enter maximum RAM for applications in MB [3072] :
 Optional: enter password for oxTrust and LDAP superuser [hlE3vzf0hMdD] :
 Install oxAuth OAuth2 Authorization Server? [Yes] : 
 Install oxTrust Admin UI? [Yes] : 
