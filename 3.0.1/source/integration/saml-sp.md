@@ -315,7 +315,12 @@ Then, click to add the SAML2SSO profile:
 ![image](../img/integration/saml_sso-profile.png)
 
 Then "Save" and "Update." Wait 5 minutes for the Shibboleth IDP to detect reload the metadata or
-stop and start tomcat.
+stop and start Jetty.
+
+```
+service identity stop
+service identity start
+```
 
 ## Test
 
