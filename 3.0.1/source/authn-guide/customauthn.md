@@ -48,7 +48,7 @@ Create the following files:
 
 - A Python file for your script;
 - One or more XHTML files if you have a custom form for your authentication;
-- One or more XML files (you'll need one for each XHTML file) that provide information to the Tomcat server about how to display the XHTML file.
+- One or more XML files (you'll need one for each XHTML file) that provide information to the web server about how to display the XHTML file.
 
 ## Samples and Documentation
 
