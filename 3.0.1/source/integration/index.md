@@ -25,6 +25,6 @@ The other integration option is to call the federation APIs directly in your app
     Given ongoing maintenance considerations, and the security implications of getting the implementation correct, we **strongly encourage** you to use our commercial OAuth 2.0 client software, [oxd](./oauth2.md/), to secure web applications. 
         
 ## Mobile Apps    
-To integrate custom developed and open source mobile applications with your Gluu Server access management platform, use the AppAuth OpenID Connect libraries for iOS and Android written by Google.
+To integrate custom developed and open source mobile applications with your Gluu Server access management platform, use the [AppAuth OpenID Connect libraries for iOS and Android](https://gluu.org/docs/ce/admin-guide/openid-connect/#appauth-for-mobile-applications) written by Google.
     
 
