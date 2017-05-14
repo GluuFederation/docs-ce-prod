@@ -844,9 +844,9 @@ End current Connect session.
             <td>string</td>
         </tr>
         <tr>
-            <th>session_id</th>
+            <th>session_state</th>
             <td>false</td>
-            <td>Session ID</td>
+            <td>JSON [RFC7159] string that represents the End-User's login state at the OP. It MUST NOT contain the space (" ") character. This value is opaque to the RP. This is REQUIRED if session management is supported.</td>
             <td>string</td>
         </tr>
     </table>
