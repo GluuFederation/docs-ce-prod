@@ -256,7 +256,7 @@ slapd configuration view [here](http://www.openldap.org/doc/admin24/slapdconfig.
 
 The logs for OpenLDAP are stored under the below directory.
 
-`/var/logs/openldap/ldap.log`
+`/var/log/openldap/ldap.log`
 
 >Note: OpenLDAP logs are not populated within Gluu container, its stored and generated under the host system
 
