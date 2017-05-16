@@ -1,5 +1,6 @@
 # docs-ce-prod
-#3.0.1 Production Docs
+**3.0.1 Production Docs**
+
 One Production repo to publish all the version of CE. This Repo will be organized with branches for each version.
 
 Purpose:
