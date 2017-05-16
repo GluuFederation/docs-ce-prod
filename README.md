@@ -1,4 +1,9 @@
 # docs-ce-prod
+
+**Branch 3.0.1 for 3.0.1 production docs
+  Branch 2.4.4 for 2.4.4 Production docs
+  Branch 3.0.2 for version 3.0.2 yet to be released**
+  
 One Production repo to publish all the version of CE. This Repo will be organized with branches for each version.
 
 Purpose:
