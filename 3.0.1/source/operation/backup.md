@@ -11,11 +11,16 @@ import scripts to back up ldif of the LDAP. -->
 ## Tarball Method
 
 1. Stop the server using below command
-	a. # service gluu-server-3.0.1 stop
+
+	`# service gluu-server-3.0.1 stop`
+	
 2. use tar command to take a backup
-	b. # tar cvf gluu301-backup.tar /opt/gluu-server-3.0.1/
+
+	`# tar cvf gluu301-backup.tar /opt/gluu-server-3.0.1/`
+	
 3. Start the server again
-	a. # service gluu-server-3.0.1 start
+
+	`# service gluu-server-3.0.1 start`
 	
 <!--
 ## Script Method
