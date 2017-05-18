@@ -250,7 +250,7 @@ Let's start!
  
 ##### Create custom attribute 'issuerIDP'
 
-
+You need to create a custom attribute named 'issuerIDP' in this stage. Here is how you can create [custom attributes](./attribute.md#custom-attributes).
 
 
 #### Remote AuthN Server Configuration
