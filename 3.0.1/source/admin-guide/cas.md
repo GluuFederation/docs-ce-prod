@@ -18,13 +18,15 @@ If you are continuing with the CAS documentation it is presumed your use case al
 If it doesn't and your app provides other options for SSO (like, SAML) - may be it's time for a switch? You may want to
 see [SAML](./saml.md) and [OpenID Connect](./openid-connect.md) portions of the Gluu Server docs in this case. 
 
-### Key CAS server's endpoints
+## Key CAS server's endpoints
 
 |	Url		|	Description		   |
 |-------------------------------|--------------------------|
 | https://your.gluu.host/idp/profile/cas/login | Start point of SSO flow |
 | https://your.gluu.host/idp/profile/cas/serviceValidate | ticket validation endpoint (CAS) |
 | https://your.gluu.host/idp/profile/cas/samlValidate | ticket validation endpoint (SAML) |
+
+## Configuration
 
 ### Outbound vs. Inbound CAS 
 Gluu provides two main scenarios involving CAS flows. By analogy with SAML scenarios let's call them "outbound CAS" and "inbound CAS".
@@ -35,13 +37,13 @@ allowed to use the service, then redirects user's browser back to the applicatio
 calling respective validate endpoint at CAS server via back-channel connection. Depending on protocol version and extenstion used, some attributes may
 also be sent in response to validation call.
 
-In contrary, inbound CAS is a way for Gluu server itself to delegate authentication to some remote CAS server in your organization's network. By doing so it allows you to leverage your existing infrastracture and broadens your authentication options. From a technical standpoint it's just another [custom authentication script](../authn-guide/customauthn/) which is already pre-packaged in your instance. You can find out more about how to configure it on [corresponding Github page](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations/cas2).
+In contrary, inbound CAS is a way for Gluu server itself to delegate authentication to some remote CAS server in your organization's network. By doing so it allows you to leverage your existing infrastracture and broadens your authentication options. From a technical standpoint it's just another [custom authentication script](../authn-guide/customauthn/) which is already pre-packaged in your instance. You can find out more about how to configure it on [corresponding Github page](https://github.com/GluuFederation/oxAuth/tree/version_3.0.1/Server/integrations/cas2).
 
-## Outbound CAS
+### Outbound CAS
 In Gluu CE 3.0 outbound CAS configuration is split into two different parts. First CAS support must be enabled in web UI.
 Then applications which should be allowed to use this CAS server must be added to service registry - this part is done from linux console (inside the container)
 
-### Enabling CAS
+#### Enabling CAS
 
 !!! Note
     CAS is very demanding in terms of clocks' syncronization between CAS server and CAS client
@@ -50,18 +52,18 @@ Then applications which should be allowed to use this CAS server must be added t
 Please follow next steps to enable the feature:
 
 1. Log in to oxTrust administrator web UI
-2. Proceed to "Configuration -> Manage authentication -> CAS Protocol"
+2. Proceed to "Configuration -> Manage authentication" page, "CAS Protocol" tab
 3. Leave all settings on the page at defaults, set "Enabled" checkbox and click the "Update" button
 4. Click the "Update configuration files" button
 
 ![tr-relying-party](../img/cas/cas_enabling.jpg)  
 
-### Configuring service registry
+#### Configuring service registry
 
 Let's start by configuring a very basic CAS setup which only returns user's id to requesting application (will use it as a foundation to build a more functional setup(s) upon later on)
 
 1. Move into the Gluu CE container: `# service gluu-server-3.0.1 login`
-2. Edit `/opt/gluu/jetty/identity/conf/shibboleth3/idp/cas-protocol.xml.vm` template file by putting a "ServiceDefinition" bean reloadableServiceRegistry inside pre-existing "reloadableServiceRegistry" bean fxas examplified below. You must use a regexp defining your application instead of `https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*`
+2. Edit `/opt/gluu/jetty/identity/conf/shibboleth3/idp/cas-protocol.xml.vm` template file by putting a "ServiceDefinition" bean inside pre-existing "reloadableServiceRegistry" bean as examplified below. You must use a regexp defining your application instead of `"https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*"` Using `".*"` as pattern can serve as a wildcard ("allow-all") rule in a test setup.
 3. Restart the idp service to apply your changes: `# service idp restart`
 
 ```
@@ -91,5 +93,13 @@ Let's start by configuring a very basic CAS setup which only returns user's id t
     </bean>
 ```
 
-At this point you should start getting a valid CAS response from `https://your.gluu.host/idp/profile/cas/serviceValidate` containing at least user id.
-CAS as part of Shibboleth IdP is logging to `/opt/shibboleth-idp/logs/idp-process.log`. You can control verbosity of the IdP's logs by editing logging levels in `/opt/shibboleth-idp/conf/logback.xml`
+At this point you should start getting a successful CAS validation response from `https://your.gluu.host/idp/profile/cas/serviceValidate` containing at least your user id (which is `uid` attribute by default).
+
+## Logging
+
+### Outbound CAS logging
+As part of Shibboleth IdP, CAS is now logging to `/opt/shibboleth-idp/logs/idp-process.log`. You can control verbosity of the IdP's logs by editing logging levels in `/opt/shibboleth-idp/conf/logback.xml`
+
+### Inbound CAS logging
+As inbound CAS is implemented with oxAuth's custom authentication script, the same rules as for other custom scripts apply. Most of events are rooted to `/opt/gluu/jetty/oxauth/logs/oxauth_script.log` file. General oxAuth log may also provide some clues: `/opt/gluu/jetty/oxauth/logs/oxauth.log`
+You can control verbosity of oxAuth's logs by editing **log4j**'s configuration in `WEB-INF/classes/log4j2.xml` **inside** `/opt/gluu/jetty/oxauth/webapps/oxauth.war` package.
