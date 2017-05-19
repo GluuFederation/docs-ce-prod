@@ -97,19 +97,23 @@ At this point you should start getting a successful CAS validation response from
 
 #### Enabling attributes you plan to release in Shibboleth IdP
 
-Shibboleth IdP requires you to define all atributes it will work with when serving SAML requests in `/opt/shibboleth-idp/conf/attribute-resolver.xml` file. Though Gluu CE 3.0.1 doesn't offer complete CAS support in admin web UI, there is a neat hack which can make this step easier for you. As all attributes added to list of released attributes of any SAML TR in web UI are automatically placed in the `attribute-resolver.xml`, you can create a bogus SAML TR the only purpose of which will be storing attributes you need to release to all your CAS apps. Note that it has to do nothing with actual descision about whether each attribute should be sent to a specific requesting application (you'll learn how to do this in the next section).
+Shibboleth IdP requires you to define all atributes it will work with when serving SAML requests in `/opt/shibboleth-idp/conf/attribute-resolver.xml` file. Though Gluu CE 3.0.1 doesn't offer complete CAS support in admin web UI, there is a neat hack which can make this step easier for you. As all attributes added to list of released attributes of any SAML TR in web UI are automatically placed in the `attribute-resolver.xml`, you can create a bogus SAML TR the only purpose of which will be storing attributes you need to release to all your CAS apps. Note that it has nothing to do with actual decision about whether each attribute should be sent to a specific requesting application (you'll learn how to do this in the next section).
 
-You can use stub metadata below to create this TR with "File" method of metadata provisioning:
-
-```
-```
 !!! Note 
     For security concerns, you should make sure that nobody with malicious intent will be able to use this TR to fool your IdP into releasing user's attributes to them.
-    This may be achieved by choosing some completely random and very long string for `entityId`, as well as generating your own bogus SP certificate just for this TR and requiring signing of SAML requests for it
+    This may be achieved by choosing some completely random and very long string for `entityId` and hostname in the assertion consumer endpoint url; generating your own bogus SP certificate just for this TR and requiring signing of SAML requests for it will add security too (though it's already an overkill)
+    
+You can download a ready stub metadata file from [here](./cas_saml_tr_stub_metadata.xml) and update it as shown on picture below:
+
+![cas-stub-saml-tr](../img/cas/cas_stub_saml_tr.jpg) 
 
 Please follow next steps to create the stub TR:
 
-1.
+1. Log in to web UI as administrator
+2. Move to "SAML -> Trust Relationships" and click "Add Relationship" button
+3. Fill in all fields as shown on picture below, select "File" method of metadata provision and upload your customizing stub metadata file, add attributes you need to release to the list at the bottom of the page, click the "Add" button
+
+[Optional] Check "Configure Relying Party" checkbox, add "SAML2SSO" profile to the list while making sure "signRequests" setting is set to "Always"
 
 #### Specifying list of attributes to release
 
