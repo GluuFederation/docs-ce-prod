@@ -93,8 +93,6 @@ Click `Enable` checkbox at the bottom of the page.
 
 Now users should be able to self-register through the user registration link, which should be available at `<hostname>/identity/register`.
 
-![image]
-(../img/admin-guide/user/config-manage-script_enable.png)
 
 ## LDAP Synchronization 
 LDAP Synchronization, a.k.a. Cache Refresh, is the process of connecting one or more existing backend LDAP servers, like Microsoft Active Directory, with the Gluu Server's local LDAP server. Synching people and attributes from a backend server speeds up authentication transactions. It is possible to perform attribute transformations, changing the name of attributes, or even using an interception script to change the values. Transformations are stored in the Gluu LDAP service. 
