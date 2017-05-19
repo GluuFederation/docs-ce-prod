@@ -45,7 +45,7 @@ Then applications which should be allowed to use this CAS server must be added t
 
 #### Enabling CAS
 
-!!! Note
+!!! Warning
     CAS is very demanding in terms of clocks' syncronization between CAS server and CAS client
     Make sure ntp is configured and running on both hosts, and their times are as close as possible before proceeding!
 
@@ -99,27 +99,35 @@ At this point you should start getting a successful CAS validation response from
 
 Shibboleth IdP requires you to define all atributes it will work with when serving SAML requests in `/opt/shibboleth-idp/conf/attribute-resolver.xml` file. Though Gluu CE 3.0.1 doesn't offer complete CAS support in admin web UI, there is a neat hack which can make this step easier for you. As all attributes added to list of released attributes of any SAML TR in web UI are automatically placed in the `attribute-resolver.xml`, you can create a bogus SAML TR the only purpose of which will be storing attributes you need to release to all your CAS apps. Note that it has nothing to do with actual decision about whether each attribute should be sent to a specific requesting application (you'll learn how to do this in the next section).
 
-!!! Note 
+!!! Warning 
     For security concerns, you should make sure that nobody with malicious intent will be able to use this TR to fool your IdP into releasing user's attributes to them.
     This may be achieved by choosing some completely random and very long string for `entityId` and hostname in the assertion consumer endpoint url; generating your own bogus SP certificate just for this TR and requiring signing of SAML requests for it will add security too (though it's already an overkill)
     
 You can download a ready stub metadata file from [here](./cas_saml_tr_stub_metadata.xml) and update it as shown on picture below:
 
-![cas-stub-saml-tr](../img/cas/cas_stub_saml_tr.jpg) 
+![cas-stub-saml-metadata-edited](../img/cas/cas_stub_saml_metadata_edited.jpg) 
 
 Please follow next steps to create the stub TR:
 
 1. Log in to web UI as administrator
 2. Move to "SAML -> Trust Relationships" and click "Add Relationship" button
-3. Fill in all fields as shown on picture below, select "File" method of metadata provision and upload your customizing stub metadata file, add attributes you need to release to the list at the bottom of the page, click the "Add" button
+3. Fill in all fields as shown on picture below, select "File" method of metadata provision and upload your customizing stub metadata file, add attributes you need to release to the list at the bottom of the page
+4. [Optional] Set "Configure Relying Party" checkbox, add "SAML2SSO" profile to the list while making sure "signRequests" setting is set to "Always"
+5. Click the "Add" button
 
-[Optional] Check "Configure Relying Party" checkbox, add "SAML2SSO" profile to the list while making sure "signRequests" setting is set to "Always"
+![cas-stub-saml-tr](../img/cas/cas_stub_saml_tr.jpg) 
 
 #### Specifying list of attributes to release
 
-So far our setup only releases user id which may happen to be too limiting for most applications. Being a part of Shibboleth now, CAS make uses on its powerful attribute release/filter policies engine to determine which attributes to send to each destination.
+So far our setup only has been releasing user id which may happen to be too limiting for most applications. Being a part of Shibboleth now, CAS makes use of its powerful attribute release/filter policies engine to determine which attributes to send to each destination.
 
-At the mom
+Currently the only way to tweak attribute release is to edit template file in the container. Please follow next steps to release attributes we defined in previous section to CAS application we added to service registry in the beginning:
+
+1.
+2.
+3.
+
+
 
 ## Logging
 
