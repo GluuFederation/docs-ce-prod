@@ -1,11 +1,11 @@
 # CAS
 ## Overview
-The Central Authentication Service (CAS) is a single sign-on protocol for the web. Its purpose is to permit a user to access multiple applications while providing their credentials (such as userid and password) only once while allowing applications to authenticate users without gaining access to those credentials, such as a password. The name CAS also refers to a software package that implements this protocol, which recently become a part of Shibboleth IdP v3 package. As Gluu CE includes Shibboleth to support for SAML protocol flows, it incorporates all CAS-related functionality that comes with it. The most recent version of CAS protocol is 3. Shibboleth support most of the [CAS protocol v2 specification](https://apereo.github.io/cas/5.0.x/protocol/CAS-Protocol-V2-Specification.html), including attribute release and CAS proxy support.
+The Central Authentication Service (CAS) is a single sign-on protocol for the web. Its purpose is to permit a user to access multiple applications while providing their credentials (such as userid and password) only once while allowing applications to authenticate users without gaining access to those credentials, such as a password. The name CAS also refers to a software package that implements this protocol, which recently has become a part of Shibboleth IdP v3 package. As Gluu CE includes Shibboleth to add support for SAML protocol flows, it incorporates all CAS-related functionality that comes with it. The most recent version of CAS protocol is 3. Shibboleth supports most of the [CAS protocol v2 specification](https://apereo.github.io/cas/5.0.x/protocol/CAS-Protocol-V2-Specification.html), including attribute release and CAS proxy support.
 
 Nowdays CAS is hardly the most advanced and agile SSO protocol. Unless you've got a legacy software or pre-existing infrastracture
 in your network which revolves around it, chances are high there are much better solutions at hand.
 
-Refer to these five considerations to determine which protocol 
+Please refer to these five considerations to determine which protocol 
 to use for single sign-on (SSO):
 
 - If you have an application that already supports SAML, use SAML.
@@ -18,11 +18,19 @@ If you are continuing with the CAS documentation it is presumed your use case al
 If it doesn't and your app provides other options for SSO (like, SAML) - may be it's time for a switch? You may want to
 see [SAML](./saml.md) and [OpenID Connect](./openid-connect.md) portions of the Gluu Server docs in this case. 
 
+### Key CAS server's endpoints
+
+|	Url		|	Description		   |
+|-------------------------------|--------------------------|
+| https://your.gluu.host/idp/profile/cas/login | Start point of SSO flow |
+| https://your.gluu.host/idp/profile/cas/serviceValidate | ticket validation endpoint (CAS) |
+| https://your.gluu.host/idp/profile/cas/samlValidate | ticket validation endpoint (SAML) |
+
 ### Outbound vs. Inbound CAS 
 Gluu provides two main scenarios involving CAS flows. By analogy with SAML scenarios let's call them "outbound CAS" and "inbound CAS".
 
 Outbound CAS is a traditional way to employ the protocol. Website or application (or, more likely, CAS client acting on behalf of them)
-redirects a user to a designated CAS server for authentication and authorization. CAS server authenticates the user, checks whether such application is
+redirects a user to a designated CAS server (in this case your Gluu CE instance) for authentication and authorization. CAS server authenticates the user, checks whether such application is
 allowed to use the service, then redirects user's browser back to the application/CAS client with a `service ticket`. The ticket is then validated by them by
 calling respective validate endpoint at CAS server via back-channel connection. Depending on protocol version and extenstion used, some attributes may
 also be sent in response to validation call.
