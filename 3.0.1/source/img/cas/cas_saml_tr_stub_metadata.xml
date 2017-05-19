@@ -1,0 +1,70 @@
+<EntityDescriptor entityID="https://some.long.string.EEEEEEEEEEEEEEEEEEEE.CCCCCCCCCCCCCCCC.DDDDDDDDDDDDDD/shibboleth-sp" xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:mdalg="urn:oasis:names:tc:SAML:metadata:algsupport" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui" xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+        <Extensions> 
+            <mdalg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/>
+            <mdalg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#sha384"/>
+            <mdalg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+            <mdalg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#sha224"/>
+            <mdalg:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+            <mdalg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha512"/>
+            <mdalg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha384"/>
+            <mdalg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256"/>
+            <mdalg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha224"/>
+            <mdalg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/>
+            <mdalg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha384"/>
+            <mdalg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+            <mdalg:SigningMethod Algorithm="http://www.w3.org/2009/xmldsig11#dsa-sha256"/>
+            <mdalg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha1"/>
+            <mdalg:SigningMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+            <mdalg:SigningMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/>
+        </Extensions>
+
+        
+        <!-- An SP supporting SAML 1 and 2 contains this element with protocol support as shown. -->
+        <SPSSODescriptor
+            protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol urn:oasis:names:tc:SAML:1.1:protocol http://schemas.xmlsoap.org/ws/2003/07/secext">
+
+            <KeyDescriptor>
+                <ds:KeyInfo>
+                    <ds:X509Data>
+                        <ds:X509Certificate>
+                            MIIDITCCAgmgAwIBAgIJAKO5MO8pFStiMA0GCSqGSIb3DQEBBQUAMBsxGTAXBgNV
+                            BAMTEHNwaG9zdC1zaGliLnNpdGUwHhcNMTYwODEwMjExODM1WhcNMjYwODA4MjEx
+                            ODM1WjAbMRkwFwYDVQQDExBzcGhvc3Qtc2hpYi5zaXRlMIIBIjANBgkqhkiG9w0B
+                            AQEFAAOCAQ8AMIIBCgKCAQEAsrvQF3tsuHDzcEZioCTkr4m1pxb2rfvUWrKoXdqL
+                            86MKwugPPfieYFe2hHsg6PsnWj5CK6pn8i6Vcpy8izMriTLDfdAyGQC9KJTBu/m9
+                            Gl41QvfeBV7BaCk9ka/s/tQcIVMnINItHvMEdAblcaMIYSsiK+rc24rvIcJo8N5V
+                            Yw3DUNNu/Bqty4wqon4y+0TH2T8N6A8/Nw3HPcbEp7ZkGEgZ8yo+xgrFKblykkVc
+                            HWCkA5vx+y+ITYeCXV8WQ10oOteSFfxuVqequ1Vk30NzJIenR6n/6J1qqMYhfJVo
+                            h7RcdeY+FfUAafkCG4oZk+zAhZ7boH67ud/3sBshapa1JwIDAQABo2gwZjBFBgNV
+                            HREEPjA8ghBzcGhvc3Qtc2hpYi5zaXRlhihodHRwczovL3NwaG9zdC1zaGliLnNp
+                            dGU6ODQ0My9zaGliYm9sZXRoMB0GA1UdDgQWBBT6kue+qc6JfGL04fYY6H2+kJcx
+                            ETANBgkqhkiG9w0BAQUFAAOCAQEAjJVczz4hJAjFCnQKl8pOy5JMAYQ7vwYl/Oyt
+                            Ou5AEvAEqmInZOehRkK4HkiHRpGBpwp8L3UTqkNvUK7lB+Re8u7aVNELYGl37ofY
+                            I5Qr+OBzKvvU6y4i9a8knFV9Q39gx31xUBGDzcUw0VMvJCVUx6j9TZojY9vQCA9i
+                            2P7RZ/noTOg24bgUmMc9wpjI/YlayOE0rwdIx6fNBeQVe5ptobJMsdVXAV9C1u+P
+                            Ai6bv3vqYKPECf/AvahII+KS82RXt8vA66mu1iNO4z/YOakYwSppb1SY4a2uFbAU
+                            IVbmhJTmfzZrwCJJfqYDeFZ4/iMjwFetTeBuUzXPzOgF4mV10Q==
+                        </ds:X509Certificate>
+                    </ds:X509Data>
+                </ds:KeyInfo>
+                <EncryptionMethod Algorithm="http://www.w3.org/2009/xmlenc11#aes128-gcm"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2009/xmlenc11#aes192-gcm"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2009/xmlenc11#aes256-gcm"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes128-cbc"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes192-cbc"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2009/xmlenc11#rsa-oaep"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p"/>
+            </KeyDescriptor>
+
+            <AssertionConsumerService index="1" isDefault="true"
+                Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+                Location="https://some.long.bogus.hostname.AAAAAAAAA.BBBBBBBBBBBBBBBB.CCCCCCCCCCC/Shibboleth.sso/SAML2/POST"/>
+
+        </SPSSODescriptor>
+
+</EntityDescriptor>
+
+
