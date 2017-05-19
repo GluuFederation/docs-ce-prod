@@ -41,7 +41,7 @@ In contrary, inbound CAS is a way for Gluu server itself to delegate authenticat
 
 ### Outbound CAS
 In Gluu CE 3.0 outbound CAS configuration is split into two different parts. First CAS support must be enabled in web UI.
-Then applications which should be allowed to use this CAS server must be added to service registry - this part is done from linux console (inside the container)
+Then applications which should be allowed to use this CAS server must be added to service registry - this part is done from linux console (inside the container). After those mandatory steps are completed, you also may want to define a list of attributes which should be released in addition to user id which is sent by default.
 
 #### Enabling CAS
 
@@ -94,6 +94,28 @@ Let's start by configuring a very basic CAS setup which only returns user's id t
 ```
 
 At this point you should start getting a successful CAS validation response from `https://your.gluu.host/idp/profile/cas/serviceValidate` containing at least your user id (which is `uid` attribute by default).
+
+#### Enabling attributes you plan to release in Shibboleth IdP
+
+Shibboleth IdP requires you to define all atributes it will work with when serving SAML requests in `/opt/shibboleth-idp/conf/attribute-resolver.xml` file. Though Gluu CE 3.0.1 doesn't offer complete CAS support in admin web UI, there is a neat hack which can make this step easier for you. As all attributes added to list of released attributes of any SAML TR in web UI are automatically placed in the `attribute-resolver.xml`, you can create a bogus SAML TR the only purpose of which will be storing attributes you need to release to all your CAS apps. Note that it has to do nothing with actual descision about whether each attribute should be sent to a specific requesting application (you'll learn how to do this in the next section).
+
+You can use stub metadata below to create this TR with "File" method of metadata provisioning:
+
+```
+```
+!!! Note 
+    For security concerns, you should make sure that nobody with malicious intent will be able to use this TR to fool your IdP into releasing user's attributes to them.
+    This may be achieved by choosing some completely random and very long string for `entityId`, as well as generating your own bogus SP certificate just for this TR and requiring signing of SAML requests for it
+
+Please follow next steps to create the stub TR:
+
+1.
+
+#### Specifying list of attributes to release
+
+So far our setup only releases user id which may happen to be too limiting for most applications. Being a part of Shibboleth now, CAS make uses on its powerful attribute release/filter policies engine to determine which attributes to send to each destination.
+
+At the mom
 
 ## Logging
 
