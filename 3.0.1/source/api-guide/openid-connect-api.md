@@ -170,21 +170,35 @@ The Authorization Endpoint performs Authentication of the end-user. This is done
             <td>string</td>
         </tr>
 </table>
-- query
+
+For authorization endpoint, parameter **response_mode** can have any of the below modes 
+and in each mode authorization response is encoded in different way. 
 
 <table border="1">
         <tr>
-            <th>Parameter</th>
-            <th>Required</th>
+            <th>Authorization Mode</th>
             <th>Description</th>
-            <th>Data Type</th>
         </tr>
         <tr>
-            <th>response_mode</th>
-            <td>false</td>
-            <td>Informs the Authorization Server of the mechanism to be used for returning parameters from the Authorization Endpoint. This use of this parameter is NOT RECOMMENDED when the Response Mode that would be requested is the default mode specified for the Response Type.</td>
-            <td>string</td>
+            <th>query</th>
+            <td>Authorization Response parameters are encoded in the 
+            query string added to the redirect_uri when redirecting back to the Client.</td>
         </tr>
+        <tr>
+            <th>fragment</th>
+            <td>Authorization Response parameters are encoded in the 
+            fragment added to the redirect_uri when redirecting back to the Client.
+            </td>
+        </tr>
+        <tr>
+            <th>form_post</th>
+            <td>Authorization Response parameters are encoded as HTML form values 
+            that are auto-submitted in the User Agent, and thus are transmitted via 
+            the HTTP POST method to the Client, with the result parameters being 
+            encoded in the body using the application/x-www-form-urlencoded format.
+            </td>
+        </tr>
+         
 </table>
 
 #### Response
@@ -785,6 +799,7 @@ The request is sent as an `HTTP POST` to the client registration endpoint as JSO
 |Parameter|Description|
 |---------|-----------|
 |clientId |The unique client identifier usually INUM|
+|registration_access_token |This parameter is not a query url parameter, it is a HTTP header parameter|
  
 #### Response
 Client Identificator or INUM, a client shared secret and the account expiration date in a [JSON[Response]]
