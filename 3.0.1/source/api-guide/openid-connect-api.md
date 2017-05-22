@@ -169,12 +169,6 @@ The Authorization Endpoint performs Authentication of the end-user. This is done
             <td>This is an optional parameter</td>
             <td>string</td>
         </tr>
-        <tr>
-            <th>securityContext</th>
-            <td>false</td>
-            <td>This is an injectable interface that provides access to security related information.</td>
-            <td>string</td>
-        </tr>
 </table>
 - query
 
@@ -477,7 +471,34 @@ The Authorization Endpoint performs Authentication of the end-user.
 
 To obtain an Access Token, an ID Token, and optionally a Refresh Token,
 the RP (Client) sends a Token Request to the Token Endpoint to obtain a
-Token Response.
+Token Response. Token Endpoint requires Client Authentication methods to 
+authenticate clients to the authorization server.
+
+Below are the Client Authentication methods:
+<table border="1">
+        <tr>
+            <th>Method</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <th>client_secret_basic</th>
+            <td>Clients that have received a client_secret value from the 
+            Authorization Server authenticate with the Authorization Server 
+            using the HTTP Basic authentication scheme. </td>
+        </tr>
+        <tr>
+            <th>client_secret_post</th>
+            <td>Clients that have received a client_secret value from the Authorization Server, authenticate with the 
+            Authorization Server by including the Client Credentials in the request body. </td>
+        </tr>
+        <tr>
+            <th>client_secret_jwt</th>
+            <td>Clients that have received a client_secret value from the 
+            Authorization Server create a JWT using an HMAC SHA algorithm</td>
+        </tr>
+</table>
+
+For more details on [client Authentication](http://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication) 
 
 ###### URL
     http://gluu.org/oxauth/token
@@ -617,7 +638,6 @@ The ClientInfo Endpoint is an OAuth 2.0 Protected Resource that returns Claims a
 |---------|-----------|---------|
 |access_token |The access token for oxAuth|string|
 |authorization| The authorization for the client|string|
-|securityContext| Injectable interface providing access to security info|context|
 
 #### clientinfoPost
 
@@ -625,7 +645,6 @@ The ClientInfo Endpoint is an OAuth 2.0 Protected Resource that returns Claims a
 |---------|-----------|---------|
 |access_token |The access token for oxAuth|string|
 |authorization| The authorization for the client|string|
-|securityContext| Injectable interface providing access to security info|context|
 
 ## OpenID Connect Register Client API
 
@@ -724,7 +743,6 @@ The request is sent as an `HTTP POST` to the client registration endpoint as JSO
 |clientId |The unique client identifier usually INUM|
 |authorization| The authorization for the client|
 |httpRequest| The HTTP Request object|
-|securityContext| Injectable interface providing access to security info|
 
 #### Response
 Client Identificator or INUM, a client shared secret and the account expiration date in a [JSON[Response]]
@@ -767,7 +785,6 @@ The request is sent as an `HTTP POST` to the client registration endpoint as JSO
 |Parameter|Description|
 |---------|-----------|
 |clientId |The unique client identifier usually INUM|
-|securityContext|injectable interface that provides access to security related info.|
  
 #### Response
 Client Identificator or INUM, a client shared secret and the account expiration date in a [JSON[Response]]
