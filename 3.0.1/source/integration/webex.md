@@ -2,7 +2,7 @@
 
 ## Custom Attribute Creation
 
-We need to create couple of custom attributes and one custom nameID. List of custom attributes and nameID is stated below. Here ( https://gluu.org/docs/ce/3.0.1/admin-guide/attribute/#custom-attributes ) is how we can create custom attributes. 
+We need to create couple of custom attributes and one custom nameID. List of custom attributes and nameID is stated below. [Here](../admin-guide/saml.md#custom-nameid) is how we can create custom attributes. 
 
  - uidwebex
  - emailwebex
