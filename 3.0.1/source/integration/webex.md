@@ -13,34 +13,35 @@ We need to create couple of custom attributes and one custom nameID. List of cus
 In secord part ( oxTrust operation ) of creating custom attribute, we need to follow couple of points for these special attributes. Here is how each attribute should be created: 
 
  - uidwebex: 
-
    - Name: uidwebex
    - SAML1 URI: uid
    - SAML2 URI: uid
    - DisplayName: uidwebex
    - Type: Text
    - Rest are default values. 
- - emailwebex:
 
+ - emailwebex:
    - Name: emailwebex
    - SAML1 URI: email
    - SAML2 URI: email
    - DisplayName: wxemail
    - Rest are default values
- - wxfirstname
 
+ - wxfirstname
    - Name: firstnamewebex
    - SAML1 URI: firstname
    - SAML2 URI: firstname
    - DisplayName: wxfirstname
    - Type: Text
    - Rest are default values. 
+   
  - wxlastname: 
    - Name: lastnamewebex
    - SAML1 URI: lastname
    - SAML2 URI: lastname
    - DisplayName: wxlastname
    - Rest are default values. 
+   
  - webexnameid
    - Name: webexnameid
    - SAML1 URI: urn:gluu:dir:attribute-def:webexnameid
