@@ -170,22 +170,7 @@ The Authorization Endpoint performs Authentication of the end-user. This is done
             <td>string</td>
         </tr>
 </table>
-- query
 
-<table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>response_mode</th>
-            <td>false</td>
-            <td>Informs the Authorization Server of the mechanism to be used for returning parameters from the Authorization Endpoint. This use of this parameter is NOT RECOMMENDED when the Response Mode that would be requested is the default mode specified for the Response Type.</td>
-            <td>string</td>
-        </tr>
-</table>
 
 #### Response
 [JSON[Response]](#JSON[Response])
