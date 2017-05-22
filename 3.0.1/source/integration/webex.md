@@ -99,25 +99,27 @@ We need to modify attributeDefinition for these attributes. Configuration is app
    - NameID 'webexnameid': 
      - Append 'webexnameid' in 'if statement'
      - Declaration of 'webexnameid': 
-```
-    <resolver:AttributeDefinition id="webexnameid"
-                                      xsi:type="Simple"
-                                      xmlns="urn:mace:shibboleth:2.0:resolver:ad"
-                                      sourceAttributeID="mail">
-        <resolver:Dependency ref="siteLDAP" />
-        <resolver:AttributeEncoder xsi:type="SAML2StringNameID"
-                                   xmlns="urn:mace:shibboleth:2.0:attribute:encoder"
-                                   nameFormat="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"/>
-    </resolver:AttributeDefinition>
+```    
+<resolver:AttributeDefinition id="webexnameid"
+        xsi:type="Simple"
+        xmlns="urn:mace:shibboleth:2.0:resolver:ad"
+        sourceAttributeID="mail">
+    <resolver:Dependency ref="siteLDAP" />
+    <resolver:AttributeEncoder xsi:type="SAML2StringNameID"
+             xmlns="urn:mace:shibboleth:2.0:attribute:encoder"
+             nameFormat="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"/>
+ </resolver:AttributeDefinition>
+ 
 ```
      - SAML2 NameID Generation: 
        - File: saml-nameid.xml
        - Location: /opt/shibboleth-idp/conf
        - Add bean inside SAML2 NameID util:list
 ```
-        <bean parent="shibboleth.SAML2AttributeSourcedGenerator"
-            p:format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
-            p:attributeSourceIds="#{ {'webexnameid'} }" />
+<bean parent="shibboleth.SAML2AttributeSourcedGenerator"
+    p:format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
+    p:attributeSourceIds="#{ {'webexnameid'} }" />
+    
 ```
   - Restart 'idp' and 'identity' services with: 
     - service idp restart
