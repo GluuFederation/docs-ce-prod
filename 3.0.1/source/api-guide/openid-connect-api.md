@@ -470,8 +470,6 @@ The Authorization Endpoint performs Authentication of the end-user.
 
 ## OpenID Connect Token Endpoint
 
-
-
 ### Overview
 
 
@@ -509,9 +507,47 @@ Below are the Client Authentication methods:
             <th>client_secret_jwt</th>
             <td>Clients that have received a client_secret value from the 
             Authorization Server create a JWT using an HMAC SHA algorithm</td>
-        </tr>
+	 </tr>
+	 <tr>
+            <th>private_key_jwt</th>
+            <td>Clients that have registered a public key sign a JWT using that key</td>
+	 </tr>
+	 <tr>
+            <th>none</th>
+            <td>The Client does not authenticate itself at the Token Endpoint, either because it uses only the Implicit Flow (and so does not use the Token Endpoint) or because it is a Public Client with no Client Secret or other authentication mechanism.</td>
+	 </tr>
 </table>
-
+The JWT MUST contain the following REQUIRED Claim Values and MAY contain the following OPTIONAL Claim Values: 
+<table border="1">
+        <tr>
+            <th>Claim Values</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <th>iss</th>
+            <td>REQUIRED. Issuer. This MUST contain the client_id of the OAuth Client.</td>
+        </tr>
+        <tr>
+            <th>sub</th>
+            <td>REQUIRED. Subject. This MUST contain the client_id of the OAuth Client. </td>
+        </tr>
+        <tr>
+            <th>aud</th>
+            <td>REQUIRED. Audience. The aud (audience) Claim. Value that identifies the Authorization Server as an intended audience. The Authorization Server MUST verify that it is an intended audience for the token. The Audience SHOULD be the URL of the Authorization Server's Token Endpoint.</td>
+	 </tr>
+	 <tr>
+            <th>jti</th>
+            <td>REQUIRED. JWT ID. A unique identifier for the token, which can be used to prevent reuse of the token. These tokens MUST only be used once, unless conditions for reuse were negotiated between the parties; any such negotiation is beyond the scope of this specification.</td>
+	 </tr>
+	 <tr>
+            <th>exp</th>
+            <td>REQUIRED. Expiration time on or after which the ID Token MUST NOT be accepted for processing.</td>
+	 </tr>
+	 <tr>
+            <th>iat</th>
+            <td>OPTIONAL. Time at which the JWT was issued. </td>
+	 </tr>
+</table>
 For more details on [client Authentication](http://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication) 
 
 ###### URL
@@ -982,8 +1018,6 @@ sent as a Bearer Token.
         </tr>
 </table>
 
-
-- - -
 ##### requestUserInfoGet
 **GET** `/oxauth/userinfo`
 
