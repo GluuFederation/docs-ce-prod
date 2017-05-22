@@ -63,6 +63,7 @@ pages:
             - 'Salesforce': 'integration/salesforce.md'
             - 'Dropbox': 'integration/dropbox.md'
             - 'GitHub Enterprise': 'integration/github-enterprise.md'
+            - 'Cisco WebEx': 'integration/webex.md'
 - Reference:
         - Gluu API Guide:
             - 'Custom ID Generation': 'api-guide/api.md'
