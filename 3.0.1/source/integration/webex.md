@@ -96,7 +96,7 @@ We need to modify attributeDefinition for these attributes. Configuration is app
         <resolver:AttributeEncoder xsi:type="enc:SAML2String" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified" name="lastname" />
     </resolver:AttributeDefinition>
  ```
-   - NameID 'webexnameid': 
+  - NameID 'webexnameid': 
      - Append 'webexnameid' in 'if statement'
      - Declaration of 'webexnameid': 
 ```    
@@ -111,7 +111,7 @@ We need to modify attributeDefinition for these attributes. Configuration is app
  </resolver:AttributeDefinition>
  
 ```
-     - SAML2 NameID Generation: 
+  - SAML2 NameID Generation: 
        - File: saml-nameid.xml
        - Location: /opt/shibboleth-idp/conf
        - Add bean inside SAML2 NameID util:list
