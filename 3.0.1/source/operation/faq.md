@@ -49,7 +49,7 @@ ones used by your installation):
 2) Run this command:
 
 ```
-#/opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -b o=gluu gluuGroupType=gluuManagerGroup 1.1
+#/opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager,o=gluu' -w 'YOUR_BIND_PASSWORD' -b o=gluu gluuGroupType=gluuManagerGroup 1.1
 ```
 
 and remember the displayed dn of the Gluu Manager Group for future use.
@@ -57,7 +57,7 @@ and remember the displayed dn of the Gluu Manager Group for future use.
 3) Run this command:
 
 ```
-# /opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -b o=gluu ou=people 1.1
+# /opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager,o=gluu' -w 'YOUR_BIND_PASSWORD' -b o=gluu ou=people 1.1
 ```
 
 and remember the displayed dn of the People ou for future use.
@@ -86,7 +86,7 @@ step 3).
 5) Run this command:
 
 ```
-# /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/add_user.ldif
+# /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager,o=gluu' -w 'YOUR_BIND_PASSWORD' -f ~/add_user.ldif
 ```
 
 This will create new user tempadmin with attributes provided via file
@@ -111,7 +111,7 @@ specified in the 1st line of the file in step 4).
 7) Run this command:
 
 ```
-# /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/add_2_group.ldif
+# /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager,o=gluu' -w 'YOUR_BIND_PASSWORD' -f ~/add_2_group.ldif
 ```
 
 This will add tempadmin user to the IdP managers group and you can then
@@ -144,7 +144,7 @@ While testing authentication scripts and mechanisms it is not unlikely that you 
 1. Run the following command to collect the `inum` for the Gluu Server installation:   
 
     ```
-    $/opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -j ~/.pw -b "ou=appliances,o=gluu" -s one "objectclass=*" oxAuthenticationMode
+    $/opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager,o=gluu" -j ~/.pw -b "ou=appliances,o=gluu" -s one "objectclass=*" oxAuthenticationMode
     ```
     
 2. Create a `LDIF` file with the contents below:
@@ -164,7 +164,7 @@ While testing authentication scripts and mechanisms it is not unlikely that you 
 
 3. Replace the the authentication mode using `ldapmodify` command.
     ```
-    $/opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/changeAuth.ldif
+    $/opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager,o=gluu' -w 'YOUR_BIND_PASSWORD' -f ~/changeAuth.ldif
     ```
 
 >Reverting authentication could also done using LDAP browser and modifiying oxAuthenticationMode to 'internal'
@@ -180,7 +180,7 @@ export newgluuadmin='myusername'
 export ldiffile='addManagers.ldif'
 
 # run this and verify that the output is for your account
-/opt/opendj/bin/ldapsearch -h localhost -p 1636 -D "cn=directory manager" -j ~/.pw -Z -X -b "o=gluu" "uid=$newgluuadmin" uid givenName sn cn
+/opt/opendj/bin/ldapsearch -h localhost -p 1636 -D "cn=directory manager,o=gluu" -j ~/.pw -Z -X -b "o=gluu" "uid=$newgluuadmin" uid givenName sn cn
 
 dn: inum=@!134D.3C3D.796E.FECE!0001!E022.CC3C!0000!A8F2.DE1E.D7FB,ou=people,o=@!134D.
  3C3D.796E.FECE!0001!E022.CC3C,o=gluu
@@ -196,7 +196,7 @@ Now you can run these commands to make the file above:
 head -n1 /opt/opendj/ldif/groups.ldif > $ldiffile
 echo 'changetype: modify' >> $ldiffile
 echo 'add: member' >> $ldiffile
-echo "member: $(/opt/opendj/bin/ldapsearch -h localhost -p 1636 -D "cn=directory manager" -j ~/.pw -Z -X -b "o=gluu" "uid=$newgluuadmin" uid givenName sn cn |grep -A1 dn |cut -d ' ' -f 2- | sed 'N;s/\n//')" >> $ldiffile
+echo "member: $(/opt/opendj/bin/ldapsearch -h localhost -p 1636 -D "cn=directory manager,o=gluu" -j ~/.pw -Z -X -b "o=gluu" "uid=$newgluuadmin" uid givenName sn cn |grep -A1 dn |cut -d ' ' -f 2- | sed 'N;s/\n//')" >> $ldiffile
 ```
 
 The resulting ldif will look like this:
@@ -211,7 +211,7 @@ member: inum=@!134D.3C3D.796E.FECE!0001!E022.CC3C!0000!A8F2.DE1E.D7FB,ou=people,
 Once the ldif looks right, run this to grant your account admin rights in Gluu:
 
 ```bash
-/opt/opendj/bin/ldapmodify -h localhost -p 1636 -D "cn=directory manager" -j ~/.pw -Z -X -f addManagers.ldif
+/opt/opendj/bin/ldapmodify -h localhost -p 1636 -D "cn=directory manager,o=gluu" -j ~/.pw -Z -X -f addManagers.ldif
 ```
 
 Log into the web interface and pick up where you left off :)
