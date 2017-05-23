@@ -357,9 +357,87 @@ The following is a non-normative example of an Authorization Request using the r
 For more details on Authorization request parameters using JWTs, refer [here](http://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)
 
 #### Response
-[JSON[Response]](#JSON[Response])
+##### Successful Reponse
+ The authorization server issues an access token and optional refresh
+   token, and constructs the response by adding the following parameters
+   to the entity-body of the HTTP response with a 200 (OK) status code:
+   
+<table border="1">
+    <tr>
+        <th>Parameter</th>
+        <th>Description</th>
+        <th>Required</th>
+    </tr>
+        <tr>
+            <td>access_token</td>
+            <td>The access token issued by the authorization server.</td>
+            <td>Required</td>
+        </tr>
+        <tr>
+            <td>token_type</td>
+            <td>The access token type provides the client with the information
+                   required to successfully utilize the access token to make a protected
+                   resource request (along with type-specific attributes).  The client
+                   MUST NOT use an access token if it does not understand the token
+                   type. Value is case insensitive.</td>
+            <td>Required</td
+        </tr>
+        <tr>
+            <td>expires_in</td>
+            <td>The lifetime in seconds of the access token.  For
+         example, the value "3600" denotes that the access token will
+         expire in one hour from the time the response was generated.
+         If omitted, the authorization server SHOULD provide the
+         expiration time via other means or document the default value.</td>
+            <td>RECOMMENDED</td>
+        </tr>
+        <tr>
+            <td>refresh_token</td>
+            <td>The refresh token, which can be used to obtain new
+         access tokens using the same authorization grant</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>scope</td>
+            <td>Optional, identical to the scope requested by the client.
+                Required, The scope of the access token is used as
+                `request parameter` or `response parameter`</td>
+            <td>Optional and Required depending on the `scope`</td>
+        </tr>
+  </table>
 
-#### Errors
+#### Error Response
+<table border="1">
+    <tr>
+        <th>Parameter</th>
+        <th>Description</th>
+        <th>Required</th>
+    </tr>
+        <tr>
+            <td>error</td>
+            <td>A single ASCII error code from the below table</td>
+            <td>Required</td>
+        </tr>
+        <tr>
+            <td>error_description</td>
+            <td>Human-readable ASCII [USASCII] text providing
+                additional information, used to assist the client developer in
+                understanding the error that occurred.
+                Values for the "error_description" parameter MUST NOT include
+                characters outside the set %x20-21 / %x23-5B / %x5D-7E.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>error_uri</td>
+            <td>A URI identifying a human-readable web page with
+                information about the error, used to provide the client
+                developer with additional information about the error.
+                Values for the "error_uri" parameter MUST conform to the
+                URI-reference syntax and thus MUST NOT include characters
+                outside the set %x21 / %x23-5B / %x5D-7E.</td>
+            <td>Optional</td>
+        </tr>
+</table>
 <table border="1">
     <tr>
         <th>Status Code</th>
@@ -709,9 +787,7 @@ For more details on [client Authentication](http://openid.net/specs/openid-conne
     http://gluu.org/oxauth/token
 
 ###### Parameters
-- form
-
-    <table border="1">
+<table border="1">
         <tr>
             <th>Parameter</th>
             <th>Required</th>
@@ -728,15 +804,15 @@ For more details on [client Authentication](http://openid.net/specs/openid-conne
             <th>code</th>
             <td>false</td>
             <td>Code which is returned by authorization endpoint (For
-grant_type=authorization_code).</td>
+                grant_type=authorization_code).</td>
             <td>string</td>
         </tr>
         <tr>
             <th>redirect_uri</th>
             <td>false</td>
             <td>Redirection uri to which the response will be sent. This
-uri MUST exactly match one of the redirection uri values for the client
-pre-registered at the OpenID Provider.</td>
+                uri MUST exactly match one of the redirection uri values for the client
+                pre-registered at the OpenID Provider.</td>
             <td>string</td>
         </tr>
         <tr>
@@ -909,6 +985,7 @@ Registers new dynamic client in oxAuth.
 #### Response
 
 #### Client Registration Response
+
 Upon successful registration, the client registration returns the newly-created Client Identifier and, if applicable, a Client Secret, along with all registered Metadata about this Client, including any fields provisioned by the Authorization Server itself. The Authorization Server MAY reject or replace any of the Client's requested field values and substitute them with suitable values. If this happens, the Authorization Server MUST include these fields in the response to the Client. An Authorization Server MAY ignore values provided by the client, and MUST ignore any fields sent by the Client that it does not understand. 
 
 The response MAY contain a Registration Access Token that can be used by the Client to perform subsequent operations upon the resulting Client registration. 
@@ -1136,7 +1213,7 @@ End current Connect session.
     </table>
 
 ###### Response
-[JSON[Response]](#JSON[Response])
+Client Identificator or INUM, a client shared secret and the account expiration date in a [JSON Response](#Client Registration Error Response)
 
 
 ###### Errors
