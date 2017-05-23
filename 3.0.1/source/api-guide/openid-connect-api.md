@@ -652,7 +652,7 @@ The Authorization Endpoint performs Authentication of the end-user.
 </table>
 
 #### Response
-[JSON[Response]](#JSON[Response])
+[JSON[Response]](#successful-reponse)
 
 #### Errors
 <table border="1">
@@ -866,7 +866,7 @@ For more details on [client Authentication](http://openid.net/specs/openid-conne
     </table>
 
 ###### Response
-[JSON[Response]](#JSON[Response])
+[JSON[Response]](#successful-reponse)
 
 
 ###### Errors
@@ -1288,7 +1288,7 @@ sent as a Bearer Token.
     </table>
 
 ###### Response
-[JSON[Response]](#JSON[Response])
+[JSON[Response]](#successful-reponse)
 
 
 ###### Errors
@@ -1354,7 +1354,7 @@ The Access Token obtained from an OpenID Connect Authentication Request is sent 
     </table>
 
 ###### Response
-[JSON[Response]](#JSON[Response])
+[JSON[Response]](#successful-reponse)
 
 
 ###### Errors
