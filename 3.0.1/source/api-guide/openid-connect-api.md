@@ -908,7 +908,7 @@ Registers new dynamic client in oxAuth.
 
 #### Response
 
-####Client Registration Response
+#### Client Registration Response
 Upon successful registration, the client registration returns the newly-created Client Identifier and, if applicable, a Client Secret, along with all registered Metadata about this Client, including any fields provisioned by the Authorization Server itself. The Authorization Server MAY reject or replace any of the Client's requested field values and substitute them with suitable values. If this happens, the Authorization Server MUST include these fields in the response to the Client. An Authorization Server MAY ignore values provided by the client, and MUST ignore any fields sent by the Client that it does not understand. 
 
 The response MAY contain a Registration Access Token that can be used by the Client to perform subsequent operations upon the resulting Client registration. 
