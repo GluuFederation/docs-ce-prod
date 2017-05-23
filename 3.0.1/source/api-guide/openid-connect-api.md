@@ -3,7 +3,7 @@
 ##OpenId Connect Authorization Grant
 
 This page provides an interface for request authorization through REST web services.
-
+## Authorization Endpoint
 ## Path
 `/oxauth/authorize`
 
@@ -200,6 +200,161 @@ and in each mode authorization response is encoded in different way.
         </tr>
          
 </table>
+
+## Using JWTs for Passing Request Params
+
+To enable authentication requests to be signed and optionally encrypted authorization requests params are used. Below are the parameters used as Authorization requests parameters. These request are passed as Request Objects by two ways, they are `by value` and `by reference`.
+
+<table border="1">
+    <tr>
+        <th>Parameter</th>
+        <th>Description</th>
+		<th>Required</th>
+    </tr>
+        <tr>
+            <td>requests</td>
+            <td>This parameter enables OpenID Connect requests to be passed in a single, self-contained parameter and to be optionally signed and/or encrypted. The parameter value is a Request Object value,It represents the request as a JWT whose Claims are the request parameters.</td>
+			<td>Optional</td>
+        </tr>
+        <tr>
+            <td>request_uri</td>
+            <td>This parameter enables OpenID Connect requests to be passed by reference, rather than by value. The request_uri value is a URL using the https scheme referencing a resource containing a Request Object value, which is a JWT containing the request parameters.</td>
+			<td>Optional</td>
+        </tr>
+</table>
+
+## Request Object by Value
+The `request` Authorization Request parameter is used to enable OpenID Connect requests to pass single, self-contained parameter and optionally signed and/or encrypred. The requests is represented as a JWT whose claims are request parameters. This JWT is called a Request Object. The `request` parameter is **Optional**. When `request` parameter is used, the OpenID connect request parameter values contained in JWT supersede those passed using OAuth 2.0 request syntax.  However, parameters MAY also be passed using the OAuth 2.0 request syntax even when a Request Object is used; this would typically be done to enable a cached, pre-signed (and possibly pre-encrypted) Request Object value to be used containing the fixed request parameters, while parameters that can vary with each request, such as state and nonce, are passed as OAuth 2.0 parameters. 
+
+The request to be valid in OAuth 2.0 Authorization Request, values for `response_type` and `client_id` parameters MUST be included using the OAuth 2.0 request syntax, since they are REQUIRED by OAuth 2.0. The values for these parameters MUST match those in the Request Object.
+
+`request` and `request_uri` parameters MUST NOT be included in Request Objects.
+	
+The following is a non-normative example of the Claims in a Request Object before base64url encoding and signing: 
+	
+	
+	  {
+	   "iss": "s6BhdRkqt3",
+	   "aud": "https://server.example.com",
+	   "response_type": "code id_token",
+	   "client_id": "s6BhdRkqt3",
+	   "redirect_uri": "https://client.example.org/cb",
+	   "scope": "openid",
+	   "state": "af0ifjsldkj",
+	   "nonce": "n-0S6_WzA2Mj",
+	   "max_age": 86400,
+	   "claims":
+		{
+		 "userinfo":
+		  {
+		   "given_name": {"essential": true},
+		   "nickname": null,
+		   "email": {"essential": true},
+		   "email_verified": {"essential": true},
+		   "picture": null
+		  },
+		 "id_token":
+		  {
+		   "gender": null,
+		   "birthdate": {"essential": true},
+		   "acr": {"values": ["urn:mace:incommon:iap:silver"]}
+		  }
+		}
+	  }
+
+	
+
+###  Using the `request` Request Parameter
+
+The Client sends the Authorization Request to the Authorization Endpoint. 
+
+The following is a non-normative example of an Authorization Request using the request parameter (with line wraps within values for display purposes only): 
+
+	
+	  https://server.example.com/authorize?
+		response_type=code%20id_token
+		&client_id=s6BhdRkqt3
+		&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb
+		&scope=openid
+		&state=af0ifjsldkj
+		&nonce=n-0S6_WzA2Mj
+		&request=eyJhbGciOiJSUzI1NiIsImtpZCI6ImsyYmRjIn0.ew0KICJpc3MiOiA
+		iczZCaGRSa3F0MyIsDQogImF1ZCI6ICJodHRwczovL3NlcnZlci5leGFtcGxlLmN
+		vbSIsDQogInJlc3BvbnNlX3R5cGUiOiAiY29kZSBpZF90b2tlbiIsDQogImNsaWV
+		udF9pZCI6ICJzNkJoZFJrcXQzIiwNCiAicmVkaXJlY3RfdXJpIjogImh0dHBzOi8
+		vY2xpZW50LmV4YW1wbGUub3JnL2NiIiwNCiAic2NvcGUiOiAib3BlbmlkIiwNCiA
+		ic3RhdGUiOiAiYWYwaWZqc2xka2oiLA0KICJub25jZSI6ICJuLTBTNl9XekEyTWo
+		iLA0KICJtYXhfYWdlIjogODY0MDAsDQogImNsYWltcyI6IA0KICB7DQogICAidXN
+		lcmluZm8iOiANCiAgICB7DQogICAgICJnaXZlbl9uYW1lIjogeyJlc3NlbnRpYWw
+		iOiB0cnVlfSwNCiAgICAgIm5pY2tuYW1lIjogbnVsbCwNCiAgICAgImVtYWlsIjo
+		geyJlc3NlbnRpYWwiOiB0cnVlfSwNCiAgICAgImVtYWlsX3ZlcmlmaWVkIjogeyJ
+		lc3NlbnRpYWwiOiB0cnVlfSwNCiAgICAgInBpY3R1cmUiOiBudWxsDQogICAgfSw
+		NCiAgICJpZF90b2tlbiI6IA0KICAgIHsNCiAgICAgImdlbmRlciI6IG51bGwsDQo
+		gICAgICJiaXJ0aGRhdGUiOiB7ImVzc2VudGlhbCI6IHRydWV9LA0KICAgICAiYWN
+		yIjogeyJ2YWx1ZXMiOiBbInVybjptYWNlOmluY29tbW9uOmlhcDpzaWx2ZXIiXX0
+		NCiAgICB9DQogIH0NCn0.nwwnNsk1-ZkbmnvsF6zTHm8CHERFMGQPhos-EJcaH4H
+		h-sMgk8ePrGhw_trPYs8KQxsn6R9Emo_wHwajyFKzuMXZFSZ3p6Mb8dkxtVyjoy2
+		GIzvuJT_u7PkY2t8QU9hjBcHs68PkgjDVTrG1uRTx0GxFbuPbj96tVuj11pTnmFC
+		UR6IEOXKYr7iGOCRB3btfJhM0_AKQUfqKnRlrRscc8Kol-cSLWoYE9l5QqholImz
+		jT_cMnNIznW9E7CDyWXTsO70xnB4SkG6pXfLSjLLlxmPGiyon_-Te111V8uE83Il
+		zCYIb_NMXvtTIVc1jpspnTSD7xMbpL-2QgwUsAlMGzw
+	
+
+## Request Object by Reference
+The `request_uri` Authorization Request parameter enables OpenID Connect 
+requests to be passed by reference, rather than by value. 
+This parameter is used identically to the request parameter, other than that the 
+Request Object value is retrieved from the resource at the specified URL, rather than 
+passed by value. 
+
+The `request_uri_parameter_supported` Discovery result indicates whether the OP 
+supports this parameter. Should an OP not support this parameter and an RP uses it, 
+the OP MUST return the `request_uri_not_supported` error.  When `request_uri` parameter is used, 
+the OpenID Connect request parameter values contained in the referenced JWT supersede 
+those passed using the OAuth 2.0 request syntax. However, parameters MAY also be passed using 
+the OAuth 2.0 request syntax even when a `request_uri` is used; this would typically be done 
+to enable a cached, pre-signed (and possibly pre-encrypted) Request Object value to be used 
+containing the fixed request parameters, while parameters that can vary with each request, 
+such as state and nonce, are passed as OAuth 2.0 parameters. 
+
+The request to be a valid OAuth 2.0 Authorization Request, 
+values for the `response_type` and `client_id` parameters MUST be included 
+using the OAuth 2.0 request syntax, since they are REQUIRED by OAuth 2.0. 
+The values for these parameters MUST match those in the Request Object
+
+### URL Referencing the Request Object
+
+The Client stores the Request Object resource either locally or remotely at a 
+URL the Server can access. This URL is the Request URI, `request_uri`. 
+
+If values for Claims are included in the Request Object , it MUST NOT be revealed 
+to anybody but the Authorization Server. As such, the `request_uri` MUST have appropriate 
+entropy for its lifetime. It is RECOMMENDED that it be removed if it is known that 
+it will not be used again or after a reasonable timeout unless access control measures are taken. 
+
+The following is a non-normative example of a Request URI value 
+(with line wraps within values for display purposes only): 
+	
+	
+		https://client.example.org/request.jwt#GkurKxf5T0Y-mnPFCHqWOMiZi4VS138cQO_V7PZHAdM
+	
+
+### using the `request_uri` Request Parameter Request
+The Client sends the Authorization Request to the Authorization Endpoint. 
+
+The following is a non-normative example of an Authorization Request using the request_uri parameter (with line wraps within values for display purposes only): 
+
+	
+	  https://server.example.com/authorize?
+		response_type=code%20id_token
+		&client_id=s6BhdRkqt3
+		&request_uri=https%3A%2F%2Fclient.example.org%2Frequest.jwt
+		%23GkurKxf5T0Y-mnPFCHqWOMiZi4VS138cQO_V7PZHAdM
+		&state=af0ifjsldkj&nonce=n-0S6_WzA2Mj
+		&scope=openid
+	
+	
+For more details on Authorization request parameters using JWTs, refer [here](http://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)
 
 #### Response
 [JSON[Response]](#JSON[Response])
