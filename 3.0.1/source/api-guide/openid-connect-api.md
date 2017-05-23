@@ -907,52 +907,67 @@ Registers new dynamic client in oxAuth.
 |request_uris|request_uri values that are pre-registered by the RP for use at the OP. The Servers cache the contents of the files referenced by these URIs and not retrieve them at the time they are used in a request. OPs can require that request_uri values used be pre-registered with the require_request_uri_registration discovery parameter. If the contents of the request file could ever change, these URI values should include the base64url encoded SHA-256 hash value of the file contents referenced by the URI as the value of the URI fragment. If the fragment value used for a URI changes, that signals the server that its cached value for that URI with the old fragment value is no longer valid.|
 
 #### Response
-Client Identificator or INUM, a client shared secret and the account expiration date in a [JSON[Response]]
 
-#### Errors
+####Client Registration Response
+Upon successful registration, the client registration returns the newly-created Client Identifier and, if applicable, a Client Secret, along with all registered Metadata about this Client, including any fields provisioned by the Authorization Server itself. The Authorization Server MAY reject or replace any of the Client's requested field values and substitute them with suitable values. If this happens, the Authorization Server MUST include these fields in the response to the Client. An Authorization Server MAY ignore values provided by the client, and MUST ignore any fields sent by the Client that it does not understand. 
+
+The response MAY contain a Registration Access Token that can be used by the Client to perform subsequent operations upon the resulting Client registration. 
+
+A successful response SHOULD use the HTTP 201 Created status code and return a JSON document [RFC4627] using the application/json content type with the following fields and the Client Metadata parameters as top-level members of the root JSON object: 
+
 <table border="1">
     <tr>
-        <th>Status Code</th>
-        <th>Reason</th>
+        <th>Parameter</th>
+        <th>Description</th>
+        <th>Required</th>
     <tr/>
-	<tr>
-            <td>400</td>
-            <td>invalid_request&#10;The request is missing a required parameter, includes an unsupported parameter or parameter value, repeats the same parameter, uses more than one method for including an access token, or is otherwise malformed.  The resource server SHOULD respond with the HTTP 400 (Bad Request) status code.</td>
+        <tr>
+            <td>client_id</td>
+            <td>Unique Client Identifier. It MUST NOT be currently valid for any other registered Client.</td>
+            <td>Required</td>
         </tr>
         <tr>
-            <td>401</td>
-            <td>invalid_token&#10;The access token provided is expired, revoked, malformed, or invalid for other reasons.  The resource SHOULD respond with the HTTP 401 (Unauthorized) status code.  The client MAY request a new access token and retry the protected resource request.</td>
+            <td>client_secret</td>
+            <td>Client Secret. The same Client Secret value MUST NOT be assigned 
+            to multiple Clients. This value is used by Confidential Clients to authenticate 
+            to the Token Endpoint. It is not needed for Clients selecting a 
+            `token_endpoint_auth_method` of `private_key_jwt` unless symmetric encryption will be used.</td>
+            <td>Optional</td>
         </tr>
         <tr>
-            <td>403</td>
-            <td>insufficient_scope&#10;The request requires higher privileges than provided by the access token.  The resource server SHOULD respond with the HTTP 403 (Forbidden) status code and MAY include the &quot;scope&quot;&#10; attribute with the scope necessary to access the protected resource.</td>
+            <td>registration_access_token</td>
+            <td>Registration Access Token that can be used at the 
+            Client Configuration Endpoint to perform subsequent operations upon the Client registration.</td>
+            <td>Optional</td>
         </tr>
-	<tr>
-	    <td>302</td>
-	    <td>access_denies&#14; The request is denied by the authorization server.</td>
-	</tr>
+        <tr>
+            <td>registration_client_uri</td>
+            <td>Location of the Client Configuration Endpoint where the Registration Access 
+            Token can be used to perform subsequent operations upon the resulting Client registration. 
+            Implementations MUST either return both a Client Configuration Endpoint 
+            and a Registration Access Token or neither of them.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>client_id_issued_at</td>
+            <td>Time at which the Client Identifier was issued. Its value is a JSON number 
+            representing the number of seconds from 1970-01-01T0:0:0Z as measured in UTC 
+            until the date/time.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>client_secret_expires_at</td>
+            <td>if client_secret is issued. Time at which the client_secret will 
+            expire or 0 if it will not expire. Its value is a JSON number representing the number of 
+            seconds from 1970-01-01T0:0:0Z as measured in UTC until the date/time.</td>
+            <td>Required</td>
+        </tr>
 
 </table>
 
-### registerPut
-**PUT** `/oxauth/register`
 
-This operation updates the Client Metadata for a registered client.
-#### URL
-    http://gluu.org/oxauth/register
-#### Parameters
-The request is sent as an `HTTP POST` to the client registration endpoint as JSON with the parameters.
+#### Client Registration Error Response
 
-|Parameter|Description|
-|---------|-----------|
-|clientId |The unique client identifier usually INUM|
-|authorization| The authorization for the client|
-|httpRequest| The HTTP Request object|
-
-#### Response
-Client Identificator or INUM, a client shared secret and the account expiration date in a [JSON[Response]]
-
-#### Errors
 <table border="1">
     <tr>
         <th>Status Code</th>
@@ -976,7 +991,53 @@ Client Identificator or INUM, a client shared secret and the account expiration 
         </tr>
 
 </table>
+Other members MAY also be used. This specification defines the following error codes: 
+<table border="1">
+    <tr>
+        <th>Status Code</th>
+        <th>Description</th>
+    <tr/>
+        <tr>
+            <td>invalid_redirect_uri</td>
+            <td>The value of one or more redirect_uris is invalid.</td>
+        </tr>
+        <tr>
+            <td>invalid_client_metadata</td>
+            <td>The value of one of the Client Metadata fields is invalid and the 
+            server has rejected this request. Note that an Authorization Server MAY 
+            choose to substitute a valid value for any requested parameter of a Client's Metadata.</td>
+        </tr>
+</table>
 
+Below is an example of Error Response
+
+      HTTP/1.1 400 Bad Request
+      Content-Type: application/json
+      Cache-Control: no-store
+      Pragma: no-cache
+    
+      {
+       "error": "invalid_redirect_uri",
+       "error_description": "One or more redirect_uri values are invalid"
+      }
+
+### registerPut
+**PUT** `/oxauth/register`
+
+This operation updates the Client Metadata for a registered client.
+#### URL
+    http://gluu.org/oxauth/register
+#### Parameters
+The request is sent as an `HTTP POST` to the client registration endpoint as JSON with the parameters.
+
+|Parameter|Description|
+|---------|-----------|
+|clientId |The unique client identifier usually INUM|
+|authorization| The authorization for the client|
+|httpRequest| The HTTP Request object|
+
+#### Response
+Client Identificator or INUM, a client shared secret and the account expiration date in a [JSON Response](#Client Registration Error Response)
 
 ### registerGet
 **GET** `/oxauth/register`
@@ -993,7 +1054,7 @@ The request is sent as an `HTTP POST` to the client registration endpoint as JSO
 |registration_access_token |This parameter is not a query url parameter, it is a HTTP header parameter|
  
 #### Response
-Client Identificator or INUM, a client shared secret and the account expiration date in a [JSON[Response]]
+Client Identificator or INUM, a client shared secret and the account expiration date in a [JSON Response](#Client Registration Error Response)
 
 #### Errors
 <table border="1">
