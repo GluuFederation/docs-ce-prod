@@ -64,7 +64,8 @@ Let's start by configuring a very basic CAS setup which only returns user's id t
 
 1. Move into the Gluu CE container: `# service gluu-server-3.0.1 login`
 2. Edit `/opt/gluu/jetty/identity/conf/shibboleth3/idp/cas-protocol.xml.vm` template file by putting a "ServiceDefinition" bean inside pre-existing "reloadableServiceRegistry" bean as examplified below. You must use a regexp defining your application instead of `"https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*"` Using `".*"` as pattern can serve as a wildcard ("allow-all") rule in a test setup.
-3. Restart the idp service to apply your changes: `# service idp restart`
+3. Restart the oxTrust's service to re-generated new files from updated templates: `# service identity restart`
+4. Restart the IdP's service to apply your changes: `# service idp restart`
 
 ```
     <bean id="reloadableServiceRegistry"
@@ -97,7 +98,7 @@ At this point you should start getting a successful CAS validation response from
 
 #### Enabling attributes you plan to release in Shibboleth IdP
 
-Shibboleth IdP requires you to define all atributes it will work with when serving SAML requests in `/opt/shibboleth-idp/conf/attribute-resolver.xml` file. Though Gluu CE 3.0.1 doesn't offer complete CAS support in admin web UI, there is a neat hack which can make this step easier for you. As all attributes added to list of released attributes of any SAML TR in web UI are automatically placed in the `attribute-resolver.xml`, you can create a bogus SAML TR the only purpose of which will be storing attributes you need to release to all your CAS apps. Note that it has nothing to do with actual decision about whether each attribute should be sent to a specific requesting application (you'll learn how to do this in the next section).
+Shibboleth IdP requires you to define all atributes it will work with when serving SAML and CAS requests in `/opt/shibboleth-idp/conf/attribute-resolver.xml` file. Though Gluu CE 3.0.1 doesn't offer complete CAS support in admin web UI, there is a neat hack which can make this step easier for you. As all attributes added to list of released attributes of any SAML TR in web UI are automatically placed in the `attribute-resolver.xml`, you can create a "fake" SAML TR the only purpose of which will be storing attributes you need to release to all your CAS apps. Note that it has nothing to do with actual decision about whether each attribute should be sent to a specific requesting application (you'll learn how to do this in the next section), it just pushes all required attribute definitions to `attribute-resolver.xml`.
 
 !!! Warning 
     For security concerns, you should make sure that nobody with malicious intent will be able to use this TR to fool your IdP into releasing user's attributes to them.
@@ -105,13 +106,13 @@ Shibboleth IdP requires you to define all atributes it will work with when servi
     
 You can download a ready stub metadata file from [here](./cas_saml_tr_stub_metadata.xml) and update it as shown on picture below:
 
-![cas-stub-saml-metadata-edited](../img/cas/cas_stub_saml_metadata_edited.jpg) 
+![cas-stub-saml-metadata-edited](../img/cas/cas_stub_saml_metadata_edited.png) 
 
-Please follow next steps to create the stub TR:
+Please follow next steps to create the "fake" TR:
 
 1. Log in to web UI as administrator
 2. Move to "SAML -> Trust Relationships" and click "Add Relationship" button
-3. Fill in all fields as shown on picture below, select "File" method of metadata provision and upload your customizing stub metadata file, add attributes you need to release to the list at the bottom of the page
+3. Fill in all fields as shown on picture below, select "File" method of metadata provision and upload your customizing stub metadata file, add attributes "Username", "First Name", "Last Name" and "Email"  to the list of released attributes at the bottom of the page
 4. [Optional] Set "Configure Relying Party" checkbox, add "SAML2SSO" profile to the list while making sure "signRequests" setting is set to "Always"
 5. Click the "Add" button
 
@@ -119,14 +120,62 @@ Please follow next steps to create the stub TR:
 
 #### Specifying list of attributes to release
 
-So far our setup only has been releasing user id which may happen to be too limiting for most applications. Being a part of Shibboleth now, CAS makes use of its powerful attribute release/filter policies engine to determine which attributes to send to each destination.
+So far our setup only has been releasing user id which may happen to be too limiting for most applications. Being a part of Shibboleth now, CAS now makes use of its powerful attribute release/filter policies engine to determine which attributes to send to each destination.
 
 Currently the only way to tweak attribute release is to edit template file in the container. Please follow next steps to release attributes we defined in previous section to CAS application we added to service registry in the beginning:
 
-1.
-2.
-3.
+1. Move into the Gluu CE container: `# service gluu-server-3.0.1 login`
+2. Edit `/opt/gluu/jetty/identity/conf/shibboleth3/idp/attribute-filter.xml.vm` template file by putting an "AttributeFilterPolicy" bean provided below right before the closing `</AttributeFilterPolicyGroup>` tag at the end of  it. Be careful to not get caught in some Velocity's loop (note the control words startings with `"#"`), where attribute ids are ids assigned to corresponding attributes in `/opt/shibboleth-idp/conf/attribute-resolver.xml` file (those are "internal names" which don't always correspond to names displayed in web UI); you can also learn them by checking the "Name" field when viewing attribute's properties in web UI ("Configuration -> Attributes" page). You must use a regexp defining your application instead of `"https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*"` Using `".*"` as pattern can serve as a wildcard ("allow-all") rule in a test setup. In case you need to add several CAS filtering rules, make sure their "id" properties differ.
+3. Restart the oxTrust's service to re-generated new files from updated templates: `# service identity restart`
+4. Restart the IdP's service to apply your changes: `# service idp restart`
 
+```
+<AttributeFilterPolicy id="ManualCASFilterRule1">
+    <PolicyRequirementRule xsi:type="RequesterRegex" regex="^https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*$" />
+    <AttributeRule attributeID="mail">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+    <AttributeRule attributeID="givenName">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+    <AttributeRule attributeID="sn">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+    <AttributeRule attributeID="uid">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+</AttributeFilterPolicy>
+```
+
+#### Changing attribute used as "user id" in CAS server's ticket validation response
+
+By default `uid` attribute is returned. By adding a special kind of Relying Party override element to `relying-party.xml` this behavior can be changed (please note this approach won't change `nameid` in SAML response in case SAML validation endpoint (will be covered in the next section) is used instead of "native" CAS validation endpoint)
+
+In example below it's configured to use `eduPersonPrincipalName` instead of `uid`. You must use your own filter instead of **"`https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*`"**, or a wildcard expression.
+
+```
+        <bean id="shibboleth.regexRelyingParty" parent="RelyingParty" >
+            <property name="activationCondition" >
+                <bean class="net.shibboleth.idp.profile.logic.RelyingPartyIdPredicate" >
+                            <constructor-arg>
+                                    <bean class="com.google.common.base.Predicates" factory-method="containsPattern"
+                                        c:_0="https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*" />
+                            </constructor-arg>
+                </bean>
+            </property>
+            <property name="profileConfigurations">
+                <list>
+                    <ref bean="CAS.LoginConfiguration" />
+                    <ref bean="CAS.ProxyConfiguration" />
+                    <bean parent="CAS.ValidateConfiguration" p:userAttribute="eduPersonPrincipalName" />
+                </list>
+            </property>
+        </bean>
+```
+
+#### Ticket validation using SAML protocol
+
+CAS supports [SAML requests](https://apereo.github.io/cas/5.0.x/protocol/SAML-Protocol.html) during ticket validation step. Corresponding endpoint is located at `https://your.gluu.host/idp/profile/cas/serviceValidate` url and may be used instead of "native" CAS `/serviceValidate` if your CAS client supports it. Other steps of the general CAS flow stay the same.
 
 
 ## Logging
