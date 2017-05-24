@@ -90,13 +90,11 @@ Let's start by configuring a very basic CAS setup which only returns user's id t
     `# service gluu-server-3.0.1 login`
     
 2. Edit `/opt/gluu/jetty/identity/conf/shibboleth3/idp/cas-protocol.xml.vm` template file by 
-   putting a `ServiceDefinition` bean inside pre-existing `reloadableServiceRegistry`
-   bean as exemplified below. 
-   You must use a regexp defining your application instead of 
+putting a `ServiceDefinition` bean inside pre-existing `reloadableServiceRegistry`
+bean as exemplified below. You must use a regexp defining your application instead of 
+`"https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*"` 
+Using `".*"` as pattern can serve as a wildcard (`allow-all`) rule in a test setup.
    
-   `"https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*"` 
-   
-   Using `".*"` as pattern can serve as a wildcard (`allow-all`) rule in a test setup.
 3. Restart the oxTrust's service to re-generated new files from updated templates: 
 
     `# service identity restart`
@@ -194,23 +192,16 @@ to service registry in the beginning:
 2. Edit `/opt/gluu/jetty/identity/conf/shibboleth3/idp/attribute-filter.xml.vm` 
 template file by putting an `AttributeFilterPolicy` bean provided below right 
 before the closing `</AttributeFilterPolicyGroup>` tag at the end of  it. 
-
-Be careful to not get caught in some Velocity's loop (note the control words startings with `"#"`), 
-where attribute ids are ids assigned to corresponding attributes in 
-
+Be careful to not get caught in some Velocity's loop (note the control 
+words startings with `"#"`), where attribute ids are ids assigned to 
+corresponding attributes in 
 `/opt/shibboleth-idp/conf/attribute-resolver.xml`
-
 file (those are `internal names` which don't always correspond to names displayed in web UI); 
-
 you can also learn them by checking the "Name" field when viewing attribute's 
 properties in web UI (`Configuration` -> `Attributes` page). 
-
 You must use a regexp defining your application instead of 
-
 `"https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*"` 
-
 Using `".*"` as pattern can serve as a wildcard (`allow-all`) rule in a test setup. 
-
 In case you need to add several CAS filtering rules, make sure their `id` properties differ.
 
 3. Restart the oxTrust's service to re-generated new files from updated templates: 
