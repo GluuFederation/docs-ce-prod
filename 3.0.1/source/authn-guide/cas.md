@@ -95,7 +95,7 @@ bean as exemplified below. You must use a regexp defining your application inste
 `"https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*"` 
 Pattern like `".*"` may be used as a wildcard to create an "allow-all" definition for a test setup.
    
-3. Restart the oxTrust's service to re-generated new files from updated templates: 
+3. Restart the oxTrust's service to re-generate new files from updated templates: 
 
     `# service identity restart`
     
@@ -203,7 +203,7 @@ words startings with `"#"`). You must use a regexp defining your application ins
 Pattern like `".*"` may be used as a wildcard to create an "allow-all" definition for a test setup. 
 In case you'll need to add several CAS filtering policies, make sure their `id` properties differ.
 
-3. Restart the oxTrust's service to re-generated new files from updated templates: 
+3. Restart the oxTrust's service to re-generate new files from updated templates: 
 
     `# service identity restart`
     
