@@ -201,7 +201,7 @@ When placing the bean, be careful not to put it within some Velocity's loop ther
 words startings with `"#"`). You must use a regexp defining your application instead of 
 `"https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*"` 
 Pattern like `".*"` may be used as a wildcard to create an "allow-all" definition for a test setup. 
-In case you'll need to add several CAS filtering rules, make sure their `id` properties differ.
+In case you'll need to add several CAS filtering policies, make sure their `id` properties differ.
 
 3. Restart the oxTrust's service to re-generated new files from updated templates: 
 
