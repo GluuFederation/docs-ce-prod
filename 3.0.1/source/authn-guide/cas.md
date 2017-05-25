@@ -55,15 +55,15 @@ Gluu provides two main scenarios involving CAS flows. By analogy with SAML scena
 
 Outbound CAS is a traditional way to employ the protocol. Website or application (or, more likely, CAS client acting on behalf of them)
 redirects a user to a designated CAS server (in this case your Gluu CE instance) for authentication and authorization. CAS server authenticates the user, checks whether such application is
-allowed to use the service, then redirects user's browser back to the application/CAS client with a `service ticket`. The ticket is then validated by them by
-calling respective validate endpoint at CAS server via back-channel connection. Depending on protocol version and extenstion used, some attributes may
+allowed to request his/her personal data, then redirects user's browser back to the application/CAS client with a `service ticket`. The ticket is then validated by them by
+calling respective validation endpoint at CAS server via back-channel connection. Depending on protocol version and server's policies, some attributes may
 also be sent in response to validation call.
 
 In contrary, inbound CAS is a way for Gluu server itself to delegate authentication to some remote CAS server in your organization's network. By doing so it allows you to leverage your existing infrastracture and broadens your authentication options. From a technical standpoint it's just another [custom authentication script](../authn-guide/customauthn/) which is already pre-packaged in your instance. You can find out more about how to configure it on [corresponding Github page](https://github.com/GluuFederation/oxAuth/tree/version_3.0.1/Server/integrations/cas2).
 
 ### Outbound CAS
-In Gluu CE 3.0 outbound CAS configuration is split into two different parts. First CAS support must be enabled in web UI.
-Then applications which should be allowed to use this CAS server must be added to service registry - this part is done from linux console (inside the container). After those mandatory steps are completed, you also may want to define a list of attributes which should be released in addition to user id which is sent by default.
+In Gluu CE 3.0 outbound CAS configuration is split into two different parts. First, CAS support must be enabled in web UI.
+Then applications which should be allowed to use this CAS server must be added to service registry - this part is done from Linux console (inside the container). After those mandatory steps are completed, you also may want to define a list of attributes which should be released in addition to user id which is sent by default (also done via Linux console).
 
 #### Enabling CAS
 
@@ -93,7 +93,7 @@ Let's start by configuring a very basic CAS setup which only returns user's id t
 putting a `ServiceDefinition` bean inside pre-existing `reloadableServiceRegistry`
 bean as exemplified below. You must use a regexp defining your application instead of 
 `"https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*"` 
-Using `".*"` as pattern can serve as a wildcard (`allow-all`) rule in a test setup.
+Pattern like `".*"` may be used as a wildcard to create an "allow-all" definition for a test setup.
    
 3. Restart the oxTrust's service to re-generated new files from updated templates: 
 
@@ -130,11 +130,11 @@ Using `".*"` as pattern can serve as a wildcard (`allow-all`) rule in a test set
     </bean>
 ```
 
-At this point you should start getting a successful CAS validation response from 
+At this point you should start getting a successful CAS ticket validation response from 
 
-    `https://your.gluu.host/idp/profile/cas/serviceValidate` 
+    `https://your.gluu.host/idp/profile/cas/serviceValidate`
     
-containing at least your user id (which is `uid` attribute by default).
+containing at least your user id (which is taken from `uid` attribute by default).
 
 #### Enabling attributes you plan to release in Shibboleth IdP
 
@@ -177,10 +177,10 @@ profile to the list while making sure "signRequests" setting is set to `Always`
 
 So far our setup only has been releasing user id which may 
 happen to be too limiting for most applications. Being a part 
-of Shibboleth now, CAS now makes use of its powerful attribute 
+of Shibboleth now, CAS makes use of its powerful attribute 
 release/filter policies engine to determine which attributes to send to each destination.
 
-Currently the only way to tweak attribute release is to edit 
+Currently the only way to tweak attribute release is to edit corresponding 
 template file in the container. Please follow next steps to release 
 attributes we defined in previous section to CAS application we added 
 to service registry in the beginning:
@@ -191,17 +191,16 @@ to service registry in the beginning:
     
 2. Edit `/opt/gluu/jetty/identity/conf/shibboleth3/idp/attribute-filter.xml.vm` 
 template file by putting an `AttributeFilterPolicy` bean provided below right 
-before the closing `</AttributeFilterPolicyGroup>` tag at the end of  it. 
-Be careful to not get caught in some Velocity's loop (note the control 
-words startings with `"#"`), where attribute ids are ids assigned to 
-corresponding attributes in 
-`/opt/shibboleth-idp/conf/attribute-resolver.xml`
-file (those are `internal names` which don't always correspond to names displayed in web UI); 
+before the closing `</AttributeFilterPolicyGroup>` tag at the end of it.
+Properties named `attributeID` you can see there are ids assigned to corresponding attributes in 
+`/opt/shibboleth-idp/conf/attribute-resolver.xml` file (those are "internal names"
+which don't always correspond to names displayed in web UI); 
 you can also learn them by checking the "Name" field when viewing attribute's 
-properties in web UI (`Configuration` -> `Attributes` page). 
-You must use a regexp defining your application instead of 
+properties in web UI (`Configuration` -> `Attributes` page)
+When placint the bean, be careful to put it within some Velocity's loop there (note the control 
+words startings with `"#"`). You must use a regexp defining your application instead of 
 `"https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*"` 
-Using `".*"` as pattern can serve as a wildcard (`allow-all`) rule in a test setup. 
+Pattern like `".*"` may be used as a wildcard to create an "allow-all" definition for a test setup. 
 In case you need to add several CAS filtering rules, make sure their `id` properties differ.
 
 3. Restart the oxTrust's service to re-generated new files from updated templates: 
@@ -232,15 +231,15 @@ In case you need to add several CAS filtering rules, make sure their `id` proper
 
 #### Changing attribute used as "user id" in CAS server's ticket validation response
 
-By default `uid` attribute is returned. By adding a special kind of 
-Relying Party override element to `relying-party.xml` this behavior 
-can be changed (please note this approach won't change `nameid` in 
-SAML response in case SAML validation endpoint (will be covered in the next section) 
-is used instead of `native` CAS validation endpoint)
+By default `uid` attribute is used as a source for user id returned in successful
+ticket validation response. By adding a specifically crafted Relying Party override 
+element to `relying-party.xml` this behavior can be changed (please note this 
+approach won't change `nameid` in SAML response in case SAML validation endpoint 
+(will be covered in the next section) is used instead of `native` CAS validation endpoint)
 
-In example below it's configured to use `eduPersonPrincipalName` instead of `uid`. 
-You must use your own filter instead of 
-**"`https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*`"**, or a wildcard expression.
+In example below it's configured to use `eduPersonPrincipalName` attribute instead of `uid`. 
+You must use your own expression instead of 
+`"https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*"`, or a wildcard expression (`".*"`)
 
 ```
         <bean id="shibboleth.regexRelyingParty" parent="RelyingParty" >
@@ -267,11 +266,13 @@ You must use your own filter instead of
 CAS supports [SAML requests](https://apereo.github.io/cas/5.0.x/protocol/SAML-Protocol.html) 
 during ticket validation step. Corresponding endpoint is located 
 at `https://your.gluu.host/idp/profile/cas/serviceValidate` url and may 
-be used instead of `native` CAS `/serviceValidate` if your CAS client supports it. 
+be used instead of "native" CAS `/serviceValidate` if your CAS client supports it. 
 Other steps of the general CAS flow stay the same.
 
 
 ## Logging
+
+You can find main page about logging in Gluu CE [here](../operation/logs.md)
 
 ### Outbound CAS logging
 As part of Shibboleth IdP, CAS is now logging to `/opt/shibboleth-idp/logs/idp-process.log`. 
