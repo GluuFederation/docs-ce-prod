@@ -197,11 +197,11 @@ Properties named `attributeID` you can see there are ids assigned to correspondi
 which don't always correspond to names displayed in web UI); 
 you can also learn them by checking the "Name" field when viewing attribute's 
 properties in web UI (`Configuration` -> `Attributes` page)
-When placint the bean, be careful to put it within some Velocity's loop there (note the control 
+When placing the bean, be careful not to put it within some Velocity's loop there (note the control 
 words startings with `"#"`). You must use a regexp defining your application instead of 
 `"https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*"` 
 Pattern like `".*"` may be used as a wildcard to create an "allow-all" definition for a test setup. 
-In case you need to add several CAS filtering rules, make sure their `id` properties differ.
+In case you'll need to add several CAS filtering rules, make sure their `id` properties differ.
 
 3. Restart the oxTrust's service to re-generated new files from updated templates: 
 
@@ -234,7 +234,7 @@ In case you need to add several CAS filtering rules, make sure their `id` proper
 By default `uid` attribute is used as a source for user id returned in successful
 ticket validation response. By adding a specifically crafted Relying Party override 
 element to `relying-party.xml` this behavior can be changed (please note this 
-approach won't change `nameid` in SAML response in case SAML validation endpoint 
+approach won't change `nameid` in SAML response in case SAML ticket validation endpoint 
 (will be covered in the next section) is used instead of `native` CAS validation endpoint)
 
 In example below it's configured to use `eduPersonPrincipalName` attribute instead of `uid`. 
