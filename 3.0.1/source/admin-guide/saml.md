@@ -71,44 +71,7 @@ Each SP may require one or more user attributes in order to grant a person acces
 certain preconfigured attributes and also supports the creation of custom attributes. Once the attributes are available in the Gluu Server, the administrator can use the oxTrust interface to release the necessary attributes to the SP (as described [below](#create-a-trust-relationship-in-the-gluu-server)). For a broader discussion of attributes, including how to create custom attributes, check the [attributes section](./attribute.md) of the documentation.
 
 ### NameID
-The default NameID for oxTrust generated SAML trust relationships is `transientID`. It's always a good idea to release the `transientID` as an attribute, as some SP's may not work otherwise. If there are other `NameID` requirements, a custom attribute must be created in oxTrust first before defining it as the `NameID`. Please review the [custom attributes](./attribute.md#custom-attributes) section of the docs to learn how to create custom attributes in oxTrust.
-
-#### Defining NameID
-  The template file for `NameID` definitions are located in the `attribute-resolver.xml.vm` file under `/opt/gluu/jetty/identity/conf/shibboleth3/idp/`.
-  The example below adds `testcustomattribute` as `NameID` based on UID attribute. The following are put into the `attribute-resolver.xml.vm` file.
-
-  * Add declaration for the new attribute
-  ```
-  if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('testcustomattribute') ) )
-  ```
-  * Add definition for the new attribute
-```
- <resolver:AttributeDefinition id="testcustomattribute" xsi:type="Simple"
-                              xmlns="urn:mace:shibboleth:2.0:resolver:ad"
-                              sourceAttributeID="email">
-
-        <resolver:Dependency ref="siteLDAP"/>
-        <resolver:AttributeEncoder xsi:type="SAML2StringNameID"
-                                xmlns="urn:mace:shibboleth:2.0:attribute:encoder"
-                                nameFormat="urn:oasis:names:tc:SAML:2.0:nameid-format:email" />
-</resolver:AttributeDefinition> 
-```
-* Update /opt/shibboleth-idp/conf/saml-nameid.xml to generate SAML 2 NameID content
-
-```
-    <bean parent="shibboleth.SAML2AttributeSourcedGenerator" 
-          p:format="urn:oasis:names:tc:SAML:2.0:nameid-format:email"
-          p:attributeSourceIds="#{ {'testcustomattribute'} }"/>
-```
-* Restart identity service using below command
-
-` service identity restart` 
-
-However it is recommended to stop and start service using 
-
-`service identity stop`
-
-`service identity start`
+Refer to the [attributes section of the documentation](./attribute.md/#defining-nameid) to learn how to configure the NameID attribute for your SAML SSO service. 
 
 ### Create a Trust Relationship in the Gluu Server       
 * Go to `SAML` > `Trust Relationships`
