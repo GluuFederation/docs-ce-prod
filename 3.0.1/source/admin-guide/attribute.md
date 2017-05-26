@@ -89,6 +89,45 @@ The following screen will appear:
 
 Click register and now this new attribute should be available for release in your federation service. 
 
+The default NameID for oxTrust generated SAML trust relationships is `transientID`. It's always a good idea to release the `transientID` as an attribute, as some SP's may not work otherwise. If there are other `NameID` requirements, a custom attribute must be created in oxTrust first before defining it as the `NameID`. Please review the [custom attributes](./attribute.md#custom-attributes) section of the docs to learn how to create custom attributes in oxTrust.
+
+### Defining NameID
+  The template file for `NameID` definitions are located in the `attribute-resolver.xml.vm` file under `/opt/gluu/jetty/identity/conf/shibboleth3/idp/`.
+  The example below adds `testcustomattribute` as `NameID` based on UID attribute. The following are put into the `attribute-resolver.xml.vm` file.
+
+  * Add declaration for the new attribute
+  ```
+  if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('testcustomattribute') ) )
+  ```
+  * Add definition for the new attribute
+```
+ <resolver:AttributeDefinition id="testcustomattribute" xsi:type="Simple"
+                              xmlns="urn:mace:shibboleth:2.0:resolver:ad"
+                              sourceAttributeID="email">
+
+        <resolver:Dependency ref="siteLDAP"/>
+        <resolver:AttributeEncoder xsi:type="SAML2StringNameID"
+                                xmlns="urn:mace:shibboleth:2.0:attribute:encoder"
+                                nameFormat="urn:oasis:names:tc:SAML:2.0:nameid-format:email" />
+</resolver:AttributeDefinition> 
+```
+* Update /opt/shibboleth-idp/conf/saml-nameid.xml to generate SAML 2 NameID content
+
+```
+    <bean parent="shibboleth.SAML2AttributeSourcedGenerator" 
+          p:format="urn:oasis:names:tc:SAML:2.0:nameid-format:email"
+          p:attributeSourceIds="#{ {'testcustomattribute'} }"/>
+```
+* Restart identity service using below command
+
+` service identity restart` 
+
+However it is recommended to stop and start service using 
+
+`service identity stop`
+
+`service identity start`
+
 ## SAML Attributes
 
 In any SAML SSO transaction, your Gluu Server will need to release attributes about users to the target SP. Configuring your Gluu Server for SAML SSO is covered in the [SAML section of the documentation](./saml.md). 
