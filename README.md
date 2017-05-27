@@ -33,7 +33,8 @@ Once the repository is completely cloned. Do a pull to make sure that the files 
 `#git pull origin <branchname>`
 
 !!! Note: 
-	"Master" is also a branch.
+   
+   "Master" is also a branch.
 
 Do required changes, after the changes are done, pull again to make sure that there hasn't been any recent changes between your last pull and push that you would be performing.
 Now, push the changes to the remote using the above script.
