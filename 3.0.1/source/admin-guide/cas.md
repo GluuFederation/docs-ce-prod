@@ -59,7 +59,13 @@ allowed to request his/her personal data, then redirects user's browser back to 
 calling respective validation endpoint at CAS server via back-channel connection. Depending on protocol version and server's policies, some attributes may
 also be sent in response to validation call.
 
-In contrary, inbound CAS is a way for Gluu server itself to delegate authentication to some remote CAS server in your organization's network. By doing so it allows you to leverage your existing infrastracture and broadens your authentication options. From a technical standpoint it's just another [custom authentication script](../authn-guide/customauthn/) which is already pre-packaged in your instance. You can find out more about how to configure it on [corresponding Github page](https://github.com/GluuFederation/oxAuth/tree/version_3.0.1/Server/integrations/cas2).
+In contrary, inbound CAS is a way for Gluu server itself to delegate authentication 
+to some remote CAS server in your organization's network. By doing so it allows you 
+to leverage your existing infrastracture and broadens your authentication options. 
+From a technical standpoint it's just another 
+[custom authentication script](../authn-guide/customauthn/) which is already 
+pre-packaged in your instance. You can find out more about how to configure 
+it on [corresponding Github page](https://github.com/GluuFederation/oxAuth/tree/version_3.0.1/Server/integrations/cas2).
 
 ### Outbound CAS
 In Gluu CE 3.0 outbound CAS configuration is split into two different parts. First, CAS support must be enabled in web UI.
