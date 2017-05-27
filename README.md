@@ -32,8 +32,7 @@ Once the repository is completely cloned. Do a pull to make sure that the files 
 
 `#git pull origin <branchname>`
 
-!!! Note: 
-   
+!!!Note: 
    "Master" is also a branch.
 
 Do required changes, after the changes are done, pull again to make sure that there hasn't been any recent changes between your last pull and push that you would be performing.
