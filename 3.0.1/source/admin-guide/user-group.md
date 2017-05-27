@@ -135,7 +135,7 @@ After configuring Cache Refresh, you should give it some time to run and populat
   users in the Gluu LDAP:
 
 ```
-# /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w 'pass_of_ldap_ -b 'ou=people,o=DA....,o=gluu' dn | grep "dn\:" | wc -l
+# /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w pass_of_ldap_ -b "ou=people,o=DA....,o=gluu" dn | grep "dn\:" | wc -l
 ```
 
 * Try to login with one of these users. We assume that you have also
@@ -287,7 +287,7 @@ below.
     attribute i.e. eduPersonScopedAffiliation. For more information please
     contact Gluu Support.
 
-  * _Snapshot Folder:_ Every cycle of of Gluu Server Cache Refresh cycle
+  * _Snapshot Folder:_ Every cycle of Gluu Server Cache Refresh cycle
     saves an overall snapshot and problem-list record on a specified
     location. This is where the Gluu Server Administrator can specify the
     location. You can easily decide whether cache refresh synchronizes all
