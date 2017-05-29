@@ -22,7 +22,7 @@ $git commit -m "updated site & - $text"
 $git push origin <branchname>
 ```
 
-##Cloning a repo to local machine:
+## Cloning a repo to local machine:
 
 To clone a repo use the below command
 
