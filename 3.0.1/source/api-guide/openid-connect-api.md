@@ -171,6 +171,53 @@ The Authorization Endpoint performs Authentication of the end-user. This is done
         </tr>
 </table>
 
+The parameter **response_type** determines the authorization processing flows, 
+including the parameters returned from the endpoints, and these values are codes and combination of 
+the values, and these combination can be as below `code`, `token`, and `id_token`.
+
+<table border="1">
+        <tr>
+            <th>Possible Combination</th>
+            <th>Description</th>
+        </tr>
+           <tr>
+                <th>Code token</th>
+                <td>When supplied as the value for the response_type parameter, a successful response 
+                MUST include an Access Token, an Access Token Type, and an Authorization Code. 
+                The default Response Mode for this Response Type is the fragment encoding and the 
+                query encoding MUST NOT be used. Both successful and error responses SHOULD be returned 
+                using the supplied Response Mode, or if none is supplied, using the default Response Mode. </td>
+            </tr>
+            <tr>
+                <th>code id_token</th>
+                <td>When supplied as the value for the response_type parameter, 
+                a successful response MUST include both an Authorization Code and an id_token. 
+                The default Response Mode for this Response Type is the fragment encoding and 
+                the query encoding MUST NOT be used. Both successful and error responses SHOULD 
+                be returned using the supplied Response Mode, or if none is supplied, using the 
+                default Response Mode. </td>
+            </tr>
+            <tr>
+                <th>id_token token</th>
+                <td>When supplied as the value for the response_type parameter, 
+                a successful response MUST include an Access Token, an Access Token Type, 
+                and an id_token. The default Response Mode for this Response Type is the 
+                fragment encoding and the query encoding MUST NOT be used. Both successful 
+                and error responses SHOULD be returned using the supplied Response Mode, 
+                or if none is supplied, using the default Response Mode.</td>
+            </tr>
+            <tr>
+                <th>code id_token token</th>
+                <td>When supplied as the value for the response_type parameter, 
+                a successful response MUST include an Authorization Code, an id_token, 
+                an Access Token, and an Access Token Type. The default Response Mode for this 
+                Response Type is the fragment encoding and the query encoding MUST NOT be used. 
+                Both successful and error responses SHOULD be returned using the supplied 
+                Response Mode, or if none is supplied, using the default Response Mode.</td>
+            </tr>
+         
+</table>
+
 For authorization endpoint, parameter **response_mode** can have any of the below modes 
 and in each mode authorization response is encoded in different way. 
 
