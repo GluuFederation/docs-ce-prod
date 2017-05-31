@@ -75,8 +75,8 @@ echo 65535 > /proc/sys/fs/file-max**
 ## Amazon AWS      
 
 Amazon AWS instances provide a public and private IP address. While
-running the `/install/community-edition-setup/setup.py` script, use the
-Private IP address. Also, use a hostname other then the long default
+running the `/install/community-edition-setup/setup.py` script, **use the
+Private IP address**. Also, use a hostname other then the long default
 hostname that Amazon provides. Update your DNS or hosts files accordingly.
 
 ## Microsoft Azure      
