@@ -241,7 +241,7 @@ By default `uid` attribute is used as a source for user id returned in successfu
 ticket validation response. By adding a specifically crafted Relying Party override 
 element to `relying-party.xml` this behavior can be changed (please note this 
 approach won't change `nameid` in SAML response in case SAML ticket validation endpoint 
-(will be covered in the next section) is used instead of `native` CAS validation endpoint)
+(will be covered in the next section) is used instead of "native" CAS validation endpoint)
 
 In example below it's configured to use `eduPersonPrincipalName` attribute instead of `uid`. 
 You must use your own expression instead of 
@@ -271,7 +271,7 @@ You must use your own expression instead of
 
 CAS supports [SAML requests](https://apereo.github.io/cas/5.0.x/protocol/SAML-Protocol.html) 
 during ticket validation step. Corresponding endpoint is located 
-at `https://your.gluu.host/idp/profile/cas/serviceValidate` url and may 
+at `https://your.gluu.host/idp/profile/cas/samlValidate` url and may 
 be used instead of "native" CAS `/serviceValidate` if your CAS client supports it. 
 Other steps of the general CAS flow stay the same.
 
