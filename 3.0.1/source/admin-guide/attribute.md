@@ -128,6 +128,8 @@ However it is recommended to stop and start service using
 
 `service identity start`
 
+* Now create this custom attribute by using oxTrust
+
 ## SAML Attributes
 
 In any SAML SSO transaction, your Gluu Server will need to release attributes about users to the target SP. Configuring your Gluu Server for SAML SSO is covered in the [SAML section of the documentation](./saml.md). 
