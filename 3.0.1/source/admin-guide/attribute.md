@@ -128,7 +128,7 @@ However it is recommended to stop and start service using
 
 `service identity start`
 
-* Now create this custom attribute by using oxTrust
+* Now follow steps of using custom attributes. 
 
 ## SAML Attributes
 
