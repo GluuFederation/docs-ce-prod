@@ -66,7 +66,7 @@ The following screen will appear:
 
 * _Edit Type:_ This field controls who can edit this attribute. If `user` is selected, this will enable each user to edit this attribute in their Gluu server user profile (assuming oxTrust is user facing, and the "User can edit own profile" feature has been enabled).
 
-* _View Type:_ This field controls which type of an user is allowed to view
+* _View Type:_ This field controls which type of user is allowed to view
   corresponding attribute at his/her "Profile" page of the web UI.
 
 * _Multivalued:_ If the attribute contains more than one value, set this field to True. 
