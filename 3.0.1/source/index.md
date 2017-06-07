@@ -27,7 +27,7 @@ authentication, authorization, federated identity, and identity management:
 - SAML 2.0   
 - OpenID Connect    
 - User Managed Access (UMA)    
-- Simple Cloud Identity Management (SCIM)    
+- System for Cross-domain Identity Management (SCIM)    
 - FIDO Universal 2nd Factor (U2F)    
 - Lightweight Directory Access Protocol (LDAP)   
 
