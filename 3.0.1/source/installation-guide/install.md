@@ -12,10 +12,13 @@ installation procedure is similar across all the distributions:
     
 !!! Warning
     You must use a fully qualified domain name (FQDN) to install the Gluu Server. You **can not** use localhost to install the Gluu Server. If you want to run Gluu locally, you can make up a hostname. Just make sure it is in the host file of your VM and the host file of the local windows machine.
-    
+
 ## Install Gluu Server Package
 
-Installation of the Gluu server will be done under `/root`. The Gluu Server will create its file system under `/root/` and will be installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) remain the same as the host.
+Installation of the Gluu server will be done under `/root`. 
+The Gluu Server will create its file system under `/root/` and will be 
+installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) 
+remain the same as the host.
    
 ### Ubuntu Server 14.04.x
 
@@ -152,6 +155,8 @@ to the Gluu Server.
 
 !!! Warning
 	Changing the hostname after installation is not supported. 
+
+For clustering of Gluu CE servers, please follow this [Clustering](https://gluu.org/docs/cm/alpha)documentation
 
 ## Uninstallation
 
