@@ -160,10 +160,9 @@ local LDAP server.
 
 ### Default Authentication Method
 
-This allows the Gluu Server administrator to select the default
-authentication method and level for person authentication. Both methods are
-set to "Default" until additional authentication mechanisms are enabled
-via [custom scripts](#manage-custom-scripts). 
+This page allows the Gluu Server administrator to select the default
+authentication method and level for person authentication. Additional 
+authentication mechanisms may be enabled via [custom scripts](#manage-custom-scripts). 
 
 |Authentication Method|Description|
 |---|---|
