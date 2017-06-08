@@ -10,8 +10,8 @@ Follow the steps below to configure the Basic authentication method:
 1. Click on `Configuration` > `Manage authentication` 
 ![basic](../img/user-authn/basicauthn.png)
 
-You can find a more detailed description of each field in the
-[Manage Authentication](../admin-guide/oxtrust-ui.md/#manage-authentication) 
+You can find more detailed description of each field in the
+[Manage Authentication](../admin-guide/oxtrust-ui/#manage-authentication) 
 section of the Gluu docs. 
 
 Let’s only touch concepts of `primary key` and `local primary key` for now:

@@ -8,6 +8,13 @@ For example, you may want to only prompt users in a certain group for two-factor
 
 This tutorial explains how to write a script to implement a two-step out-of-band authentication using Twilio to send an SMS with a one-time password. At the end of this tutorial you should have a better understanding of how to write your own custom scripts. For reference, you can review the completed Twilio custom authentication script [here](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/twilio_sms/twilio2FA.py). 
 
+!!! Warning:
+    Be aware that in case default authentication methods for oxTrust and 
+    oxAuth are set to "Default" on the "Default Authentication Method" 
+    tab of "Manage authentication page", you may lock yourself out of web UI 
+    by simply enabling an authentication script. 
+    Please check [this page](../admin-guide/oxtrust-ui/#default-authentication-method) for full explanation
+    
 ## Suggested Development Environment
 
 Gluu Server custom scripts are written in [Jython](http://www.jython.org/). We recommended using Eclipse for coding purposes.

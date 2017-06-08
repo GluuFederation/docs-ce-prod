@@ -181,6 +181,42 @@ of SSO protocols ( OpenID Connect, SAML, CAS )
 * Passport Support: This mode uses third-party authentication e.g. Google+, Twitter, Facebook to authenticate users in Gluu Server.
 * Custom Script Authenticaiton: This mode uses custom script and enabled in the oxTrust Admin UI.
 
+#### Default authentication method selection order
+"Authentication mode" and "oxTrust authentication mode" controls provide
+you a flexible way to control your default authentication method selection policy. 
+"Authentication mode" sets default method oxAuth (core Gluu's component handling all 
+authentication in the framework) will use, while "oxTrust authentication mode" chooses 
+what oxTrust (Gluu's administrator web UI module) will.
+
+There are two values in those dropdowns out-of-the-box: "Default" and "auth_ldap_server". 
+The later instructs corresponding modules to use a [basic LDAP bind authentication](../authn-guide/basic.md) against 
+LDAP server configured on "Manage LDAP Authentication" tab of this page, which is by default 
+a Gluu's internal LDAP directory. We'll get back to the former in a moment.
+
+When you enable a [custom authentication script](../authn-guide/customauthn.md), you'll see its name appearing in both 
+of those lists, allowing you to select from a wide variety of prepackaged authentication methods, or define your own.
+
+Authentication method set for oxAuth ("Authentication mode") will be used to a
+uthenticate all users trying to access your instance, unless application sending 
+them specifies authentication method explicitly (using "acr_values" url query parameter, 
+specifying a name of one of methods supported by this instance). It will also be used 
+for administrators trying to access oxTrust in case "oxTrust authentication mode" 
+is set to "Default"; thus it simply falls back to oxAuth's authentication methods 
+in such case. By setting "oxTrust authentication mode" to some other (possibly stricter, like Duo auth) 
+method you may ensure administrator's tools are properly protected against malicious users.
+
+!!! Warning:
+    If both default authentication methods are set to "Default", 
+    oxAuth will use basic LDAP bind authentication, but only until 
+    the moment some custom authentication script becomes enabled. 
+    In case there are enabled custom auth scripts, it will use the 
+    one with the lowest priority level (defined by "Level" setting) 
+    to authenticate all users automatically, even if you don't set it as 
+    default authentication mode explicitly. So if this script hasn't yet 
+    been properly configured you may lose access to your instance's web UI. 
+    Please ensure that you set at least "auth_ldap_server" method for "Authentication mode" 
+    before trying to explore other advanced authentication methods.
+    
 ## Manage Custom Scripts
 The Gluu Server exposes interception scripts in places where it is common 
 for organizations to implement custom workflows, or changes to the 
