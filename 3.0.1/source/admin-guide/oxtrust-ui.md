@@ -177,36 +177,21 @@ any interactions defined by a variety of supported SSO protocols ( OpenID Connec
 
 ![default](../img/admin-guide/auth-management/default.png)
 
-* Authentication mode: This control defines method used for general authentication in Gluu by default. It will also be applied to users accessing the oxTrust administrator interface, unless overriden by "oxTrust authentication mode". Remote applications may also specify desired authentication method explicitly by using "acr_values=" url query parameter during initial authorization request of OpenID Connect flows.
-* oxTrust authentication mode: This control defines method used when the user is accessing the oxTrust administrator interface using the gluu server hostname.
-* Passport Support: This control enables Passport component, an authentication middleware offering an easy access to a variety of third-party authentication mechanisms, like ones offered by e.g. Google+, Twitter, Facebook, allowing them to easily be used for users' authenticattion in Gluu Server.
+* Authentication mode: This control defines method used for general authentication in oxAuth by default. It will also be applied to users accessing the oxTrust administrator interface, unless overriden by "oxTrust authentication mode". Remote applications may also specify desired authentication method explicitly by including "acr_values=" url query parameter during initial authorization request of OpenID Connect flows.
+* oxTrust authentication mode: This control defines authentication method used when user is accessing the oxTrust administrator interface. By setting "oxTrust authentication mode" to some other (possibly stricter, like Duo auth) method you may ensure administrator's tools are properly protected against malicious users.
+* Passport Support: This control enables Passport component, an authentication middleware offering an easy access to a variety of third-party authentication mechanisms, like ones offered by Google+, Twitter, Facebook, allowing them to easily be used for users' authenticattion in Gluu Server.
 
-#### Default authentication method precedence
-"Authentication mode" and "oxTrust authentication mode" controls provide
-you a flexible way to control your default authentication method selection policy. 
-"Authentication mode" sets default method oxAuth (core Gluu's component handling all 
-authentication in the framework) will use, while "oxTrust authentication mode" chooses 
-what oxTrust (Gluu's administrator web UI module) will.
-
-There are two values in those dropdowns out-of-the-box: "Default" and "auth_ldap_server". 
+Two values are available for selection out-of-the-box: "Default" and "auth_ldap_server". 
 The later instructs corresponding modules to use a [basic LDAP bind authentication](../authn-guide/basic.md) against 
 LDAP server configured on "Manage LDAP Authentication" tab of this page, which is by default 
-a Gluu's internal LDAP directory. We'll get back to the former in a moment.
+a Gluu's internal LDAP directory. Please check the next chapter for detailed explanation of the former.
 
-When you enable a [custom authentication script](../authn-guide/customauthn.md), you'll see its name appearing in both 
-of those lists, allowing you to select from a wide variety of prepackaged authentication methods, or define your own.
-
-Authentication method set for oxAuth ("Authentication mode") will be used to a
-uthenticate all users trying to access your instance, unless application sending 
-them specifies authentication method explicitly (using "acr_values" url query parameter, 
-specifying a name of one of methods supported by this instance). It will also be used 
-for administrators trying to access oxTrust in case "oxTrust authentication mode" 
-is set to "Default"; thus it simply falls back to oxAuth's authentication methods 
-in such case. By setting "oxTrust authentication mode" to some other (possibly stricter, like Duo auth) 
-method you may ensure administrator's tools are properly protected against malicious users.
+When a [custom authentication script](../authn-guide/customauthn.md) is enabled,
+its name is added to both dropdown lists, allowing you to select from a wide 
+variety of prepackaged authentication methods, or define your own.
 
 !!! Warning:
-    If both default authentication methods are set to "Default", 
+    If **both** default authentication methods are set to "Default", 
     oxAuth will use basic LDAP bind authentication, but only until 
     the moment some custom authentication script becomes enabled. 
     In case there are enabled custom auth scripts, it will use the 
