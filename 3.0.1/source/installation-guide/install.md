@@ -19,7 +19,9 @@ Installation of the Gluu server will be done under `/root`.
 The Gluu Server will create its file system under `/root/` and will be 
 installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) 
 remain the same as the host.
-   
+
+For clustering of Gluu CE servers, follow [Clustering](https://gluu.org/docs/cm/alpha)documentation
+
 ### Ubuntu Server 14.04.x
 
 | Command Description     |               Trusty Commands         |
@@ -155,8 +157,6 @@ to the Gluu Server.
 
 !!! Warning
 	Changing the hostname after installation is not supported. 
-
-For clustering of Gluu CE servers, please follow this [Clustering](https://gluu.org/docs/cm/alpha)documentation
 
 ## Uninstallation
 
