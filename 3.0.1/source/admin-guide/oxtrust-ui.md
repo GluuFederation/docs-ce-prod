@@ -184,7 +184,8 @@ any interactions defined by a variety of supported SSO protocols ( OpenID Connec
 Two values are available for selection out-of-the-box: "Default" and "auth_ldap_server". 
 The later instructs corresponding modules to use a [basic LDAP bind authentication](../authn-guide/basic.md) against 
 LDAP server configured on "Manage LDAP Authentication" tab of this page, which is by default 
-a Gluu's internal LDAP directory. Please check the next chapter for detailed explanation of the former.
+a Gluu's internal LDAP directory. When "Default" is set for "oxTrust authentication mode",
+it will fall-back to the default method set for oxAuth.
 
 When a [custom authentication script](../authn-guide/customauthn.md) is enabled,
 its name is added to both dropdown lists, allowing you to select from a wide 
