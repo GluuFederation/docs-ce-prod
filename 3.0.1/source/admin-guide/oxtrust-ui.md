@@ -171,17 +171,17 @@ via [custom scripts](#manage-custom-scripts).
 |oxTrust authentication mode|This mode is used for authentication to the Gluu Server GUI|
 
 
-Gluu Server uses oxAuth as the first step of authentication in all kind 
-of SSO protocols ( OpenID Connect, SAML, CAS )
+Gluu Server relies on its core component called oxAuth when authenticating users accessing
+its services. User authentication is mandatory step which precedes 
+any interactions defined by a variety of supported SSO protocols ( OpenID Connect, SAML, CAS )
 
 ![default](../img/admin-guide/auth-management/default.png)
 
-* Authentication mode: This mode defines the mode used for general authentication with Service Providers. The mode defined under this tab will not affect the users accessing the oxTrust administrator interface.
-* oxTrust authentication mode: This mode is used when the user is accessing the oxTrust administrator interface using the gluu server hostname.
-* Passport Support: This mode uses third-party authentication e.g. Google+, Twitter, Facebook to authenticate users in Gluu Server.
-* Custom Script Authenticaiton: This mode uses custom script and enabled in the oxTrust Admin UI.
+* Authentication mode: This control defines method used for general authentication in Gluu by default. It will also be applied to users accessing the oxTrust administrator interface, unless overriden by "oxTrust authentication mode". Remote applications may also specify desired authentication method explicitly by using "acr_values=" url query parameter during initial authorization request of OpenID Connect flows.
+* oxTrust authentication mode: This control defines method used when the user is accessing the oxTrust administrator interface using the gluu server hostname.
+* Passport Support: This control enables Passport component, an authentication middleware offering an easy access to a variety of third-party authentication mechanisms, like ones offered by e.g. Google+, Twitter, Facebook, allowing them to easily be used for users' authenticattion in Gluu Server.
 
-#### Default authentication method selection order
+#### Default authentication method precedence
 "Authentication mode" and "oxTrust authentication mode" controls provide
 you a flexible way to control your default authentication method selection policy. 
 "Authentication mode" sets default method oxAuth (core Gluu's component handling all 
