@@ -49,6 +49,9 @@ corresponding archives at the [end of this page](#latest-war-files).
     
     `# service identity start`
 
+!!! Note
+    Above procedure can be utilized to update other components of Gluu CE server, mentioned below.
+
 ## Latest WAR files
 
 The latest release of WAR files can be downloaded from the following locations:
