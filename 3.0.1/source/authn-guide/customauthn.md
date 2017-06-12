@@ -160,10 +160,10 @@ Example: `session_attributes.get("code")`
 The method for logout is already written in the code, this method could be further used as per 
 the requirements.
 
-    ```
+```
     def logout(self, configurationAttributes, requestParameters):
-            return True
-    ```
+        return True
+```
     
 ## Application session Logout
 Custom scripts of type "Application session" are launched when 
@@ -175,10 +175,10 @@ some cleaning tasks there, or end user's session there too
 We also must mention that we have a similar feature supported for our 
 Authentication custom scripts. Each of those script may implement logout function like below:
 	
-	```
+```
     def logout(self, configurationAttributes, requestParameters):
-        return True
-	```	
+    return True
+```	
 Its purpose mostly the same, beside the fact that each auth script's 
 function will only be called for users whose authentication during 
 login attempt was handled by corresponding script, but scripts of "Application session" 
