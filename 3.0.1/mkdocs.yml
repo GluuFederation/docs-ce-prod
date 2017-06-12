@@ -86,6 +86,7 @@ pages:
         - 'Log Management' : 'operation/logs.md'
         - 'Customize Public Pages': 'operation/custom-loginpage.md'
         - 'FAQ & Troubleshooting': 'operation/faq.md'
+        - 'Change IP Address': 'operation/changeip.md'
         #       - 'Fine Tuning Gluu Server' : 'admin-guide/fine-tuning.md'
 - Developer Guide:
         - 'Build oxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'
