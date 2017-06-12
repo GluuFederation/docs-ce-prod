@@ -156,6 +156,35 @@ The attribute value that are saved by the session using `context.set`. This meth
 
 Example: `session_attributes.get("code")`        
 
+**Logout():**
+The method for logout is already written in the code, this method could be further used as per 
+the requirements.
+
+    ```
+    def logout(self, configurationAttributes, requestParameters):
+            return True
+    ```
+    
+## Application session Logout
+Custom scripts of type "Application session" are launched when 
+user's session at oxAuth is about to be killed, mostly to provide opportunity 
+to notify some 3rd party apps or remote services about the fact, perhaps to conduct 
+some cleaning tasks there, or end user's session there too 
+(if those services don't support mechanisms like "[Frontchannel logout](http://openid.net/specs/openid-connect-frontchannel-1_0.html)" etc)
+
+We also must mention that we have a similar feature supported for our 
+Authentication custom scripts. Each of those script may implement logout function like below:
+	
+	```
+    def logout(self, configurationAttributes, requestParameters):
+        return True
+	```	
+Its purpose mostly the same, beside the fact that each auth script's 
+function will only be called for users whose authentication during 
+login attempt was handled by corresponding script, but scripts of "Application session" 
+type will be called every time during logout of each user, regardless of what method of 
+authentication he used during login.
+
 ## Saving and Passing Values 
  
 ### Saving Values:
