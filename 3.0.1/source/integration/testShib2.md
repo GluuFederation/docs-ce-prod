@@ -45,5 +45,11 @@ Please note that, you need to install 'Shibboleth IDP' in your Gluu server while
  - Put the entityID of your Gluu Server here. 
  - Hit 'Go'. 
  - If everything goes well, you will something like this: 
+ 
 ## Troubleshooting
 
+ - Error code: 'Web Login Service - Unsupported Request The application you have accessed is not registered for use with this service.' from Gluu Server
+    - Reason: Metadata is not loading properly. 
+    - Resolution: Need to fix metadata-provider velocity template
+    - HowTo: 
+      - 
