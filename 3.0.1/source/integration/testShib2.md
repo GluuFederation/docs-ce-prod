@@ -27,7 +27,17 @@ Please note that, you need to install 'Shibboleth IDP' in your Gluu server while
      - 'Add'
      - Wait for validation success for this trust relationship. 
  - Create Trust Relationship with TestShib SP: 
-   - 
+   - Now we need to create a 'Federated trust relationship'
+     - DisplayName: TestShib SP trust
+     - Description: TestShib federated SP
+     - Entity Type: Single SP
+     - Metadata Location: Select 'Federation' from drop down menu
+     - Federation Name: 'TestShib Federation'
+     - Entity ID: click on this link, select 'https://sp.testshib.org/shibboleth-sp'
+     - Configure Relying Party: not required
+     - Released: Username
+     - 'Add'
+     - Screenshot
 
 ## Troubleshooting
 
