@@ -39,5 +39,11 @@ Please note that, you need to install 'Shibboleth IDP' in your Gluu server while
      - 'Add'
      - Screenshot
 
+## TestShib2 configuration: part 2
+
+ - Hit 'https://sp.testshib.org/' in browser
+ - Put the entityID of your Gluu Server here. 
+ - Hit 'Go'. 
+ - If everything goes well, you will something like this: 
 ## Troubleshooting
 
