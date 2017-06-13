@@ -57,6 +57,12 @@ Please note that, you need to install 'Shibboleth IDP' in your Gluu server while
     - HowTo: 
       - Backup existing 'metadata-providers.xml.vm' from ` /opt/gluu/jetty/identity/conf/shibboleth3/idp` location
       - Modify 'metadata-providers.xml.vm' code like this:
+      - Exit Gluu-Server container
+      - Stop/Start Gluu-server container by: 
+         - service gluu-server-3.x.x stop
+         - service gluu-server-3.x.x start
+      - Wait for 10 mins. 
+
 ``` 
 <?xml version="1.0" encoding="UTF-8"?>
 <MetadataProvider id="ShibbolethMetadata" xsi:type="ChainingMetadataProvider"
@@ -114,8 +120,4 @@ $filter
 </MetadataProvider>
 
 ```
-      - Exit Gluu-Server container
-      - Stop/Start Gluu-server container by: 
-        - service gluu-server-3.x.x stop
-        - service gluu-server-3.x.x start
-      - Wait for 10 mins. 
+
