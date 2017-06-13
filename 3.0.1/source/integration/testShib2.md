@@ -3,7 +3,7 @@
 Here in this documentation we are showing how we can test Gluu Server with TestShib2. 
 Please note that, you need to install 'Shibboleth IDP' in your Gluu server while running setup.py script. 
 
-## TestShib2 configuration
+## TestShib2 configuration: part 1
 
  - Go to https://www.testshib.org/index.html
  - Click on 'Register'. Here we need to register our Gluu Server
