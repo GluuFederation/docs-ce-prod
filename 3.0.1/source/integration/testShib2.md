@@ -56,12 +56,13 @@ Please note that, you need to install 'Shibboleth IDP' in your Gluu server while
     - Resolution: Need to fix metadata-provider velocity template
     - HowTo: 
       - Backup existing 'metadata-providers.xml.vm' from ` /opt/gluu/jetty/identity/conf/shibboleth3/idp` location
-      - Modify 'metadata-providers.xml.vm' code like this:
+      - Modify 'metadata-providers.xml.vm' code like below
       - Exit Gluu-Server container
       - Stop/Start Gluu-server container by: 
          - service gluu-server-3.x.x stop
          - service gluu-server-3.x.x start
       - Wait for 10 mins. 
+    - 'metadata-provider.xml.vml' file: 
 
 ``` 
 <?xml version="1.0" encoding="UTF-8"?>
