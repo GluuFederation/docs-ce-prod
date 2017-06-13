@@ -52,4 +52,67 @@ Please note that, you need to install 'Shibboleth IDP' in your Gluu server while
     - Reason: Metadata is not loading properly. 
     - Resolution: Need to fix metadata-provider velocity template
     - HowTo: 
-      - 
+      - Backup existing 'metadata-providers.xml.vm' from ` /opt/gluu/jetty/identity/conf/shibboleth3/idp` location
+      - Modify 'metadata-providers.xml.vm' code like this:
+``` 
+<?xml version="1.0" encoding="UTF-8"?>
+<MetadataProvider id="ShibbolethMetadata" xsi:type="ChainingMetadataProvider"
+    xmlns="urn:mace:shibboleth:2.0:metadata"
+    xmlns:resource="urn:mace:shibboleth:2.0:resource"
+    xmlns:security="urn:mace:shibboleth:2.0:security"
+    xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:mace:shibboleth:2.0:metadata http://shibboleth.net/schema/idp/shibboleth-metadata.xsd
+                        urn:mace:shibboleth:2.0:resource http://shibboleth.net/schema/idp/shibboleth-resource.xsd
+                        urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd
+                        urn:oasis:names:tc:SAML:2.0:metadata http://docs.oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd">
+
+    <!-- ========================================================================================== -->
+    <!--                             Metadata Configuration                                         -->
+    <!--                                                                                            -->
+    <!--  Below you place the mechanisms which define how to load the metadata for the SP you will  -->
+    <!--  provide a service to.                                                                     -->
+    <!--                                                                                            -->
+    <!--  The Shibboleth Documentation at                                                           -->
+    <!--  https://wiki.shibboleth.net/confluence/display/IDP30/MetadataConfiguration                -->
+    <!--  provides more details.                                                                    -->
+    <!--                                                                                            -->
+    <!--  NOTE.  This file SHOULD NOT contain the metadata for this IdP.                            -->
+    <!--                                                                                            -->
+    <!-- ========================================================================================== -->
+
+
+#foreach( $trustRelationship in $trustParams.trusts )
+
+#if($trustRelationship.spMetaDataSourceType.value == 'file')
+        <MetadataProvider id="SiteSP$trustParams.trustIds.get($trustRelationship.inum)" xsi:type="FilesystemMetadataProvider"
+            metadataFile="$medataFolder$trustRelationship.spMetaDataFN" >
+#end
+#if($trustRelationship.spMetaDataSourceType.value == 'uri')
+        <MetadataProvider id="SiteSP$trustParams.trustIds.get($trustRelationship.inum)" xsi:type="FileBackedHTTPMetadataProvider"
+
+        metadataURL="$trustRelationship.spMetaDataURL"
+        backingFile="$medataFolder$trustRelationship.spMetaDataFN"
+        maxRefreshDelay="$trustRelationship.maxRefreshDelay" >
+#end
+
+#if( $trustRelationship.gluuSAMLMetaDataFilter and $trustRelationship.getGluuSAMLMetaDataFilter().size() > 0 )
+            <MetadataFilter xsi:type="ChainingFilter" xmlns="urn:mace:shibboleth:2.0:metadata">
+#foreach( $filter in $trustRelationship.getGluuSAMLMetaDataFilter() )
+$filter
+#end
+            </MetadataFilter>
+#end
+#if($trustRelationship.spMetaDataSourceType.value == 'file' || $trustRelationship.spMetaDataSourceType.value == 'uri')
+        </MetadataProvider>
+#end
+#end
+
+</MetadataProvider>
+
+```
+      - Exit Gluu-Server container
+      - Stop/Start Gluu-server container by: 
+        - service gluu-server-3.x.x stop
+        - service gluu-server-3.x.x start
+      - Wait for 10 mins. 
