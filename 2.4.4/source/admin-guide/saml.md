@@ -150,10 +150,10 @@ The following documentation provides a step-by-step guide for configuring Asimba
        - example: ``` {"uid": ["uid", "urn:oid:0.9.2342.19200300.100.1.1"], "mail": ["mail", "urn:oid:0.9.2342.19200300.100.1.3"], "issuerIDP": ["issuerIDP" ] } ```
      - saml_idp_sso_target_url: `https://[proxy_hostname]/asimba/profiles/saml2/sso/web`
      - saml_update_user: true
-     - user_object_classes: gluuPerson, ox-1A1EAA99F942902300012AE17F0A [ This 'ox-1A1EAA99F942902300012AE17F0A' OC value is different for your server. To get your own value, search for                                                 'gluuAttributeOrigin' in ldap ]
+     - user_object_classes: gluuPerson, ox-1A1EAA99F942902300012AE17F0A [ This 'ox-1A1EAA99F942902300012AE17F0A' OC value is different for your server. To get your own value, search for 'gluuAttributeOrigin' in ldap ]
      - saml_use_authn_context: false
      - saml_generate_name_id: true
-     - asimba_saml_certificate_file: /etc/certs/saml.pem [ You need to create a 'saml.pem' cert inside /etc/certs/ location. The ingredient of this pem will be asimba.crt without 'BEGIN'                                                 and 'END' tag. Permissin of this pem will be tomcat:tomcat ]
+     - asimba_saml_certificate_file: /etc/certs/saml.pem [ You need to create a 'saml.pem' cert inside /etc/certs/ location. The ingredient of this pem will be asimba.crt without 'BEGIN' and 'END' tag. Permissin of this pem will be tomcat:tomcat ]
      - saml_validate_response: false
    - Script: Script is attached below. named 'SAML script'.
 
@@ -198,11 +198,13 @@ The following documentation provides a step-by-step guide for configuring Asimba
   - Log into Gluu Server container
   - As user 'tomcat', open 'asimba.xml'. Location: /opt/tomcat/webapps/asimba/WEB-INF/conf
   - Uncomment
+  
        ```
        <gather>
            <attribute name="whitelist-attribute-name" />
        </gather>
        ```
+       
    - Add `attribute name="*"` in attribute release class and restart tomcat
 
 ```
