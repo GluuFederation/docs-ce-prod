@@ -142,31 +142,31 @@ The following documentation provides a step-by-step guide for configuring Asimba
  - Log into oxTrust
  - Configuration -> Manage Custom Scripts
  - Script name 'saml'
-   - Custom property ( key/value ):
-     - asimba_entity_id: `https://[proxy_hostname]/saml`
-     - enforce_uniqueness_attr_list: issuerIDP, uid
-     - saml_deployment_type: enroll_all_attr
-     - saml_idp_attributes_mapping: { "attribute_name": ["attribute_name", "SAML2 URI"] }
-       - example: ``` {"uid": ["uid", "urn:oid:0.9.2342.19200300.100.1.1"], "mail": ["mail", "urn:oid:0.9.2342.19200300.100.1.3"], "issuerIDP": ["issuerIDP" ] } ```
-     - saml_idp_sso_target_url: `https://[proxy_hostname]/asimba/profiles/saml2/sso/web`
-     - saml_update_user: true
-     - user_object_classes: gluuPerson, ox-1A1EAA99F942902300012AE17F0A [ This 'ox-1A1EAA99F942902300012AE17F0A' OC value is different for your server. To get your own value, search for 'gluuAttributeOrigin' in ldap ]
-     - saml_use_authn_context: false
-     - saml_generate_name_id: true
-     - asimba_saml_certificate_file: /etc/certs/saml.pem [ You need to create a 'saml.pem' cert inside /etc/certs/ location. The ingredient of this pem will be asimba.crt without 'BEGIN' and 'END' tag. Permissin of this pem will be tomcat:tomcat ]
-     - saml_validate_response: false
-   - Script: Script is attached below. named 'SAML script'.
+    - Custom property ( key/value ):
+        - asimba_entity_id: `https://[proxy_hostname]/saml`
+        - enforce_uniqueness_attr_list: issuerIDP, uid
+        - saml_deployment_type: enroll_all_attr
+        - saml_idp_attributes_mapping: { "attribute_name": ["attribute_name", "SAML2 URI"] }
+            - example: ``` {"uid": ["uid", "urn:oid:0.9.2342.19200300.100.1.1"], "mail": ["mail", "urn:oid:0.9.2342.19200300.100.1.3"], "issuerIDP": ["issuerIDP" ] } ```
+        - saml_idp_sso_target_url: `https://[proxy_hostname]/asimba/profiles/saml2/sso/web`
+        - saml_update_user: true
+        - user_object_classes: gluuPerson, ox-1A1EAA99F942902300012AE17F0A [ This 'ox-1A1EAA99F942902300012AE17F0A' OC value is different for your server. To get your own value, search for 'gluuAttributeOrigin' in ldap ]
+        - saml_use_authn_context: false
+        - saml_generate_name_id: true
+        - asimba_saml_certificate_file: /etc/certs/saml.pem [ You need to create a 'saml.pem' cert inside /etc/certs/ location. The ingredient of this pem will be asimba.crt without 'BEGIN' and 'END' tag. Permissin of this pem will be tomcat:tomcat ]
+        - saml_validate_response: false
+    - Script: Script is attached below. named 'SAML script'.
 
 #### SP Requestor
 
  - SAML -> SP Requestors
  - 'Add SP Requestor'
-   - ID: `https://[proxy_hostname]/saml`
-   - Friendly Name: oxAuth SAML
-   - Metadata URL: Not required
-   - Metadata Timeout: -1
-   - Metadata File: Create a SAML metadata like below and save it as 'saml_oxauth_metadata.xml'. Upload this metadata. Replace entityID and ACS Location with your hostname.
-      - Sample metadata attached below. Named 'SAML oxAuth metadata'
+    - ID: `https://[proxy_hostname]/saml`
+    - Friendly Name: oxAuth SAML
+    - Metadata URL: Not required
+    - Metadata Timeout: -1
+    - Metadata File: Create a SAML metadata like below and save it as 'saml_oxauth_metadata.xml'. Upload this metadata. Replace entityID and ACS Location with your hostname.
+        - Sample metadata attached below. Named 'SAML oxAuth metadata'
     - Trust Certificate File: Not required
     - Properties: Not required
     - Enabled: Yes
@@ -176,23 +176,23 @@ The following documentation provides a step-by-step guide for configuring Asimba
 
  - SAML -> IDPs
  - 'Add IDP'
-   - ID: EntityID of remote IDP. i.e. `https://[idp_hostname]/idp/shibboleth`
-   - Friendly Name: Remote AuthN Server 1
-   - Metadata URL: Not required
-   - Metadata Timeout: -1
-   - Metadata File: Upload metadata
-   - Trust Certificate File: Grab SAML metadata from remote IDP and upload that. This certificate must be no password protected and x509 format crt. If remote IDP is another Gluu Server                                                 then grab 'shibIDP.crt' from /etc/certs/ of that server.
-   - NameIDFormat: urn:oasis:names:tc:SAML:2.0:nameid-format:transient
-   - Enabled: Yes
-   - Send Scoping: Yes
-   - AllowCreate: Yes
-   - Disable SSO for IDP: No
-   - ACS Index: Yes
-   - Send NameIDPolicy: Yes
-   - Avoid Subject Confirmations: No
-   - Add
+    - ID: EntityID of remote IDP. i.e. `https://[idp_hostname]/idp/shibboleth`
+    - Friendly Name: Remote AuthN Server 1
+    - Metadata URL: Not required
+    - Metadata Timeout: -1
+    - Metadata File: Upload metadata
+    - Trust Certificate File: Grab SAML metadata from remote IDP and upload that. This certificate must be no password protected and x509 format crt. If remote IDP is another Gluu Server                                                 then grab 'shibIDP.crt' from /etc/certs/ of that server.
+    - NameIDFormat: urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+    - Enabled: Yes
+    - Send Scoping: Yes
+    - AllowCreate: Yes
+    - Disable SSO for IDP: No
+    - ACS Index: Yes
+    - Send NameIDPolicy: Yes
+    - Avoid Subject Confirmations: No
+    - Add
 
- #### asimba.xml file configuration
+#### asimba.xml file configuration
 
   - SSH into VM
   - Log into Gluu Server container
@@ -217,7 +217,7 @@ The following documentation provides a step-by-step guide for configuring Asimba
                         <attribute name="country" />
                         <attribute name="*" />
                         
- ```
+```
 
 #### Create custom attribute named 'issuerIDP'
 
@@ -300,7 +300,7 @@ The following documentation provides a step-by-step guide for configuring Asimba
 
 - Restart shibd and apache2
 
- ### Trust relationship in Gluu-Asimba server
+### Trust relationship in Gluu-Asimba server
 
  We need to create a trust relationship in Gluu-Asimba server with Shibboleth SP metadata.
 
@@ -308,7 +308,7 @@ The following documentation provides a step-by-step guide for configuring Asimba
   - Grab Shibboleth SP metadata. You can get that with `https://[sp_hostname]/Shibboleth.sso/Metadata`
 
 
- ### Test SSO
+### Test SSO
 
   - Log into Gluu-Asimba server and enable 'basic' script from 'Manage Custom Scripts' section.
   - Go to 'Manage Authentication'
