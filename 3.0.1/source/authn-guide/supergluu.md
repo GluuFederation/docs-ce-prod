@@ -23,7 +23,7 @@ The script has the following properties
 ![person-auth](../img/admin-guide/multi-factor/person-auth.png)
 
 3. Select the Super Gluu Script                  
-![Super Gluu script](../img/admin-guide/multi-factor/oxpush2-script.png)
+![Super Gluu script](../img/admin-guide/multi-factor/supergluu-script.png)
 
 4. Enable the script by ticking the check box          
 ![enable](../img/admin-guide/enable.png)
@@ -31,4 +31,4 @@ The script has the following properties
 5. Click `Update`         
 
 6. Change the `Authentication method` to Super Gluu      
-![Super Gluu](../img/admin-guide/multi-factor/oxpush2.png)
+![Super Gluu](../img/admin-guide/multi-factor/supergluu.png)
