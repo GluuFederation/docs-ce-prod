@@ -79,11 +79,12 @@ Refer to the [attributes section of the documentation](./attribute.md/#defining-
 * A new page will appear where you can provide all the required information to create a Trust
   Relationship(TR).
 
-![newTR](../img/saml/newTR.png)
+![newTR](../img/saml/samlfederationTR.png)
 
 * _Display Name_: Name of the Trust Relationship (it should be unique for every trust relationship)     
 * _Description_: Little description. Purpose and SSO link can be added here.    
 * _Metadata Type_: There are four available options to choose from. The correct Type depends on how the SP is delivering Metadata to your IDP.      
+    * _None_
     * _File_: Choose File if the SP has provided an uploadable metadata document in XML format.
     * _URI_: Chose URI if the SP metadata is hosted on a URI that is accessible from the Internet.
     * _Generate_: Choose Generate if the SP is an "inhouse application" or the “Shibboleth SP” is going to be installed in the target application (SP). This option will generate a how-to guide for installing the Shibboleth SP. If you plan on using the Generate method, please note the following:          
@@ -94,7 +95,10 @@ Refer to the [attributes section of the documentation](./attribute.md/#defining-
 entity id” will appear. Use this link to find and select the SP entityIDs that you wish to create SSO with. Learn how to establish trust with a federation [below](#federation-configuration).     
 
 * _Released_: The SPs required attributes must be added to this panel. The required attributes can be selected from the menu on the left with the heading “Release Additional Attributes”.     
-
+* _Entity Type_: You have two options to choose for entity type.
+    * _Single SP_: 
+    * _Federation/Aggregate_
+    
 The Trust Relationship(TR) is added by clicking the `Add` button located in the lower left side of the page.     
 
 ### Relying Party Configuration     
@@ -110,9 +114,12 @@ The checkbox will result in a link which can be accessed to find information abo
     If the target application does not already support a federation standard like SAML, and you or the developer are planning on adding federation to the application, we strongly recommend using OpenID Connect rather than SAML. OpenID Connect is newer, easier to use, and follows modern best practices. Learn more in our blog: [OAuth vs. SAML vs. OpenID Connect](http://gluu.co/oauth-saml-openid).
     
 ### Federation Configuration     
-If the SP is part of an identity federation such as InCommon, the administrator must add the federation as an SP in the Gluu Server. This will enable the administrator to more easily create TRs with SPs in the federation. The example below shows how an administrator would add a TR for the InCommon Federation.
+If the SP is part of an identity federation such as InCommon, the administrator must add the 
+federation as an SP in the Gluu Server. This will enable the administrator to more easily 
+create TRs with SPs in the federation. The example below shows how an administrator would 
+add a TR for the InCommon Federation.
 
-![federationTR](../img/saml/federationTR.png)
+![federationTR](../img/saml/samlfederationTR.png)
 
 Once a TR has been established with the federation, the Gluu Server administrator can easily create TRs with any SP included in the federation by selecting the federation from the `Federation Name` drop down menu and selecting the entity-id for the SP. As for example here we are creating 'Internet2 Wiki' Trust Relationship which is InCommon affiliated ( that means, SP's entityID is available in InCommon metadata ). 
 
