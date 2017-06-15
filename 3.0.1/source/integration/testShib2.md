@@ -10,7 +10,7 @@ running setup.py script.
  - Click on 'Register'. Here we need to register our Gluu Server
  - Grab the SAML metadata of Gluu Server with: `https://[hostname_of_gluu_server]/idp/shibboleth`
  - Upload that XML file here in 'https://www.testshib.org/register.html' page
- - After successful registration, you will something like this: 
+ - After successful registration, you will get something like this: 
 
 ![Image](../img/integration/TestShib2_idp_registration.png)
 
