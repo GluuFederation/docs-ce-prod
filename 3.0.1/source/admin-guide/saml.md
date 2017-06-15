@@ -119,8 +119,6 @@ federation as an SP in the Gluu Server. This will enable the administrator to mo
 create TRs with SPs in the federation. The example below shows how an administrator would 
 add a TR for the InCommon Federation.
 
-![federationTR](../img/saml/samlfederationTR.png)
-
 Once a TR has been established with the federation, the Gluu Server administrator can easily create TRs with any SP included in the federation by selecting the federation from the `Federation Name` drop down menu and selecting the entity-id for the SP. As for example here we are creating 'Internet2 Wiki' Trust Relationship which is InCommon affiliated ( that means, SP's entityID is available in InCommon metadata ). 
 
 ![Incommon_affiliated_SP_Trust.png](../img/saml/InCommon_affiliated_SP_Trust.png)

@@ -61,6 +61,7 @@ pages:
         - 'SaaS Integrations':
             - 'Google Apps': 'integration/google.md'
             - 'Office 365': 'integration/office.md'
+            - 'Testing Shibboleth with Shibboleth 2': 'integration/testShib2.md'
 #    - 'Hobsons Education Sol': 'integration/hobsons.md'
             - 'Salesforce': 'integration/salesforce.md'
             - 'Dropbox': 'integration/dropbox.md'
