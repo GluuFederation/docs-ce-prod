@@ -4,8 +4,28 @@
 This document will explain how to use Gluu's 
 [gplus interception script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/gplus/GooglePlusExternalAuthenticator.py) to configure the Gluu Server to send users to Google for authentication. 
 
-## Configure Google
+## Configure oxTrust       
 
+Follow the steps below to configure the certificate authentication in the oxTrust Admin GUI.       
+
+1. Navigate to `Configuration` > `Manage Custom Scripts` > `Person Authentication`.        
+
+2. Click the `Add Custom Scritp` button       
+[add-script-button](../img/admin-guide/multi-factor/add-script-button.png)       
+
+3. Fill in the form and add the [Google External Authenticator](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/gplus/GooglePlusExternalAuthenticator.py) Script.       
+
+You'll also need to add some custom properties:       
+
+ * __gplus_client_secrets_file__: `/etc/gluu/conf/google.json`
+ * __gplus_deployment_type__: enroll
+ * __gplus_remote_attributes_list__: email, given_name, family_name, and locale
+ * __gplus_local_attributes_list__: uid, mail, givenName, sn, cn, preferredLanguage
+ * __gplus_client_secrets_file__ - It is a mandatory property that holds
+   the path to the application configuration file downloaded from Google
+   console for application. An example is `/etc/certs/gplus_client_secrets.json`.
+
+### Setting Google App
 In order to call Google API's you will need to register as a developer and
 create client credentials. You can follow these 
 [instructions](https://developers.google.com/identity/protocols/OAuth2).
@@ -68,62 +88,8 @@ The last step is to enable Google+ API's:
 - Click "Google+ API"
 - Click "Enable API" button
 
-## Configure oxTrust       
 
-Follow the steps below to configure the certificate authentication in the oxTrust Admin GUI.       
-
-1. Navigate to `Configuration` > `Manage Custom Scripts` > `Person Authentication`.        
-
-2. Click the `Add Custom Scritp` button       
-[add-script-button](../img/admin-guide/multi-factor/add-script-button.png)       
-
-3. Fill in the form and add the [Google External Authenticator](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/gplus/GooglePlusExternalAuthenticator.py) Script.       
-
-You'll also need to add some custom properties:       
-
- * __gplus_client_secrets_file__: `/etc/gluu/conf/google.json`
- * __gplus_deployment_type__: enroll
- * __gplus_remote_attributes_list__: email, given_name, family_name, and locale
- * __gplus_local_attributes_list__: uid, mail, givenName, sn, cn, preferredLanguage
-
-1. __gplus_client_secrets_file__ - It is a mandatory property that holds
-   the path to the application configuration file downloaded from Google
-   console for application. An example is `/etc/certs/gplus_client_secrets.json`.
-
-### Setting Google App
-These are the single steps needed to ClientSecret and ClientID or Google JSON:
-
-a) Log into: `https://console.developers.google.com/project`
-
-b) Click "Create project" and enter project name
-
-c) Open new project "API & auth -> Credentials" menu item in configuration navigation tree
-
-d) Click "Add credential" with type "OAuth 2.0 client ID"
-
-e) Select "Web application" application type
-
-f) Enter "Authorized JavaScript origins". It should be CE server DNS
-       name, for example `https://gluu.info`.
-
-g) Click "Create" and Click "OK" in next dialog
-
-h) Click "Download JSON" in order to download
-       `gplus_client_secrets.json` file.
-
-Also it is mandatory to enable Google+ API:
-    
-a) Log into `https://console.developers.google.com/project`
-    
-b) Select project and enter project name
-    
-c) Open new project "API & auth -> API" menu item in configuration navigation tree
-    
-d) Click "Google+ API"
-    
-e) Click "Enable API" button
-
-2. __gplus_deployment_type__ - Specify the deployment mode. It is an
+1) **gplus_deployment_type** - Specify the deployment mode. It is an
 optional property. If this property isn't specified the script tries to
 find the user in the local LDAP by 'subject_identifier' claim specified
 in id_token. If this property has a 'map' value the script allows to map
@@ -133,32 +99,36 @@ in id_token. If this property has a 'map' value the script allows to map
 uses properties from both gplus_remote_attributes_list and
 gplus_local_attributes_list. The allowed values are map and enroll.
 
-3. __gplus_remote_attributes_list__ - Comma-separated list of attribute
+2) **gplus_remote_attributes_list** - Comma-separated list of attribute
 names (user claims) that Google+ returns which map to local attributes
 in the `gplus_local_attributes_list` property. It is mandatory only if
 `gplus_deployment_type` is set to 'enroll'.
 
-4. __gplus_local_attributes_list__ - Comma-separated list of Gluu Server
+3) **gplus_local_attributes_list** - Comma-separated list of Gluu Server
 LDAP attribute names that are mapped to Google user claims from the
 `gplus_remote_attributes_list` property. It is mandatory only if
 `gplus_deployment_type` is set to 'enroll'.
 
-5. __extension_module__ - Optional property to specify the full path of
+4) **extension_module** - Optional property to specify the full path of
 an external module that implements two methods:
 
-```python
-    # This is called when the authentication script initializes
-    def init(conf_attr):
-        # Code here
-        return True/False
+```
+    
+# This is called when the authentication script initializes
 
-    # This is called after authentication
+    def init(conf_attr):
+    # Code here
+    return True/False
+ 
+# This is called after authentication
+
     def postLogin(conf_attr, user):
-        # Code here
-        return True    # or return False
+    # Code here
+    return True    # or return False
+        
 ```
 
-6. __gplus_client_configuration_attribute__ - Optional property to
+5) **gplus_client_configuration_attribute** - Optional property to
 specify the client entry attribute name which can override
 `gplus_client_secrets_file file` content. It can be used in cases when
 all clients should use a separate `gplus_client_secrets.json`

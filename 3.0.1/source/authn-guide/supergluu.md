@@ -13,7 +13,7 @@ The script has the following properties
 |-----------------------|-------------------------------|---------------|
 |application_id		|URL of the identity server	|https://idp.gluu.info|
 |authentication_mode	|Determine factor of authentication|two_step|
-|credentials_file	|JSON file for oxPush2 		|/etc/certs/oxpush2_creds.json|
+|credentials_file	|JSON file for SuperGluu 		|/etc/certs/super_gluu_creds.json|
 
 ## Configure oxTrust
 
