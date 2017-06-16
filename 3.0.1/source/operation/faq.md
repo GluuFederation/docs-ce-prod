@@ -164,10 +164,21 @@ While testing authentication scripts and mechanisms it is not unlikely that you 
 
 3. Replace the the authentication mode using `ldapmodify` command.
     ```
-    $/opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager,o=gluu' -w 'YOUR_BIND_PASSWORD' -f ~/changeAuth.ldif
+    root@gluu3-ubuntu:/opt/symas/bin# ./ldapmodify -h localhost -p 1389 -D "cn=directory manager,o=gluu" -w "{password provided during setup}" -f revert.ldif
     ```
 
->Reverting authentication could also done using LDAP browser and modifiying oxAuthenticationMode to 'internal'
+Reverting authentication could also done using LDAP browser and 
+modifying oxAuthenticationMode to 'internal'. Below are the steps:
+
+1. Open LDAP in a LDAP Browser (JXplorer is used here and recommended).
+2. Navigate to "gluu > appliances > {GUID or appliance number}". ![Revert authentication](../img/integration/revert-authentication1.png)
+3. Search for "oxAuthenticationMode"  and "oxTrustAuthenticationMode" attribute and delete the values. ![Revert authentication attrb](../img/integration/revert-authentication2.png)
+    - OxAuthenticationMode attribute is used for Login pages, which stores the name of the custom script used.
+    - OxTrustAuthenticationMode is used for OxTrust Admin UI page.
+4. Submit the changes.
+5. Try to access the login page or Gluu Admin UI.
+As a secondary option, InPrivate or Incognito or Private Browser from various Browsers can be used.
+
     
 ### No admin access after Cache Refresh?
 Add the password for your admin account to `~/.pw` and then use the commands below to add yourself as an admin.

@@ -178,7 +178,8 @@ Authentication custom scripts. Each of those script may implement logout functio
 ```
     def logout(self, configurationAttributes, requestParameters):
     return True
-```	
+```
+
 Its purpose mostly the same, beside the fact that each auth script's 
 function will only be called for users whose authentication during 
 login attempt was handled by corresponding script, but scripts of "Application session" 
@@ -232,13 +233,5 @@ Further logs to debug and monitor the sequence can be done using `oxauth_script.
 
 It is not uncommon to get locked out of the Gluu Server while testing the authentication script.
 
-In such a case the following method can be used to revert back to the older authentication method:
-
-1. Open LDAP in a LDAP Browser (jxlorer is used here and recommended).
-2. Navigate to "gluu > appliances > {GUID or applicance number}". ![Revert authentication](../img/integration/revert-authentication1.png)
-3. Search for "oxAuthenticationMode"  and "oxTrustAuthenticationMode" attribute and delete the values. ![Revert authentication attrb](../img/integration/revert-authentication2.png)
-    - OxAuthenticationMode attribute is used for Login pages, which stores the name of the custom script used.
-    - OxTrustAuthenticationMode is used for OxTrsut Admin UI page.
-4. Submit the changes.
-5. Try to access the login page or Gluu Admin UI.
-As a secondary option, InPrivate or Incognito or Private Browser from various Browsers can be used.
+In such case, refer to [Reverting Authentication Method](../operation/faq/#revert-authentication-method) 
+to revert back to the older authentication method:

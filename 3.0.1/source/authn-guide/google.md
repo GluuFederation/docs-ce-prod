@@ -155,38 +155,7 @@ the Gluu Server:
 ![image](../img/admin-guide/multi-factor/10-google-authorization.png)       
 
 If the script doesn't work, and you locked yourself out of oxTrust,
-don't worry! You can create an LDIF file, for example `revert.ldif`, to
-set back the default authentication method, like this:       
-
-```
-dn: inum=@!1E3B.F133.14FA.5062!0002!4B66.CF9C,ou=appliances,o=gluu
-changetype: modify
-replace: oxAuthenticationMode
-oxAuthenticationMode: internal
-```
-
-oxAuthenticationMode corresponds to the 'Name' of the customer
-authentication script in oxTrust. Use `internal` to revert to the
-default LDAP authentication. You'll have to change the `inum` with the
-`inum` of your installation. You can find it using ldapsearch like this:
-
-```
-root@gluu3-ubuntu:/opt/symas/bin# ./ldapsearch -h locahost -p 1389 -D "cn=directory manager,o=gluu" -w "{password provided during setup}" -b "ou=appliances,o=gluu" -s one "objectclass=*" inum
-```
-
-`~/.pw` is a file with your Directory Manager password. If you don't
-remember it, try to find it using `grep`: 
-
-```
-grep ldapPass= /install/community-edition-setup/setup.properties.last
-```
-
-Once your LDIF looks ok, then use `ldapmodify` to revert back to
-password authentication:
-
-```
-root@gluu3-ubuntu:/opt/symas/bin# ./ldapmodify -h localhost -p 1389 -D "cn=directory manager,o=gluu" -w "{password provided during setup}" -f revert.ldif
-```
+don't worry! You could always revert back. Refer to [Reverting authentication method](../operation/faq/#revert-authentication-method)       
 
 If things go wrong, it can leave the sessions in your browser in a bad
 state. If things get really weird, remove the cookies in your browser
