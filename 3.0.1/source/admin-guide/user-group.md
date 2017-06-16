@@ -112,7 +112,7 @@ The Gluu Server supports two LDAP modes:
 - Authentication 
 - Identity mapping
 
-Only sometimes is it the same LDAP server. To synchronize user accounts from an external LDAP directory server, you can use the built-in oxTrust features for Cache Refresh, which supports mapping identities from one or more source directory servers.
+Only sometimes it is the same LDAP server. To synchronize user accounts from an external LDAP directory server, you can use the built-in oxTrust features for Cache Refresh, which supports mapping identities from one or more source directory servers.
 
 After configuring Cache Refresh, you should give it some time to run and populate the LDAP server. Here are some tips before you get started:
 
