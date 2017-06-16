@@ -22,7 +22,8 @@ The script has the following properties
 
 |	Property	|	Description		|	Example	|
 |-----------------------|-------------------------------|---------------|
-|u2f_server_uri		|URL of the u2f server		|`https://idp.gluu.info`|
+|u2f_application_id		|URL of the application		|`https://idp.gluu.info`|
+|u2f_server_uri		|DNS/URL of the oxauth/u2f server|`https://idp.gluu.info`|
 |u2f_server_metadata_uri|URL of the u2f server metadata|`https://idp.gluu.info`|
 
 ## Configure U2F
