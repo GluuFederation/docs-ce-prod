@@ -105,6 +105,10 @@ Download [Jython](http://www.jython.org/downloads.html) and install in `c:\jytho
 ### Keystore Explorer
 This is optional, but convenient. You can find it on [SorceForge](http://keystore-explorer.sourceforge.net/). 
 
+### Memchached
+This is optional and for unix is provided, if it may be required for Windows, one could find it on internet. 
+[memchached](https://github.com/memcached)
+
 ## Configure Eclipse
 ### Install JBoss Tools Plugin
 
