@@ -16,7 +16,7 @@ well as the server version, free memory, and disk space. In the top
 right there is a user icon which can be used to log out of oxTrust. 
 The left hand menu is used to navigate the admin interface.
 
-![welcome-page.png](../img/oxtrust/welcome-page.png "Welcome to Gluu Server")
+![welcome-page.png](../img/oxtrust/welcome-page1.png "Welcome to Gluu Server")
 
 ## Configuration   
 From the configuration tab, the Gluu Server administrator can manage 
