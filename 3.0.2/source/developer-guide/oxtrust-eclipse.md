@@ -26,13 +26,13 @@ We will be building latest branch
 
 # yum clean all 
 
-# yum install gluu-server-3.0.2 
+# yum install gluu-server-3.0.1 
 
-# /sbin/gluu-serverd-3.0.2 start 
+# /sbin/gluu-serverd-3.0.1 start 
 
-# /sbin/gluu-serverd-3.0.2 enable 
+# /sbin/gluu-serverd-3.0.1 enable 
 
-# /sbin/gluu-serverd-3.0.2 login 
+# /sbin/gluu-serverd-3.0.1 login 
 ```
 !!! Note: 
     This documentation is prepared based on CentOS, follow the appropriate installation guide based on your OS.
@@ -65,7 +65,7 @@ Now we need to collect critical configuration files and test data need for devel
 
 # cp /etc/gluu/conf/salt /root/configs/ 
 
-# cp /opt/gluu/*.schema /root/configs/ 
+# cp /opt/gluu/schema/openldap/*.schema /root/configs/
 
 # tar -czf /root/configs.tgz /root/configs 
 ```
@@ -74,9 +74,9 @@ Now leave chroot
 # logout 
 ```
 
-root directory of gluu chroot jail is `/opt/gluu-server-3.0.2/` 
+root directory of gluu chroot jail is `/opt/gluu-server-3.0.1/` 
 
-download `/opt/gluu-server-3.0.2/root/configs.tgz` to your machine. 
+download `/opt/gluu-server-3.0.1/root/configs.tgz` to your machine. 
 
 ## Download Software
 Download below mentioned required softwares. And this assumes you're using Windows 64-bit operating sytsem. 
@@ -210,106 +210,113 @@ From the configs.tgz you downloaded earlier extract these files:
 
 into the conf subdirectory you created (e.g. C:\home\gluu\conf\ox-ldap.properties) 
 
-## Install OpenLDAP
-We use this distribution of [OpenLdap]()http://www.userbooster.de/en/download/openldap-for-windows.aspx) for windows in this document: 
+### Install and configure Symas OpenLDAP
 
-Any other build should work as well though. 
+1\. Download Silver Edition from [Symas Download](https://downloads.symas.com/products/symas-openldap-directory-silver-edition/)
 
-During the installation the only change required is to update ports to 1389 and 1636. 
-If ports are changed to some other values - corresponding changes should 
-be made in ox-ldap.properties and in everything.ldif before data import (or in database after import) 
+2\. Create folder for custom Gluu schema: `C:\Program Files (x86)\symas-openldap\etc\openldap\schema`
 
-   ![install](../img/developer/oxtrust/instalopenldap.png)
+3\. Copy into custom Gluu schema folder 2 files from CE `/opt/gluu-server-3.0.1/opt/gluu/schema/openldap`
 
-### Configure OpenLDAP
-Extract these files from the configs.tgz we created earlier: 
+4\. Copy `C:\Program Files (x86)\symas-openldap\etc\openldap\slapd.conf.default` into `C:\Program Files (x86)\symas-openldap\etc\openldap\slapd.conf`
 
-- configs/slapd.conf
-- configs/everything.ldif
-- configs/user.schema
-- configs/custom.schema
-- configs/gluu.schema
+5\. Edit file `C:\Program Files (x86)\symas-openldap\etc\openldap\slapd.conf`
+ - Uncommnet next lines:
+```
+   include		`etc/openldap/schema/ppolicy.schema`
+   include		`etc/openldap/schema/cosine.schema`
+   include		`etc/openldap/schema/inetorgperson.schema`
+   include		`etc/openldap/schema/eduperson.schema`
+```
+ - Add next include lines:
+```
+   include		`etc/openldap/gluu/gluu.schema`
+   include		`etc/openldap/gluu/custom.schema`
+```
 
-put schema files into some easy-reachable location (e.g. `c:\home\gluu\`) 
+ - Uncomment modules:
+```
+   moduleload	ppolicy.la
+   moduleload	unique.la
+```
 
-Now update slapd.conf to resemble the `configs/slapd.conf`
+ - Copy from CE file /opt/gluu-server-3.0.1/opt/symas/etc/openldap/slapd.conf sections into `C:\Program Files (x86)\symas-openldap\etc\openldap\slapd.conf`:
+```
+   #######################################################################
+   # Main Database housing all the o=gluu info
+   #######################################################################
+   ...
+   #######################################################################
+   # Site database housing o=site information
+   #######################################################################
+```
+   Hint:
+   End last section is after line:
+   index	gluuStatus
 
 
-1. Add ppolicy.schema to the include section 
+  - Replace in sections `Main Database` and `Site database`:
+     1. `database	mdb` with `database	hdb`
+     2. rootpw with your clear text password.
+     3. directory location `/opt/gluu/data` with `var/openldap-data`.
+  - Remove in sections `Main Database` and `Site database` maxsize option.
 
-2. Add user.schema, custom.schema and gluu.schema to the include section 
+6\. Create new DB folders:
+  - `C:\Program Files (x86)\symas-openldap\var\openldap-data\main_db`
+  - `C:\Program Files (x86)\symas-openldap\var\openldap-data\site_db`
 
-    ![policyschema](../img/developer/oxtrust/policyschema.png)
+7\. Copy default DB settings (rename DB_CONFIG.default to DB_CONFIG during copy):
+  - `C:\Program Files (x86)\symas-openldap\etc\openldap\DB_CONFIG.default` into `C:\Program Files (x86)\symas-openldap\var\openldap-data\main_db\DB_CONFIG`
+  - `C:\Program Files (x86)\symas-openldap\etc\openldap\DB_CONFIG.default` into `C:\Program Files (x86)\symas-openldap\var\openldap-data\site_db\DB_CONFIG`
 
-3. Load back_mdb.la, back_monitor.la and ppolicy.la modules 
+8\. Verify OpenLDAP settings:
+```
+   slaptest.bat -u -f `C:\Program Files (x86)\symas-openldap\etc\openldap\slapd.conf`
+   ...
+   config file testing succeeded
+```
 
-    ![load modules](../img/developer/oxtrust/loadmdb.png)
+9\. Now we can try to run OpenLDAP service and connect to LDAP server localhost:389
 
-4. Define access policy 
+### Import data from CE into dev LDAP
 
-    ![accesspolicy](../img/developer/oxtrust/accesspolicy.png)
+1\. Export `o=gluu` tree in CE into gluu.ldif
+```
+export OPENDJ_JAVA_HOME=/opt/jre; /opt/opendj/bin/ldapsearch -h localhost -p 1636  -Z -X -w secret -D `cn=directory manager,o=gluu` -b `o=gluu` objectClass=* > gluu.ldif
+```
 
-5. Define `o=gluu` database  
+2\. Load gluu.ldif into dev LDAP and update to conform new environemt
 
-    ![GluuDB](../img/developer/oxtrust/gluudatabase.png)
+3\. All Gluu applciations store setting in LDAP. Hence we need to update their configuration in LDAP
 
-6. Also create a data directory somewhere and update the location in `slapd.conf`
-   
-    ![datadir](../img/developer/oxtrust/datadir.png)
+3.1\. We need to change authentication setting: `inum=<appliance_inum>,ou=appliances,o=gluu`. We need to remove IDPAuthentication attribute from this entry.
 
-7. Define config database 
+3.2\. Fix invalid cache setting JSON format in: `inum=<appliance_inum>,ou=appliances,o=gluu`. We need to remove do:
+  - Replace IN_MEMORY with `IN_MEMORY`
+  - Replace DEFAULT with `DEFAULT`
 
-    ![configdb](../img/developer/oxtrust/configdb.png)
+3.3\. We need to change oxAuth settings: `ou=oxauth,ou=configuration,inum=<appliance_inum>,ou=appliances,o=gluu`. We need to apply next changes to oxAuthConfDynamic attribute value.
+  - Replace `https://<ce_host_name>/oxauth` with `https://localhost:8443/oxauth`
+  - Replace  `issuer`:`https://<ce_host_name>` with `oxAuthIssuer`:`https://localhost:8443`
 
-8. Remove memberOf mentions from gluu.schema (temporary) 
+3.4\. We need to change oxTrust settings: `ou=oxtrust,ou=configuration,inum=<appliance_inum>,ou=appliances,o=gluu`. We need to apply next changes to oxTrustConfApplication attribute value.
+  - Replace `https://<ce_host_name>/identity` with `https://localhost:8453/identity`
+  - Replace `https://<ce_host_name>/oxauth` with `https://localhost:8443/oxauth`
+  - Replace  `oxAuthIssuer`:`https://<ce_host_name>` with `oxAuthIssuer`:`https://localhost:8443/oxauth`
+  - Replace  `umaIssuer`:`https://<ce_host_name>` with `umaIssuer`:`https://localhost:8443/oxauth`
 
-    ![remove](../img/developer/oxtrust/7.png)
-  
-    ![remove](../img/developer/oxtrust/22memberof.png)
-  
-    ![memberof](../img/developer/oxtrust/23memberof.png)
-    
-9. Change passwords in slapd.conf to the LDAP Admin password configured at gluu CE deployment. 
+3.5\. Fix oxTrust oxAuth client settings: `inum=<org_inum>!0008!8CF0.83A5,ou=clients,o=<org_inum>,o=gluu`. We need to add next attribute values:
+  - oxAuthRedirectURI: https://localhost:8453/identity/authentication/authcode
+  - oxAuthPostLogoutRedirectURI: https://localhost:8453/identity/authentication/finishlogout
 
-    !!! Note 
-        You can use cleartext passwords in dev environment.
+### Start oxAuth under Jetty in Eclipse
 
-    ![changepswd](../img/developer/oxtrust/24chngpass.png)
-    
-    ![chngepswd2](../img/developer/oxtrust/25changepass.png)
+1\. We need to create new Jetty Webapp configuration run oxAuth under Jetty on HTTPS port 8443
 
-10. Verify that slapd.conf is correct with `slaptest.exe`. Run slaptest exe installer using the paramater `-u`
-   
-    `# cd C:\OpenLDAP`
-    
-    `# slaptest.exe -u`
-        
-    ![slaptest](../img/developer/oxtrust/slaptest.png)
+2\. We need to create new Jetty Webapp configuration run oxTrus under Jetty on HTTPS port 8453
 
-11. Import everything.ldif into the database using `slapadd.exe`
+3\. Before running both application we new to add VM argument (on Arguments tab): `-Dgluu.base=<path_to_folder_with_ox_conf_folder>`. It should specify path with 'conf' folder which contains 'ox-ldap.properties' and 'salt' files
 
-    ![importldif](../img/developer/oxtrust/importldif.png)
-    
-12. Restart database.
+4\. Start applications in next order: oxAuth, oxTrust
 
-13. You can use Ldap Admin `http://www.ldapadmin.org/`
-to verify that database is running and has been populated. 
-
-14. If `http://www.userbooster.de/en/download/openldap-for-windows.aspx` doesn't allow  
-OpenLDAP service to run on port 1636 instead of default 636 and if you are having difficulties 
-with service you can stop windows service by using the command to run OpenLdap from commandline: 
-
-    ![openldapcmd](../img/developer/oxtrust/openldapcmd.png)
-    
-15. Update oxtrust configuration in LDAP to use basic auth. You can use any ldap client, 
-we recommend ldap admin.
-    
-    ![updateoxtrust](../img/developer/oxtrust/updateoxtrust.png)
-
-!!! Note: 
-    Your inum may vary. You have to change “authMode”:“” to “authMode”:“basic” 
-    within ou=oxtrust,ou=configuration,inum=…,ou=applicanes,o=gluu in oxTrustConfApplication attribute 
-
-## Test
-
-Start your server.. and point your browser at http://localhost:8080/ 
+5\. Open in browser: `https://localhost:8453/identity`

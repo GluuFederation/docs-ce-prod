@@ -55,8 +55,6 @@ Gluu Server allows the administrator to import users from a file. This can be ac
 
 * The file needs to be validated before it can be imported. Click on the `Validate` button.
 
-![import](../img/admin-guide/user/import-people_import.png)
-
 * Click on the `Import` button to complete the import of users.
 
 #### File Structure
@@ -78,10 +76,10 @@ The Gluu Server is shipped with a very basic user registration feature. The regi
 !!! Note
     When possible, we recommend handling user registration in your app locally, then pushing the user information to the Gluu Server via SCIM. This will give you more control and flexibility in defining the exact registration process. Also, since it was primarily designed as an interface for admins, frequently oxTrust is not Internet facing.
 
-A limited number of attributes are present in the default registration form. If more attributes are needed they can be added via the GUI by navigating to `Organization Configuration` > `Manage Registration`. Learn how to [add attributes](./oxtrust-ui.md/#manage-registration) to the default registration form. 
+A limited number of attributes are present in the default registration form. If more attributes are needed they can be added via the GUI by navigating to `Organization Configuration` > `Manage Registration`. Learn how to [add attributes](./oxtrust-ui.md#manage-registration) to the default registration form. 
 
 ### User Registration Custom Script
-The [User Registration](./custom-script.md/#user-registration) custom script can be used to control and validate user registrations. In the oxTrust GUI, navigate to `Configuration` > `Manage Custom Scripts` > `User Registration`. 
+The [User Registration](./custom-script.md#user-registration) custom script can be used to control and validate user registrations. In the oxTrust GUI, navigate to `Configuration` > `Manage Custom Scripts` > `User Registration`. 
 
 ![image](../img/admin-guide/user/config-manage-script_menu1.png)
 
@@ -91,13 +89,10 @@ Set the `enable_user` value to `true` so that the user can login as soon as the 
 
 Click `Enable` checkbox at the bottom of the page.
 
-![image]
-(../img/admin-guide/user/config-manage-script_check.png)
+![image](../img/admin-guide/user/config-manage-script_check.png)
 
 Now users should be able to self-register through the user registration link, which should be available at `<hostname>/identity/register`.
 
-![image]
-(../img/admin-guide/user/config-manage-script_enable.png)
 
 ## LDAP Synchronization 
 LDAP Synchronization, a.k.a. Cache Refresh, is the process of connecting one or more existing backend LDAP servers, like Microsoft Active Directory, with the Gluu Server's local LDAP server. Synching people and attributes from a backend server speeds up authentication transactions. It is possible to perform attribute transformations, changing the name of attributes, or even using an interception script to change the values. Transformations are stored in the Gluu LDAP service. 
@@ -117,7 +112,7 @@ The Gluu Server supports two LDAP modes:
 - Authentication 
 - Identity mapping
 
-Only sometimes is it the same LDAP server. To synchronize user accounts from an external LDAP directory server, you can use the built-in oxTrust features for Cache Refresh, which supports mapping identities from one or more source directory servers.
+Only sometimes it is the same LDAP server. To synchronize user accounts from an external LDAP directory server, you can use the built-in oxTrust features for Cache Refresh, which supports mapping identities from one or more source directory servers.
 
 After configuring Cache Refresh, you should give it some time to run and populate the LDAP server. Here are some tips before you get started:
 
@@ -140,7 +135,7 @@ After configuring Cache Refresh, you should give it some time to run and populat
   users in the Gluu LDAP:
 
 ```
-# /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w 'pass_of_ldap_ -b 'ou=people,o=DA....,o=gluu' dn | grep "dn\:" | wc -l
+# /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w pass_of_ldap_ -b "ou=people,o=DA....,o=gluu" dn | grep "dn\:" | wc -l
 ```
 
 * Try to login with one of these users. We assume that you have also
@@ -292,7 +287,7 @@ below.
     attribute i.e. eduPersonScopedAffiliation. For more information please
     contact Gluu Support.
 
-  * _Snapshot Folder:_ Every cycle of of Gluu Server Cache Refresh cycle
+  * _Snapshot Folder:_ Every cycle of Gluu Server Cache Refresh cycle
     saves an overall snapshot and problem-list record on a specified
     location. This is where the Gluu Server Administrator can specify the
     location. You can easily decide whether cache refresh synchronizes all
@@ -324,127 +319,6 @@ upgraded sections here.
     operation and integrity of any custom script such as a Jython Script.
 
 ## SCIM 2.0 
-This section outlines how to add/remove user from Gluu Server CE using [SCIM-Client](https://github.com/GluuFederation/SCIM-Client).
-
-### Add User
-There are two methods to add users:
-
-1. [JSON Sting](#json-string)
-2. [User Object](#user-object)
-
-#### Required Parameters
-|Parameter|Description|
-|---------|-----------|
-|userName | The intended username for the end-user|
-|givenName| The first name of the end-user|
-|familyName| The last name of the end-user|
-|displayName| The formatted first name followed by last name|
-|_groups_| Optional parameter if the user is added to any specific group|
-
-#### JSON String
-The user is added using a JSON object string using the required parameters; however it is possible to add more parameters. The following is an example of a JSON string used to add a user.
-
-```
-        Scim2Client client = Scim2Client.umaInstance(domain, umaMetaDataUrl, umaAatClientId, umaAatClientJksPath, umaAatClientJksPassword, umaAatClientKeyId);
-        String createJson = {"schemas":["urn:ietf:params:scim:schemas:core:2.0:User"],"externalId":"12345","userName":"newUser","name":{"givenName":"json","familyName":"json","middleName":"N/A","honorificPrefix":"","honorificSuffix":""},"displayName":"json json","nickName":"json","profileUrl":"http://www.gluu.org/","emails":[{"value":"json@gluu.org","type":"work","primary":"true"},{"value":"json2@gluu.org","type":"home","primary":"false"}],"addresses":[{"type":"work","streetAddress":"621 East 6th Street Suite 200","locality":"Austin","region":"TX","postalCode":"78701","country":"US","formatted":"621 East 6th Street Suite 200  Austin , TX 78701 US","primary":"true"}],"phoneNumbers":[{"value":"646-345-2346","type":"work"}],"ims":[{"value":"nynytest_user","type":"Skype"}],"userType":"CEO","title":"CEO","preferredLanguage":"en-us","locale":"en_US","active":"true","password":"secret","groups":[{"display":"Gluu Test Group","value":"@!9B22.5F33.7D8D.B890!0001!880B.F95A!0003!60B7"}],"roles":[{"value":"Owner"}],"entitlements":[{"value":"full access"}],"x509Certificates":[{"value":"cert-12345"}]}
-        ScimResponse response = client.createPersonString(createJson, MediaType.APPLICATION_JSON);
-```
-#### User Object
-The following code snippet uses the User object.
-
-```
-        User user = new User();
-
-        Name name = new Name();
-        name.setGivenName("Given Name");
-        name.setMiddleName("Middle Name");
-        name.setFamilyName("Family Name");
-        user.setName(name);
-
-        user.setActive(true);
-
-        user.setUserName("newUser_" +  + new Date().getTime());
-        user.setPassword("secret");
-        user.setDisplayName("Display Name");
-        user.setNickName("Nickname");
-        user.setProfileUrl("");
-        user.setLocale("en");
-        user.setPreferredLanguage("US_en");
-
-        List<Email> emails = new ArrayList<Email>();
-        Email email = new Email();
-        email.setPrimary(true);
-        email.setValue("a@b.com");
-        email.setDisplay("a@b.com");
-        email.setType(Email.Type.WORK);
-        email.setReference("");
-        emails.add(email);
-        user.setEmails(emails);
-
-        List<PhoneNumber> phoneNumbers = new ArrayList<PhoneNumber>();
-        PhoneNumber phoneNumber = new PhoneNumber();
-        phoneNumber.setPrimary(true);
-        phoneNumber.setValue("123-456-7890");
-        phoneNumber.setDisplay("123-456-7890");
-        phoneNumber.setType(PhoneNumber.Type.WORK);
-        phoneNumber.setReference("");
-        phoneNumbers.add(phoneNumber);
-        user.setPhoneNumbers(phoneNumbers);
-
-        List<Address> addresses = new ArrayList<Address>();
-        Address address = new Address();
-        address.setPrimary(true);
-        address.setValue("test");
-        address.setDisplay("My Address");
-        address.setType(Address.Type.WORK);
-        address.setReference("");
-        address.setStreetAddress("My Street");
-        address.setLocality("My Locality");
-        address.setPostalCode("12345");
-        address.setRegion("My Region");
-        address.setCountry("My Country");
-        address.setFormatted("My Formatted Address");
-        addresses.add(address);
-        user.setAddresses(addresses);
-
-        ScimResponse response = client.createUser(user, new String[]{});
-        System.out.println("response body = " + response.getResponseBodyString());
-
-        assertEquals(response.getStatusCode(), 201, "Could not add user, status != 201");
-
-        User userCreated = Util.toUser(response, client.getUserExtensionSchema());
-        String id = userCreated.getId();
-```
-
-### Delete User
-To delete a user only the id (the LDAP `inum`) is needed.
-
-```
-        ScimResponse response = client.deletePerson(id);
-        assertEquals(response.getStatusCode(), 200, "User could not be deleted, status != 200");
-```
-
-#### Required Parameter
-
-|Parameter|Description|
-|---------|-----------|
-|id	  |The LDAP `inum` of the user to be deleted|
-
-### User Extensions
-
-User Extensions allow you to create Custom Attributes in SCIM 2.0. 
-Set the custom attribute's `SCIM Attribute` parameter to `true` in oxTrust GUI and 
-it will be recognized as a User Extension. This is required to create new custom attributes.
-
-![image](../img/admin-guide/user/scim-attribute.png)
-
-You can verify the User Extensions via the `Schema` endpoint:
-
-`<domain root>/identity/seam/resource/restv1/scim/v2/Schemas/urn:ietf:params:scim:schemas:extension:gluu:2.0:User`
-
-![image](../img/admin-guide/user/scim-custom-first.png)
-
-Now for the actual code, you can refer to the unit tests in SCIM-Client:
-
-* [UserExtensionsObjectTest](/src/test/java/gluu/scim2/client/UserExtensionsObjectTest.java)
-* [UserExtensionsJsonTest](/src/test/java/gluu/scim2/client/UserExtensionsJsonTest.java)
+In [User Management with SCIM](../admin-guide/user-scim.md) you can find 
+details on how to use the [SCIM-Client](https://github.com/GluuFederation/SCIM-Client)
+to make CRUD operations over the user database of your Gluu Server. 

@@ -1,6 +1,6 @@
 ## UMA API Document
 User-Managed Access (UMA) is a profile of OAuth 2.0. UMA defines how 
-resource owners can manipulate the protect resources.
+resource owners can manipulate to protect the resources.
 The client can have access by arbitrary requesting parties, which means the 
 requesting resource can be any number of resource servers and a centralized 
 authorization server managing the access based on protected resource rules and policies defined.

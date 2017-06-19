@@ -1,5 +1,5 @@
 # FAQ
-## General FAQ
+## General 
 ### Logs
 When it comes to troubleshooting issues in the Gluu Server--from service hiccups to outages--your [server logs](./logs.md) are the best place to gather relevant information.
 
@@ -16,12 +16,11 @@ Ports other than 443 are not supported as the port is used by Apache Web Server.
     Please use a virtual ethernet interface and a different IP address on your server
 
 ### How to customize IDP to ask for Email instead of username
-
 In oxTrust navigate to the Manage Authentication tab within the Configuration section. By default the Primary Key and Local Key are set to `uid`. Set those va    lues to `mail` and now your Gluu Server will expect email as the identifier instead of username.
 
 ![change2mail](../img/admin-guide/faq/change2mail.png)
 
-Now you will want to update your IDP login page to display `Email Address` as the requested identifier. In order to do that you need to modify the `login.xhtm    l` file, which is located in `/opt/tomcat/webapps/oxauth/`. Insert `Email Address` as the value for `outputLabel`; this snippet is under the `dialog` class. S    ee the screenshot below.
+Now you will want to update your IDP login page to display `Email Address` as the requested identifier. In order to do that you need to modify the `login.xhtm    l` file, which is located in `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp`. Insert `Email Address` as the value for `outputLabel`; this snippet is under the `dialog` class. S    ee the screenshot below.
 
 ![update-login](../img/admin-guide/faq/update-login.png)
 
@@ -30,8 +29,11 @@ The additional role requires the implementation of dynamic rules in Jboss SEAM a
 
 !!! Warning
     oxTrust is a tool for administrators and it must nto be used as a user facing application.
+    
+### How do I install a patch to my server?
+Follow the documentation for [updating a .war file](../upgrade/update-war.md). 
 
-## Troubleshooting Guide
+## Troubleshooting 
 ### Add admin for Gluu server
 
 Please follow these steps to restore your Gluu admin account (you will
@@ -47,7 +49,7 @@ ones used by your installation):
 2) Run this command:
 
 ```
-#/opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -b o=gluu gluuGroupType=gluuManagerGroup 1.1
+#/opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager,o=gluu' -w 'YOUR_BIND_PASSWORD' -b o=gluu gluuGroupType=gluuManagerGroup 1.1
 ```
 
 and remember the displayed dn of the Gluu Manager Group for future use.
@@ -55,7 +57,7 @@ and remember the displayed dn of the Gluu Manager Group for future use.
 3) Run this command:
 
 ```
-# /opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -b o=gluu ou=people 1.1
+# /opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager,o=gluu' -w 'YOUR_BIND_PASSWORD' -b o=gluu ou=people 1.1
 ```
 
 and remember the displayed dn of the People ou for future use.
@@ -84,7 +86,7 @@ step 3).
 5) Run this command:
 
 ```
-# /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/add_user.ldif
+# /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager,o=gluu' -w 'YOUR_BIND_PASSWORD' -f ~/add_user.ldif
 ```
 
 This will create new user tempadmin with attributes provided via file
@@ -109,13 +111,13 @@ specified in the 1st line of the file in step 4).
 7) Run this command:
 
 ```
-# /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/add_2_group.ldif
+# /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager,o=gluu' -w 'YOUR_BIND_PASSWORD' -f ~/add_2_group.ldif
 ```
 
 This will add tempadmin user to the IdP managers group and you can then
 login and assign another user to act as admin.
 
-### Connectivity Issues?
+## Connectivity Issues
 ### DNS names not resolving!
 It is possible that even after configuring everything there is a `DNS` resolve error in Gluu Server.
 The reason is the `DNS` used inside the chroot container; the `dns` used by the container is the Google DNS servers 
@@ -135,32 +137,49 @@ property `ldapPass`. Retrieve the data using the following command:
     It is strongly recommended to remove the file from any production environment or encrypt the file
 
 ### Revert Authentication Method
-It is not unlikely that you will lock yourself out of Gluu Server while testing the authentication script, if there is any problem in it. In such a case the following method can be used to revert back the older authentication method.
+While testing authentication scripts and mechanisms it is not unlikely that you will find yourself locked out of the Gluu Server. In such a case the following method can be used to revert back to the previous authentication method:
 
-1. Run the following command to collect the `inum` for the Gluu Server installation.
+> Same commands can be used for OpenLDAP as well.
 
-`/opt/opendj/bin/ldapsearch -h localhost -p 1389 -D "cn=directory 
-manager" -j ~/.pw -b "ou=appliances,o=gluu" -s one "objectclass=*" 
-oxAuthenticationMode`
+1. Run the following command to collect the `inum` for the Gluu Server installation:   
 
+    ```
+    $/opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager,o=gluu" -j ~/.pw -b "ou=appliances,o=gluu" -s one "objectclass=*" oxAuthenticationMode
+    ```
+    
 2. Create a `LDIF` file with the contents below:
-
-```
-dn: inum=@!1E3B.F133.14FA.5062!0002!4B66.CF9C,ou=appliances,o=gluu
-changetype: modify
-replace: oxAuthenticationMode
-oxAuthenticationMode: internal
-```
-
-As an example, we shall call this file `changeAuth.ldif`.
-
-**Note:** Replace the `inum` from the example above with the `inum` of the Gluu Server from the `ldapsearch` command.
-
+ 
+    `dn: inum=@!1E3B.F133.14FA.5062!0002!4B66.CF9C,ou=appliances,o=gluu`
+    
+    `changetype: modify`
+    
+    `replace: oxAuthenticationMode`
+    
+    `oxAuthenticationMode: internal`
+    
+    As an example, we shall call this file `changeAuth.ldif`.
+    
+    !!! Note
+        Replace the `inum` from the example above with the `inum` of your Gluu Server from the `ldapsearch` command.
 
 3. Replace the the authentication mode using `ldapmodify` command.
+    ```
+    root@gluu3-ubuntu:/opt/symas/bin# ./ldapmodify -h localhost -p 1389 -D "cn=directory manager,o=gluu" -w "{password provided during setup}" -f revert.ldif
+    ```
 
-`/opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/changeAuth.ldif
+Reverting authentication could also done using LDAP browser and 
+modifying oxAuthenticationMode to 'internal'. Below are the steps:
 
+1. Open LDAP in a LDAP Browser (JXplorer is used here and recommended).
+2. Navigate to "gluu > appliances > {GUID or appliance number}". ![Revert authentication](../img/integration/revert-authentication1.png)
+3. Search for "oxAuthenticationMode"  and "oxTrustAuthenticationMode" attribute and delete the values. ![Revert authentication attrb](../img/integration/revert-authentication2.png)
+    - OxAuthenticationMode attribute is used for Login pages, which stores the name of the custom script used.
+    - OxTrustAuthenticationMode is used for OxTrust Admin UI page.
+4. Submit the changes.
+5. Try to access the login page or Gluu Admin UI.
+As a secondary option, InPrivate or Incognito or Private Browser from various Browsers can be used.
+
+    
 ### No admin access after Cache Refresh?
 Add the password for your admin account to `~/.pw` and then use the commands below to add yourself as an admin.
 
@@ -172,7 +191,7 @@ export newgluuadmin='myusername'
 export ldiffile='addManagers.ldif'
 
 # run this and verify that the output is for your account
-/opt/opendj/bin/ldapsearch -h localhost -p 1636 -D "cn=directory manager" -j ~/.pw -Z -X -b "o=gluu" "uid=$newgluuadmin" uid givenName sn cn
+/opt/opendj/bin/ldapsearch -h localhost -p 1636 -D "cn=directory manager,o=gluu" -j ~/.pw -Z -X -b "o=gluu" "uid=$newgluuadmin" uid givenName sn cn
 
 dn: inum=@!134D.3C3D.796E.FECE!0001!E022.CC3C!0000!A8F2.DE1E.D7FB,ou=people,o=@!134D.
  3C3D.796E.FECE!0001!E022.CC3C,o=gluu
@@ -188,7 +207,7 @@ Now you can run these commands to make the file above:
 head -n1 /opt/opendj/ldif/groups.ldif > $ldiffile
 echo 'changetype: modify' >> $ldiffile
 echo 'add: member' >> $ldiffile
-echo "member: $(/opt/opendj/bin/ldapsearch -h localhost -p 1636 -D "cn=directory manager" -j ~/.pw -Z -X -b "o=gluu" "uid=$newgluuadmin" uid givenName sn cn |grep -A1 dn |cut -d ' ' -f 2- | sed 'N;s/\n//')" >> $ldiffile
+echo "member: $(/opt/opendj/bin/ldapsearch -h localhost -p 1636 -D "cn=directory manager,o=gluu" -j ~/.pw -Z -X -b "o=gluu" "uid=$newgluuadmin" uid givenName sn cn |grep -A1 dn |cut -d ' ' -f 2- | sed 'N;s/\n//')" >> $ldiffile
 ```
 
 The resulting ldif will look like this:
@@ -203,7 +222,7 @@ member: inum=@!134D.3C3D.796E.FECE!0001!E022.CC3C!0000!A8F2.DE1E.D7FB,ou=people,
 Once the ldif looks right, run this to grant your account admin rights in Gluu:
 
 ```bash
-/opt/opendj/bin/ldapmodify -h localhost -p 1636 -D "cn=directory manager" -j ~/.pw -Z -X -f addManagers.ldif
+/opt/opendj/bin/ldapmodify -h localhost -p 1636 -D "cn=directory manager,o=gluu" -j ~/.pw -Z -X -f addManagers.ldif
 ```
 
 Log into the web interface and pick up where you left off :)

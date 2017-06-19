@@ -1,75 +1,33 @@
-# Customize Login Page
+# Customizing Public Pages
 
-Gluu provides you with the feasibility to customize your login page and styles as per the 
-organization standards.
+Most organizations will want to edit and customize the look and feel of public-facing Gluu Server pages, 
+like the login and registration pages, to match their own corporate branding. 
+The below documentation will provide the file locations of public facing pages, 
+as well as instructions for adding custom html, css, and javascript files to your Gluu Server. 
+
+## Overview
+The Gluu Server's public facing pages are `xhtml` files. Before changing any files, we recommended taking backups so that no important elements are deleted from the pages.
+
+The availbale pages are in the `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/` directory. 
+
+The file which represents the primary login page is included in the `oxauth-any` directory.
+
+## oxAuth Pages
+You can find the public facing oxAuth pages in the following locations: 
+
+- Default login page:
+    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/login.xhtml`
+- Authorization page:
+    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/authorize.xhtml`
+- Error page:
+    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/error.xhtml`
+- Custom authentication scripts: XHTML files in
+    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/auth`
+
+### How to remove the Gluu copyright 
+To remove the Gluu copyright icon from your login page, navigate to the file template.xhtml that is located under
  
-## Style Customizations
-Static style elements like CSS, JavaScript and images are packaged into
-separate jar files. They are named _\<ProjectName\>_ Static-
-_\<version\>_ .jar, e.g. 'oxTrustStatic-1.3.0.Final.jar' and
-'oxAuthStatic-1.4.0x.Final.jar'. These files are added to the deployable
-war during build time.
-
-Post deployment, the structure of the jar allows its context to be
-accessible from the Web context root. For example, the default values of
-the CSS and JavaScript locations are *\<contextPath\>/stylesheet* and
-*\<contextPath\>/js* in the configuration file.
-
-It is possible to unpack the contents of the said jar into a folder
-hosted by a web server, and change the default cssLocation, jsLocation
-and imgLocation attributes in the file `oxTrust.properties` and/or in
-`oxauth-config.xml`.
-
-
-* CSS: The location is specified using the property `cssLocation`.
-
-* JavaScript: The location is specified using the property `jsLocation`.
-
-* Images: The location is specified using the property `imgLocation`.
-
-For example, in `oxTrust.properties` it looks like that:
-
-```
-cssLocation=https://idp.gluu.org/static/stylesheet
-jsLocation=https://idp.gluu.org/static/js
-imgLocation=https://idp.gluu.org/static/img
-```
-In the file `oxauth-config.xml` (as a children of \<configuration\>
-node) it looks like that:
-
-```
-<cssLocation>https://idp.gluu.org/static/stylesheet</cssLocation>
-<jsLocation>=https://idp.gluu.org/static/js<jsLocation>
-<imgLocation>=https://idp.gluu.org/static/img<imgLocation>
-```
-## Page Customizations
-
-Gluu server Community Edition makes editing public-facing pages easy
-withour requiring the building of new war file. The files are in the
-`xhtml` format and it is recommended to take backups so that no 
-important element is deleted from the pages.
-
-The availbale pages are inside the two directories 
-
-`/opt/jetty-9.3/temp/jetty-localhost-8082-identity.war-_identity-any-{random number}.dir`
-
-`opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-{random number}.dir`.
-
-oxAuth Pages:
-
-- Default login page: `/opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-{random number}.dir/webapp/login.xhtml`
-- Authorization page: `/opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-{random number}.dir/webapp/authorize.xhtml`
-- Error page: `/opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-{random number}.dir/webapp/error.xhtml`
-- Custom authentication scripts: XHTML files in `/opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-{random number}.dir/webapp/auth`
-
-oxTrust Pages:
-
-- Default registration page: `/opt/jetty-9.3/temp/jetty-localhost-8082-identity.war-_identity-any-6948849492655524434.dir/webapp/register.xhtml`
-
-To remove the Gluu copyright icon from your login page, 
-navigate to the file template.xhtml that is located under
- 
-`/opt/jetty-9.3/temp/jetty-localhost-8082-identity.war-_identity-any-{random number}.dir/webapp/WEB-INF/incl/layout`. 
+`/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/WEB-INF/incl/layout`.     
 
 Then, simply remove this snippet:
 
@@ -81,9 +39,27 @@ Then, simply remove this snippet:
 </s:fragment>
 ```
 
-## Customizing Pages
-A new location is added inside the Gluu Server `chroot` to make the customizations easy. 
-The `/opt/gluu/jetty/` folder contains the `oxauth` and `identity` folder.
+## oxTrust Pages
+You can find the public facing oxTrust pages in the following locations: 
+
+- Default registration page:
+
+    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/register.xhtml`
+
+## Custom CSS, JS, Images
+
+Custom CSS or images should be placed inside `/opt/gluu/jetty/oxauth/custom/static` with corresponding naming. 
+
+For example, all images should be inserted under: 
+
+`/opt/gluu/jetty/oxauth/custom/static/img` 
+
+And all CSS are inside:
+
+`/opt/gluu/jetty/oxauth/custom/static/stylesheet`
+
+## Structure and paths for customizing pages 
+A new location is added inside the Gluu Server `chroot` to make the customizations easy. The `/opt/gluu/jetty/` folder contains the `oxauth` and `identity` folder.
 
 The structure can be illustrated as follows:
 
@@ -104,52 +80,48 @@ The structure can be illustrated as follows:
 			`-- static
 ```
 
-Customized `libs` are to be placed under 
+Customized `libs` can be placed in the following directories:
 
-`/opt/gluu/jetty/identity/lib/ext`
-`/opt/gluu/jetty/oxauth/lib/ext`
+`/opt/gluu/jetty/identity/lib/ext`    
+`/opt/gluu/jetty/oxauth/lib/ext`     
 
-Custom `xhtml`, `page.xml`, etc should be placed under 
+Custom `xhtml`, `page.xml`, etc should be placed in the following directories: 
 
-`/opt/gluu/jetty/identity/custom/pages`
-`/opt/gluu/jetty/oxauth/custom/pages`
+`/opt/gluu/jetty/identity/custom/pages`    
+`/opt/gluu/jetty/oxauth/custom/pages`    
 
-To place static resources like `jpg`, `css`, etc are placed under the below folder
+Place static resources like `jpg`, `css`, etc. under the following directories:
 
-`/opt/gluu/jetty/identity/custom/static`
-`/opt/gluu/jetty/oxauth/custom/static`
+`/opt/gluu/jetty/identity/custom/static`      
+`/opt/gluu/jetty/oxauth/custom/static`       
 
-To avoid collisions with static resources 
-from war files, Gluu maps this folder to next URL: `/{oxauth|identity}/ext/resources`
+To avoid collisions with static resources from WAR files, Gluu maps this folder to the URL: `/{oxauth|identity}/ext/resources`     
 
 !!! Warning:
-        Log into the Gluu Server chroot before working on the customized pages
+        Log into the Gluu Server chroot before working on design customizations for any pages.
 
-* Please make way to the default pages folder to copy the default file to the external resource folder.
+Copy the default file(login.xhtml) to the external resource folder as shown in the below example
 
 ```
-# cd /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-{random number}.dir/webapp/
-# cp login.xhtml /opt/gluu/jetty/oxauth/custom/pages 
+# cd /opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/    
+# cp login.xhtml /opt/gluu/jetty/oxauth/custom/pages     
 ```
 
-The example above shows that the `login.xhtml` file is copied to the external pages. 
-The changes can be made here and restarting jetty will display the changes 
-made to the specific customized page. The customizations must not be made by people 
-will little/no web-development knowledge.
+The example above shows that the `login.xhtml` file is copied to the external pages. The changes can be made here. 
+Restarting jetty will display the changes. 
 
-## Jetty Restart Policy
-Restart `identity` and `oxauth` services for the following to be executed:
+!!! Warning: 
+    Customizations should only be made by people with a solid understanding of web-development.
+
+## Jetty Restart 
+
+Restart the `identity` and `oxauth` services for the customizations to be applied using the following commands:
+
 ```
 # service identity stop
 # service identity start
 # service oxauth stop
 # service oxauth start
 ```
-
-1. Default Page overriden with custom page as JSF may cache path to original version
-
-2. Removal of page to replace context with empty page to invalidate it
-
-3. New environment variable is introduces
 
 **Note:** There is a 10 second delay on page modification reload.

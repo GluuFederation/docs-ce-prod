@@ -1,6 +1,5 @@
 #! /bin/bash
 git pull origin 3.0.2
-mkdocs build
 echo -n "Enter task Performed >"
 read text
 echo "Entered Task: $text"

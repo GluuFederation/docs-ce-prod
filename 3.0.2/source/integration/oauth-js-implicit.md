@@ -1,195 +1,129 @@
-# openid-implicit-client
+# JavaScript
 
-Simple Javascript client that implements the OpenID Connect implicit flow.
+## Overview
+The following documentation demonstrates how to use Gluu's [OpenID Connect JavaScript implicit client](https://github.com/GluuFederation/openid-implicit-client) to send users from an single page vanilla JS app to the Gluu Server for authentication and authorization.
 
-This code is forked based on a javascript library written by
-[Edmund Jay](https://www.linkedin.com/in/edmundjay), and referened in a
-[blog](https://nat.sakimura.org/2014/12/10/making-a-javascript-openid-connect-client/)
-by [Nat Sakimura](https://twitter.com/_nat_en)
+> Note: The code used for this client was forked from a JavaScript library written by Edmund Jay.
 
-To use this library, include the `openidconnect.js` your HTML page.
+## What is the JavaScript Implicit Client?
+This JavaScript client implements the [OpenID Connect implicit flow](http://openid.net/specs/openid-connect-core-1_0.html#ImplicitFlowAuth). The Implicit Flow is mainly used by Clients implemented in a browser using a scripting language. The Access Token and ID Token are returned directly to the Client, which may expose them to the End-User and applications that have access to the End-User's User Agent. The Authorization Server does not perform Client Authentication.
 
-* Set the provider and client configuration info through JSON objects;
-* Call the server – login;
-* In the callback page, callback.html, you will get ID Token back,
-so that you can put it into the cookie to handle the session.
+The OpenID Connect Implicit Flow follows the following steps:
 
----
+- Client prepares an Authentication Request containing the desired request parameters.
+- Client sends the request to the Authorization Server.
+- Authorization Server Authenticates the End-User.
+- Authorization Server obtains End-User Consent/Authorization.
+- Authorization Server sends the End-User back to the Client with an ID Token and, if requested, an Access Token.
+- Client validates the ID token and retrieves the End-User's Subject Identifier.
 
-## OIDC Variables
+## Installation
 
-#### Supported Provider Options
+To use this library, include the openidconnect.js dependency to your HTML page. You can get it from the Github CDN.
 
-List of the Identity Provider's configuration parameters. <br>
+```html
+<script src="https://cdn.rawgit.com/GluuFederation/openid-implicit-client/master/openidconnect.js"></script>
+```
+The next steps for the installation are:
 
-* **supportedProviderOptions.issuer** *(string)*: Issuer ID <br>
-* **supportedProviderOptions.authorization_endpoint** *(string)*: Authorization Endpoint URL <br>
-* **supportedProviderOptions.jwks_uri** *(string)*: JWKS URI <br>
-* **supportedProviderOptions.claims_parameter_supported** *(boolean)*: Claims parameter support <br>
-* **supportedProviderOptions.request_parameter_supported** *(boolean)*: Request parameter support <br>
-* **supportedProviderOptions.jwks** *(object)*: Identity Provider's JWK Set <br>
+- Setting the provider and client configuration info through JSON objects;
+- Calling the server – login;
+- In the callback page, callback.html, you will get ID Token back, so that you can put it into the cookie to handle the session.
 
-#### Supported Request Options
 
-Supported Login Request parameters. <br>
 
-* **supportedRequestOptions.scope** *(string)*: Space separated scope values<br>
-* **supportedRequestOptions.response_type** *(string)*: Space separated response_type values<br>
-* **supportedRequestOptions.display** *(string)*: Display<br>
-* **supportedRequestOptions.max_age** *(string)*: Max_age<br>
-* **supportedRequestOptions.claims** *(object)*: Claims object containing what information to return in the UserInfo endpoint and ID Token<br>
-* **supportedRequestOptions.claims.id_token** *(array)*: List of claims to return in the ID Token<br>
-* **supportedRequestOptions.claims.userinfo** *(array)*: List of claims to return in the UserInfo endpoint<br>
-* **supportedRequestOptions.request** *(boolean)*: Signed request object JWS. **Not supported yet.**<br>
+## Configuration
 
-#### Supported Client Options
+### Setting info and authentication
 
-List of supported Client configuration parameters. <br>
+The library works with clients manually registered and it also allows a dynamic client registration. Please remember that for security purposes, during manual client registration you should set a Redirect Login URI to the address of the web page you intend to deploy.
 
-* **supportedClientOptions.client_id** *(string)*: The client's client_id <br>
-* **supportedClientOptions.redirect_uri** *(string)*: The client's redirect_uri <br>
+The first step for the configuration should be setting the client and provider info. The first one should be done through a JSON object.
 
-## OIDC Methods
+```JavaScript
+var clientInfo = {
+                client_id : '(your-client-id)',
+                redirect_uri : 'https://(hostname)/login-callback.html'
+                };
+```
 
-#### setProviderInfo(p)
-* _p - The Identity Provider's configuration options described in [OIDC.supportedProviderOptions](#supported-provider-options)_ <br>
+The dynamic client registration is done by declaring a JSON object without the client_id. The redirect_uri is a mandatory information.
 
-Sets the Identity Provider's configuration parameters. It may be done declaring each parameter on code or using the returning information from [OIDC.discover('https:<nolink>//(hostname)')](#discoverissuer). It returns a boolean value indicating status of call. <br>
+```JavaScript
+var clientInfo = {
+                redirect_uri : 'callback.html'
+                };
+```
 
-###### Example:
-    // set Identity Provider configuration
-    OIDC.setProviderInfo( {
-        issuer: 'https://(hostname)',
-        authorization_endpoint: 'http://(hostname)/auth.html',
-        jwks_uri: 'https://(hostname)/jwks'
-        });
+The provider info is retrieved by calling the function `OIDC.discover()`.
 
-    // set Identity Provider configuration using discovery information
-    var discovery = OIDC.discover('https://(hostname)');
-    if(var)
-      OIDC.setProviderInfo(discovery);
+```JavaScript
+var providerInfo = OIDC.discover('https://idp.example.com/');
+```
+The following functions set the information previously declared:
+```JavaScript
+OIDC.setClientInfo( clientInfo );
+OIDC.setProviderInfo( providerInfo );
+```
+After setting client and provider information we choose to save all that data in the `sessionStorage` so we can restore them later at the callback-page and for that we use the method `storeInfo`.
 
-#### setClientInfo(p)
-* _p - The Client's configuration options described in [OIDC.supportedClientOptions](#supported-client-options)_ <br>
+```JavaScript
+OIDC.storeInfo(providerInfo, clientInfo);
+```
+Still regarding our `sessionStorage`, we choose to remove both nonce and state from previous session to avoid conflict of data.
 
-Sets the Client's configuration parameters. It returns a boolean value indicating status of call.
+```JavaScript
+sessionStorage.removeItem('state');
+sessionStorage.removeItem('nonce');
+```
+The authentication homepage for this sample is composed by HTML tables to show our client information and the login request. The latest is a JSON object composed by all the information passed to the server authorization endpoint through the method `login`. This function is called on click of a button and its parameters are optional authentication request options. For our sample client this functionality is set as following:
 
-###### Example:
-    // set client_id and redirect_uri
-    OIDC.setClientInfo( {
-       client_id: 'myclientID',
-       redirect_uri: 'https://rp.example.com/callback.html'
-      }
-    );
+```HTML
+<button onClick="OIDC.login( {scope : 'openid profile email',
+                            response_type : 'token id_token'} );"
+        type="button" class="btn btn-success" >Authenticate</button>
+```
 
-#### storeInfo(providerInfo, clientInfo)
-* _providerInfo - The Identity Provider's configuration options described in [OIDC.supportedProviderOptions](#supported-provider-options)_ <br>
-* _clientInfo - The Client's configuration options described in [OIDC.supportedClientOptions](#supported-client-options)_ <br>
+### Login page
 
-Stores the Identity Provider and Client configuration options in the browser session storage for reuse later.
+The login page of this sample is called `login-callback.html` and it basically prints the Id Token and User claims issued by the Identity Provider. As mentioned before, the URI for this page should be set as the redirect_uri of the client registered on the Gluu Server. The first step to manage the desired claims should be restoring the information saved on the sessionStorage. The function `restoreInfo` not only retrieves the client and provider information but it also sets them once again as described in the previous section of this tutorial.
 
-#### restoreInfo()
+```JavaScript
+OIDC.restoreInfo();
+```
+In order to print the id_token claims you should use the method `getValidIdToken`. It gets the ID Token from the current page URL whose signature is verified and contents validated against the configuration data set during restoration. The first step to get the user claims is to get the Access Token that is also included in the current page URL. And it can be done by the method `getAccessToken`. The next code lines of our sample login-callback page are the following:
 
-Load and set the Identity Provider and Client configuration options from the browser session storage.
+```JavaScript
+var id_token = OIDC.getValidIdToken();
+var access_token = OIDC.getAccessToken();
+```
 
-#### checkRequiredInfo(params)
-* _params - List of Identity Provider and client configuration parameters_ <br>
+Now that you have the ID Token and the Access Token, you are able to get the ID Token claims and the User claims. The first one is returned by the function `getIdTokenParts`. The second one is a response for a HTTP request done by the method `getUserInfo` to the userinfo_endpoint of our IP. Both information are parsed to JSON Objects.
 
-Check whether the required configuration parameters are set. It returns a boolean value indicating whether the options have been set.
+```JavaScript
+var tokenClaims = JSON.parse(OIDC.getIdTokenParts(id_token)[1]);
+var userInfoClaims = JSON.parse(OIDC.getUserInfo(access_token));
+```
+For our example we choose to present all data in HTML tables and to make things easier we created the function `JSONObjToHTMLTable`. So it is possible to call this method passing a JSON object as an argument and it will return a HTML string with the JSON in a table format.
 
-#### clearProviderInfo()
+```JavaScript
+var tokenClaimsHTMLString = JSONObjToHTMLTable(tokenClaims);
+var userInfoClaimsHTMLString = JSONObjToHTMLTable(userInfoClaims);
+```
 
-Clears the Identity Provider configuration parameters.
+The last code line in our login page sample is calling the `debug` function. It prints in browser console the client information, provider information and the results to the verification and validation tests of the ID Token.
 
-#### login(reqOptions)
-* _reqOptions - Optional authentication request options ([OIDC.supportedRequestOptions](#supported-request-options))_ <br>
+```JavaScript
+OIDC.debug(true, id_token);
+```
 
-Redirect to the Identity Provider for authentication.
+### Dynamic client registration
 
-###### Example:
-    // login with options
-    OIDC.login({
-       scope : 'openid profile',
-       response_type : 'token id_token',
-       max_age : 60,
-       claims : {
-          id_token : ['email', 'phone_number'],
-          userinfo : ['given_name', 'family_name']
-          }
-    });
+In case a client is not registered on Identity Provider yet it is possible to automatically register a new client. This library allows to dynamically register the client and proceed to the steps as described on the previous sections. In order to do that, you should just declare the `clientInfo` with the `redirect_uri` and omit a `client_id`. The `setClientInfo` method is responsible to check the existence of a `client_id` and in case it is not declared the function will do the registration of a new client at the IP with the known `redirect_uri`. After the well-succeed registration the same function retrieve the `client_id` parameter from this registered client and adds it to `clientInfo`. So to dynamically register a new client just declare `redirect_uri` of your `clientInfo` and call the method `setClientInfo` afterwards.
 
-    // login with default
-    // scope = openid and response_type = id_token
-    OIDC.login();
-
-#### verifyIdTokenSig(id_token)
-* *id_token - The ID Token string* <br>
-
-Verifies the ID Token signature using the JWK Keyset from jwks or jwks_uri of the Identity Provider Configuration options set via *[OIDC.setProviderInfo](#setproviderinfop)*. Supports only RSA signatures. It returns a boolean value indicates whether the signature is valid or not.
-
-#### isValidIdToken(id_token)
-* *id_token - The ID Token string* <br>
-
-Validates the information in the ID Token against configuration data in the Identity Provider and Client configuration set via *[OIDC.setProviderInfo](#setproviderinfop)* and set via *[OIDC.setClientInfo](#setclientinfop)*. It returns a boolean value indicating the validity of the ID Token.
-
-#### rsaVerifyJWS(jws, jwk)
-* *jws - The JWS string* <br>
-* *jwk - The JWK Key that will be used to verify the signature* <br>
-
-Verifies the JWS string using the JWK. It returns a boolean value indicating the validity of the JWS signature.
-
-#### getValidIdToken()
-
-Return the ID Token string taken from the current page URL whose signature is verified and contents validated against the configuration data set via *[OIDC.setProviderInfo](#setproviderinfop)* and *[OIDC.setClientInfo](#setclientinfop)*.
-
-#### getAccessToken()
-
-Return Access Token string taken from the current page URL.
-
-#### getCode()
-
-Return Authorization Code string taken from the current page URL.
-
-#### getIdTokenParts(id_token)
-* *id_token - The ID Token string* <br>
-
-Splits the ID Token string into the individual JWS parts. It returns an array of the JWS compact serialization components (header, payload, signature).
-
-#### getIdTokenPayload(id_token)
-* *id_token - The ID Token string* <br>
-
-Return a JSON object with contents of the ID Token payload.
-
-#### getJsonObject(jsonS)
-* *jsonS - JSON string* <br>
-
-Return the JSON object from the JSON string.
-
-#### fetchJSON(url)
-* *url - URL to fetch the JSON file* <br>
-
-Retrieves the JSON file at the specified URL. The URL must have CORS enabled for this function to work. It returns a string of contents of the URL or null.
-
-#### jwk_get_key(jwkIn, kty, use, kid)
-* *jwkIn - JWK Keyset string or object.* <br>
-* *kty - The 'kty' to match (RSA|EC). Only RSA is supported.* <br>
-* *use - The 'use' to match (sig|enc).* <br>
-* *kid - The 'kid' to match* <br>
-
-Retrieve the JWK key that matches the input criteria. It returns an array of JWK keys that match the specified criteria.
-
-#### discover(issuer)
-* *issuer - The Identity Provider's issuer_id* <br>
-
-Performs discovery on the Identity Provider's issuer_id. It returns the JSON object of the discovery document or null.
-
-#### debug(toggle, id_token)
-* *toggle - Boolean value that enables or disables debugging output* <br>
-* *id_token - The ID Token string* <br>
-
-Print current Client's configuration options, Identity Provider's configuration options, results for verification and validation of id_token and its signature directly on console.
-
-#### getUserInfo(access_token)
-* *access_token - Access Token string* <br>
-
-Make the call to UserInfo endpoint with access token. It returns the user claims sent by the Identity Provider.
+```JavaScript
+var clientInfo = {
+                redirect_uri : 'https://(hostname)/login-callback.html'
+                };
+OIDC.setClientInfo( clientInfo );
+```  

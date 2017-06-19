@@ -307,7 +307,7 @@ GAT: true
 
 ## SCIM
 
-SCIM stands for System for Cross-domain Identity Management which is a specification to manage users in a cloud environment. Gluu Server supports SCIM version 1.0 and 2.0 out of the box. The following diagram shows the SCIM model from the [SCIM Website](http://www.simplecloud.info/).
+SCIM stands for System for Cross-domain Identity Management which is a specification designed to manage user identity in cloud-based applications and services in a standardized way. Gluu Server supports SCIM version 1.0 and 2.0 out of the box. The following diagram shows the SCIM model from the [SCIM Website](http://www.simplecloud.info/).
 
 ![scim-model](../img/scim/scim-model.png)
 

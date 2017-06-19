@@ -46,6 +46,6 @@ reasons.
 
  - Passport.js makes it easy to offer your users social login at more than 300 websites and consumer IDPs. See the [Passport](../authn-guide/passport.md) docs for more information.
  - One-Time Password (OTP) authentication: You asked for it! Now it's easy to authenticate users with any standard HOTP or TOTP OATH 
-   software, like [Google Authenticator](https://support.google.com/accounts/answer/1066447?hl=en).
+   software, like Google Authenticator. [Read the docs](../authn-guide/otp.md).
  - Centralized logging--useful for clustered deployments.
  - Improved audit logging capabilities for OAuth 2.0

@@ -1,7 +1,7 @@
-# SAML Attribute
-## Attrubute in oxTrust
-An *Active* attribute list can be seen from the Configuration >
-Attributes section.
+# Attributes
+
+## Overview
+Attributes are individual pieces of user data, like `uid` or `email`, that are required by applications in order to identify a user and grant access to protected resources. The user attributes that are available in your Gluu service can be found by navigating to `Configuration` > `Attributes`. 
 
 ![Attribute Menu](../img/admin-guide/attribute/admin_attribute_menu.png)
 
@@ -12,81 +12,86 @@ link.
 
 ![Show Active Attribute](../img/admin-guide/attribute/admin_attribute_show.png)
 
-The Gluu Server administrator can make changes, such as changing the
-status to active/inactive, to an attribute after clicking on it.
+The Gluu Server administrator can make changes to attributes, such as changing their
+status to active/inactive, by clicking on a specific attribute.
 
 ![Attributes](../img/admin-guide/attribute/admin_attribute_attribute.png)
 
-Additional custom attributes can be added in below way
 
- - Add custom attribute to /opt/gluu/schema/openldap/custom.schema 
-   - In this below example 'customTest' is our custom attribute : 
+## Custom Attributes
+In order to create SSO to certain applications you may need to add custom attributes to your Gluu Server. Custom attributes can be added by following the instructions below: 
+
+### Add the attribute to LDAP
+ - Become `ldap` user 
+ - Add custom attribute to `/opt/gluu/schema/openldap/custom.schema` 
+   - In the below example, `customTest` is our custom attribute : 
 ```
 attributetype ( oxAttribute:1003 NAME 'customTest'
         SUBSTR caseIgnoreSubstringsMatch EQUALITY caseIgnoreMatch
         SYNTAX 1.3.6.1.4.1.1466.115.121.1.15        
        X-ORIGIN 'Gluu - custom person attribute' )
 ```
- - Add custom attribute to gluuCustomPerson objectClass
+ - Add custom attribute to `gluuCustomPerson objectClass`
    - Example: 
 ```
-objectclass ( oxObjectClass:101 NAME 'gluuCustomPerson' SUP top AUXILIARY MAY (customTest) X-ORIGIN 'Gluu - Custom persom objectclass' )
-
+objectclass ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
+        SUP ( top )
+        AUXILIARY
+        MAY ( telephoneNumber $ mobile $ customTest )
+        X-ORIGIN 'Gluu - Custom persom objectclass' )
 ```
+ - Become `root` user
  - Stop LDAP server with command `service solserver stop`
- - Create custom configuration holder with `mkdir -p /opt/symas/etc/openldap/slapd.d`
- - Test custom configuration with `/opt/symas/bin/slaptest -f /opt/symas/etc/openldap/slapd.conf -F /opt/symas/etc/openldap/slapd.d`
+ - Test custom configuration with `/opt/symas/bin/slaptest -f /opt/symas/etc/openldap/slapd.conf`
  - Start LDAP server with command `service solserver start`
 
-Register new attribute with Gluu Server GUI, oxTrust, by
-clicking the **Register Attribute** button. Then, the following screen will
-appear:
+This creates the attribute in the local LDAP server. 
+
+### Add the attribute to oxTrust
+Now you need to register the new attribute in the Gluu Server GUI by navigating to `Configuration` > `Attributes`  and then click the `Register Attribute` button. 
+
+The following screen will appear:
 
 ![Add Attribute Screen](../img/admin-guide/attribute/admin_attribute_add.png)
 
-* _Name:_ This field defines the name of the custom attribute which must
-  be unique in the Gluu Server LDAP tree.
+* _Name:_ This field defines the name of the custom attribute. The name must be unique in the Gluu Server LDAP tree.
 
-* _SAML1 URI:_ This field contains the SAML1 uri for the custom attribute.
+* _SAML1 URI:_ This field can contain a SAML v1 supported nameformat for the new attribute. If this field is left blank the Gluu Server will automatically populate a value. 
 
-* _SAML2 URI:_ This field contains the SAML2 uri for the custom attribute.
+* _SAML2 URI:_ This field can contain a SAML v2 supported nameformat for the new attribute. If this field is left blank the Gluu Server will automatically populate a value. 
 
-* _Display Name:_ This display name can be anything that is human readable.
+* _Display Name:_ The display name can be anything that is human readable.
 
-* _Type:_ The attribute type should be selected from the drop-down menu.
-  There are four attribute types supported by Gluu:
-  1. Text
-  2. Numeric
-  3. Photo
-  4. Date
+* _Type:_ Select what type of attribute is being added in this field. The Gluu Server supports four types of attributes: text, numeric, photo, and date. Choose the option that best applies. 
 
-* _Edit Type:_ This field controls which type of an user is allowed to edit
-  corresponding attribute at his/her "Profile" page of the web UI (when feature
-"User can edit own profile" is enabled).
+* _Edit Type:_ This field controls who can edit this attribute. If `user` is selected, this will enable each user to edit this attribute in their Gluu server user profile (assuming oxTrust is user facing, and the "User can edit own profile" feature has been enabled).
 
-* _View Type:_ This field controls which type of an user is allowed to view
+* _View Type:_ This field controls which type of user is allowed to view
   corresponding attribute at his/her "Profile" page of the web UI.
 
-* _Privacy Level:_ Please select the desired privacy level from the
-  drop-down menu. The privacy level has a specific range of 1 to 5.
+* _Multivalued:_ If the attribute contains more than one value, set this field to True. 
 
-* _Multivalued:_ Please select multivalue in this field if the attribute
-  contains more than one value.
+* _oxAuth claim name:_ If this attribute will be used as a 'claim' in your OpenID Connect service, add the name of the claim here. Generally, the name of the attribute == name of the claim.
 
-* _SCIM Attributes:_ If the attribute is a part of SCIM architecture select true.
+* _SCIM Attributes:_ If the attribute is a part of your SCIM architecture, set this field to True.
 
-* _Description:_ This contains a few words to describe the attribute.
+* _Enable custom validation for this attribute:_ If you plan to set minimum and maximum lengths or a regex pattern, as described below, you will need to enable custom validation for this attribute. Otherwise you can leave this disabled. 
 
-* _Status:_ The status, when selected active, will release and publish
-  the attribute in IdP.
+* _Enable tooltip for this attribute:_ This allows you to set a tool tip for the attribute. 
 
-  ## Custom NameID
-  Gluu Server comes with the `transientID` attribute which is the default `NameID`.
-  If there are other `NameID` requirements, it is possible to create them as well.
-  The custom attribute must be created in oxTrust first before defining it as the `NameID`.
-  Please see the [oxTrust custom attribute guide](#using-oxtrust) to create the custom attribute in oxTrust.
+* _Minimum Length:_ This is the minimum length of a value associated with this attribute. 
 
-  ## Defining NameID
+* _Maximum Length:_ This is the maximum length of a value associated with this attribute. 
+
+* _Regex Pattern:_ You can set a regex pattern to enforce proper formatting of an attribute. For example, you could set a regex expression for an email attribute like this: `^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$`. This would make sure that a value is added for the attribute only if it follows standard email formatting.
+
+* _Status:_ Mark the attribute as Active so that it can be used in your federation service. Or leave choose Inactive to create the attribute and then you can activate it at a later date. 
+
+Click register and now this new attribute should be available for release in your federation service. 
+
+The default NameID for oxTrust generated SAML trust relationships is `transientID`. It's always a good idea to release the `transientID` as an attribute, as some SP's may not work otherwise. If there are other `NameID` requirements, a custom attribute must be created in oxTrust first before defining it as the `NameID`. Please review the [custom attributes](./attribute.md#custom-attributes) section of the docs to learn how to create custom attributes in oxTrust.
+
+### Defining NameID
   The template file for `NameID` definitions are located in the `attribute-resolver.xml.vm` file under `/opt/gluu/jetty/identity/conf/shibboleth3/idp/`.
   The example below adds `testcustomattribute` as `NameID` based on UID attribute. The following are put into the `attribute-resolver.xml.vm` file.
 
@@ -98,13 +103,20 @@ appear:
 ```
  <resolver:AttributeDefinition id="testcustomattribute" xsi:type="Simple"
                               xmlns="urn:mace:shibboleth:2.0:resolver:ad"
-                              sourceAttributeID="uid">
+                              sourceAttributeID="email">
 
         <resolver:Dependency ref="siteLDAP"/>
         <resolver:AttributeEncoder xsi:type="SAML2StringNameID"
                                 xmlns="urn:mace:shibboleth:2.0:attribute:encoder"
-                                nameFormat="urn:oasis:names:tc:SAML:2.0:nameid-format:persistent" />
+                                nameFormat="urn:oasis:names:tc:SAML:2.0:nameid-format:email" />
 </resolver:AttributeDefinition> 
+```
+* Update /opt/shibboleth-idp/conf/saml-nameid.xml to generate SAML 2 NameID content
+
+```
+    <bean parent="shibboleth.SAML2AttributeSourcedGenerator" 
+          p:format="urn:oasis:names:tc:SAML:2.0:nameid-format:email"
+          p:attributeSourceIds="#{ {'testcustomattribute'} }"/>
 ```
 * Restart identity service using below command
 
@@ -116,35 +128,14 @@ However it is recommended to stop and start service using
 
 `service identity start`
 
-# OpenID Connect Scopes
+* Now follow steps of using custom attributes. 
 
-In OpenID Connect, scopes are used to group attributes, and to provide a human 
+## SAML Attributes
+
+In any SAML SSO transaction, your Gluu Server will need to release attributes about users to the target SP. Configuring your Gluu Server for SAML SSO is covered in the [SAML section of the documentation](./saml.md). 
+
+## OpenID Connect Scopes
+
+In OpenID Connect, scopes are used to group attributes and provide a human 
 understandable description of the attributes. This improves usability when you need 
-to prompt a person to approve the disclosure of attributes to a third party.
-An example of the default Gluu Server authorization request can be seen
-here:
-
-![OpenID Connect Scope Authorization Screenshot](../img/admin-guide/attribute/authz_screenshot.png)
-
-So if you have custom attributes, you may need to define a custom OpenID Scope.
-This is pretty easy to do using the oxTrust user interface, and you can just
-select the attributes that you previously registered.
-
-The scopes menu is under the `OpenID Connect` button in the oxTrust menu. The scope menu has the search functionality to search the available scopes and an `Add Scope` button.
-
-![scope-menu](../img/admin-guide/attribute/scope-menu.png)
-
-The `Add Scope` button will bring the following interface.
-
-![add-scope](../img/admin-guide/attribute/add-scope.png)
-
-* Display Name: The name of the scope which will be displayd when searched
-* Description: A small description of the scope being defined
-* Scope Type: Default, if the scope needs the option to be released by default. Other options are LDAP, Dynamic, and OpenID.
-* Default Scope: True if the scope is released to clients by default. 
-
-The claims are added by clicking on the **Add Claim** button.
-
-![add-claim](../img/admin-guide/attribute/add-claim.png)
-
-
+to prompt a person to approve the disclosure of attributes to a third party. Learn more about configuring your Gluu Server for OpenID Connect SSO in the [OpenID Connect section of the documentation](./openid-connect.md)

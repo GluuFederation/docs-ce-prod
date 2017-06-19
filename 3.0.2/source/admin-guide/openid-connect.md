@@ -8,7 +8,7 @@ authenticate a person, and to obtain authorization to obtain
 information (or "claims") about that person. For more information, 
 see [http://openid.net/connect](http://openid.net/connect)
 
-It's handy to know some OpenID Connect jargon:
+It's handy to know some OpenID Connect terminology:
 
 - The *end user* or *subject* is the person being authenticated.
 
@@ -20,8 +20,7 @@ the subject. The Gluu Server is an OP.
 or website, which needs to authenticate the subject. The RP is an OAuth 
 client. [oxd](https://oxd.gluu.org) is an RP.
 
-For a good overview of OpenID Connect versus SAML, you should read
-[this blog](http://gluu.co/oauth-saml-openid). 
+Read [this blog](http://gluu.co/oauth-saml-openid) for a good overview of OpenID Connect versus SAML.
 
 ## OpenID Connect in the Gluu Server
 
@@ -58,8 +57,7 @@ at the following URL: `https://hostname/.well-known/openid-configuration`
 The Gluu Server also supports [WebFinger](http://en.wikipedia.org/wiki/WebFinger),
 as specified in the OpenID Connect specification. You can test Webfinger
 using the oxAuth-RP tool mentioned above. For more information, see 
-the [OpenID Connect Discovery Specification]
-(http://openid.net/specs/openid-connect-discovery-1_0.html)
+the [OpenID Connect Discovery Specification](http://openid.net/specs/openid-connect-discovery-1_0.html)
 
 ### Client Registration / Configuration
 
@@ -68,8 +66,7 @@ where the Authorization Server should redirect the end user to, post
 authorization. The Gluu Server enables an administrator to manually create
 a client via the oxTrust web interface. However, OpenID Connect also
 defines a standard API where clients can register themselves--
-[Dynamic Client Registration]
-(http://openid.net/specs/openid-connect-registration-1_0.html). You can
+[Dynamic Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html). You can
 find the registration URL by calling the configuration endpoint 
 (`/.well-known/openid-configuration`).        
 
@@ -83,8 +80,7 @@ by click the `Add Client` button.
 ![add-client](../img/openid/add-client.png)
 
 There are many client configuration parameters. Most of these are 
-specified in the OpenID Connect [Dynamic Client Registration]
-(http://openid.net/specs/openid-connect-registration-1_0.html)specification.
+specified in the OpenID Connect [Dynamic Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html) specification.
 There are two configurations params which can only be configured via 
 oxTrust by an administrator. These include:
 
@@ -166,7 +162,7 @@ which is required by the OpenID Connect specification. You can always
 explicitly release a scope to a certain client later on, but this will 
 require some manual intervention by the Gluu Server admin.
 
-### Multi-Factor Authentication for Clients
+## Multi-Factor Authentication for Clients
 
 The `acr_values` parameter is used to specify a specific 
 workflow for authentication. The value of this parameter, or the 
@@ -180,18 +176,17 @@ Out-of-the-box supported `acr` values include:
 |  u2f		| [FIDO U2F Device](../authn-guide/U2F.md)|
 |  super_gluu	| [Multi-factor authentication](../authn-guide/supergluu.md)|
 |  duo		| [Duo soft-token authentication](../authn-guide/duo.md)|
-|  cert	| Smart card or web browser X509 personal certificates|
+|  cert	| [Smart card or web browser X509 personal certificates](../authn-guide/cert-auth/)|
 |  cas	| External CAS server|
-|  cert	| Smart card or web browser X509 personal certificates|
 |  gplus	| [Google+ authentication](../authn-guide/google.md)|
 |  OTP	| [OATH one time password](../authn-guide/otp.md) |
 |  asimba	| Use of the Asimba proxy for inbound SAML |
 |  twilio_sms	| Use of the Twilio Saas to send SMS one time passwords |
-|  passport	| Use of the Passport component for social login |
+|  passport	| Use of the [Passport component for social login](../ce/authn-guide/passport/) |
 |  yubicloud	| Yubico cloud OTP verification service |
 |  uaf	| experimental support for the FIDO UAF protocol |
-|  basic_lock	| Enables lockout after a certain number of failures |
-|  basic	| Sample script using local LDAP authentication |
+|  basic_lock	| [Enables lockout after a certain number of failures](../authn-guide/intro/#configuring-account-lockout) |
+|  basic	| [Sample script using local LDAP authentication](../ce/authn-guide/basic/) |
 
 ## OpenID Connect Client Software 
 

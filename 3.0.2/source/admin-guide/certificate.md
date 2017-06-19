@@ -37,7 +37,7 @@ If there is no existing information, sign up and open a ticket.
     The private key cannot be password protected, and the public key must be base64 X.509. 
 
 !!! Note
-    Please backup your full `/etc/certs` directory and `cacerts` file under `/etc/pki/java/` folder before updating certificates.
+    Please backup your full `/etc/certs` directory and `cacerts` file under `/opt/jdkx.y.z/jre/lib/security/` folder before updating certificates.
 
 Please follow these steps shown below to update the Apache SSL cert:
 
@@ -52,11 +52,13 @@ Please follow these steps shown below to update the Apache SSL cert:
 - Restart LDAP server, apache2/httpd and Identity Services.
 ```
 service solserver stop
-service apache2 stop
+service apache2/httpd stop
+service oxauth stop
 service identity stop
 :
 service solserver start
-service apache2 start
+service apache2/httpd start
+service oxauth start
 service identity start
 ```
 

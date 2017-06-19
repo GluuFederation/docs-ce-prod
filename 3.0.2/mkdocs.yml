@@ -39,70 +39,34 @@ pages:
             - 'Google+ OAuth 2.0': 'authn-guide/google.md'
             - 'HOTP/TOTP': 'authn-guide/otp.md'
             - 'Custom Authentication': 'authn-guide/customauthn.md'
+        - 'Attributes' : 'admin-guide/attribute.md'
         - 'User Management' : 'admin-guide/user-group.md'
-        - 'Session Timeout': 'admin-guide/session.md'
+        - 'Session Management': 'admin-guide/session.md'
         - 'SAML' : 'admin-guide/saml.md'
         #        - 'OAuth2 Grants' : 'admin-guide/oauth2.md'
         - 'OpenID Connect' : 'admin-guide/openid-connect.md'
         - 'UMA' : 'admin-guide/uma.md'
         - 'SCIM protected by UMA' : 'admin-guide/scim-uma.md'
+        - 'User Management with SCIM' : 'admin-guide/user-scim.md'
+        - 'Central Authentication Service (CAS)' : 'admin-guide/cas.md'
         - 'Certificate Management' : 'admin-guide/certificate.md'
 - Integration Guide:
         - 'Introduction': 'integration/index.md'
-        - Mobile Apps:
-            - 'Android': 'integration/mobile/appauth-oauth2.0-android.md'
-            - 'iOS': 'integration/mobile/App-Auth-IOS.md'
-        - Single Page Apps:
-            - 'Angular': 'integration/spa/angular.md'
-            - 'JavaScript': 'integration/spa/javascript.md'
-            - 'jQuery': 'integration/spa/jquery.md'
-            - 'React': 'integration/spa/react.md'
-        - Web Apps:
-            - 'Apache': 'integration/webapps/apache.md'
-            - 'C Sharp': 'integration/webapps/csharp.md'
-            - 'GO': 'integration/webapps/go.md'
-            - 'Java': 'integration/webapps/java.md'
-            - 'Java Play': 'integration/webapps/play.md'
-            - 'Java Spring MVC': 'integration/webapps/springmvc.md'
-            - 'Java Spring Security': 'integration/webapps/springsecurity.md'
-            - '.NET': 'integration/webapps/net.md'
-            - 'Node': 'integration/webapps/node.md'
-            - 'Nginx': 'integration/webapps/nginx.md'
-            - 'Perl': 'integration/webapps/perl.md'
-            - 'Python': 'integration/webapps/python.md'
-            - 'Python Flask': 'integration/webapps/flask.md'
-            - 'Ruby': 'integration/webapps/ruby.md'
-            - 'Ruby On Rails': 'integration/webapps/rails.md'
+        - 'Client SDKs':
+            - 'oxd OAuth2': 'integration/oauth2.md'
+            - 'OAuth2.0 js Implicit Flow': 'integration/oauth-js-implicit.md'
+        - 'Web Server Integrations':
             - 'Shibboleth SP': 'integration/saml-sp.md'
-            - 'mod_auth_openidc': 'integration/openidc-rp.md'
-        - Backend APIs:
-            - 'api': 'integration/api/intro.md'
-        - Off-the-Shelf Apps:
-            - SaaS:
-                - 'Google SSO': 'integration/saas/google.md'
-                - 'Office 365': 'integration/saas/office.md'
-#    - 'Hobsons Education Sol': 'integration/saas/hobsons.md'
-                - 'Salesforce': 'integration/saas/salesforce.md'
-                - 'Dropbox': 'integration/saas/dropbox.md'
-            - FOSS:
-                - 'Drupal': 'integration/foss/drupal.md'
-                - 'Magento': 'integration/foss/magento.md'
-                - 'NextCloud': 'integration/foss/nextcloud.md'
-                - 'OpenCart': 'integration/foss/opencart.md'
-                - 'RoundCube': 'integration/foss/roundcube.md'
-                - 'SugarCRM': 'integration/foss/sugarcrm.md'
-                - 'SuiteCRM': 'integration/foss/suitecrm.md'
-                - 'Shopify': 'integration/foss/shopify.md'
-                - 'Wordpress': 'integration/foss/wordpress.md'
-
-
-       # - 'Client SDKs':
-         #   - 'oxd OAuth2': 'integration/oauth2.md'
-          #  - 'OAuth2.0 js Implicit Flow': 'integration/oauth-js-implicit.md'
-        #- 'Web Server Integrations':
-                
-       # - 'SaaS Integrations':
-            
+            - 'mod_auth_openidc': 'integration/openidc-rp.md'    
+        - 'SaaS Integrations':
+            - 'Google Apps': 'integration/google.md'
+            - 'Office 365': 'integration/office.md'
+            - 'Testing Shibboleth with Shibboleth 2': 'integration/testShib2.md'
+#    - 'Hobsons Education Sol': 'integration/hobsons.md'
+            - 'Salesforce': 'integration/salesforce.md'
+            - 'Dropbox': 'integration/dropbox.md'
+            - 'GitHub Enterprise': 'integration/github-enterprise.md'
+            - 'Cisco WebEx': 'integration/webex.md'
 - Reference:
         - Gluu API Guide:
             - 'Custom ID Generation': 'api-guide/api.md'
@@ -121,9 +85,9 @@ pages:
         - 'Ports': 'operation/ports.md'
         - 'Single Logout (SLO)': 'operation/logout.md'
         - 'Log Management' : 'operation/logs.md'
+        - 'Customize Public Pages': 'operation/custom-loginpage.md'
         - 'FAQ & Troubleshooting': 'operation/faq.md'
-        - 'Customize Login Page': 'operation/custom-loginpage.md'
+        - 'Change IP Address': 'operation/changeip.md'
         #       - 'Fine Tuning Gluu Server' : 'admin-guide/fine-tuning.md'
 - Developer Guide:
-        - 'Build OxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'
-
+        - 'Build oxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'

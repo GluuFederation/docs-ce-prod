@@ -1,10 +1,10 @@
-# Gluu Server Community Edition (CE) 3.0.2 Documentation
+# Gluu Server Community Edition (CE) 3.0.1 Documentation
 ## Introduction
 The Gluu Server is a free open source identity and access management 
 (IAM) platform. The most common use case for the Gluu Server is Single 
 Sign-On (SSO). Other common use cases include mobile authentication, 
 API access management, two-factor authentication, customer identity
-and access management (CIAM), and identity federation. 
+and access management(CIAM) and identity federation. 
 
 The Gluu Server is a container distribution composed of software written by Gluu and incorporated from other open source projects. Gluu
 projects are frequently prefixed with our open source handle: **ox** (e.g. oxAuth, oxTrust). Any code in the Gluu Server that we wrote is MIT license, and is available on [Github](https://github.com/GluuFederation/). 
@@ -27,7 +27,7 @@ authentication, authorization, federated identity, and identity management:
 - SAML 2.0   
 - OpenID Connect    
 - User Managed Access (UMA)    
-- Simple Cloud Identity Management (SCIM)    
+- System for Cross-domain Identity Management (SCIM)    
 - FIDO Universal 2nd Factor (U2F)    
 - Lightweight Directory Access Protocol (LDAP)   
 
@@ -38,7 +38,7 @@ we believe we need to keep the Gluu Server free so all kinds of
 organizations can use, contribute and benefit from the software.
 
 These docs are not perfect! Please help us make them so by submitting
-any improvements to our [Documentation Github](https://github.com/GluuFederation/docs).
+any improvements to our [Documentation Github](https://github.com/GluuFederation/docs-ce-prod).
 If you're a Github pro, submit a pull request. If not, just open an issue
 on any typos, bugs, or improvements you'd like to see. We need your
 help... even if you're not a coder, you can contribute! 
@@ -64,7 +64,7 @@ manner.
 
 Private support, guaranteed response times, and consultative 
 support are available to organizations who purchase a support contract. For
-more information, see [our website](gluu.org/pricing).
+more information, see [our website](https://gluu.org/pricing).
 
 ## License
 

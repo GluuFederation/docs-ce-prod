@@ -1,7 +1,7 @@
 # oxTrust Administrative Graphical User Interface (GUI)
 
 ## Overview 
-This section of the docs covers various features associated with managing your federation service via the Gluu Server interface ("oxTrust"). For more complicated topics and features, this document will link to dedicated sections within the docs where additional operational details are provided.
+This section of the docs covers various features associated with managing your federation service via the Gluu Server interface ("oxTrust"). There is a corresponding page in the Gluu Server user interface for each of the sections below. When necessary, this document will link to dedicated sections within the docs where additional operational details are provided.
 
 ## Accessing the UI
 The Gluu Server administration interface is accessible by navigating to 
@@ -65,6 +65,7 @@ The Gluu Server needs a mail server in order to send notifications. All fields i
      
 #### oxTrust Settings  
 
+
 ![oxtrust-settings](../img/oxtrust/oxtrust-settings.png "OxTrust Settings")
 
 From the oxTrust Settings page the administrator can find the oxTrust build date and number, and manage the organization name, logo, and favicon. This page also contains the name of the Gluu Server administrator group. Users added to this group will have administrator access to the Gluu Server.
@@ -93,6 +94,10 @@ An administrator can allow or deny access to URI's by updating JSON properties i
 The oxAuth JSON configuration page gives easy access to the different endpoints used by Gluu Server CE. 
 This page also contains the supported response, grants, and algorithms. 
 
+#### Session Management 
+
+The Gluu Server administrator can manage oxAuth sessions by adding the desired session time in seconds as the value for the `sessionIdUnusedLifetime` field. Check the [session management](../admin-guide/session.md) section of the documentation to learn more.
+
 ### oxTrust Import Person Configuration
 The oxTrust Import Person Configuration page contains the configuration for 
 the file method of importing users into the Gluu Server. The administrator 
@@ -107,7 +112,7 @@ etc..
 
 ## Manage Authentication
 
-#### Manage LDAP Authentication
+### Manage LDAP Authentication
 This section allows the Gluu Server administrator to define how and
 where the server should connect to authenticate users. If it is a remote
 LDAP/Active Directory server, the values are required. Put the details
@@ -153,12 +158,11 @@ local LDAP server.
   information is sufficient to connect to the authentication server. The
   scan is done in real time.
 
-#### Default Authentication Method
+### Default Authentication Method
 
-This allows the Gluu Server administrator to select the default
-authentication method and level for person authentication. Both methods are
-set to "Default" until additional authentication mechanisms are enabled
-via [custom scripts](#manage-custom-scripts). 
+This page allows the Gluu Server administrator to select the default
+authentication method and level for person authentication. Additional 
+authentication mechanisms may be enabled via [custom scripts](#manage-custom-scripts). 
 
 |Authentication Method|Description|
 |---|---|
@@ -166,16 +170,38 @@ via [custom scripts](#manage-custom-scripts).
 |oxTrust authentication mode|This mode is used for authentication to the Gluu Server GUI|
 
 
-Gluu Server uses oxAuth as the first step of authentication in all kind 
-of SSO protocols ( OpenID Connect, SAML, CAS )
+Gluu Server relies on its core component called oxAuth when authenticating users accessing
+its services. User authentication is mandatory step which precedes 
+any interactions defined by a variety of supported SSO protocols ( OpenID Connect, SAML, CAS )
 
 ![default](../img/admin-guide/auth-management/default.png)
 
-* Authentication mode: This mode defines the mode used for general authentication with Service Providers. The mode defined under this tab will not affect the users accessing the oxTrust administrator interface.
-* oxTrust authentication mode: This mode is used when the user is accessing the oxTrust administrator interface using the gluu server hostname.
-* Passport Support: This mode uses third-party authentication e.g. Google+, Twitter, Facebook to authenticate users in Gluu Server.
-* Custom Script Authenticaiton: This mode uses custom script and enabled in the oxTrust Admin UI.
+* Authentication mode: This control defines method used for general authentication in oxAuth by default. It will also be applied to users accessing the oxTrust administrator interface, unless overriden by "oxTrust authentication mode". Remote applications may also specify desired authentication method explicitly by including "acr_values=" url query parameter during initial authorization request of OpenID Connect flows.
+* oxTrust authentication mode: This control defines authentication method used when user is accessing the oxTrust administrator interface. By setting "oxTrust authentication mode" to some other (possibly stricter, like Duo auth) method you may ensure administrator's tools are properly protected against malicious users.
+* Passport Support: This control enables Passport component, an authentication middleware offering an easy access to a variety of third-party authentication mechanisms, like ones offered by Google+, Twitter, Facebook, allowing them to easily be used for users' authenticattion in Gluu Server.
 
+Two values are available for selection out-of-the-box: "Default" and "auth_ldap_server". 
+The later instructs corresponding modules to use a [basic LDAP bind authentication](../authn-guide/basic.md) against 
+LDAP server configured on "Manage LDAP Authentication" tab of this page, which is by default 
+a Gluu's internal LDAP directory. When "Default" is set for "oxTrust authentication mode",
+it will fall-back to the default method set for oxAuth.
+
+When a [custom authentication script](../authn-guide/customauthn.md) is enabled,
+its name is added to both dropdown lists, allowing you to select from a wide 
+variety of prepackaged authentication methods, or define your own.
+
+!!! Warning:
+    If **both** default authentication methods are set to "Default", 
+    oxAuth will use basic LDAP bind authentication, but only until 
+    the moment some custom authentication script becomes enabled. 
+    In case there are enabled custom auth scripts, it will use the 
+    one with the lowest priority level (defined by "Level" setting) 
+    to authenticate all users automatically, even if you don't set it as 
+    default authentication mode explicitly. So if this script hasn't yet 
+    been properly configured you may lose access to your instance's web UI. 
+    Please ensure that you set at least "auth_ldap_server" method for "Authentication mode" 
+    before trying to explore other advanced authentication methods.
+    
 ## Manage Custom Scripts
 The Gluu Server exposes interception scripts in places where it is common 
 for organizations to implement custom workflows, or changes to the 
@@ -203,25 +229,21 @@ This option adds a required CAPTCHA to the registration form.
 This section allows you to manage the list of attributes displayed in the registration form. Search, select, add, and order desired attributes here.
 
 ## Attributes
-Attributes are individual pieces of user data, like `uid` or `email`, that are required by applications in order to identify a user and grant access to protected resources. The user attributes that are available in your federation service can be found on this page. By default, only `active` attributes are visible. Use the `Show All Attributes` button to display the `inactive` attributes too. 
+Attributes are individual pieces of user data, like `uid` or `email`, that are required by applications in order to identify a user and grant access to protected resources. A list of user attributes that are available in your federation service can be found by navigating to `Configuration` > `Attributes`. For a detailed discussion of attributes, visit our [attributes documentation](./attribute.md) page.
 
-Custom attributes can be added by clicking the `Add Attribute` button and completing the simple form. Note that custom attributes must already be present in the LDAP server in order for them to be available for release by the Gluu Server. Adding an attribute here is like registering it in the Gluu Server--in order to release an attribute during a SAML or OpenID Connect transaction, the Gluu Server needs to know it exists. 
-
-Attributes, as they pertain to SSO, are covered more thoroughly in the [SAML Attributes](./saml/#saml-Attributes) and [OpenID Connect Scopes](./openid-connect/#scopes) sections of the docs.
-
-### Cache Refresh
+## Cache Refresh
 Cache Refresh, a.k.a. LDAP Synchronization, is the process of connecting one or more existing backend LDAP servers, like Microsoft Active Directory, with the Gluu Server's local LDAP server. `Cache Refresh` periodically searches these data sources, compares the results to previous searches, and if a changed user account is found, it is updated.The frequency of cache refresh is also set from this page via the `Polling interval (minutes)`. The `key attribute(s)` is used to correlate a user if the user is found in more then one LDAP server. In this case, the two entries are joined. The source attributes specify which attributes will be pulled from the backend LDAP server. The backend server address, bind DN and other connection information is speciifed in the `Source Backend LDAP Servers` tab. More information on [LDAP Syncronization](./user-group/#ldap-synchronization) can be found in the user management section of the docs. 
 
-### Configure Log Viewer / View Log File
+## Configure Log Viewer / View Log File
 This tool can be used to view file system logs. If you don't like to ssh, 
 Log Viewer is your friend! Several common logs are preconfigured, or you can define 
 new logs by specifying the path.
 
-### Server Status
+## Server Status
 This page provides basic information about the Gluu Server such as the hostname, IP address, free memory & disk space. The number of users in the backend is also available in this page.
 
-### Certificates
-The certificate page provides summary information about your SSL and SAML certificates.
+## Certificates
+The certificate page provides summary information about your SSL and SAML certificates. Learn more about [certificate management](./certificate.md) in the Gluu Server.
 
 ## SAML
 If you deployed the Shibboleth SAML IDP or the Asimba SAML proxy during Gluu Server installation, you will see a link to manage inbound and outbound SAML requirements in the left hand navigation. Learn more about configuring and managing SAML in the [SAML](./saml.md) portion of the docs. 

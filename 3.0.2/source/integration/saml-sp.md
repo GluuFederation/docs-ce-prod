@@ -315,7 +315,12 @@ Then, click to add the SAML2SSO profile:
 ![image](../img/integration/saml_sso-profile.png)
 
 Then "Save" and "Update." Wait 5 minutes for the Shibboleth IDP to detect reload the metadata or
-stop and start tomcat.
+stop and start Jetty.
+
+```
+service identity stop
+service identity start
+```
 
 ## Test
 
@@ -411,7 +416,7 @@ initial admin password). The output will contain something like this:
 
  - Check the Shibboleth log file `/opt/idp/logs/idp-process.log` if you
    don't see the headers or REMOTE_USER environment variables. Also,
-   restart the Apache Tomcat service by `service tomcat restart` to 
+   restart the Jetty service by `service identity restart` to 
    make sure the new Shibboleth IDP xml files were loaded.
 
  - Clear the cookies in your web browser for both the Apache site, and 

@@ -4,7 +4,7 @@
 
 Ox-LDAP.properties file contains information required for the Gluu CE Server 
 to connect with LDAP for authenticating and authorizing the user/admin and also  
-provides the connection strings to various component's container or site to 
+provides the connection strings to various component's of Gluu CE or site to 
 fetch required information for the installed and configured components during 
 setup after installation. For setup/configuration detail, please refer to 
 [Setup Script Options](../installation-guide/setup_py.md) 

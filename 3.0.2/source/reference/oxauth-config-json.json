@@ -480,6 +480,23 @@
                 ]
             }
         },
+        "dynamicClientRegDefaultGrantTypes": {
+            "id": "dynamicClientRegDefaultGrantTypes",
+            "description": "A list of the OAuth 2.0 Grant Type values that this OP supports.",
+            "type": "array",
+            "format": "select",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "enum": [
+                    "authorization_code", 
+		            "implicit", 
+		            "refresh_token", 
+		            "client_credentials"
+                ]
+            }
+        },
         "claimTypesSupported": {
             "id": "claimTypesSupported",
             "description": "A list of the Claim Types that the OpenID Provider supports.",
@@ -998,6 +1015,11 @@
             "description": "Boolean value to specify if application should update oxLastAccessTime/oxLastLogonTime attributes on client authentication.",
             "type": "boolean"
         },
+        "enableClientGrantUpdate": {
+        	"id": "enableClientGrantUpdate",
+            "description": "Boolean value to specify if application should allow changing grant types for domain attributes on client authentication.",
+            "type": "boolean"
+        },
         "loggingLevel": {
             "id": "loggingLevel",
             "description": "Logging level for oxAuth logers.",
@@ -1058,6 +1080,7 @@
         "tokenEndpointAuthMethodsSupported",
         "tokenEndpointAuthSigningAlgValuesSupported",
         "dynamicRegistrationCustomAttributes",
+        "dynamicClientRegDefaultGrantTypes",
         "displayValuesSupported",
         "claimTypesSupported",
         "serviceDocumentation",
@@ -1119,6 +1142,7 @@
         "frontChannelLogoutSessionSupported",
         "updateUserLastLogonTime",
         "updateClientAccessTime",
+	    "enableClientGrantUpdate",
         "loggingLevel"
     ]
 }

@@ -51,6 +51,9 @@ and the oxTrust custom script logs are stored in the
 `oxtrust_script.log`. Please refer to these log files to troubleshoot errors in
 the interception scripts or following the workflow of the script.
 
+!!! Note 
+    A `print` statement may not work on some environments if the `PYTHON_HOME` environment variable is not set. Make sure it points to a valid python installation.
+
 More details on Logs can be found in [Log Management](../operation/logs.md)
 
 ## Person Authentication     
@@ -205,9 +208,22 @@ This script can be used in an oxAuth application only.
 ## Dynamic Scopes      
 The dynamic scope custom script allows the parsing of token returned from `user_info endpoint` into 
 LDAP attributes. The `id_token` is returned from `user_info endpoint` and the values are dynamically placed 
-in the LDAP attributes in Gluu Server.
+in the LDAP attributes in Gluu Server. These are the attributes which would be the information about the user
+from the endpoint, this could be last name, email, address, profile or any attribute that is defined 
+by you, which can be custom attribute.
 
-- [Sample Dynamic Scope Script](./sample-dynamic-script.py) 
+In order to make dynamic scopes to work, following instructions has to be followed.
+
+- A scope has to be defined in the OpenID Connect Scopes interface
+- Scope should have Scope Type Dynamic (menu)
+- The dynamic script should be linked to that scope (Add dynamic script button)
+- The scope should be allowed for the client in the OpenID Connect Update Client interface 
+(Add Scope button), and the scope should be requested by the client 
+(e.g. to test with oxauth_rp, add it manually to the Scope list in the Token Endpoint part.
+
+More detailed explanation of adding scopes can be found under Openid [scopes](../admin-guide/openid-connect/#scopes)
+
+- [Sample Dynamic Scope Script](./sample-dynamic-script.py)
 
 ## ID Generator       
 
@@ -232,10 +248,7 @@ This script can be used in an oxTrust application only.
 
 ## Cache Refresh       
 
-In order to integrate an interception script with an existing
-authentication server oxTrust provides a mechanism called [Cache
-Refresh](../admin-guide/user-group/#ldap-synchronization) to copy
-user data to the local LDAP server. During this process it is possible
+In order to integrate your Gluu instance with backend LDAP servers handling authentication in your existing network environment, oxTrust provides a mechanism called [Cache Refresh](../admin-guide/user-group/#ldap-synchronization) to copy user data to the Gluu Server's local LDAP server. During this process it is possible
 to specify key attribute(s) and specify attribute name transformations.
 There are also cases when it can be used to overwrite attribute values
 or to add new attributes based on other attribute values.

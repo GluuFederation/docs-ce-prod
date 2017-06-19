@@ -8,6 +8,13 @@ For example, you may want to only prompt users in a certain group for two-factor
 
 This tutorial explains how to write a script to implement a two-step out-of-band authentication using Twilio to send an SMS with a one-time password. At the end of this tutorial you should have a better understanding of how to write your own custom scripts. For reference, you can review the completed Twilio custom authentication script [here](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/twilio_sms/twilio2FA.py). 
 
+!!! Warning:
+    Be aware that in case default authentication methods for oxTrust and 
+    oxAuth are set to "Default" on the "Default Authentication Method" 
+    tab of "Manage authentication page", you may lock yourself out of web UI 
+    by simply enabling an authentication script. 
+    Please check [this page](../admin-guide/oxtrust-ui/#default-authentication-method) for full explanation
+    
 ## Suggested Development Environment
 
 Gluu Server custom scripts are written in [Jython](http://www.jython.org/). We recommended using Eclipse for coding purposes.
@@ -48,7 +55,7 @@ Create the following files:
 
 - A Python file for your script;
 - One or more XHTML files if you have a custom form for your authentication;
-- One or more XML files (you'll need one for each XHTML file) that provide information to the Tomcat server about how to display the XHTML file.
+- One or more XML files (you'll need one for each XHTML file) that provide information to the web server about how to display the XHTML file.
 
 ## Samples and Documentation
 
@@ -149,6 +156,36 @@ The attribute value that are saved by the session using `context.set`. This meth
 
 Example: `session_attributes.get("code")`        
 
+**Logout():**
+The method for logout is already written in the code, this method could be further used as per 
+the requirements.
+
+```
+    def logout(self, configurationAttributes, requestParameters):
+        return True
+```
+    
+## Application session Logout
+Custom scripts of type "Application session" are launched when 
+user's session at oxAuth is about to be killed, mostly to provide opportunity 
+to notify some 3rd party apps or remote services about the fact, perhaps to conduct 
+some cleaning tasks there, or end user's session there too 
+(if those services don't support mechanisms like "[Frontchannel logout](http://openid.net/specs/openid-connect-frontchannel-1_0.html)" etc)
+
+We also must mention that we have a similar feature supported for our 
+Authentication custom scripts. Each of those script may implement logout function like below:
+	
+```
+    def logout(self, configurationAttributes, requestParameters):
+    return True
+```
+
+Its purpose mostly the same, beside the fact that each auth script's 
+function will only be called for users whose authentication during 
+login attempt was handled by corresponding script, but scripts of "Application session" 
+type will be called every time during logout of each user, regardless of what method of 
+authentication he used during login.
+
 ## Saving and Passing Values 
  
 ### Saving Values:
@@ -196,13 +233,5 @@ Further logs to debug and monitor the sequence can be done using `oxauth_script.
 
 It is not uncommon to get locked out of the Gluu Server while testing the authentication script.
 
-In such a case the following method can be used to revert back to the older authentication method:
-
-1. Open LDAP in a LDAP Browser (jxlorer is used here and recommended).
-2. Navigate to "gluu > appliances > {GUID or applicance number}". ![Revert authentication](../img/integration/revert-authentication1.png)
-3. Search for "oxAuthenticationMode"  and "oxTrustAuthenticationMode" attribute and delete the values. ![Revert authentication attrb](../img/integration/revert-authentication2.png)
-    - OxAuthenticationMode attribute is used for Login pages, which stores the name of the custom script used.
-    - OxTrustAuthenticationMode is used for OxTrsut Admin UI page.
-4. Submit the changes.
-5. Try to access the login page or Gluu Admin UI.
-As a secondary option, InPrivate or Incognito or Private Browser from various Browsers can be used.
+In such case, refer to [Reverting Authentication Method](../operation/faq/#revert-authentication-method) 
+to revert back to the older authentication method:
