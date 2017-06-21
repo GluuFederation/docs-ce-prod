@@ -3,7 +3,7 @@
 The Gluu Server can **not** be upgraded with a simple `apt-get upgrade`. The admin needs to explicitly install the new version of the Gluu Server and export and import the required data using scripts. 
 
 !!! Note
-    This guide assumes that you are upgrading from version 2.x.x to 3.0.1 and are **OK with changing persistence from OpenDJ to OpenLDAP**. If you prefer to keep OpenDJ in Gluu Server 3.x, follow the separate documentation for [upgrading with OpenDJ](../upgrade/manual-update.md/).
+    This guide assumes that you are upgrading from version 2.x.x to 3.0.2 and are **OK with changing persistence from OpenDJ to OpenLDAP**. If you prefer to keep OpenDJ in Gluu Server 3.x, follow the separate documentation for [upgrading with OpenDJ](../upgrade/manual-update.md/).
 
 !!! Warning
     Before proceeding with an upgrade, make sure to [backup](../operation/backup.md) the Gluu container or LDAP Ldif before proceeding with the upgrade. 
@@ -40,14 +40,14 @@ Stop the current version of the gluu-server.
 # service gluu-server-2.4.x stop
 ```
 
-Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.0.1`, then execute the following commands:
+Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.0.2`, then execute the following commands:
 
 ```
-# cp -r /opt/gluu-server-2.4.x/root/backup_24/ /opt/gluu-server-3.0.1/root/
+# cp -r /opt/gluu-server-2.4.x/root/backup_24/ /opt/gluu-server-3.0.2/root/
 
-# service gluu-server-3.0.1 start
+# service gluu-server-3.0.2 start
 
-# service gluu-server-3.0.1 login
+# service gluu-server-3.0.2 login
 
 # cp backup_24/setup.properties /install/community-edition-setup/
 
