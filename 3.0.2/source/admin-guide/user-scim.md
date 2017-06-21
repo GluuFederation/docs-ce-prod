@@ -33,7 +33,8 @@ If you pretend to use Java for coding, take into account the following considera
 </dependency>
 ```
 
-As a good practice, the SCIM-Client version should match your Gluu CE version. For example, if you are running CE v3.0.1, you must also use SCIM-Client v3.0.1.
+As a good practice, the SCIM-Client version should match your Gluu CE version. For example, 
+if you are running CE v3.0.2, you must also use SCIM-Client v3.0.2.
 
 ## Add User
 There are two methods to add users:

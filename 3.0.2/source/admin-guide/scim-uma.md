@@ -62,7 +62,8 @@ The following instructions depict how to test the SCIM configuration protected b
 </dependency>
 ```
 
-As a good practice, the SCIM-Client version should match your Gluu CE version. For example, if you are running CE v3.0.1, you must also use SCIM-Client v3.0.1.
+As a good practice, the SCIM-Client version should match your Gluu CE version. For example, if you are running CE v3.0.2, 
+you must also use SCIM-Client v3.0.2.
 
 * Create a Java class using the code below (supply suitable values for private attributes of TestScimClient):
 
