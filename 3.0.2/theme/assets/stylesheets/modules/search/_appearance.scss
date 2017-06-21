@@ -1,0 +1,119 @@
+
+
+/* ----------------------------------------------------------------------------
+ * Search appearance
+ * ------------------------------------------------------------------------- */
+
+/*
+ * Search bar
+ */
+.bar.search {
+  opacity: 0;
+
+  /*
+   * Search input
+   */
+  .query {
+    background: transparent;
+    color: $black;
+
+    /*
+     * Search input placeholder
+     */
+    @include placeholder {
+      color: $black-lighter;
+    }
+  }
+
+  /*
+   * Pushed/clicked icon
+   */
+  .button .icon:active {
+    background: $black-lightest;
+  }
+}
+
+/*
+ * Search results
+ */
+.results {
+  @include drop-shadow(2);
+
+  background: $white;
+  color: $black;
+  opacity: 0;
+
+  /*
+   * Active search mode
+   */
+  #toggle-search:checked ~ .main &,
+  .toggle-search & {
+    opacity: 1;
+  }
+
+  /*
+   * Search meta data
+   */
+  .meta {
+    background: $primary;
+    color: $white;
+  }
+
+  /*
+   * Search result item link
+   */
+  .list a {
+    border-bottom: 1px solid $black-lightest;
+
+    /*
+     * Remove border on last element
+     */
+    &:last-child {
+      border-bottom: none;
+    }
+
+    /*
+     * Active item link
+     */
+    &:active {
+      background: $black-lightest;
+    }
+  }
+}
+
+/*
+ * Article link
+ */
+.result span {
+  color: $black-light;
+}
+
+/*
+ * Active search bar
+ */
+#toggle-search:checked ~ .header,
+.toggle-search .header {
+  background: $white;
+  color: $black-light;
+
+  /*
+   * Add darker status bar overlay in search mode
+   */
+  &:before {
+    background: $black-light;
+  }
+
+  /*
+   * Fade out default header bar
+   */
+  .bar.default {
+    opacity: 0;
+  }
+
+  /*
+   * Fade in search header bar
+   */
+  .bar.search {
+    opacity: 1;
+  }
+}

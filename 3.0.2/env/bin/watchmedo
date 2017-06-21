@@ -1,0 +1,10 @@
+#!/home/adrian/gluu-docs/b/gluu-docs/env/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'watchdog==0.7.0','console_scripts','watchmedo'
+__requires__ = 'watchdog==0.7.0'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('watchdog==0.7.0', 'console_scripts', 'watchmedo')()
+    )

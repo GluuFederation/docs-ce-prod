@@ -1,0 +1,57 @@
+
+
+/* ----------------------------------------------------------------------------
+ * Article typography
+ * ------------------------------------------------------------------------- */
+
+/*
+ * Article
+ */
+.article {
+  h2, h3, h4, h5, h6 {
+    color: #1976d2;
+    //text-shadow: 1px 1px #efefef, 2px 2px #81d4fa;
+  }
+
+
+  h1 {
+    font-weight: 900;
+    //text-shadow: 1px 1px #efefef, 2px 2px #81d4fa;
+    //border-top: 3px dashed #1976d2;
+  }
+
+  /*
+   * Third-level headlines should be bold
+   */
+  h2 {
+    font-weight: 800;
+  }
+
+
+  /*
+   * Third-level headlines should be bold
+   */
+  h3 {
+    font-weight: 600;
+  }
+
+  /*
+   * Fourth-level headlines should be italic
+   */
+  h4 {
+    font-weight: 400;
+    font-style: italic;
+  }
+}
+
+/*
+ * Permalink support
+ */
+.article {
+  h2, h3, h4, h5, h6 {
+    a {
+      font-weight: 400;
+      font-style: normal;
+    }
+  }
+}

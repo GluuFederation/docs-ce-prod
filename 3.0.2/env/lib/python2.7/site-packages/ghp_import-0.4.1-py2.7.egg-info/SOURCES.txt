@@ -1,0 +1,11 @@
+LICENSE
+MANIFEST.in
+README.md
+ghp-import
+setup.cfg
+setup.py
+ghp_import.egg-info/PKG-INFO
+ghp_import.egg-info/SOURCES.txt
+ghp_import.egg-info/dependency_links.txt
+ghp_import.egg-info/not-zip-safe
+ghp_import.egg-info/top_level.txt

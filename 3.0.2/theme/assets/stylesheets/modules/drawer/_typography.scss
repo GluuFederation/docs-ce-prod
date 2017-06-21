@@ -1,0 +1,48 @@
+
+
+/* ----------------------------------------------------------------------------
+ * Drawer typography
+ * ------------------------------------------------------------------------- */
+
+/*
+ * Drawer container
+ */
+.drawer {
+
+  /*
+   * Links to articles
+   */
+  .toc li a {
+    font-weight: 700;
+  }
+
+  /*
+   * Links to chapters inside the current article
+   */
+  .toc li.anchor a {
+    font-weight: 400;
+  }
+
+  /*
+   * Main sections
+   */
+  .section {
+    font-weight: 700;
+  }
+}
+
+/*
+ * Repository buttons
+ */
+.repo a {
+  text-transform: uppercase;
+  font-weight: 700;
+
+  /*
+   * Stars
+   */
+  .count {
+    text-transform: none;
+    font-weight: 700;
+  }
+}
