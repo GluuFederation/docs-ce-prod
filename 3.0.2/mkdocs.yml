@@ -50,6 +50,7 @@ pages:
         - 'User Management with SCIM' : 'admin-guide/user-scim.md'
         - 'Central Authentication Service (CAS)' : 'admin-guide/cas.md'
         - 'Certificate Management' : 'admin-guide/certificate.md'
+        - 'CORS Configuration' : 'admin-guide/cors.md'
 - Integration Guide:
         - 'Introduction': 'integration/index.md'
         - 'Client SDKs':
