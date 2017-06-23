@@ -11,7 +11,7 @@ The Super Gluu mobile app can be downloaded for free from the [Android](https://
 
 - An ad free version of the app can be purchased by users individually for $0.99 per month, or in bulk by an organization (discounts available when licenses are purchased in bulk).     
 
-- In addition, Super Gluu can be re-skinned and branded for your organization. 
+- In addition, Super Gluu can be re-skinned, custom branded, and published to the app marketplaces for your organization by Gluu. 
 
 Learn more about our offerings on the pricing section of the [Super Gluu website](http://super.gluu.org/).    
 
