@@ -20,12 +20,9 @@ The Gluu Server will create its file system under `/root/` and will be
 installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) 
 remain the same as the host.
 
-## Clustering Gluu CE Server
+## Clustering the Gluu Server
 
-Gluu CE Servers can be clustered using Gluu Cluster Manager a product from Gluu. Gluu Cluster Manager 
-replicates data from primary Gluu CE Server to secondary Gluu CE server for enhanced productivity. Data is
-replicated using secured protocol and configuration of clustering can be found in 
-[Gluu Cluster Manager documentation](https://gluu.org/docs/cm/alpha)
+The Gluu Server can be clustered to achieve high availability (HA) using the Gluu Cluster Manager product. Cluster Manager simplifies the process of replicating data from a primary Gluu Server to a secondary Gluu Server. Instructions for configuring a cluster of Gluu Servers can be found in the [Gluu Cluster Manager documentation](https://gluu.org/docs/cm/alpha).
 
 
 ### Ubuntu Server 14.04.x
