@@ -4,7 +4,14 @@
 
 This document will explain how to use the [Super Gluu interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/super_gluu/SuperGluuExternalAuthenticator.py) to configure the Gluu Server for a two-step authentication process with username and password as the first step, and Super Gluu as the second step. 
 
-In order to use this authentication mechanism users will need to download the Super Gluu mobile app from the [Android](https://play.google.com/store/apps/details?id=gluu.super.gluu) or [iOS](https://itunes.apple.com/us/app/super-gluu/id1093479646?ls=1&mt=8)  marketplace. 
+### App Download & Pricing
+The Super Gluu mobile app can be downloaded for free from the [Android](https://play.google.com/store/apps/details?id=gluu.super.gluu) or [iOS](https://itunes.apple.com/us/app/super-gluu/id1093479646?ls=1&mt=8) marketplace. 
+
+- The free version of Super Gluu includes ads.    
+
+- An ad free version of the app can be purchased by users individually for $0.99 per month, or in bulk by an organization.     
+
+- In addition, Super Gluu can be re-skinned and branded for your organization. Learn more on the pricing section of the [Super Gluu website](http://super.gluu.org/).    
 
 ## Properties
 The script has the following properties
