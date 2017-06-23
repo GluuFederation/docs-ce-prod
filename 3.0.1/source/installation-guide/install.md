@@ -14,7 +14,7 @@ installation procedure is similar across all the distributions:
     You must use a fully qualified domain name (FQDN) to install the Gluu Server. You **can not** use localhost to install the Gluu Server. If you want to run Gluu locally, you can make up a hostname. Just make sure it is in the host file of your VM and the host file of the local windows machine.
     
 ### Clustering
-The Gluu Server can be clustered to achieve high availability (HA) using the Gluu Cluster Manager product. Cluster Manager simplifies the process of replicating data from a primary Gluu Server to a secondary Gluu Server. Instructions for configuring a cluster of Gluu Servers can be found in the [Gluu Cluster Manager documentation](https://gluu.org/docs/cm/alpha).
+Below are instructions for deploying a single Gluu Server. If you need to support fail over and high availability, the Gluu Server can be clustered using the Gluu Cluster Manager product. After you follow the instructions below to deploy your single Gluu Server, you can follow the [Gluu Cluster Manager documentation](https://gluu.org/docs/cm/alpha) to replicate data and cluster your servers.
 
 ## Install Gluu Server Package
 
