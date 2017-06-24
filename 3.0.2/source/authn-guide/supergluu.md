@@ -2,18 +2,7 @@
 ## Overview
 [Super Gluu](https://super.gluu.org) is a free and secure two-factor authentication mobile application developed by Gluu. It is based on the free open source [oxPush2](https://github.com/GluuFederation/oxPush2) two-factor authentication application. 
 
-This document will explain how to use the [Super Gluu interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/super_gluu/SuperGluuExternalAuthenticator.py) to configure the Gluu Server for a two-step authentication process with username and password as the first step, and Super Gluu as the second step. 
-
-### App Download & Pricing
-The Super Gluu mobile app can be downloaded for free from the [Android](https://play.google.com/store/apps/details?id=gluu.super.gluu) or [iOS](https://itunes.apple.com/us/app/super-gluu/id1093479646?ls=1&mt=8) marketplace. 
-
-- The free version of Super Gluu includes ads.    
-
-- An ad free version of the app can be purchased by users individually for $0.99 per month, or in bulk by an organization (discounts available when licenses are purchased in bulk).     
-
-- In addition, Super Gluu can be re-skinned, custom branded, and published to the app marketplaces for your organization by Gluu. 
-
-Learn more about our offerings on the pricing section of the [Super Gluu website](http://super.gluu.org/).    
+This document will explain how to use the [Super Gluu interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/super_gluu/SuperGluuExternalAuthenticator.py) to configure the Gluu Server for a two-step authentication process with username and password as the first step, and Super Gluu as the second step. \
 
 ## Properties
 The script has the following properties
