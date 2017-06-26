@@ -71,9 +71,12 @@ The file needs to contain the following fields from which the user data will be 
 
 
 ## User Registration
-The Gluu Server is shipped with a user registration script that can be used to enable basic user registration. When enabled the registration page can typically be found at `https://<hostname>/identity/register`. 
+The Gluu Server is shipped with a user registration script that can be used to enable basic user registration. The registration page can be found at `https://<hostname>/identity/register`. 
 
-When possible we recommend handling user registration in your app locally, then pushing the user information to the Gluu Server via SCIM. This will give you more control and flexibility in defining the exact registration process. Also, since oxTrust was primarily designed as an admin interface, it is frequently not Internet facing and therefore the registration page may not be available to a user browsing the web.
+When possible we recommend handling user registration locally in your app, then pushing the user information to the Gluu Server via SCIM. This will give you more control and flexibility in defining the exact registration process. Also, since oxTrust was primarily designed as an admin interface, it is frequently not Internet facing and therefore the registration page may not be available to a user on the web.
+
+!!! Note 
+    When user registration is handled via oxTrust, users can **not** be added to a backend LDAP or Active Directory server. This means that self-registration via oxTrust is only effective if users are authenticated by GluuLDAP (and not a backend LDAP or AD server).0000
 
 To enable user registration via the Gluu Server, follow these steps:
 
@@ -81,14 +84,13 @@ To enable user registration via the Gluu Server, follow these steps:
 2. Find the `Enabled` field and check the box. 
 3. Click the `Update` button at the bottom of the page. 
 
+### Adding Attributes to Registration
 A limited number of attributes are present in the default registration form. If more attributes are needed they can be added via the GUI by navigating to `Organization Configuration` > `Manage Registration`. Learn how to [add attributes](./oxtrust-ui.md#manage-registration) to the default registration form. 
 
-By default the `Custom property (key/value)` field will include the value: `enable_user` and `true`. This enabled new users to login as soon as registration is complete. If you want to manually review and approve new user registrations, you can set this value to `false`.
+### Manual Approval of New Users
+By default the `Custom property (key/value)` field will include the value: `enable_user` and `true`. This enables new users to login as soon as registration is complete. If you want to manually review and approve new user registrations, you can set this value to `false` as shown in the screenshot below.
 
 ![image](../img/admin-guide/user/config-manage-script_enable.png)
-
-!!! Note 
-    When user registration is handled via oxTrust, users can **not** be added to a backend LDAP or Active Directory server. This means that self-registration via oxTrust is only effective if users are authenticated by GluuLDAP (and not a backend LDAP or AD server).
 
 ## LDAP Synchronization 
 LDAP Synchronization, a.k.a. Cache Refresh, is the process of connecting one or more existing backend LDAP servers, like Microsoft Active Directory, with the Gluu Server's local LDAP server. Synching people and attributes from a backend server speeds up authentication transactions. It is possible to perform attribute transformations, changing the name of attributes, or even using an interception script to change the values. Transformations are stored in the Gluu LDAP service. 
