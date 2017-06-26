@@ -71,7 +71,7 @@ The file needs to contain the following fields from which the user data will be 
 
 
 ## User Registration
-The Gluu Server is shipped with a user registration script that can be used to enable basic user registration. The registration page can be found at `https://<hostname>/identity/register`. 
+The Gluu Server is shipped with a user registration script that can be used to enable basic user registration. 
 
 When possible we recommend handling user registration locally in your app, then pushing the user information to the Gluu Server via SCIM. This will give you more control and flexibility in defining the exact registration process. Also, since oxTrust was primarily designed as an admin interface, it is frequently not Internet facing and therefore the registration page may not be available to a user on the web.
 
@@ -80,9 +80,10 @@ When possible we recommend handling user registration locally in your app, then 
 
 To enable user registration via the Gluu Server, follow these steps:
 
-1. Navigate to `Custom Scripts` and select the `User Registration` tab. 
-2. Find the `Enabled` field and check the box. 
-3. Click the `Update` button at the bottom of the page. 
+1. Navigate to `Custom Scripts` and select the `User Registration` tab;   
+2. Find the `Enabled` field and check the box;     
+3. Click the `Update` button at the bottom of the page;      
+4. New users will now be able to register for accounts at: `https://<hostname>/identity/register`.  
 
 ### Adding Attributes to Registration
 A limited number of attributes are present in the default registration form. If more attributes are needed they can be added via the GUI by navigating to `Organization Configuration` > `Manage Registration`. Learn how to [add attributes](./oxtrust-ui.md#manage-registration) to the default registration form. 
