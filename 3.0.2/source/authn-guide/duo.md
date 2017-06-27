@@ -45,9 +45,6 @@ Follow the steps below to configure the Duo module in the oxTrust Admin GUI.
 5. Enable the script by ticking the check box    
 ![enable](../img/admin-guide/enable.png)
 
-6. Change the `Default authentication method` to Duo   
-![duo](../img/admin-guide/multi-factor/duo.png)
-
 Now Duo is an available authentication mechanism for your Gluu Server. This means that, using OpenID Connect `acr_values`, applications can now request Duo authentication for users. 
 
 !!! Note 
@@ -65,3 +62,5 @@ Now applications can request Duo authentication, but what if you want to make Du
     - The `Default acr` field controls the default authentication mechanism that is presented to users from all applications that leverage your Gluu Server for authentication.    
 
 You can change one or both fields to Duo authentication as you see fit. If you want Duo to be the default authentication mechanism for access to oxTrust and all other applications that leverage your Gluu Server, change both fields to Duo.  
+ 
+![duo](../img/admin-guide/multi-factor/duo.png)
