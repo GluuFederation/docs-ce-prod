@@ -4,6 +4,8 @@
 
 This section of the docs explains how to enable and configure Super Gluu for strong authentication to applications that leverage your Gluu Server for login.
 
+Complete docs for Super Gluu, including a User Guide and a Developer Guide, can be found on the [Super Gluu docs site](https://gluu.org/docs/supergluu).  
+
 ## Properties
 The Super Gluu authentication script has the following properties
 
