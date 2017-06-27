@@ -20,14 +20,6 @@ The Gluu Server will create its file system under `/root/` and will be
 installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) 
 remain the same as the host.
 
-## Clustering
-
-Below are instructions for deploying a single Gluu Server. If you need to support 
-fail over and high availability, the Gluu Server can be clustered using the 
-Gluu Cluster Manager product. After you follow the instructions below to deploy your 
-single Gluu Server, you can follow the [Gluu Cluster Manager documentation](https://gluu.org/docs/cm/alpha) to replicate data 
-and cluster your servers.
-
 ### Ubuntu Server 14.04.x
 
 | Command Description     |               Trusty Commands         |
@@ -192,3 +184,8 @@ For Centos 7.2 and Red Hat 7.2:
 # yum remove gluu-server-3.0.2 
 # rm -rf /opt/gluu-server-3.0.2
 ```
+
+## Clustering
+
+If you need to support fail over and high availability, the Gluu Server can be clustered using the 
+Gluu Cluster Manager product. After you have followed the instructions to deploy your single Gluu Server, you can follow the [Gluu Cluster Manager documentation](https://gluu.org/docs/cm/alpha) to replicate data and cluster your servers.
