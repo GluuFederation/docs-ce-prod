@@ -31,7 +31,7 @@ For additional info on Duo's Web SDK, check [this article](https://duo.com/docs/
 ## Configure CE Chroot
 1. Prepare the Duo credential file `/etc/certs/duo_creds.json` with **ikey, akey & skey**
 
-**Configure oxTrust**
+## Configure oxTrust 
 
 Follow the steps below to configure the Duo module in the oxTrust Admin GUI.
 
@@ -47,3 +47,21 @@ Follow the steps below to configure the Duo module in the oxTrust Admin GUI.
 
 6. Change the `Default authentication method` to Duo   
 ![duo](../img/admin-guide/multi-factor/duo.png)
+
+Now Duo is an available authentication mechanism for your Gluu Server. This means that, using OpenID Connect `acr_values`, applications can now request Duo authentication for users. 
+
+!!! Note 
+    To make sure Duo has been enabled successfully, you can check your Gluu Server's OpenID Connect configuration by navigating to the following URL: `https://<hostname>/.well-known/openid-configuration`. Find `"acr_values_supported":` and you should see `"duo"`. 
+
+## Make Duo the Default Authentication Mechanism
+
+Now applications can request Duo authentication, but what if you want to make Duo your default authentication mechanism? You can follow these instructions: 
+
+1. Navigate to `Configuration` > `Manage Authentication`. 
+2. Select the `Default Authentication Method` tab. 
+3. In the Default Authentication Method window you will see two options: `Default acr` and `oxTrust acr`. 
+
+    - The `oxTrust acr` field controls the authentication mechanism that is presented to access the oxTrust dashboard GUI (the application you are in).    
+    - The `Default acr` field controls the default authentication mechanism that is presented to users from all applications that leverage your Gluu Server for authentication.    
+
+You can change one or both fields to Duo authentication as you see fit. If you want Duo to be the default authentication mechanism for access to oxTrust and all other applications that leverage your Gluu Server, change both fields to Duo.  
