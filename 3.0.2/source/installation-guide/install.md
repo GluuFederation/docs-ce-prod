@@ -143,18 +143,24 @@ table should help you answer the questions correctly.
 | Install oxAuth RP | OpenID Connect test client: recommended for test enviornments, for more details see [here](../admin-guide/openid-connect/#oxauth-rp) |
 | Install Passport |  Install if you want to offer users social login. |
 
-After answering these questions, `setup.py` will show you your 
-selections and ask you if you want to continue. 
-
-The easiest place to go wrong is with the first two questions. Do not 
-use `localhost` for either the IP address or hostname. And use a real
-hostname--you can always manage via host file entries even if you don't 
-want to mess with DNS for testing. If you are deploying a cluster, use
-the hostname of the cluster--that is used by the clients connecting
-to the Gluu Server.
-
 !!! Warning
 	Changing the hostname after installation is not supported. 
+
+After answering these questions, `setup.py` will show you your selections and ask you if you want to continue. If everything looks good, select Y to finish installation. 
+
+Note: the easiest place to go wrong is with the first two questions:
+
+1. Do not use `localhost` for either the IP address or hostname.  
+
+2. Use a real hostname--you can always manage via host file entries even if you don't want to mess with DNS for testing. If you are deploying a cluster, use the hostname of the cluster--that is used by the clients connecting to the Gluu Server.
+
+After 5-10 minutes you will see the following success message: Gluu Server installation successful! Point your browser to [hostname]. 
+
+## Login via Browser
+
+Wait about 10 minutes in total for the server to restart and finalize its configuration. After that period you are now ready to log into your Gluu Server via a web browser. 
+
+Note: If the Gluu Server login page is still not appearing after you've received the success message and waited about 10 minutes, check if port 443 is open in the VM. If it is not open, open port 443 and try to reach the host in your browser again. 
 
 ## Uninstallation
 
