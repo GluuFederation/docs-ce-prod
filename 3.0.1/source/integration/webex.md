@@ -162,3 +162,4 @@ We need to modify attributeDefinition for these attributes. Configuration is app
         - wxemail
         - wxfistname
         - mail
+    - Restart `idp` service with: `service idp stop` and `service idp start`
