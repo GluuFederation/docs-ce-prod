@@ -48,7 +48,7 @@ remain the same as the host.
 | Update/Clean Repo       | `# yum clean all`                          |
 | Install Gluu Server     | `# yum install gluu-server-3.0.2`          |
 
-### CentOS 7.2
+### CentOS 7.x
 
 | Command Description     |               CentOS 7.2              |
 |-------------------------|---------------------------------------|
@@ -68,7 +68,7 @@ remain the same as the host.
 | Update/Clean Repo       | `# yum clean all`                          |
 | Install Gluu Server     | `# yum install gluu-server-3.0.2`          |
 
-### RHEL 7.2
+### RHEL 7.x
 
 | Command Description     |               RHEL 7                  |
 |-------------------------|---------------------------------------|
@@ -98,7 +98,7 @@ For Centos 6.x, Red Hat 6.x, Ubuntu 14/16, and Debian 8:
 # service gluu-server-3.0.2 login
 ```
 
-For Centos 7.2 and Red Hat 7.2: 
+For Centos 7.x and Red Hat 7.x: 
 
 ```
 # /sbin/gluu-serverd-3.0.2 enable
@@ -182,7 +182,7 @@ For Centos 6.x, Red Hat 6.x,
 # rm -rf /opt/gluu-server-3.0.2
 ```
 
-For Centos 7.2 and Red Hat 7.2:
+For Centos 7.x and Red Hat 7.x:
 
 ```
 # /sbin/gluu-serverd-3.0.2 disable
