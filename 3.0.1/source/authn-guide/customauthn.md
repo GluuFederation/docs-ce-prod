@@ -157,8 +157,9 @@ The attribute value that are saved by the session using `context.set`. This meth
 Example: `session_attributes.get("code")`        
 
 **Logout():**
-The method for logout is already written in the code, this method could be further used as per 
-the requirements.
+It can be used in cases when you need to execute logout logic specific to this authentication script (like notifying remote/3rd party services, writting to databases etc) when oxAuth receives an end session request. In contrary to scripts of ["Application session managment" type](../admin-guide/custom-script.md#application-session-management), this function will only be called in case the user who in process of logging out used this very script where it's implemented for initial authentication. Also, it allows oxAuth to stop processing the end session request workflow if it returns `False`. As a result it should either return `True` or `False`
+
+This method is not mandatory. A stub definition of this function is already present in most scripts.
 
 ```
     def logout(self, configurationAttributes, requestParameters):
