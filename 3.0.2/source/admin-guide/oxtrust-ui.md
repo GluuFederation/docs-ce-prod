@@ -34,7 +34,7 @@ There are three tabs in the organization configuration page:
 
 ![system-config-options](../img/oxtrust/system-config-options.png)
 
-- Self-service password reset: Allow users to reset their password via email. In order for this feature to work, the admin will also need to perform [SMTP Server Configuration](#smtp-server-configuration).      
+- Self-service password reset: Allow users to trigger password reset sequence by following url like `https://your.idp.host/identity/person/passwordReminder.htm`. A new password will be sent to email box provided in "Email" attribute of their user entry (if any). In order for this feature to work, the admin will also need to perform [SMTP Server Configuration](#smtp-server-configuration).      
 
 - SCIM Support: Enable SCIM Support if you plan on using the SCIM protocol to move identity data from applications to Gluu and vice versa.      
 
