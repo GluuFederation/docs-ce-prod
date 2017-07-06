@@ -206,22 +206,17 @@ This script can be used in an oxAuth application only.
 
 
 ## Dynamic Scopes      
-The dynamic scope custom script allows the parsing of token returned from `user_info endpoint` into 
-LDAP attributes. The `id_token` is returned from `user_info endpoint` and the values are dynamically placed 
-in the LDAP attributes in Gluu Server. These are the attributes which would be the information about the user
-from the endpoint, this could be last name, email, address, profile or any attribute that is defined 
-by you, which can be custom attribute.
+The dynamic scope custom script allows to generate list of claims (and their values) on the fly, depending on cirtumstances like id of client requesting it, logged user's session parameters, values of other user's attributes, results of some caclucations implementing specific buisness logic and/or requests to remote APIs or databases. Claims are then returned the usual way in a response to a call to the `userinfo endpoint`. 
 
 In order to make dynamic scopes to work, following instructions has to be followed.
 
-- A scope has to be defined in the OpenID Connect Scopes interface
-- Scope should have Scope Type Dynamic (menu)
-- The dynamic script should be linked to that scope (Add dynamic script button)
-- The scope should be allowed for the client in the OpenID Connect Update Client interface 
-(Add Scope button), and the scope should be requested by the client 
-(e.g. to test with oxauth_rp, add it manually to the Scope list in the Token Endpoint part.
+- Dynamic scope custom script must be configured and enabled at "Manage custom scripts" page, "Dynamic scopes" tab
+- A scope has to be defined at the "OpenID Connect -> Scopes" page
+  - Scope's type must be set to "Dynamic"
+  - Corresponding dynamic script must be linked to that scope (Add dynamic script button)
+  - The scope must be added to the client which will be using it at the "OpenID Connect -> Clients" page (using the "Add Scope" button), and the scope must be included by the client in "scope=" url query parameter
 
-More detailed explanation of adding scopes can be found under Openid [scopes](../admin-guide/openid-connect/#scopes)
+More detailed explanation about adding scopes can be found under Openid [scopes](../admin-guide/openid-connect/#scopes)
 
 - [Sample Dynamic Scope Script](./sample-dynamic-script.py)
 
