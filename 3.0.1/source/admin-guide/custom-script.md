@@ -106,7 +106,7 @@ following methods:
 
 |Method|`def logout(self, configurationAttributes, requestParameters)`|
 |---|---|
-|**Description**|This method is not mandatory. It can be used in cases when you need to execute specific logout logic within the authentication script when oxAuth receives an end session request. Also, it allows oxAuth to stop processing the end session request workflow if it returns `False`. As a result it should either return `True` or `False`|
+|**Description**|This method is not mandatory. A stub definition of this function is already present in most scripts. It can be used in cases when you need to execute logout logic specific to this authentication script (like notifying remote/3rd party services, writting to databases etc) when oxAuth receives an end session request. In contrary to scripts of ["Application session managment" type](./#application-session-management), this function will only be called in case the user who in process of logging out used this very script where it's implemented for initial authentication. Also, it allows oxAuth to stop processing the end session request workflow if it returns `False`. As a result it should either return `True` or `False`|
 |Method Parameters|`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`<br/>`requestParameters` is `java.util.Map<String, String[]>`|
 
 This script can be used in oxAuth application only.
@@ -285,19 +285,14 @@ This script can be used in an oxAuth application only.
 
 ## Application Session Management      
 
-This script allows an admin to notify 3rd party systems about requests
-to end an OAuth session. This method is triggered by an oxAuth call to
-the `end_session` endpoint. It's possible to add multiple scripts with
-this type. The application should call all of them according to the
-level.
+These scripts can be used in cases when you need to execute some generel logout logic (like notifying remote/3rd party services, writting to databases etc) applicable to any user. They are triggered when oxAuth receives an end session request. In contrary to logout functions which may be added to scripts of Custom Authentication type to server a similar purpose, Session Management scripts are called for any user who is about to log out. It's possible to add multiple scripts with
+this type, they will be called according to set priority/level.
 
-This script type adds only one method to the base script type:
+This script provides only one method to implement:
 
 |Method|`def endSession(self, httpRequest, authorizationGrant, configurationAttributes)`|
 |---|---|
 |**Method Parameter**|`httpRequest` is `javax.servlet.http.HttpServletRequest`<br/>`authorizationGrant` is `org.xdi.oxauth.model.common.AuthorizationGrant`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
-
-This script can be used in an oxAuth application only.
 
 - [Sample Application Session Management Script](./sample-application-session-script.py)
 
