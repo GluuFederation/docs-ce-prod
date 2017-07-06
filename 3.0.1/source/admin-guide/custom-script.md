@@ -208,7 +208,12 @@ This script can be used in an oxAuth application only.
 ## Dynamic Scopes      
 The dynamic scope custom script allows to generate list of claims (and their values) on the fly, depending on cirtumstances like id of client requesting it, logged user's session parameters, values of other user's attributes, results of some caclucations implementing specific buisness logic and/or requests to remote APIs or databases. Claims are then returned the usual way in a response to a call to the `userinfo endpoint`. 
 
-In order to make dynamic scopes to work, following instructions has to be followed.
+Two parameters are passed to the script:
+
+- `dynamicScopeContext` is [org.xdi.oxauth.service.external.context.DynamicScopeExternalContext class](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/java/org/xdi/oxauth/service/external/context/DynamicScopeExternalContext.java) 
+- `configurationAttributes` is java.util.Map<String, SimpleCustomProperty> dictionary carring script's custom properties
+
+In order to configure a dynamic scope next steps are required:
 
 - Dynamic scope custom script must be configured and enabled at "Manage custom scripts" page, "Dynamic scopes" tab
 - A scope has to be defined at the "OpenID Connect -> Scopes" page
