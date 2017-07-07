@@ -6,8 +6,13 @@ This will help you better manage access based on LDAP groups within your enterpr
 
 ## Requirements
 
+ - Gluu Server with Shibboleth installed 
+ - AWS administrative privilege 
+
 
 ## AWS Configuration
+
+Log into AWS Management Console. Search for 'IAM' module. From 'IAM' module, we need to move forward. 
 
 ### Create Identity Provider
 First you need to get the Shibboleth meta data file from your Gluu installation, which can be found by navigating to the following URL: `https://<hostname>/idp/shibboleth`. With that file you can create an IDP in your AWS account. 
