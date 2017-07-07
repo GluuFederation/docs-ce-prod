@@ -27,26 +27,24 @@ sample	of	the	relationship	policy.
 
 ```
 {
-		"Version":	"2012-10-17",
-		"Statement":	[
-				{
-						"Effect":	"Allow",
-						"Principal":	{
-								"Federated":	"arn:aws:iam::<<YourAccountNumber>>:saml-provider/Gluu"
-						},
-						"Action":	"sts:AssumeRoleWithSAML",
-						"Condition":	{
-								"StringEquals":	{
-										"SAML:aud":	[
-												"https://<hostname>/idp/profile/SAML2/Unsolicited/SSO?
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "arn:aws:iam::<<YourAccountNumber>>:saml-provider/Gluu"
+      },
+      "Action": "sts:AssumeRoleWithSAML",
+      "Condition": {
+        "StringEquals": {
+          "SAML:aud": [
+            "https://<<mygluu.mycompany.com>>/idp/profile/SAML2/Unsolicited/SSO?
 providerId=urn:amazon:webservices",
-												"https://signin.aws.amazon.com/saml"
-										]
-								}
-						}
-				}
-		]
-}
+            "https://signin.aws.amazon.com/saml"
+          ]
+        }
+      }
+    }
 ```
 
 ### Create AWS Custom Attributes in LDAP
