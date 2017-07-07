@@ -8,6 +8,8 @@ The best way to handle this currently is "Front channel logout". This is describ
 
 Basically, the Gluu Server OpenID `end_session` endpoint returns an html page, which contains an iFrame for each application to which the user has authenticated. The iFrame contains a link to each application's respective logout url. This special html page should be loaded in the background (not displayed to the user). The iFrame urls should be loaded by the browser. This provides a way to "trick" the user into calling the logout page of each application, so the application's cookies can be cleared.
 
+Learn more about the flow for logout across many applications in the [logout document](../operation/logout.md)
+
 ## Session Timeouts
 Session Timeout can be configured under 
 `JSON Configuration` > `oxAuth Properties`.
