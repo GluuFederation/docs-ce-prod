@@ -1,5 +1,14 @@
-# Session Timeout in Gluu
+# Session Management
 
+Gluu Server sessions are stored as a cookie in the browser. For each session, we know to which applications the browser has authenticated.
+
+However, remember that the application has it's own session. The hard part is that on logout, you need to notify each application that its local session should be ended.
+
+The best way to handle this currently is "Front channel logout". This is described in in the [OpenID Connect specification](http://openid.net/specs/openid-connect-frontchannel-1_0.html). 
+
+Basically, the Gluu Server OpenID `end_session` endpoint returns an html page, which contains an iFrame for each application to which the user has authenticated. The iFrame contains a link to each application's respective logout url. This special html page should be loaded in the background (not displayed to the user). The iFrame urls should be loaded by the browser. This provides a way to "trick" the user into calling the logout page of each application, so the application's cookies can be cleared.
+
+## Session Timeouts
 Session Timeout can be configured under 
 `JSON Configuration` > `oxAuth Properties`.
 
