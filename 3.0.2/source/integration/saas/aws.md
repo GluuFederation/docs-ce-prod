@@ -45,6 +45,8 @@ providerId=urn:amazon:webservices",
         }
       }
     }
+   ]
+  }
 ```
 
 ### Create AWS Custom Attributes in LDAP
