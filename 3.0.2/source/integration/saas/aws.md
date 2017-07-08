@@ -23,7 +23,7 @@ First you need to get the Shibboleth meta data file from your Gluu installation,
  - Metadata Documentation: Upload the XML metadata of your Gluu Server
  - Verfify Provider Information
  - 'Create'
- - [image] is here. 
+ - ![Image](../img/integration/aws_configure_provider.png)
 
 
 ### Create AWS Role
@@ -34,8 +34,7 @@ read only role with the appropriate policies attached. If you have questions abo
  - Click on 'Create new role'
  - Select role type:
     - 'Role for identity provider access'
-    - Select 'Grant Web Single Sign-On (WebSSO) access to SAML providers
- - You will get a page like below: [imagee]
+    - Select 'Grant Web Single Sign-On (WebSSO) access to SAML provider
  - Verify Role trust:
 ```
 {
@@ -58,7 +57,7 @@ read only role with the appropriate policies attached. If you have questions abo
 ``` 
  - Attach Policy: you can select whichever you prefer, we are not selecting anything right now for this doc. 
  - Set role name and review: Here is our test setup
- - [image]
+ - ![Image](../img/integration/aws_SetRoleNameandReview.png)
  - 'Create Role' 
 
 ## Gluu Server configuration
@@ -97,8 +96,8 @@ Make sure the `attributetype` LDAP ID number is unique. Save and test the custom
 
 Now let's move forward to create this two attribute from Gluu oxTrust. Here is how they will look like: 
 
- - RoleEntitlement: [image]
- - RoleSessionName: [image]
+ - RoleEntitlement: ![Image](../img/integration/aws_RoleEntitlement.png)
+ - RoleSessionName: ![Image](../img/integration/aws_RoleSessionName.png)
 
 ### Trust Relationship creation
 
@@ -134,7 +133,7 @@ Along with other attributes, we need to make sure that those two new attributes 
   - `RoleEntitlement`: The value should be like this: `arn:aws:iam::xxxxxx:role/Gluu_role,arn:aws:iam::xxxx:saml-provider/Gluu_Server`
     - This value is the combination of two attributes, (a) Role ARN and (b) Trusted entities. You can grab these values from your AWS console/'IAM' module. 
   - `RoleSessionName`: This is the email_address of user. 
-  - [image]
+  - ![Image](../img/integration/aws_User_info.png)
 
 ## SSO Testing
 
