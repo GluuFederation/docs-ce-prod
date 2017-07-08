@@ -61,6 +61,7 @@ read only role with the appropriate policies attached. If you have questions abo
  - [image]
  - 'Create Role' 
 
+## Gluu Server configuration
 
 ### Create AWS Custom Attributes in LDAP
 
@@ -93,6 +94,11 @@ objectclass ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
 ```  
       
 Make sure the `attributetype` LDAP ID number is unique. Save and test the custom configuration.
+
+Now let's move forward to create this two attribute from Gluu oxTrust. Here is how they will look like: 
+
+ - RoleEntitlement: [image]
+ - RoleSessionName: [image]
 
 ### Add Attributes in Gluu Webconsole
 
