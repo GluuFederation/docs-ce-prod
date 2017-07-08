@@ -133,3 +133,9 @@ We need to create an user in our Gluu Server to test this setup. Please note tha
 Along with other attributes, we need to make sure that those two new attributes are also present for this user.
   - `RoleEntitlement`: The value should be like this: `arn:aws:iam::xxxxxx:role/Gluu_role,arn:aws:iam::xxxx:saml-provider/Gluu_Server`
     - This value is the combination of two attributes, (a) Role ARN and (b) Trusted entities. You can grab these values from your AWS console/'IAM' module. 
+  - `RoleSessionName`: This is the email_address of user. 
+  - [image]
+
+## SSO Testing
+
+This is IDP-initiated SSO, we need to use a link like this to start our flow: `https://[hostname_of_Gluu_Server]/idp/profile/SAML2/Unsolicited/SSO?providerId=urn:amazon:webservices`
