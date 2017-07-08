@@ -17,7 +17,14 @@ Log into AWS Management Console. Search for 'IAM' module. From 'IAM' module, we 
 ### Create Identity Provider
 First you need to get the Shibboleth meta data file from your Gluu installation, which can be found by navigating to the following URL: `https://<hostname>/idp/shibboleth`. With that file you can create an IDP in your AWS account. 
 
-Now go to your AWS IAM webconsole and click on Identity Providers on the left. Click on the Create Provider. Give your provider a unique name and upload your Gluu xml file. This will establish your Gluu server as a trusted IDP.
+ - Click on 'Create Provider'
+ - Provider Type: 'SAML'
+ - Provider Name: Anything you prefer. 
+ - Metadata Documentation: Upload the XML metadata of your Gluu Server
+ - Verfify Provider Information
+ - 'Create'
+ - [image] is here. 
+
 
 ### Create AWS Role
 Next create a role with the permissions you want to give people. You can set whatever out of the box or custom 
