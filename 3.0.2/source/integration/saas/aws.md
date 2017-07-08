@@ -1,4 +1,4 @@
-# Login to AWS Webconsole using Gluu
+# Amazon AWS SSO with Gluu Server
 
 This doc will teach you how setup Gluu to be your IDP for access to the AWS webconsole. By using Gluu as your IDP, you can bypass the process of creating user accounts in AWS.  
 
@@ -29,7 +29,37 @@ First you need to get the Shibboleth meta data file from your Gluu installation,
 ### Create AWS Role
 Next create a role with the permissions you want to give people. You can set whatever out of the box or custom 
 policies you want and attach it to the AWS Role that you create. For example, you could have an admin role, power user role and a 
-read only role with the appropriate policies attached. If you have questions about this, there are docs in AWS to help you do this.  
+read only role with the appropriate policies attached. If you have questions about this, there are docs in AWS to help you do this. 
+
+ - Click on 'Create new role'
+ - Select role type:
+    - 'Role for identity provider access'
+    - Select 'Grant Web Single Sign-On (WebSSO) access to SAML providers
+ - You will get a page like below: [imagee]
+ - Verify Role trust:
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "sts:AssumeRoleWithSAML",
+      "Principal": {
+        "Federated": "arn:aws:iam::989705443609:saml-provider/Gluu_Server"
+      },
+      "Condition": {
+        "StringEquals": {
+          "SAML:aud": "https://signin.aws.amazon.com/saml"
+        }
+      }
+    }
+  ]
+}
+``` 
+ - Attach Policy: you can select whichever you prefer, we are not selecting anything right now for this doc. 
+ - Set role name and review: Here is our test setup
+ - [image]
+ - 'Create Role' 
 
 ### Attach Trust Policy
 After	creating	the	role	you	can	attach	the	trust	relationship	between	the	Role	and	the	Gluu	IDP	provider.		Here	is	a	
