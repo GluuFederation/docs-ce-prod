@@ -61,33 +61,6 @@ read only role with the appropriate policies attached. If you have questions abo
  - [image]
  - 'Create Role' 
 
-### Attach Trust Policy
-After	creating	the	role	you	can	attach	the	trust	relationship	between	the	Role	and	the	Gluu	IDP	provider.		Here	is	a	
-sample	of	the	relationship	policy.
-
-```
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Federated": "arn:aws:iam::<<YourAccountNumber>>:saml-provider/Gluu"
-      },
-      "Action": "sts:AssumeRoleWithSAML",
-      "Condition": {
-        "StringEquals": {
-          "SAML:aud": [
-            "https://<<mygluu.mycompany.com>>/idp/profile/SAML2/Unsolicited/SSO?
-providerId=urn:amazon:webservices",
-            "https://signin.aws.amazon.com/saml"
-          ]
-        }
-      }
-    }
-   ]
-  }
-```
 
 ### Create AWS Custom Attributes in LDAP
 
