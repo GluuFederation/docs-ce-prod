@@ -125,5 +125,5 @@ We need to create a SAML Trust Relationship now in Gluu Server.
      - RoleEntitlement
      - RoleSessionName
      - Username
- - 
+Wait for some time to load this configuration. 
 
