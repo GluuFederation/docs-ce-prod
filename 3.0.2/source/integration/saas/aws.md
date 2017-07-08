@@ -45,7 +45,7 @@ read only role with the appropriate policies attached. If you have questions abo
       "Effect": "Allow",
       "Action": "sts:AssumeRoleWithSAML",
       "Principal": {
-        "Federated": "arn:aws:iam::989705443609:saml-provider/Gluu_Server"
+        "Federated": "arn:aws:iam::xxxxxx:saml-provider/Gluu_Server"
       },
       "Condition": {
         "StringEquals": {
@@ -100,5 +100,30 @@ Now let's move forward to create this two attribute from Gluu oxTrust. Here is h
  - RoleEntitlement: [image]
  - RoleSessionName: [image]
 
-### Add Attributes in Gluu Webconsole
+### Trust Relationship creation
+
+We need to create a SAML Trust Relationship now in Gluu Server. 
+
+ - Log into Gluu Server oxTrust
+ - SAML --> Add Trust Relationship
+   - DisplayName: Amazon AWS
+   - Description: external SP / File method
+   - Entity Type: Single SP
+   - Metadata Location: URI
+   - SP Metadata URL: `https://signin.aws.amazon.com/static/saml-metadata.xml`
+   - Configure Relying Party: Yes
+     - 'SAML2SSO' Profile
+       - includeAtributeStatemen: yes
+       - assertionLifetime: 300000
+       - signResponses: condititional
+       - signAssertions: never
+       - signRequests: condititional
+       - encryptAssertions: never
+       - encryptNameIds: never
+   - Released attributes: 
+     - Email
+     - RoleEntitlement
+     - RoleSessionName
+     - Username
+ - 
 
