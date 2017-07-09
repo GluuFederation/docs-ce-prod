@@ -1,6 +1,6 @@
 # Amazon AWS SSO with Gluu Server
 
-This doc will teach you how setup Gluu to be your IDP for access to the AWS webconsole. By using Gluu as your IDP, you can bypass the process of creating user accounts in AWS.  
+This doc will guide you on how to setup Gluu to be your IDP to access AWS webconsole. By using Gluu as your IDP, you can bypass the process of creating user accounts in AWS.  
 
 This will help you better manage access based on LDAP groups within your enterprise environment rather then hard coding access with username and passwords or access keys and secret keys.
 
@@ -8,7 +8,6 @@ This will help you better manage access based on LDAP groups within your enterpr
 
  - Gluu Server with Shibboleth installed 
  - AWS administrative privilege 
-
 
 ## AWS Configuration
 
@@ -23,7 +22,7 @@ First you need to get the Shibboleth meta data file from your Gluu installation,
  - Metadata Documentation: Upload the XML metadata of your Gluu Server
  - Verfify Provider Information
  - 'Create'
- - ![Image](../../img/integration/aws_configure_provider.png)
+    ![Image](../../img/integration/aws_configure_provider.png)
 
 
 ### Create AWS Role
@@ -57,7 +56,9 @@ read only role with the appropriate policies attached. If you have questions abo
 ``` 
  - Attach Policy: you can select whichever you prefer, we are not selecting anything right now for this doc. 
  - Set role name and review: Here is our test setup
- - ![Image](../../img/integration/aws_SetRoleNameandReview.png)
+  
+   ![Image](../../img/integration/aws_SetRoleNameandReview.png)
+   
  - 'Create Role' 
 
 ## Gluu Server configuration
@@ -96,8 +97,13 @@ Make sure the `attributetype` LDAP ID number is unique. Save and test the custom
 
 Now let's move forward to create this two attribute from Gluu oxTrust. Here is how they will look like: 
 
- - RoleEntitlement: ![Image](../../img/integration/aws_RoleEntitlement.png)
- - RoleSessionName: ![Image](../../img/integration/aws_RoleSessionName.png)
+ - RoleEntitlement: 
+  
+  ![Image](../../img/integration/aws_RoleEntitlement.png)
+  
+ - RoleSessionName: 
+  
+  ![Image](../../img/integration/aws_RoleSessionName.png)
 
 ### Trust Relationship creation
 
@@ -133,7 +139,8 @@ Along with other attributes, we need to make sure that those two new attributes 
   - `RoleEntitlement`: The value should be like this: `arn:aws:iam::xxxxxx:role/Gluu_role,arn:aws:iam::xxxx:saml-provider/Gluu_Server`
     - This value is the combination of two attributes, (a) Role ARN and (b) Trusted entities. You can grab these values from your AWS console/'IAM' module. 
   - `RoleSessionName`: This is the email_address of user. 
-  - ![Image](../../img/integration/aws_User_info.png)
+  
+   ![Image](../../img/integration/aws_User_info.png)
 
 ## SSO Testing
 
