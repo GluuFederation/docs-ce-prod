@@ -28,7 +28,7 @@ First you need to get the Shibboleth meta data file from your Gluu installation,
 
 ### Create AWS Role
 Create a role with the permissions you want to give people. You can set whatever out of the box or custom 
-policies you want and attach it to the AWS Role that you create. For example, you could have any of the roles like `admin`, `role`, `power` and `read only` with the appropriate policies attached. If you have queries on AWS Roles, please follow [AWS docs](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html)
+policies you want and attach it to the AWS Role that you create. For example, you could have any of the roles like `admin`, `power` or `read only` with the appropriate policies attached. If you have queries on AWS Roles, please follow [AWS docs](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html)
 
  - Click on 'Create new role'
  - Select role type:
