@@ -20,7 +20,7 @@ First you need to get the Shibboleth meta data file from your Gluu installation,
  - Provider Type: 'SAML'
  - Provider Name: Anything you prefer. 
  - Metadata Documentation: Upload the XML metadata of your Gluu Server
- - Verfify Provider Information
+ - Verify Provider Information
  - 'Create'
     ![Image](../../img/integration/aws_configure_provider.png)
 
