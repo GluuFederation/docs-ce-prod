@@ -18,12 +18,18 @@ First you need to get the Shibboleth metadata file from your Gluu installation, 
 
  - Click on 'Create Provider'
  - Provider Type: 'SAML'
- - Provider Name: Anything you prefer, e.g. `ACME IDP`. 
+ - Provider Name: 'Shibboleth'
+ 
+ ![Image](../../img/integration/AWS_configure_provider.png)
+ 
  - Metadata Documentation: Upload the XML metadata file you just downloaded. 
  - Verify Provider Information
+
+![Image](../../img/integration/AWS_verify_provider_information.png)
+
  - Create
  
-    ![Image](../../img/integration/aws_configure_provider.png)
+    
 
 
 ### Create AWS Role
