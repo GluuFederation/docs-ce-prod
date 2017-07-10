@@ -1,17 +1,17 @@
 # Amazon AWS SSO with Gluu Server
 
-This doc will guide you on how to setup Gluu to be your IDP to access AWS webconsole. By using Gluu as your IDP, you can bypass the process of creating user accounts in AWS.  
+This doc will guide you on how to setup Gluu to be your IDP to access the AWS webconsole. By using Gluu as your IDP, you can bypass the process of creating user accounts in AWS.  
 
-This will help you better manage access based on LDAP groups within your enterprise environment rather then hard coding access with username and passwords or access keys and secret keys.
+Rather then hard coding access with username and passwords or access keys and secret keys, using a Gluu Server allows you to manage access based on LDAP groups within your enterprise environment.
 
 ## Requirements
 
- - Gluu Server with Shibboleth installed 
- - AWS administrative privilege 
+ - A Gluu Server with Shibboleth installed; 
+ - An AWS account with administrative privilege. 
 
 ## AWS Configuration
 
-Log into AWS Management Console. Search for 'IAM' module. From 'IAM' module, we need to move forward. 
+Log into the AWS Management Console. Search for 'IAM' module. From 'IAM' module, we need to move forward. 
 
 ### Create Identity Provider
 First you need to get the Shibboleth meta data file from your Gluu installation, which can be found by navigating to the following URL: `https://<hostname>/idp/shibboleth`. With that file you can create an IDP in your AWS account. 
@@ -28,13 +28,16 @@ First you need to get the Shibboleth meta data file from your Gluu installation,
 
 ### Create AWS Role
 Create a role with the permissions you want to give people. You can set whatever out of the box or custom 
-policies you want and attach it to the AWS Role that you create. For example, you could have any of the roles like `admin`, `power` or `read only` with the appropriate policies attached. If you have queries on AWS Roles, please follow [AWS docs](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html)
+policies you want and attach it to the AWS Role that you create. For example, you could have any of the roles like `admin`, `power` or `read only` with the appropriate policies attached. If you have questions about AWS Roles, you can check the [AWS docs](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html). 
+
+Follow these steps to create an AWS role:
 
  - Click on 'Create new role'
  - Select role type:
     - 'Role for identity provider access'
     - Select 'Grant Web Single Sign-On (WebSSO) access to SAML provider
  - Verify Role trust:
+ 
 ```
 {
   "Version": "2012-10-17",
@@ -54,12 +57,13 @@ policies you want and attach it to the AWS Role that you create. For example, yo
   ]
 }
 ``` 
+
  - Attach Policy: you can select whichever you prefer, we are not selecting anything right now for this doc. 
  - Set role name and review: Here is our test setup
   
    ![Image](../../img/integration/aws_SetRoleNameandReview.png)
    
- - 'Create Role' 
+ - `Create Role` 
 
 ## Gluu Server configuration
 
@@ -95,7 +99,7 @@ objectclass ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
       
 Make sure the `attributetype` LDAP ID number is unique. Save and test the custom configuration.
 
-Now let's move forward to create this two attribute from Gluu oxTrust. Here is how they will look like: 
+Now let's create these two attributes in the Gluu web UI ("oxTrust"). Here is how they will look: 
 
  - RoleEntitlement: 
   
@@ -105,12 +109,15 @@ Now let's move forward to create this two attribute from Gluu oxTrust. Here is h
   
   ![Image](../../img/integration/aws_RoleSessionName.png)
 
-### Trust Relationship creation
+### Create a Trust Relationship 
 
-We need to create a SAML Trust Relationship now in Gluu Server. 
+Now we need to create a SAML Trust Relationship for AWS in the Gluu Server. 
+
+Follow these steps:
 
  - Log into Gluu Server oxTrust
- - SAML --> Add Trust Relationship
+ - Navigate to `Outbound SAML` > `Add Trust Relationship`
+ - Enter the following values in each field: 
    - DisplayName: Amazon AWS
    - Description: external SP / File method
    - Entity Type: Single SP
@@ -130,13 +137,16 @@ We need to create a SAML Trust Relationship now in Gluu Server.
      - RoleEntitlement
      - RoleSessionName
      - Username
-Wait for some time to load this configuration. 
 
-### Test user creation
+Wait for some time to load this configuration. Save the new Trust Relationship. 
 
-We need to create an user in our Gluu Server to test this setup. Please note that this user should have some email_address which is permitted in Amazon AWS to login. 
-Along with other attributes, we need to make sure that those two new attributes are also present for this user.
-  - `RoleEntitlement`: The value should be like this: `arn:aws:iam::xxxxxx:role/Gluu_role,arn:aws:iam::xxxx:saml-provider/Gluu_Server`
+### Test User Creation
+
+Now we need to create a user in the Gluu Server to test this setup. This user should have an email address that is authorized to access the Amazon AWS account.
+
+In addition to the other required attributes, we need to make sure that the two new attributes are present for this user.
+
+  - `RoleEntitlement`: The value should look like this: `arn:aws:iam::xxxxxx:role/Gluu_role,arn:aws:iam::xxxx:saml-provider/Gluu_Server`
     - This value is the combination of two attributes, (a) Role ARN and (b) Trusted entities. You can grab these values from your AWS console/'IAM' module. 
   - `RoleSessionName`: This is the email_address of user. 
   
@@ -144,4 +154,5 @@ Along with other attributes, we need to make sure that those two new attributes 
 
 ## SSO Testing
 
-This is IDP-initiated SSO, we need to use a link like this to start our flow: `https://[hostname_of_Gluu_Server]/idp/profile/SAML2/Unsolicited/SSO?providerId=urn:amazon:webservices`
+In order to test single sign-on, we need to use a link like this to start our flow: `https://<hostname>/idp/profile/SAML2/Unsolicited/SSO?providerId=urn:amazon:webservices`
+
