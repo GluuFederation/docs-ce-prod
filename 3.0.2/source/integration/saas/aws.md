@@ -45,7 +45,7 @@ Follow these steps to create an AWS role:
       "Effect": "Allow",
       "Action": "sts:AssumeRoleWithSAML",
       "Principal": {
-        "Federated": "arn:aws:iam::xxxxxx:saml-provider/Gluu_Server"
+        "Federated": "arn:aws:iam::xxxxxxx:saml-provider/Shibboleth"
       },
       "Condition": {
         "StringEquals": {
@@ -149,7 +149,7 @@ Now we need to create a user in the Gluu Server to test this setup. This user sh
 
 In addition to the other required attributes, we need to make sure that the two new attributes are present for this user.
 
-  - `RoleEntitlement`: The value should look like this: `arn:aws:iam::xxxxxx:role/Gluu_role,arn:aws:iam::xxxx:saml-provider/Gluu_Server`. This value is the combination of two attributes: (1) Role ARN and (2) Trusted entities. You can grab these values from your AWS console > IAM module. 
+  - `RoleEntitlement`: The value should look like this: `arn:aws:iam::xxxxxx:role/Shibboleth-Dev,arn:aws:iam::xxxx:saml-provider/Shibboleth`. This value is the combination of two attributes: (1) Role ARN and (2) Trusted entities. You can grab these values from your AWS console > IAM module. 
   - `RoleSessionName`: This is the email address of user. 
   
    ![Image](../../img/integration/aws_User_info.png)
