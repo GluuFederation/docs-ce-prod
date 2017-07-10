@@ -202,7 +202,7 @@ This script type adds only one method to the base script type:
 
 This script can be used in an oxAuth application only.
 
-- [Sample Client Registration Script](./sample-client-registration-script)
+- [Sample Client Registration Script](./sample-client-registration-script.py)
 
 
 ## Dynamic Scopes      
