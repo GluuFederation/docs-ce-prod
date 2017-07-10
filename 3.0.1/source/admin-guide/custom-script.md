@@ -219,7 +219,7 @@ In order to configure a dynamic scope next steps are required:
 - A scope has to be defined at the "OpenID Connect -> Scopes" page
   - Scope's type must be set to "Dynamic"
   - Corresponding dynamic script must be linked to that scope (Add dynamic script button)
-  - The scope must be added to the client which will be using it at the "OpenID Connect -> Clients" page (using the "Add Scope" button), and the scope must be included by the client in "scope=" url query parameter
+- The scope must be added to the client which will be using it at the "OpenID Connect -> Clients" page (using the "Add Scope" button), and the scope must be included by the client in "scope=" url query parameter
 
 More detailed explanation about adding scopes can be found under Openid [scopes](../admin-guide/openid-connect/#scopes)
 
