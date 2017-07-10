@@ -1,8 +1,8 @@
 # Amazon AWS SSO with Gluu Server
 
-This doc will guide you on how to setup Gluu to be your IDP to access the AWS webconsole. By using Gluu as your IDP, you can bypass the process of creating user accounts in AWS.  
+This doc will guide you on how to setup Gluu to be your identity provider (IDP) to access the Amazon Web Services (AWS) webconsole. By using Gluu as your IDP you can bypass the process of creating user accounts directly in AWS.  
 
-Rather then hard coding access with username and passwords or access keys and secret keys, using a Gluu Server allows you to manage access based on LDAP groups within your enterprise environment.
+Rather then hard coding access with username and passwords, or access keys and secret keys, using a Gluu Server allows you to manage access based on LDAP groups within your enterprise environment.
 
 ## Requirements
 
