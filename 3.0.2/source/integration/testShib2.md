@@ -1,8 +1,6 @@
 # Test Gluu Server with TestShib2
 
-Here in this documentation we are showing how we can test Gluu Server with TestShib2. 
-Please note that, you need to install 'Shibboleth IDP' in your Gluu server while 
-running setup.py script. 
+TestShib2 is a testing service intended for new installations of Shibboleth. In this documentation we will show how to test the Gluu Server with TestShib2. Please note that, during installation of the Gluu Server you will need to have installed the 'Shibboleth IDP' in while running the `setup.py` script. 
 
 ## TestShib2 configuration: part 1
 
