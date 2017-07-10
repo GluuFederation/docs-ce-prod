@@ -1,25 +1,25 @@
 # Amazon AWS SSO with Gluu Server
 
-This doc will guide you on how to setup Gluu to be your identity provider (IDP) to access the Amazon Web Services (AWS) webconsole. By using Gluu as your IDP you can bypass the process of creating user accounts directly in AWS.  
+This doc will guide you on how to setup a Gluu Server as your identity provider (IDP) for access to the Amazon Web Services (AWS) webconsole. By using a Gluu Server as your IDP you can bypass the process of creating user accounts directly in AWS.  
 
-Rather then hard coding access with username and passwords, or access keys and secret keys, using a Gluu Server allows you to manage access based on LDAP groups within your enterprise environment.
+Instead of hard coding access with username and passwords, or access keys and secret keys, using a Gluu Server allows you to manage access based on LDAP groups within your enterprise environment.
 
 ## Requirements
 
- - A Gluu Server with Shibboleth installed; 
+ - A Gluu Server with the Shibboleth IDP installed; 
  - An AWS account with administrative privilege. 
 
 ## AWS Configuration
 
-Log into the AWS Management Console. Search for 'IAM' module. From 'IAM' module, we need to move forward. 
+Log into the AWS Management Console. Find and navigate to the IAM module.
 
 ### Create Identity Provider
-First you need to get the Shibboleth meta data file from your Gluu installation, which can be found by navigating to the following URL: `https://<hostname>/idp/shibboleth`. With that file you can create an IDP in your AWS account. 
+First you need to get the Shibboleth metadata file from your Gluu installation, which can be found by navigating to the following URL: `https://<hostname>/idp/shibboleth`. With that file you can create an IDP in your AWS account using the following steps: 
 
  - Click on 'Create Provider'
  - Provider Type: 'SAML'
- - Provider Name: Anything you prefer. 
- - Metadata Documentation: Upload the XML metadata of your Gluu Server
+ - Provider Name: Anything you prefer, e.g. `ACME IDP`. 
+ - Metadata Documentation: Upload the XML metadata file you just downloaded. 
  - Verify Provider Information
  - Create
  
@@ -27,8 +27,7 @@ First you need to get the Shibboleth meta data file from your Gluu installation,
 
 
 ### Create AWS Role
-Create a role with the permissions you want to give people. You can set whatever out of the box or custom 
-policies you want and attach it to the AWS Role that you create. For example, you could have any of the roles like `admin`, `power` or `read only` with the appropriate policies attached. If you have questions about AWS Roles, you can check the [AWS docs](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html). 
+Create a role with the permissions you want to give people. You can set out-of-the-box or custom policies for the new AWS Role. For example, you could have roles like `admin`, `power` and/or `read only` with the appropriate policies attached. Check the [AWS docs](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html) if you have questions about AWS Roles. 
 
 Follow these steps to create an AWS role:
 
@@ -71,7 +70,7 @@ Follow these steps to create an AWS role:
 
 Now you need to add two new attributes into your Gluu LDAP. Follow [these instructions](https://gluu.org/docs/ce/admin-guide/attribute/#add-the-attribute-to-ldap) to add new attributes in your LDAP server. 
 
-Here are a few sample attribute values we added to the custom.schema doc:
+Here are a few sample attribute values we added to the `custom.schema` doc:
 
 ```
 attributetype ( 1.3.6.1.4.1.48710.1.3.1003 NAME 'RoleEntitlement'
@@ -97,9 +96,13 @@ objectclass ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
         X-ORIGIN 'Gluu - Custom persom objectclass' )
 ```  
       
-Make sure the `attributetype` LDAP ID number is unique. Save and test the custom configuration.
+Make sure the `attributetype` LDAP ID number is unique. 
 
-Now let's create these two attributes in the Gluu web UI ("oxTrust"). Here is how they will look: 
+Save and test the custom configuration.
+
+Now let's create these two attributes in the Gluu web UI ("oxTrust"). 
+
+Here is how they will look: 
 
  - RoleEntitlement: 
   
@@ -146,9 +149,8 @@ Now we need to create a user in the Gluu Server to test this setup. This user sh
 
 In addition to the other required attributes, we need to make sure that the two new attributes are present for this user.
 
-  - `RoleEntitlement`: The value should look like this: `arn:aws:iam::xxxxxx:role/Gluu_role,arn:aws:iam::xxxx:saml-provider/Gluu_Server`
-    - This value is the combination of two attributes, (a) Role ARN and (b) Trusted entities. You can grab these values from your AWS console/'IAM' module. 
-  - `RoleSessionName`: This is the email_address of user. 
+  - `RoleEntitlement`: The value should look like this: `arn:aws:iam::xxxxxx:role/Gluu_role,arn:aws:iam::xxxx:saml-provider/Gluu_Server`. This value is the combination of two attributes: (1) Role ARN and (2) Trusted entities. You can grab these values from your AWS console > IAM module. 
+  - `RoleSessionName`: This is the email address of user. 
   
    ![Image](../../img/integration/aws_User_info.png)
 
@@ -156,3 +158,6 @@ In addition to the other required attributes, we need to make sure that the two 
 
 In order to test single sign-on, we need to use a link like this to start our flow: `https://<hostname>/idp/profile/SAML2/Unsolicited/SSO?providerId=urn:amazon:webservices`
 
+## Questions or Issues?
+
+Open a ticket on our [support portal](https://support.gluu.org). 
