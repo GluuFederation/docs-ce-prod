@@ -66,7 +66,7 @@ Follow these steps to create an AWS role:
  - Attach Policy: you can select whichever you prefer, we are not selecting anything right now for this doc. 
  - Set role name and review: Here is our test setup
   
-   ![Image](../../img/integration/aws_SetRoleNameandReview.png)
+   ![Image](../../img/integration/aws_set_role_name_and_review.png)
    
  - `Create Role` 
 
@@ -158,7 +158,7 @@ In addition to the other required attributes, we need to make sure that the two 
   - `RoleEntitlement`: The value should look like this: `arn:aws:iam::xxxxxx:role/Shibboleth-Dev,arn:aws:iam::xxxx:saml-provider/Shibboleth`. This value is the combination of two attributes: (1) Role ARN and (2) Trusted entities. You can grab these values from your AWS console > IAM module. 
   - `RoleSessionName`: This is the email address of user. 
   
-   ![Image](../../img/integration/aws_User_info.png)
+   ![Image](../../img/integration/aws_user_info.png)
 
 ## SSO Testing
 
