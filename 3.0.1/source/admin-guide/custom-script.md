@@ -285,7 +285,7 @@ This script can be used in an oxAuth application only.
 
 ## Application Session Management      
 
-These scripts can be used in cases when you need to execute some generel logout logic (like notifying remote/3rd party services, writting to databases etc) applicable to any user. They are triggered when oxAuth receives an end session request. In contrary to logout functions which may be added to scripts of Custom Authentication type to server a similar purpose, Session Management scripts are called for any user who is about to log out. It's possible to add multiple scripts with
+These scripts can be used in cases when you need to execute some generel logout logic (like notifying remote/3rd party services, writting to databases etc) applicable to any user. They are triggered when oxAuth receives an end session request. In contrary to logout functions which may be added to scripts of Custom Authentication type to serve a similar purpose, Session Management scripts are called for any user who is about to log out. It's possible to add multiple scripts with
 this type, they will be called according to set priority/level.
 
 This script provides only one method to implement:
