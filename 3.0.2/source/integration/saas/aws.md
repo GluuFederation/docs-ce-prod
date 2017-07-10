@@ -164,6 +164,8 @@ In addition to the other required attributes, we need to make sure that the two 
 
 In order to test single sign-on, we need to use a link like this to start our flow: `https://<hostname>/idp/profile/SAML2/Unsolicited/SSO?providerId=urn:amazon:webservices`
 
+You should see the workflow like this: https://youtu.be/LBnTWE9IoCw
+
 ## Questions or Issues?
 
 Open a ticket on our [support portal](https://support.gluu.org). 
