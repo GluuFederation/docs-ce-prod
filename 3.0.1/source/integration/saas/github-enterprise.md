@@ -10,15 +10,15 @@
 ### Create Trust Relationship
 
    - Log into your Gluu Server UI
-   - Navigate to SAML -> Trust Relationship
+   - Navigate to `SAML` > `Trust Relationship`
      - `Add Relationship`
        - Display Name: Github Enterprise
        - Description: File method / External SP / SP-initiated SSO
        - Metadata Type: File
        - SP metadata file: Upload `github_metadata.xml`
-       - Configure Relying Party: Yes, SAML2SSO ![image](../img/integration/TR_relying_party_configuration.png)
+       - Configure Relying Party: Yes, SAML2SSO ![image](../../img/integration/TR_relying_party_configuration.png)
        - Released Attribute: Username
-       - `Add` ![image](../img/integration/TR_creation.png)
+       - `Add` ![image](../../img/integration/TR_creation.png)
    
 
 ## Configuration in Github Enterprise 
@@ -43,9 +43,10 @@
        - GPG keys: gpg_keys
    - `Save Settings`
    - Two sample setup from Github Enterprise Management panel: 
-      - ![image](../img/integration/Github_1.png) 
-      - ![image](../img/integration/Github_2.png)
+      - ![image](../../img/integration/Github_1.png) 
+      - ![image](../../img/integration/Github_2.png)
 
 ## Test SSO
 
-SSO to Github Enterprise should be ready now. Just hit the hostname of your Github Enterprise app and you should experience something like this: [https://www.youtube.com/watch?v=rPbsVhGTgxE](https://www.youtube.com/watch?v=rPbsVhGTgxE)
+SSO to Github Enterprise should be ready now. Just hit the hostname of your 
+Github Enterprise app and you should experience something like this: [https://www.youtube.com/watch?v=rPbsVhGTgxE](https://www.youtube.com/watch?v=rPbsVhGTgxE)

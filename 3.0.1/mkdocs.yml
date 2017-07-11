@@ -56,17 +56,17 @@ pages:
             - 'oxd OAuth2': 'integration/oauth2.md'
             - 'OAuth2.0 js Implicit Flow': 'integration/oauth-js-implicit.md'
         - 'Web Server Integrations':
-            - 'Shibboleth SP': 'integration/saml-sp.md'
-            - 'mod_auth_openidc': 'integration/openidc-rp.md'    
+            - 'Shibboleth SP': 'integration/webapps/saml-sp.md'
+            - 'mod_auth_openidc': 'integration/webapps/openidc-rp.md'    
         - 'SaaS Integrations':
-            - 'Google Apps': 'integration/google.md'
-            - 'Office 365': 'integration/office.md'
-            - 'Testing Shibboleth with Shibboleth 2': 'integration/testShib2.md'
-#    - 'Hobsons Education Sol': 'integration/hobsons.md'
-            - 'Salesforce': 'integration/salesforce.md'
-            - 'Dropbox': 'integration/dropbox.md'
-            - 'GitHub Enterprise': 'integration/github-enterprise.md'
-            - 'Cisco WebEx': 'integration/webex.md'
+            - 'Google Apps': 'integration/saas/google.md'
+            - 'Office 365': 'integration/saas/office.md'
+            - 'Testing Shibboleth with Shibboleth 2': 'integration/saas/testShib2.md'
+#    - 'Hobsons Education Sol': 'integration/saas/hobsons.md'
+            - 'Salesforce': 'integration/saas/salesforce.md'
+            - 'Dropbox': 'integration/saas/dropbox.md'
+            - 'GitHub Enterprise': 'integration/saas/github-enterprise.md'
+            - 'Cisco WebEx': 'integration/saas/webex.md'
 - Reference:
         - Gluu API Guide:
             - 'Custom ID Generation': 'api-guide/api.md'

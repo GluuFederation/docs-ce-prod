@@ -38,16 +38,16 @@ OpenIdConnectDiscoveryEndpoint         :
 ## Gluu Server Configuration
 ### Custom Attributes
 The configuration begins by creating a few custom attributes named `IDPEmail`, `ImmutableID` and `objectguid`.
-Please see [this doc](../admin-guide/saml/#saml-attributes) to create custom attributes.
+Please see [this doc](../../admin-guide/saml/#saml-attributes) to create custom attributes.
 
 1. `IDPEmail` Custom Attribute
-![image](../img/integration/idpemail.png)
+![image](../../img/integration/idpemail.png)
 
 2. `ImmutableID` Custom Attribute
-![image](../img/integration/immutableid.png)
+![image](../../img/integration/immutableid.png)
 
 3. `objectguid` Custom Attribute
-![image](../img/integration/objectguid.png)
+![image](../../img/integration/objectguid.png)
 
 ### OpenDJ Configuration
 
@@ -96,7 +96,8 @@ The cache refresh mechanism is used to populate the Gluu Server LDAP with data f
 ```
 binaryAttributes=objectGUID,objectguid 
 ```
-**Note:**'objectGUID' (the first one) is the attribute which contains binary values in the backend AD and 'objectguid' (the second one) is the Gluu Server binary attribute name which will pull value from 'objectGUID' attribute
+**Note:**'objectGUID' (the first one) is the attribute which contains binary values in the backend AD 
+and 'objectguid' (the second one) is the Gluu Server binary attribute name which will pull value from 'objectGUID' attribute
 
 * Restart Tomcat
 
@@ -110,8 +111,8 @@ Two attributes require for mapping:
 `IDPEmail` pull data from backend's email attrubute and `objectguid` get data from backend's objectGUID. 
 
 ### Create Trust Relationship
-Please see [this doc](../admin-guide/saml.md) to create trust relationships.
+Please see [this doc](../../admin-guide/saml.md) to create trust relationships.
 
 * Configure Relaying Party like the following screenshot
-![image](../img/integration/o365_trelationship.png)
+![image](../../img/integration/o365_trelationship.png)
 

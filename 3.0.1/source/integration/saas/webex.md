@@ -2,7 +2,9 @@
 
 ## Custom Attribute Creation
 
-We need to create couple of custom attributes and one custom nameID. List of custom attributes and nameID is stated below. [Here](../admin-guide/saml.md#custom-nameid) is how we can create custom attributes. 
+We need to create couple of custom attributes and one custom nameID. 
+List of custom attributes and nameID is stated below. [Here](../../admin-guide/saml.md#custom-nameid) is 
+how we can create custom attributes. 
 
  - uidwebex
  - emailwebex
@@ -10,7 +12,8 @@ We need to create couple of custom attributes and one custom nameID. List of cus
  - lastnamewebex
  - webexnameid
  
-In secord part ( oxTrust operation ) of creating custom attribute, we need to follow couple of points for these special attributes. Here is how each attribute should be created: 
+In secord part ( oxTrust operation ) of creating custom attribute, we need to follow couple of 
+points for these special attributes. Here is how each attribute should be created: 
 
  - uidwebex: 
     - Name: uidwebex
@@ -136,9 +139,10 @@ We need to modify attributeDefinition for these attributes. Configuration is app
 
 ## Trust Relationship 
 
- - Grab WebEx metadata and remove all Name Identifier other than 'emailAddress'. Save this newly modified metadata
+ - Grab WebEx metadata and remove all Name Identifier other than `emailAddress`. 
+   Save this newly modified metadata
  - Log into oxTrust 
- - SAML -> Add Trust Relationships
+ - `SAML` > `Add Trust Relationships`
     - DisplayName: WebEx
     - Description: anything is fine
     - Entity Type: Single SP
@@ -161,5 +165,3 @@ We need to modify attributeDefinition for these attributes. Configuration is app
         - webexnameid
         - wxemail
         - wxfistname
-        - mail
-    - Restart `idp` service with: `service idp stop` and `service idp start`

@@ -4,10 +4,10 @@ This document is a step-by-step guide to setting up Dropbox SSO in Gluu Server.
 This SSO requires setting a custom `nameid` called `emailnid`.
 
 ## Custom NameID
-Please see [this doc](../admin-guide/saml/#saml-attributes) on how to create custom attributes.
+Please see [this doc](../../admin-guide/saml/#saml-attributes) on how to create custom attributes.
 
 The new attribute screen should look like the screenshot below
-![image](../img/integration/emailnid.png)
+![image](../../img/integration/emailnid.png)
 
 The custom `nameid` needs to be defined in the `attribute-resolver` template file.
 
@@ -41,7 +41,7 @@ The custom `nameid` needs to be defined in the `attribute-resolver` template fil
 * Restart Tomcat service
 
 ### Trust Relationship
-Please see [this doc](../admin-guide/saml.md) to create trust relationship and fill up the form with the following info
+Please see [this doc](../../admin-guide/saml.md) to create trust relationship and fill up the form with the following info
 
 The metadata for Dropbox is necessary to create trust relationship. Please use the following snippet so create the `dropbox_metadata.xml`.
 
@@ -66,10 +66,10 @@ signRequests: conditional
 encryptAssertions: never
 encryptNameIds: never
 ```
-![image](../img/integration/rp_configuration.png)
+![image](../../img/integration/rp_configuration.png)
 
 *  Released attribute: emailnid
-![image](../img/integration/dropboxtr.png)
+![image](../../img/integration/dropboxtr.png)
 
 ### Configure Gluu Server as IdP in Dropbox
 
@@ -88,7 +88,7 @@ encryptNameIds: never
 ```
     Get `shibIDP.crt` from Gluu Server `chroot` environment under `/etc/certs/` folder and upload it
 ```
-![image](../img/integration/dbadmin.png)
+![image](../../img/integration/dbadmin.png)
 
 *  Save configuration
 
@@ -96,7 +96,7 @@ encryptNameIds: never
 * Please go to https://www.dropbox.com and click on the `Sign In` button
 
 * If the account is configured for SSO, then a screen similar to the screenshot below will appear after entering the email address.
-![image](../img/integration/dblogin.png)
+![image](../../img/integration/dblogin.png)
 
 * Click `Continue` and the website will redirect to Gluu Server for authentication.
 
