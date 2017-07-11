@@ -1,4 +1,4 @@
-#SAML integration of Salesforce.com with Gluu Server
+# SAML SSO to Salesforce.com
 
 By default Salesforce suggest deployers to implement IDP-initiated SSO.
 The initialization of IDP-initiated SSO is little bit complex as it
@@ -10,20 +10,20 @@ Further documentation is available at the Salesforce.com site.
 
 ## Prepare Salesforce.com
 
-* Log into Salesforce.com with your administrative account.
-* Click on _Setup_ in the right upper corner of the page.
-* You need to add a custom domain name for your Salesforce.com site if
+- Log into Salesforce.com with your administrative account.
+- Click on _Setup_ in the right upper corner of the page.
+- You need to add a custom domain name for your Salesforce.com site if
   you do not have any yet.
-  * Go to _Domain Management_ –> _My Domain_
-  * Add your custom domain
-  * Wait for some time. Salesforce.com will register this domain name
+  - Go to `Domain Management` > `My Domain`
+  - Add your custom domain
+  - Wait for some time. Salesforce.com will register this domain name
   for you. As an example we use `testgluu-dev-ed.my.salesforce.com` here.
 
   ![image](../../img/integration/My_Domain.png)
 
 * Register your Gluu Server information in Salesforce.com
-   * Go to _Security Controls_ –> _Single Sign On Settings_
-   * Click _New_
+   * Go to `Security Controls` > `Single Sign On Settings`
+   * Click `New`
 
   ![image](../../img/integration/SSO_Settings.png)
 
@@ -54,9 +54,9 @@ Further documentation is available at the Salesforce.com site.
 
 * How to create SAML trust relationship is available [here](../../admin-guide/saml.md). 
 * Grab Salesforce.com metadata from the Salesforce.com website. There is
-  an option named 'Download Metadata':
+  an option named `Download Metadata`:
   * Modify Salesforce.com metadata a bit:
-    * Remove _AuthnRequestsSigned=“true”_ from metadata.
+    * Remove `AuthnRequestsSigned=“true”` from metadata.
     * Save metadata
 * Create Trust Relationship:
   * _Display Name_: Anything, whichever is easier for you to recognize this trust relationship.
@@ -83,14 +83,14 @@ Further documentation is available at the Salesforce.com site.
 
 ## Test SSO
 
-* Go back to Salesforce.com setup
-* Security Controls –> Single Sign On Settings
-* Enable 'Federated Single Sign-On Using SAML'
-* Go to 'Domain Management'
-* Configure 'Authentication Configuration'
-  * Select 'Gluu Server'
-  * Save it
-  * Here is how the 'Authentication Configuration' looks like:
+- Log in to Salesforce.com setup
+- Click `Security Controls` > `Single Sign On Settings`
+- Enable `Federated Single Sign-On Using SAML`
+- Go to `Domain Management`
+- Configure `Authentication Configuration`
+  - Select `Gluu Server`
+  - Save it
+  - Here is how the `Authentication Configuration` looks like:
 
 ![image](../../img/integration/Authentication_Configuration.png)
 

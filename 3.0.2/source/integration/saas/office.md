@@ -1,4 +1,5 @@
-# Office 365 Integration with Gluu Server
+# SSO to Office 365
+
 This guide is created to use Microsoft Office 365 Single-Sign-On with Gluu Server.
 It is assumed that an Office 365 subscription is available/registered.
 
@@ -18,20 +19,21 @@ It is assumed that an Office 365 subscription is available/registered.
 
     * [Install and Configure](https://technet.microsoft.com/en-us/library/jj205464) Windows Powershell *cmdlets*
 
-    * Create a script named `gluu1.ps1` with the following template changing domain, hostname of Gluu Server and Certificate
+    * Now you need to create a script and run through 'Connect-MsolService' or you can provide values inside O365 admin panel. 
+    
+    * For Gluu Server, values would be something like these: 
 ```
- Connect-MsolService
+ActiveLogOnUri                         : https://test.gluu.org/idp/profile/SAML2/SOAP/ECP
+PassiveLogonUri                        : https://test.gluu.org/idp/profile/SAML2/POST/SSO 
+DefaultInteractiveAuthenticationMethod :
+FederationBrandName                    : Gluu Inc.
+IssuerUri                              : https://test.gluu.org/idp/shibboleth
+LogOffUri                              : https://test.gluu.org/identity/logout
+MetadataExchangeUri                    : https://test.gluu.org/idp/shibboleth
+NextSigningCertificate                 :
+OpenIdConnectDiscoveryEndpoint         :
 
-$dom = "company.org"
-$url = "https://test.gluu.org/idp/profile/SAML2/POST/SSO"
-$uri = "https://test.gluu.org/idp/shibboleth"
-$logouturl = "https://test.gluu.org/idp/logout.jsp"
-$cert = "Mx....SAML_cert_of_your_Gluu_Server...Tdsg9R0XO3AnBeHRtGmAA="
-
-Set-MsolDomainAuthentication -DomainName $dom -FederationBrandName $dom -Authentication Federated  -PassiveLogOnUri $url -SigningCertificate $cert -IssuerUri $uri -LogOffUri $logouturl -PreferredAuthenticationProtocol SAMLP 
 ```
-
-4. Run the `gluu.ps1` script from Windows Server 2012 R2
 
 ## Gluu Server Configuration
 ### Custom Attributes
@@ -94,7 +96,8 @@ The cache refresh mechanism is used to populate the Gluu Server LDAP with data f
 ```
 binaryAttributes=objectGUID,objectguid 
 ```
-**Note:**'objectGUID' (the first one) is the attribute which contains binary values in the backend AD and 'objectguid' (the second one) is the Gluu Server binary attribute name which will pull value from 'objectGUID' attribute
+**Note:**'objectGUID' (the first one) is the attribute which contains binary values in the backend AD 
+and 'objectguid' (the second one) is the Gluu Server binary attribute name which will pull value from 'objectGUID' attribute
 
 * Restart Tomcat
 
