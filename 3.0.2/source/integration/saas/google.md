@@ -46,7 +46,7 @@ options.
    * Save your data using the `Save changes` button on the lower right
      of the page.
 
-Refer [Google SSO](https://support.google.com/a/answer/60224?hl=en) for more details.
+Refer [Google SSO](https://support.google.com/a/answer/60224?hl=en) to know more.
 
 ## Configuring the Gluu Server
 
