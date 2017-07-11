@@ -166,7 +166,7 @@ two new attributes are present for this user.
                        You can grab these values from your AWS console > IAM module.
   - `RoleSessionName`: This is the email address of user. 
   
-   ![Image](../../img/integration/aws_user_info.png)
+   ![Image](../../img/integration/aws_User_info.png)
 
 ## SSO Testing
 
