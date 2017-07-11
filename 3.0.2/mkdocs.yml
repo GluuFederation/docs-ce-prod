@@ -85,7 +85,7 @@ pages:
         - 'Backups': 'operation/backup.md'
         - 'Find your Gluu Version': 'operation/find-gluu-version.md'
         - 'Ports': 'operation/ports.md'
-        - 'Single Logout (SLO)': 'operation/logout.md'
+        - 'Logout': 'operation/logout.md'
         - 'Log Management' : 'operation/logs.md'
         - 'Customize Public Pages': 'operation/custom-loginpage.md'
         - 'FAQ & Troubleshooting': 'operation/faq.md'
