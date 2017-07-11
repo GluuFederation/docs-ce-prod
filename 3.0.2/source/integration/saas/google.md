@@ -7,18 +7,18 @@ Google Apps supports SAML. This document will explain how to configure Google Ap
     
 ## Configuring Google Apps
 
-* Login to dashboard.
+- Login to dashboard.
 
 ![Image](../../img/integration/admin_console.png)
 
-* From the list of options choose the "Security" tab.
+- From the list of options choose the `Security` tab.
 
-* A new page will open. Select `Set up single sign-on(SSO)` from the
+- A new page will open. Select `Set up single sign-on(SSO)` from the
 options.
 
 ![Image](../../img/integration/security_setting.png)
 
-* Finally, the Single Sign-On setting page will appear. 
+- Single Sign-On setting page will appear. 
 
 ![Image](../../img/integration/final_setup.png)
 
@@ -46,8 +46,7 @@ options.
    * Save your data using the `Save changes` button on the lower right
      of the page.
 
-If you want to know more about Google SSO,
-[this](https://support.google.com/a/answer/60224?hl=en) helps you.
+Refer [Google SSO](https://support.google.com/a/answer/60224?hl=en) for more details.
 
 ## Configuring the Gluu Server
 
@@ -72,11 +71,11 @@ Location="https://www.google.com/a/domain.com/acs" ></AssertionConsumerService>
 
 Got the metadata? Great, we are ready to move forward. 
 
-* Create Trust Relationship for Google Apps: 
+- Create Trust Relationship for Google Apps: 
 
-   * How to create a trust relationship can be found [here](../../admin-guide/saml.md#trust-relationship-requirements). We need to follow the "File" method for Google Apps trust relationship.
-    * Required attributes: Generally a nameID attribute is required. Follow the [custom nameID](../../admin-guide/saml.md#custom-nameid) documentation.  
-    * Relying Party Configuration: SAML2SSO should be configured. 
+   - How to create a trust relationship can be found [here](../../admin-guide/saml.md#trust-relationship-requirements). We need to follow the "File" method for Google Apps trust relationship.
+    - Required attributes: Generally a nameID attribute is required. Follow the [custom nameID](../../admin-guide/saml.md#custom-nameid) documentation.  
+    - Relying Party Configuration: SAML2SSO should be configured. 
         * includeAttributeStatement: check
         * assertionLifetime: default 
         * assertionProxyCount: default

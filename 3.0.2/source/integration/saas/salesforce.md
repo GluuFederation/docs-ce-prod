@@ -66,7 +66,7 @@ Further documentation is available at the Salesforce.com site.
   * Releases attributes: TransientID and Email
   * 'Add' this trust
   * Configure Specific Relying: It can be done from Gluu Server's GUI (named: oxTrust)
-    * Select 'SAML2SSO'
+    * Select `SAML2SSO`
         * includeAttributeStatement: Enabled
         * assertionLifetime: keep the default one
         * assertionProxyCount: keep the default one
@@ -76,7 +76,7 @@ Further documentation is available at the Salesforce.com site.
         * encryptAssertions: never
         * encryptNameIds: never
         * Save it
-  * 'Update' the trust relationship
+  * `Update` the trust relationship
   * Here is how it looks like in our example setup:
 
   ![image](../../img/integration/85cd191c-ddd0-11e5-922e-2195841e98a8.png)
@@ -92,13 +92,14 @@ Further documentation is available at the Salesforce.com site.
   - Save it
   - Here is how the `Authentication Configuration` looks like:
 
-![image](../../img/integration/Authentication_Configuration.png)
+    ![image](../../img/integration/Authentication_Configuration.png)
 
-* This is SP-initiate SSO. So hit your Salesforce.com website link to
-initiate the SSO.
+!!!Note:
+     This is a SP-initiate SSO. SSO needs to be initiated from Salesforce.com.
 
-* [Here](https://www.youtube.com/watch?v=VehuRJr647E&feature=youtu.be)
-is a video link of this SSO.
+## Salesforce Demo Video
+You can watch a video demo of this SSO [Here](https://www.youtube.com/watch?v=VehuRJr647E&feature=youtu.be)
+.
 
 
 
