@@ -67,6 +67,7 @@ pages:
             - 'Dropbox': 'integration/saas/dropbox.md'
             - 'GitHub Enterprise': 'integration/saas/github-enterprise.md'
             - 'Cisco WebEx': 'integration/saas/webex.md'
+            - 'Amazon Web Services (AWS)': 'integration/saas/aws.md'
 - Reference:
         - Gluu API Guide:
             - 'Custom ID Generation': 'api-guide/api.md'

@@ -14,11 +14,13 @@ Instead of hard coding access with username and passwords, or access keys and se
 Log into the AWS Management Console. Find and navigate to the IAM module.
 
 ### Create Identity Provider
-First you need to get the Shibboleth metadata file from your Gluu installation, which can be found by navigating to the following URL: `https://<hostname>/idp/shibboleth`. With that file you can create an IDP in your AWS account using the following steps: 
+First you need to get the Shibboleth metadata file from your Gluu installation, 
+which can be found by navigating to the following URL: `https://<hostname>/idp/shibboleth`. 
+With that file you can create an IDP in your AWS account using the following steps: 
 
- - Click on 'Create Provider'
- - Provider Type: 'SAML'
- - Provider Name: 'Shibboleth'
+ - Click on `Create Provider`
+ - Provider Type: `SAML`
+ - Provider Name: `Shibboleth`
  
  ![Image](../../img/integration/AWS_configure_provider.png)
  
@@ -28,19 +30,19 @@ First you need to get the Shibboleth metadata file from your Gluu installation, 
 ![Image](../../img/integration/AWS_verify_provider_information.png)
 
  - Create
- 
-    
-
 
 ### Create AWS Role
-Create a role with the permissions you want to give people. You can set out-of-the-box or custom policies for the new AWS Role. For example, you could have roles like `admin`, `power` and/or `read only` with the appropriate policies attached. Check the [AWS docs](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html) if you have questions about AWS Roles. 
+Create a role with the permissions you want to give people. You can set out-of-the-box or 
+custom policies for the new AWS Role. For example, you could have roles like `admin`, `power` and/or `read only` with 
+the appropriate policies attached. Check the [AWS docs](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html) 
+if you have questions about AWS Roles. 
 
 Follow these steps to create an AWS role:
 
- - Click on 'Create new role'
+ - Click on `Create new role`
  - Select role type:
-    - 'Role for identity provider access'
-    - Select 'Grant Web Single Sign-On (WebSSO) access to SAML provider
+    - `Role for identity provider access`
+    - Select `Grant Web Single Sign-On (WebSSO) access to SAML provider`
  - Verify Role trust:
  
 ```
@@ -63,7 +65,8 @@ Follow these steps to create an AWS role:
 }
 ``` 
 
- - Attach Policy: you can select whichever you prefer, we are not selecting anything right now for this doc. 
+ - Attach Policy: you can select whichever you prefer, we are not selecting anything 
+   right now for this doc. 
  - Set role name and review: Here is our test setup
   
    ![Image](../../img/integration/aws_set_role_name_and_review.png)
@@ -74,7 +77,8 @@ Follow these steps to create an AWS role:
 
 ### Create AWS Custom Attributes in LDAP
 
-Now you need to add two new attributes into your Gluu LDAP. Follow [these instructions](https://gluu.org/docs/ce/admin-guide/attribute/#add-the-attribute-to-ldap) to add new attributes in your LDAP server. 
+Now you need to add two new attributes into your Gluu LDAP. 
+Follow [these instructions](https://gluu.org/docs/ce/admin-guide/attribute/#add-the-attribute-to-ldap) to add new attributes in your LDAP server. 
 
 Here are a few sample attribute values we added to the `custom.schema` doc:
 
@@ -151,20 +155,25 @@ Wait for some time to load this configuration. Save the new Trust Relationship.
 
 ### Test User Creation
 
-Now we need to create a user in the Gluu Server to test this setup. This user should have an email address that is authorized to access the Amazon AWS account.
+Now we need to create a user in the Gluu Server to test this setup. 
+This user should have an email address that is authorized to access the Amazon AWS account.
 
-In addition to the other required attributes, we need to make sure that the two new attributes are present for this user.
+In addition to the other required attributes, we need to make sure that the 
+two new attributes are present for this user.
 
-  - `RoleEntitlement`: The value should look like this: `arn:aws:iam::xxxxxx:role/Shibboleth-Dev,arn:aws:iam::xxxx:saml-provider/Shibboleth`. This value is the combination of two attributes: (1) Role ARN and (2) Trusted entities. You can grab these values from your AWS console > IAM module. 
+  - `RoleEntitlement`: The value should look like this: `arn:aws:iam::xxxxxx:role/Shibboleth-Dev,arn:aws:iam::xxxx:saml-provider/Shibboleth`. 
+                       This value is the combination of two attributes: (1) Role ARN and (2) Trusted entities. 
+                       You can grab these values from your AWS console > IAM module.
   - `RoleSessionName`: This is the email address of user. 
   
    ![Image](../../img/integration/aws_user_info.png)
 
 ## SSO Testing
 
-In order to test single sign-on, we need to use a link like this to start our flow: `https://<hostname>/idp/profile/SAML2/Unsolicited/SSO?providerId=urn:amazon:webservices`
+In order to test single sign-on, we need to use a link like this to start our flow:
+ `https://<hostname>/idp/profile/SAML2/Unsolicited/SSO?providerId=urn:amazon:webservices`
 
-You should see the workflow like this: https://youtu.be/LBnTWE9IoCw
+You should see the workflow like shown in the sample[video](https://youtu.be/LBnTWE9IoCw)
 
 ## Questions or Issues?
 
