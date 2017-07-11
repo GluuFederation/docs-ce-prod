@@ -111,7 +111,7 @@ Two attributes require for mapping:
 `IDPEmail` pull data from backend's email attrubute and `objectguid` get data from backend's objectGUID. 
 
 ### Create Trust Relationship
-Please refer to [here](../../admin-guide/saml.md) to create trust relationships.
+Please refer [here](../../admin-guide/saml.md) to create trust relationships.
 
 - Configure Relaying Party like the following screenshot
 ![image](../../img/integration/o365_trelationship.png)
