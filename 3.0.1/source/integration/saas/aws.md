@@ -173,7 +173,7 @@ two new attributes are present for this user.
 In order to test single sign-on, we need to use a link like this to start our flow:
  `https://<hostname>/idp/profile/SAML2/Unsolicited/SSO?providerId=urn:amazon:webservices`
 
-You should see the workflow like shown in the sample[video](https://youtu.be/LBnTWE9IoCw)
+You should see the workflow like shown in the sample [video](https://youtu.be/LBnTWE9IoCw)
 
 ## Questions or Issues?
 
