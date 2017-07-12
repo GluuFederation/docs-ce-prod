@@ -3,7 +3,6 @@
 **Branch 3.0.1 for Gluu Server CE 2.4.4 production docs   
   Branch 2.4.4 for Gluu Server CE 3.0.1 Production docs    
   Branch 3.0.2 for Gluu Server CE 3.0.2 Production docs
-  
   Branch 3.0.2 for Gluu Server CE 3.1.0 yet to be released**    
   
 One Production repo to publish all the version of CE. This Repo will be organized with branches for each version.
