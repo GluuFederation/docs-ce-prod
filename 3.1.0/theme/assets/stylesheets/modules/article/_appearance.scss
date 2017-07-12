@@ -1,0 +1,205 @@
+
+
+/* ----------------------------------------------------------------------------
+ * Article appearance
+ * ------------------------------------------------------------------------- */
+
+/*
+ * Article
+ */
+.article {
+
+  blockquote {
+    font-style: normal;
+    font-size: 1em;
+    line-height: 1.618em;
+    color: hsl(0, 0%, 40%);
+    padding: 15px;
+    border-left: 0px;
+    background-color: hsl(0, 0, 95%);
+    -webkit-box-shadow: #c2c2c2 0 1px 5px inset;
+    -moz-box-shadow: #c2c2c2 0 1px 5px inset;
+    box-shadow: #c2c2c2 0 1px 5px inset;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    p {
+      margin: 0;
+    }
+    footer > strong {
+      font-style: italic;
+    }
+  }
+
+  /*
+   * Differing top and bottom rubberband backgrounds in iOS web application
+   */
+  .ios.standalone & {
+    background: linear-gradient(
+      to bottom, $white 50%, $primary 50%);
+
+    /* Hack [iOS]: Mitigate black bounding box with linear gradient */
+    .wrapper {
+      background: linear-gradient(
+        to bottom, $white 50%, $white 50%);
+    }
+  }
+
+  /*
+   * Headlines, chapters, links and inline code
+   */
+  h1, h2, a, code {
+    color: $primary;
+  }
+
+  /*
+   * Lower border for main headline
+   */
+  h1 {
+    border-bottom: 1px solid $black-lightest;
+  }
+
+  /*
+   * Underline links
+   */
+  a {
+    border-bottom: 1px dotted;
+  }
+
+  /*
+   * Hovered and focused links
+   */
+  a:hover, a:focus {
+    color: $accent;
+  }
+
+  /*
+   * Light permalinks
+   */
+  .headerlink {
+    color: $black-lighter;
+    border: none;
+  }
+
+  /*
+   * Data tables
+   */
+  table {
+    @include drop-shadow(1);
+
+    border-radius: 3px;
+
+    /*
+     * Table heading
+     */
+    th {
+      background: mix($primary, $white, 75%);
+      color: $white;
+
+      /*
+       * Round upper left border
+       */
+      &:first-child {
+        border-top-left-radius: 3px;
+      }
+
+      /*
+       * Round upper right border
+       */
+      &:last-child {
+        border-top-right-radius: 3px;
+      }
+    }
+
+    /*
+     * Table cell
+     */
+    td {
+      border-top: 1px solid rgba($black, 0.05);
+    }
+  }
+}
+
+/*
+ * Article footer
+ */
+.footer {
+  background: $primary;
+  color: $white;
+
+  /*
+   * Remove bottom border on links
+   */
+  a {
+    border: none;
+    text-shadow: none;
+  }
+}
+
+/*
+ * Copyright and theme information
+ */
+.copyright {
+  color: $black-light;
+}
+
+/*
+ * Pagination
+ */
+.pagination {
+
+  /*
+   * Inherit color for links
+   */
+  a .title, a .button {
+    color: $white;
+  }
+
+  /*
+   * Smaller font size for direction
+   */
+  .direction {
+    color: $white-light;
+  }
+}
+
+/*
+ * Admonition support
+ */
+.admonition {
+  color: $white;
+
+  /*
+   * Embedded code blocks
+   */
+  pre, code {
+    word-wrap: break-word;
+    white-space: pre;
+    display: inline-block;
+    background: #B6DDEF;
+    font-size: 90%;
+    line-height: 1.5em;
+    color: #3f3f3f;
+    //border: 1px dashed #0181EB;
+    -webkit-border-radius: 0.4em;
+    -moz-border-radius: 0.4em;
+    -ms-border-radius: 0.4em;
+    -o-border-radius: 0.4em;
+    border-radius: 0.4em;
+    padding: 0 .3em;
+    margin: -1px 0;
+
+  }
+
+
+  /*
+   * Headlines, chapters, links and inline code
+   */
+  a, a:hover {
+    color: $white;
+    text-shadow: none;
+    text-decoration: dotted;
+  }
+}

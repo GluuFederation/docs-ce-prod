@@ -1,0 +1,25 @@
+
+
+/* ----------------------------------------------------------------------------
+ * Article animation
+ * ------------------------------------------------------------------------- */
+
+/*
+ * Fade color after highlighting
+ */
+pre span {
+  transition: color .25s;
+}
+
+/*
+ * Copyright and theme information
+ */
+.copyright {
+
+  /*
+   * Animate color on hover
+   */
+  a {
+    transition: color .25s;
+  }
+}

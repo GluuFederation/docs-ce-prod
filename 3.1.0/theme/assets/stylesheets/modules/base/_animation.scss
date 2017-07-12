@@ -1,0 +1,53 @@
+
+
+/* ----------------------------------------------------------------------------
+ * Base animation
+ * ------------------------------------------------------------------------- */
+
+/*
+ * Animate color on hover
+ */
+a {
+  transition: color .25s;
+}
+
+/*
+ * Overlay
+ */
+.overlay {
+  transition: opacity .25s,
+              width   .0s .25s,
+              height  .0s .25s;
+
+  /*
+   * Expanded drawer
+   */
+  #toggle-drawer:checked ~ &,
+  .toggle-drawer & {
+    transition: opacity .25s,
+                width   .0s,
+                height  .0s;
+  }
+}
+
+/*
+ * Application header - check for javascript to omit flashing
+ */
+.js .header {
+  transition: background .6s,
+              color      .6s;
+
+  /*
+   * Status bar
+   */
+  &:before {
+    transition: background .6s;
+  }
+}
+
+/*
+ * Extended visible touch area on icon
+ */
+.button .icon {
+  transition: background .25s;
+}

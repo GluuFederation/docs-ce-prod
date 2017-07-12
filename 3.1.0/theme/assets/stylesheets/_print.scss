@@ -1,0 +1,57 @@
+
+
+/* ----------------------------------------------------------------------------
+ * Print overrides
+ * ------------------------------------------------------------------------- */
+
+/*
+ * Print styles
+ */
+@media print {
+
+  /*
+   * Hide non-relevant elements
+   */
+  .header, .drawer, .headerlink, .footer {
+    display: none;
+  }
+
+  /*
+   * Article
+   */
+  .article {
+
+    /*
+     * Remove top spacing
+     */
+    .wrapper {
+      padding-top: 0;
+    }
+
+    /*
+     * Remove color in all code blocks
+     */
+    pre, pre * {
+      color: $black !important;
+    }
+
+    pre {
+      border: 1px solid $black-lightest;
+    }
+
+    /*
+     * Border-radius makes this table entirely black on paper, so scrap it
+     */
+    table {
+      border-radius: none;
+      box-shadow: none;
+
+      /*
+       * Color header
+       */
+      th {
+        color: $primary;
+      }
+    }
+  }
+}
