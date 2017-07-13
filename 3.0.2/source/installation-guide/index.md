@@ -91,6 +91,9 @@ running the `/install/community-edition-setup/setup.py` script, **use the
 Private IP address**. Also, use a hostname other then the long default
 hostname that Amazon provides. Update your DNS or hosts files accordingly.
 
+!!! Note
+    For a quick and easy AWS deployment, try our commercial [Gluu Server AMI](https://aws.amazon.com/marketplace/pp/B073HJGG9N)!
+
 ## Microsoft Azure      
 
 Accessing the Gluu Server on Azure can be a little bit tricky because of
