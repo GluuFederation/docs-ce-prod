@@ -26,8 +26,8 @@ The most common use cases for the Gluu Server include single sign-on (SSO), mobi
 
 ## Documentation
 
-The documentation for Gluu softwares is available at [Gluu Documentation Page](http://www.gluu.org/docs). 
-Please visit the link for the complete documentation and administrative guide. 
+Please visit the [Gluu Documentation Page](http://www.gluu.org/docs) for the complete 
+documentation and administrative guide. 
 
 ## Components included in Gluu Server CE 3.0.2
 - oxAuth, oxTrust,oxCore v3.0.2
