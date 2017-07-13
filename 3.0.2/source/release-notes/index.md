@@ -58,7 +58,7 @@ Major bugs have been fixed as below
 - Check LDAP passwords and reject invalid shell characters like $ [#299](https://github.com/GluuFederation/community-edition-setup/issues/299)
 
 
-###Deprecated Features
+### Deprecated Features
 
 #### oxTrust
 - Extra Update Password button[ #224](https://github.com/GluuFederation/oxTrust/issues/224)
