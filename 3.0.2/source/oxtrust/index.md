@@ -152,7 +152,7 @@ cache refresh is also set from this page with the `Polling interval
 attributes can be defined from the `Customer  BackendKey/Attributes` tab. 
 The backend server address, bind DN and other information must go to the 
 `Source Backend LDAP Servers` tab. The details about performing 
-[cache refresh](/admin-guide/user-group.md) will follow later in this guide.
+[cache refresh](/admin-guide/user-management.md) will follow later in this guide.
 
 ### Configure Log Viewer
 The logs for oxauth, oxtrust, cache refresh and the tomcat log can be 
@@ -224,9 +224,9 @@ clocking on the `Add Resource Set` button.
 ## Users
 Users tab allows Gluu admin to do various task, including add admin, 
 search users, Cache Refresh, Import users from file, User registration, 
-SCIM, and Lock user. This tab is detailed in [User Management](../admin-guide/user-group.md)
+SCIM, and Lock user. This tab is detailed in [User Management](../admin-guide/user-management.md)
 
 ## Personal
 Personal tab allows the individual person to view his basic profile and 
 modify certain fields. This section is detailed under User Management 
-in [Personal](../admin-guide/user-group.md)
+in [Personal](../admin-guide/user-management.md)
