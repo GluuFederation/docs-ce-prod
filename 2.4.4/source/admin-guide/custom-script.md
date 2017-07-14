@@ -234,7 +234,7 @@ This script can be used in an oxTrust application only.
 
 In order to integrate an interception script with an existing
 authentication server oxTrust provides a mechanism called [Cache
-Refresh](../admin-guide/user-group/#ldap-synchronization) to copy
+Refresh](../admin-guide/user-management/#ldap-synchronization) to copy
 user data to the local LDAP server. During this process it is possible
 to specify key attribute(s) and specify attribute name transformations.
 There are also cases when it can be used to overwrite attribute values

@@ -45,7 +45,7 @@ pages:
             - 'HOTP/TOTP': 'authn-guide/otp.md'
             - 'Custom Authentication': 'authn-guide/customauthn.md'
             - 'Custom Attributes': 'admin-guide/attributes.md'
-        - 'User Management' : 'admin-guide/user-group.md'
+        - 'User Management' : 'admin-guide/user-management.md'
         - 'Session timeout Configuration': 'admin-guide/config.md'
 #       - 'SSO Protocols' : 'admin-guide/auth-protocol.md'
 #       - 'Gluu for Mobile' : 'admin-guide/mobile.md'
