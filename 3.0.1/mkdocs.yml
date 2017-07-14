@@ -41,7 +41,7 @@ pages:
             - 'HOTP/TOTP': 'authn-guide/otp.md'
             - 'Custom Authentication': 'authn-guide/customauthn.md'
         - 'Attributes' : 'admin-guide/attribute.md'
-        - 'User Management' : 'admin-guide/user-group.md'
+        - 'User Management' : 'admin-guide/user-management.md'
         - 'Session Management': 'admin-guide/session.md'
         - 'SAML' : 'admin-guide/saml.md'
         #        - 'OAuth2 Grants' : 'admin-guide/oauth2.md'
