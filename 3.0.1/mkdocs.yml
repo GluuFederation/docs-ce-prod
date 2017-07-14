@@ -14,6 +14,7 @@ markdown_extensions:
      permalink: '#'
 pages:
 - Home: 'index.md'
+- Release Notes: 'release-notes/index.md'
 - Whats new in 3.x: 'operation/intro.md'
 - Installation Guide:
         - 'Preparing VM': 'installation-guide/index.md'
