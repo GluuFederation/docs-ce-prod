@@ -62,6 +62,10 @@ We need to modify attributeDefinition for these attributes. Configuration is app
 
   - Attribute 'uidwebex': 
     - Add 'uidwebex' in 'if statement': 
+```
+#if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('persistentId') $attribute.name.equals('uidwebex') ) )
+```
+
     - Declaration of 'uidwebex': 
 
 ``` 
