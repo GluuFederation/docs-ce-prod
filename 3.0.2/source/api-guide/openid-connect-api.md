@@ -1,10 +1,12 @@
-# OpenId Connect API
+# OpenID Connect API
 
-##OpenId Connect Authorization Grant
+## OpenID Connect Authorization Grant
 
 This page provides an interface for request authorization through REST web services.
+
 ## Authorization Endpoint
-## Path
+
+### Path
 `/oxauth/authorize`
 
 ### requestAuthorizationGet
