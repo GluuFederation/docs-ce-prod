@@ -31,7 +31,7 @@ and the draft for Front Channel Logout.
 
 ### OpenID Connect APIs
 
-Review the OpenID Connect API endpoints in the [API Guide](../api-guide/openid-connect-api.md).
+Review the Gluu Server's OpenID Connect API endpoints in the [API Guide](../api-guide/openid-connect-api.md).
 
 ### OpenID Connect Flows
 
