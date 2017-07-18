@@ -29,6 +29,10 @@ It supports the all the current specifications: Core, Dynamic Client
 Registration, Discovery, Form Post Response Mode, Session Management, 
 and the draft for Front Channel Logout.
 
+### OpenID Connect APIs
+
+Review the OpenID Connect API endpoints in the [API Guide](../api-guide/openid-connect-api.md).
+
 ### OpenID Connect Flows
 
 The Gluu Server supports all flows defined in the Core spec, including
@@ -106,7 +110,7 @@ oxTrust, navigate to Configuration --> Custom Scripts --> Client Registration.
 
 ![custom-client](../img/openid/custom-client.png)           
 
-The script is [available here](./sample-client-registration-script.py)                      
+The script is [available here](./sample-client-registration-script.py)     
 
 ### Logout
 
