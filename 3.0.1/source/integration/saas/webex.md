@@ -165,3 +165,5 @@ We need to modify attributeDefinition for these attributes. Configuration is app
         - webexnameid
         - wxemail
         - wxfistname
+        - Email
+        - Username
