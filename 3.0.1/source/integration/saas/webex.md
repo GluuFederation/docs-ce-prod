@@ -68,6 +68,9 @@ We need to modify attributeDefinition for these attributes. Configuration is app
     - Declaration of 'uidwebex': 
 
 ``` 
+#end
+#end
+#end
 <resolver:AttributeDefinition xsi:type="ad:Simple" id="uidwebex" sourceAttributeID="uidwebex">
         <resolver:Dependency ref="siteLDAP" />
         <resolver:AttributeEncoder xsi:type="enc:SAML2String" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified" name="uid" />
