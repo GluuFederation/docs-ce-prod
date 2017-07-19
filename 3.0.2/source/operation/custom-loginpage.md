@@ -1,5 +1,8 @@
 # Customizing Public Pages
 
+!!! Warning: 
+    Customizations should only be made by people with a solid understanding of web-development.
+
 Most organizations will want to edit and customize the look and feel of public-facing Gluu Server pages, 
 like the login and registration pages, to match their own corporate branding. 
 The below documentation will provide the file locations of public facing pages, 
@@ -21,6 +24,9 @@ A typical example would be customizing oxAuth's login page. There are two ways t
 2. Put the files under the `/opt/gluu/jetty/oxauth/custom/` directory, so they could be used instead of the standard files in `oxauth.war`. (Note: the same approach will work for oxTrust if files are placed under `/opt/gluu/jetty/identity/custom/`). The benefit of using this method is that your customizations won't be disturbed by any changes to oxauth.war or identity.war later on (for example, in case this Gluu instance will be patched and a component's WAR archive will be overwritten). More on this below. 
 
 ## Directory structure and mappings used by the feature
+
+!!! Warning:
+        Log into the Gluu Server chroot before working on design customizations for any pages.
 
 A new directories trees are added inside the Gluu Server `chroot` to make pages' customization easier. 
 Each such tree is placed in the configuration directory of corresponding Gluu's component (only oxAuth and oxTust are 
@@ -49,17 +55,35 @@ oxTrust:
 |   `-- ext
 ```
 
-Sub-directories like `custom/pages` have a special purpose. They are mapped to 
+Sub-directories like `custom/pages` have a special purpose. They are mapped to the 
+corresponding root directory of unpacked WAR archive. The path to exploded oxAuth's 
+WAR archive's directory may look like this: 
+`/opt/jetty-<VERSION>/temp/jetty-localhost-<PORT_NUMBER>-oxauth.war-_oxauth-any-<RANDOM_TAG>.dir/webapp/`
+Thus a modified `login.xhtml` page put under `custom/pages/` will override (will be used instead of) 
+`webapp/login.xhtml` file from the exploded archive. You can use files unpacked there 
+as a base for your own customized files.
 
-Customized `libs` can be placed in the following directories:
+Customized `libs` for oxAuth to use should be placed in the following directories:
 
-`/opt/gluu/jetty/identity/lib/ext`    
-`/opt/gluu/jetty/oxauth/lib/ext`     
+`/opt/gluu/jetty/identity/lib/ext`
+`/opt/gluu/jetty/oxauth/lib/ext`
 
-Custom `xhtml`, `page.xml`, etc should be placed in the following directories: 
+### How to remove the Gluu copyright 
 
-`/opt/gluu/jetty/identity/custom/pages`    
-`/opt/gluu/jetty/oxauth/custom/pages`    
+For a good practical example let's consider a task for removing Gluu copyright
+To remove the Gluu copyright icon from your login page, navigate to the file template.xhtml that is located under
+ 
+`/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/WEB-INF/incl/layout`.     
+
+Then, simply remove this snippet:
+
+```
+<s:fragment rendered="#{not isLogin}">
+    <div class="footer">
+        <p>Copyright <a href="http://www.gluu.org">Gluu</a> All rights reserved.</p>
+    </div>
+</s:fragment>
+```
 
 Place static resources like `jpg`, `css`, etc. under the following directories:
 
@@ -69,8 +93,7 @@ Place static resources like `jpg`, `css`, etc. under the following directories:
 To avoid collisions with static resources from WAR files, Gluu maps 
 this folder to the URL: `/{oxauth|identity}/ext/resources`     
 
-!!! Warning:
-        Log into the Gluu Server chroot before working on design customizations for any pages.
+
 
 Copy the default file(login.xhtml) to the external resource folder as shown in the below example
 
@@ -82,8 +105,7 @@ Copy the default file(login.xhtml) to the external resource folder as shown in t
 The example above shows that the `login.xhtml` file is copied to the external pages. The changes can be made here. 
 Restarting jetty will display the changes. 
 
-!!! Warning: 
-    Customizations should only be made by people with a solid understanding of web-development.
+
 
 ## Custom CSS, JS, Images
 
@@ -109,20 +131,7 @@ You can find the public facing oxAuth pages in the following locations:
 - Custom authentication scripts: XHTML files in
     `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/auth`
 
-### How to remove the Gluu copyright 
-To remove the Gluu copyright icon from your login page, navigate to the file template.xhtml that is located under
- 
-`/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/WEB-INF/incl/layout`.     
 
-Then, simply remove this snippet:
-
-```
-<s:fragment rendered="#{not isLogin}">
-    <div class="footer">
-        <p>Copyright <a href="http://www.gluu.org">Gluu</a> All rights reserved.</p>
-    </div>
-</s:fragment>
-```
 
 ## oxTrust Pages
 oxTrust is responsible for displaying the Gluu Server's default registration page. 
