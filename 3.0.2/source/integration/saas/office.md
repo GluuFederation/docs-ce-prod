@@ -117,6 +117,12 @@ attribute must be pulled from the backend data source to Gluu Server.
 
 - Restart oxAuth, identity, and idp services
 
+        ```
+        # service identity stop
+        # service identity start
+        # service oxauth stop
+        # service oxauth start
+        ```
 ### Identity Mapping
 
 Two attributes require for mapping: 

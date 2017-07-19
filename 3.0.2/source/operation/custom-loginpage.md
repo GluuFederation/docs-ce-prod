@@ -59,7 +59,8 @@ And all CSS are inside:
 `/opt/gluu/jetty/oxauth/custom/static/stylesheet`
 
 ## Structure and paths for customizing pages 
-A new location is added inside the Gluu Server `chroot` to make the customizations easy. The `/opt/gluu/jetty/` folder contains the `oxauth` and `identity` folder.
+A new location is added inside the Gluu Server `chroot` to make the customizations easy. 
+The `/opt/gluu/jetty/` folder contains the `oxauth` and `identity` folder.
 
 The structure can be illustrated as follows:
 
@@ -95,7 +96,8 @@ Place static resources like `jpg`, `css`, etc. under the following directories:
 `/opt/gluu/jetty/identity/custom/static`      
 `/opt/gluu/jetty/oxauth/custom/static`       
 
-To avoid collisions with static resources from WAR files, Gluu maps this folder to the URL: `/{oxauth|identity}/ext/resources`     
+To avoid collisions with static resources from WAR files, Gluu maps 
+this folder to the URL: `/{oxauth|identity}/ext/resources`     
 
 !!! Warning:
         Log into the Gluu Server chroot before working on design customizations for any pages.
