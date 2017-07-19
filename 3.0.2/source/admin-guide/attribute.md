@@ -138,4 +138,4 @@ In any SAML SSO transaction, your Gluu Server will need to release attributes ab
 
 In OpenID Connect, scopes are used to group attributes and provide a human 
 understandable description of the attributes. This improves usability when you need 
-to prompt a person to approve the disclosure of attributes to a third party. Learn more about configuring your Gluu Server for OpenID Connect SSO in the [OpenID Connect section of the documentation](./openid-connect.md)
+to prompt a person to approve the disclosure of attributes to a third party. Learn more about configuring your Gluu Server for OpenID Connect SSO in the [OpenID Connect section of the documentation](./openid-connect.md#scopes)
