@@ -77,6 +77,17 @@ Restarting jetty will display the changes.
 !!! Warning: 
     Customizations should only be made by people with a solid understanding of web-development.
 
+## Custom CSS, JS, Images
+
+Custom CSS or images should be placed inside `/opt/gluu/jetty/oxauth/custom/static` with corresponding naming. 
+
+For example, all images should be inserted under: 
+
+`/opt/gluu/jetty/oxauth/custom/static/img` 
+
+And all CSS are inside:
+
+`/opt/gluu/jetty/oxauth/custom/static/stylesheet`
 
 ## oxAuth Pages
 You can find the public facing oxAuth pages in the following locations: 
@@ -111,18 +122,6 @@ oxTrust is responsible for displaying the Gluu Server's default registration pag
 - You can find the default registration page here:
 
     `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/register.xhtml`
-
-## Custom CSS, JS, Images
-
-Custom CSS or images should be placed inside `/opt/gluu/jetty/oxauth/custom/static` with corresponding naming. 
-
-For example, all images should be inserted under: 
-
-`/opt/gluu/jetty/oxauth/custom/static/img` 
-
-And all CSS are inside:
-
-`/opt/gluu/jetty/oxauth/custom/static/stylesheet`
 
 ## Jetty Restart 
 
