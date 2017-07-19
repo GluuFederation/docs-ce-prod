@@ -162,6 +162,11 @@ Wait about 10 minutes in total for the server to restart and finalize its config
 
 Note: If the Gluu Server login page is still not appearing after you've received the success message and waited about 10 minutes, check if port 443 is open in the VM. If it is not open, open port 443 and try to reach the host in your browser again. 
 
+## Clustering
+
+If you need to support fail over and high availability, the Gluu Server can be clustered using the 
+Gluu Cluster Manager product. After you have followed the instructions to deploy your single Gluu Server, you can follow the [Gluu Cluster Manager documentation](https://gluu.org/docs/cm/alpha) to replicate data and cluster your servers.
+
 ## Uninstallation
 
 Something went wrong? No problem, just uninstall and reinstall.
@@ -191,7 +196,4 @@ For Centos 7.x and Red Hat 7.x:
 # rm -rf /opt/gluu-server-3.0.2
 ```
 
-## Clustering
 
-If you need to support fail over and high availability, the Gluu Server can be clustered using the 
-Gluu Cluster Manager product. After you have followed the instructions to deploy your single Gluu Server, you can follow the [Gluu Cluster Manager documentation](https://gluu.org/docs/cm/alpha) to replicate data and cluster your servers.
