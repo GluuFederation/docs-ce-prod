@@ -5,6 +5,10 @@ This document will explain how to use Gluu's [One-Time Password (OTP) intercepti
 
 In order to use this authentication mechanism users will need to install a mobile app that supports HOTP/TOTP, like [Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2).
 
+## Prerequisites
+- A Gluu Server ([installation instructions](../installation-guide/index.md));
+- An Android or iOS device with Google Authenticator installed.  
+
 !!! Note
     Gluu's OTP interception script uses the two-factor event/counter-based HOTP algorithm [RFC4226](https://tools.ietf.org/html/rfc4226) and the time-based TOTP algorithm [RFC6238](https://tools.ietf.org/html/rfc6238).
 
