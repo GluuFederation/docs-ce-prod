@@ -18,35 +18,41 @@ A typical example would be customizing oxAuth's login page. There are two ways t
 
 1. Un-pack the needed files from oxauth.war with a tool like `jar`, update them and add them back to the archive with all required dependencies (Not recommended);
 
-2. Put the files under the `/opt/gluu/jetty/oxauth/custom/` directory, which will be used instead of the standard files in `oxauth.war`. (Note: the same approach will work for oxTrust if files are placed under `/opt/gluu/jetty/identity/custom/`).
+2. Put the files under the `/opt/gluu/jetty/oxauth/custom/` directory, which will be used instead of the standard files in `oxauth.war`. (Explained below. Note: the same approach will work for oxTrust if files are placed under `/opt/gluu/jetty/identity/custom/`). The benefit of using this approach is that your customizations won't be disturbed by any changes to oxauth.war or identity.war (for example, in case this Gluu instance will be patched and a component's WAR archive will be overwritten)
 
-## Structure and paths for customizing pages 
+## Directory structure and mappings used by the feature
+
 A new location is added inside the Gluu Server `chroot` to make the customizations easy. 
 The `/opt/gluu/jetty/` folder contains the `oxauth` and `identity` folder.
 
 The structure can be illustrated as follows:
 
+oxAuth:
 
 ```
-   /opt/gluu/jetty/
-	|-- oxauth
-	|   |-- libs
-		`--	ext
-    	|-- custom
-	|	`-- pages
-	|	`-- static
-	`-- identity
-    		|-- libs
-			`--	ext
-    		|-- custom
-			`-- pages
-			`-- static
+/opt/gluu/jetty/oxauth/
+|-- custom
+|   |-- pages
+|   `-- static
+|-- lib
+|   `-- ext
+```
+
+oxTrust:
+
+```
+/opt/gluu/jetty/identity/
+|-- custom
+|   |-- pages
+|   `-- static
+|-- lib
+|   `-- ext
 ```
 
 Customized `libs` can be placed in the following directories:
 
 `/opt/gluu/jetty/identity/lib/ext`    
-`/opt/gluu/jetty/oxauth/lib/ext`     
+	`/opt/gluu/jetty/oxauth/lib/ext`     
 
 Custom `xhtml`, `page.xml`, etc should be placed in the following directories: 
 
