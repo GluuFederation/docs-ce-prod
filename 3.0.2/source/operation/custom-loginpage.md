@@ -12,20 +12,20 @@ The available pages are in the `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.
 
 Each Gluu Server component is deployed as a separate archive in WAR format. When any component's service is started, its archive is unpacked ("exploded") to Jetty's temporary file directory located under `/opt/jetty-9.3/temp/`. 
 
-To customize any files used by a component, the file needs to be changed either at the location where they are unpacked, or in the corresponding archive itself. Note that changes made to files "in place" won't be persisted--each time a component's service is restarted its `.war` archive will be re-exploded, overwritting the existing content on the disk.
+To customize any files used by a component, the file needs to be changed either at the location where they are unpacked, or in the corresponding archive itself. Note that changes made to files "in place" won't be persisted--each time a component's service is restarted its WAR archive will be re-exploded, overwritting the existing content on the disk.
 
 A typical example would be customizing oxAuth's login page. There are two ways to acheive this:
 
 1. Un-pack the needed files from oxauth.war with a tool like `jar`, update them and add them back to the archive with all required dependencies (**not recommended**);
 
-2. Put the files under the `/opt/gluu/jetty/oxauth/custom/` directory, which will be used instead of the standard files in `oxauth.war`. (Note: the same approach will work for oxTrust if files are placed under `/opt/gluu/jetty/identity/custom/`). The benefit of using this approach is that your customizations won't be disturbed by any changes to oxauth.war or identity.war (for example, in case this Gluu instance will be patched and a component's WAR archive will be overwritten). More information can be found below. 
+2. Put the files under the `/opt/gluu/jetty/oxauth/custom/` directory, so they could be used instead of the standard files in `oxauth.war`. (Note: the same approach will work for oxTrust if files are placed under `/opt/gluu/jetty/identity/custom/`). The benefit of using this method is that your customizations won't be disturbed by any changes to oxauth.war or identity.war later on (for example, in case this Gluu instance will be patched and a component's WAR archive will be overwritten). More on this below. 
 
 ## Directory structure and mappings used by the feature
 
-A new location is added inside the Gluu Server `chroot` to make the customizations easy. 
-The `/opt/gluu/jetty/` folder contains the `oxauth` and `identity` folder.
-
-The structure can be illustrated as follows:
+A new directories trees are added inside the Gluu Server `chroot` to make pages' customization easier. 
+Each such tree is placed in the configuration directory of corresponding Gluu's component (only oxAuth and oxTust are 
+supported at the moment by this feature). The structure can be illustrated as follows (only directories related 
+to this feature are shown for clarity):
 
 oxAuth:
 
@@ -49,10 +49,12 @@ oxTrust:
 |   `-- ext
 ```
 
+Sub-directories like `custom/pages` have a special purpose. They are mapped to 
+
 Customized `libs` can be placed in the following directories:
 
 `/opt/gluu/jetty/identity/lib/ext`    
-	`/opt/gluu/jetty/oxauth/lib/ext`     
+`/opt/gluu/jetty/oxauth/lib/ext`     
 
 Custom `xhtml`, `page.xml`, etc should be placed in the following directories: 
 
