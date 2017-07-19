@@ -20,52 +20,6 @@ A typical example would be customizing oxAuth's login page. There are two ways t
 
 2. Put the files under the `/opt/gluu/jetty/oxauth/custom/` directory, which will be used instead of the standard files in `oxauth.war`. (Note: the same approach will work for oxTrust if files are placed under `/opt/gluu/jetty/identity/custom/`).
 
-## oxAuth Pages
-You can find the public facing oxAuth pages in the following locations: 
-
-- Default login page:
-    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/login.xhtml`
-- Authorization page:
-    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/authorize.xhtml`
-- Error page:
-    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/error.xhtml`
-- Custom authentication scripts: XHTML files in
-    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/auth`
-
-### How to remove the Gluu copyright 
-To remove the Gluu copyright icon from your login page, navigate to the file template.xhtml that is located under
- 
-`/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/WEB-INF/incl/layout`.     
-
-Then, simply remove this snippet:
-
-```
-<s:fragment rendered="#{not isLogin}">
-    <div class="footer">
-        <p>Copyright <a href="http://www.gluu.org">Gluu</a> All rights reserved.</p>
-    </div>
-</s:fragment>
-```
-
-## oxTrust Pages
-oxTrust is responsible for displaying the Gluu Server's default registration page. 
-
-- You can find the default registration page here:
-
-    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/register.xhtml`
-
-## Custom CSS, JS, Images
-
-Custom CSS or images should be placed inside `/opt/gluu/jetty/oxauth/custom/static` with corresponding naming. 
-
-For example, all images should be inserted under: 
-
-`/opt/gluu/jetty/oxauth/custom/static/img` 
-
-And all CSS are inside:
-
-`/opt/gluu/jetty/oxauth/custom/static/stylesheet`
-
 ## Structure and paths for customizing pages 
 A new location is added inside the Gluu Server `chroot` to make the customizations easy. 
 The `/opt/gluu/jetty/` folder contains the `oxauth` and `identity` folder.
@@ -122,6 +76,53 @@ Restarting jetty will display the changes.
 
 !!! Warning: 
     Customizations should only be made by people with a solid understanding of web-development.
+
+
+## oxAuth Pages
+You can find the public facing oxAuth pages in the following locations: 
+
+- Default login page:
+    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/login.xhtml`
+- Authorization page:
+    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/authorize.xhtml`
+- Error page:
+    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/error.xhtml`
+- Custom authentication scripts: XHTML files in
+    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/auth`
+
+### How to remove the Gluu copyright 
+To remove the Gluu copyright icon from your login page, navigate to the file template.xhtml that is located under
+ 
+`/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/WEB-INF/incl/layout`.     
+
+Then, simply remove this snippet:
+
+```
+<s:fragment rendered="#{not isLogin}">
+    <div class="footer">
+        <p>Copyright <a href="http://www.gluu.org">Gluu</a> All rights reserved.</p>
+    </div>
+</s:fragment>
+```
+
+## oxTrust Pages
+oxTrust is responsible for displaying the Gluu Server's default registration page. 
+
+- You can find the default registration page here:
+
+    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/register.xhtml`
+
+## Custom CSS, JS, Images
+
+Custom CSS or images should be placed inside `/opt/gluu/jetty/oxauth/custom/static` with corresponding naming. 
+
+For example, all images should be inserted under: 
+
+`/opt/gluu/jetty/oxauth/custom/static/img` 
+
+And all CSS are inside:
+
+`/opt/gluu/jetty/oxauth/custom/static/stylesheet`
 
 ## Jetty Restart 
 
