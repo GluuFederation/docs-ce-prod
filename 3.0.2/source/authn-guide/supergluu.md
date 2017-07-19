@@ -6,6 +6,10 @@ This section of the docs explains how to enable and configure Super Gluu for str
 
 Complete docs for Super Gluu, including a User Guide and a Developer Guide, can be found on the [Super Gluu docs site](https://gluu.org/docs/supergluu).  
 
+## Prerequisites 
+- A Gluu Server ([installation instructions](../installation-guide/index.md));
+- An Android or iOS device with Super Gluu installed. 
+
 ## Properties
 The Super Gluu authentication script has the following properties
 
