@@ -9,6 +9,7 @@ This document will explain how to use Gluu's [U2F interception script](https://r
 to configure the Gluu Server for a two-step authentication process with username and password as the first step, 
 and any U2F device as the second step.
 
+## U2F Devices
 Some well known U2F devices and manufacturers include:           
 - [Vasco DIGIPASS SecureClick](https://www.vasco.com/products/two-factor-authenticators/hardware/one-button/digipass-secureclick.html)      
 - [Yubico](https://www.yubico.com/)      
@@ -16,6 +17,10 @@ Some well known U2F devices and manufacturers include:
 - [Feitian Technologies](http://www.ftsafe.com/)      
 
 Check [FIDO's certified products](https://fidoalliance.org/certification/fido-certified-products/) for a comprehensive list of U2F devices (sort by `Specification` == `U2F`).
+
+## Prerequisites
+- A Gluu Server ([installation instructions](../installation-guide/index.md));
+- At least one U2F device for testing, like one of the devices [listed above](#u2f-devices). 
 
 ## Properties
 The script has the following properties
