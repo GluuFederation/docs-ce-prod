@@ -53,7 +53,7 @@ The configuration begins by creating a few custom attributes named `IDPEmail`, `
 Refer to [this doc](../../admin-guide/attribute/#custom-attributes) to create custom attributes.
 
 `objectguid` syntax will be slightly different from other custom attributes.
-`*objectGUID` attributetype should be in the following syntax:
+`objectGUID` attributetype should be in the following syntax:
 
 ```
 {
