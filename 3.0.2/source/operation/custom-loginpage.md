@@ -57,9 +57,13 @@ oxTrust:
 
 Sub-directories like `custom/pages` have a special purpose. They are mapped to the 
 corresponding root directory of unpacked WAR archive, which may have next pattern:
-`/opt/jetty-<VERSION>/temp/jetty-localhost-<PORT_NUMBER>-<COMPONENT_NAME>.war-_<COMPONENT_NAME>-any-<RANDOM_TAG>.dir/webapp/`
+```
+/opt/jetty-<VERSION>/temp/jetty-localhost-<PORT_NUMBER>-<COMPONENT_NAME>.war-_<COMPONENT_NAME>-any-<RANDOM_TAG>.dir/webapp/
+```
 So, for example, path to exploded oxAuth's WAR archive's directory may look like this: 
-`/opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/`
+```
+/opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/
+```
 Thus a modified `login.xhtml` page put under `custom/pages/` will override (will be used instead of) 
 `webapp/login.xhtml` file from the exploded archive. You can use files unpacked there 
 as a base for your own customized files.
