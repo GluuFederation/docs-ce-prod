@@ -2,6 +2,7 @@
 
 !!! Warning: 
     Customizations should only be made by people with a solid understanding of web-development.
+    Before changing any files we recommend creating backups to easily revert your instance to original state.
 
 Most organizations will want to edit and customize the look and feel of public-facing Gluu Server pages, 
 like the login and registration pages, to match their own corporate branding. 
@@ -9,19 +10,16 @@ The below documentation will provide the file locations of public facing pages,
 as well as instructions for adding custom html, css, and javascript files to your Gluu Server. 
 
 ## Overview
-The Gluu Server's public facing pages are `xhtml` files. Before changing any files we recommended taking backups so that no important elements are lost.
 
-The available pages are in the `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/` directory. The file which represents the primary login page is included in the `oxauth-any` directory.
+The Gluu Server's public facing pages are `xhtml` files. Each Gluu Server component is deployed as a separate archive in WAR format. When any component's service is started, its archive is unpacked ("exploded") to Jetty's temporary file directory located under `/opt/jetty-<VERSION>/temp/`. 
 
-Each Gluu Server component is deployed as a separate archive in WAR format. When any component's service is started, its archive is unpacked ("exploded") to Jetty's temporary file directory located under `/opt/jetty-9.3/temp/`. 
-
-To customize any files used by a component, the file needs to be changed either at the location where they are unpacked, or in the corresponding archive itself. Note that changes made to files "in place" won't be persisted--each time a component's service is restarted its WAR archive will be re-exploded, overwritting the existing content on the disk.
+To customize any files used by a component, the file needs to be changed either at the location where they are unpacked, or in the corresponding archive itself. Note that changes made directly to unpacked files under `/opt/jetty-<VERSION>/temp/` won't be persisted--each time a component's service is restarted its WAR archive will be re-exploded, overwritting the existing content on the disk.
 
 A typical example would be customizing oxAuth's login page. There are two ways to acheive this:
 
-1. Un-pack the needed files from oxauth.war with a tool like `jar`, update them and add them back to the archive with all required dependencies (**not recommended**);
+1. Un-pack the needed files from `/opt/gluu/jetty/oxauth/webapps/oxauth.war` with a tool like `jar`, update them and add them back to the archive with all required dependencies (**not recommended**);
 
-2. Put the files under the `/opt/gluu/jetty/oxauth/custom/` directory, so they could be used instead of the standard files in `oxauth.war`. (Note: the same approach will work for oxTrust if files are placed under `/opt/gluu/jetty/identity/custom/`). The benefit of using this method is that your customizations won't be disturbed by any changes to oxauth.war or identity.war later on (for example, in case this Gluu instance will be patched or updated, and a component's WAR archive will get overwritten). More on this below. 
+2. Put changed files under `/opt/gluu/jetty/oxauth/custom/` directory, so they could be used instead of the standard files in `oxauth.war`. (Note: the same approach will work for oxTrust if files are placed under `/opt/gluu/jetty/identity/custom/`). The benefit of using this method is that your customizations won't be disturbed by any changes to `oxauth.war` or `identity.war` later on (for example, in case this Gluu instance will be patched or updated, and a component's WAR archive will get overwritten). More on this method below. 
 
 ## Directory structure and mappings used by the feature
 
