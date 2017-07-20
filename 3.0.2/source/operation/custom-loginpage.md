@@ -76,9 +76,10 @@ as a base for your own customized files.
     directory. After starting service again its WAR archive will be unpacked there again.
 
 Customized `libs` for oxAuth to use should be placed in the following directories:
-
-`/opt/gluu/jetty/identity/lib/ext`
-`/opt/gluu/jetty/oxauth/lib/ext`
+```
+/opt/gluu/jetty/identity/lib/ext
+/opt/gluu/jetty/oxauth/lib/ext
+```
 
 Custom CSS or images should be placed under `custom/static` directory. To avoid 
 collisions with static resources from WAR files, Gluu maps this folder 
