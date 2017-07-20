@@ -29,9 +29,9 @@ A typical example would be customizing oxAuth's login page. There are two ways t
         Log into the Gluu Server chroot before working on design customizations for any pages.
 
 A new directories trees are added inside the Gluu Server `chroot` to make pages' customization easier. 
-Each such tree is placed in the configuration directory of corresponding Gluu's component (only oxAuth and oxTust are 
-supported at the moment by this feature). The structure can be illustrated as follows (only directories related 
-to this feature are shown for clarity):
+Each such tree is placed in the configuration directory of corresponding Gluu's component (only 
+customization of oxAuth's and oxTrust's pages is supported at the moment by this feature). 
+The new directory structure can be illustrated as follows (only directories related to this feature are shown for clarity):
 
 oxAuth:
 
@@ -62,6 +62,13 @@ WAR archive's directory may look like this:
 Thus a modified `login.xhtml` page put under `custom/pages/` will override (will be used instead of) 
 `webapp/login.xhtml` file from the exploded archive. You can use files unpacked there 
 as a base for your own customized files.
+
+!!! Warning: 
+    Jetty included in earlier Gluu 3.x packages is known to create duplicated 
+    directories under `/opt/jetty-<VERSION>/temp/` for each of its components. 
+    In case of encountering this issue, it's recommended to stop corresponding 
+    service and remove all subdirectories related to it from the `temp/` 
+    directory. After starting service again its WAR archive will be unpacked there again.
 
 Customized `libs` for oxAuth to use should be placed in the following directories:
 
