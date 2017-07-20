@@ -81,11 +81,17 @@ collisions with static resources from WAR files, Gluu maps this folder
 to url's path like this: `/{oxauth|identity}/ext/resources`
 
 So, for example, CSS file placed at this path:
-`/opt/gluu/jetty/oxauth/custom/static/stylesheet/theme.css`
+```
+/opt/gluu/jetty/oxauth/custom/static/stylesheet/theme.css
+```
 ...will be externally available at url similar to this:
-`https://your.gluu.host/oxauth/ext/resources/stylesheet/theme.css`
+```
+https://your.gluu.host/oxauth/ext/resources/stylesheet/theme.css
+```
 ...and should be referenced from inside of source codes of customized files by path like this:
-`/oxauth/ext/resources/stylesheet/theme.css`
+```
+/oxauth/ext/resources/stylesheet/theme.css
+```
 
 All images should be placed under: 
 
