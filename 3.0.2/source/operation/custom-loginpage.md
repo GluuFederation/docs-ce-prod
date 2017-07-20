@@ -106,7 +106,8 @@ at the bottom of oxAuth's login page. You can follow next steps to achieve this:
 5. Assign correct permissions to new directories and files: `# chown -R jetty:jetty /opt/gluu/jetty/oxauth/custom/pages/ && chmod -R a-x+rX /opt/gluu/jetty/oxauth/custom/pages/`
 
 
-You may opt to copying the default oxAuth login page (login.xhtml) to the external resource folder as well, and add some customizations to it:
+You may opt to copying default oxAuth login page (`login.xhtml`) to the custom files 
+directory as well, and add some customizations to it:
 
 ```
 # cp /opt/jetty-<VERSION>/temp/jetty-localhost-<PORT_NUMBER>-oxauth.war-_oxauth-any-<RANDOM_TAG>.dir/webapp/login.xhtml /opt/gluu/jetty/oxauth/custom/pages`
@@ -117,7 +118,7 @@ Restarting oxAuth' service inside container will display the changes: `# service
 
 ## Location of key web UI pages
 
-You can find the public facing oxAuth pages in the following locations: 
+You can find Gluu's public facing pages in the following locations: 
 
 **oxAuth**
 
@@ -130,8 +131,8 @@ Base directory:
     `./authorize.xhtml`
 - Error page:
     `./error.xhtml`
-- Custom authentication scripts: XHTML files in
-    `./webapp/auth`
+- Custom authentication scripts: XHTML files under:
+    `./webapp/auth/`
 
 **oxTrust:**
 
