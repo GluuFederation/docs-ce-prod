@@ -56,9 +56,10 @@ oxTrust:
 ```
 
 Sub-directories like `custom/pages` have a special purpose. They are mapped to the 
-corresponding root directory of unpacked WAR archive. The path to exploded oxAuth's 
-WAR archive's directory may look like this: 
-`/opt/jetty-<VERSION>/temp/jetty-localhost-<PORT_NUMBER>-oxauth.war-_oxauth-any-<RANDOM_TAG>.dir/webapp/`
+corresponding root directory of unpacked WAR archive, which may have next pattern:
+`/opt/jetty-<VERSION>/temp/jetty-localhost-<PORT_NUMBER>-<COMPONENT_NAME>.war-_<COMPONENT_NAME>-any-<RANDOM_TAG>.dir/webapp/`
+So, for example, path to exploded oxAuth's WAR archive's directory may look like this: 
+`/opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/`
 Thus a modified `login.xhtml` page put under `custom/pages/` will override (will be used instead of) 
 `webapp/login.xhtml` file from the exploded archive. You can use files unpacked there 
 as a base for your own customized files.
@@ -101,7 +102,7 @@ at the bottom of oxAuth's login page. You can follow next steps to achieve this:
 
 1. Move into Glu container: `# service gluu-server-3.0.2 login`
 2. Create a new directory structure under `custom/pages/` to accomodate new customized page: `# mkdir -p /opt/gluu/jetty/oxauth/custom/pages/WEB-INF/incl/layout/`
-3. Get a default template page from exploded WAR archive and put it at path under `custom/pages` directory which will allow it to override the original page: `# cp /opt/jetty-<VERSION>/temp/jetty-localhost-<PORT_NUMBER>-oxauth.war-_oxauth-any-<RANDOM_TAG>.dir/webapp/WEB-INF/incl/layout/template.xhtml /opt/gluu/jetty/oxauth/custom/pages/WEB-INF/incl/layout/template.xhtml`
+3. Get a default template page from exploded WAR archive and put it at path under `custom/pages` directory which will allow it to override the original page (your path to exploded WAR will differ from the one used here): `# cp /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/WEB-INF/incl/layout/template.xhtml /opt/gluu/jetty/oxauth/custom/pages/WEB-INF/incl/layout/template.xhtml`
 4. Modify the new file by removing or editing next snippet in it:
 ```
 <s:fragment rendered="#{not isLogin}">
@@ -117,7 +118,7 @@ You may opt to copying default oxAuth login page (`login.xhtml`) to the custom f
 directory as well, and add some customizations to it:
 
 ```
-# cp /opt/jetty-<VERSION>/temp/jetty-localhost-<PORT_NUMBER>-oxauth.war-_oxauth-any-<RANDOM_TAG>.dir/webapp/login.xhtml /opt/gluu/jetty/oxauth/custom/pages`
+# cp /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/login.xhtml /opt/gluu/jetty/oxauth/custom/pages`
 ```
 
 Don't forget to apply appropriate file system permissions if needed.
