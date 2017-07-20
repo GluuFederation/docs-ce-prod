@@ -53,7 +53,7 @@ The new directory structure can be illustrated as follows (only directories rela
 ```
 
 ### Subdirectories 
-Sub-directories like `custom/pages` have a special purpose. They are mapped to the corresponding root directory of the unpacked WAR archive. The path conforms to following scheme:
+Sub-directories `custom/pages` have a special purpose. They are mapped to the corresponding root directory of the unpacked WAR archive. The path conforms to following scheme:
 
 ```
 /opt/jetty-<VERSION>/temp/jetty-localhost-<PORT_NUMBER>-<COMPONENT_NAME>.war-_<COMPONENT_NAME>-any-<RANDOM_TAG>.dir/webapp/
