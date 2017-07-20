@@ -121,7 +121,7 @@ at the bottom of oxAuth's login page. You can follow next steps to achieve this:
     </div>
 </s:fragment>
 ```
-5. Assign correct permissions to new directories and files: `# chown -R jetty:jetty /opt/gluu/jetty/oxauth/custom/pages/ && chmod -R a-x+rX /opt/gluu/jetty/oxauth/custom/pages/`
+5. Assign appropriate permissions to new directories and files: `# chown -R jetty:jetty /opt/gluu/jetty/oxauth/custom/pages/ && chmod -R a-x+rX /opt/gluu/jetty/oxauth/custom/pages/`
 
 
 You may opt to copying default oxAuth login page (`login.xhtml`) to the custom files 
