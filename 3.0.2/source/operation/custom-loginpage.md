@@ -116,7 +116,7 @@ directory as well, and add some customizations to it:
 Don't forget to apply appropriate file system permissions if needed.
 Restarting oxAuth' service inside container will display the changes: `# service oxauth restart`
 
-## Location of key web UI pages
+## Locations of key web UI pages' source files
 
 You can find Gluu's public facing pages in the following locations: 
 
