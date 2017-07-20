@@ -31,7 +31,7 @@ Each such tree is placed in the configuration directory of corresponding Gluu's 
 customization of oxAuth's and oxTrust's pages is supported at the moment by this feature). 
 The new directory structure can be illustrated as follows (only directories related to this feature are shown for clarity):
 
-oxAuth:
+**oxAuth:**
 
 ```
 /opt/gluu/jetty/oxauth/
@@ -42,7 +42,7 @@ oxAuth:
 |   `-- ext
 ```
 
-oxTrust:
+**oxTrust:**
 
 ```
 /opt/gluu/jetty/identity/
