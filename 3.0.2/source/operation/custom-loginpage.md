@@ -111,7 +111,7 @@ And all CSS are inside:
 For a good practical example let's consider a task of removing Gluu copyright 
 at the bottom of oxAuth's login page. You can follow next steps to achieve this:
 
-1. Move into Glu container: `# service gluu-server-3.0.2 login`
+1. Move into Gluu container: `# service gluu-server-3.0.2 login`
 2. Create a new directory structure under `custom/pages/` to accomodate new customized page: `# mkdir -p /opt/gluu/jetty/oxauth/custom/pages/WEB-INF/incl/layout/`
 3. Get a default template page from exploded WAR archive and put it at path under `custom/pages` directory which will allow it to override the original page (your path to exploded WAR will differ from the one used here): `# cp /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/WEB-INF/incl/layout/template.xhtml /opt/gluu/jetty/oxauth/custom/pages/WEB-INF/incl/layout/template.xhtml`
 4. Modify the new file by removing or editing next snippet in it:
