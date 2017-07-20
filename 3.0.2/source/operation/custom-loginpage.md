@@ -115,36 +115,44 @@ You may opt to copying the default oxAuth login page (login.xhtml) to the extern
 Don't forget to apply appropriate file system permissions if needed.
 Restarting oxAuth' service inside container will display the changes: `# service oxauth restart`
 
-## oxAuth Pages
+## Location of key web UI pages
+
 You can find the public facing oxAuth pages in the following locations: 
 
+**oxAuth**
+
+Base directory:
+`/opt/jetty-<VERSION>/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-<RANDOM_TAG>.dir/webapp/`
+
 - Default login page:
-    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/login.xhtml`
+    `./login.xhtml`
 - Authorization page:
-    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/authorize.xhtml`
+    `./authorize.xhtml`
 - Error page:
-    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/error.xhtml`
+    `./error.xhtml`
 - Custom authentication scripts: XHTML files in
-    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/auth`
+    `./webapp/auth`
 
+**oxTrust:**
 
+oxTrust is responsible for displaying the Gluu Server's default registration page, as well as administrator's web UI pages. 
 
-## oxTrust Pages
-oxTrust is responsible for displaying the Gluu Server's default registration page. 
+Base directory:
+`/opt/jetty-<VERSION>/temp/jetty-localhost-8082-identity.war-_identity-any-<RANDOM_TAG>.dir/webapp/`
 
-- You can find the default registration page here:
+- Registration page:
+    `./register.xhtml`
 
-    `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/register.xhtml`
+## Applying changes
 
-## Jetty Restart 
-
-Restart the `identity` and `oxauth` services for the customizations to be applied using the following commands:
+oxAuth's and oxTrust's services need to be restarted for customizations to be applied. 
+Next commands will restart corresponding Jetty's JVMs inside container:
 
 ```
-# service identity stop
-# service identity start
 # service oxauth stop
 # service oxauth start
+# service identity stop
+# service identity start
 ```
 
 **Note:** There is a 10 second delay on page modification reload.
