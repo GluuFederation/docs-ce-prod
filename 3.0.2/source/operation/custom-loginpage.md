@@ -129,6 +129,10 @@ You can find Gluu's public facing pages in the following locations:
 
 **oxAuth**
 
+oxAuth is core Gluu CE component handling all authentication in the framework, 
+as well as implementing UMA flows. Most of web UI pages displayed to end users 
+belong to oxAuth (login/logout/authorization flows).
+
 Base directory:
 `/opt/jetty-<VERSION>/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-<RANDOM_TAG>.dir/webapp/`
 
