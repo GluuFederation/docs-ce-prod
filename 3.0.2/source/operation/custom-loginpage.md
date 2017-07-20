@@ -21,7 +21,7 @@ A typical example would be customizing oxAuth's login page. There are two ways t
 
 1. Un-pack the needed files from oxauth.war with a tool like `jar`, update them and add them back to the archive with all required dependencies (**not recommended**);
 
-2. Put the files under the `/opt/gluu/jetty/oxauth/custom/` directory, so they could be used instead of the standard files in `oxauth.war`. (Note: the same approach will work for oxTrust if files are placed under `/opt/gluu/jetty/identity/custom/`). The benefit of using this method is that your customizations won't be disturbed by any changes to oxauth.war or identity.war later on (for example, in case this Gluu instance will be patched and a component's WAR archive will be overwritten). More on this below. 
+2. Put the files under the `/opt/gluu/jetty/oxauth/custom/` directory, so they could be used instead of the standard files in `oxauth.war`. (Note: the same approach will work for oxTrust if files are placed under `/opt/gluu/jetty/identity/custom/`). The benefit of using this method is that your customizations won't be disturbed by any changes to oxauth.war or identity.war later on (for example, in case this Gluu instance will be patched or updated, and a component's WAR archive will get overwritten). More on this below. 
 
 ## Directory structure and mappings used by the feature
 
@@ -68,15 +68,34 @@ Customized `libs` for oxAuth to use should be placed in the following directorie
 `/opt/gluu/jetty/identity/lib/ext`
 `/opt/gluu/jetty/oxauth/lib/ext`
 
+Custom CSS or images should be placed under `custom/static` directory. To avoid 
+collisions with static resources from WAR files, Gluu maps this folder 
+to url's path like this: `/{oxauth|identity}/ext/resources`
+
+So, for example, CSS file placed at this path:
+`/opt/gluu/jetty/oxauth/custom/static/stylesheet/theme.css`
+...will be externally available at url similar to this:
+`https://your.gluu.host/oxauth/ext/resources/stylesheet/theme.css`
+...and should be referenced from inside of source codes of customized files by path like this:
+`/oxauth/ext/resources/stylesheet/theme.css`
+
+All images should be placed under: 
+
+`/opt/gluu/jetty/oxauth/custom/static/img`
+
+And all CSS are inside:
+
+`/opt/gluu/jetty/oxauth/custom/static/stylesheet`
+
 ### How to remove the Gluu copyright 
 
-For a good practical example let's consider a task for removing Gluu copyright
-To remove the Gluu copyright icon from your login page, navigate to the file template.xhtml that is located under
- 
-`/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/WEB-INF/incl/layout`.     
+For a good practical example let's consider a task of removing Gluu copyright 
+at the bottom of oxAuth's login page. You can follow next steps to achieve this:
 
-Then, simply remove this snippet:
-
+1. Move into Glu container: `# service gluu-server-3.0.2 login`
+2. Create a new directory structure under `custom/pages/` to accomodate new customized page: `# mkdir -p /opt/gluu/jetty/oxauth/custom/pages/WEB-INF/incl/layout/`
+3. Get a default template page from exploded WAR archive and put it at path under `custom/pages` directory which will allow it to override the original page: `# cp /opt/jetty-<VERSION>/temp/jetty-localhost-<PORT_NUMBER>-oxauth.war-_oxauth-any-<RANDOM_TAG>.dir/webapp/WEB-INF/incl/layout/template.xhtml /opt/gluu/jetty/oxauth/custom/pages/WEB-INF/incl/layout/template.xhtml`
+4. Modify the new file by removing or editing next snippet in it:
 ```
 <s:fragment rendered="#{not isLogin}">
     <div class="footer">
@@ -84,40 +103,17 @@ Then, simply remove this snippet:
     </div>
 </s:fragment>
 ```
-
-Place static resources like `jpg`, `css`, etc. under the following directories:
-
-`/opt/gluu/jetty/identity/custom/static`      
-`/opt/gluu/jetty/oxauth/custom/static`       
-
-To avoid collisions with static resources from WAR files, Gluu maps 
-this folder to the URL: `/{oxauth|identity}/ext/resources`     
+5. Assign correct permissions to new directories and files: `# chown -R jetty:jetty /opt/gluu/jetty/oxauth/custom/pages/ && chmod -R a-x+rX /opt/gluu/jetty/oxauth/custom/pages/`
 
 
-
-Copy the default file(login.xhtml) to the external resource folder as shown in the below example
+You may opt to copying the default oxAuth login page (login.xhtml) to the external resource folder as well, and add some customizations to it:
 
 ```
-# cd /opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp/    
-# cp login.xhtml /opt/gluu/jetty/oxauth/custom/pages     
+# cp /opt/jetty-<VERSION>/temp/jetty-localhost-<PORT_NUMBER>-oxauth.war-_oxauth-any-<RANDOM_TAG>.dir/webapp/login.xhtml /opt/gluu/jetty/oxauth/custom/pages`
 ```
 
-The example above shows that the `login.xhtml` file is copied to the external pages. The changes can be made here. 
-Restarting jetty will display the changes. 
-
-
-
-## Custom CSS, JS, Images
-
-Custom CSS or images should be placed inside `/opt/gluu/jetty/oxauth/custom/static` with corresponding naming. 
-
-For example, all images should be inserted under: 
-
-`/opt/gluu/jetty/oxauth/custom/static/img` 
-
-And all CSS are inside:
-
-`/opt/gluu/jetty/oxauth/custom/static/stylesheet`
+Don't forget to apply appropriate file system permissions if needed.
+Restarting oxAuth' service inside container will display the changes: `# service oxauth restart`
 
 ## oxAuth Pages
 You can find the public facing oxAuth pages in the following locations: 
