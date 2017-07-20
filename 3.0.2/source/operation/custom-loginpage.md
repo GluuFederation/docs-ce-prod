@@ -122,8 +122,8 @@ at Jetty's temp directory to which they are unpacked each time a corresponding s
 ### oxAuth
 
 oxAuth is core Gluu CE component handling all authentication in the framework, 
-as well as implementing UMA flows. Most of the web UI pages displayed to end users 
-belong to oxAuth (login/logout/authorization flows).
+as well as implementing OpenID connect and UMA flows. Most of the web UI pages 
+displayed to end users belong to oxAuth (login/logout/authorization flows).
 
 Base directory:
 `/opt/jetty-<VERSION>/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-<RANDOM_TAG>.dir/webapp/`
@@ -189,7 +189,7 @@ You may opt to copying default oxAuth login page (`login.xhtml`) to the custom f
 directory as well, and add some customizations to it:
 
 ```
-# cp /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/login.xhtml /opt/gluu/jetty/oxauth/custom/pages/`
+# cp /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/login.xhtml /opt/gluu/jetty/oxauth/custom/pages/
 ```
 
 Don't forget to apply appropriate file system permissions if needed.
