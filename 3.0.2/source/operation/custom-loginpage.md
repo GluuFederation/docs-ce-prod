@@ -138,7 +138,7 @@ Base directory:
     `./authorize.xhtml`
 - Error page:
     `./error.xhtml`
-- Custom authentication scripts: XHTML files under:
+- Custom authentication scripts; XHTML files under:
     `./webapp/auth/`
 
 **oxTrust:**
