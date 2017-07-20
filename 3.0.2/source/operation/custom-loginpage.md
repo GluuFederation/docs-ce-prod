@@ -10,9 +10,9 @@ as well as instructions for adding custom html, css, and javascript files to you
 
 ## Overview
 
-The Gluu Server's public facing pages are `xhtml` files. Each Gluu Server component is deployed as a separate archive in WAR format. When any component's service is started, its archive is unpacked ("exploded") to Jetty's temporary file directory located under `/opt/jetty-<VERSION>/temp/`. 
+The Gluu Server's public facing pages are `xhtml` files. Each Gluu Server component is deployed as a separate archive in WAR format. When any component's service is started, its archive is unpacked ("exploded") to Jetty's temporary file directory located under `/opt/jetty-<VERSION>/temp/` before it'll be able to start serving requests for associated functionality. 
 
-To customize any files used by a component, the file needs to be changed either at the location where they are unpacked, or in the corresponding archive itself. Note that changes made directly to unpacked files under `/opt/jetty-<VERSION>/temp/` won't be persisted--each time a component's service is restarted its WAR archive will be re-exploded, overwritting the existing content on the disk.
+To customize any files used by a component, they need to be changed either at that temporary location, or inside the corresponding archive itself. Note that changes made directly to unpacked files under `/opt/jetty-<VERSION>/temp/` won't be persisted--each time a component's service is restarted its WAR archive will be re-exploded, overwritting the existing content on the disk.
 
 A typical example would be customizing oxAuth's login page. There are two ways to acheive this:
 
@@ -115,7 +115,9 @@ And all CSS are inside:
 
 ## Location of key webpage source files
 
-You can find Gluu's public facing pages in the following locations: 
+Default Gluu's public facing pages can be a good base for your organization's customized 
+ones. Aside from extracting them directly from a corresponding WAR file, they can be found 
+at Jetty's temp directory to which they are unpacked each time a corresponding service starts.
 
 ### oxAuth
 
@@ -130,6 +132,8 @@ Base directory:
     `./login.xhtml`
 - Authorization page:
     `./authorize.xhtml`
+- Logout page:
+    `./logout.xhtml`
 - Error page:
     `./error.xhtml`
 - Custom authentication scripts; XHTML files under:
@@ -137,7 +141,7 @@ Base directory:
 
 ### oxTrust:
 
-oxTrust is responsible for displaying the Gluu Server's default registration page, as well as administrator's web UI pages. 
+oxTrust is responsible for displaying the Gluu Server's default registration page, as well as administrator web UI's pages. 
 
 Base directory:
 `/opt/jetty-<VERSION>/temp/jetty-localhost-8082-identity.war-_identity-any-<RANDOM_TAG>.dir/webapp/`
