@@ -59,7 +59,8 @@ scheme:
 ```
 /opt/jetty-<VERSION>/temp/jetty-localhost-<PORT_NUMBER>-<COMPONENT_NAME>.war-_<COMPONENT_NAME>-any-<RANDOM_TAG>.dir/webapp/
 ```
-So, for example, path to exploded oxAuth's WAR archive's directory may look like this: 
+So, for example, path to exploded oxAuth's WAR archive's directory may look like this 
+(and may be changed next time corresponding service is restarted):
 ```
 /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/
 ```
