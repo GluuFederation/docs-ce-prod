@@ -4,6 +4,8 @@ The following documentation provides instructions for deploying the Gluu Server 
 
 Containership is a containers-as-aservice platform providing users with a single pane of glass to easily deploy, manage and scale their containerized applications on any public or private cloud. Containership provides both developers and operators with the simplest possible solution for managing applications from development through production, while facilitating self-service. 
 
+## Prerequisites 
+
 ## Create a cluster in containership
 
 Navigate to the containership interface and perform the following:
