@@ -4,7 +4,10 @@ The following documentation provides instructions for deploying the Gluu Server 
 
 Containership is a containers-as-aservice platform providing users with a single pane of glass to easily deploy, manage and scale their containerized applications on any public or private cloud. Containership provides both developers and operators with the simplest possible solution for managing applications from development through production, while facilitating self-service. 
 
-## Prerequisites 
+## Prerequisites
+
+1. A resolveable public domain
+2. SSL certificate and key for the domain
 
 ## Create a cluster in containership
 
@@ -68,6 +71,8 @@ Here's an example on how to run config-init container:
 ```
 
 Wait until the process finished.
+
+Note: for self-signed, just remove the volume mapping from the above cmd.
 
 Now base data for gluu server is generated and saved in consul.
 You can close ssh tunnel now.
