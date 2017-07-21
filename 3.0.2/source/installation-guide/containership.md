@@ -4,7 +4,7 @@ The following documentation provides instructions for deploying the Gluu Server 
 
 Containership is a containers-as-aservice platform providing users with a single pane of glass to easily deploy, manage and scale their containerized applications on any public or private cloud. Containership provides both developers and operators with the simplest possible solution for managing applications from development through production, while facilitating self-service. 
 
-## Step 1: Create a cluster in containership
+## Create a cluster in containership
 
 Navigate to the containership interface and perform the following:
 
@@ -17,7 +17,7 @@ Navigate to the containership interface and perform the following:
 7. Create 2 follower hosts with 4 CPUs and 8GB RAM
 8, Choose a name and environment  ( Example, Name: gluu, Environment: dev/test/prod )
 
-## Step 2: Add firewall rule:
+## Add firewall rule:
 
 Go to cluster Firewall tab, add following rule for SSH connection:
 
@@ -31,7 +31,7 @@ IP address (CIDR format): click "Use My IP" button
 
 Wait until cluster has been provisioned; all hosts are created and connected each other, all builtin containers has been deployed.
 
-## Step 3: Initialize Configuration
+## Initialize Configuration
 
 1. Add Consul application using Containership Marketplace
 2. After Consul is deployed in cluster, install Docker in local machine and pull config-init image.
@@ -70,7 +70,8 @@ Wait until the process finished.
 Now base data for gluu server is generated and saved in consul.
 You can close ssh tunnel now.
 
-Deploy gluu server form containership market place:
+## Deploy Gluu from the Marketplace
+
 Select Gluu Server from cluster application and deploy it by following instruction provided by application page.
 
 [Some screenshot here after CS team create marketplace icon]
@@ -78,13 +79,13 @@ Select Gluu Server from cluster application and deploy it by following instructi
 
 This application will deploy following containers:
 
-openldap-init
-openldap
-keyrotation
-oxAuth
-oxTrust
-nginx
+- openldap-init   
+- openldap    
+- keyrotation    
+- oxAuth    
+- oxTrust    
+- nginx    
 
-Managing Public Domain:
+## Managing Public Domain
 
 Add CNAME record to domain, the value should be the gluu-nginx DNS entry.
