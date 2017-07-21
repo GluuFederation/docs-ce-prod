@@ -42,7 +42,7 @@ Now go back to Containership cluster. Choose Applications tab and consul box. In
 
 Consul application in Containership uses private IP and port 8314 to listen to client connection. Hence we need to do SSH tunneling to expose the port in our local machine.
 
-# ssh -L 0.0.0.0:8500:<REMOTE-PRIVATE-IP>:8314 <SSH-USER>@<REMOTE-PUBLIC-IP>
+`# ssh -L 0.0.0.0:8500:<REMOTE-PRIVATE-IP>:8314 <SSH-USER>@<REMOTE-PUBLIC-IP>`
 
 After tunneling established, in another terminal, we can start generating initial config in our local machine for our Gluu Server cluster.
 Prepare following steps before generating initial config:
@@ -51,6 +51,7 @@ Use SSL certificate and key for the domain (create them if we don't have one yet
 
 Here's an example on how to run config-init container:
 
+````
 # docker run --rm \
     -v /path/to/org_ssl.crt:/etc/certs/gluu_https.crt \
     -v /path/to/org_ssl.key:/etc/certs/gluu_https.key \
@@ -62,7 +63,7 @@ Here's an example on how to run config-init container:
     --kv-host <LOCAL-IP> \
     --kv-port 8500 \
     --save
-
+```
 
 Wait until the process finished.
 
