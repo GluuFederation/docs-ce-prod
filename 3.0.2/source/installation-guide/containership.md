@@ -51,7 +51,7 @@ Use SSL certificate and key for the domain (create them if we don't have one yet
 
 Here's an example on how to run config-init container:
 
-````
+```
 # docker run --rm \
     -v /path/to/org_ssl.crt:/etc/certs/gluu_https.crt \
     -v /path/to/org_ssl.key:/etc/certs/gluu_https.key \
