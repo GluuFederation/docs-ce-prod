@@ -1,23 +1,26 @@
 # Deploying the Gluu Server on Containership.io 
 
-The following documentation provides instructions for deploying the Gluu Server on the [Containership.io](https://containership.io) platform. 
+The following documentation provides instructions for deploying the Gluu Server on [Containership.io](https://containership.io).
 
 Containership is a containers-as-aservice platform providing users with a single pane of glass to easily deploy, manage and scale their containerized applications on any public or private cloud. Containership provides both developers and operators with the simplest possible solution for managing applications from development through production, while facilitating self-service. 
 
-Docs about Gluu Server deployment using containership Market place
+## Step 1: Create a cluster in containership
 
-Create a cluster in containership:
-Choose a cloud provider
-Choose “Containership” as cluster orchestration framework
-Choose cloud region
-Choose Ubuntu OS
-Choose your SSH key (for admin)
-Create 1 leader host with at least 1GB RAM
-Create 2 follower hosts with 4 CPUs and 8GB RAM
-Choose a name and environment  ( Example, Name: gluu, Environment: dev/test/prod )
+Navigate to the containership interface and perform the following:
 
-Add firewall rule:
-Go to cluster Firewall tab, add following rule for SSH connection,
+1. Choose a cloud provider
+2. Choose “Containership” as cluster orchestration framework
+3. Choose cloud region
+4. Choose Ubuntu OS
+5. Choose your SSH key (for admin)
+6. Create 1 leader host with at least 1GB RAM
+7. Create 2 follower hosts with 4 CPUs and 8GB RAM
+8, Choose a name and environment  ( Example, Name: gluu, Environment: dev/test/prod )
+
+## Step 2: Add firewall rule:
+
+Go to cluster Firewall tab, add following rule for SSH connection:
+
 Description: SSH for admin
 Target: Host
 Target Hosts: All
@@ -28,12 +31,12 @@ IP address (CIDR format): click "Use My IP" button
 
 Wait until cluster has been provisioned; all hosts are created and connected each other, all builtin containers has been deployed.
 
-Initialize Configuration:
-Add Consul application using Containership Marketplace
-After Consul is deployed in cluster, install Docker in local machine and pull config-init image.
+## Step 3: Initialize Configuration
 
-# docker pull gluufederation/config-init:3.0.1_rev1.0.0-beta3
+1. Add Consul application using Containership Marketplace
+2. After Consul is deployed in cluster, install Docker in local machine and pull config-init image.
 
+`# docker pull gluufederation/config-init:3.0.1_rev1.0.0-beta3`
 
 Now go back to Containership cluster. Choose Applications tab and consul box. In Containers tab, click one of the container. That will show us Host information. Copy the Public IP and Private IP. We will need it for connecting config-init to remote Consul KV.
 
@@ -72,12 +75,8 @@ Select Gluu Server from cluster application and deploy it by following instructi
 [Some screenshot here after CS team create marketplace icon]
 
 
-
-
-
-
-
 This application will deploy following containers:
+
 openldap-init
 openldap
 keyrotation
