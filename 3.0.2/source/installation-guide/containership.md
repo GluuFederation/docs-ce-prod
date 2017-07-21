@@ -2,12 +2,13 @@
 
 The following documentation provides instructions for deploying the Gluu Server on [Containership.io](https://containership.io).
 
-Containership is a containers-as-aservice platform providing users with a single pane of glass to easily deploy, manage and scale their containerized applications on any public or private cloud. Containership provides both developers and operators with the simplest possible solution for managing applications from development through production, while facilitating self-service. 
+Containership is a containers-as-a-service platform providing users with a single pane of glass to easily deploy, manage and scale their containerized applications on any public or private cloud. Containership provides both developers and operators with the simplest possible solution for managing applications from development through production, while facilitating self-service. 
 
 ## Prerequisites
 
-1. A resolveable public domain
-2. SSL certificate and key for the domain
+1. [Containership.io](https://containership.io) account
+2. A resolveable public domain
+3. SSL certificate and key for the domain
 
 ## Create a cluster in containership
 
@@ -50,9 +51,11 @@ Consul application in Containership uses private IP and port 8314 to listen to c
 `# ssh -L 0.0.0.0:8500:<REMOTE-PRIVATE-IP>:8314 <SSH-USER>@<REMOTE-PUBLIC-IP>`
 
 After tunneling established, in another terminal, we can start generating initial config in our local machine for our Gluu Server cluster.
+
 Prepare following steps before generating initial config:
-Use resolvable public domain
-Use SSL certificate and key for the domain (create them if we don't have one yet; self-signed is possible)
+
+1. Use resolvable public domain
+2. Use SSL certificate and key for the domain (create them if we don't have one yet; self-signed is possible)
 
 Here's an example on how to run config-init container:
 
