@@ -204,8 +204,7 @@ In order to leverage your Gluu Server OpenID Provider (OP) for central authentic
 There are many ways to go about supporting OpenID Connect in your apps, however we do not recommend writing your own OpenID Connect client. Rather, it is best to use existing client software implementations that have been verified to implement OpenID Connect properly (and securely!). A good OpenID Connect client will do much of the heavy lifting for you. 
 
 !!! Note
-    Although you can use generic OAuth client libraries, you would have to write some extra code to take advantage of OpenID Connect's 
-security features. For example, there is no id_token in OAuth, so you won't find any code for id_token validation in an OAuth library. 
+    Although you can use generic OAuth client libraries, you would have to write some extra code to take advantage of the security features baked into OpenID Connect. For example, there is no `id_token` in OAuth, so you won't find any code for `id_token` validation in an OAuth library. 
 
 ### Single Page Applications 
 To support OpenID Connect in a single page application (SPA), we recommend using Identity Model's [OpenID JS Client](https://github.com/IdentityModel/oidc-client-js).
