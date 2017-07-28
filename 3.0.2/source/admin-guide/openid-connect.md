@@ -199,7 +199,9 @@ mechanism is not perfect. If the end user's web browser is blocking third party 
 
 ## OpenID Connect Relying Party (RP)
 
-In order to leverage your Gluu Server OpenID Provider (OP) for central authentication, your web and mobile apps will need to support OpenID Connect. In OpenID Connect jargon, your app will need to act as an OpenID Connect Relying Party (RP) or "client". There are many ways to go about supporting OpenID Connect in your apps, however we do not recommend writing your own OpenID Connect client. Rather, it is best to use existing client software implementations that have been verified to implement OpenID Connect properly (and securely!). A good OpenID Connect client will do much of the heavy lifting for you. 
+In order to leverage your Gluu Server OpenID Provider (OP) for central authentication, your web and mobile apps will need to support OpenID Connect. In OpenID Connect jargon, your app will need to act as an OpenID Connect Relying Party (RP) or "client". 
+
+There are many ways to go about supporting OpenID Connect in your apps, however we do not recommend writing your own OpenID Connect client. Rather, it is best to use existing client software implementations that have been verified to implement OpenID Connect properly (and securely!). A good OpenID Connect client will do much of the heavy lifting for you. 
 
 !!! Note
     Although you can use generic OAuth client libraries, you would have to write some extra code to take advantage of OpenID Connect's 
