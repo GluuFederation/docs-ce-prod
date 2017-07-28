@@ -149,7 +149,7 @@ Let's start!
   - Log into oxTrust
   - Configuration -> Manage Custom Script
   - Script name 'asimba'
-    - asimba_saml_certificate_file: /etc/certs/saml.pem [ Make sure you copy ingredient of `asimba.crt` into `samlp.pem` with "BEGIN CERTIFICATE" and "END CERTIFICATE" header and footer] 
+    - asimba_saml_certificate_file: /etc/certs/saml.pem [ Make sure you copy ingredient of `asimba.crt` into `saml.pem` with "BEGIN CERTIFICATE" and "END CERTIFICATE" header and footer] 
     - asimba_entity_id: https://[proxy3_hostname]/saml
     - saml_deployment_type: enroll
     - saml_use_authn_context: false
