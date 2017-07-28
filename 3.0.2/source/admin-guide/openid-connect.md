@@ -220,12 +220,12 @@ web accessible folder, then navigate to the page and test!
 ### Server-Side Web Applications
 Many applications are "server-side", meaning the web page displays content but most of the dynamic business logic resides on the web server. Two design patterns have emerged for securing server-side web applications: (1) use of web server filters and reverse proxies, and (2) leveraging OAuth2 directly in your application. Which approach to use depends on the trade-off between easier devops (option 1), and how deeply you want to integrate centralized security policies into your application (option 2).
 
-#### OpenID Connect in the Application
-The OpenID Foundation maintains a list of client libraries on [their website](http://openid.net/developers/libraries). 
+#### Add OpenID Connect in the Application
+Calling the OpenID Connect API’s directly will enable “smarter” applications. For example, transaction level security can be more easily implemented by calling the APIs directly. This can have a positive impact on usability. Giving developers more ability to leverage centralized policies may also increase re-use of policies, and ultimately result in better security. 
 
-However, our experience has been that the quality of these libraries varies widely. Some are not well documented, other are not updated frequently, and some do not implement essential security features available in OpenID Connect. In addition, if a wide array of client libraries are used it becomes difficult to monitor and patch security vulnerabilities. 
+The OpenID Foundation maintains a list of client libraries on [their website](http://openid.net/developers/libraries). However, our experience has been that the quality of these libraries varies widely. Some are not well documented, other are not updated frequently, and some do not implement essential security features available in OpenID Connect. In addition, if a wide array of client libraries are used it becomes difficult to monitor and patch security vulnerabilities. 
 
-For the reasons discussed above, we recommend that you use our OpenID Connect middleware software called [oxd](http://oxd.gluu.org) to secure and integrate web applications with your Gluu Server.  
+For these reasons, we recommend using our OpenID Connect middleware software called [oxd](http://oxd.gluu.org) to secure and integrate web applications with your Gluu Server.  
 
 oxd is not open source software, but it is very reasonably priced. The code is available on [GitHub](https://github.com/gluufederation/oxd). There are libraries available for PHP, Java, Python, C#, Node, 
 Ruby, Perl and Go. There are also plugins available for several popular open source applications.
@@ -234,7 +234,7 @@ Ruby, Perl and Go. There are also plugins available for several popular open sou
 
 [Get an oxd license for free](http://oxd.gluu.org)
 
-#### Web Server Plugins
+#### Use Web Server Plugins
 Web Server filters are a tried and true approach to achieving single sign-on with web applications. The web server filter enforces the presence of a token in a HTTP Request. If no token is present, the Web server may re-direct the person, or return a meaningful code or message to the application. The web server with the filter may directly serve the application, or may proxy to a backend service.
 
 One of the advantages of the web server filter approach is that the application developer does not need to know that much about the 
