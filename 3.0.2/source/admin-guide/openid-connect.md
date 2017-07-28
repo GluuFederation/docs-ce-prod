@@ -18,7 +18,7 @@ the subject. The Gluu Server is an OP.
 
 - The *Relying Party* or  *RP*  or *client* is software, like a mobile application 
 or website, which needs to authenticate the subject. The RP is an OAuth 
-client. [oxd](https://oxd.gluu.org) is an RP.
+client. 
 
 !!! Note
     Read [this blog](http://gluu.co/oauth-saml-openid) for a good overview of OpenID Connect versus SAML.
