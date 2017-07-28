@@ -21,7 +21,7 @@ or website, which needs to authenticate the subject. The RP is an OAuth
 client. 
 
 !!! Note
-    Read [this blog](http://gluu.co/oauth-saml-openid) for a good overview of OpenID Connect versus SAML.
+    To learn more about the differences between OAuth, SAML and OpenID Connect, read [this blog](http://gluu.co/oauth-saml-openid).
 
 ## Gluu Server OpenID Connect Provider (OP)
 The Gluu Server passes all [OpenID Provider conformance profiles](http://openid.net/certification/) and supports the following OpenID Connect specifications: Core, Dynamic Client Registration, Discovery, Form Post Response Mode, Session Management, and the draft for Front Channel Logout.
