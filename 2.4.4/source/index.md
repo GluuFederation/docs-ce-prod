@@ -81,7 +81,7 @@ for other components are listed below.
 |	Shibboleth IDP      | [Apache2](http://www.apache.org/licenses/LICENSE-2.0)|
 |	OpenLDAP	        | [OpenLDAP Public License](http://www.openldap.org/software/release/license.html)|
 |	Asimba		        | [GNU APGL 3.0](http://www.gnu.org/licenses/agpl-3.0.html)|
-|	OpenDJ		        | [CDDL](https://forgerock.org/cddlv1-0/)|
+|	OpenDJ		        | [Forgerock](https://www.forgerock.com/evaluation-license-agreement/)|
 |  UnboundID LDAP SDK	| [UnboundID LDAP SDK Free Use License](https://github.com/UnboundID/ldapsdk/blob/master/LICENSE-UnboundID-LDAPSDK.txt)|
 | Passport-JS           | [MIT License](https://github.com/jaredhanson/passport/blob/master/LICENSE) |
 | Tomcat / Apache HTTPD  | [Apache2](http://www.apache.org/licenses/LICENSE-2.0)|
