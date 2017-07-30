@@ -131,7 +131,7 @@ Refer [here](../../admin-guide/saml/#create-a-trust-relationship-in-the-gluu-ser
 
 ### Configure Relaying Party
 
-Refer to [Relaying Party](../../admin-guide/#relying-party-configuration) Configuration for more details. 
+Refer to [Relaying Party](../../admin-guide/saml/#relying-party-configuration) Configuration for more details. 
 Relaying Party configuration screen should look like below.
 
 ![image](../../img/integration/o365_trelationship.png)
