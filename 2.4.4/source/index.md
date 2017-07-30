@@ -38,7 +38,7 @@ we believe we need to keep the Gluu Server free so all kinds of
 organizations can use, contribute and benefit from the software.
 
 These docs are not perfect! Please help us make them so by submitting
-any improvements to our [Documentation Github](https://github.com/GluuFederation/docs-3).
+any improvements to our [Documentation Github](https://github.com/GluuFederation/docs-ce-prod).
 If you're a Github pro, submit a pull request. If not, just open an issue
 on any typos, bugs, or improvements you'd like to see. We need your
 help... even if you're not a coder, you can contribute! 
