@@ -15,7 +15,7 @@ themselves protected by OAuth (or an OAuth-based authentication protocol) in emb
 The UMA protocol has three broad phases as below
 
 ```
-                                          +--------------+
+                                           +--------------+
                                            |   resource   |
           +---------manage (A)------------ |     owner    |
           |                                +--------------+
@@ -43,6 +43,8 @@ The UMA protocol has three broad phases as below
 
                                            requesting party
 ```
+Source: [Kantara initiative](https://docs.kantarainitiative.org/uma/rec-uma-core.html#rfc.figure.1).
+
 The Three Phases of the UMA. 
 
 - Protect a resource
