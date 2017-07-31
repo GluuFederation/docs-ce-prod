@@ -116,7 +116,7 @@ This new user has been given an `id`. If possible inspect your `ou=people` branc
 
 SCIM will only allow you to create users with HTTP POST verb.
 
-### Retrieving information of a single user
+### Retrieving information of a user
 
 One of the simplest ways to test retrieval is querying all information about a single user. Check in your LDAP the `inum` for Average Joe and do the following request with `curl` or just use a browser:
 
