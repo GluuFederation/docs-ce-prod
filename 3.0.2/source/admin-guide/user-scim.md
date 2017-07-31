@@ -1,20 +1,24 @@
 # User Management with SCIM
 
-This page outlines how to do basic user management with the System for Cross-domain Identity Management - SCIM.
-
-
-## Introduction
-
 SCIM is a specification designed to reduce the complexity of user management operations by providing a common user schema and the patterns for exchanging this schema using HTTP in a platform-neutral fashion. The aim of SCIM is achieving interoperability, security, and scalability in the context of identity management.
 
-Current version of the specification - 2.0 - is governed by the following documents: [RFC 7642](https://tools.ietf.org/html/rfc7642), [RFC 7643](https://tools.ietf.org/html/rfc7643), and [RFC 7644](https://tools.ietf.org/html/rfc7644).
+You can think of **SCIM** merely as a **REST API** with endpoints exposing **CRUD** functionality (create, update, retrieve and delete).
+
+For your reference, current version of the specification - 2.0 - is governed by the following documents: [RFC 7642](https://tools.ietf.org/html/rfc7642), [RFC 7643](https://tools.ietf.org/html/rfc7643), and [RFC 7644](https://tools.ietf.org/html/rfc7644).
+
+## First steps: protect your API
+
+The SCIM protocol does not define a specific method for authentication or authorization so that you can protect your API. In this regard there are a few guidelines in section 2 of [RFC 7644](https://tools.ietf.org/html/rfc7644). 
+
+Gluu Server CE allows you to protect your endpoints with [UMA](scim-uma.md). This is a safe and standardized approach for protecting web resources. For SCIM, we **strongly recommend** its usage. Please visit this [page](scim-uma.md) to learn more on how to protect your API appropriately.
+
+Alternatively, for testing purposes you can temporarily enable the test mode that uses a "Bearer token" approach. All examples given in this page are run under test mode and serve as a quick and easy way to start learning about SCIM.
 
 !!! Note
-    Despite the existence of an endpoint for version 1.0, we strongly encourage the usage of version 2.0 of SCIM. 
+    Despite the existence of an endpoint for version 1.0 of the spec, we strongly encourage the usage of version 2.0 of SCIM. 
 
-The SCIM protocol does not define a specific scheme for authentication or authorization. In section 2 of [RFC 7644](https://tools.ietf.org/html/rfc7644) a few guidelines are given that implementors may embrace. We suggest protecting your SCIM endpoints with [UMA](scim-uma.md), however, for testing purposes you can temporarily enable the test mode that uses a "Bearer token" approach.
 
-## Using test mode (v2.4.4+)
+## Using test mode
 
 !!! Warning
     Test mode is a weak security approach to protect your service. This feature could be changed or removed in future releases of Gluu Server.
@@ -23,14 +27,17 @@ Starting with CE v2.4.4, the "test mode" configuration helps developers and admi
 
 To enable test mode, do the following:
 
-* Login to the oxTrust GUI  
-* Navigate to `Configuration` > `JSON Configuration` > `OxTrust Configuration`, 
-then locate the property `scimTestMode`.
+* Login to the oxTrust GUI
+
+* Go to `Configuration` > `Organization Configuration` and choose "enabled" for the SCIM support property
+
+![enable scim](../img/scim/enable-scim.png)
+
+* Navigate to `Configuration` > `JSON Configuration` > `OxTrust Configuration`, then locate the property `scimTestMode`.
 
 ![image](../img/scim/scim-test-mode-false.png)
 
-* Set it to `true`.
-* Click the `Save Configuration` button. 
+* Set it to `true` and click the `Save Configuration` button. 
 
 The Gluu server will then create a long-lived OAuth2 access token with a 
 validity period of one year.
@@ -39,8 +46,6 @@ validity period of one year.
 This will retrieve the access token and will display it at the `scimTestModeAccessToken` property.
 
 ![image](../img/scim/scim-test-mode-true.png)
-
-If your access token ever expires, just repeat the previous steps to create a new one.
  
 From then on, that token can be used as the query string 
 parameter `access_token` when accessing the endpoints, for example:
