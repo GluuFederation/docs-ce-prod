@@ -29,11 +29,11 @@ Custom scripts can either be inserted directly into the GUI or you can
 specify a path to the script. We recommend specifying a path in order to 
 make development easier. To specify a path, select `File` from the `Script Location Type` field in oxTrust and the `Script Path` input box will be displayed:
 
-![image](../img/admin-guide/multi-factor/script_upload_box.png)
+![image](../../img/admin-guide/multi-factor/script_upload_box.png)
 
 The `LDAP` option in the `Script Location Type` can be used to store the script in the LDAP tree once development is complete. Remember that selecting the `LDAP` method requires the script to be copied in the input box that appears upon LDAP selection:
 
-![image](../img/admin-guide/multi-factor/script_in_ldap.png)
+![image](../../img/admin-guide/multi-factor/script_in_ldap.png)
 
 ## Fields in Custom Script:
 
@@ -65,7 +65,8 @@ We used the [Basic Script](https://raw.githubusercontent.com/GluuFederation/oxAu
 as a template. The [Wikid forms](https://github.com/GluuFederation/oxAuth/tree/master/Server/src/main/webapp/auth/wikid) 
 were also used as a template since it requires that we pass the value of the `code` obtained from Twilio to step 2 of the authentication to validate and authenticate the user.
 
-The [Wikid authentication](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/wikid/WikidExternalAuthenticator.py) script was also looked upon for examples on how to process the form.
+The [Wikid authentication](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations.deprecatred/wikid/WikidExternalAuthenticator.py)
+ script was also looked upon for examples on how to process the form.
 
 ## Implement methods - Using Twilio SMS
 
@@ -92,7 +93,7 @@ Steps to add a custom template and pass values between 2 steps of authentication
 
 As shown in the below illustration:
 
-![image](../img/admin-guide/multi-factor/twilio.png)
+![image](../../img/admin-guide/multi-factor/twilio.png)
 
 ## Methods 
 
@@ -200,7 +201,7 @@ Using **session_attribute.get()** method, stored session attribute can be retrie
 
 Sometimes it is helpful to enable system administrators to enter properties that might frequently change. If administrators are not allowed to modify the script, the Custom Property feature can be used as illustrated in below screenshot:
 
-![image](../img/admin-guide/multi-factor/07-custom-properties.jpg)
+![image](../../img/admin-guide/multi-factor/07-custom-properties.jpg)
 
 `configurationAttributes.get("<key>").getValue2"()`:
 
