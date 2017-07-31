@@ -6,7 +6,7 @@ Gluu Server CE supports UMA protection for SCIM endpoints from version 2.4.0 onw
 
 As usual in open specs, concepts are abstract and hard to grasp at first, as such, the following section condenses some of the most important aspects to be aware of when protecting your SCIM API by UMA.
 
-If you are really in a hurry, you can proceed straight to the [enabled section](#enable-protection) to activate UMA protection.
+If you are really in a hurry, you can proceed straight to the [enable section](#enable-protection) to activate UMA protection.
 
 ## Actors involved in protection
 
@@ -41,7 +41,7 @@ To make your SCIM endpoint be protected by UMA, you just have to activate a coup
 
 ![enable uma](../img/scim/enable_uma.png)
 
-In the following section we willgo for a deeper insight and see how configurations correlate to concepts already shown.
+In the following section we will go for a deeper insight and see how configurations correlate to concepts already shown.
 
 
 ## Built-in configurations
