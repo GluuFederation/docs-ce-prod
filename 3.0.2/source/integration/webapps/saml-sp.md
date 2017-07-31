@@ -209,7 +209,7 @@ ScriptAlias /protected/ /var/www/protected/
 ```
 
 
-# Configure the Shibboleth SP
+## Configure the Shibboleth SP
 
 Use this for `shibboleth2.xml` and replace `squid.gluu.info` with the
 hostname of your SP, and `albacore.gluu.info` with the hostname of your
@@ -303,16 +303,16 @@ Copy this file into `/etc/shibboleth/attribute-map.xml`:
 Now you need to create a Trust Relationship in your Gluu Server. Login,
 go to SAML / Trust Relationships, and "Add Relationship":
 
-![image](../img/integration/minnow-saml-trust-relationship-shibboleth-sp.png)
+![image](../../img/integration/minnow-saml-trust-relationship-shibboleth-sp.png)
 
 Then, configure for SAML2SSO profile. Click on the checkbox to
 "Configure specific RelyingParty":
 
-![image](../img/integration/configure_rp.png)
+![image](../../img/integration/configure_rp.png)
 
 Then, click to add the SAML2SSO profile:
 
-![image](../img/integration/saml_sso-profile.png)
+![image](../../img/integration/saml_sso-profile.png)
 
 Then "Save" and "Update." Wait 5 minutes for the Shibboleth IDP to detect reload the metadata or
 stop and start Jetty.
@@ -427,22 +427,22 @@ initial admin password). The output will contain something like this:
 
 ### IIS Configuration in Windows 7
 
-1. Start --> Control Panel --> Programs --> "Turn Windows features on or off"
+1. `Start` > `Control Panel` > `Programs` > `Turn Windows features on or off`
 
 2. Select (i) IIS (ii) Web Management Tools (iii) II6 Management Compatibility (iv) IIS Management Console (v) IIS Management Scripts and Tools (vi) IIS Management Service
 
 3. Select (i) World Wide Web Services (ii) CGI (iii) ISAPI Filters (iv) ISAPI Extensions --> Press OK.
-![IIS 7 Setup](../img/integration/admin_sp_iis7setup.png)
+![IIS 7 Setup](../../img/integration/admin_sp_iis7setup.png)
 
 4. Test IIS to see if it is installed in your system with "127.0.0.1" in the web browser. For our test case, we used IIS7.
-![Test IIS](../img/integration/admin_sp_iis7test.png)
+![Test IIS](../../img/integration/admin_sp_iis7test.png)
 
 ## ISAPI Filter Configuration
 
 1. Open IIS Manager (Start --> Administrative Tools --> Internet Information Service/IIS Manager)
 
 2. Double click on "ISAPI and CGI Restrictions"
-![ISAPI and CGI](../img/integration/admin_sp_isapicgi.png)
+![ISAPI and CGI](../../img/integration/admin_sp_isapicgi.png)
 
 3. Add a new Filter
 
@@ -454,114 +454,115 @@ initial admin password). The output will contain something like this:
 
   d. Click "Allow" (from the right hand side)
 
-![ISAPI Path](../img/integration/apache_sp_isapipath.png)
+![ISAPI Path](../../img/integration/apache_sp_isapipath.png)
 
   e. Back to IIS Manager --> ISAPI Filters
 
-![ISAPI Filters](../img/integration/apache_sp_isapifilter.png)
+![ISAPI Filters](../../img/integration/apache_sp_isapifilter.png)
 
-        1. Click "Add" (upper right corner)
+  1. Click "Add" (upper right corner)
+ 
+  2. Filter Name: Shibboleth
+ 
+  3. Executable: "\opt\shibboleth-sp\lib\shibboleth\isapi_shib.dll"
 
-        2. Filter Name: Shibboleth
-
-        3. Executable: "\opt\shibboleth-sp\lib\shibboleth\isapi_shib.dll"
-
-![ISAPI Edit](../img/integration/apache_sp_isapiedit.png)
+![ISAPI Edit](../../img/integration/apache_sp_isapiedit.png)
 
   f. SSO file extension mapping
+  
+  1. Click on "Handler Mapping" from main page
 
-        1. Click on "Handler Mapping" from main page
-
-![SP Handler](../img/integration/admin_sp_handlermapping.png)
-
-        2. Click "Add Script Map" from Action
-![Script Map](../img/integration/admin_sp_addscriptmap.png)
-
-        3. Request Path :".sso"
-
-        4. Executable should be pointed to "isapi_shib.dll"
-![Executable](../img/integration/admin_sp_executable.png)
+![SP Handler](../../img/integration/admin_sp_handlermapping.png)
+    2. Click "Add Script Map" from Action
+![Script Map](../../img/integration/admin_sp_addscriptmap.png)
+   
+   3. Request Path :".sso"
+      
+   4. Executable should be pointed to "isapi_shib.dll"
+![Executable](../../img/integration/admin_sp_executable.png)
 
   g. Restart IIS
 
   h. Check Status
 
   Check Status by typing in "http://127.0.0.1/Shibboleth.sso/Status" in the web browser. If it displays an XML document, then the Shibboleth SP Installation in Windows IIS7 in complete.
-![Status Check](../img/integration/admin_sp_checkstatus.png)
+![Status Check](../../img/integration/admin_sp_checkstatus.png)
 
 ## Shibboleth SP Setup in Windows 2008 R2 with IIS7
 
 1. Open up "Server Manager", scroll down and click on "Add Roles".
 
-![Add Role](../img/integration/iis_setup_addrole.png)
+    ![Add Role](../../img/integration/iis_setup_addrole.png)
 
 2. Hit "Next"
 
-![Next](../img/integration/iis_setup_next.png)
+    ![Next](../../img/integration/iis_setup_next.png)
 
 3. Select "Web Server (IIS)", hit "Next"
 
-![Web Server](../img/integration/iis_setup_webserver.png)
+    ![Web Server](../../img/integration/iis_setup_webserver.png)
 
-4. Select (i) CGI
+4. Select 
+    
+    - CGI
+    
+    - ISAPI Extensions
+    
+    - ISAPI Filters
+    
+    - Management Tools
+    
+        - IIS Management Console
+        
+        - IIS Management Scripts and Tools
+        
+        - Management Service
+    
+    - All IIS6 Management Compatibility
 
-(ii) ISAPI Extensions
+     ![Selection](../../img/integration/iis_setup_selection.png)
 
-(iii) ISAPI Filters
-
-(iv) Management Tools
-
-  (a) IIS Management Console
-
-  (b) IIS Management Scripts and Tools
-
-  (c) Management Service
-
-(v) All IIS6 Management Compatibility
-
-![Selection](../img/integration/iis_setup_selection.png)
-
-![Selection](../img/integration/iis_setup_selection1.png)
+     ![Selection](../../img/integration/iis_setup_selection1.png)
 
 5. Hit "Next", for the confirmation, check the list of plugins.
 
-![Plugin](../img/integration/iis_setup_plugin.png)
+    ![Plugin](../../img/integration/iis_setup_plugin.png)
 
-![Management Tools](../img/integration/iis_setup_managementtools.png)
+    ![Management Tools](../../img/integration/iis_setup_managementtools.png)
 
 6. Hit "Install" and Windows 2008 will complete the installation. A confirmation window shall appear which resembles the screenshot below.
 
-![Confirmation](../img/integration/iis_setup_confirmation.png)
+    ![Confirmation](../../img/integration/iis_setup_confirmation.png)
 
 7.Test IIS7 setup from the Internet.
 
-![Test](../img/integration/iis_setup_test.png)
+   ![Test](../../img/integration/iis_setup_test.png)
 
 ### Shibboleth SP 2.5.x Setup
 
-1. Down the [Shibboleth SP 2.5.x](http://www.shibboleth.net/downloads/service-provider/latest/)
+1. Down the [Shibboleth SP 2.5.x](https://shibboleth.net/downloads/service-provider/latest/)
 
 2. Start the installation, keep the default path, Select "Install ISAPI modules into IIS", IIS Script Extension must be ".sso" and Hit "Next".
 
-![Shib Setup](../img/integration/iis_setup_shibsetup.png)
+    ![Shib Setup](../../img/integration/iis_setup_shibsetup.png)
 
 3. After the completion of the installation, the system will ask to reboot the system; hit "Yes".
 
-![Restart](../img/integration/iis_setup_restart.png)
+    ![Restart](../../img/integration/iis_setup_restart.png)
 
 4. Test the Shibboleth SP installation from the SP VM using the URL "localhost/Shibboleth.sso/Status" in the address bar of the Web Browser.
 
-![Status](../img/integration/iis_setup_status.png)
+    ![Status](../../img/integration/iis_setup_status.png)
 
 ### Trust Relationship in IdP
 
 1. Create a Trust Relationship for the new SP in the IdP. It is necessary to upload the Public Certificate of the new SP in the IdP. Please note that the CN of the public certificate MUST BE the same as _Hostname_ of the SP. Hit "Add".
 
-![Add TR](../img/integration/iis_setup_addtr.png)
+    ![Add TR](../../img/integration/iis_setup_addtr.png)
 
 2. Download the IdP generated configuration files for Shib SP modification.
 
-![Download](../img/integration/iis_setup_download.png)
+    ![Download](../../img/integration/iis_setup_download.png)
 
 ### SP Configuration
 
@@ -569,17 +570,17 @@ initial admin password). The output will contain something like this:
 
 2. Before placing them inside the SP Configuration please check
 
-  (a) The "spcert.crt" file has the CN same as the SP hostname.
-
-  (b) The "spcert.crt" and "spkey.key" has the same _md5sum_ value.
-
-  (c) The IdP-metadata is perfectly placed inside the SP Configuration.
-
-  (d) The downloaded "shibboleth2.xml" file has values resembling the file content below.
+    - The "spcert.crt" file has the CN same as the SP hostname.
+    
+    - The "spcert.crt" and "spkey.key" has the same _md5sum_ value.
+    
+    - The IdP-metadata is perfectly placed inside the SP Configuration.
+    
+    - The downloaded "shibboleth2.xml" file has values resembling the file content below.
 
 3. For testing purpose, we are going to protect a directory named "secure" with the IdP.  Create a folder/directory in the IIS Root Directory and restart Shibd and IIS.
 
-![Secure](../img/integration/iis_setup_secure.png)
+    ![Secure](../../img/integration/iis_setup_secure.png)
 
 ### SSO Testing
 
@@ -792,21 +793,20 @@ initial admin password). The output will contain something like this:
 
 ### Shibboleth SP Installation
 
-1. Download the MSI of Shibboleth-SP from:
-   http://www.shibboleth.net/downloads/service-provider/latest/ .
+1. Download the MSI of Shibboleth-SP from [shibboleth Repository](http://shibboleth.net/downloads/service-provider/latest/)   
 
 2. Start the installation
 
-![IMAGE](../img/integration/admin_sp_click.png)
+    ![IMAGE](../../img/integration/admin_sp_click.png)
 
 3. Define the destination folder (by default it is: C:\opt\shibboleth-sp).
 
-![IMAGE](../img/integration/admin_sp_destination.png)
+    ![IMAGE](../../img/integration/admin_sp_destination.png)
 
 4. Select the Shibboleth Daemon port. By default it is 1600, and you may
    keep it for testing it, locally.
 
-![IMAGE](../img/integration/admin_sp_port.png)
+    ![IMAGE](../../img/integration/admin_sp_port.png)
 
 5. Now, there are two options. According to your target you will have to
 choose one.
@@ -819,41 +819,38 @@ choose one.
 		and configure IIS”. Remember to put the file Extension ”.sso” --
 		this is necessary.
 
-![IMAGE](../img/integration/admin_sp_microsoft.png)
-
-		
-		b. For the Apache Web Server, UNCHECK "Install ISAPI filter and
+    ![IMAGE](../../img/integration/admin_sp_microsoft.png)
+        b. For the Apache Web Server, UNCHECK "Install ISAPI filter and
 		configure IIS".
 
-![IMAGE](../img/integration/admin_sp_apachesetup.png)
+    ![IMAGE](../../img/integration/admin_sp_apachesetup.png)
+   3. UAC of Windows 7 may block this program, so allow it.
 
-	3. UAC of Windows 7 may block this program, so allow it.
-
-![IMAGE](../img/integration/admin_sp_uac.png)
+    ![IMAGE](../../img/integration/admin_sp_uac.png)
 
 ## Apache Configuration
 
 1. Download the Apache HTTP server MSI Installer with OpenSSL:
    http://httpd.apache.org/download.cgi#apache22 .
 
-![IMAGE](../img/integration/admin_sp_apacheclick.png)
+    ![IMAGE](../../img/integration/admin_sp_apacheclick.png)
 
 2. Select the destination. You can keep the default destination for your
 local testing. But, make sure that there is no other “Apache Software
 Foundation” directory in your current “C:\Program Files\” location.
 
-![IMAGE](../img/integration/admin_sp_apachedestination.png)
+    ![IMAGE](../../img/integration/admin_sp_apachedestination.png)
 
 3. Provide the Server Information. For local testing you can use
    `localdomain/localhost`.
 
-![IMAGE](../img/integration/admin_sp_serverinfo.png)
+    ![IMAGE](../../img/integration/admin_sp_serverinfo.png)
 
 4. Test whether the Apache web server is installed or not. Open your web
 browser and use `localhost`. If you see something like the image shown
 below--you are done!
 
-a![IMAGE](../img/integration/admin_sp_apachetest.png)
+    ![IMAGE](../../img/integration/admin_sp_apachetest.png)
 
 ### Shibboleth and Apache Configuration
 
@@ -883,7 +880,7 @@ a![IMAGE](../img/integration/admin_sp_apachetest.png)
 2. If you can see some XML page like the one shown below--you are done
    with your SP installation in Windows through Apache2.
 
- a![IMAGE](../img/integration/admin_sp_checkstatus.png)
+ ![IMAGE](../../img/integration/admin_sp_checkstatus.png)
 
 
 
