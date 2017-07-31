@@ -1,4 +1,8 @@
 # UMA
+
+## Disclaimer
+The Gluu Server 3.1, due for release August 31, 2017, will support [UMA 2.0](https://docs.kantarainitiative.org/uma/ed/uma-core-2.0-01.html). There are breaking changes with the Gluu Server's existing UMA 1.x implementation as documented below. If you are preparing for a new UMA deployment, if we possible we recommend waiting for Gluu Server 3.1. If you'd like to be notified when Gluu Server 3.1 is released, sign up on for our newsletter on our [website homepage](https://gluu.org). Otherwise check back on our docs around the first of September. 
+
 ## Overview
 As a profile of OAuth 2.0 that is complementary to OpenID Connect, UMA defines RESTful, JSON-based, standardized flows and constructs for coordinating the protection of any API or web resource in a way that will be familiar to any developer already acquainted with OAuth.
 
