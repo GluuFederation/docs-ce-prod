@@ -22,11 +22,3 @@ $ ./update-site-local-sh
 
 Note: 
    "Master" is a branch for editing this `README.md`.  You will not see documentation files until you check out the specific branch.
-
-
-Additional Details:
-To make configuration changes on Apache httpd, edit the below file, only if required.
-
-```
-$ vi /etc/apache2/sites-available/docs.conf
-```
