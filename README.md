@@ -17,8 +17,8 @@ This repo is holds all versions of CE docs and includes scripts to publish.  All
 ## Check out specific branch
 `$ git checkout <branchname>`
 
-!!!Note: 
-   "Master" is also a branch.
+Note: 
+   "Master" is a branch for editing this `README.md`.  You will not see documentation files until you check out the specific branch.
 
 Do required changes, after the changes are done, pull again to make sure that there hasn't been any recent changes between your last pull and push that you would be performing.
 Now, push the changes to the remote using the above script.
