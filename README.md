@@ -11,7 +11,7 @@ This repo is holds all versions of CE docs and includes scripts to publish.  All
 /path/to/repo
 ```
 
-##Clone
+## Clone
 `$ git clone https://github.com/GluuFederation/docs-ce-prod.git`
 
 Once the repository is completely cloned. Do a pull to make sure that the files are in sycn with the remote(repository on Github).
