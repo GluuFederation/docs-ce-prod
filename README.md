@@ -20,32 +20,6 @@ This repo is holds all versions of CE docs and includes scripts to publish.  All
 Note: 
    "Master" is a branch for editing this `README.md`.  You will not see documentation files until you check out the specific branch.
 
-Do required changes, after the changes are done, pull again to make sure that there hasn't been any recent changes between your last pull and push that you would be performing.
-Now, push the changes to the remote using the above script.
-
-The above script, will pull the changes thats done, add or remove file that has been removed or added to the repo. Commit the changes using `commit` command and push the change.
-
-```
-#! /bin/bash
-$git pul
-$echo -n "Enter task Performed >"
-$read text
-$echo "Entered Task: $text"
-$git add -A
-$git commit -m "updated site & - $text"
-$git push origin <branchname>
-```
-
-Just in case, if you run into issues, saying you are not able to push and you are recommended to pull. or you commit is n number changes behind, use stash to command make your local head to level with the latest commit.
-
-`#git stash`
-
-This will make your local branch or head to the latest and then do a push.
-
-!!!Warning: 
-	Please take extreme care, while pushing and stashing.
-
-
 
 ## Cloning a particular folder from a Branch:
 
