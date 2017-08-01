@@ -6,16 +6,17 @@
 
 This repo is holds all versions of CE docs and includes scripts to publish.  All docs are processed using mkdocs. This Repo is organized with branches for each version of the documentation.
 
-  
-```
-/path/to/repo
-```
-
 ## Clone
 `$ git clone https://github.com/GluuFederation/docs-ce-prod.git`
 
 ## Check out specific branch
 `$ git checkout <branchname>`
+
+## Update (for those who have privileges)
+```
+/path/to/repo/branchname (branchname)
+$ ./update-site-local-sh
+```
 
 Note: 
    "Master" is a branch for editing this `README.md`.  You will not see documentation files until you check out the specific branch.
