@@ -25,7 +25,7 @@ Note:
 
 
 Additional Details:
-To make configiration changes on Apache httpd, edit the below file, only if required.
+To make configuration changes on Apache httpd, edit the below file, only if required.
 
 ```
 $ vi /etc/apache2/sites-available/docs.conf
