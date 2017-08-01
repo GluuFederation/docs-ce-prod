@@ -29,5 +29,4 @@ To make configiration changes on Apache httpd, edit the below file, only if requ
 
 ```
 $ vi /etc/apache2/sites-available/docs.conf
-
 ```
