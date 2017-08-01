@@ -8,21 +8,11 @@ This repo is holds all versions of CE docs and includes scripts to publish.  All
 
   
 ```
-#! /bin/bash
-$git pull origin <branchname>
-$echo -n "Enter task Performed >"
-$read text
-$echo "Entered Task: $text"
-$git add -A
-$git commit -m "updated site & - $text"
-$git push origin <branchname>
+/path/to/repo
 ```
 
-##Cloning a repo to local machine:
-
-To clone a repo use the below command
-
-`#git clone <repo url>`
+##Clone
+`$ git clone https://github.com/GluuFederation/docs-ce-prod.git`
 
 Once the repository is completely cloned. Do a pull to make sure that the files are in sycn with the remote(repository on Github).
 
