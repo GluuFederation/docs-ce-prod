@@ -3,14 +3,10 @@
 **Branch 3.0.1 for Gluu Server CE 3.0.1 production docs   
   Branch 2.4.4 for Gluu Server CE 2.4.4 Production docs    
   Branch 3.0.2 for Gluu Server CE 3.0.2 yet to be released**    
+
+This repo is holds all versions of CE docs and includes scripts to publish.  All docs are processed using mkdocs. This Repo is organized with branches for each version of the documentation.
+
   
-One Production repo to publish all the version of CE. This Repo will be organized with branches for each version.
-
-Purpose:
-
-Purpose of this repo is to publish only the site built using mkdocs. And below are the commands to build a site and push/merge it with repo from local system to remote repository. These commands are already scripted and added to the version of the documents, which would create a site with the version number.
-
-
 ```
 #! /bin/bash
 $git pull origin <branchname>
