@@ -72,7 +72,13 @@ Shibboleth has it's own java keystore protected by a password that is unique to 
 
 ### How to test
 
-After Tomcat's restart Shibboleth's configuration generated from a set of Velocity templates should be updated to include your changes to it. One way to test they have been applied is to check the current certificate the module includes in its SAML metadata that is shown at url like [https://your-instance-hostname/idp/shibboleth](https://your-instance-hostname/idp/shibboleth), or can be found in the file `/opt/idp/metadata/YOUR-ORG-INUM-idp-metadata.xml` - it should show the same certificate you tried to import following steps above. If it does not, try to wait until Tomcat has fully started and restart it one more time. Please also pay attention to any error messages appearing in `/opt/idp/logs/idp-process.log` during Tomcat's startup.
+After Tomcat's restart Shibboleth's configuration generated from a set of Velocity templates should be 
+updated to include your changes to it. One way to test they have been applied is to check the current certificate 
+the module includes in its SAML metadata that is shown at url like `https://your-instance-hostname/idp/shibboleth`
+, or can be found in the file `/opt/idp/metadata/YOUR-ORG-INUM-idp-metadata.xml` - it should show the same 
+certificate you tried to import following steps above. If it does not, try to wait until Tomcat has fully 
+started and restart it one more time. Please also pay attention to any error messages appearing 
+in `/opt/idp/logs/idp-process.log` during Tomcat's startup.
 
 ## Updating certificate used by Asimba module (asimba.war)
 
@@ -121,4 +127,6 @@ grep -i '_opendj'` It should have an alias of sort “your-instance-hostname_ope
 
 ### How to test
 
-You can verify that the certificate in cacerts file is the same as in the OpenDJ's keystore using the same “keytool -list” commands as before. Failure when establishing SSL/TLS connection with OpenDJ will result in errors appearing in `/opt/idp/logs/idp-process.log` and `/opt/tomcat/logs/wrapper.log` during Tomcat's startup.
+You can verify that the certificate in cacerts file is the same as in the OpenDJ's keystore 
+using the same “keytool -list” commands as before. Failure when establishing SSL/TLS connection with 
+OpenDJ will result in errors appearing in `/opt/idp/logs/idp-process.log` and `/opt/tomcat/logs/wrapper.log` during Tomcat's startup.

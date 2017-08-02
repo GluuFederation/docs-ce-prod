@@ -51,7 +51,7 @@ We used the [Basic Script](https://raw.githubusercontent.com/GluuFederation/oxAu
 as a template. The [Wikid forms](https://github.com/GluuFederation/oxAuth/tree/master/Server/src/main/webapp/auth/wikid) 
 were also used as a template since it requires that we pass the value of the `code` obtained from Twilio to step 2 of the authentication to validate and authenticate the user.
 
-The [Wikid authentication](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/wikid/WikidExternalAuthenticator.py) script was also looked upon for examples on how to process the form.
+The [Wikid authentication](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations.deprecatred/wikid/WikidExternalAuthenticator.py) script was also looked upon for examples on how to process the form.
 
 ## Implement methods - Using Twilio SMS
 

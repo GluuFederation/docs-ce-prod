@@ -128,12 +128,12 @@ user claims. The Gluu Server supports the [standard scopes]
 in the OpenID Connect specification. You can also define your own scopes,
 and map them to any user attributes which you have registered. 
 
-![Add Scopes](https://raw.githubusercontent.com/GluuFederation/docs/master/sources/img/openid_connect/oxtrust_scope_screenshot.png)
+![Add Scopes](../img/oxtrust/oxtrust_scope_screenshot.png)
 
 To add more claims, simply click "Add Claim" and you will be presented
 with the following screen:
 
-![Add Claims](https://raw.githubusercontent.com/GluuFederation/docs/master/sources/img/oxTrust/admin_oauth2_scopeadd.png)
+![Add Claims](../img/oxtrust/admin_oauth2_scopeadd.png)
 
 | Field | Description |
 |---| ---|
@@ -257,7 +257,7 @@ administrators, not by developers. For example, it may be easier to
 manage and audit apache configuration than to read a bunch of code. 
 
 One of the best OpenID Connect relying party implementations was written 
-by Hans Zandbelt, called [mod_auth_openidc](https://github/com/pingidentity/mod_auth_openidc). It is an authentication and authorization module for the Apache 2.x HTTP server that authenticates users against an OpenID Connect Provider (OP). The software can be found on GitHub and is included in the package management system for several Linux distributions. There are binary packages available, and if you are good at compiling C code, you can build it yourself from the source. 
+by Hans Zandbelt, called [mod_auth_openidc](https://github.com/pingidentity/mod_auth_openidc). It is an authentication and authorization module for the Apache 2.x HTTP server that authenticates users against an OpenID Connect Provider (OP). The software can be found on GitHub and is included in the package management system for several Linux distributions. There are binary packages available, and if you are good at compiling C code, you can build it yourself from the source. 
 
 Note: if you are an Nginx fan, there is a similar 
 [Lua implementation](https://github.com/pingidentity/lua-resty-openidc) 

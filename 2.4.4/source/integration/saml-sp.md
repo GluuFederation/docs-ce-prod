@@ -209,7 +209,7 @@ ScriptAlias /protected/ /var/www/protected/
 ```
 
 
-# Configure the Shibboleth SP
+## Configure the Shibboleth SP
 
 Use this for `shibboleth2.xml` and replace `squid.gluu.info` with the
 hostname of your SP, and `albacore.gluu.info` with the hostname of your
@@ -534,7 +534,7 @@ initial admin password). The output will contain something like this:
 
 ### Shibboleth SP 2.5.x Setup
 
-1. Down the [Shibboleth SP 2.5.x](http://www.shibboleth.net/downloads/service-provider/latest/)
+1. Down the [Shibboleth SP 2.5.x](http://shibboleth.net/downloads/service-provider/latest/)
 
 2. Start the installation, keep the default path, Select "Install ISAPI modules into IIS", IIS Script Extension must be ".sso" and Hit "Next".
 
@@ -788,7 +788,7 @@ initial admin password). The output will contain something like this:
 ### Shibboleth SP Installation
 
 1. Download the MSI of Shibboleth-SP from:
-   http://www.shibboleth.net/downloads/service-provider/latest/ .
+   http://shibboleth.net/downloads/service-provider/latest/
 
 2. Start the installation
 
