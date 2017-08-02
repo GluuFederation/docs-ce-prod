@@ -52,7 +52,7 @@ pages:
         - 'Central Authentication Service (CAS)' : 'admin-guide/cas.md'
         - 'Certificate Management' : 'admin-guide/certificate.md'
         - 'CORS Configuration' : 'admin-guide/cors.md'
-- Integration Guide:
+- SSO Integration Guide:
         - 'Introduction': 'integration/index.md'
         - 'Client SDKs':
             - 'oxd OAuth2': 'integration/oauth2.md'
