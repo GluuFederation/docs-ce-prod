@@ -1,4 +1,4 @@
-# Gluu Server Integration Guide
+# Single Sign-On (SSO) Integration Guide
 The integration guide will help you understand how to achieve SSO with your Gluu Server across custom developed, open source, off-the-shelf, and SaaS web and mobile applications. The most important thing to understand is that there are a variety of SSO integration strategies available depending on the type of application in question. 
 
 The following page provides a number of integration strategies for the most common types of applications. This is not a totally exhaustive list of integration mechanisms and strategies. However, the mechanisms described below have been tested to work with the Gluu Server and are well understood by our support and development staff.  
