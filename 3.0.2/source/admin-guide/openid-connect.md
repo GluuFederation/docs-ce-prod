@@ -149,7 +149,7 @@ with the following screen:
 | Display Name | Name of the scope which will be displayed when searched |
 | Description | Text that will be displayed to the end user during approval of the scope |
 | Scope Type | OpenID, Dynamic or OAuth  |
-| Default Scope | If True, the scope may be requested during Dynamic Client Registration |
+| Default Scope | If True, the scope may be added to clients' registrations created via Dynamic Client Registration protocol |
 
 Scope Type "OpenID" specifies to the Gluu Server that this scope will
 be used to map user claims; "Dynamic" specifies to the Gluu Server that
@@ -157,11 +157,15 @@ the scope values will be generated from the result of the Dynamic Scopes
 custom interception script; "OAuth" specifies that the scope will have
 no claims, it will be meaningful to an external resource server. 
 
-Specifying a scope as "Default" means that a client can request it 
-during dynamic client registration. The only default scope is `openid`, 
-which is required by the OpenID Connect specification. You can always 
-explicitly release a scope to a certain client later on, but this will 
-require some manual intervention by the Gluu Server admin.
+Specifying a scope as "Default" means that any OIDC client using Dynamic 
+Client Registration protocol is allowed to enlist it amongst scopes 
+that will be requested by RP(s) the client represents. As this may result in  
+sensitive users' data being leaked to unauthorized parties, thorough assessment 
+of all claims which belong to scopes about to be marked as "Default" is advised.
+Right after the installation, the only default scope is `openid`, 
+which is required by the OpenID Connect specification. Gluu server's 
+administrator can always explicitly add additional scopes some client is allowed 
+to request by editing its registration metadata manually in web UI later on.
 
 ### Multi-Factor Authentication for Clients
 
