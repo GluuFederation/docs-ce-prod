@@ -17,7 +17,7 @@ We recommend the following SAML and OpenID Connect web server filters:
 
 
 ### Client Software 
-Client software enables developers to more easily leverage OAuth 2.0 directly in their applications. Calling the API’s directly will enable “smarter” applications. For example, transaction level security can be more easily implemented by calling the APIs directly. This can have a positive impact on usability. Giving developers more ability to leverage centralized policies may also increase re-use of policies, and ultimately result in better security. 
+Client software performs some of the heavy lifting for developers around leveraging OAuth 2.0 directly in their applications. Calling the API’s directly will enable “smarter” applications. For example, transaction level security can be more easily implemented by calling the APIs directly. This can have a positive impact on usability. Giving developers more ability to leverage centralized policies also increases re-use of policies, and ultimately results in better security. 
 
 We recommend the following client software to implement OpenID Connect in server-side web applications:
 
