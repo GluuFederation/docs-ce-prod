@@ -126,7 +126,7 @@ table should help you answer the questions correctly.
 
 | Question                |  Explanation                               |
 |-------------------------|--------------------------------------------|
-| Enter IP Address | Used primarily by Apache HTTPD for the [Listen](https://httpd.apache.org/docs/2.4/bind.html) directive.|
+| Enter IP Address | Used primarily by Apache HTTPD for the [Listen](https://httpd.apache.org/docs/2.4/bind.html) directive. **Use the server's private IP address.**|
 | Enter hostname | Internet-facing hostname, FQDN, or CNAME whichever your organization follows to be used to generate certificates and metadata. **Do not use an IP address or localhost.** |
 | Enter your city or locality | Used to generate X.509 certificates. |
 | Enter your state or province two letter code | Used to generate X.509 certificates. |
