@@ -108,9 +108,11 @@ Authentication scripts allow an admin to implement custom workflows to meet an o
 |**Description**|This method is not mandatory. It can be used in cases when you need to execute specific logout logic within the authentication script when oxAuth receives an end session request. Also, it allows oxAuth to stop processing the end session request workflow if it returns `False`. As a result it should either return `True` or `False`|
 |Method Parameters|`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`<br/>`requestParameters` is `java.util.Map<String, String[]>`|
 
-View a [aample Authentication Script](./sample-authentication-script.py).
+View a [sample Authentication Script](./sample-authentication-script.py).
 
-Learn more about out-of-the-box options for user authentication in the [authentication guide](../authn-guide/intro/). And for a complete list of pre-written, open source authentication scripts, view our [server integrations](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations).
+Learn more about out-of-the-box options for user authentication in the [authentication guide](../authn-guide/intro/). Just keep in mind you may need to modify any pre-written authentication scripts to meet your exact business requirements. 
+
+For a complete list of pre-written, open source authentication scripts, view our [server integrations](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations). 
 
 ## Update User     
 
