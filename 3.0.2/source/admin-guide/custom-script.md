@@ -1,7 +1,7 @@
 # Interception Scripts
 
 ## Overview
-Interception scripts allow you to customize many aspects of your Gluu Server authentication and authorization service. For example, if you want to use an external authentication service, like Duo or Yubikey, you would use an an interception script. Or, if you wanted to perform fraud detection during login, you would write an interception script to call the API of your fraud detection service. 
+Interception scripts allow you to customize many aspects of your Gluu Server identity and access management service. For example, if you want to use an external authentication service, like Duo or Yubikey, you would use an an interception script. Or, if you wanted to perform fraud detection during login, you would write an interception script to call the API of your fraud detection service. 
 
 These are just a couple examples of how interception scripts can be used to customize the behavior of the Gluu Server. Both examples focus on login, but the Gluu Server supports interception scripts for many aspects of the service including registration, user updates, authorization and more. 
 
