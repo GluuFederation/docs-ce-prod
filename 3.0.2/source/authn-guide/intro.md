@@ -8,7 +8,7 @@ The Gluu Server ships with interception scripts for a number of authentication m
 - [Social Login](./passport.md) 
 - [Duo Security](./duo.md)
 - [U2F](./U2F.md)
-- Gluu's free mobile authentication app, [Super Gluu](./supergluu.md)
+- [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)
 
 The scripts can be used as is, or can be customized by your organization to implement custom functionality. 
 
@@ -33,7 +33,7 @@ Learn how to [configure social login](./passport.md).
 Interception scripts are used by the Gluu Server to implement multi-factor authentication. A number of scripts are included out-of-the-box, including scripts to support:
 
 - [U2F](./U2F.md)
-- Gluu's free mobile authentication app, [Super Gluu](./supergluu.md)
+- [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)
 - [Duo Security](./duo.md)
 - [Certificate Authentication](./cert-auth.md)
 - [OTP](./otp.md)
