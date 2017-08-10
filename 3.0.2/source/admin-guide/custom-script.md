@@ -62,11 +62,9 @@ More details on Logs can be found in [Log Management](../operation/logs.md)
 
 ## Person Authentication     
 An authentication script enables you to customize the user experience for authentication. For example, you can write a script that
-enables a two-factor authentication mechanism like Duo Security, or FIDO U2F tokens. 
+enables a two-factor authentication mechanism like Duo Security or FIDO U2F tokens. Or you could call external security services like fraud detection or DDoS protection.  
 
-Learn more about out-of-the-box options for user authentication in the [authentication guide](../authn-guide/intro.md/).
-
-Authentication scripts allow an admin to implement custom workflows to meet an organizations unique business requirements. It extends the base script type with the `init`, `destroy` and `getApiVersion` methods but also adds the following methods:
+The authentication interception script extends the base script type with the `init`, `destroy` and `getApiVersion` methods but also adds the following methods:
 
 |Method|`isValidAuthenticationMethod(self, usageType, configurationAttributes)`|
 |---|---|
@@ -108,11 +106,11 @@ Authentication scripts allow an admin to implement custom workflows to meet an o
 |**Description**|This method is not mandatory. It can be used in cases when you need to execute specific logout logic within the authentication script when oxAuth receives an end session request. Also, it allows oxAuth to stop processing the end session request workflow if it returns `False`. As a result it should either return `True` or `False`|
 |Method Parameters|`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`<br/>`requestParameters` is `java.util.Map<String, String[]>`|
 
-- View a [sample Authentication Script](./sample-authentication-script.py).    
-
-Learn more about out-of-the-box options for user authentication in the [authentication guide](../authn-guide/intro/). Just keep in mind you may need to modify any pre-written authentication scripts to meet your exact business requirements. 
+Every deployment of the Gluu Server includes a number of pre-written authentication scripts out-of-the-box. Learn more in the [authentication guide](../authn-guide/intro.md/). 
 
 For a complete list of pre-written, open source authentication scripts, view our [server integrations](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations). 
+
+- View a [sample Authentication Script](./sample-authentication-script.py).    
 
 ## Update User     
 
