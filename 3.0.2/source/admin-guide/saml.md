@@ -184,7 +184,7 @@ Let's start!
    - Metadata Timeout: -1
    - Metadata File: upload metadata
    - Trust Certificate File: Grab SAML metadata from remote IDP and upload that. This certificate must be no password protected and x509 format crt. If remote IDP is another Gluu Server then grab 'shibIDP.crt' from /etc/certs/ of that server.
-   - NameIDFormat: urn:oasis:names:tc:SAML:2.0:nameid-format:transient [ If your remote AuthN server is a Gluu Server, it might vary for other types of AuthN servers ] 
+   - NameIDFormat: urn:oasis:names:tc:SAML:2.0:nameid-format:transient [ If your remote AuthN server is also a Gluu Server ]. This NameID might vary according to various types of AuthN server. 
    - Enabled: Yes
    - Send Scoping in AuthNRequest: Yes
    - AllowCreate: Yes
