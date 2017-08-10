@@ -1,7 +1,11 @@
 # Interception Scripts
 
 ## Overview
-Interception scripts allow the Gluu Server to support unique requirements for many aspects of a central authentication and authorization service. Interception scripts can be written in [Jython](http://www.jython.org/docs/tutorial/indexprogress.html). Jython was chosen because an interpreted language facilitates dynamic creation of business logic, and makes it easier to distribute this logic to a cluster of Gluu servers. Jython enables developers to use either Java or Python classes. Combined with the option of calling web services from Python or Java, this enables the Gluu Server to support any business-driven policy requirement.
+Interception scripts allow you to customize many aspects of your Gluu Server authentication and authorization service. For example, if you want to use an external authentication service, like Duo or Yubikey, you would use an an interception script. Or, if you wanted to perform fraud detection during login, you would write an interception script to call the API of your fraud detection service. 
+
+These are just a couple examples of how interception scripts can be used to customize the behavior of the Gluu Server. Both examples focus on login, but the Gluu Server supports interception scripts for many aspects of the service including registration, user updates, authorization and more. 
+
+Interception scripts are written in [Jython](http://www.jython.org/docs/tutorial/indexprogress.html). Jython was chosen because an interpreted language facilitates dynamic creation of business logic, and makes it easier to distribute this logic to a cluster of Gluu servers. Jython enables developers to use either Java or Python classes. Combined with the option of calling web services from Python or Java, this enables the Gluu Server to support any business-driven policy requirement.
 
 The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scritps`.
 
@@ -57,17 +61,12 @@ the interception scripts or following the workflow of the script.
 More details on Logs can be found in [Log Management](../operation/logs.md)
 
 ## Person Authentication     
-**For a list of pre-written, open source Gluu authentication scripts, 
-view our [server integrations](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations)**
+An authentication script enables you to customize the user experience for authentication. For example, you can write a script that
+enables a two-factor authentication mechanism like Duo Security, or FIDO U2F tokens. 
 
-An authentication script enables you to customize the user
-authentication experience. For example, you can write a script that
-enables a two-factor authentication mechanism like Duo Security. By
-default oxAuth offers basic username/password authentication. Authentication 
-scripts allow an admin to implement more secure workflows to meet
-an organizations security requirements. It extends the base script type
-with the `init`, `destroy` and `getApiVersion` methods but also adds the
-following methods:
+Learn more about out-of-the-box options for user authentication in the [authentication guide](../authn-guide/intro/).
+
+Authentication scripts allow an admin to implement custom workflows to meet an organizations unique business requirements. It extends the base script type with the `init`, `destroy` and `getApiVersion` methods but also adds the following methods:
 
 |Method|`isValidAuthenticationMethod(self, usageType, configurationAttributes)`|
 |---|---|
@@ -109,28 +108,9 @@ following methods:
 |**Description**|This method is not mandatory. It can be used in cases when you need to execute specific logout logic within the authentication script when oxAuth receives an end session request. Also, it allows oxAuth to stop processing the end session request workflow if it returns `False`. As a result it should either return `True` or `False`|
 |Method Parameters|`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`<br/>`requestParameters` is `java.util.Map<String, String[]>`|
 
-This script can be used in oxAuth application only.
+View a [aample Authentication Script](./sample-authentication-script.py).
 
-- [Sample Authentication Script](./sample-authentication-script.py)
-### Certificate Authentication
-Gluu Server CE offers a person authentication module enabling Certificate Authentication.
-The image below contains the design diagram for this module.
-
-![image](../img/admin-guide/Cert%20design.jpg)
-
-The script has a few properties:
-
-|	Property	|Description|	Allowed Values			|example|
-|-------|--------------|------------|-----------------|
-|`chain_cert_file_path`	|mandatory property pointing to certificate chains in [pem][pem] format	|file path| `/etc/certs/chain_cert.pem`	|
-|`map_user_cert`		|specifies if the script should map new user to local account		|true/false| true|
-|`use_generic_validator`	|enable/disable specific certificate validation				|true/false| false|
-|`use_path_validator`	|enable/disable specific certificate validation				|true/false| true|
-|`use_oscp_validator`|enable/disable specific certificate validation				|true/false| false|
-|`use_crl_validator`|enable/disable specific certificate validation				|true/false| false|
-|`crl_max_response_size`	|specifies the maximum allowed size of [CRL][crl] response		| Integer > 0| 2|
-
-- [Sample Certificate Authentication Script](./UserCertExternalAuthenticator.py)        
+Learn more about out-of-the-box options for user authentication in the [authentication guide](../authn-guide/intro/). And for a complete list of pre-written, open source authentication scripts, view our [server integrations](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations).
 
 ## Update User     
 
