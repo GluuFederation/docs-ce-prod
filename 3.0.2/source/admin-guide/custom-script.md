@@ -64,7 +64,7 @@ More details on Logs can be found in [Log Management](../operation/logs.md)
 An authentication script enables you to customize the user experience for authentication. For example, you can write a script that
 enables a two-factor authentication mechanism like Duo Security, or FIDO U2F tokens. 
 
-Learn more about out-of-the-box options for user authentication in the [authentication guide](../authn-guide/intro/).
+Learn more about out-of-the-box options for user authentication in the [authentication guide](../authn-guide/intro.md/).
 
 Authentication scripts allow an admin to implement custom workflows to meet an organizations unique business requirements. It extends the base script type with the `init`, `destroy` and `getApiVersion` methods but also adds the following methods:
 
