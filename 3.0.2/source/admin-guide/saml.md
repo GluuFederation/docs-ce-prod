@@ -260,7 +260,7 @@ You need to create a custom attribute named 'issuerIDP' in this stage. Here is h
 
 ##### Shibboleth SP installation
 
-- Prepare your SP instance by following this ( https://gluu.org/docs/ce/3.0.2/integration/saml-sp/#super-quick-ubuntu-shib-apache-install ) doc. 
+- Prepare your SP instance by following this doc: https://gluu.org/docs/ce/3.0.2/integration/webapps/saml-sp/#super-quick-ubuntu-shib-apache-install
 
 ##### shibboleth2.xml configuration
 
