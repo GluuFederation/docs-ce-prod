@@ -286,8 +286,4 @@ it could be performed by modifying the slapd.conf file under the above mentioned
 |16384|  sync|  syncrepl consumer processing  |
 |32768 |  none|  only messages that get logged whatever log level is set  |
 
-### External Logging
-
-The Gluu Server leverages FluentD to perform unified external logging. Refer to our [FluentD documentation](./fluentd.md)
-for more details on configuring FluentD with the Gluu Server. For more details on FluentD, refer to the [FluentD website](https://www.fluentd.org/).
 
