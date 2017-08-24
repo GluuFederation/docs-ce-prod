@@ -288,7 +288,6 @@ it could be performed by modifying the slapd.conf file under the above mentioned
 
 ### External Logging
 
-The Gluu Server leverages FluentD to perform external logging. Refer to [FluentD](./fluentd.md)
-for more details on how to configure FluentD with Gluu Server. 
-For more details on FluentD can be found [here](https://www.fluentd.org/)
+The Gluu Server leverages FluentD to perform unified external logging. Refer to our [FluentD documentation](./fluentd.md)
+for more details on configuring FluentD with the Gluu Server. For more details on FluentD, refer to the [FluentD website](https://www.fluentd.org/).
 
