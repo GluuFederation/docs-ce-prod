@@ -88,7 +88,6 @@ pages:
         - 'Ports': 'operation/ports.md'
         - 'Logout': 'operation/logout.md'
         - 'Log Management' : 'operation/logs.md'
-        - 'External Logging': 'operation/fluentd.md'
         - 'Customize Public Pages': 'operation/custom-loginpage.md'
         - 'FAQ & Troubleshooting': 'operation/faq.md'
         - 'Change IP Address': 'operation/changeip.md'
