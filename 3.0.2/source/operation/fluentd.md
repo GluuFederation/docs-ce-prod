@@ -2,32 +2,28 @@
 
 ## Overview
 
-Gluu Server leverages FluentD to perform external logging, capturing detailed activities of
-Gluu Server components like oxTrust and oxAuth. This provides you with more intel while working on 
-an issue.
+The Gluu Server leverages FluentD to perform unified external logging, enabling an organization to capture detailed activity of
+Gluu Server components like oxTrust and oxAuth. Unified external logging provides more inteligence to better troubleshoot issues.
 
-### Requirements:
+## Requirements:
  - FluentD
- - Active Gluu Server Installed
+ - Active instance of the Gluu Server
  - log4j2.xml for oxTrust and oxAuth
  
-### FluentD Installation
+## FluentD Installation
 
-FluentD can be downloaded and installed depending in the OS you are using. 
-You can find instrucitons to download and install FluentD from [FluentD Docs](https://docs.fluentd.org/v0.12/articles/install-by-deb).
+You can find instructions to download and install FluentD on the [FluentD Docs](https://docs.fluentd.org/v0.12/articles/install-by-deb). FluentD **must be** installed outside of the Gluu Server `chroot` container.
 
-FluentD has to be installed outside of the chroot container.
+## External logging configuration
 
-### External logging configuration
+1. Get `log4j2.xml` for oxAuth and oxTrust from their respective github sources:     
+    - `log4j2.xml` for [oxAuth](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/log4j2.xml)    
+    - `log42j.xml` for [oxTrust](https://github.com/GluuFederation/oxTrust/blob/master/server/src/main/resources/log4j2.xml)     
+2. Copy `log4j2.xml` into the `chroot` container
+3. Update `log4j2.xml` by adding the [Fluency Appender](https://github.com/wywygmbh/log4j-plugin-fluency/blob/master/src/com/wywy/log4j/appender/FluencyAppender.java), as shown below:
 
-1. Get log4j2.xml for oxAuth and oxTrust from respective github sources.
-    * log4j2.xml for [oxAuth](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/log4j2.xml)
-    * log42j.xml for [oxTrust](https://github.com/GluuFederation/oxTrust/blob/master/server/src/main/resources/log4j2.xml)
-2. Copy log4j2.xml into the chroot container
-3. Update log4j2.xml by adding [Fluency Appender](https://github.com/wywygmbh/log4j-plugin-fluency/blob/master/src/com/wywy/log4j/appender/FluencyAppender.java)
-, like below
-
-```xml
+```
+xml
 <Fluency name="fluency" tag="yourTag">
     <!-- all settings are optional, see defaultFluency() for default values -->
     <!-- you can add as may fields as you like (or none at all) -->
@@ -48,16 +44,16 @@ FluentD has to be installed outside of the chroot container.
 </Fluency>
 ```
     
-Simplest configuration could be like this ` <Fluency name="fluency" tag="oxTrust_Fluency"/>`
+The simplest configuration could be like this: ` <Fluency name="fluency" tag="oxTrust_Fluency"/>`
 
 By default, FluencyAppender will connect to  `127.0.0.1:24224` .
 
 !!!Note:
-    Please make sure to open the required ports like `24224` and `24230`
+    Make sure to open required ports like `24224` and `24230`
     
-For more about configuration, read [log4j fluency plugin documentation](https://github.com/wywygmbh/log4j-plugin-fluency).
+For more about configuration, read the [log4j fluency plugin documentation](https://github.com/wywygmbh/log4j-plugin-fluency).
 
-4. Update the FluentD configuration file (e.g  `/etc/td-agent/td-agent.conf` ) by adding  `yourTag`
+4. Update the FluentD configuration file (e.g  `/etc/td-agent/td-agent.conf` ) by adding  `yourTag` as shown below:
 
 ```
 <match oxTrust_Fluency>
@@ -65,9 +61,9 @@ For more about configuration, read [log4j fluency plugin documentation](https://
 </match>
 ```
     
-For more about configuring FluentD, read the [config docs](https://docs.fluentd.org/v0.12/articles/config-file).
+For more about configuring FluentD, read the [FluentD config docs](https://docs.fluentd.org/v0.12/articles/config-file).
 
-5. Restart FluentD using the following commands
+5. Restart FluentD using the following commands:     
 
 ```
     #/etc/init.d/td-agent stop
@@ -75,29 +71,23 @@ For more about configuring FluentD, read the [config docs](https://docs.fluentd.
     #/etc/init.d/td-agent start
 ```
 
-6. Restart oxTrust
+6. Restart oxTrust using the following command:      
 
     `service identity restart`
 
-### Gluu oxTrust configuration
+### oxTrust configuration
 
-Logger has to be configured externally. 
-In order to do this, 
+Now the logger has to be configured externally. In order to do this:    
 
-1. Navigate to  `Configuration` >  `Configure Log Viewer`
+1. in oxTrust, Navigate to  `Configuration` >  `Configure Log Viewer`
 
-2. Enter the path of your log4j2 configuration file to the `oxTrust External 
-log4j location` field, repeat the same steps for `oxAuth External log4j2` location, 
-if required.
+2. Enter the path of your log4j2 configuration file to the `oxTrust External log4j location` field, and repeat the same steps for `oxAuth External log4j2` location if required.
 
-3. Click on `update`
+3. Click `update`
 
-### Test and Sample logs
+## Test and Sample logs
 
-To test, whether the configuration has been captured correctly, 
-
-check the logs in `/var/log/td-agent/td-agent.logs`. 
-Log file can be specified to be generated in a particular path of your choice by editing `/etc/td-agent/td-agent.conf`
+To test whether the configuration has been captured correctly, check the logs in `/var/log/td-agent/td-agent.logs`. The log file can be specified to be generated in a particular path by editing `/etc/td-agent/td-agent.conf`
 
 ```
 49577-11-18 19:54:59 +0200 oxtrust_FluentD: {"sourceLine":98,"@timestamp":"2017-08-10T10:07:18.899+0000","level":"INFO","logger":"o.g.o.s.s.l.LdapStatusTimer","sourceMethod":"logConnectionProviderStatistic","sourceClass":"org.gluu.oxtrust.service.status.ldap.LdapStatusTimer","loggerFull":"org.gluu.oxtrust.service.status.ldap.LdapStatusTimer","thread":"Thread-362","message":"connectionProvider statistics: LDAPConnectionPoolStatistics(numAvailableConnections=2, maxAvailableConnections=10, numSuccessfulConnectionAttempts=2, numFailedConnectionAttempts=0, numConnectionsClosedDefunct=0, numConnectionsClosedExpired=0, numConnectionsClosedUnneeded=0, numSuccessfulCheckouts=459, numFailedCheckouts=0, numReleasedValid=459)\n","sourceFile":"LdapStatusTimer.java"}
