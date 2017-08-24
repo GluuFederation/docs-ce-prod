@@ -285,3 +285,10 @@ it could be performed by modifying the slapd.conf file under the above mentioned
 |2048|  parse | print entry parsing debugging  |
 |16384|  sync|  syncrepl consumer processing  |
 |32768 |  none|  only messages that get logged whatever log level is set  |
+
+### External Logging
+
+The Gluu Server leverages FluentD to perform external logging. Refer to [FluentD](./fluentd.md)
+for more details on how to configure FluentD with Gluu Server. 
+For more details on FluentD can be found [here](https://www.fluentd.org/)
+
