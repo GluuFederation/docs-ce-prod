@@ -20,9 +20,7 @@ the Gluu SAML and OpenID Connect providers can gather claims and maintain
 SSO as normal.
 
 ## Prerequisites
-
-## Prerequisites
-- A Gluu Server with the Passport.js component installed ([installation instructions](../installation-guide/index.md));
+- A Gluu Server with Passport.js installed during setup ([Installation Instructions](../installation-guide/index.md)).
 
 ## Sequence Diagram
 
