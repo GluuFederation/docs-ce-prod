@@ -14,16 +14,21 @@ Gluu Server CE allows you to protect your endpoints with [UMA](scim-uma.md). Thi
 
 Alternatively, for testing purposes you can temporarily enable the test mode that uses a "Bearer token" approach. All examples given in this page are run under test mode and serve as a quick and easy way to start learning about SCIM.
 
-!!! Note
-    Despite the existence of an endpoint for version 1.0 of the spec, we strongly encourage the usage of version 2.0 of SCIM. 
+## What's new in SCIM for version 3.1?
 
+Starting with CE v3.1.0, the "test mode" does not use a long-lived OAuth2 access token to send requests anymore. Instead, it uses a safer short-lived token approach in combination with dynamic registration of an OpenId Connect client. This comes at the cost of having to use a programming language to interact with the service.
 
-## Using test mode
+If you are interested in how the older approach worked, visit the [3.0.2 page](https://gluu.org/docs/ce/3.0.2/admin-guide/user-scim/#using-test-mode). There you can also find the raw `curl` HTTP requests that in general terms illustrate how low-level requests are structured. 
+
+!!! Warning
+    Recall that you cannot use your Gluu's 3.1 SCIM service with an older version of SCIM-Client.
+
+Additionally, the root endpoints' URL has been shortened: now your service is exposed at `https://<your-host>/identity/restv1/scim/v2/`.
+
+## Activating test mode
 
 !!! Warning
     Test mode is a weak security approach to protect your service. This feature could be changed or removed in future releases of Gluu Server.
-
-Starting with CE v2.4.4, the "test mode" configuration helps developers and administrators test the SCIM 2.0 endpoints easily. Instead of combining UMA protection and a client, in test mode a long-lived OAuth2 access token issued by the Gluu server is used to authorize access to endpoints.
 
 To enable test mode, do the following:
 
@@ -33,224 +38,100 @@ To enable test mode, do the following:
 
 ![enable scim](../img/scim/enable-scim.png)
 
-* Navigate to `Configuration` > `JSON Configuration` > `OxTrust Configuration`, then locate the property `scimTestMode`.
+* Navigate to `Configuration` > `JSON Configuration` > `OxTrust Configuration`, then scroll down and set the `scimTestMode` property to true.
 
-![image](../img/scim/scim-test-mode-false.png)
-
-* Set it to `true` and click the `Save Configuration` button. 
-
-The Gluu server will then create a long-lived OAuth2 access token with a 
-validity period of one year.
-
-* Click on `JSON Configuration` > `OxTrust Configuration` in the left navigation pane. 
-This will retrieve the access token and will display it at the `scimTestModeAccessToken` property.
-
-![image](../img/scim/scim-test-mode-true.png)
- 
-From then on, that token can be used as the query string 
-parameter `access_token` when accessing the endpoints, for example:
-
-![image](../img/scim/scim-test-mode-example.png)
+* Click the Save Configuration button at the bottom.
 
 You can verify the current authentication scheme by querying the `ServiceProviderConfig` endpoint:
 
 ![image](../img/scim/scim-test-mode-config.png)
 
-To exit test mode, just set `scimTestMode` back to `false` then 
- click the `Save Configuration` button. This will switch the 
-authentication scheme from OAuth2 Access Token to UMA. If you try using 
-your access token again, you will get the `403 Unauthorized` error:
+To exit test mode, just set `scimTestMode` back to `false` and then click the `Save Configuration` button.
+ 
+## Testing with the SCIM-Client
 
-![image](../img/scim/scim-test-mode-403.png)
+The following instructions show how to interact with your SCIM service in test mode using [SCIM-Client](https://github.com/GluuFederation/SCIM-Client) - a Java library also developed by Gluu.
+
+### Requisites
+
+* In the following we will use Java as programming language. Entry-level knowledge is enough. Make sure you have Java Standard Edition installed. The use of maven as build tool is recommended
+* Ensure you have enabled SCIM and test mode as shown above
+* Add the SSL certificate of your Gluu server to the `cacerts` keystore of your local Java installation. There are lots of articles around the Web on how to import a certificate to the keystore. An utility called [Key Store Explorer](http://keystore-explorer.sourceforge.net) makes this task super-easy. You can find your certificate at `/opt/gluu-server-<gluu-version>/etc/certs/httpd.crt`
+* Online Java-docs for SCIM-Client are available [here](https://ox.gluu.org/scim-javadocs/apidocs/index.html). You can generate java-docs locally using maven; just run `mvn javadoc:javadoc`
 
 
-## Raw HTTP requests
+### Start a simple project
 
-For the sake of simplicity and to lower the barrier to start with SCIM, some raw HTTP sample requests are presented in this section. These requests exemplify how to do very basic CRUD on SCIM resources. While only users are being covered, you can extrapolate to groups and other kind of resources if any.
-
-Examples shown here cover very little of what's possible to achieve with the SCIM REST API. For richer or advanced use cases, you may like to glance at the spec. The page [SCIM API](../api-guide/scim-api/#user-endpoint) offers a condensed and more amenable to read reference so that you can compose your requests with ease.
-
-!!! Notes
-    To undertake this exercise, temporarily enable test mode (see the previous section) and have your access token at hand. Remember to turn off this feature once you are finished.
-    These examples make use of `curl` so ensure it's available in your testing environment.
-
-### Creating resources
-
-Let' create a dummy user. Open a text editor and paste the following:
+Create a project in your favorite IDE, and if using maven add the following snippet to your pom.xml file:
 
 ```
-{
-	"schemas":["urn:ietf:params:scim:schemas:core:2.0:User"],
-	"userName":"ajsmith",
-	"name":{
-		"familyName":"Smith",
-		"givenName":"Joe"
-	},
-	"displayName":"Average Joe"
+<properties>
+	<scim.client.version>3.1.0</scim.client.version>
+</properties>
+...
+<repositories>
+  <repository>
+    <id>gluu</id>
+    <name>Gluu repository</name>
+    <url>http://ox.gluu.org/maven</url>
+  </repository>
+</repositories>
+...
+<dependency>
+  <groupId>gluu.scim.client</groupId>
+  <artifactId>SCIM-Client</artifactId>
+  <version>${scim.client.version}</version>
+</dependency>
+```
+
+From version 3.1.0 onwards, the SCIM-Client you use should match your Gluu version. For example, if you are running Gluu Server CE v3.1.0, you must also use SCIM-Client v3.1.0.
+
+If you don't want to use Maven, you can download the jar file for SCIM-Client here: [https://ox.gluu.org/maven/gluu/scim/client/SCIM-Client](https://ox.gluu.org/maven/gluu/scim/client/SCIM-Client). This may require you to add other libraries (jar files dependencies) manually.
+
+### Simple retrieval
+
+Create a Java class using the code shown below. Replace with proper values between the angle brackets for private attributes:
+
+```
+import gluu.scim2.client.factory.ScimClientFactory;
+import org.gluu.oxtrust.model.scim2.*
+import org.jboss.resteasy.client.core.BaseClientResponse;
+import java.util.List;
+
+public class TestScimClient {
+
+    private String domainURL="https://<host-name>/identity/restv1";
+    private String OIDCMetadataUrl="https://<host-name>/.well-known/openid-configuration";
+
+    private void simpleSearch() throws Exception {
+
+        ScimClient client = ScimClientFactory.getTestClient(domainURL, OIDCMetadataUrl);
+        String filter = "userName eq \"admin\"";
+
+        BaseClientResponse<ListResponse> response = client.searchUsers(filter, 1, 1, "", "", null);
+        List<Resource> results=response.getEntity().getResources();
+
+        System.out.println("Length of results list is: " + results.size());
+        User admin=(User) results.get(0);
+        System.out.println("First user in the list is: " + admin.getDisplayName());
+
+    }
+
 }
 ```
 
-Save it to your local disk as `input.json` and open a command line interface (you don't need to login to Gluu's chroot). Issue this command replacing with proper values between the angle brackets and if required, passing the path to your Gluu host SSL certificate:
+The first line of method `simpleSearch` is getting an object that conforms to the `ScimClient` interface. This interface consists of a number of methods that will allow you to do all CRUD (create, retrieve, update, delete) you may need.
 
-`$ curl --cacert /opt/gluu-server-<glu-version>/etc/certs/httpd.crt -H 'Content-Type: application/scim+json' -H 'cache-control: no-cache' -d @input.json -o output.json https://<host-name>/identity/seam/resource/restv1/scim/v2/Users?access_token=<test-mode-token>`
+Create a main method for class `TestScimClient` and call `simpleSearch` from there. When running you will see the output of retrieving one user (admin) and see his `displayName` on the screen.
 
-After execution open the file output.json. You should see a response like this (some contents have been supressed):
+The [SCIM protected by UMA page](https://www.gluu.org/docs/ce/admin-guide/scim-uma/) contains examples for [adding](https://www.gluu.org/docs/ce/admin-guide/scim-uma/#adding-a-user) and [deleting](https://www.gluu.org/docs/ce/admin-guide/scim-uma/#delete-a-user) users.  The only actual difference in coding for test mode or UMA-protected service is the way in which you initially get a `ScimClient` object instance. For test mode, just call `ScimClientFactory.getTestClient` as shown in the previous example.
 
-```
-{
-  "id": "...",
-  "meta": {
-    "created": "...",
-    "lastModified": "...",
-    "location": "https://.../scim/v2/Users/@!..."
-    "resourceType": "User"
-  },
-  "schemas": [ "urn:ietf:params:scim:schemas:core:2.0:User" ],
-  "userName": "ajsmith",
-  "name": {
-    "formatted": "Joe Smith",
-    "familyName": "Smith",
-    "givenName": "Joe"
-  },
-  "displayName": "Average Joe",
-  ...
-}
-```
+### Under the hood
 
-This new user has been given an `id`. If possible inspect your `ou=people` branch and find the entry whose `inum` matches the `id` given. An easier option would be to login via oxTrust and go to `Users` > `Manage People` and search "Joe" to see the recently created user.
+When running the code, in LDAP you will see one or more new entries under the clients branch (`ou=clients`). Those are new OpenId clients created by the Java client and they are employed to request short-lived tokens to access the service.
+In oxTrust, you can see them easily too: navigate to `OpenId Connect` > `Clients` and notice the column `Display Name`; they are named as "SCIM-Client". 
 
-SCIM will only allow you to create users with HTTP POST verb.
-
-### Retrieving information of a user
-
-One of the simplest ways to test retrieval is querying all information about a single user. Check in your LDAP the `inum` for Average Joe and do the following request with `curl` or just use a browser:
-
-`https://<host-name>/identity/seam/resource/restv1/scim/v2/Users/<user-inum>?access_token=<test-mode-token>`
-
-!!! Note:
-    In Gluu server `inums` are lenghty and start with @!, include these two characters as well...
-
-As a response, you will get a JSON document consisting of all attributes in Schema and their corresponding values. For Joe, almost all of them will have a *null* or an empty array as value, as in the following:
-
-```
-{
-  "id": ...,
-  "externalId": null,
-  "meta": {...},
-  "schemas": [...],
-  "userName": "ajsmith",
-  "name": {
-    "formatted": "Joe Smith",
-    "familyName": "Smith",
-    "givenName": "Joe",
-    ...
-  },
-  "displayName": "Average Joe",
-  ...
-  "locale": null,
-  ...
-  "emails": [],
-  ...
-  "phoneNumbers": [],
-  ...
-  "addresses": []
-  ...
-}
-```
-
-
-### Retrieval with filtering
-
-The SCIM protocol defines a standard set of parameters that can be used to filter, sort, and paginate resources in a query response (see section 3.4.3 of [RFC 7644](https://tools.ietf.org/html/rfc7644)). Filtering capabilities are very rich and enable developers to build complex queries.
-
-In this example, we will create a fairly simple query to return the first 2 users whose `userName` contains the sequence of letters "mi". Results should be sorted alphabetically by `givenName`.
-
-Overwrite your `input.json` with the following. Replace content in angle brackets accordingly:
-
-`access_token=<test-mode-token>&startIndex=1&count=2&sortBy=name.givenName&filter=userName%20co%20%22mi%22`
-
-!!! Notes:
-    This time we are not using JSON notation for input.
-    The ampersand character to separe name/value pairs is typical of HTTP GET queries. 
-    %20 and %22 account for white space and double quote respectively.
-    co stands for "contains"
-
-Time to run (notice the use of -G switch):
-
-`curl -G --cacert /opt/gluu-server-<glu-version>/etc/certs/httpd.crt -H 'cache-control: no-cache' -d @input.json -o output.json https://<host-name>/identity/seam/resource/restv1/scim/v2/Users`
-
-As response you will have a JSON file that looks like this:
-
-```
-{
-	"totalResults": 2,
-	"itemsPerPage": 2,
-	"startIndex": 1,
-	...
-	"Resources": [
-		{
-		...
-		attributes of first user matching criteria
-  		..
-  		},
-		{
-		...
-		attributes of second user matching criteria
-  		..
-  		}
-  	]
-}
-```
-
-### Updating a user
-
-!!! Note
-    SCIM spec defines two ways to update resources: HTTP PUT and PATCH. Current Gluu implementation only supports PUT (PATCH being scheduled for a future release). This implies it's not possible to update single attributes but the whole resource is being replaced when the request is made.
-
-Overwrite your `input.json` with the following. Replace content in angle brackets accordingly:
-
-```
-{
-	"schemas":["urn:ietf:params:scim:schemas:core:2.0:User"],
-	"id": <joe's-inum>,
-	"userName":"ajsmith",
-	"name":{
-		"familyName":"Smith",
-		"givenName":"Joe"
-	},
-	"displayName":"Joe Smith",
-	"emails": [{
-		"value": "jsmith@foodstuffs.eat",
-		"type": "work",
-		"primary": "true"
-	}]	
-}
-```
-
-And issue the PUT with `curl`:
-
-`$ curl -X PUT --cacert /opt/gluu-server-<glu-version>/etc/certs/httpd.crt -H 'Content-Type: application/scim+json' -H 'cache-control: no-cache' -d @input.json -o output.json 'https://<host-name>/identity/seam/resource/restv1/scim/v2/Users/<user-inum>?access_token=<test-mode-token>'`
-
-!!! Note
-    Surround the URL with single quotes: `inum`s contain bang characters that might be misleading to your command line interpreter.
-
-Response will show the same contents of a full retrieval.
-
-Please verify changes were applied whether by inspecting LDAP or issuing a GET with your browser. If you have followed the details, you should notice a new e-mail added and the change in `displayName` attribute.
-
-
-### Deleting users
-
-For deleting, the DELETE method of HTTP is used.
-
-No input file is used in this case. A delete request could be the following:
-
-`$ curl -X DELETE --cacert /opt/gluu-server-<glu-version>/etc/certs/httpd.crt -H 'cache-control: no-cache' 'https://<host-name>/identity/seam/resource/restv1/scim/v2/Users/<user-inum>?access_token=<test-mode-token>'`
-
-Use the `inum` of our dummy user, Average Joe.
-
-Note in LDAP or oxTrust the absence of Joe.
-
+These clients won't clutter your LDAP, they are also short-lived (one day) so they are cleaned up automatically for you.
 
 ## Extensions
 
@@ -268,7 +149,7 @@ Please visit this [page](attribute.md#custom-attributes) for a more detailed exp
 
 Once you submit this form, your attribute will be part of the User Extension. You can verify this by inspecting the `Schema` endpoint:
 
-`https://<host-name>/identity/seam/resource/restv1/scim/v2/Schemas/urn:ietf:params:scim:schemas:extension:gluu:2.0:User`
+`https://<host-name>/identity/restv1/scim/v2/Schemas/urn:ietf:params:scim:schemas:extension:gluu:2.0:User`
 
 ![image](../img/admin-guide/user/scim-custom-first.png)
 
@@ -276,5 +157,5 @@ In the JSON response, your new added attribute will appear.
 
 You can learn more about SCIM Schema and the extension model by reading [RFC 7643](https://tools.ietf.org/html/rfc7643). Also refer to the following unit tests in SCIM-Client project for code examples in which custom attributes are involved:
 
-* [User Extensions Object Test](https://github.com/GluuFederation/SCIM-Client/blob/version_3.0.2/src/test/java/gluu/scim2/client/UserExtensionsObjectTest.java)
-* [User Extensions JSON Test](https://github.com/GluuFederation/SCIM-Client/blob/version_3.0.2/src/test/java/gluu/scim2/client/UserExtensionsJsonTest.java)
+* [User Extensions Object Test](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.0/src/test/java/gluu/scim2/client/UserExtensionsObjectTest.java)
+* [User Extensions JSON Test](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.0/src/test/java/gluu/scim2/client/UserExtensionsJsonTest.java)

@@ -11,7 +11,7 @@ If you are really in a hurry, you can proceed straight to the [enable section](#
 ## Actors involved in protection
 
 !!! Note
-    Current Gluu server version supports UMA 1.0.1. Currently, latest version of the standard is 2.0 and will be included for our next release.
+    Gluu server 3.1.0 supports UMA 2.0 - the latest version of the standard. UMA 1.0.1 is not supported anylonger.
 
 The image shown [here](../api-guide/uma-api.md#uma-api-document) summarizes the phases and actors involved in UMA. While you don't need to get through to that complex flow in Gluu server for SCIM setup, it is important to familiarize yourself with the different parties interacting there, namely a resource owner, a client, a resource server, and an authorization server.
 
@@ -63,7 +63,7 @@ And the resource set we are interested in is represented by the entry
 
 `inum=<org-inum>!0012!B23E.0517,ou=resource_sets,ou=uma,o=<org-inum>,o=gluu`
 
-So if you inspect its attributes, we have a resource named "SCIM resource set" associated to the scope previously seen, and to a couple of URLs: the SCIM endpoints for version 1 and 2.
+So if you inspect its attributes, we have a resource named "SCIM resource set" associated to the scope previously seen, and to a URL: the SCIM v2 endpoint.
 
 For a deeper insight into resource sets, scopes, and policies visit the [UMA page](uma.md#resource-registration) in the docs.
 
@@ -88,7 +88,7 @@ When authorization is obtained successfully, the client receives in response a t
 
 ### Resource and authorization servers communication
 
-So far we have covered most practical aspects of UMA 1.0.1 for SCIM protection. The arrow labeled *B* is concerned with a protection API the authorization server presents to resource server and is used in cases where the client's request at the protected resource has no RPT, or has an invalid RPT.
+So far we have covered most practical aspects of UMA for SCIM protection. The arrow labeled *B* is concerned with a protection API the authorization server presents to resource server and is used in cases where the client's request at the protected resource has no RPT, or has an invalid RPT.
 
 In this setting, authorization is carried out using an additional OpenId client, the "SCIM Resource Server Client". You can see it at entry
 
@@ -111,7 +111,7 @@ The following instructions show how to interact with the UMA-protected SCIM serv
 * Copy the requesting party JKS file to your local machine (see [auhorization steps](#authorization-steps) section)
 * Have the requesting party client ID and password at hand (see [auhorization steps](#authorization-steps) section). Default password is *secret*
 * Ensure you have enabled SCIM and UMA as shown [above](#enable-protection)
-* Add the SSL certificate of your Gluu server to the `cacerts` keystore of your local Java installation. There are lots of articles around the Web on how to import a certificate to the keystore. An utility called [Key Store Explorer](http://keystore-explorer.sourceforge.net) makes this task super-easy. You can find your certificate at /opt/gluu-server-<glu-version>/etc/certs/httpd.crt
+* Add the SSL certificate of your Gluu server to the `cacerts` keystore of your local Java installation. There are lots of articles around the Web on how to import a certificate to the keystore. An utility called [Key Store Explorer](http://keystore-explorer.sourceforge.net) makes this task super-easy. You can find your certificate at `/opt/gluu-server-<glu-version>/etc/certs/httpd.crt`
 * Online Java-docs for SCIM-Client are available [here](https://ox.gluu.org/scim-javadocs/apidocs/index.html). You can generate java-docs locally using maven; just run `mvn javadoc:javadoc`
 
 ### Start a simple project
@@ -120,7 +120,7 @@ Create a project in your favorite IDE, and if using maven add the following snip
 
 ```
 <properties>
-	<scim.client.version>3.0.2</scim.client.version>
+	<scim.client.version>3.1.0</scim.client.version>
 </properties>
 ...
 <repositories>
@@ -138,8 +138,7 @@ Create a project in your favorite IDE, and if using maven add the following snip
 </dependency>
 ```
 
-As a good practice, the SCIM-Client version should match your Gluu CE version. For example, 
-if you are running CE v3.0.2, you must also use SCIM-Client v3.0.2.
+From version 3.1.0 onwards, the SCIM-Client you use should match your Gluu version. For example, if you are running Gluu Server CE v3.1.0, you must use SCIM-Client v3.1.0.
 
 If you don't want to use Maven, you can download the jar file for SCIM-Client here: [https://ox.gluu.org/maven/gluu/scim/client/SCIM-Client](https://ox.gluu.org/maven/gluu/scim/client/SCIM-Client). This may require you to add other libraries (jar files dependencies) manually.
 
@@ -149,30 +148,31 @@ If you don't want to use Maven, you can download the jar file for SCIM-Client he
 Create a Java class using the code shown below. Replace with proper values between the angle brackets for private attributes:
 
 ```
-import java.io.IOException;
-import javax.ws.rs.core.MediaType;
-import javax.xml.bind.JAXBException;
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import gluu.scim.client.ScimClient;
-import gluu.scim.client.ScimResponse;
-import gluu.scim2.client.Scim2Client;
+import gluu.scim2.client.factory.ScimClientFactory;
+import org.gluu.oxtrust.model.scim2.*
+import org.jboss.resteasy.client.core.BaseClientResponse;
+import java.util.List;
 
 public class TestScimClient {
 
-    private static final String domain = "https://<host-name>/identity/seam/resource/restv1";
-    private static final String umaMetaDataUrl = "https://<host-name>/.well-known/uma-configuration";
-    private static final String umaAatClientId = "<requesting-party-client-id>";
-    private static final String umaAatClientJksPath = "<path-to-RP-jks>/scim-rp.jks";
-    private static final String umaAatClientJksPassword = "<jks-password>";
-    private static final String umaAatClientKeyId = "";
+    private String domain = "https://<host-name>/identity/seam/resource/restv1";
+    private String umaMetaDataUrl = "https://<host-name>/.well-known/uma-configuration";
+    private String umaAatClientId = "<requesting-party-client-id>";
+    private String umaAatClientJksPath = "<path-to-RP-jks>/scim-rp.jks";
+    private String umaAatClientJksPassword = "<jks-password>";
+    private String umaAatClientKeyId = "";
 
-    private static void simpleSearch(String domain, String umaMetaDataUrl, String umaAatClientId, String umaAatClientJksPath, String umaAatClientJksPassword, String umaAatClientKeyId) throws IOException, JAXBException {
+    private static void simpleSearch() throws Exception {
 
-        final Scim2Client scim2Client = Scim2Client.umaInstance(domain, umaMetaDataUrl, umaAatClientId, umaAatClientJksPath, umaAatClientJksPassword, umaAatClientKeyId);
+        ScimClient client = ScimClientFactory.getClient(domain, umaMetaDataUrl, umaAatClientId, umaAatClientJksPath, umaAatClientJksPassword, umaAatClientKeyId);
         String filter = "userName eq \"admin\"";
-        ScimResponse response = scim2Client.searchUsers(filter, 1, 1, "", "", null);
-        System.out.println(response.getResponseBodyString());
+
+        BaseClientResponse<ListResponse> response = client.searchUsers(filter, 1, 1, "", "", null);
+        List<Resource> results=response.getEntity().getResources();
+
+        System.out.println("Length of results list is: " + results.size());
+        User admin=(User) results.get(0);
+        System.out.println("First user in the list is: " + admin.getDisplayName());
 
     }
 }
@@ -180,7 +180,7 @@ public class TestScimClient {
 
 You can suply an alias from `scim-rp.jks` for `umaClientKeyId`. The first key from the file is used automatically when this value is left empty.
 
-Create a main method for class `TestScimClient` and call `simpleSearch` from there. When running you will see the output of retrieving one user whose `userName` is *admin*.
+Create a main method for class `TestScimClient` and call `simpleSearch` from there. When running you will see the output of retrieving one user (admin) and see his `displayName` on the screen.
 
 ### Adding a user
 
@@ -305,6 +305,6 @@ System.out.println("response body = " + response.getResponseBodyString());
 To delete a user only his id (the `inum` LDAP attribute) is needed. You can see the `id` of the user just created by inspecting the JSON response.
 
 ```
-ScimResponse response = scim2Client.deletePerson("<inum-value>");
-assertEquals(response.getStatusCode(), 200, "User could not be deleted, status != 200");
+BaseClientResponse<User>response=client.deletePerson(id);
+assertEquals(Response.Status.NO_CONTENT.getStatusCode(), response.getStatus());
 ```
