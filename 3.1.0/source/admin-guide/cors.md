@@ -6,7 +6,7 @@ CORS Filter is an implementation of W3C's CORS  (Cross-Origin Resource Sharing) 
 CORS is a mechanism which enables cross-origin requests.
 CORS Filter work by adding required `Access-Control-*` headers to HttpServletResponse object. 
 The filter also protects against HTTP response splitting. If request is invalid, or is not permitted, then request is rejected with HTTP status code 403 (Forbidden). 
-A <a href = "/img/admin-guide/cors/cors-flowchart.png" target="_blank">flowchart</a> that demonstrates request processing by 
+A flowchart ![flowchart](../img/admin-guide/cors/cors-flowchart.png) that demonstrates request processing by 
 this filter is available.
 
 The minimal configuration required to use CORS Filter is as below which is 

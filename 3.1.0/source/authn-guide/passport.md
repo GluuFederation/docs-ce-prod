@@ -19,6 +19,9 @@ LDAP server if a local account does not already exist. In this way,
 the Gluu SAML and OpenID Connect providers can gather claims and maintain
 SSO as normal.
 
+## Prerequisites
+- A Gluu Server with Passport.js installed during setup ([Installation Instructions](../installation-guide/index.md)).
+
 ## Sequence Diagram
 
 Below is a sequence diagram to help clarify the workflow for user

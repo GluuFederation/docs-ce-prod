@@ -1,7 +1,11 @@
 # Interception Scripts
 
 ## Overview
-Interception scripts allow the Gluu Server to support unique requirements for many aspects of a central authentication and authorization service. Interception scripts can be written in [Jython](http://www.jython.org/docs/tutorial/indexprogress.html). Jython was chosen because an interpreted language facilitates dynamic creation of business logic, and makes it easier to distribute this logic to a cluster of Gluu servers. Jython enables developers to use either Java or Python classes. Combined with the option of calling web services from Python or Java, this enables the Gluu Server to support any business-driven policy requirement.
+Interception scripts allow you to customize many aspects of your Gluu Server identity and access management service. For example, if you want to use an external authentication service, like Duo or Yubikey, you would use an an interception script. Or, if you wanted to perform fraud detection during login, you would write an interception script to call the API of your fraud detection service. 
+
+These are just a couple examples of how interception scripts can be used to customize the behavior of the Gluu Server. Both examples focus on login, but the Gluu Server supports interception scripts for many aspects of the service including registration, user updates, authorization and more. 
+
+Interception scripts are written in [Jython](http://www.jython.org/docs/tutorial/indexprogress.html). Jython was chosen because an interpreted language facilitates dynamic creation of business logic, and makes it easier to distribute this logic to a cluster of Gluu servers. Jython enables developers to use either Java or Python classes. Combined with the option of calling web services from Python or Java, this enables the Gluu Server to support any business-driven policy requirement.
 
 The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scritps`.
 
@@ -57,17 +61,10 @@ the interception scripts or following the workflow of the script.
 More details on Logs can be found in [Log Management](../operation/logs.md)
 
 ## Person Authentication     
-**For a list of pre-written, open source Gluu authentication scripts, 
-view our [server integrations](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations)**
+An authentication script enables you to customize the user experience for authentication. For example, you can write a script that
+enables a two-factor authentication mechanism like Duo Security or FIDO U2F tokens. Or you could call external security services like fraud detection or DDoS protection.  
 
-An authentication script enables you to customize the user
-authentication experience. For example, you can write a script that
-enables a two-factor authentication mechanism like Duo Security. By
-default oxAuth offers basic username/password authentication. Authentication 
-scripts allow an admin to implement more secure workflows to meet
-an organizations security requirements. It extends the base script type
-with the `init`, `destroy` and `getApiVersion` methods but also adds the
-following methods:
+The authentication interception script extends the base script type with the `init`, `destroy` and `getApiVersion` methods but also adds the following methods:
 
 |Method|`isValidAuthenticationMethod(self, usageType, configurationAttributes)`|
 |---|---|
@@ -109,28 +106,11 @@ following methods:
 |**Description**|This method is not mandatory. It can be used in cases when you need to execute specific logout logic within the authentication script when oxAuth receives an end session request. Also, it allows oxAuth to stop processing the end session request workflow if it returns `False`. As a result it should either return `True` or `False`|
 |Method Parameters|`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`<br/>`requestParameters` is `java.util.Map<String, String[]>`|
 
-This script can be used in oxAuth application only.
+Every deployment of the Gluu Server includes a number of pre-written authentication scripts out-of-the-box. Learn more in the [authentication guide](../authn-guide/intro.md/). 
 
-- [Sample Authentication Script](./sample-authentication-script.py)
-### Certificate Authentication
-Gluu Server CE offers a person authentication module enabling Certificate Authentication.
-The image below contains the design diagram for this module.
+For a complete list of pre-written, open source authentication scripts, view our [server integrations](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations). 
 
-![image](../img/admin-guide/Cert%20design.jpg)
-
-The script has a few properties:
-
-|	Property	|Description|	Allowed Values			|example|
-|-------|--------------|------------|-----------------|
-|`chain_cert_file_path`	|mandatory property pointing to certificate chains in [pem][pem] format	|file path| `/etc/certs/chain_cert.pem`	|
-|`map_user_cert`		|specifies if the script should map new user to local account		|true/false| true|
-|`use_generic_validator`	|enable/disable specific certificate validation				|true/false| false|
-|`use_path_validator`	|enable/disable specific certificate validation				|true/false| true|
-|`use_oscp_validator`|enable/disable specific certificate validation				|true/false| false|
-|`use_crl_validator`|enable/disable specific certificate validation				|true/false| false|
-|`crl_max_response_size`	|specifies the maximum allowed size of [CRL][crl] response		| Integer > 0| 2|
-
-- [Sample Certificate Authentication Script](./UserCertExternalAuthenticator.py)        
+- View a [sample Authentication Script](./sample-authentication-script.py).    
 
 ## Update User     
 
@@ -206,22 +186,22 @@ This script can be used in an oxAuth application only.
 
 
 ## Dynamic Scopes      
-The dynamic scope custom script allows the parsing of token returned from `user_info endpoint` into 
-LDAP attributes. The `id_token` is returned from `user_info endpoint` and the values are dynamically placed 
-in the LDAP attributes in Gluu Server. These are the attributes which would be the information about the user
-from the endpoint, this could be last name, email, address, profile or any attribute that is defined 
-by you, which can be custom attribute.
+The dynamic scope custom script allows to generate list of claims (and their values) on the fly, depending on cirtumstances like id of client requesting it, logged user's session parameters, values of other user's attributes, results of some caclucations implementing specific buisness logic and/or requests to remote APIs or databases. Claims are then returned the usual way in a response to a call to the `userinfo endpoint`. 
 
-In order to make dynamic scopes to work, following instructions has to be followed.
+Two parameters are passed to the script:
 
-- A scope has to be defined in the OpenID Connect Scopes interface
-- Scope should have Scope Type Dynamic (menu)
-- The dynamic script should be linked to that scope (Add dynamic script button)
-- The scope should be allowed for the client in the OpenID Connect Update Client interface 
-(Add Scope button), and the scope should be requested by the client 
-(e.g. to test with oxauth_rp, add it manually to the Scope list in the Token Endpoint part.
+- `dynamicScopeContext` is [org.xdi.oxauth.service.external.context.DynamicScopeExternalContext class](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/java/org/xdi/oxauth/service/external/context/DynamicScopeExternalContext.java) 
+- `configurationAttributes` is java.util.Map<String, SimpleCustomProperty> dictionary carring script's custom properties
 
-More detailed explanation of adding scopes can be found under Openid [scopes](../admin-guide/openid-connect/#scopes)
+In order to configure a dynamic scope next steps are required:
+
+- Dynamic scope custom script must be configured and enabled at "Manage custom scripts" page, "Dynamic scopes" tab
+- A scope has to be defined at the "OpenID Connect -> Scopes" page
+  - Scope's type must be set to "Dynamic"
+  - Corresponding dynamic script must be linked to that scope (Add dynamic script button)
+- The scope must be added to the client which will be using it at the "OpenID Connect -> Clients" page (using the "Add Scope" button), and the scope must be included by the client in "scope=" url query parameter
+
+More detailed explanation about adding scopes can be found under Openid [scopes](../admin-guide/openid-connect/#scopes)
 
 - [Sample Dynamic Scope Script](./sample-dynamic-script.py)
 
@@ -248,7 +228,7 @@ This script can be used in an oxTrust application only.
 
 ## Cache Refresh       
 
-In order to integrate your Gluu instance with backend LDAP servers handling authentication in your existing network environment, oxTrust provides a mechanism called [Cache Refresh](../admin-guide/user-group/#ldap-synchronization) to copy user data to the Gluu Server's local LDAP server. During this process it is possible
+In order to integrate your Gluu instance with backend LDAP servers handling authentication in your existing network environment, oxTrust provides a mechanism called [Cache Refresh](../admin-guide/user-management/#ldap-synchronization) to copy user data to the Gluu Server's local LDAP server. During this process it is possible
 to specify key attribute(s) and specify attribute name transformations.
 There are also cases when it can be used to overwrite attribute values
 or to add new attributes based on other attribute values.

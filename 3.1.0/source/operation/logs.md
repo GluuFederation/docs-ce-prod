@@ -285,3 +285,5 @@ it could be performed by modifying the slapd.conf file under the above mentioned
 |2048|  parse | print entry parsing debugging  |
 |16384|  sync|  syncrepl consumer processing  |
 |32768 |  none|  only messages that get logged whatever log level is set  |
+
+

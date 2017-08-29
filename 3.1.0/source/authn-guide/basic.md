@@ -2,7 +2,7 @@
 
 ## Overview
 The [Basic authentication script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/basic/BasicExternalAuthenticator.py) 
-is used to implement username / password authentication. Basic authentication relies on a successful LDAP BIND operation against an LDAP directory--either the local LDAP included in the Gluu Server, or a backend LDAP server like Active Directory that has been configured for use with the Gluu Server via [Cache Refresh](../admin-guide/user-group.md/#ldap-synchronization). 
+is used to implement username / password authentication. Basic authentication relies on a successful LDAP BIND operation against an LDAP directory--either the local LDAP included in the Gluu Server, or a backend LDAP server like Active Directory that has been configured for use with the Gluu Server via [Cache Refresh](../admin-guide/user-management.md/#ldap-synchronization). 
 
 ## Configuring Basic Authentication
 Follow the steps below to configure the Basic authentication method:
@@ -57,5 +57,5 @@ To use an external LDAP server like Active Directory instead, you need to provid
 The login name provided by the user will be used as a search term against both the remote and internal directories, meaning there must be a strict relation between user entries in the two directories that ensures both searches will succeed. 
 
 The simplest way to achieve this is to use the Gluu Server's Cache Refresh feature which allows the admin to set 
-mappings for user attributes imported from a backend directory. Cache Refresh also allows you to customize default mapping behavior with Jython-based scripts. Learn more about [Cache Refresh](../user-group/#ldap-synchronization) in the user management portion of these docs.
+mappings for user attributes imported from a backend directory. Cache Refresh also allows you to customize default mapping behavior with Jython-based scripts. Learn more about [Cache Refresh](../user-management/#ldap-synchronization) in the user management portion of these docs.
 

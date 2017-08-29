@@ -1,6 +1,6 @@
 # Amazon AWS SSO with Gluu Server
 
-This doc will guide you on how to setup a Gluu Server as your identity provider (IDP) for access to the Amazon Web Services (AWS) webconsole. By using a Gluu Server as your IDP you can bypass the process of creating user accounts directly in AWS.  
+This doc will guide you on how to setup a Gluu Server as your identity provider (IDP) for access to the Amazon Web Services (AWS) webconsole. By using a Gluu Server as your IDP you can bypass the process of storing passwords in AWS.  
 
 Instead of hard coding access with username and passwords, or access keys and secret keys, using a Gluu Server allows you to manage access based on LDAP groups within your enterprise environment.
 
@@ -166,14 +166,14 @@ two new attributes are present for this user.
                        You can grab these values from your AWS console > IAM module.
   - `RoleSessionName`: This is the email address of user. 
   
-   ![Image](../../img/integration/aws_user_info.png)
+   ![Image](../../img/integration/aws_User_info.png)
 
 ## SSO Testing
 
 In order to test single sign-on, we need to use a link like this to start our flow:
  `https://<hostname>/idp/profile/SAML2/Unsolicited/SSO?providerId=urn:amazon:webservices`
 
-You should see the workflow like shown in the sample[video](https://youtu.be/LBnTWE9IoCw)
+You should see the workflow like shown in the sample [video](https://youtu.be/LBnTWE9IoCw)
 
 ## Questions or Issues?
 

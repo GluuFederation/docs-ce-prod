@@ -1,16 +1,16 @@
 ### Setup Prompt
 The `setup.py` script will bring up a prompt to provide information for 
 certificate as well as the IP Address and the hostname for the Gluu Server. 
-The prompt is given below.
+The prompt with example values is proided below.
 
 ```
 Enter IP Address [192.168.122.60] :
-Enter hostname [localhost] : centos.gluu.info
+Enter hostname [localhost] : idp.mydomain.info
 Enter your city or locality : Austin
 Enter your state or province two letter code : TX
 Enter two letter Country Code : US
-Enter Organization Name : Gluu
-Enter email address for support at your organization : support@gluu.org
+Enter Organization Name : MyOrg
+Enter email address for support at your organization : support@mydomain.com
 Enter maximum RAM for applications in MB [3072] :
 Optional: enter password for oxTrust and LDAP superuser [hlE3vzf0hMdD] :
 Install oxAuth OAuth2 Authorization Server? [Yes] : 

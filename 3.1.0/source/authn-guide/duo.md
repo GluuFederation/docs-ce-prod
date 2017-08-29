@@ -4,6 +4,10 @@
 
 In order to use this authentication mechanism your organization will need a Duo account and users will need to download the Duo mobile app. 
 
+## Prerequisites
+- A Gluu Server ([installation instructions](../installation-guide/index.md));
+- An account with [Duo Security](https://duo.com/) 
+
 ## Properties
 There are a few properties in the Duo Security authentication script:
 

@@ -2,18 +2,12 @@
 
 ## Overview
 
-[Interception scripts](../admin-guide/custom-script.md) enable you to customize your Gluu authentication service. In an interception script you can call external APIs, like a commercial authentication service, a DDoS protection service, a fraud detection service, etc., to make your authentication process more secure. In addition, interception scripts give you the ability to implement business driven policies during authentication. 
+[Interception scripts](../admin-guide/custom-script.md) enable you to customize many aspects of your Gluu Server identity and access management service. 
 
-For example, you may want to only prompt users in a certain group for two-factor authentication. Or, you may want to only prompt a user for two-factor authentication if the request is coming from an unknown IP address. These types of policies can be incorporated into your authentication service by writing an interception script that uses the [methods](#methods) described below.
-
-This tutorial explains how to write a script to implement a two-step out-of-band authentication using Twilio to send an SMS with a one-time password. At the end of this tutorial you should have a better understanding of how to write your own custom scripts. For reference, you can review the completed Twilio custom authentication script [here](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/twilio_sms/twilio2FA.py). 
+This tutorial explains how to write an authentication interception script to implement a two-step out-of-band authentication using Twilio to send an SMS with a one-time password. At the end of this tutorial you should have a better understanding of how to write your own custom scripts. For reference, you can review the completed Twilio custom authentication script [here](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/twilio_sms/twilio2FA.py). 
 
 !!! Warning:
-    Be aware that in case default authentication methods for oxTrust and 
-    oxAuth are set to "Default" on the "Default Authentication Method" 
-    tab of "Manage authentication page", you may lock yourself out of web UI 
-    by simply enabling an authentication script. 
-    Please check [this page](../admin-guide/oxtrust-ui/#default-authentication-method) for full explanation
+    Be aware that while testing authentication scripts you may lock yourself out of web the UI. It's always advised to test authentication scripts in a separate incognito browser. If you do find yourself locked out, follow [these steps](../operation/faq.md#revert-authentication-method) to revert the authentication method. 
     
 ## Suggested Development Environment
 
@@ -29,11 +23,11 @@ Custom scripts can either be inserted directly into the GUI or you can
 specify a path to the script. We recommend specifying a path in order to 
 make development easier. To specify a path, select `File` from the `Script Location Type` field in oxTrust and the `Script Path` input box will be displayed:
 
-![image](../img/admin-guide/multi-factor/script_upload_box.png)
+![image](../../img/admin-guide/multi-factor/script_upload_box.png)
 
 The `LDAP` option in the `Script Location Type` can be used to store the script in the LDAP tree once development is complete. Remember that selecting the `LDAP` method requires the script to be copied in the input box that appears upon LDAP selection:
 
-![image](../img/admin-guide/multi-factor/script_in_ldap.png)
+![image](../../img/admin-guide/multi-factor/script_in_ldap.png)
 
 ## Fields in Custom Script:
 
@@ -65,7 +59,8 @@ We used the [Basic Script](https://raw.githubusercontent.com/GluuFederation/oxAu
 as a template. The [Wikid forms](https://github.com/GluuFederation/oxAuth/tree/master/Server/src/main/webapp/auth/wikid) 
 were also used as a template since it requires that we pass the value of the `code` obtained from Twilio to step 2 of the authentication to validate and authenticate the user.
 
-The [Wikid authentication](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/wikid/WikidExternalAuthenticator.py) script was also looked upon for examples on how to process the form.
+The [Wikid authentication](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations.deprecatred/wikid/WikidExternalAuthenticator.py)
+ script was also looked upon for examples on how to process the form.
 
 ## Implement methods - Using Twilio SMS
 
@@ -92,7 +87,7 @@ Steps to add a custom template and pass values between 2 steps of authentication
 
 As shown in the below illustration:
 
-![image](../img/admin-guide/multi-factor/twilio.png)
+![image](../../img/admin-guide/multi-factor/twilio.png)
 
 ## Methods 
 
@@ -200,7 +195,7 @@ Using **session_attribute.get()** method, stored session attribute can be retrie
 
 Sometimes it is helpful to enable system administrators to enter properties that might frequently change. If administrators are not allowed to modify the script, the Custom Property feature can be used as illustrated in below screenshot:
 
-![image](../img/admin-guide/multi-factor/07-custom-properties.jpg)
+![image](../../img/admin-guide/multi-factor/07-custom-properties.jpg)
 
 `configurationAttributes.get("<key>").getValue2"()`:
 

@@ -149,7 +149,7 @@ Let's start!
   - Log into oxTrust
   - Configuration -> Manage Custom Script
   - Script name 'asimba'
-    - asimba_saml_certificate_file: /etc/certs/saml.pem [ Make sure you copy ingredient of `asimba.crt` into `samlp.pem` with "BEGIN CERTIFICATE" and "END CERTIFICATE" header and footer] 
+    - asimba_saml_certificate_file: /etc/certs/saml.pem [ Make sure you copy ingredient of `asimba.crt` into `saml.pem` with "BEGIN CERTIFICATE" and "END CERTIFICATE" header and footer] 
     - asimba_entity_id: https://[proxy3_hostname]/saml
     - saml_deployment_type: enroll
     - saml_use_authn_context: false
@@ -184,7 +184,7 @@ Let's start!
    - Metadata Timeout: -1
    - Metadata File: upload metadata
    - Trust Certificate File: Grab SAML metadata from remote IDP and upload that. This certificate must be no password protected and x509 format crt. If remote IDP is another Gluu Server then grab 'shibIDP.crt' from /etc/certs/ of that server.
-   - NameIDFormat: urn:oasis:names:tc:SAML:2.0:nameid-format:transient [ If your remote AuthN server is a Gluu Server, it might vary for other types of AuthN servers ] 
+   - NameIDFormat: urn:oasis:names:tc:SAML:2.0:nameid-format:transient [ If your remote AuthN server is also a Gluu Server ]. This NameID might vary according to various types of AuthN server. 
    - Enabled: Yes
    - Send Scoping in AuthNRequest: Yes
    - AllowCreate: Yes
@@ -260,7 +260,7 @@ You need to create a custom attribute named 'issuerIDP' in this stage. Here is h
 
 ##### Shibboleth SP installation
 
-- Prepare your SP instance by following this ( https://gluu.org/docs/ce/3.0.2/integration/saml-sp/#super-quick-ubuntu-shib-apache-install ) doc. 
+- Prepare your SP instance by following this doc: https://gluu.org/docs/ce/3.0.2/integration/webapps/saml-sp/#super-quick-ubuntu-shib-apache-install
 
 ##### shibboleth2.xml configuration
 

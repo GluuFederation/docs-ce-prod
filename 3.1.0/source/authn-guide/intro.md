@@ -1,7 +1,16 @@
 # User Authentication Introduction
-The Gluu Server is very flexible in handling authentication. By default, the Gluu Server uses username and password authentication. However, using the Gluu Server's [interception script infrastructure](../admin-guide/custom-script.md), you can define multiple authentication methods and custom business logic for complex multi-step authentication workflows. You can have multiple authentication mechanisms active at the same time--Web or mobile clients can request a certain authentication type by using standard OpenID Connect request parameters. 
+The Gluu Server is very flexible in handling authentication. By default, the Gluu Server uses username and password authentication. Using the Gluu Server's [interception script infrastructure](../admin-guide/custom-script.md), you can define multiple authentication methods and custom business logic for complex multi-step authentication workflows. You can have multiple authentication mechanisms active at the same time--Web or mobile clients can request a certain authentication type by using standard OpenID Connect request parameters. 
 
 Interception scripts allow you to configure authentication processes and customize how they are applied. Sophisticated authentication logic can implement adaptive authentication. For example, you can add extra authentication steps based on contextual information such as fraud scores, location, or browser profiling. You can also customize the look and feel of a web authentication: html, css, images and javascript can be externalized and managed by your organization.
+
+The Gluu Server ships with interception scripts for a number of authentication mechanisms, including:
+
+- [Social Login](./passport.md) 
+- [Duo Security](./duo.md)
+- [U2F](./U2F.md)
+- [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)
+
+The scripts can be used as is, or can be customized by your organization to implement custom functionality. 
 
 ## Basic Authentication
 
@@ -21,7 +30,13 @@ Learn how to [configure social login](./passport.md).
 
 ## Configure Multi-Factor Authentication
 
-Interception scripts are used by the Gluu Server to implement multi-factor authentication. A number of scripts are included out-of-the-box, including scripts to support FIDO U2F tokens (like Vasco and Yubikey), Gluu's free Android and iOS two-factor authentication application called Super Gluu, certificate authentication, Duo Security, One-Time Passwords, and more. 
+Interception scripts are used by the Gluu Server to implement multi-factor authentication. A number of scripts are included out-of-the-box, including scripts to support:
+
+- [U2F](./U2F.md)
+- [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)
+- [Duo Security](./duo.md)
+- [Certificate Authentication](./cert-auth.md)
+- [OTP](./otp.md)
 
 View all pre-written Gluu Server [custom authentication scripts](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations). Implementation guides can be found in the pages that follow in this User Authentication Guide.
 
