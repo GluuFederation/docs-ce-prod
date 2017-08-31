@@ -7,7 +7,7 @@ CORS is a mechanism which enables cross-origin requests.
 CORS Filter work by adding required `Access-Control-*` headers to HttpServletResponse object. 
 The filter also protects against HTTP response splitting. If request is invalid, or is not permitted, then request is rejected with HTTP status code 403 (Forbidden). 
 A flowchart ![flowchart](../img/admin-guide/cors/cors-flowchart.png) that demonstrates request processing by 
-this filter is available.
+this filter.
 
 The minimal configuration required to use CORS Filter is as below which is 
 already added to the web.xml in oxauth.war. Below is only for reference and no additional 
