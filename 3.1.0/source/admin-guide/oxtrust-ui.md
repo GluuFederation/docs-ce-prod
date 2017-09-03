@@ -20,26 +20,19 @@ The left hand menu is used to navigate the admin interface.
 
 ## Localization of oxTrust UI
 
-Your Gluu oxTrust UI could be customized to your preferred language. 
-By default English will be your oxTrust UI language, to have this changed to the preferred 
-language, you have to edit few properties file, which will be found within the `identity.war`.
+The oxTrust UI can be customized to your preferred language. The default language is English. To change it to your preferred language, you have to edit a few properties file which can be found within `identity.war`. The path for `identity.war` is `/opt/gluu/jetty/identity` which can be found in the `chroot` container.
 
-path for the `identity.war`, `/opt/gluu/jetty/identity`. Which will be in the `chroot` container.
+oxAuth contains the following resource bundles:   
+- [messages_en.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_en.properties)       
+- [messages_bg.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_bg.properties)      
+- [messages_de.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_de.properties)        
+- [messages_es.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_es.properties)       
+- [messages_fr.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_fr.properties)     
+- [messages_it.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_it.properties)    
+- [messages_ru.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_ru.properties)      
+- [messages_tr.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_tr.properties)      
 
-oxAuth contains the following resource bundles: 
-[messages_en.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_en.properties), 
-[messages_bg.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_bg.properties),
-[messages_de.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_de.properties), 
-[messages_es.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_es.properties), 
-[messages_fr.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_fr.properties),
-[messages_it.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_it.properties), 
-[messages_ru.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_ru.properties),
-[messages_tr.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_tr.properties),
-
-These properties files store the 
-translatable text of the messages to be displayed.
-The default properties file, which is called `messages_en.properties`, 
-contains the following lines:
+These properties files store the translatable text of the messages to be displayed. The default properties file, which is called `messages_en.properties`, contains the following lines:
 
 
 	.......
@@ -47,9 +40,7 @@ contains the following lines:
 	login.register=Register
 	.......
 
-Now that the messages are in a properties file, they can be translated into various languages. 
-No changes to the source code are required. For example to use the French version of the oxAuth 
-the messages_fr.properties should contains these lines:
+Now that the messages are in a properties file, they can be translated into various languages. No changes to the source code are required. For example, to use the French version of oxAuth, the messages_fr.properties should contains these lines:
 
 	
 	.......
@@ -57,21 +48,14 @@ the messages_fr.properties should contains these lines:
 	login.register=Registre
 	.......
 	
-Notice that the values to the right side of the equal sign have been translated but that 
-the keys on the left side have not been changed. These keys must not change, because they will 
-be referenced when oxAuth fetches the translated text.
+Notice that the values to the right of the equal sign have been translated but the keys on the left side have not changed. These keys must not change, because they will be referenced when oxAuth fetches the translated text.
 
-To add translation for not yet supported languages, just create new properties file in resource 
-folder and name it messages_[language_code].properties, 
-then add language code as supported-locale to the `faces-config.xml`.
+To add a translation for not yet supported languages, just create new properties file in resource folder and name it `messages_[language_code].properties`, then add the language code as supported-locale to the `faces-config.xml`.
 
-oxTrust UI can be used to change the language once oxtrust_[language_code].properties 
-are added in the `identity.war`, and select the preferred language from the dropdown as shown below.
+oxTrust UI can be used to change the language once oxtrust_[language_code].properties are added in the `identity.war`, and select the preferred language from the dropdown as shown below.
 
 ![localization](../img/oxtrust/localization.png)
 
-
-For other than supported languages, please contant [support](https://support.gluu.org)
 ## Configuration   
 From the configuration tab, the Gluu Server administrator can manage 
 certain non-protocol related tasks.
