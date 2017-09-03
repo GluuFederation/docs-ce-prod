@@ -14,8 +14,8 @@ markdown_extensions:
      permalink: '#'
 pages:
 - Home: 'index.md'
+- Release Notes: 'release-notes/index.md'
 - Whats new in 3.x: 'operation/intro.md'
-#- Release Notes:
 - Installation Guide:
         - 'Preparing VM': 'installation-guide/index.md'
         - 'Install Gluu Server': 'installation-guide/install.md'
@@ -41,18 +41,18 @@ pages:
             - 'HOTP/TOTP': 'authn-guide/otp.md'
             - 'Custom Authentication': 'authn-guide/customauthn.md'
         - 'Attributes' : 'admin-guide/attribute.md'
-        - 'User Management' : 'admin-guide/user-group.md'
-        - 'Session Management': 'admin-guide/session.md'
+        - 'User Management' : 'admin-guide/user-management.md'
+        - 'User Management with SCIM' : 'admin-guide/user-scim.md'
+        - 'SCIM protected by UMA' : 'admin-guide/scim-uma.md'
         - 'SAML' : 'admin-guide/saml.md'
         #        - 'OAuth2 Grants' : 'admin-guide/oauth2.md'
         - 'OpenID Connect' : 'admin-guide/openid-connect.md'
         - 'UMA' : 'admin-guide/uma.md'
-        - 'SCIM protected by UMA' : 'admin-guide/scim-uma.md'
-        - 'User Management with SCIM' : 'admin-guide/user-scim.md'
+        - 'Session Management': 'admin-guide/session.md'
         - 'Central Authentication Service (CAS)' : 'admin-guide/cas.md'
         - 'Certificate Management' : 'admin-guide/certificate.md'
         - 'CORS Configuration' : 'admin-guide/cors.md'
-- Integration Guide:
+- SSO Integration Guide:
         - 'Introduction': 'integration/index.md'
         - 'Client SDKs':
             - 'oxd OAuth2': 'integration/oauth2.md'
@@ -86,9 +86,8 @@ pages:
         - 'Backups': 'operation/backup.md'
         - 'Find your Gluu Version': 'operation/find-gluu-version.md'
         - 'Ports': 'operation/ports.md'
-        - 'Single Logout (SLO)': 'operation/logout.md'
+        - 'Logout': 'operation/logout.md'
         - 'Log Management' : 'operation/logs.md'
-        - 'External Logging using FluentD': 'operation/fluentd.md'
         - 'Customize Public Pages': 'operation/custom-loginpage.md'
         - 'FAQ & Troubleshooting': 'operation/faq.md'
         - 'Change IP Address': 'operation/changeip.md'
