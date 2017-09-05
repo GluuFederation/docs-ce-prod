@@ -204,7 +204,7 @@ class UmaRptPolicy(UmaRptPolicyType):
 
 Sometimes RPT Authorization Policy may require additional claims that has to be provided by the user. In this case Claims-Gathering Flow can be used to gather such information. The logic is coded as custom script and can be added by navigating to `Configuration` > `Custom Scripts` > `UMA Claims-Gathering`.
 
-![uma-claims-gathering-policy](../img/uma/uma-claims-gathering-policy.jpg)
+![uma-claims-gathering-policy](../img/uma/uma-claims-gathering-policy.png)
 
 Sample script
 ```
