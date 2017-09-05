@@ -58,7 +58,7 @@ To view which authentication mechanisms are enabled at your Gluu Server, you can
 Learn more about `acr_values` in the [OpenID Connect core scpec](http://openid.net/specs/openid-connect-core-1_0.html#acrSemantics) and in the Gluu Server [OpenID Connect docs](../admin-guide/openid-connect.md/#multi-factor-authentication-for-clients).
 
 !!! Note
-    Since all authentications at the Gluu Server are routed through oxAuth, you can take incoming SAML or CAS assertions from a 3rd party IDP, for example ADFS, and use that as the basis for an OIDC session. This eanbles seamless SSO across all your apps regardless of protocol.
+    All Gluu Server authentications are routed through oxAuth (the OP). You can take incoming SAML or CAS assertions from a 3rd party IDP, for example ADFS, and use that as the basis for an OpenID Connect session. This eanbles seamless SSO across all your apps.
 
 ## Configuring Account Lockout
 
