@@ -234,9 +234,17 @@ http {
     server {server1_ip_or_FQDN}:443;
     server {server2_ip_or_FQDN}:443;
   }
-
+  upstream backend {
+    server {server1_ip_or_FQDN}:443;
+    server {server2_ip_or_FQDN}:443;
+        
+  }
   server {
-    listen 80;
+    listen       80;
+    server_name  {NGINX_server_FQDN};
+    return       301 https://{NGINX_server_FQDN}$request_uri;
+   }
+  server {
     listen 443;
     server_name {NGINX_server_FQDN};
 
@@ -245,15 +253,18 @@ http {
     ssl_certificate_key     /etc/nginx/ssl/httpd.key;
 
     location ~ ^(/)$ {
-      proxy_pass https://backend_id;
+      proxy_pass https://backend;
+    }
+    location /.well-known {
+        proxy_pass https://backend_id/.well-known;
     }
     location /oxauth {
-        proxy_pass https://backend_id/oxauth;
+        proxy_pass https://backend/oxauth;
     }
-
     location /identity {
         proxy_pass https://backend_id/identity;
     }
+
   }
 }
 
