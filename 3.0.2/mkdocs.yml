@@ -40,6 +40,7 @@ pages:
             - 'Google+ OAuth 2.0': 'authn-guide/google.md'
             - 'HOTP/TOTP': 'authn-guide/otp.md'
             - 'Custom Authentication': 'authn-guide/customauthn.md'
+            - 'Account Lockout': 'authn-guide/lockout.md'
         - 'Attributes' : 'admin-guide/attribute.md'
         - 'User Management' : 'admin-guide/user-management.md'
         - 'User Management with SCIM' : 'admin-guide/user-scim.md'
