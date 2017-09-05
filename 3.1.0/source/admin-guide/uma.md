@@ -125,6 +125,177 @@ The following section outlines how to define UMA RPT Authorization policies from
 
 ![auth-policy](../img/uma/auth-policy.png)
 
+Sample script
+```
+# Call sequence
+# 1. First is call constructor of the Script __init__
+# 2. Next init() method
+# 3. Next getRequiredClaims() - method returns required claims, so UMA engine checks whether
+#    in request RP provided all claims that are required. Pay attention that there can be
+#    multiple scripts bound to the scopes, means that UMA engine will build set of required claims
+#    from all scripts. If not all claims are provided need_info error is sent to RP.
+#    During need_info construction getClaimsGatheringScriptName() method is called
+# 4. authorize() method is called if all required claims are provided.
+# 5. destroy()
+
+from org.xdi.model.custom.script.type.uma import UmaRptPolicyType
+from org.xdi.model.uma import ClaimDefinitionBuilder
+from java.lang import String
+
+class UmaRptPolicy(UmaRptPolicyType):
+    def __init__(self, currentTimeMillis):
+        self.currentTimeMillis = currentTimeMillis
+
+    def init(self, configurationAttributes):
+        print "RPT Policy. Initializing ..."
+        print "RPT Policy. Initialized successfully"
+
+        return True
+
+    def destroy(self, configurationAttributes):
+        print "RPT Policy. Destroying ..."
+        print "RPT Policy. Destroyed successfully"
+        return True
+
+    def getApiVersion(self):
+        return 1
+
+    # Returns required claims definitions.
+    # This method must provide definition of all claims that is used in 'authorize' method.
+    # Note : name in both places must match.
+    # %1$s - placeholder for issuer. It uses standard Java Formatter, docs : https://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html
+    def getRequiredClaims(self, context): # context is reference of org.xdi.oxauth.uma.authorization.UmaAuthorizationContext
+        json = """[
+        {
+            "issuer" : [ "%1$s" ],
+            "name" : "country",
+            "claim_token_format" : [ "http://openid.net/specs/openid-connect-core-1_0.html#IDToken" ],
+            "claim_type" : "string",
+            "friendly_name" : "country"
+        },
+        {
+            "issuer" : [ "%1$s" ],
+            "name" : "city",
+            "claim_token_format" : [ "http://openid.net/specs/openid-connect-core-1_0.html#IDToken" ],
+            "claim_type" : "string",
+            "friendly_name" : "city"
+        }
+        ]"""
+        context.addRedirectUserParam("customUserParam1", "value1") # pass some custom parameters to need_info uri. It can be removed if you don't need custom parameters.
+        return ClaimDefinitionBuilder.build(String.format(json, context.getIssuer()))
+
+    # Main authorization method. Must return True or False.
+    def authorize(self, context): # context is reference of org.xdi.oxauth.uma.authorization.UmaAuthorizationContext
+        print "RPT Policy. Authorizing ..."
+
+        if context.getClaim("country") == 'US' and context.getClaim("city") == 'NY':
+            print "Authorized successfully!"
+            return True
+
+        return False
+
+    # Returns name of the Claims-Gathering script which will be invoked if need_info error is returned.
+    def getClaimsGatheringScriptName(self, context): # context is reference of org.xdi.oxauth.uma.authorization.UmaAuthorizationContext
+        context.addRedirectUserParam("customUserParam2", "value2") # pass some custom parameters to need_info uri. It can be removed if you don't need custom parameters.
+        return "sampleClaimsGathering"
+```
+
+### UMA 2 Claims-Gathering
+
+Sometimes RPT Authorization Policy may require additional claims that has to be provided by the user. In this case Claims-Gathering Flow can be used to gather such information. The logic is coded as custom script and can be added by navigating to `Configuration` > `Custom Scripts` > `UMA Claims-Gathering`.
+
+![uma-claims-gathering-policy](../img/uma/uma-claims-gathering-policy.jpg)
+
+Sample script
+```
+from org.xdi.model.custom.script.type.uma import UmaClaimsGatheringType
+
+class UmaClaimsGathering(UmaClaimsGatheringType):
+
+    def __init__(self, currentTimeMillis):
+        self.currentTimeMillis = currentTimeMillis
+
+    def init(self, configurationAttributes):
+        print "Claims-Gathering. Initializing ..."
+        print "Claims-Gathering. Initialized successfully"
+
+        return True
+
+    def destroy(self, configurationAttributes):
+        print "Claims-Gathering. Destroying ..."
+        print "Claims-Gathering. Destroyed successfully"
+        return True
+
+    def getApiVersion(self):
+        return 1
+
+
+    # Main gather method. Must return True (if gathering performed successfully) or False (if fail).
+    # Method must set claim into context (via context.putClaim('name', value)) in order to persist it (otherwise it will be lost).
+    # All user entered values can be access via Map<String, String> context.getPageClaims()
+    def gather(self, step, context): # context is reference of org.xdi.oxauth.uma.authorization.UmaGatherContext
+        print "Claims-Gathering. Gathering ..."
+
+        if step == 1:
+            if (context.getPageClaims().containsKey("country")):
+                country = context.getPageClaims().get("country")
+                print "Country: " + country
+
+                context.putClaim("country", country)
+                return True
+
+            print "Claims-Gathering. 'country' is not provided on step 1."
+            return False
+
+        elif step == 2:
+            if (context.getPageClaims().containsKey("city")):
+                city = context.getPageClaims().get("city")
+                print "City: " + city
+
+                context.putClaim("city", city)
+                print "Claims-Gathering. 'city' is not provided on step 2."
+                return True
+
+        return False
+
+    def getNextStep(self, step, context):
+        return -1
+
+    def prepareForStep(self, step, context):
+        if step == 10 and not context.isAuthenticated():
+            # user is not authenticated, so we are redirecting user to authorization endpoint
+            # client_id is specified via configuration attribute.
+            # Make sure that given client has redirect_uri to Claims-Gathering Endpoint with parameter authentication=true
+            # Sample https://sample.com/restv1/uma/gather_claims?authentication=true
+            # If redirect to external url is performated, make sure that viewAction has onPostback="true" (otherwise redirect will not work)
+            # After user is authenticated then within the script it's possible to get user attributes as
+            # context.getUser("uid", "sn")
+            # If user is authenticated to current AS (to the same server, not external one) then it's possible to
+            # access Connect session attributes directly (no need to obtain id_token after redirect with 'code').
+            # To fetch attributes please use getConnectSessionAttributes() method.
+
+            print "User is not authenticated. Redirect for authentication ..."
+            clientId = context.getConfigurationAttributes().get("client_id").getValue2()
+            redirectUri = context.getClaimsGatheringEndpoint() + "?authentication=true" # without authentication=true parameter it will not work
+            authorizationUrl = context.getAuthorizationEndpoint() + "?client_id=" + clientId + "&redirect_uri=" + redirectUri + "&scope=openid&response_type=code"
+            context.redirectToExternalUrl(authorizationUrl) # redirect to external url
+            return False
+        if step == 10 and context.isAuthenticated(): # example how to get session attribute if user is authenticated to same AS
+            arc = context.getConnectSessionAttributes().get("acr")
+
+        return True
+
+    def getStepsCount(self, context):
+        return 2
+
+    def getPageForStep(self, step, context):
+        if step == 1:
+            return "/uma2/sample/country.xhtml"
+        elif step == 2:
+            return "/uma2/sample/city.xhtml"
+        return ""
+```
+
 ### UMA 2 RPT Authorization Policy Algorithm
 The UMA 2 policy algorithm has two rules that must be followed:
 
