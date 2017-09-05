@@ -164,7 +164,7 @@ Note: If the Gluu Server login page is still not appearing after you've received
 
 ## Clustering
 
-If you have requirements for high availability (HA) or failover, you can configure your Gluu Server for multi-master replication by following the documention for [configuring replication](./cluster.md) documentation.
+If you have requirements for high availability (HA) or failover, you can configure your Gluu Server for multi-master replication by following the documention for [configuring replication](./cluster.md).
 
 ## Uninstallation
 
