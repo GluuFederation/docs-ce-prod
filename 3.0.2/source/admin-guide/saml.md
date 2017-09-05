@@ -71,7 +71,7 @@ Each SP may require one or more user attributes in order to grant a person acces
 certain preconfigured attributes and also supports the creation of custom attributes. Once the attributes are available in the Gluu Server, the administrator can use the oxTrust interface to release the necessary attributes to the SP (as described [below](#create-a-trust-relationship-in-the-gluu-server)). For a broader discussion of attributes, including how to create custom attributes, check the [attributes section](./attribute.md) of the documentation.
 
 ### NameID
-Refer to the [attributes section of the documentation](./attribute.md/#defining-nameid) to learn how to configure the NameID attribute for your SAML SSO service. 
+Refer to the [attributes section of the documentation](./attribute/#defining-nameid) to learn how to configure the NameID attribute for your SAML SSO service. 
 
 ### Create a Trust Relationship in the Gluu Server       
 * Go to `SAML` > `Trust Relationships`
