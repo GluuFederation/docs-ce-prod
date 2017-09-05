@@ -105,7 +105,7 @@ documentation and administrative guide.
 #### oxAuth
 - Duo not working[#628](https://github.com/GluuFederation/oxAuth/issues/628)
 - Consent screen can throw NPE after timeout[#627](https://github.com/GluuFederation/oxAuth/issues/627)
-- java.lang.IllegalStateException: Counter for nested ContextualHttpServletRequest was removed before it should be![#626](https://github.com/GluuFederation/oxAuth/issues/626)
+- java.lang.IllegalStateException: Counter for nested ContextualHttpServletRequest was removed before it should be! [#626](https://github.com/GluuFederation/oxAuth/issues/626)
 - Not able to register profile, email scope[#624](https://github.com/GluuFederation/oxAuth/issues/624)
 - basic_multi_auth script not loading[#623](https://github.com/GluuFederation/oxAuth/issues/623)
 - OTP ( hotp ) not working[#620](https://github.com/GluuFederation/oxAuth/issues/620)
