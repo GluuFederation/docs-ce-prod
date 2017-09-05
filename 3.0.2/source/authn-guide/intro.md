@@ -44,7 +44,7 @@ In oxTrust, you can navigate to `Configuration` > `Manage Authentication` > `Def
 
 2. oxTrust acr: this form of authentication will be presented to anyone specifically trying to access the oxTrust admin GUI.
 
-## Mutliple Authentication Mechanisms
+## Multiple Authentication Mechanisms
 As previously mentioned, your Gluu Server can support multiple authentication mechanisms. 
 
 In oxTrust, navigate to `Configuration` > `Manage Custom Scripts` > `Person Authentication` and check the `Enabled` box for each applicable interception script and save the page. 
