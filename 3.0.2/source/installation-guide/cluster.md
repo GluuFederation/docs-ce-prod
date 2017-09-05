@@ -2,7 +2,7 @@
 # Manual Gluu Server Clustering 
 
 ## Introduction
-If you have requirements for high availability (HA) or failover, you can configure your Gluu Server for multi-master replication by following the below steps.
+If you have requirements for high availability (HA) or failover, you can configure your Gluu Server for multi-master replication by following the instructions below.
 
 ## Prerequisites
 
