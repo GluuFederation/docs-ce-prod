@@ -14,9 +14,11 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 ## Instructions
 
-1. [Install Gluu](https://gluu.org/docs/ce/3.0.2/installation-guide/install/) on one server making sure to use a separate NGINX server FQDN as hostname.
+1. [Install Gluu](https://gluu.org/docs/ce/3.0.2/installation-guide/install/) on one server making sure to use a separate NGINX server FQDN as hostname. 
 
 - A separate NGINX server is recommended, but not necessary, since replicating a Gluu server to a different hostname breaks the functionality of the Gluu webpage, when using a hostname other than what is in the certificates. For example, if I used c1.gluu.info as my host and another install of gluu as c2.gluu.info, the process of accessing the site on c2.gluu.info, even with replication, will fail authentication. So if c1 failed, you couldn't access the Gluu web GUI anymore.
+
+- The other servers should [install the Gluu Server Package](https://gluu.org/docs/ce/3.0.2/installation-guide/install/#install-gluu-server-package) but not run setup.py. This will install the necessary init.d scripts for us.
 
 2. Copy the Gluu install environment to the other servers. 
 
@@ -25,7 +27,7 @@ Gluu.Root # logout
 # service gluu-server-3.0.2 stop
 ```
 
-- Now tar the /opt/gluu-server-3.0.2/ folder, copy it to the other servers and extract it in the /opt/ folder.
+- Now tar the `/opt/gluu-server-3.0.2/ folder`, copy it to the other servers and extract it in the /opt/ folder.
 
 ```
 tar -cvf gluu.gz /opt/gluu-server-3.0.2/
@@ -36,7 +38,9 @@ scp gluu.gz root@server2.com:/opt/
 Server 2
 
 ```
+service gluu-server-3.0.2 stop
 cd /opt/
+rm -rf /opt/gluu-server-3.0.2/
 tar -xvf gluu.gz
 ```
 
