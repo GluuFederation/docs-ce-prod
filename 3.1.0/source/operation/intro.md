@@ -49,3 +49,5 @@ reasons.
    software, like Google Authenticator. [Read the docs](../authn-guide/otp.md).
  - Centralized logging--useful for clustered deployments.
  - Improved audit logging capabilities for OAuth 2.0
+ - External Logging is made easy using FluentD 3.5
+ - Migrated Weld 3.0.0
