@@ -2,7 +2,7 @@
 # Manual Gluu Server Clustering 
 
 ## Introduction
-Below are the steps to follow for manually configuring delta-syncrepl multi-master replication with Gluu.
+If you have requirements for high availability (HA) or failover, you can configure your Gluu Server for multi-master replication by following the below steps.
 
 ## Prerequisites
 
