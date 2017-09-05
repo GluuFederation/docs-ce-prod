@@ -7,6 +7,7 @@ In order to use this authentication mechanism users will need to install a mobil
 
 ## Prerequisites
 - A Gluu Server ([installation instructions](../installation-guide/index.md));
+- [HOTP / TOTP authentication script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/otp/OtpExternalAuthenticator.py) (included in the default Gluu Server distribution);
 - An Android or iOS device with Google Authenticator installed.  
 
 !!! Note
