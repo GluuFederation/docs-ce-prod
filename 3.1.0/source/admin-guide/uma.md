@@ -1,16 +1,16 @@
-# UMA 2
+# User Managed Access ("UMA")
 
 ## Overview
 As a profile of OAuth 2.0 that is complementary to OpenID Connect, UMA 2 defines RESTful, JSON-based, standardized flows and constructs for coordinating the protection of any API or web resource in a way that will be familiar to any developer already acquainted with OAuth.
 
 UMA 2 defines interfaces between authorization servers (AS) and resource servers (RS) that, by default, enable centralized policy decision-making for improved service delivery, auditing, policy administration, and accountability, even in a very loosely coupled "public API" environment. Custom profiles enable flexibility to move the decision-making line outward to distributed applications, to account for local preferences in API ecosystems. 
 
-Learn more about the Gluu Server's [UMA-API](../api-guide/uma-api.md). 
+The Gluu Server functions as an UMA 2 AS and provides an interface for scripting unique policies for access management. Learn more about the Gluu Server's [UMA-API](../api-guide/uma-api.md). 
 
 Learn more about the UMA 2 [Federated Authorization](https://docs.kantarainitiative.org/uma/ed/oauth-uma-federated-authz-2.0-07.html) and [Grant](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-06.html) specifications on Kantara's website.
 
 !!! Note
-    The Gluu Server functions as an UMA 2 AS provides an interface for scripting unique policies for access management. To secure and integrate your applications with the Gluu Server, we **strongly recommend** using our UMA 2 client software, [oxd](http://oxd.gluu.org).
+    If you need to secure apps with OAuth 2.0 RP and UMA 2 RS code, you can use the [oxd client software](http://oxd.gluu.org).
 
 ### Terminology
 UMA 2 introduces new terms and enhancements of OAuth term definitions. For a complete overview of UMA terminology, see the [specification](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-06.html#roles).
@@ -19,9 +19,9 @@ UMA 2 introduces new terms and enhancements of OAuth term definitions. For a com
 UMA 2 does not standardize a policy expression language, enabling flexibility in policy expression and evaluation through XACML, other declarative policy languages, or procedural code as warranted by conditions. 
 
 ### Authentication-Agnostic
-UMA 2 inherits authentication agnosticism from OAuth. It concentrates on authorization, not on authentication. 
+UMA 2 inherits authentication agnosticism from OAuth. It concentrates on authorization, not authentication. 
 It has been profiled to work with OpenID Connect to gather identity claims from whoever is attempting access, 
-and enables true claims-based authorization (with simple group- or role-based policies a natural subset). 
+and enables true claims-based authorization (with simple group-based or role-based policies a natural subset). 
 
 ## Resource Registration
 The resources protected by UMA 2 must be registered in oxTrust. The following propterties describe a resource:
