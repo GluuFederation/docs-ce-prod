@@ -16,12 +16,12 @@ Some well known U2F devices and manufacturers include:
 - [HyperFIDO](http://hyperfido.com/)       
 - [Feitian Technologies](http://www.ftsafe.com/)      
 
-Check [FIDO's certified products](https://fidoalliance.org/certification/fido-certified-products/) for a comprehensive list of U2F devices (sort by `Specification` == `U2F`).
+Check [FIDO's certified products](https://fidoalliance.org/certification/fido-certified-products/) for a comprehensive list of U2F devices (sort by `Specification` == `U2F`).   
 
 ## Prerequisites
-- A Gluu Server ([installation instructions](../installation-guide/index.md));
-- At least one U2F device for testing, like one of the devices [listed above](#u2f-devices);
-- [U2F interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/u2f/U2fExternalAuthenticator.py) (included in the default Gluu Server distribution).
+- A Gluu Server ([installation instructions](../installation-guide/index.md));      
+- [U2F interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/u2f/U2fExternalAuthenticator.py) (included in the default Gluu Server distribution);     
+- At least one U2F device for testing, like one of the devices [listed above](#u2f-devices).   
 
 ## Properties
 The script has the following properties
