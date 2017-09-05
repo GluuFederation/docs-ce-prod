@@ -1,7 +1,7 @@
 # User Managed Access 1.x ("UMA")
 
 ## Disclaimer
-The Gluu Server 3.1 supports [UMA 2.0](https://docs.kantarainitiative.org/uma/ed/uma-core-2.0-01.html). There are breaking changes with the Gluu Server's existing UMA 1.x implementation as documented below. If you are preparing for a new UMA deployment, we recommend deploying or upgrading to the [Gluu Server 3.1](https://gluu.org/docs/ce/3.1.0). 
+The Gluu Server 3.1 and onward will support [UMA 2.0](https://docs.kantarainitiative.org/uma/ed/uma-core-2.0-01.html). There are breaking changes with the Gluu Server's existing UMA 1.x implementation as documented below. If you are preparing for a new UMA deployment, we recommend deploying or upgrading to the [Gluu Server 3.1](https://gluu.org/docs/ce/3.1.0). 
 
 ## Overview
 As a profile of OAuth 2.0 that is complementary to OpenID Connect, UMA defines RESTful, JSON-based, standardized flows and constructs for coordinating the protection of any API or web resource in a way that will be familiar to any developer already acquainted with OAuth.
