@@ -11,8 +11,8 @@ configuration is stored centrally in LDAP, you can scale Passport even in cluste
 The Gluu Server uses its [Passport interception script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/passport/PassportExternalAuthenticator.py) to enable social login. This script is included in our default distribution. Post-authentication, this script uses just-in-time provisioning to add users to the Gluu LDAP server if a local account does not already exist. In this way, the Gluu SAML and OpenID Connect providers can gather claims and maintain SSO as normal.
 
 ## Prerequisites
-- A Gluu Server with Passport.js installed during setup ([Installation Instructions](../installation-guide/index.md))
-- [Passport interception script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/passport/PassportExternalAuthenticator.py) (Included in the default Gluu Server distribution)
+- A Gluu Server with Passport.js installed during setup ([Installation Instructions](../installation-guide/index.md));
+- [Passport interception script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/passport/PassportExternalAuthenticator.py) (included in the default Gluu Server distribution).
 
 ## Sequence Diagram
 
