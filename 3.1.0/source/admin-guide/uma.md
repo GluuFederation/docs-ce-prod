@@ -1,4 +1,4 @@
-# User Managed Access ("UMA") 2.0
+# User Managed Access 2.0 ("UMA 2")
 
 ## Overview
 As a profile of OAuth 2.0 that is complementary to OpenID Connect, UMA 2 defines RESTful, JSON-based, standardized flows and constructs for coordinating the protection of any API or web resource in a way that will be familiar to any developer already acquainted with OAuth.
