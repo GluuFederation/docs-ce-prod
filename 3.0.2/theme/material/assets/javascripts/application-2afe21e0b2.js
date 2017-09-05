@@ -2813,7 +2813,7 @@ var Application = function(t) {
                 var n = i(this, (e.__proto__ || Object.getPrototypeOf(e)).call(this, t));
                 return n.base_ = n.base_.replace("github.com/", "api.github.com/repos/"), n
             }
-            /* return s(e, t), a(e, [{
+            return s(e, t), a(e, [{
                 key: "fetch_",
                 value: function() {
                     var t = this;
@@ -2821,7 +2821,7 @@ var Application = function(t) {
                         return t.json()
                     }).then(function(e) {
                         return [t.format_(e.stargazers_count) + " Stars", t.format_(e.forks_count) + " Forks"]
-                    }) */
+                    })
                 }
             }]), e
         }(c.default);
