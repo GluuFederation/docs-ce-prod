@@ -8,9 +8,9 @@ Below are the steps to follow for manually configuring delta-syncrepl multi-mast
 
 Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
-- A minimum of 3 server VM's, 2 for Gluu and 1 for NGINX; 
+- A minimum of three (3) servers or VM's--two (2) for Gluu and one (1) for NGINX; 
 - To create the following instructions I used Ubuntu 14 Trusty, but the process should not be OS specific;
-- Gluu server 3.x using OpenLDAP.
+- Gluu Server 3.x using OpenLDAP.
 
 ## Instructions
 
