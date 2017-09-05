@@ -21,7 +21,7 @@ pages:
         - 'Install Gluu Server': 'installation-guide/install.md'
         - 'Configuring Replication': 'installation-guide/cluster.md'
         - 'Setup Script Options': 'installation-guide/setup_py.md'
-#        - Upgrade/Patch Guide:
+        - Upgrade/Patch Guide:
           - 'Upgrade Gluu Server' : 'upgrade/index.md'
           - 'Upgrade Gluu Server with OpenDJ': 'upgrade/manual-update.md'
 #        - 'Patch Gluu Server' : 'upgrade/update.md'
