@@ -1,4 +1,4 @@
-## UMA API Document
+## UMA 2 API Document
 User-Managed Access (UMA) is a profile of OAuth 2.0. UMA defines how 
 resource owners can manipulate to protect the resources.
 The client can have access by arbitrary requesting parties, which means the 
@@ -12,65 +12,63 @@ two purpose-built APIs related to the outsourcing of authorization,
 themselves protected by OAuth (or an OAuth-based authentication protocol) in embedded fashion.
 
 
-The UMA protocol has three broad phases as below
+A summary of UMA 2.0 communications as below
 
 ```
-                                           +--------------+
-                                           |   resource   |
-          +---------manage (A)------------ |     owner    |
-          |                                +--------------+
-          |         Phase 1:                      |
-          |         protect a                control (C)
-          |         resource                      |
-          v                                       v
-   +------------+               +----------+--------------+
-   |            |               |protection|              |
-   |  resource  |               |   API    | authorization|
-   |   server   |<-protect (B)--|  (needs  |    server    |
-   |            |               |   PAT)   |              |
-   +------------+               +----------+--------------+
-   | protected  |                          | authorization|
-   | resource   |                          |     API      |
-   |(needs RPT) |                          |  (needs AAT) |
-   +------------+                          +--------------+
-          ^                                       |
-          |         Phases 2 and 3:         authorize (D)
-          |         get authorization,            |
-          |         access a resource             v
-          |                                +--------------+
-          +---------access (E)-------------|    client    |
-                                           +--------------+
-
-                                           requesting party
+                                             +------------------+
+                                             |     resource     |
+       +------------manage (out of scope)----|       owner      |
+       |                                     +------------------+
+       |                                               |
+       |                protection                     |
+       |                API access                  control
+       |                token (PAT)              (out of scope)
+       |                                               |
+       v                                               v
++------------+                    +----------+------------------+
+|            |                    |protection|                  |
+|  resource  |                    |   API    |   authorization  |
+|   server   |<-----protect-------| (needs   |      server      |
+|            |                    |   PAT)   |                  |
++------------+                    +----------+------------------+
+| protected  |                               |        UMA       |
+| resource   |                               |       grant      |
+|(needs RPT) |          requesting           |  (PCT optional)  |
++------------+          party token          +------------------+
+       ^                  (RPT)               ^  persisted   ^
+       |                                      |   claims     |
+       |                                    push   token     |
+       |                                   claim   (PCT)     |
+       |                                   tokens         interact
+       |                                      +--------+    for
+       +------------access--------------------| client |   claims
+                                              +--------+  gathering
+                                                +---------------+
+                                                |  requesting   |
+                                                |     party     |
+                                                +---------------+
 ```
-Source: [Kantara initiative](https://docs.kantarainitiative.org/uma/rec-uma-core.html#rfc.figure.1).
+Source: [Kantara initiative](https://docs.kantarainitiative.org/uma/ed/oauth-uma-federated-authz-2.0-07.html).
 
-The Three Phases of the UMA. 
-
-- Protect a resource
-
-- Get Authorization
-
-- Access a Resource
 
 ## UMA Discovery API
 
-** /.well-known/uma-configuration**
+** /.well-known/uma2-configuration**
 
 #### Overview
 
 ### PATH
 
-`/oxauth/uma-configuration`
+`/.well-known/uma2-configuration`
 
 ##### getConfiguration
-**GET** `/oxauth/uma-configuration`
+**GET** `/.well-known/uma2-configuration`
 
 Provides configuration data as JSON document. It contains options and
 endpoints supported by the authorization server.
 
 ###### URL
-    http://gluu.org/oxauth/uma-configuration
+    http://sample.com/.well-known/uma2-configuration
 
 ###### Parameters
 <table border="1">
@@ -95,7 +93,7 @@ endpoints supported by the authorization server.
 </table>
 
 ###### Response
-[UmaConfiguration](#UmaConfiguration)
+[UmaMetadata](#UmaMetadata)
 
 ###### Errors
 <table border="1">
@@ -113,7 +111,7 @@ endpoints supported by the authorization server.
 
 ## Data Types
 
-### <a name="UmaConfiguration">UmaConfiguration</a>
+### <a name="UmaMetadata">UmaMetadata</a>
 
 <table border="1">
     <tr>
@@ -272,7 +270,7 @@ endpoints supported by the authorization server.
     </tr>
 </table>
 
-## UMA Authorization API
+## UMA 2 Authorization API
 
 ### Overview
 
