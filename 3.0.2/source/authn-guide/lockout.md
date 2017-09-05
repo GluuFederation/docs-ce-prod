@@ -1,13 +1,13 @@
 # Account Lockout
 
-The default Gluu Server distribution includes an interception script to implement a basic account lockout policy which will deactivate a users account after a set number of consecutive failed login attempts.
+The default Gluu Server distribution includes an interception script to implement a basic account lockout policy which will deactivate a users account after a set number of consecutive failed login attempts. 
 
 - View the [account lockout script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/basic.lock.account/BasicLockAccountExternalAuthenticator.py)
 
 ## How it Works
-The script uses authentication settings provided in the `Manage LDAP Authentication` tab within `Configuration` > `Manage Authentication`. 
+The script implements a basic username/password authentication flow using the local or backend LDAP server for auth, with a little enhancement to lock the user out after a specified number of failed authentication attempts. 
 
-In case the set threshold of failed logins is reached, the `gluuStatus` attribute of the user in question will be set to `inactive` and login counter is reset to zero. 
+The script uses authentication settings provided in the `Manage LDAP Authentication` tab within `Configuration` > `Manage Authentication`. In case the set threshold of failed logins is reached, the `gluuStatus` attribute of the user in question will be set to `inactive` and login counter is reset to zero. 
 
 The login counter will also be reset to zero if several unsuccessful login attempts are finally followed by a successful one (before exceeding the limit). 
 
