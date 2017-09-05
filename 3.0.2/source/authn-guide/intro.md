@@ -17,13 +17,15 @@ You can also write custom scripts to support your own unique requirements for au
 
 ## Basic Authentication
 
-By default, LDAP is used to authenticate usernames and passwords. Until additional authentication scripts are enabled, default authentication will always be username and password. 
+By default, LDAP is used to authenticate usernames and passwords. Passwords can either be checked in your Gluu Server's local LDAP server, or in an existing backend LDAP server if you have configured [LDAP synchronization](../admin-guide/user-management.md#ldap-synchronization). Until additional authentication scripts are enabled, default authentication will always be username and password. 
 
 Learn how to [configure basic authentication](./basic.md).
 
 ## Social Login
 
-During deployment of the Gluu Server you are presented with an option to include Passport.js in your installation. Passport.js provides a crowd-sourced approach to supporting social login at many popular consumer IDPs, including Facebook, LinkedIn, and GitHub. In addition to normalizing social login, Passport.js also provides a standard mapping for user claims, allowing you to dynamically enroll new users into your Gluu Server that have authenticated elsewhere.
+During deployment of the Gluu Server you are presented with an option to include Passport.js in your installation. If you want to support social login, include Passport.js in your Gluu Server deployment. 
+
+Passport.js provides a crowd-sourced approach to supporting social login at many popular consumer IDPs, including Facebook, LinkedIn, and GitHub. In addition to normalizing social login, Passport.js provides a standard mapping for user claims, allowing you to dynamically enroll new users into your Gluu Server that have authenticated elsewhere.
 
 Learn how to [configure social login](./passport.md). 
 
