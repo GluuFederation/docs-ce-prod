@@ -1,12 +1,20 @@
-# Configuring Account Lockout
+# Account Lockout
 
-The Gluu Server is shipped with an interception script that implements a basic account lockout policy which will deactivate a users account after a set number of consecutive failed login attempts.
+he default Gluu Server distribution includes an interception script to implement a basic account lockout policy which will deactivate a users account after a set number of consecutive failed login attempts.
 
-The script uses authentication settings provided in the `Manage LDAP Authentication` tab within `Configuration` > `Manage Authentication`. In case the set threshold of failed logins is reached, the “gluuStatus” attribute of the user in question will be set to `inactive` and login counter is reset to zero. The login counter will also be reset to zero if several unsuccessful login attempts are finally followed by a successful one (before exceeding the limit). 
+- View the [account lockout script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/basic.lock.account/BasicLockAccountExternalAuthenticator.py)
 
-You can re-enable a locked account by settings its `gluuStatus` attribute back to `active` via the web UI.
+## How it Works
+The script uses authentication settings provided in the `Manage LDAP Authentication` tab within `Configuration` > `Manage Authentication`. 
 
-To configure this feature navigate to `Configuration` > `Manage custom scripts` and find `basic_lock` script on the `Person Authentication` tab. There are 2 configurable properties:
+In case the set threshold of failed logins is reached, the `gluuStatus` attribute of the user in question will be set to `inactive` and login counter is reset to zero. 
+
+The login counter will also be reset to zero if several unsuccessful login attempts are finally followed by a successful one (before exceeding the limit). 
+
+## Configure Account Lockout
+To configure this feature navigate to `Configuration` > `Manage custom scripts` and find `basic_lock` script on the `Person Authentication` tab. 
+
+There are 2 configurable properties:
 
 - `Invalid_login_count_attribute` sets the name of the attribute used to store the current amount of failed login attempts. It assumes your schema already allows such an attribute to appear in user entries. The default attribute is `oxCountInvalidLogin` and it’s already supported by Gluu’s LDAP schema.
 
@@ -21,3 +29,6 @@ To configure this feature navigate to `Configuration` > `Manage custom scripts` 
 6. Click the `Update` button there.
    
 ![acct-update](../img/admin-guide/user/acct-lockout-update.png)    
+
+## Re-enable a Locked Account
+You can re-enable a locked account by settings its `gluuStatus` attribute back to `active` via the web UI.
