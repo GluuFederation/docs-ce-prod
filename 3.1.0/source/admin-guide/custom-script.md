@@ -244,7 +244,7 @@ This script can be used in an oxTrust application only.
 - [Sample Cache Refresh Script](./sample-cache-refresh-script.py)
 
  
-## UMA Authorization Policies     
+## UMA 2 RPT Authorization Policies     
 
 This is a special script for UMA. It allows an admin to protect UMA
 scopes with policies. It is possible to add more than one UMA policy to
@@ -260,7 +260,15 @@ This script type adds only one method to the base script type:
 
 This script can be used in an oxAuth application only.
 
-- [Sample Authorization Script](./sample-uma-authorization-script.py)
+- [Sample RPT Authorization Policy Script](./sample-uma-authorization-script.py)
+
+## UMA 2 Claims-Gathering     
+
+This is a special script for UMA 2. It allows an admin to code logic for gathering additional claims (required by UMA RPT Authorization Policy).
+
+This script can be used in an oxAuth application only.
+
+- [Sample UMA2 Claims-Gathering Script](./sample-uma-claims-gathering.py)
 
 
 ## Application Session Management      
