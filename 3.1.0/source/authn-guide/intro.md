@@ -1,7 +1,8 @@
 # User Authentication Introduction
-The Gluu Server is very flexible in handling authentication. By default, the Gluu Server uses username and password authentication. Using the Gluu Server's [interception script infrastructure](../admin-guide/custom-script.md), you can define multiple authentication methods and custom business logic for complex multi-step authentication workflows. You can have multiple authentication mechanisms active at the same time--Web or mobile clients can request a certain authentication type by using standard OpenID Connect request parameters. 
+The Gluu Server is very flexible in handling user authentication. By default, the Gluu Server uses username and password authentication ("basic"). However, you can change the default authentication mechanism to a stronger mechanism, like One-Time Passwords (OTP) or U2F. You can also support multiple authentication mechanisms at the same time, enabling Web and mobile clients to request a certain authentication type by using standard OpenID Connect request parameters. 
 
-Interception scripts allow you to configure authentication processes and customize how they are applied. Sophisticated authentication logic can implement adaptive authentication. For example, you can add extra authentication steps based on contextual information such as fraud scores, location, or browser profiling. You can also customize the look and feel of a web authentication: html, css, images and javascript can be externalized and managed by your organization.
+## Authentication Interception Scripts
+The Gluu Server uses [interception scripts](../admin-guide/custom-script.md) to faciliate the user authentication process. For each supported authentication mechanism--like username/password ("basic"), U2F or OTP--there is a corresponding interception script that specifies how the mechanism should be applied during user sign-in. 
 
 The Gluu Server ships with interception scripts for a number of authentication mechanisms, including:
 
@@ -10,27 +11,27 @@ The Gluu Server ships with interception scripts for a number of authentication m
 - [U2F](./U2F.md)
 - [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)
 
-The scripts can be used as is, or can be customized by your organization to implement custom functionality. 
+You can review all pre-written authentication scripts in the [oxAuth integration folder on GitHub](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations). 
+
+You can also write custom scripts to support your own unique requirements for authentication. For example, you can add extra authentication steps based on contextual information such as fraud scores, location, or browser profiling via a custom authentication script. Follow [this tutorial](./customauthn.md) to better understand the process of writing an authentication script. 
 
 ## Basic Authentication
 
-By default, LDAP is used to authenticate usernames and passwords. 
-You can set a default authentication method for access to external applications, 
-as well as access to the Gluu Server UI. Until additional authentication mechanisms 
-are enabled via custom scripts, default authentication will always be some 
-variation of username and password. 
+By default, LDAP is used to authenticate usernames and passwords. Passwords can either be checked in your Gluu Server's local LDAP server, or in an existing backend LDAP server if you have configured [LDAP synchronization](../admin-guide/user-management.md#ldap-synchronization). Until additional authentication scripts are enabled, default authentication will always be username and password. 
 
 Learn how to [configure basic authentication](./basic.md).
 
-## Configure Social Authentication
+## Social Login
 
-During deployment of the Gluu Server you are presented with an option to deploy Passport.js. With over 300 existing "strategies", Passport.js provides a crowd-sourced approach to supporting social login at many popular consumer IDPs. Passport not only normalizes authentication, it also provides a standard mapping for user claims.
+During deployment of the Gluu Server you are presented with an option to include Passport.js in your installation. If you want to support social login, include Passport.js in your Gluu Server deployment. 
+
+Passport.js provides a crowd-sourced approach to supporting social login at many popular consumer IDPs, including Facebook, LinkedIn, and GitHub. In addition to normalizing social login, Passport.js provides a standard mapping for user claims, allowing you to dynamically enroll new users into your Gluu Server that have authenticated elsewhere.
 
 Learn how to [configure social login](./passport.md). 
 
-## Configure Multi-Factor Authentication
+## Strong Authentication
 
-Interception scripts are used by the Gluu Server to implement multi-factor authentication. A number of scripts are included out-of-the-box, including scripts to support:
+The default Gluu Server distribution includes interception scripts to implement the following forms of strong authentication:
 
 - [U2F](./U2F.md)
 - [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)
@@ -38,43 +39,32 @@ Interception scripts are used by the Gluu Server to implement multi-factor authe
 - [Certificate Authentication](./cert-auth.md)
 - [OTP](./otp.md)
 
-View all pre-written Gluu Server [custom authentication scripts](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations). Implementation guides can be found in the pages that follow in this User Authentication Guide.
+## Default Authentication Mechanism
+In oxTrust, you can navigate to `Configuration` > `Manage Authentication` > `Default Authentication` to specify the default authentication mechanism for two situations: 
 
-Organizations frequently have custom requirements for authentication. For instance, an organization may want to implement a policy that enforces two-factor authentication only for users from certain a group; or only when a user tries to access a protected resource from an unknown IP address. Custom interception scripts enable enforcement of these types of policies, as well as any other business driven policy that can be scripted. 
+1. Default acr: this is the default authentication mechanism exposed to any application that sends users to Gluu for sign-in. Unless an app specifically requests a different form of authentication (as specified [below](#multiple-authentication-mechanisms)), its users will receive the form of authentication specified in this field. 
 
-Review our [custom authentication script tutorial](./customauthn.md), where we demonstrate how to write a script to implement OTP authentication using Twilio to send an SMS code for a two-step out-of-band authentication mechanism. 
+2. oxTrust acr: this form of authentication will be presented to anyone specifically trying to access the oxTrust admin GUI.
 
-##  Support Multiple Authentication Mechanisms
+## Multiple Authentication Mechanisms
+As previously mentioned, your Gluu Server can support multiple authentication mechanisms. 
 
-All authentications that happen at the Gluu Server are routed through oxAuth, the software that includes Gluu's OpenID Connect Provider (OP) implementation. Using the OpenID Connect `acr_value`, an application can request a certain type of authentication at the Gluu Server. This allows you to support multiple authetication mechanisms, and allow applications to request a specific mechanism on a case-by-case basis. Learn more about the `acr_values` that are supported out-of-the-box by the Gluu Server in the [OpenID Connect docs](../admin-guide/openid-connect.md/#multi-factor-authentication-for-clients).
+In oxTrust, navigate to `Configuration` > `Manage Custom Scripts` > `Person Authentication` and check the `Enabled` box for each applicable interception script and save the page. 
+
+By default, users will get the default authentication mechanism you specified [above](#default-authentication-mechanism) in the `Default acr` field. However, using the OpenID Connect `acr_value`, web and mobile applications can now request any enabled authentication mechanism. 
+
+To view which authentication mechanisms are enabled at your Gluu Server, you can check your OP URL: `https://<hostname>/.well-known/openid-configuration`. Find `"acr_values_supported"` to see a list of which `acr_values` applications can use to request a specific type of authentication. 
+
+Learn more about `acr_values` in the [OpenID Connect core scpec](http://openid.net/specs/openid-connect-core-1_0.html#acrSemantics) and in the Gluu Server [OpenID Connect docs](../admin-guide/openid-connect.md/#multi-factor-authentication-for-clients).
 
 !!! Note
-    Since all authentications are routed through oxAuth, your Gluu Server can take an incoming SAML or CAS assertion from a 3rd party IDP, for example ADFS, and use that as the basis for an OIDC session, providing seamless SSO across all your apps regardless of protocol.
+    All Gluu Server authentications are routed through oxAuth (the OP). You can take incoming SAML or CAS assertions from a 3rd party IDP, for example ADFS, and use that as the basis for an OpenID Connect session. This eanbles seamless SSO across all your apps.
 
-## Configuring Account Lockout
+## Account Lockout
 
-The Gluu Server is shipped with a custom authentication script that implements a 
-basic account lockout policy which will deactivate a users account 
-after a set number of consecutive failed login attempts.
+The default Gluu Server distribution includes an interception script to implement a basic account lockout policy which will deactivate a users account after a set number of consecutive failed login attempts.
 
-The script uses authentication settings provided in the `Manage LDAP Authentication` tab within `Configuration` > `Manage Authentication`. In case the set threshold of failed logins is reached, the “gluuStatus” attribute of the user in question will be set to `inactive` and login counter is reset to zero. The login counter will also be reset to zero if several unsuccessful login attempts are finally followed by a successful one (before exceeding the limit). You can re-enable a locked account by settings 
-its `gluuStatus` attribute back to `active` via web UI.
-
-To configure this feature navigate to `Configuration` > `Manage custom scripts` and find `basic_lock` script on the `Person Authentication` tab. There are 2 configurable properties:
-
-- `Invalid_login_count_attribute` sets the name of the attribute used to store the current amount of failed login attempts. It assumes your schema already allows such an attribute to appear in user entries. The default attribute is `oxCountInvalidLogin` and it’s already supported by Gluu’s LDAP schema.
-
-- `Maximum_invalid_login_attemps` sets the threshold for number of failed login attempts before the user gets locked out.
-
-![acct-update](../img/admin-guide/user/acct-lockout-config.png)
-
-2. After script is configured tick the `Enabled` checkbox 
-3. Click the `Update` button 
-4. Click on `Configuration` > `Manage Authentication` on the left menu and select `Default Authentication Method` tab. 
-5. Select `basic_lock` authentication method for oxAuth and/or oxTrust.
-6. Click the `Update` button there.
-![acct-update](../img/admin-guide/user/acct-lockout-update.png)
-
+Learn how to [configure account lockout](./lockout.md). 
 
 ## Customizing the Login Page 
 
