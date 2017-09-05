@@ -71,29 +71,34 @@ endpoints supported by the authorization server.
     http://sample.com/.well-known/uma2-configuration
 
 ###### Parameters
-<table border="1">
-    <tr>
-        <th>Access</th>
-        <th>Type</th>
-        <th>required</th>
-        <th>Description</th>
-    </tr>
-    <tr>
-        <td>Scopes</td>
-        <td>Array(string)</td>
-        <td>required</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>Claims</td>
-        <td>string</td>
-        <td>required</td>
-        <td>-</td>
-    </tr>
-</table>
+
+No parameters
 
 ###### Response
-[UmaMetadata](#UmaMetadata)
+```json
+{
+  "issuer" : "https://sample.com",
+  "authorization_endpoint" : "https://sample.com/oxauth/restv1/authorize",
+  "token_endpoint" : "https://sample.com/oxauth/restv1/token",
+  "jwks_uri" : "https://sample.com/oxauth/restv1/jwks",
+  "registration_endpoint" : "https://sample.com/oxauth/restv1/register",
+  "response_types_supported" : [ "code", "id_token", "token" ],
+  "grant_types_supported" : [ "authorization_code", "implicit", "client_credentials", "urn:ietf:params:oauth:grant-type:uma-ticket" ],
+  "token_endpoint_auth_methods_supported" : [ "client_secret_basic", "client_secret_post", "client_secret_jwt", "private_key_jwt" ],
+  "token_endpoint_auth_signing_alg_values_supported" : [ "HS256", "HS384", "HS512", "RS256", "RS384", "RS512", "ES256", "ES384", "ES512" ],
+  "service_documentation" : "http://sample.com/docs",
+  "ui_locales_supported" : [ "en", "es" ],
+  "op_policy_uri" : "http://ox.sample.com/doku.php?id=oxauth:policy",
+  "op_tos_uri" : "http://ox.sample.com/doku.php?id=oxauth:tos",
+  "introspection_endpoint" : "https://sample.com/oxauth/restv1/rpt/status",
+  "code_challenge_methods_supported" : null,
+  "claims_interaction_endpoint" : "https://sample.com/oxauth/restv1/uma/gather_claims",
+  "uma_profiles_supported" : [ ],
+  "permission_endpoint" : "https://sample.com/oxauth/restv1/host/rsrc_pr",
+  "resource_registration_endpoint" : "https://sample.com/oxauth/restv1/host/rsrc/resource_set",
+  "scope_endpoint" : "https://sample.com/oxauth/restv1/uma/scopes"
+}
+```
 
 ###### Errors
 <table border="1">
@@ -107,215 +112,25 @@ endpoints supported by the authorization server.
     </tr>
 </table>
 
-- - -
 
-## Data Types
-
-### <a name="UmaMetadata">UmaMetadata</a>
-
-<table border="1">
-    <tr>
-        <th>type</th>
-        <th>required</th>
-        <th>access</th>
-        <th>description</th>
-        <th>notes</th>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>required</td>
-        <td>version</td>
-        <td>The version of the UMA core protocol to which this authorization server conforms. The value MUST be the string "1.0".</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>required</td>
-        <td>issuer</td>
-        <td>A URI indicating the party operating the authorization server.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>Array[string]</td>
-        <td>required</td>
-        <td>patProfilesSupported</td>
-        <td>OAuth access token profiles supported by this authorization server for PAT issuance. The property value is an array of string values, where each string value is either a reserved keyword defined in this specification or a URI identifying an access token profile defined elsewhere. The reserved keyword "bearer" as a value for this property stands for the OAuth bearer token profile [OAuth-bearer]. The authorization server is REQUIRED to support this profile, and to supply this string value explicitly. The authorization server MAY declare its support for additional access token profiles for PATs.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>Array[string]</td>
-        <td>required</td>
-        <td>aatProfilesSupported</td>
-        <td>OAuth access token profiles supported by this authorization server for AAT issuance. The property value is an array of string values, where each string value is either a reserved keyword defined in this specification or a URI identifying an access token profile defined elsewhere. The reserved keyword "bearer" as a value for this property stands for the OAuth bearer token profile [OAuth-bearer]. The authorization server is REQUIRED to support this profile, and to supply this string value explicitly. The authorization server MAY declare its support for additional access token profiles for AATs.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>Array[string]</td>
-        <td>required</td>
-        <td>rptProfilesSupported</td>
-        <td>UMA RPT profiles supported by this authorization server for RPT issuance. The property value is an array of string values, where each string value is either a reserved keyword defined in this specification or a URI identifying an RPT profile defined elsewhere. The reserved keyword "bearer" as a value for this property stands for the UMA bearer RPT profile defined in Section 3.3.2. The authorization server is REQUIRED to support this profile, and to supply this string value explicitly. The authorization server MAY declare its support for additional RPT profiles.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>Array[string]</td>
-        <td>required</td>
-        <td>patGrantTypesSupported</td>
-        <td>OAuth grant types supported by this authorization server in issuing PATs. The property value is an array of string values. Each string value MUST be one of the grant_type values defined in [OAuth2], or alternatively a URI identifying a grant type defined elsewhere.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>Array[string]</td>
-        <td>required</td>
-        <td>aatGrantTypesSupported</td>
-        <td>OAuth grant types supported by this authorization server in issuing AATs. The property value is an array of string values. Each string value MUST be one of the grant_type values defined in [OAuth2], or alternatively a URI identifying a grant type defined elsewhere.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>Array[string]</td>
-        <td>optional</td>
-        <td>claimTokenProfilesSupported</td>
-        <td>Claim formats and associated sub-protocols for gathering claims from requesting parties, as supported by this authorization server. The property value is an array of string values, which each string value is either a reserved keyword defined in this specification or a URI identifying a claim profile defined elsewhere.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>Array[string]</td>
-        <td>optional</td>
-        <td>umaProfilesSupported</td>
-        <td>UMA profiles supported by this authorization server. The property value is an array of string values, where each string value is a URI identifying an UMA profile. Examples of UMA profiles are the API extensibility profiles defined in Section 5.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>required</td>
-        <td>dynamicClientEndpoint</td>
-        <td>The endpoint to use for performing dynamic client registration. Usage of this endpoint is defined by [DynClientReg]. The presence of this property indicates authorization server support for the dynamic client registration feature and its absence indicates a lack of support.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>required</td>
-        <td>tokenEndpoint</td>
-        <td>The endpoint URI at which the resource server or client asks the authorization server for a PAT or AAT, respectively. A requested scope of "uma_protection" results in a PAT. A requested scope of "uma_authorization" results in an AAT. Usage of this endpoint is defined by [OAuth2].</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>required</td>
-        <td>resourceSetRegistrationEndpoint</td>
-        <td>The endpoint URI at which the resource server introspects an RPT presented to it by a client. Usage of this endpoint is defined by [OAuth-introspection] and Section 3.3.1. A valid PAT MUST accompany requests to this protected endpoint.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>required</td>
-        <td>introspectionEndpoint</td>
-        <td>The endpoint URI at which the resource server introspects an RPT presented to it by a client. Usage of this endpoint is defined by [OAuth-introspection] and Section 3.3.1. A valid PAT MUST accompany requests to this protected endpoint.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>required</td>
-        <td>permissionRegistrationEndpoint</td>
-        <td>The endpoint URI at which the resource server registers a client-requested permission with the authorization server. Usage of this endpoint is defined by Section 3.2. A valid PAT MUST accompany requests to this protected endpoint.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>required</td>
-        <td>rptEndpoint</td>
-        <td>The endpoint URI at which the client asks the authorization server for an RPT. Usage of this endpoint is defined by Section 3.4.1. A valid AAT MUST accompany requests to this protected endpoint.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>required</td>
-        <td>gatEndpoint</td>
-        <td>The endpoint URI at which the client asks the authorization server for an GAT. Usage of this endpoint is defined by Gluu documentation.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>required</td>
-        <td>authorizationEndpoint</td>
-        <td>The endpoint URI at which the client asks to have authorization data associated with its RPT. Usage of this endpoint is defined in Section 3.4.2. A valid AAT MUST accompany requests to this protected endpoint.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>required</td>
-        <td>scopeEndpoint</td>
-        <td>Scope endpoint</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>required</td>
-        <td>requestingPartyClaimsEndpoint</td>
-        <td>The endpoint URI at which the authorization server interacts with the end-user requesting party to gather claims. If this property is absent, the authorization server does not interact with the end-user requesting party for claims gathering.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>optional</td>
-        <td>rptAsJwt</td>
-        <td>RPT as JWT</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>optional</td>
-        <td>rptAsJwt</td>
-        <td>RPT as JWT</td>
-        <td>-</td>
-    </tr>
-</table>
-
-## UMA 2 Authorization API
+## UMA 2 Token Endpoint API
 
 ### Overview
 
 ### PATH
 
-`/requester/perm`
+`/token`
 
-### requestRptPermissionAuthorization
+### requestRpt
 
 **POST** 
 
-`/requester/perm`
+`/token`
 
-Client Requests Authorization Data
-Once in possession of a permission ticket and an AAT for this
-authorization server, the client asks the authorization server to give
-it authorization data corresponding to that permission ticket. It
-performs a POST on the RPT endpoint, supplying its own AAT in the header
-and a JSON object in the body with a "ticket" property containing the
-ticket as its value.
-
-If the client had included an RPT in its failed access attempt, It MAY
-also provide that RPT in an "rpt" property in its request to the
-authorization server.
-
-In circumstances where the client needs to provide requesting party
-claims to the authorization server, it MAY also include a "claim_tokens"
-property in its request; see Section 3.4.1.2.1 for more information. The
-authorization server uses the ticket to look up the details of the
-previously registered requested permission, maps the requested
-permission to operative resource owner policies based on the resource
-set identifier and scopes associated with it, potentially requests
-additional information, and ultimately responds positively or negatively
-to the request for authorization data.
-
-The authorization server bases the issuing of authorization data on
-resource owner policies. These policies thus amount to an asynchronous
-OAuth authorization grant. The authorization server is also free to
-enable the resource owner to set policies that require the owner to
-interact with the server in near-real time to provide consent subsequent
-to an access attempt. All such processes are outside the scope of this
-specification.
+Client Requests RPT.
 
 ###### URL
-    http://gluu.org/requester/perm
+    http://sample.com/token
 
 ###### Parameters
 - body
@@ -473,7 +288,7 @@ AM to issue an RPT.
 `/requester/rpt`
 
 ###### URL
-    http://gluu.org/requester/rpt
+    http://sample.com/requester/rpt
 
 ###### Parameters
 - header
@@ -547,7 +362,7 @@ DELETE method, thereby removing it from the authorization server's
 protection regime.
 
 ###### URL
-    http://gluu.org/host/rsrc/resource_set{rsid}
+    http://sample.com/host/rsrc/resource_set{rsid}
 
 ###### Parameters
 - path
@@ -639,7 +454,7 @@ respond with a status message that includes a body containing the
 referenced resource set description, along with an "_id" property.
 
 ###### URL
-    http://gluu.org/host/rsrc/resource_set{rsid}
+    http://sample.com/host/rsrc/resource_set{rsid}
 
 ###### Parameters
 - path
@@ -699,7 +514,7 @@ method. If the request is successful, the authorization server MUST
 respond with a status message that includes an "_id" property.
 
 ###### URL
-    http://gluu.org/host/rsrc/resource_set{rsid}
+    http://sample.com/host/rsrc/resource_set{rsid}
 
 ###### Parameters
 - body
@@ -787,7 +602,7 @@ its understanding of protected resources is in full synchronization with
 the authorization server's understanding.
 
 ###### URL
-    http://gluu.org/host/rsrc/resource_set
+    http://sample.com/host/rsrc/resource_set
 
 ###### Parameters
 - query
@@ -888,7 +703,7 @@ request is successful, the authorization server MUST respond with a
 status message that includes an _id property.
 
 ###### URL
-    http://gluu.org/host/rsrc/resource_set
+    http://sample.com/host/rsrc/resource_set
 
 ###### Parameters
 - body
@@ -946,7 +761,7 @@ status message that includes an _id property.
 Not allowed
 
 #### URL
-    http://gluu.org/host/rsrc/resource_set
+    http://sample.com/host/rsrc/resource_set
 
 #### Parameters
 <table border = "1">
@@ -992,7 +807,7 @@ Not allowed
 Not allowed
 
 #### URL
-    http://gluu.org/host/rsrc/resource_set
+    http://sample.com/host/rsrc/resource_set
 
 #### Parameters
 [unsupported methods]
@@ -1107,7 +922,7 @@ specified in [OAuth-resource-reg], as follows. The object has the
 following properties:
 
 ###### URL
-    http://gluu.org/host/rsrc_pr
+    http://sample.com/host/rsrc_pr
 
 ###### Parameters
 - body
@@ -1236,7 +1051,7 @@ following properties:
 Not allowed
 
 ###### URL
-    http://gluu.org/rpt/status
+    http://sample.com/rpt/status
 
 ###### Parameters
 - form
@@ -1322,7 +1137,7 @@ Bearer Token Usage [RFC6750]. The methods of managing and validating
 these authentication credentials are out of scope of this specification.
 
 ###### URL
-    http://gluu.org/rpt/status
+    http://sample.com/rpt/status
 
 ###### Parameters
 - form
