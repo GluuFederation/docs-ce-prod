@@ -164,8 +164,7 @@ Note: If the Gluu Server login page is still not appearing after you've received
 
 ## Clustering
 
-If you need to support fail over and high availability, the Gluu Server can be clustered using the 
-Gluu Cluster Manager product. After you have followed the instructions to deploy your single Gluu Server, you can follow the [Gluu Cluster Manager documentation](https://gluu.org/docs/cm/alpha) to replicate data and cluster your servers.
+If you have requirements for high availability (HA) or failover, you can configure your Gluu Server for multi-master replication by following the documention for [configuring replication](./cluster.md) documentation.
 
 ## Uninstallation
 
