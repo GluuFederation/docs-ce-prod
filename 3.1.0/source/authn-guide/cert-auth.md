@@ -7,6 +7,7 @@ This document will explain how to use Gluu's certificate authentication intercep
 
 ## Prerequisites 
 - A Gluu Server ([installation instructions](../installation-guide/index.md));
+- [Cert interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/cert/UserCertExternalAuthenticator.py) (included in the default Gluu Server distribution);
 - Browser certificates or a smart card with a middleware service that bridges the browser and your smart card.
 
 ## Architecture 

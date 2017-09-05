@@ -6,7 +6,8 @@ In order to use this authentication mechanism your organization will need a Duo 
 
 ## Prerequisites
 - A Gluu Server ([installation instructions](../installation-guide/index.md));
-- An account with [Duo Security](https://duo.com/) 
+- [Duo interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/duo/DuoExternalAuthenticator.py) (included in the default Gluu Server distribution);
+- An account with [Duo Security](https://duo.com/).   
 
 ## Properties
 There are a few properties in the Duo Security authentication script:

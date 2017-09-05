@@ -18,7 +18,7 @@ Alternatively, for testing purposes you can temporarily enable the test mode tha
 
 Starting with CE v3.1.0, the "test mode" does not use a long-lived OAuth2 access token to send requests anymore. Instead, it uses a safer short-lived token approach in combination with dynamic registration of an OpenId Connect client. This comes at the cost of having to use a programming language to interact with the service.
 
-If you are interested in how the older approach worked, visit the [3.0.2 page](https://gluu.org/docs/ce/3.0.2/admin-guide/user-scim/#using-test-mode). There you can also find the raw `curl` HTTP requests that in general terms illustrate how low-level requests are structured. 
+If you are interested in how the older approach worked, visit the [3.1.0 page](https://gluu.org/docs/ce/3.1.0/admin-guide/user-scim/#using-test-mode). There you can also find the raw `curl` HTTP requests that in general terms illustrate how low-level requests are structured. 
 
 !!! Warning
     Recall that you cannot use your Gluu's 3.1 SCIM service with an older version of SCIM-Client.

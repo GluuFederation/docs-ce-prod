@@ -8,7 +8,8 @@ Complete docs for Super Gluu, including a User Guide and a Developer Guide, can 
 
 ## Prerequisites 
 - A Gluu Server ([installation instructions](../installation-guide/index.md));
-- An Android or iOS device with Super Gluu installed. 
+- [Super Gluu intereption script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/super_gluu/SuperGluuExternalAuthenticator.py) (included in the default Gluu Server distribution);
+- An Android or iOS device with Super Gluu installed.
 
 ## Properties
 The Super Gluu authentication script has the following properties
