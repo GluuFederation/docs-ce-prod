@@ -20,7 +20,8 @@ Check [FIDO's certified products](https://fidoalliance.org/certification/fido-ce
 
 ## Prerequisites
 - A Gluu Server ([installation instructions](../installation-guide/index.md));
-- At least one U2F device for testing, like one of the devices [listed above](#u2f-devices). 
+- At least one U2F device for testing, like one of the devices [listed above](#u2f-devices);
+- [U2F interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/u2f/U2fExternalAuthenticator.py) (included in the default Gluu Server distribution).
 
 ## Properties
 The script has the following properties
