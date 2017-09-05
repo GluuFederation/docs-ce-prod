@@ -133,48 +133,14 @@ Client Requests RPT.
     http://sample.com/token
 
 ###### Parameters
-- body
 
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>body</th>
-            <td>false</td>
-            <td></td>
-            <td><a href="#RptAuthorizationRequest">RptAuthorizationRequest</a></td>
-        </tr>
-    </table>
-- header
-
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>Authorization</th>
-            <td>false</td>
-            <td>the resource server will receive
-             an error of any kind from the authorization server 
-             when trying to register a requested permission such that 
-             it did not receive a permission ticket, then assuming the 
-             resource server chooses to respond to the client</td>
-            <td>string</td>
-        </tr>
-        <tr>
-            <th>Host</th>
-            <td>false</td>
-            <td>The Client Host seeking access</td>
-            <td>string</td>
-        </tr>
-    </table>
+- grant_type - REQUIRED. MUST be the value urn:ietf:params:oauth:grant-type:uma-ticket.
+- ticket - REQUIRED. The most recent permission ticket received by the client as part of this authorization process.
+- claim_token - OPTIONAL. If this parameter is used, it MUST appear together with the claim_token_format parameter. A string containing directly pushed claim information in the indicated format. It MUST be base64url encoded unless specified otherwise by the claim token format. The client MAY provide this information on both first and subsequent requests to this endpoint. The client and authorization server together might need to establish proper audience restrictions for the claim token prior to claims pushing.
+- claim_token_format = OPTIONAL. If this parameter is used, it MUST appear together with the claim_token parameter. A string specifying the format of the claim token in which the client is directly pushing claims to the authorization server. The string MAY be a URI. Examples of potential types of claim token formats are [OIDCCore] ID Tokens and SAML assertions.
+= pct - OPTIONAL. If the authorization server previously returned a PCT along with an RPT, the client MAY include the PCT in order to optimize the process of seeking a new RPT. Given that some claims represented by a PCT are likely to contain identity information about a requesting party, a client supplying a PCT in its RPT request MUST make a best effort to ensure that the requesting party using the client now is the same as the requesting party that was associated with the PCT when it was issued. The client MAY use the PCT for the same requesting party when seeking an RPT for a resource different from the one sought when the PCT was issued, or a protected resource at a different resource server entirely. See Section 5.3 for additional PCT security considerations. See Section 3.3.5 for the form of the authorization server's response with a PCT.
+- rpt - OPTIONAL. Supplying an existing RPT gives the authorization server the option of upgrading that RPT instead of issuing a new one (see Section 3.3.5.1 for more about this option).
+- scope - OPTIONAL. A string of space-separated values representing requested scopes. For the authorization server to consider any requested scope in its assessment, the client MUST have pre-registered the same scope with the authorization server. The client should consult the resource server's API documentation for details about which scopes it can expect the resource server's initial returned permission ticket to represent as part of the authorization assessment (see Section 3.3.4).
 
 ###### Response
 [](#)
@@ -202,167 +168,44 @@ Client Requests RPT.
 </table>
 
 
-- - -
+## UMA 2 Resource Registration API 
 
-## Data Types
-
-### <a name="ClaimTokenList">ClaimTokenList</a>
-
-<table border="1">
-    <tr>
-        <th>type</th>
-        <th>required</th>
-        <th>access</th>
-        <th>description</th>
-        <th>notes</th>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>required</td>
-        <td>format</td>
-        <td>A string specifying the format of the accompanying 
-        claim tokens. 
-        The string MAY be a URI.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>required</td>
-        <td>token</td>
-        <td>A string containing the claim information in the 
-        indicated format, base64url encoded if it is not already so encoded. If claim token format features are included that require special interpretation, the client and authorization server are assumed to have a prior relationship 
-        that establishes how to interpret these features.</td>
-        <td>-</td>
-    </tr>
-</table>
-
-### <a name="RptAuthorizationRequest">RptAuthorizationRequest</a>
-
-<table border="1">
-    <tr>
-        <th>type</th>
-        <th>required</th>
-        <th>access</th>
-        <th>description</th>
-        <th>notes</th>
-    </tr>
-    <tr>
-        <td><a href="#ClaimTokenList">ClaimTokenList</a></td>
-        <td>required</td>
-        <td>claims</td>
-        <td>-</td>
-     </tr>
-    <tr>
-        <td>string</td>
-        <td>required</td>
-        <td>rpt</td>
-        <td>Requesting party token</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>required</td>
-        <td>ticket</td>
-        <td>The same permission ticket value that the client 
-        provided in the request. It MUST be present 
-        if and only if the authorization_state is need_info.</td>
-        <td>-</td>
-    </tr>
-</table>
-
-## UMA Create rpt API 
-
-** /requester/rpt**
-
-## Overview
-The endpoint at which the requester asks the 
-AM to issue an RPT.
-
-### PATH
- `/requester/rpt`
-
-##### PermissionToken
- 
-**POST** 
-
-`/requester/rpt`
-
-###### URL
-    http://sample.com/requester/rpt
-
-###### Parameters
-- header
-
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>ticket</th>
-            <td>required</td>
-            <td>-</td>
-            <td>string</td>
-        </tr>
-    </table>
-
-###### Response
-[](#)
-
-
-###### Errors
-<table border="1">
-    <tr>
-        <th>Status Code</th>
-        <th>Reason</th>
-    </tr>
-        <tr>
-            <td>401</td>
-            <td>Unauthorized</td>
-        </tr>
-</table>
-
-## UMA Resource Registration API 
-
-**/host/rsrc/resource_set**
+**/host/rsrc/resource**
 
 ### Overview
-Resource set is defined by the resource server, which is required
-by the authorization server to register the resource set description.
+Resource is defined by the resource server, which is required
+by the authorization server to register the resource description.
 
-Resource set description is a JSON document with the 
-following properties described in [ResourceSet](#ResourceSet)
+Resource description is a JSON document with the 
+following properties described in [Resource](#Resource)
 
 RESTful API  is used by Resource Server at the authorization server's 
-resource set registration endpoint to create, read, update, and delete 
-resource set description.
+resource registration endpoint to create, read, update, and delete 
+resource description.
 
 
-
-Request to the resource set is registration is incorrect, the authorization
+Request to the resource is registration is incorrect, the authorization
 server responds with an with error message by including the below  error 
 codes in the response. Discussed detail in [unsupported methods](#unsupportedHeadMethod)
 
 - unsupported_method_type: The resource server request used an unsupported HTTP method. 
   The authorization server MUST respond with the HTTP 405 (Method Not Allowed) status code.
-- not_found: The resource set requested from the authorization server cannot be 
+- not_found: The resource requested from the authorization server cannot be 
   found. The authorization server MUST respond with HTTP 404 (Not Found) status code.
 
 ### PATH
- `/host/rsrc/resource_set{rsid}`
+ `/host/rsrc/resource/{rsid}`
 
-#### deleteResourceSet
+#### deleteResource
 
-**DELETE** `/host/rsrc/resource_set{rsid}`
+**DELETE** `/host/rsrc/resource/{rsid}`
 
-Deletes a previously registered resource set description using the
+Deletes a previously registered resource description using the
 DELETE method, thereby removing it from the authorization server's
 protection regime.
 
 ###### URL
-    http://sample.com/host/rsrc/resource_set{rsid}
+    http://sample.com/host/rsrc/resource{rsid}
 
 ###### Parameters
 - path
@@ -377,7 +220,7 @@ protection regime.
         <tr>
             <th>rsid</th>
             <td>true</td>
-            <td>Resource set description ID</td>
+            <td>Resource description ID</td>
             <td>string</td>
         </tr>
     </table>
@@ -399,7 +242,7 @@ protection regime.
     </table>
 
 ###### Response
-[ResourceSet](#ResourceSet)
+[Resource](#Resource)
 
 JSON body of a successful response will contain the following properties
 
@@ -414,7 +257,7 @@ JSON body of a successful response will contain the following properties
             <th>_id</th>
             <td>required</td>
             <td>A string value repeating the authorization server-defined 
-            identifier for the web resource corresponding to the resource set. Its appearance in the body makes it readily available as an object identifier for various resource set management tasks.</td>
+            identifier for the web resource corresponding to the resource. Its appearance in the body makes it readily available as an object identifier for various resource set management tasks.</td>
             <td>string</td>
         </tr>
         <tr>
@@ -423,7 +266,7 @@ JSON body of a successful response will contain the following properties
             <td>A URI that allows the resource server to redirect an end-user 
             resource owner to a specific user interface within the authorization 
             server where the resource owner can immediately set or modify access policies 
-            subsequent to the resource set registration action just completed. 
+            subsequent to the resource registration action just completed. 
             The authorization server is free to choose the targeted user interface.</td>
             <td>string</td>
         </tr>
@@ -442,19 +285,19 @@ JSON body of a successful response will contain the following properties
 </table>
 
 - - -
-##### getResourceSet
+##### getResource
 
 **GET** 
 
-`/host/rsrc/resource_set{rsid}`
+`/host/rsrc/resource{rsid}`
 
-Reads a previously registered resource set description using the GET
+Reads a previously registered resource description using the GET
 method. If the request is successful, the authorization server MUST
 respond with a status message that includes a body containing the
-referenced resource set description, along with an "_id" property.
+referenced resource description, along with an "_id" property.
 
 ###### URL
-    http://sample.com/host/rsrc/resource_set{rsid}
+    http://sample.com/host/rsrc/resource{rsid}
 
 ###### Parameters
 - path
@@ -469,7 +312,7 @@ referenced resource set description, along with an "_id" property.
         <tr>
             <th>rsid</th>
             <td>true</td>
-            <td>Resource set description object ID</td>
+            <td>Resource description object ID</td>
             <td>string</td>
         </tr>
     </table>
@@ -491,7 +334,7 @@ referenced resource set description, along with an "_id" property.
     </table>
 
 ###### Response
-[ResourceSet](#ResourceSet)
+[Resource](#Resource)
 
 ###### Errors
 <table border="1">
@@ -506,15 +349,15 @@ referenced resource set description, along with an "_id" property.
 </table>
 
 - - -
-##### updateResourceSet
-**PUT** `/host/rsrc/resource_set{rsid}`
+##### updateResource
+**PUT** `/host/rsrc/resource{rsid}`
 
-Updates a previously registered resource set description using the PUT
+Updates a previously registered resource description using the PUT
 method. If the request is successful, the authorization server MUST
 respond with a status message that includes an "_id" property.
 
 ###### URL
-    http://sample.com/host/rsrc/resource_set{rsid}
+    http://sample.com/host/rsrc/resource/{rsid}
 
 ###### Parameters
 - body
@@ -529,8 +372,8 @@ respond with a status message that includes an "_id" property.
         <tr>
             <th>body</th>
             <td>true</td>
-            <td>Resource set description JSON object</td>
-            <td><a href="#ResourceSet">ResourceSet</a></td>
+            <td>Resource description JSON object</td>
+            <td><a href="#Resource">Resource</a></td>
         </tr>
     </table>
 - path
@@ -545,7 +388,7 @@ respond with a status message that includes an "_id" property.
         <tr>
             <th>rsid</th>
             <td>true</td>
-            <td>Resource set description ID</td>
+            <td>Resource description ID</td>
             <td>string</td>
         </tr>
     </table>
@@ -582,17 +425,17 @@ respond with a status message that includes an "_id" property.
 </table>
 
 - - -
-### ResourceSetList
+### ResourceList
 
 #### Path
 
-**`/host/rsrc/resource_set`**
+**`/host/rsrc/resource`**
 
 **GET** 
 
-`/host/rsrc/resource_set`
+`/host/rsrc/resource`
 
-Lists all previously registered resource set identifiers for 
+Lists all previously registered resource identifiers for 
 this user using the GET method. 
 The authorization server MUST return the list in
 the form of a JSON array of {rsid} string values.
@@ -602,7 +445,7 @@ its understanding of protected resources is in full synchronization with
 the authorization server's understanding.
 
 ###### URL
-    http://sample.com/host/rsrc/resource_set
+    http://sample.com/host/rsrc/resource
 
 ###### Parameters
 - query
@@ -680,7 +523,7 @@ the authorization server's understanding.
     </table>
 
 ###### Response
-[ResourceSet](#ResourceSet)
+[Resource](#Resource)
 
 ###### Errors
 <table border="1">
@@ -695,15 +538,15 @@ the authorization server's understanding.
 </table>
 
 - - -
-##### createResourceSet
-**POST** `/host/rsrc/resource_set`
+##### createResource
+**POST** `/host/rsrc/resource`
 
-Adds a new resource set description using the POST method. If the
+Adds a new resource description using the POST method. If the
 request is successful, the authorization server MUST respond with a
 status message that includes an _id property.
 
 ###### URL
-    http://sample.com/host/rsrc/resource_set
+    http://sample.com/host/rsrc/resource
 
 ###### Parameters
 - body
@@ -718,8 +561,8 @@ status message that includes an _id property.
         <tr>
             <th>body</th>
             <td>true</td>
-            <td>Resource set description</td>
-            <td><a href="#ResourceSet">ResourceSet</a></td>
+            <td>Resource description</td>
+            <td><a href="#Resource">Resource</a></td>
         </tr>
     </table>
 - header
@@ -756,12 +599,12 @@ status message that includes an _id property.
 
 - - -
 ### unsupportedHeadMethod
-**HEAD** `/host/rsrc/resource_set`
+**HEAD** `/host/rsrc/resource`
 
 Not allowed
 
 #### URL
-    http://sample.com/host/rsrc/resource_set
+    http://sample.com/host/rsrc/resource
 
 #### Parameters
 <table border = "1">
@@ -802,12 +645,12 @@ Not allowed
 ### unsupportedOptionsMethod
 **OPTIONS** 
 
-`/host/rsrc/resource_set`
+`/host/rsrc/resource`
 
 Not allowed
 
 #### URL
-    http://sample.com/host/rsrc/resource_set
+    http://sample.com/host/rsrc/resource
 
 #### Parameters
 [unsupported methods]
@@ -824,7 +667,7 @@ Not allowed
 
 ## Data Types
 
-### <a name="ResourceSet">ResourceSet</a>
+### <a name="Resource">Resource</a>
 
 <table border="1">
     <tr>
@@ -849,32 +692,32 @@ Not allowed
         <td>optional</td>
         <td>uri</td>
         <td>A URI that provides the network location for the 
-        resource set being registered. For example, if the 
-        resource set corresponds to a digital photo, the value 
+        resource being registered. For example, if the 
+        resource corresponds to a digital photo, the value 
         of this property could be an HTTP-based URI identifying 
         the location of the photo on the web. The authorization 
         server MAY use this information in various ways to 
-        inform clients about a resource set's location.</td>
+        inform clients about a resource's location.</td>
         <td> When a client attempts access to a presumptively 
         protected resource without an access token, the resource 
         server needs to ascertain the authorization server and 
-        resource set identifier associated with that resource 
+        resource identifier associated with that resource 
         without any context to guide it. In practice, this likely 
         means that the URI reference used 
-        by the client needs to be unique per resource set.</td>
+        by the client needs to be unique per resource.</td>
     </tr>
     <tr>
         <td>string</td>
         <td>optional</td>
         <td>type</td>
         <td>A string uniquely identifying the semantics of the 
-        resource set. For example, if the resource set 
+        resource. For example, if the resource 
         consists of a single resource that is an identity 
         claim that leverages standardized claim semantics for 
         "verified email address", the value of this property 
         could be an identifying URI for this claim. 
         The authorization server MAY use this information in 
-        processing information about the resource set or 
+        processing information about the resource or 
         displaying information about it in any user 
         interface it presents to the resource owner.</td>
         <td>-</td>
@@ -883,7 +726,7 @@ Not allowed
         <td>Array[string]</td>
         <td>required</td>
         <td>scopes</td>
-        <td>An array of strings indicating the available scopes for this resource set. 
+        <td>An array of strings indicating the available scopes for this resource. 
         Any of the strings MAY be either a plain string or a URI </td>
         <td>-</td>
     </tr>
@@ -891,8 +734,7 @@ Not allowed
         <td>string</td>
         <td>optional</td>
         <td>icon_uri</td>
-        <td>A URI for a graphic icon representing the resource 
-        set. The authorization server MAY use the referenced icon in 
+        <td>A URI for a graphic icon representing the resource. The authorization server MAY use the referenced icon in 
         any user interface it presents to the resource owner.</td>
         <td>-</td>
     </tr>
@@ -908,7 +750,7 @@ Not allowed
 
 `/host/rsrc_pr`
 
-#### registerResourceSetPermission
+#### registerResourcePermission
 
 **POST** 
 
@@ -937,7 +779,7 @@ following properties:
         <tr>
             <th>body</th>
             <td>true</td>
-            <td>The identifier for a resource set to which this client is seeking access. The identifier MUST correspond to a resource set that was previously registered.</td>
+            <td>The identifier for a resource to which this client is seeking access. The identifier MUST correspond to a resource that was previously registered.</td>
             <td><a href="#UmaPermission">UmaPermission</a></td>
         </tr>
     </table>
@@ -1021,7 +863,7 @@ following properties:
     <tr>
         <td>string</td>
         <td>required</td>
-        <td>resourceSetId</td>
+        <td>resourceId</td>
         <td>-</td>
         <td>-</td>
     </tr>
