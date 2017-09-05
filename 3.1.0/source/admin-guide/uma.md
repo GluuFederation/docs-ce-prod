@@ -56,7 +56,7 @@ The properties of a resource are visible on this page. There are two additional 
 ![add-scope](../img/uma/add-scope.png)
 
 ## Scopes
-UMA scopes are used to grant a client permission to do an action on a protected resource. Different scopes can grant access to the same action. For example, a "read" action can be allowed with scope "read" or "all". For some actions the Resource Server (RS) may want multiple scopes at the same time. For instance, a "read" action should only be allowed if the authorization request includes the "read" **and** "all" scopes. UMA scopes are bound to resource sets and are used to fetch policies that check whether the specified user or client should have access to the resource. 
+UMA 2 scopes are used to grant a client permission to do an action on a protected resource. Different scopes can grant access to the same action. For example, a "read" action can be allowed with scope "read" or "all". For some actions the Resource Server (RS) may want multiple scopes at the same time. For instance, a "read" action should only be allowed if the authorization request includes the "read" **and** "all" scopes. UMA 2 scopes are bound to resources and are used to fetch policies that check whether the specified user or client should have access to the resource. 
 
 The scopes are described in JSON and have the following properties:
 
@@ -75,19 +75,7 @@ An example of the scope JSON is given below:
 !!! Note
     The scope JSON may contain custom properties.
 
-There are three (3) types of scopes in UMA:
-
-1. `internal`: the scope is hosted within the Gluu Server;
-2. `external`: the scope is hosted in a different server;
-3. `external_auto`: the scope is hosted in a different server, but it is added to the Gluu Server during the resource registration.
-
-There is no URI for an internal scope because it resides within the Gluu Server. In this case, the UMA URL is represented in the following format:
-
-```
-UMA URL=uma_scopes_endpoint+"/"+oxId;
-```
-
-The following is an example what an UMA URL may look like:
+The following is an example what an UMA 2 Scope URL may look like:
 
 ```
 https://<hostname>/uma/scopes/view
@@ -98,27 +86,15 @@ https://<hostname>/uma/scopes/view
 
 The `ldif` for both an internal and external scope is given below:
 
-**Internal sample ldif**
+**Sample ldif**
 ```
 dn: inum=@!1111!8990!BF80,ou=scopes,ou=uma,o=@!1111,o=gluu
 displayName: View
 inum: @!1111!8990!BF80
 objectClass: oxAuthUmaScopeDescription
 objectClass: top
-oxType: internal
 oxId: View
 oxIconUrl: http://<hostname>/uma/icons/view_scope.png
-```
-
-**External sample ldif**
-```
-dn: inum=@!1111!8990!BF80,ou=scopes,ou=uma,o=@!1111,o=gluu
-displayName: View
-inum: @!1111!8990!BF80
-objectClass: oxAuthUmaScopeDescription
-objectClass: top
-oxType: external
-oxUrl: http://<hostname>/dev/scopes/view
 ```
 
 ### Add Scopes
@@ -132,8 +108,8 @@ The search bar can be used to find existing available scopes. New scopes can be 
 
 Additionally there is an option to add authorization policy with the new scope.
 
-## UMA Policies
-UMA policy's are associated with UMA scopes. An authorization request has a resource_id and scope(s). Each scope can point to one or more policies. If all policies associated with all scopes return `true`, then access is granted. 
+## UMA RPT Authorization Policies
+UMA RPT Authorization policy's are associated with UMA scopes. An authorization request has a resource_id and scope(s). Each scope can point to one or more policies. If all policies associated with all scopes return `true`, then access is granted. 
 
 For example, let's say we have the following resource, `GET /photo`. In order to access it the Resource Server (RS) requires the `read` scope to be present. If we have a policy that always return `true`, then any authorization request to `/photo` that includes the `read` scope will result in access granted. 
 
@@ -145,12 +121,12 @@ There are three (3) main properties of a policy:
 2. authorization script: script that is evaluated in order to grant/deny access; 
 3. name: a human readable name to the UMA policy.
 
-The following section outlines how to define UMA policies from the Custom Script menu. The Custom Script page is accessed by navigating to `Configuration` > `Custom Scripts`.
+The following section outlines how to define UMA RPT Authorization policies from the Custom Script menu. The Custom Script page is accessed by navigating to `Configuration` > `Custom Scripts` > `UMA RPT Policies`.
 
 ![auth-policy](../img/uma/auth-policy.png)
 
-### UMA Policy Algorithm
-The UMA policy algorithm has two rules that must be followed:
+### UMA 2 RPT Authorization Policy Algorithm
+The UMA 2 policy algorithm has two rules that must be followed:
 
 1. UMA policies protect resources based on scopes. If a scope is protected by a policy, then the policy script must reutrn `true` in order to authorize access during RPT authorization.
 
