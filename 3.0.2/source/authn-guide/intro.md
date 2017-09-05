@@ -73,15 +73,16 @@ To configure this feature navigate to `Configuration` > `Manage custom scripts` 
 - `Invalid_login_count_attribute` sets the name of the attribute used to store the current amount of failed login attempts. It assumes your schema already allows such an attribute to appear in user entries. The default attribute is `oxCountInvalidLogin` and it’s already supported by Gluu’s LDAP schema.
 
 - `Maximum_invalid_login_attemps` sets the threshold for number of failed login attempts before the user gets locked out.
-
-![acct-update](../img/admin-guide/user/acct-lockout-config.png)
-
+ 
+![acct-update](../img/admin-guide/user/acct-lockout-config.png)   
+  
 2. After script is configured tick the `Enabled` checkbox 
 3. Click the `Update` button 
 4. Click on `Configuration` > `Manage Authentication` on the left menu and select `Default Authentication Method` tab. 
 5. Select `basic_lock` authentication method for oxAuth and/or oxTrust.
 6. Click the `Update` button there.
-![acct-update](../img/admin-guide/user/acct-lockout-update.png)
+   
+![acct-update](../img/admin-guide/user/acct-lockout-update.png)    
 
 
 ## Customizing the Login Page 
