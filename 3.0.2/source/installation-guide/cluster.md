@@ -8,8 +8,9 @@ If you have requirements for high availability (HA) or failover, you can configu
 
 Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
-- A minimum of three (3) servers or VMs--two (2) for Gluu Servers and one (1) for NGINX; 
+- A minimum of three (3) servers or VMs--two (2) for Gluu Servers and one (1) for load balancing (in our example, NGINX); 
 - To create the following instructions we used Ubuntu 14 Trusty, but the process should not be OS specific;
+- To create the following instructions we used an Nginx load balancer, however if you have your own load balancer, like F5 or Cisco, you can use that instead and disregard the bottom instructions about configuring Nginx. 
 - Gluu Server 3.x using OpenLDAP.
 
 ## Instructions
