@@ -31,7 +31,7 @@ Gluu.Root # logout
 
 ```
 tar -cvf gluu.gz /opt/gluu-server-3.0.2/
-scp gluu.gz root@server2.com:/opt/
+scp gluu.gz root@server2.com:/
 ...
 ```
 
@@ -39,7 +39,7 @@ Server 2
 
 ```
 service gluu-server-3.0.2 stop
-cd /opt/
+cd /
 rm -rf /opt/gluu-server-3.0.2/
 tar -xvf gluu.gz
 ```
