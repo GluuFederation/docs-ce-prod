@@ -53,9 +53,9 @@ As previously mentioned, your Gluu Server can support multiple authentication me
 
 In oxTrust, navigate to `Configuration` > `Manage Custom Scripts` > `Person Authentication` and check the `Enabled` box for each applicable interception script and save the page. 
 
-By default, users will get the default authentication mechanism you specified [above](#default-authentication-mechanism) in the `Default acr` field. However, using the OpenID Connect `acr_value`, web and mobile applications can now request any enabled authentication mechanism. 
+By default, users will get the default authentication mechanism you specified [above](#default-authentication-mechanism) in the `Default acr` field. However, using the OpenID Connect `acr_value`, web and mobile applications can request any enabled authentication mechanism. 
 
-To view which authentication mechanisms are enabled at your Gluu Server, you can check your OP URL: `https://<hostname>/.well-known/openid-configuration`. Find `"acr_values_supported"` to see a list of `acr_values` your applications can use to request a specific type of authentication. 
+To confirm which authentication methods are available for your Gluu Server, check your OP URL: `https://<hostname>/.well-known/openid-configuration`. Find `"acr_values_supported"` to see a list of `acr_values` your applications can use to request a specific type of authentication. 
 
 Learn more about `acr_values` in the [OpenID Connect core scpec](http://openid.net/specs/openid-connect-core-1_0.html#acrSemantics) and in the Gluu Server [OpenID Connect docs](../admin-guide/openid-connect.md/#multi-factor-authentication-for-clients).
 
