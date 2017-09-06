@@ -29,11 +29,7 @@ Gluu.Root # logout
 # service gluu-server-3.0.2 stop
 ```
 
-<<<<<<< HEAD
 - Now tar the `/opt/gluu-server-3.0.2/ folder`, copy it to the other servers and extract it in the /opt/ folder.
-=======
-- Now tar the `/opt/gluu-server-3.0.2/` folder, copy it to the other servers and extract it in the /opt/ folder.
->>>>>>> 15c7f49ffd1c63ac5981fc32f810bad9ee1fb91a
 
 ```
 tar -cvf gluu.gz /opt/gluu-server-3.0.2/
