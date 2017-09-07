@@ -45,13 +45,13 @@ rm -rf /opt/gluu-server-3.0.2/
 tar -xvf gluu.gz
 ```
 
-- Make sure the file structure here is /opt/gluu-server-3.0.1/
+- Make sure the file structure here is /opt/gluu-server-3.0.2/
 
-- For CentOS, it is necessary to copy the /etc/gluu/keys/ files to the new servers, as the /sbin/gluu-serverd-3.0.1/ login function requires them to SSH into the Gluu instal @ localhost
+- For CentOS, it is necessary to copy the /etc/gluu/keys/ files to the new servers, as the /sbin/gluu-serverd-3.0.2/ login function requires them to SSH into the Gluu instal @ localhost
 
 3. Start Gluu, login and modify the `/etc/hosts/` inside the chroot to point the FQDN of the NGINX server to the current servers IP address
 
-- For example my node 2 servers (c2.gluu.info) ip address is `138.197.100.101` so on server 2:
+- For example my node 2 server's (c2.gluu.info) ip address is `138.197.100.101` so on server 2:
 
 ```
 127.0.0.1       localhost
@@ -155,12 +155,16 @@ TLS_REQCERT never
 vi /opt/symas/etc/openldap/symas-openldap.conf
 ```
 
-- Edit like so:
+- Replace: 
 
 ```
-...
+HOST_LIST="ldaps://127.0.0.1:1636/"
+```
+
+With: 
+
+```
 HOST_LIST="ldaps://0.0.0.0:1636/ ldaps:///"
-...
 ```
 
 6. It is important that our servers times are synchronized so we must install ntp outside of the Gluu chroot and set ntp to update by the minute (necessary for delta-sync log synchronization). If time gets out of sync, the entries will conflict and their could be issues with replication.
@@ -195,7 +199,7 @@ Aug 23 22:40:29 dc4 slapd[79544]: syncprov_matchops: skipping original sid 001
 Aug 23 22:40:29 dc4 slapd[79544]: syncrepl_message_to_op: rid=001 be_modify
 ```
 
-9. Now let's configure your NGINX server for oxTrust and oxAuth web failover. 
+9. **If you have your own load balancer, you are done here.** If not, let's configure your NGINX server for oxTrust and oxAuth web failover. 
 
 - We need the httpd.crt and httpd.key certs from one of the Gluu servers.   
 
@@ -203,8 +207,8 @@ Aug 23 22:40:29 dc4 slapd[79544]: syncrepl_message_to_op: rid=001 be_modify
 
 ```
 mkdir /etc/nginx/ssl/
-scp root@server1.com:/opt/gluu-server-3.0.2/etc/certs/httpd.key /etc/nginx/ssl/
-scp root@server1.com:/opt/gluu-server-3.0.2/etc/certs/httpd.crt /etc/nginx/ssl/
+scp root@server1.com:/opt/gluu-server-3.1.0/etc/certs/httpd.key /etc/nginx/ssl/
+scp root@server1.com:/opt/gluu-server-3.1.0/etc/certs/httpd.crt /etc/nginx/ssl/
 ```
 
 - Next we install and configure NGINX to proxy-pass connections.  
