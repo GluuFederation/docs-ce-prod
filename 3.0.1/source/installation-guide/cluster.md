@@ -164,7 +164,7 @@ HOST_LIST="ldaps://127.0.0.1:1636/"
 With: 
 
 ```
-HOST_LIST="ldaps://0.0.0.0:1636/ ldaps:///"
+HOST_LIST="ldaps://127.0.0.1:1636/ ldaps:///"
 ```
 
 6. It is important that our servers times are synchronized so we must install ntp outside of the Gluu chroot and set ntp to update by the minute (necessary for delta-sync log synchronization). If time gets out of sync, the entries will conflict and their could be issues with replication.
