@@ -39,7 +39,7 @@ pages:
             - 'Certificate Authentication': 'authn-guide/cert-auth.md'
             - 'Google+ OAuth 2.0': 'authn-guide/google.md'
             - 'HOTP/TOTP': 'authn-guide/otp.md'
-            - 'Custom Authentication': 'authn-guide/customauthn.md'
+            - 'Custom Script Tutorial': 'authn-guide/customauthn.md'
         - 'Attributes' : 'admin-guide/attribute.md'
         - 'User Management' : 'admin-guide/user-management.md'
         - 'Session Management': 'admin-guide/session.md'
