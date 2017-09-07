@@ -45,6 +45,10 @@ rm -rf /opt/gluu-server-3.0.2/
 tar -xvf gluu.gz
 ```
 
+- Make sure the file structure here is /opt/gluu-server-3.0.1/
+
+- For CentOS, it is necessary to copy the /etc/gluu/keys/ files to the new servers, as the /sbin/gluu-serverd-3.0.1/ login function requires them to SSH into the Gluu instal @ localhost
+
 3. Start Gluu, login and modify the `/etc/hosts/` inside the chroot to point the FQDN of the NGINX server to the current servers IP address
 
 - For example my node 2 servers (c2.gluu.info) ip address is `138.197.100.101` so on server 2:
