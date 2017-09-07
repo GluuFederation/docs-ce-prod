@@ -170,7 +170,7 @@ Client Requests RPT.
 
 ## UMA 2 Resource Registration API 
 
-**/host/rsrc/resource**
+**/host/rsrc/resource_set**
 
 ### Overview
 Resource is defined by the resource server, which is required
