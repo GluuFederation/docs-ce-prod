@@ -14,7 +14,7 @@ markdown_extensions:
      permalink: '#'
 pages:
 - Home: 'index.md'
-- Gluu Introduction:
+Intentional error introduced - Gluu Introduction:
         - 'Histroy': 'introduction/history.md'
         - 'Design Goals': 'introduction/design.md'
         - 'Gluu Server Architecture': 'introduction/architecture.md'
