@@ -15,9 +15,11 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 ## Instructions
 
-1. [Install Gluu](https://gluu.org/docs/ce/3.0.2/installation-guide/install/) on one server making sure to use a separate NGINX server FQDN as hostname.
+1. [Install Gluu](https://gluu.org/docs/ce/3.0.1/installation-guide/install/) on one server making sure to use a separate NGINX server FQDN as hostname.
 
 - A separate NGINX server is recommended, but not necessary, since replicating a Gluu server to a different hostname breaks the functionality of the Gluu webpage, when using a hostname other than what is in the certificates. For example, if I used c1.gluu.info as my host and another install of gluu as c2.gluu.info, the process of accessing the site on c2.gluu.info, even with replication, will fail authentication. So if c1 failed, you couldn't access the Gluu web GUI anymore.
+
+- The other servers should [install the Gluu Server Package](https://gluu.org/docs/ce/3.0.1/installation-guide/install/#install-gluu-server-package) but not run setup.py. This will install the necessary init.d scripts for us.
 
 2. Copy the Gluu install environment to the other servers. 
 
@@ -26,7 +28,7 @@ Gluu.Root # logout
 # service gluu-server-3.0.1 stop
 ```
 
-- Now tar the /opt/gluu-server-3.0.2/ folder, copy it to the other servers and extract it in the /opt/ folder.
+- Now tar the /opt/gluu-server-3.0.1/ folder, copy it to the other servers and extract it in the /opt/ folder.
 
 ```
 tar -cvf gluu.gz /opt/gluu-server-3.0.1/
@@ -42,12 +44,14 @@ cd /
 rm -rf /opt/gluu-server-3.0.1/
 tar -xvf gluu.gz
 ```
+
 - Make sure the file structure here is /opt/gluu-server-3.0.1/
+
 - For CentOS, it is necessary to copy the `/etc/gluu/keys/` files to the new servers, as the `/sbin/gluu-serverd-3.0.1/ login` function requires them to SSH into the Gluu instal @ localhost
 
 3. Start Gluu, login and modify the `/etc/hosts/` inside the chroot to point the FQDN of the NGINX server to the current servers IP address
 
-- For example my node 2 servers (c2.gluu.info) ip address is `138.197.100.101` so on server 2:
+- For example my node 2 server's (c2.gluu.info) ip address is `138.197.100.101` so on server 2:
 
 ```
 127.0.0.1       localhost
@@ -130,7 +134,7 @@ enable = Yes
 
 - Move each .conf file to their respective server @:
 
-`/opt/gluu-server-3.0.2/opt/symas/etc/openldap/slapd.conf`
+`/opt/gluu-server-3.0.1/opt/symas/etc/openldap/slapd.conf`
 
 - Now create and modify the ldap.conf:
 
@@ -151,12 +155,16 @@ TLS_REQCERT never
 vi /opt/symas/etc/openldap/symas-openldap.conf
 ```
 
-- Edit like so:
+- Replace: 
 
 ```
-...
+HOST_LIST="ldaps://127.0.0.1:1636/"
+```
+
+With: 
+
+```
 HOST_LIST="ldaps://0.0.0.0:1636/ ldaps:///"
-...
 ```
 
 6. It is important that our servers times are synchronized so we must install ntp outside of the Gluu chroot and set ntp to update by the minute (necessary for delta-sync log synchronization). If time gets out of sync, the entries will conflict and their could be issues with replication.
@@ -177,7 +185,7 @@ GLUU.root@host:/ # logout
 
 7. Force-reload solserver on every server
 ```
-# service gluu-server-3.0.2 login
+# service gluu-server-3.0.1 login
 # service solserver force-reload
 ```
 
@@ -191,7 +199,7 @@ Aug 23 22:40:29 dc4 slapd[79544]: syncprov_matchops: skipping original sid 001
 Aug 23 22:40:29 dc4 slapd[79544]: syncrepl_message_to_op: rid=001 be_modify
 ```
 
-9. Now let's configure your NGINX server for oxTrust and oxAuth web failover. 
+9. **If you have your own load balancer, you are done here.** If not, let's configure your NGINX server for oxTrust and oxAuth web failover. 
 
 - We need the httpd.crt and httpd.key certs from one of the Gluu servers.   
 
@@ -199,8 +207,8 @@ Aug 23 22:40:29 dc4 slapd[79544]: syncrepl_message_to_op: rid=001 be_modify
 
 ```
 mkdir /etc/nginx/ssl/
-scp root@server1.com:/opt/gluu-server-3.0.2/etc/certs/httpd.key /etc/nginx/ssl/
-scp root@server1.com:/opt/gluu-server-3.0.2/etc/certs/httpd.crt /etc/nginx/ssl/
+scp root@server1.com:/opt/gluu-server-3.0.1/etc/certs/httpd.key /etc/nginx/ssl/
+scp root@server1.com:/opt/gluu-server-3.0.1/etc/certs/httpd.crt /etc/nginx/ssl/
 ```
 
 - Next we install and configure NGINX to proxy-pass connections.  
