@@ -46,7 +46,7 @@ In oxTrust, you can navigate to `Configuration` > `Manage Authentication` > `Def
 
 2. oxTrust acr: this form of authentication will be presented to anyone specifically trying to access the oxTrust admin GUI.
 
-Dpending on your requirements, you can set both fields to the same authentication mechanism, or choose a different mechanism for each use case. 
+Depending on your requirements, you can set both fields to the same authentication mechanism, or choose a different mechanism for each use case. 
 
 ## Multiple Authentication Mechanisms
 As previously mentioned, your Gluu Server can support multiple authentication mechanisms. 
