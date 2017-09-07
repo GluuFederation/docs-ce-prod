@@ -263,7 +263,7 @@ http {
         proxy_pass https://backend_id/.well-known;
     }
     location /oxauth {
-        proxy_pass https://backend/oxauth;
+        proxy_pass https://backend_id/oxauth;
     }
     location /identity {
         proxy_pass https://backend_id/identity;
