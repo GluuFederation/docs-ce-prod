@@ -40,11 +40,13 @@ The default Gluu Server distribution includes interception scripts to implement 
 - [OTP](./otp.md)
 
 ## Default Authentication Mechanism
-In oxTrust, you can navigate to `Configuration` > `Manage Authentication` > `Default Authentication` to specify the default authentication mechanism for two situations: 
+In oxTrust, you can navigate to `Configuration` > `Manage Authentication` > `Default Authentication` to specify the default authentication mechanism for two use cases: 
 
-1. Default acr: this is the default authentication mechanism exposed to any application that sends users to Gluu for sign-in. Unless an app specifically requests a different form of authentication (as specified [below](#multiple-authentication-mechanisms)), its users will receive the form of authentication specified in this field. 
+1. Default acr: this is the default authentication mechanism exposed to all applications that sends users to your Gluu Server for sign-in. Unless an app specifically requests a different form of authentication using the OpenID Connect `acr_value` (as specified [below](#multiple-authentication-mechanisms)), users will receive the form of authentication specified in this field. 
 
 2. oxTrust acr: this form of authentication will be presented to anyone specifically trying to access the oxTrust admin GUI.
+
+Dpending on your requirements, you can set both fields to the same authentication mechanism, or choose a different mechanism for each use case. 
 
 ## Multiple Authentication Mechanisms
 As previously mentioned, your Gluu Server can support multiple authentication mechanisms. 
