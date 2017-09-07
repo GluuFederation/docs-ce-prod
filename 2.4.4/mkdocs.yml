@@ -21,7 +21,7 @@ pages:
 #- Whats new in 3.0: 'operation/intro.md'
 - Installation Guide:
         - 'Preparing VM': 'installation-guide/index.md'
-        -- 'Install Gluu Server': 'installation-guide/install.md'
+        - 'Install Gluu Server': 'installation-guide/install.md'
 #        - 'Cluster with CE': 'installation-guide/cluster.md'
         - 'Setup Script Options': 'installation-guide/setup_py.md'
         - Upgrade/Patch Guide:
