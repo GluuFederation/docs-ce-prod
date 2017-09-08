@@ -50,6 +50,9 @@ A summary of UMA 2.0 communications as below
 ```
 Source: [Kantara initiative](https://docs.kantarainitiative.org/uma/ed/oauth-uma-federated-authz-2.0-07.html).
 
+Most of the documentation is based on UMA 2 specifications since implementation is based on it
+- [UMA 2.0 Grant for OAuth 2.0 Authorization Specification](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-06.html)
+- [Federated Authorization for UMA 2.0 Specification](https://docs.kantarainitiative.org/uma/ed/oauth-uma-federated-authz-2.0-07.html)
 
 ## UMA Discovery API
 
@@ -137,13 +140,27 @@ Client Requests RPT.
 - grant_type - REQUIRED. MUST be the value urn:ietf:params:oauth:grant-type:uma-ticket.
 - ticket - REQUIRED. The most recent permission ticket received by the client as part of this authorization process.
 - claim_token - OPTIONAL. If this parameter is used, it MUST appear together with the claim_token_format parameter. A string containing directly pushed claim information in the indicated format. It MUST be base64url encoded unless specified otherwise by the claim token format. The client MAY provide this information on both first and subsequent requests to this endpoint. The client and authorization server together might need to establish proper audience restrictions for the claim token prior to claims pushing.
-- claim_token_format = OPTIONAL. If this parameter is used, it MUST appear together with the claim_token parameter. A string specifying the format of the claim token in which the client is directly pushing claims to the authorization server. The string MAY be a URI. Examples of potential types of claim token formats are [OIDCCore] ID Tokens and SAML assertions.
-= pct - OPTIONAL. If the authorization server previously returned a PCT along with an RPT, the client MAY include the PCT in order to optimize the process of seeking a new RPT. Given that some claims represented by a PCT are likely to contain identity information about a requesting party, a client supplying a PCT in its RPT request MUST make a best effort to ensure that the requesting party using the client now is the same as the requesting party that was associated with the PCT when it was issued. The client MAY use the PCT for the same requesting party when seeking an RPT for a resource different from the one sought when the PCT was issued, or a protected resource at a different resource server entirely. See Section 5.3 for additional PCT security considerations. See Section 3.3.5 for the form of the authorization server's response with a PCT.
+- claim_token_format - OPTIONAL. If this parameter is used, it MUST appear together with the claim_token parameter. A string specifying the format of the claim token in which the client is directly pushing claims to the authorization server. The string MAY be a URI. Examples of potential types of claim token formats are [OIDCCore] ID Tokens and SAML assertions.
+- pct - OPTIONAL. If the authorization server previously returned a PCT along with an RPT, the client MAY include the PCT in order to optimize the process of seeking a new RPT. Given that some claims represented by a PCT are likely to contain identity information about a requesting party, a client supplying a PCT in its RPT request MUST make a best effort to ensure that the requesting party using the client now is the same as the requesting party that was associated with the PCT when it was issued. The client MAY use the PCT for the same requesting party when seeking an RPT for a resource different from the one sought when the PCT was issued, or a protected resource at a different resource server entirely. See Section 5.3 for additional PCT security considerations. See Section 3.3.5 for the form of the authorization server's response with a PCT.
 - rpt - OPTIONAL. Supplying an existing RPT gives the authorization server the option of upgrading that RPT instead of issuing a new one (see Section 3.3.5.1 for more about this option).
 - scope - OPTIONAL. A string of space-separated values representing requested scopes. For the authorization server to consider any requested scope in its assessment, the client MUST have pre-registered the same scope with the authorization server. The client should consult the resource server's API documentation for details about which scopes it can expect the resource server's initial returned permission ticket to represent as part of the authorization assessment (see Section 3.3.4).
 
 ###### Response
-[](#)
+
+Sample response:
+```
+POST /token HTTP/1.1
+Host: as.example.com
+Authorization: Basic jwfLG53^sad$#f
+...
+grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Auma-ticket
+&ticket=016f84e8-f9b9-11e0-bd6f-0021cc6004de
+&claim_token=eyj0...
+&claim_token_format=http%3A%2F%2Fopenid.net%2Fspecs%2Fopenid-connect-core-1_0.html%23IDToken
+&pct=c2F2ZWRjb25zZW50
+&rpt=sbjsbhs(/SSJHBSUSSJHVhjsgvhsgvshgsv
+&scope=read
+```
 
 
 ###### Errors
@@ -194,85 +211,40 @@ codes in the response. Discussed detail in [unsupported methods](#unsupportedHea
   found. The authorization server MUST respond with HTTP 404 (Not Found) status code.
 
 ### PATH
- `/host/rsrc/resource/{rsid}`
+ `/host/rsrc/resource_set/{rsid}`
 
 #### deleteResource
 
-**DELETE** `/host/rsrc/resource/{rsid}`
+**DELETE** `/host/rsrc/resource_set/{rsid}`
 
 Deletes a previously registered resource description using the
 DELETE method, thereby removing it from the authorization server's
 protection regime.
 
 ###### URL
-    http://sample.com/host/rsrc/resource{rsid}
+    http://sample.com/host/rsrc/resource_set/{rsid}
+        
 
 ###### Parameters
-- path
 
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>rsid</th>
-            <td>true</td>
-            <td>Resource description ID</td>
-            <td>string</td>
-        </tr>
-    </table>
-- header
+- rsid - REQUIRED. Resource ID.
 
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>Authorization</th>
-            <td>false</td>
-            <td></td>
-            <td>string</td>
-        </tr>
-    </table>
+Sample request
+```
+DELETE /host/rsrc/resource_set/22
+Authorization: Bearer 204c69636b6c69
+```
 
 ###### Response
-[Resource](#Resource)
 
-JSON body of a successful response will contain the following properties
+Successful response
 
-<table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>_id</th>
-            <td>required</td>
-            <td>A string value repeating the authorization server-defined 
-            identifier for the web resource corresponding to the resource. Its appearance in the body makes it readily available as an object identifier for various resource set management tasks.</td>
-            <td>string</td>
-        </tr>
-        <tr>
-            <th>user_access_policy_uri</th>
-            <td>optional</td>
-            <td>A URI that allows the resource server to redirect an end-user 
-            resource owner to a specific user interface within the authorization 
-            server where the resource owner can immediately set or modify access policies 
-            subsequent to the resource registration action just completed. 
-            The authorization server is free to choose the targeted user interface.</td>
-            <td>string</td>
-        </tr>
-</table>
+```
+HTTP/1.1 204 No content
+```
 
 ###### Errors
+
 <table border="1">
     <tr>
         <th>Status Code</th>
@@ -289,7 +261,7 @@ JSON body of a successful response will contain the following properties
 
 **GET** 
 
-`/host/rsrc/resource{rsid}`
+`/host/rsrc/resource_set/{rsid}`
 
 Reads a previously registered resource description using the GET
 method. If the request is successful, the authorization server MUST
@@ -297,44 +269,38 @@ respond with a status message that includes a body containing the
 referenced resource description, along with an "_id" property.
 
 ###### URL
-    http://sample.com/host/rsrc/resource{rsid}
+    http://sample.com/host/rsrc/resource_set/{rsid}
 
 ###### Parameters
-- path
 
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>rsid</th>
-            <td>true</td>
-            <td>Resource description object ID</td>
-            <td>string</td>
-        </tr>
-    </table>
-- header
+- rsid - REQUIRED. Resource ID.
 
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>Authorization</th>
-            <td>false</td>
-            <td></td>
-            <td>string</td>
-        </tr>
-    </table>
+Sample request
+```
+GET /host/rsrc/resource_set/22 HTTP/1.1
+Authorization: Bearer MHg3OUZEQkZBMjcx
+```
 
 ###### Response
-[Resource](#Resource)
+
+Sample response
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+...
+{  
+   "_id":"KX3A-39WE",
+   "resource_scopes":[  
+      "read-public",
+      "post-updates",
+      "read-private",
+      "http://www.example.com/scopes/all"
+   ],
+   "icon_uri":"http://www.example.com/icons/sharesocial.png",
+   "name":"Tweedl Social Service",
+   "type":"http://www.example.com/rsrcs/socialstream/140-compatible"
+}
+```
 
 ###### Errors
 <table border="1">
@@ -350,67 +316,44 @@ referenced resource description, along with an "_id" property.
 
 - - -
 ##### updateResource
-**PUT** `/host/rsrc/resource{rsid}`
+
+**PUT** `/host/rsrc/resource_set/{rsid}`
 
 Updates a previously registered resource description using the PUT
 method. If the request is successful, the authorization server MUST
 respond with a status message that includes an "_id" property.
 
 ###### URL
-    http://sample.com/host/rsrc/resource/{rsid}
+    http://sample.com/host/rsrc/resource_set/{rsid}
 
-###### Parameters
-- body
-
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>body</th>
-            <td>true</td>
-            <td>Resource description JSON object</td>
-            <td><a href="#Resource">Resource</a></td>
-        </tr>
-    </table>
-- path
-
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>rsid</th>
-            <td>true</td>
-            <td>Resource description ID</td>
-            <td>string</td>
-        </tr>
-    </table>
-- header
-
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>Authorization</th>
-            <td>false</td>
-            <td></td>
-            <td>string</td>
-        </tr>
-    </table>
+Sample request
+```
+PUT /host/rsrc/resource_set/22 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer 204c69636b6c69
+...
+{  
+   "resource_scopes":[  
+      "http://photoz.example.com/dev/scopes/view",
+      "public-read"
+   ],
+   "description":"Collection of digital photographs",
+   "icon_uri":"http://www.example.com/icons/sky.png",
+   "name":"Photo Album",
+   "type":"http://www.example.com/rsrcs/photoalbum"
+}
+```
 
 ###### Response
-[](#)
+
+Sample successful response
+```
+HTTP/1.1 200 OK
+...
+{  
+   "_id":"22"
+}
+```
 
 ###### Errors
 <table border="1">
@@ -429,101 +372,40 @@ respond with a status message that includes an "_id" property.
 
 #### Path
 
-**`/host/rsrc/resource`**
+**`/host/rsrc/resource_set`**
 
 **GET** 
 
-`/host/rsrc/resource`
+`/host/rsrc/resource_set`
 
-Lists all previously registered resource identifiers for 
-this user using the GET method. 
-The authorization server MUST return the list in
-the form of a JSON array of {rsid} string values.
+Lists all previously registered resource identifiers for this user using the GET method. 
+The authorization server MUST return the list in the form of a JSON array of {rsid} string values.
 
-The resource server uses this method as a first step in checking whether
-its understanding of protected resources is in full synchronization with
+The resource server uses this method as a first step in checking whether its understanding of protected resources is in full synchronization with
 the authorization server's understanding.
 
 ###### URL
-    http://sample.com/host/rsrc/resource
+    http://sample.com/host/rsrc/resource_set
 
 ###### Parameters
-- query
 
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr><tr>
-            <th>Name</th>
-            <td>required</td>
-            <td>A human-readable string describing some scope (extent) of access. 
-            The authorization server MAY use this name in any user interface 
-            it presents to the resource owner.</td>
-            <td>string</td>
-        </tr>
-        <tr>
-            <th>icon_uri</th>
-            <td>optional</td>
-            <td>A URI for a graphic icon representing the scope. 
-            The authorization server MAY use the referenced icon in 
-            any user interface it presents to the resource owner.</td>
-            <td>string</td>
-        </tr>
-    </table>
-    
-- header
-
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>Authorization</th>
-            <td>required</td>
-            <td>access token in the header, 
-            response from the authorization server
-            , if the request is successful. 
-            Along with the properties below</td>
-            <td>string</td>
-        </tr>
-        <tr>
-            <th>_id</th>
-            <td>required</td>
-            <td>Obtained the request is successful, 
-            from the authroization server</td>
-            <td>string</td>
-        </tr>
-        <th>Name</th>
-            <td>required</td>
-            <td>A human-readable string describing some scope (extent) of access. 
-            The authorization server MAY use this name in any user interface 
-            it presents to the resource owner.</td>
-            <td>string</td>
-        </tr>
-        <tr>
-            <th>icon_uri</th>
-            <td>optional</td>
-            <td>A URI for a graphic icon representing the scope. 
-            The authorization server MAY use the referenced icon in 
-            any user interface it presents to the resource owner.</td>
-            <td>string</td>
-        </tr>
-        <tr>
-            <th>scopes</th>
-            <td>required</td>
-            <td></td>
-            <td>string</td>
-        </tr>
-    </table>
+Sample request
+```
+GET http://sample.com/host/rsrc/resource_set HTTP/1.1
+Authorization: Bearer 204c69636b6c69
+```
 
 ###### Response
-[Resource](#Resource)
+
+Sample of successful response
+```
+HTTP/1.1 200 OK
+...
+[  
+   "11",
+   "22"
+]
+```
 
 ###### Errors
 <table border="1">
@@ -546,44 +428,43 @@ request is successful, the authorization server MUST respond with a
 status message that includes an _id property.
 
 ###### URL
-    http://sample.com/host/rsrc/resource
+    http://sample.com/host/rsrc/resource_set
 
 ###### Parameters
-- body
 
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>body</th>
-            <td>true</td>
-            <td>Resource description</td>
-            <td><a href="#Resource">Resource</a></td>
-        </tr>
-    </table>
-- header
-
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>Authorization</th>
-            <td>required</td>
-            <td></td>
-            <td>string</td>
-        </tr>
-    </table>
+Sample request
+```
+POST /host/rsrc/resource_set HTTP/1.1 
+Content-Type: application/json
+Authorization: Bearer MHg3OUZEQkZBMjcx
+...
+{  
+   "resource_scopes":[  
+      "read-public",
+      "post-updates",
+      "read-private",
+      "http://www.example.com/scopes/all"
+   ],
+   "icon_uri":"http://www.example.com/icons/sharesocial.png",
+   "name":"Tweedl Social Service",
+   "type":"http://www.example.com/rsrcs/socialstream/140-compatible"
+}
+```
 
 ###### Response
-[](#)
+
+Sample successful response
+
+```
+HTTP/1.1 201 Created
+Content-Type: application/json
+Location: /host/rsrc/resource_set/22
+...
+{  
+   "_id":"KX3A-39WE",
+   "user_access_policy_uri":"http://as.example.com/rs/222/resource/22/policy"
+}
+```
 
 ###### Errors
 <table border="1">
@@ -599,146 +480,29 @@ status message that includes an _id property.
 
 - - -
 ### unsupportedHeadMethod
-**HEAD** `/host/rsrc/resource`
+**HEAD** `/host/rsrc/resource_not`
 
 Not allowed
 
-#### URL
-    http://sample.com/host/rsrc/resource
-
-#### Parameters
-<table border = "1">
-    <tr>
-        <th>Parameter</th>
-        <th>Required</th>
-        <th>Description</th>
-    </tr>
-    <tr>
-        <td>error</td>
-        <td>required</td>
-        <td>A single error code. Values for this 
-        property are defined throughout this specification.</td>
-    </tr>
-    <tr>
-        <td>error_description</td>
-        <td>optional</td>
-        <td>A URI identifying a human-readable web 
-        page with information about the error.</td>
-     </tr>
-    <tr>
-        <td>error_uri</td>
-        <td>optional</td>
-        <td>A single error code. Values for this 
-        property are defined throughout this specification.</td>
-     </tr> 
-</table>
-
-#### Errors
-<table border="1">
-    <tr>
-        <th>Status Code</th>
-        <th>Reason</th>
-    </tr>
-</table>
 
 - - -
 ### unsupportedOptionsMethod
 **OPTIONS** 
 
-`/host/rsrc/resource`
+`/host/rsrc/resource_set`
 
 Not allowed
 
-#### URL
-    http://sample.com/host/rsrc/resource
-
-#### Parameters
-[unsupported methods]
-
-#### Errors
-<table border="1">
-    <tr>
-        <th>Status Code</th>
-        <th>Reason</th>
-    </tr>
-</table>
-
-- - -
 
 ## Data Types
 
 ### <a name="Resource">Resource</a>
 
-<table border="1">
-    <tr>
-        <th>Type</th>
-        <th>Required</th>
-        <th>Access</th>
-        <th>Description</th>
-        <th>Notes</th>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>required</td>
-        <td>name</td>
-        <td>A human-readable string describing a set of 
-        one or more resources. The authorization server 
-        MAY use this name in any user interface it presents 
-        to the resource owner.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>optional</td>
-        <td>uri</td>
-        <td>A URI that provides the network location for the 
-        resource being registered. For example, if the 
-        resource corresponds to a digital photo, the value 
-        of this property could be an HTTP-based URI identifying 
-        the location of the photo on the web. The authorization 
-        server MAY use this information in various ways to 
-        inform clients about a resource's location.</td>
-        <td> When a client attempts access to a presumptively 
-        protected resource without an access token, the resource 
-        server needs to ascertain the authorization server and 
-        resource identifier associated with that resource 
-        without any context to guide it. In practice, this likely 
-        means that the URI reference used 
-        by the client needs to be unique per resource.</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>optional</td>
-        <td>type</td>
-        <td>A string uniquely identifying the semantics of the 
-        resource. For example, if the resource 
-        consists of a single resource that is an identity 
-        claim that leverages standardized claim semantics for 
-        "verified email address", the value of this property 
-        could be an identifying URI for this claim. 
-        The authorization server MAY use this information in 
-        processing information about the resource or 
-        displaying information about it in any user 
-        interface it presents to the resource owner.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>Array[string]</td>
-        <td>required</td>
-        <td>scopes</td>
-        <td>An array of strings indicating the available scopes for this resource. 
-        Any of the strings MAY be either a plain string or a URI </td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>optional</td>
-        <td>icon_uri</td>
-        <td>A URI for a graphic icon representing the resource. The authorization server MAY use the referenced icon in 
-        any user interface it presents to the resource owner.</td>
-        <td>-</td>
-    </tr>
-</table>
+- resource_scopes - REQUIRED. An array of strings, serving as scope identifiers, indicating the available scopes for this resource. Any of the strings MAY be either a plain string or a URI.
+- description - OPTIONAL. A human-readable string describing the resource at length. The authorization server MAY use this description in any user interface it presents to a resource owner, for example, for resource protection monitoring or policy setting. The value of this parameter MAY be internationalized, as described in Section 2.2 of [RFC7591].
+- icon_uri - OPTIONAL. A URI for a graphic icon representing the resource. The authorization server MAY use the referenced icon in any user interface it presents to a resource owner, for example, for resource protection monitoring or policy setting.
+- name - OPTIONAL. A human-readable string naming the resource. The authorization server MAY use this name in any user interface it presents to a resource owner, for example, for resource protection monitoring or policy setting. The value of this parameter MAY be internationalized, as described in Section 2.2 of [RFC7591].
+- type - OPTIONAL. A string identifying the semantics of the resource. For example, if the resource is an identity claim that leverages standardized claim semantics for "verified email address", the value of this parameter could be an identifying URI for this claim. The authorization server MAY use this information in processing information about the resource or displaying information about it in any user interface it presents to a resource owner.
 
 ## UMA Permission Registration API 
 
@@ -767,47 +531,63 @@ following properties:
     http://sample.com/host/rsrc_pr
 
 ###### Parameters
-- body
 
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>body</th>
-            <td>true</td>
-            <td>The identifier for a resource to which this client is seeking access. The identifier MUST correspond to a resource that was previously registered.</td>
-            <td><a href="#UmaPermission">UmaPermission</a></td>
-        </tr>
-    </table>
-- header
+- resource_id - REQUIRED. The identifier for a resource to which the resource server is requesting a permission on behalf of the client. The identifier MUST correspond to a resource that was previously registered.
+- resource_scopes - REQUIRED. An array referencing zero or more identifiers of scopes to which the resource server is requesting access for this resource on behalf of the client. Each scope identifier MUST correspond to a scope that was previously registered by this resource server for the referenced resource.
 
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>Authorization</th>
-            <td>false</td>
-            <td></td>
-            <td>string</td>
-        </tr>
-        <tr>
-            <th>Host</th>
-            <td>false</td>
-            <td></td>
-            <td>string</td>
-        </tr>
-    </table>
+Sample request
+
+```json
+POST /host/rsrc_pr HTTP/1.1
+Content-Type: application/json
+Host: as.example.com
+Authorization: Bearer 204c69636b6c69
+...
+
+{  
+   "resource_id":"112210f47de98100",
+   "resource_scopes":[  
+      "view",
+      "http://photoz.example.com/dev/actions/print"
+   ]
+}
+```
 
 ###### Response
-[](#)
+
+Sample response
+```
+POST /perm HTTP/1.1
+Content-Type: application/json
+Host: as.example.com
+Authorization: Bearer 204c69636b6c69
+...
+
+[  
+   {  
+      "resource_id":"7b727369647d",
+      "resource_scopes":[  
+         "view",
+         "crop",
+         "lightbox"
+      ]
+   },
+   {  
+      "resource_id":"7b72736964327d",
+      "resource_scopes":[  
+         "view",
+         "layout",
+         "print"
+      ]
+   },
+   {  
+      "resource_id":"7b72736964337d",
+      "resource_scopes":[  
+         "http://www.example.com/scopes/all"
+      ]
+   }
+]
+```
 
 ###### Errors
 <table border="1">
@@ -825,58 +605,7 @@ following properties:
         </tr>
 </table>
 
-- - -
-
-## Data Types
-
-### <a name="UmaPermission">UmaPermission</a>
-
-<table border="1">
-    <tr>
-        <th>type</th>
-        <th>required</th>
-        <th>access</th>
-        <th>description</th>
-        <th>notes</th>
-    </tr>
-    <tr>
-        <td>Date</td>
-        <td>optional</td>
-        <td>issuedAt</td>
-        <td>Issued date of the permission request</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>Array[string]</td>
-        <td>required</td>
-        <td>scopes</td>
-        <td>-</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>Date</td>
-        <td>optional</td>
-        <td>expiresAt</td>
-        <td>Expiry of the permission request</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>required</td>
-        <td>resourceId</td>
-        <td>-</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>Date</td>
-        <td>optional</td>
-        <td>nbf</td>
-        <td>not before</td>
-        <td>-</td>
-    </tr>
-</table>
-
-## UMA rpt Status API 
+## Token Introspection
 
 ** /rpt/status **
 
@@ -885,58 +614,51 @@ following properties:
 ### PATH 
 `/rpt/status`
 
-#### requestRptStatusGet
-
-**GET** 
-`/rpt/status`
-
-Not allowed
-
 ###### URL
     http://sample.com/rpt/status
 
 ###### Parameters
-- form
 
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>token</th>
-            <td>required</td>
-            <td></td>
-            <td>string</td>
-        </tr>
-        <tr>
-            <th>token_type_hint</th>
-            <td>required</td>
-            <td></td>
-            <td>string</td>
-        </tr>
-    </table>
-- header
 
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>Authorization</th>
-            <td>false</td>
-            <td></td>
-            <td>string</td>
-        </tr>
-    </table>
+```
+POST /rpt/status HTTP/1.1
+Host: as.example.com
+Authorization: Bearer 204c69636b6c69
+...
+token=sbjsbhs(/SSJHBSUSSJHVhjsgvhsgvshgsv
+```
 
 ###### Response
-[](#)
+
+- resource_id - REQUIRED. A string that uniquely identifies the protected resource, access to which has been granted to this client on behalf of this requesting party. The identifier MUST correspond to a resource that was previously registered as protected.
+- resource_scopes - REQUIRED. An array referencing zero or more strings representing scopes to which access was granted for this resource. Each string MUST correspond to a scope that was registered by this resource server for the referenced resource.
+- exp - OPTIONAL. Integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this permission will expire. If the token-level exp value pre-dates a permission-level exp value, the token-level value takes precedence.
+- iat - OPTIONAL. Integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this permission was originally issued. If the token-level iat value post-dates a permission-level iat value, the token-level value takes precedence.
+- nbf - OPTIONAL. Integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating the time before which this permission is not valid. If the token-level nbf value post-dates a permission-level nbf value, the token-level value takes precedence.
+
+Sample response
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+Cache-Control: no-store
+...
+
+{  
+   "active":true,
+   "exp":1256953732,
+   "iat":1256912345,
+   "permissions":[  
+      {  
+         "resource_id":"112210f47de98100",
+         "resource_scopes":[  
+            "view",
+            "http://photoz.example.com/dev/actions/print"
+         ],
+         "exp":1256953732
+      }
+   ]
+}
+```
 
 ###### Errors
 <table border="1">
@@ -949,102 +671,3 @@ Not allowed
         <td>Introspection of RPT is not allowed by GET HTTP method.</td>
     </tr>
 </table>
-
-- - -
-##### requestRptStatus
-**POST** `/rpt/status`
-
-The resource server MUST determine a received RPT's status, including
-both whether it is active and, if so, its associated authorization data,
-before giving or refusing access to the client. An RPT is associated
-with a set of authorization data that governs whether the client is
-authorized for access. 
-
-The token's nature and format are dictated by its profile. The profile
-might allow it to be self-contained, such that the resource server is
-able to determine its status locally, or might require or allow the
-resource server to make a run-time introspection request of the
-authorization server that issued the token.
-
-The endpoint MAY allow other parameters to provide further context to
-the query. For instance, an authorization service may need to know the
-IP address of the client accessing the protected resource in order to
-determine the appropriateness of the token being presented.
-
-To prevent unauthorized token scanning attacks, the endpoint MUST also
-require some form of authorization to access this endpoint, such as
-client authentication as described in OAuth 2.0 [RFC6749] or a separate
-OAuth 2.0 access token such as the bearer token described in OAuth 2.0
-Bearer Token Usage [RFC6750]. The methods of managing and validating
-these authentication credentials are out of scope of this specification.
-
-###### URL
-    http://sample.com/rpt/status
-
-###### Parameters
-- form
-
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>token</th>
-            <td>true</td>
-            <td>The string value of the token. For access tokens, this
-is the "access_token" value returned from the token endpoint as defined
-in OAuth 2.0 [RFC6749] section 5.1. For refresh tokens, this is the
-"refresh_token" value returned from the token endpoint as defined in
-OAuth 2.0 [RFC6749] section 5.1. Other token types are outside the scope
-of this specification.</td>
-            <td>string</td>
-        </tr>
-        <tr>
-            <th>token_type_hint</th>
-            <td>false</td>
-            <td>A hint about the type of the token submitted for
-introspection. The protected resource MAY pass this parameter in order
-to help the authorization server to optimize the token lookup. If the
-server is unable to locate the token using the given hint, it MUST
-extend its search across all of its supported token types. An
-authorization server MAY ignore this parameter, particularly if it is
-able to detect the token type automatically. Values for this field are
-defined in OAuth Token Revocation [RFC7009].</td>
-            <td>string</td>
-        </tr>
-    </table>
-- header
-
-    <table border="1">
-        <tr>
-            <th>Parameter</th>
-            <th>Required</th>
-            <th>Description</th>
-            <th>Data Type</th>
-        </tr>
-        <tr>
-            <th>Authorization</th>
-            <td>false</td>
-            <td></td>
-            <td>string</td>
-        </tr>
-    </table>
-
-###### Response
-[](#)
-
-###### Errors
-<table border="1">
-    <tr>
-        <th>Status Code</th>
-        <th>Reason</th>
-    </tr>
-    <tr>
-        <td>401</td>
-        <td>Unauthorized</td>
-    </tr>
-</table>
-
