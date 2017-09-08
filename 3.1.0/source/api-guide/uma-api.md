@@ -51,6 +51,7 @@ A summary of UMA 2.0 communications as below
 Source: [Kantara initiative](https://docs.kantarainitiative.org/uma/ed/oauth-uma-federated-authz-2.0-07.html).
 
 Most of the documentation is based on UMA 2 specifications since implementation is based on it
+
 - [UMA 2.0 Grant for OAuth 2.0 Authorization Specification](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-06.html)
 - [Federated Authorization for UMA 2.0 Specification](https://docs.kantarainitiative.org/uma/ed/oauth-uma-federated-authz-2.0-07.html)
 
