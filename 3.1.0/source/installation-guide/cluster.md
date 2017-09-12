@@ -281,8 +281,16 @@ http {
 }
 
 ```
+- For web GUI to persist logins we must change some setting's on the Gluu page itself:
+  - Access your website by entering your load-balancer or NGINX FQDN
+  - Login with admin and use your LDAP password
+  - go to the `Configuration` drop down on the left
+  - `> JSON Configuration`
+  - `Memcached configuration` tab
+  - Change the drop down of `cacheProviderType` from `IN_MEMORY` to `MEMCACHED`
+  - Add every server from your replication set-up, using spaces for separations and **not** commas. e.g `c1.gluu.org:11211 c2.gluu.org:11211`
 
-- Now all traffic for the Gluu web GUI will route through one address i.e. `nginx.gluu.info`. This gives us failover redundancy for our Gluu web GUI if any server goes down, as NGINX automatically does passive health checks.   
+- Now all traffic for the Gluu web GUI will route through one address e.g. `nginx.gluu.info`. This gives us failover redundancy for our Gluu web GUI if any server goes down, as NGINX automatically does passive health checks.   
 
 ## Support
 If you have any questions or run into any issues, please open a ticket on [Gluu Support](https://support.gluu.org).
