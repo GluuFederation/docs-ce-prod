@@ -13,8 +13,7 @@ We recommend the following SAML and OpenID Connect web server filters:
   
 - SAML: [Shibboleth SP](./webapps/saml-sp.md)     
 
-- OpenID Connect: [mod_auth_openidc](./webapps/openidc-rp.md) 
-
+- OpenID Connect: [Apache mod_auth_openidc](./webapps/openidc-rp.md), [Nginx lua-resty-openidc](https://github.com/pingidentity/lua-resty-openidc)
 
 ### Client Software 
 Client software performs some of the heavy lifting for developers around leveraging OAuth 2.0 directly in their applications. Calling the API’s directly will enable “smarter” applications. For example, transaction level security can be more easily implemented by calling the APIs directly. This can have a positive impact on usability. Giving developers more ability to leverage centralized policies also increases re-use of policies, and ultimately results in better security. 
