@@ -195,6 +195,18 @@ users that have been synced into the Gluu Server, number of failures, and total 
         2016-07-16 17:18:17,739 INFO  [gluu.oxtrust.ldap.cache.service.CacheRefreshTimer] (pool-1-thread-9) There are '2,002' entries before updating inum list
         2016-07-16 17:18:17,740 INFO  [gluu.oxtrust.ldap.cache.service.CacheRefreshTimer] (pool-1-thread-9) There are '2,002' entries after removal '0' entries 
 
+#### client_id and/or client_name logging
+oxTrust configured to generate and view client_id and/or client_name logs. 
+To configure client_id and/or client_name
+
+- Login to oxTrust UI
+
+- Navigate to `oxTrust` > `Configuration` > `oxAuth`
+
+- For client_id to be populated and viewed in the logs set `logClientIdOnClientAuthentication` to `true`
+
+- For client_name to be populated and viewed in the logs set `logClientNameOnClientAuthentication` to `true`
+
 #### System logs 
 - For Ubuntu: `/var/log/syslog`
 - For RPM based systems: `/var/log/messages`
