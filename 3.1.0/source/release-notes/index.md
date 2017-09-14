@@ -69,8 +69,9 @@ documentation and administrative guide.
 - Make SCIM 2.0 search MAX_COUNT configurable[#320](https://github.com/GluuFederation/oxTrust/issues/320)
 - More user-friendly look of the OIDC client configuration page[#226](https://github.com/GluuFederation/oxTrust/issues/226)
 - Make cache provider configurable via UI (oxCacheConfiguration attribute of gluuAppliance OS)[#485](https://github.com/GluuFederation/oxTrust/issues/485)
-- Localization of oxTrust UI[#506](https://github.com/GluuFederation/oxAuth/issues/506#issue-223064367)
-- Incommon Metadata file[476](https://github.com/GluuFederation/oxTrust/issues/476)
+- Application should disable controls on processing Ajax requests [#129](https://github.com/GluuFederation/oxTrust/issues/129)
+- Add "active" column to import spreadsheet [#171](https://github.com/GluuFederation/oxTrust/issues/171)
+
 #### Community Edition
 - Change method of adding scripts to setup[#313](https://github.com/GluuFederation/community-edition-setup/issues/313)
 - Add setup option which allows to import additional templates after base install[#285](https://github.com/GluuFederation/community-edition-setup/issues/285)
