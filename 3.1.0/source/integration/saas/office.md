@@ -33,13 +33,13 @@ backend Azure Active Directory (AD).
     - For Gluu Server, values would be something like these: 
     
 ```
-ActiveLogOnUri                         : https://test.gluu.org/idp/profile/SAML2/SOAP/ECP
-PassiveLogonUri                        : https://test.gluu.org/idp/profile/SAML2/POST/SSO 
+ActiveLogOnUri                         : https://<hostname>/idp/profile/SAML2/SOAP/ECP
+PassiveLogonUri                        : https://<hostname>/idp/profile/SAML2/POST/SSO 
 DefaultInteractiveAuthenticationMethod :
 FederationBrandName                    : Gluu Inc.
-IssuerUri                              : https://test.gluu.org/idp/shibboleth
-LogOffUri                              : https://test.gluu.org/identity/logout
-MetadataExchangeUri                    : https://test.gluu.org/idp/shibboleth
+IssuerUri                              : https://<hostname>/idp/shibboleth
+LogOffUri                              : https://<hostname>/identity/logout
+MetadataExchangeUri                    : https://<hostname>/idp/shibboleth
 NextSigningCertificate                 :
 OpenIdConnectDiscoveryEndpoint         :
 
