@@ -46,7 +46,6 @@ documentation and administrative guide.
 
 ### New Features
 #### oxAuth
-- JWT Session Support[#142](https://github.com/GluuFederation/oxAuth/issues/142)
 - Migration to Weld 3.0.0.CR2[#221](https://github.com/GluuFederation/oxAuth/issues/221)
 - UMA 2: Implement Claims Gathering Endpoint[#300](https://github.com/GluuFederation/oxAuth/issues/300)
 - UMA 2: support plain scopes[#536](https://github.com/GluuFederation/oxAuth/issues/536)
