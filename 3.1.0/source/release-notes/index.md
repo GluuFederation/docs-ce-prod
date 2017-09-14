@@ -51,10 +51,12 @@ documentation and administrative guide.
 - UMA 2: support plain scopes[#536](https://github.com/GluuFederation/oxAuth/issues/536)
 - UMA 2: introduce/upgrade metadata according to UMA 2 spec[#534](https://github.com/GluuFederation/oxAuth/issues/534)
 - UMA 2: Implement support for client "pushed claims" and PCT[#533](https://github.com/GluuFederation/oxAuth/issues/533)
-- Add support for token_endpoint_auth_signing_alg (OpenID Connect Dynamic Client Registration)[92](https://github.com/GluuFederation/oxAuth/issues/92)
+- Add support for token_endpoint_auth_signing_alg (OpenID Connect Dynamic Client Registration)[#92](https://github.com/GluuFederation/oxAuth/issues/92)
 - Add expiration time to session_state cookie[#333](https://github.com/GluuFederation/oxAuth/issues/333)
-- Request / Resonse Audit Logging[378](https://github.com/GluuFederation/oxAuth/issues/378)
+- Support logout with expired id_token [#332](https://github.com/GluuFederation/oxAuth/issues/332)
+- Request / Resonse Audit Logging[#378](https://github.com/GluuFederation/oxAuth/issues/378)
 - Super-Gluu script should support AWS SNS for push notifications[#630](https://github.com/GluuFederation/oxAuth/issues/630)
+- Customization in 3.1.x [#501](https://github.com/GluuFederation/oxAuth/issues/501}
 - Error handling in 3.1.x[#504](https://github.com/GluuFederation/oxAuth/issues/504)
 
 #### oxTrust
