@@ -53,7 +53,7 @@ The Gluu Server uses the open source OpenLDAP server as its internal directory s
 The Gluu Server supports a variety of SSO integration strategies for web and mobile applications. Learn more in our [SSO integration guide](./integration/index.md).
 
 ## Strong Authentication
-One of the biggest benefits of a central authentication system is the ability to enforce strong authentication for all your apps. The Gluu Server was designed to be very flexible in accommodating not only a range of authentication mechanisms, but also custom business logic required by an organization for authentication. Learn more about how to configure the Gluu Server's out-of-the-box and custom strong authentication options in the [authentication guide](./authn-guide/intro.md). 
+One of the biggest benefits of a central authentication system is the ability to enforce strong authentication for all your apps. The Gluu Server was designed to be very flexible in accommodating not only a range of authentication mechanisms, but also custom business logic for how authentication should be applied in practice. Learn more about how to configure the Gluu Server's out-of-the-box and custom strong authentication options in the [authentication guide](./authn-guide/intro.md). 
 
 ## Support
 Gluu provies free and VIP support! Anyone can browse or register and post questions on the [Gluu support portal](https://support.gluu.org). Tickets opened by the community are public, and we do our best to answer them in a timely manner. 
