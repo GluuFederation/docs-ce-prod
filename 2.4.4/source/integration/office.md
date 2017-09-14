@@ -23,9 +23,9 @@ It is assumed that an Office 365 subscription is available/registered.
  Connect-MsolService
 
 $dom = "company.org"
-$url = "https://test.gluu.org/idp/profile/SAML2/POST/SSO"
-$uri = "https://test.gluu.org/idp/shibboleth"
-$logouturl = "https://test.gluu.org/idp/logout.jsp"
+$url = "https://<hostname>/idp/profile/SAML2/POST/SSO"
+$uri = "https://<hostname>/idp/shibboleth"
+$logouturl = "https://<hostname>/idp/logout.jsp"
 $cert = "Mx....SAML_cert_of_your_Gluu_Server...Tdsg9R0XO3AnBeHRtGmAA="
 
 Set-MsolDomainAuthentication -DomainName $dom -FederationBrandName $dom -Authentication Federated  -PassiveLogOnUri $url -SigningCertificate $cert -IssuerUri $uri -LogOffUri $logouturl -PreferredAuthenticationProtocol SAMLP 
