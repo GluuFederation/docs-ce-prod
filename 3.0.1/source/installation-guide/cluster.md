@@ -180,6 +180,16 @@ HOST_LIST="ldaps://0.0.0.0:1636/"
 HOST_LIST="ldaps://0.0.0.0:1636/ ldaps:///"
 ```
 
+- **On all your servers**, inside the chroot, go to `/etc/gluu/conf/` and edit `ox-ldap.properties` replacing:
+
+`servers=localhost:1636`
+
+With:
+
+`servers={insert server1 FQDN here},{inster server2 FQDN here},...`
+
+Placing all servers in your cluster topology in this config portion.
+
 ### 6. It is important that our servers times are synchronized so we must install ntp outside of the Gluu chroot and set ntp to update by the minute (necessary for delta-sync log synchronization). If time gets out of sync, the entries will conflict and their could be issues with replication.
 
 ```
