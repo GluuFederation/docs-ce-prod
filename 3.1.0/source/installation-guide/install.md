@@ -175,7 +175,7 @@ For Ubuntu 14/16, and Debian 8:
 ```
 # service gluu-server-3.1.0 stop
 # apt-get remove gluu-server-3.1.0
-# rm -rf /opt/gluu-server-3.1.0
+# rm -rf /opt/gluu-server-3.1.0.save
 ```
 
 For Centos 6.x, Red Hat 6.x, 
@@ -183,7 +183,7 @@ For Centos 6.x, Red Hat 6.x,
 ```
 # service gluu-server-3.1.0 stop
 # yum remove gluu-server-3.1.0
-# rm -rf /opt/gluu-server-3.1.0
+# rm -rf /opt/gluu-server-3.1.0.save
 ```
 
 For Centos 7.x and Red Hat 7.x:
@@ -192,7 +192,10 @@ For Centos 7.x and Red Hat 7.x:
 # /sbin/gluu-serverd-3.1.0 disable
 # /sbin/gluu-serverd-3.1.0 stop
 # yum remove gluu-server-3.1.0 
-# rm -rf /opt/gluu-server-3.1.0
+# rm -rf /opt/gluu-server-3.1.0.save
 ```
 
-
+!!! Note
+    You can also use `apt-get purge gluu-server-3.1.0` or `apt-get remove --purge gluu-server-3.1.0` to uninstall and 
+    remove all the folders and services of Gluu server, 
+    in case you dont want to have the configuration and services of Gluu Server.
