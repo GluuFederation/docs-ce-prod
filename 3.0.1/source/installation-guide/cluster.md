@@ -182,11 +182,11 @@ HOST_LIST="ldaps://0.0.0.0:1636/ ldaps:///"
 
 - **On all your servers**, inside the chroot, go to `/etc/gluu/conf/` and edit `ox-ldap.properties` replacing:
 
-`servers=localhost:1636`
+`servers: localhost:1636`
 
 With:
 
-`servers={insert server1 FQDN here},{inster server2 FQDN here},...`
+`servers: {insert server1 FQDN here},{inster server2 FQDN here},...`
 
 Placing all servers in your cluster topology in this config portion.
 
@@ -229,7 +229,7 @@ Aug 23 22:40:29 dc4 slapd[79544]: syncrepl_message_to_op: rid=001 be_modify
 service rsyslog start
 
 ```
-### 8. **If you have your own load balancer, you are done here.** If not, let's configure our NGINX server for oxTrust and oxAuth web failover.
+### 7. **If you have your own load balancer, you are done here.** If not, let's configure our NGINX server for oxTrust and oxAuth web failover.
 
 - We need the httpd.crt and httpd.key certs from one of the Gluu servers.   
 
@@ -241,7 +241,7 @@ scp root@server1.com:/opt/gluu-server-3.0.1/etc/certs/httpd.key /etc/nginx/ssl/
 scp root@server1.com:/opt/gluu-server-3.0.1/etc/certs/httpd.crt /etc/nginx/ssl/
 ```
 
-### 9. Next we install, clear the nginx.conf file and configure NGINX to proxy-pass connections.  
+### 8. Next we install, clear the nginx.conf file and configure NGINX to proxy-pass connections.  
 
 ```
 apt-get install nginx -y
