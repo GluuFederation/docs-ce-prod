@@ -25,8 +25,11 @@ The script has the following properties:
 Using your admin credentials login to oxTrust and go to `Configuration` > `Custom scripts`. 
 
 Scroll down and find the script whose name is `twilio_sms`. Populate the following properties:
+
 * `twilio_sid`: Paste the *"Account SID"* of your recently created Twilio account. You can find this value in your account dashboard
+
 * `twilio_token`: Similar to your SID, you were also given a token upon registration.
+
 * `from_number`: Use the Twilio number that was provided when you created your account (not your personal number).
 
 If some property is not already being shown in the UI, just press the "Add custom property" and fill the values accordingly. Use the delete icons on the right to remove a row if necessary. Also ensure "Enabled" is checked.
