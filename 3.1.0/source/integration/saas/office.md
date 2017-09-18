@@ -133,7 +133,85 @@ Two attributes require for mapping:
 `IDPEmail` pull data from backend's email attribute and `objectguid` get data from backend's objectGUID. 
 
 ### Create Trust Relationship
-Refer [here](../../admin-guide/saml/#create-a-trust-relationship-in-the-gluu-server) to create trust relationships.
+Refer [here](../../admin-guide/saml/#create-a-trust-relationship-in-the-gluu-server) to create trust relationships. Need to grab metadata from Micrsoft. Metadata will look like below: 
+
+```
+  <?xml version="1.0" encoding="utf-8"?>
+  <EntityDescriptor ID="abcdefghijklmn" entityID="urn:federation:MicrosoftOnline" xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:alg="urn:oasis:names:tc:SAML:metadata:algsupport">
+    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+      <SignedInfo>
+        <CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+        <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+        <Reference URI="#opqrstuvwxyz">
+          <Transforms>
+            <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+            <Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+          </Transforms>
+          <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+          <DigestValue>........</DigestValue>
+        </Reference>
+      </SignedInfo>
+      <SignatureValue>
+
+        ....
+        ....
+        ....
+
+      </X509Certificate>
+    </X509Data>
+    </KeyInfo>
+  </Signature>
+    <Extensions>
+      <alg:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+      <alg:SigningMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+    </Extensions>
+    
+    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" WantAssertionsSigned="true">
+      <KeyDescriptor use="signing">
+        <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+          <ds:X509Data>
+            <ds:X509Certificate>
+              
+              ....
+              ....
+              ....
+
+            </ds:X509Certificate>
+          </ds:X509Data>
+        </ds:KeyInfo>
+      </KeyDescriptor>
+      <KeyDescriptor use="signing">
+        <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+          <ds:X509Data>
+            <ds:X509Certificate>
+              
+              ....
+              ....
+              ....
+
+            </ds:X509Certificate>
+          </ds:X509Data>
+        </ds:KeyInfo>
+      </KeyDescriptor>
+
+      <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://login.microsoftonline.com/login.srf"/>
+
+      <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</NameIDFormat>
+      <NameIDFormat>urn:mace:shibboleth:1.0:nameIdentifier</NameIDFormat>
+      <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</NameIDFormat>
+      <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+      <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
+
+      <AssertionConsumerService isDefault="true" index="0" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://login.microsoftonline.com/login.srf"/>
+      <AssertionConsumerService index="1" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://login.microsoftonline.com/login.srf"/>
+
+      <!-- PAOS functionality is NOT supported by this service. The binding is only included to ease setup and integration with Shibboleth ECP -->
+      <AssertionConsumerService index="2" Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://login.microsoftonline.com/login.srf"/>
+    </SPSSODescriptor>
+  </EntityDescriptor>
+
+
+```
 
 ### Configure Relaying Party
 
