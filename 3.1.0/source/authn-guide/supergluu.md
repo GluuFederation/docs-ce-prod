@@ -58,7 +58,7 @@ Now applications can request Super Gluu authentication, but what if you want to 
 
 You can change one or both fields to Super Gluu authentication as you see fit. If you want Super Gluu to be the default authentication mechanism for access to oxTrust and all other applications that leverage your Gluu Server, change both fields to Super Gluu.  
  
-## How to register a new device? 
+## Register a new device 
 
 After Super Gluu is enabled and configured you can initiate the standard login sequence to enroll your device. After successfully entering your username and passsword you will be presented with a Super Gluu QR code. If you haven't already downloaded Super Gluu, you will now need to download the app. Once downloaded, open the app and scan the QR code.
 
@@ -66,7 +66,7 @@ You will be presented with an approve / deny screen. Approve the authentication,
 
 For more information about using Super Gluu, check the [Super Gluu User Guide](https://gluu.org/docs/supergluu/user-guide/).
 
-## What to do about lost devices? 
+## Reset lost devices 
 
 In the case that someone loses their device, they will need to inform the Gluu system administrator who can do the following: 
     
@@ -76,12 +76,14 @@ In the case that someone loses their device, they will need to inform the Gluu s
     
   - Remove the oxID DN. 
 
-For example, let's say user ‘abc’ lost his device and wants to enroll a new device to use Super Gluu. The Gluu Server admin will do the following: 
+For example, let's say user `abc` loses their device and wants to enroll a new device to use Super Gluu. 
 
-(a) Get the DN of user ‘abc’ which will be something like this:   
-`dn: inum=@!ABCD.1234.XXX.XXX.YYYY.8770,ou=people,o=@!DEFG.5678.XXX.XXX.ZZZ,o=gluu”`
+The Gluu Server admin will do the following: 
+
+1. Get the DN of user `abc` which will be something like this:      
+`dn: inum=@!ABCD.1234.XXX.XXX.YYYY.8770,ou=people,o=@!DEFG.5678.XXX.XXX.ZZZ,o=gluu”`     
  
-(b) Now find the ‘oxID’ DN which is associated with this user’s DN. It might be something like: 
+2. Now find the `oxID` DN which is associated with this user’s DN. It might be something like:      
 
 ```
 dn: oxId=1487683146561,ou=fido,inum=@!ABCD.1234.XXX.XXX.YYYY.8770,ou=people,o=@!DEFG.5678.XXX.XXX.ZZZ,o=gluu
@@ -96,10 +98,10 @@ creationDate: 20170221131906.559Z
 oxId: 11111111111111111
 oxDeviceRegistrationConf: {"publicKey":"BIGbwF…………….","attestationCert":"MIICJjCCAcygAwIBAgKBgQDzLA-......L5ztE"}
 oxLastAccessTime: 20170
-```
+```    
+   
+3. Delete the oxID DN. 
 
-(c ) Delete the oxID DN. 
-
-Now the old device is gone and the user can enroll a new device following the instructions above regarding registering a new device. 
+Now the old device is gone and the user can enroll a new device following the above instructions for [registering a new device](#register-a-new-device). 
  
 
