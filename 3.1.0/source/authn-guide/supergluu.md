@@ -12,7 +12,7 @@ Super Gluu is based on the free open source [oxPush 3](https://github.com/GluuFe
 
 ## Prerequisites 
 - A Gluu Server ([installation instructions](../installation-guide/index.md));
-- [Super Gluu intereption script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/super_gluu/SuperGluuExternalAuthenticator.py) (included in the default Gluu Server distribution);
+- [Super Gluu interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/super_gluu/SuperGluuExternalAuthenticator.py) (included in the default Gluu Server distribution);
 - An Android or iOS device with Super Gluu installed.
 
 ### Download Super Gluu
