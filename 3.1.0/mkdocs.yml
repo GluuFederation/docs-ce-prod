@@ -39,6 +39,7 @@ pages:
             - 'Certificate Authentication': 'authn-guide/cert-auth.md'
             - 'Google+ OAuth 2.0': 'authn-guide/google.md'
             - 'HOTP/TOTP': 'authn-guide/otp.md'
+            - 'SMS OTP': 'authn-guide/sms-otp.md'
             - 'Account Lockout': 'authn-guide/lockout.md'
             - 'Custom Script Tutorial': 'authn-guide/customauthn.md'
         - 'Attributes' : 'admin-guide/attribute.md'
