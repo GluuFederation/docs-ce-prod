@@ -7,7 +7,7 @@ This section of the docs explains how to enable and configure your Gluu Server t
 ### FIDO U2F
 During device enrollment, Super Gluu uses the Gluu Server's FIDO U2F endpoints to enroll a public key. When authentication happens, there is a challenge response to ensure that the device has the respective private key.
 
-### Open Source 
+### Open source 
 Super Gluu is based on the free open source [oxPush 3](https://github.com/GluuFederation/oxPush3) source code. 
 
 ## Prerequisites 
@@ -45,7 +45,7 @@ Now Super Gluu is an available authentication mechanism for your Gluu Server. Th
 !!! Note 
     To make sure Super Gluu has been enabled successfully, you can check your Gluu Server's OpenID Connect configuration by navigating to the following URL: `https://<hostname>/.well-known/openid-configuration`. Find `"acr_values_supported":` and you should see `"super_gluu"`. 
 
-## Make Super Gluu the Default Authentication Mechanism
+## Make Super Gluu the default authentication mechanism
 
 Now applications can request Super Gluu authentication, but what if you want to make Super Gluu your default authentication mechanism? You can follow these instructions: 
 
