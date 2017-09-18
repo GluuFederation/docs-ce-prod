@@ -58,7 +58,7 @@ Now applications can request Super Gluu authentication, but what if you want to 
 
 You can change one or both fields to Super Gluu authentication as you see fit. If you want Super Gluu to be the default authentication mechanism for access to oxTrust and all other applications that leverage your Gluu Server, change both fields to Super Gluu.  
  
-## Register a new device 
+## Register a new device
 
 After Super Gluu is enabled and configured you can initiate the standard login sequence to enroll your device. After successfully entering your username and passsword you will be presented with a Super Gluu QR code. If you haven't already downloaded Super Gluu, you will now need to download the app. Once downloaded, open the app and scan the QR code.
 
@@ -66,15 +66,15 @@ You will be presented with an approve / deny screen. Approve the authentication,
 
 For more information about using Super Gluu, check the [Super Gluu User Guide](https://gluu.org/docs/supergluu/user-guide/).
 
-## Reset lost devices 
+## Remove an existing device 
 
-In the case that someone loses their device, they will need to inform the Gluu system administrator who can do the following: 
+When someone loses, breaks, or replaces their device, they will need their existing device removed in order to enroll their new device. The Gluu system administrator will need to do the following: 
     
-  - Find the ‘DN’ of this user from ldap. 
+  - Find the `DN` of this user from ldap; 
     
-  - Find the oxID ‘DN’ associated with the user
+  - Find the `oxID DN` associated with the user;
     
-  - Remove the oxID DN. 
+  - Remove the `oxID DN`. 
 
 For example, let's say user `abc` loses their device and wants to enroll a new device to use Super Gluu. 
 
