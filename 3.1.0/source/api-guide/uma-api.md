@@ -676,6 +676,7 @@ Cache-Control: no-store
 ## UMA Authorization Context
 
 Available context methods:
+
 - `getClaimToken()` - returns `claim_token` as string
 - `getClaimTokenClaim(String key)` - returns `claim_token` claim by key
 - `getPctClaim(String key)` - returns PCT claim by key
@@ -703,6 +704,7 @@ Source code available [here](https://github.com/GluuFederation/oxAuth/blob/versi
 ## UMA Claims-Gathering Context
 
 Available context methods:
+
 - `persist()` - persists changes made in claims or session objects
 - `getConfigurationAttributes()` - returns configuration attributes `Map<String, SimpleCustomProperty>`
 - `isAuthenticated()` - returns `true` of `false` to identify whether user is logged in
