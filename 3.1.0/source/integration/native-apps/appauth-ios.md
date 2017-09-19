@@ -1,6 +1,5 @@
-# App-Auth IOS
+# AppAuth for iOS and macOS 
 
-## Overview
 ## Overview
 AppAuth for iOS and macOS is a client SDK for communicating with
 [OAuth 2.0](https://tools.ietf.org/html/rfc6749) and
