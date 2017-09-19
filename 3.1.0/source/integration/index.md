@@ -11,9 +11,9 @@ Web Server filters are a tried and true approach to achieving single sign-on wit
 
 We recommend the following SAML and OpenID Connect web server filters: 
   
-- SAML: [Shibboleth SP](./webapps/saml-sp.md)     
+- SAML: [Shibboleth SP](./sswebapps/saml-sp.md)     
 
-- OpenID Connect: [Apache mod_auth_openidc](./webapps/openidc-rp.md), [Nginx lua-resty-openidc](https://github.com/pingidentity/lua-resty-openidc)
+- OpenID Connect: [Apache mod_auth_openidc](./sswebapps/openidc-rp.md), [Nginx lua-resty-openidc](https://github.com/pingidentity/lua-resty-openidc)
 
 ### Client Software 
 Client software performs some of the heavy lifting for developers around leveraging OAuth 2.0 directly in their applications. Calling the API’s directly will enable “smarter” applications. For example, transaction level security can be more easily implemented by calling the APIs directly. This can have a positive impact on usability. Giving developers more ability to leverage centralized policies also increases re-use of policies, and ultimately results in better security. 
@@ -27,7 +27,7 @@ Single Page Applications (SPAs) can be seen as a mix between traditional Web SSO
 
 We recommend the following client software to implement OpenID Connect in SPA’s:
 
-- [Gluu's OIDC JS Client](./oauth-js-implicit.md/)
+- [Gluu's OIDC JS Client](./spa/oauth-js-implicit.md)
 - [Identity Model's OIDC JS Client](https://github.com/IdentityModel/oidc-client-js)
 
 ## Native Apps

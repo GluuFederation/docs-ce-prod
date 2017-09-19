@@ -52,8 +52,12 @@ Follow the steps below to configure the U2F module in the oxTrust Admin GUI.
 Now U2F is an available authentication mechanism for your Gluu Server. This means that, using OpenID Connect `acr_values`, applications can now request U2F authentication for users. 
 
 !!! Note 
-    To make sure U2F has been enabled successfully, you can check your Gluu Server's OpenID Connect configuration by navigating to the following URL: `https://<hostname>/.well-known/openid-configuration`. Find `"acr_values_supported":` and you should see `"u2f"`. 
+    To make sure U2F has been enabled successfully, you can check your Gluu Server's OpenID Connect 
+    configuration by navigating to the following URL: `https://<hostname>/.well-known/openid-configuration`. 
+    Find `"acr_values_supported":` and you should see `"u2f"`. 
     
+## Storage of FIDO entries in LDAP
+Entries of FIDO U2F can be found 
 
 ## Make U2F the Default Authentication Mechanism
 

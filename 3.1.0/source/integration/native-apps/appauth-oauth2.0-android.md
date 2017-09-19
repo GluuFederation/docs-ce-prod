@@ -3,7 +3,6 @@
 ## Overview
 
 AppAuth for Android is a client SDK for communicating with OAuth 2.0 and OpenID Connect providers. It strives to directly map the requests and responses of those specifications, while following the idiomatic style of the implementation language. In addition to mapping the raw protocol flows, convenience methods are available to assist with common tasks like performing an action with fresh tokens.
-
 ## Auth Flow
 
 AppAuth supports both manual interaction with the Authorization Server where you need to perform your own token exchanges, as well as convenience methods that perform some of this logic for you. This example uses the convenience method which returns either an XXXAuthState object, or an error.
@@ -41,7 +40,7 @@ After on form "Dynamic Client Registration" fill next fields:
 ## Integration
 Need to make following changes in your code to integrate AppAuth in your android app
 - Need to put `client_id` and `client_secret` values obtained from dynamic registration response into `idp_configs.xml`(app/res/values/idp_configs.xml) file of your android project. It will look like this.
-    
+
   ```
     <string name="openid_client_id" translatable="false">put client_id here</string>
     <string name="openid_client_secret" translatable="false">put client_secret here</string>
