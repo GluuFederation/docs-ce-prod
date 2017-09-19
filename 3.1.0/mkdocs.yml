@@ -59,8 +59,8 @@ pages:
         - 'Server Side Web Apps':
             - 'oxd OAuth 2.0': 'integration/oxd-oauth2/index.md'
             - 'Nginx lua-resty-openidc': 'integration/sswebapps/nginx.md'
-            - 'mod_auth_openidc': 'integration/sswebapps/openidc-rp.md'
-            - 'Shibboleth SP': 'integration/sswebapps/saml-sp.md'
+            - 'Apache mod_auth_openidc': 'integration/sswebapps/openidc-rp.md'
+            - 'Shibboleth SAML SP': 'integration/sswebapps/saml-sp.md'
         - 'Single Page Apps':
             - 'Gluu OIDC JS Client': 'integration/spa/oauth-js-implicit.md'
             - 'Identity Model OIDC JS Client': 'integration/spa/identity-model-oidc-js-client.md'
