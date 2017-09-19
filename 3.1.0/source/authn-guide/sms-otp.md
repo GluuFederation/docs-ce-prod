@@ -16,6 +16,9 @@ Trial accounts only allow sending messages to mobile numbers already linked to t
 - A Gluu Server (installation instructions [here](../installation-guide/index.md))
 - The [Twilio SMS OTP script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/twilio_sms/twilio2FA.py) (included in the default Gluu Server distribution)
 
+!!! Note:
+    The SMS OTP script included in the default Gluu Server distribution relies on the Twilio messaging service. If you use a different messaging service, you will need to modify your interception script.
+    
 ## Properties
 
 The custom script has the following properties:
