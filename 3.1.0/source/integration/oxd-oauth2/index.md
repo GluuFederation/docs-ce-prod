@@ -1,4 +1,4 @@
-# oxd
+# oxd OAuth 2.0 Client Software for Server-Side Web Apps
 
 ## Overview 
 Gluu offers OAuth 2.0 client software called [oxd](https://oxd.gluu.org) to simplify the process of securing and integrating **server-side web applications** with the Gluu Server. 
