@@ -672,3 +672,59 @@ Cache-Control: no-store
         <td>Introspection of RPT is not allowed by GET HTTP method.</td>
     </tr>
 </table>
+
+## UMA Authorization Context
+
+Available context methods:
+- `getClaimToken()` - returns `claim_token` as string
+- `getClaimTokenClaim(String key)` - returns `claim_token` claim by key
+- `getPctClaim(String key)` - returns PCT claim by key
+- `getIssuer()` - returns issuer
+- `getUser(String... returnAttributes)` - returns logged in user attributes
+- `getUserDn()` - returns logged in user DN
+- `getClient()` - returns client object
+- `getScriptDn()` - returns script DN
+- `getConfigurationAttributes()` - returns configuration attributes `Map<String, SimpleCustomProperty>`
+- `getScopes()` - returns scopes set
+- `getScriptScopes()` - returns scopes set that are bound to currently executed script
+- `getResources()` - returns resources
+- `getResourceIds()` - returns resource ids
+- `getClaims()` - returns claim object (for claim manipulation)
+- `getClaim(String key)` - convenient method to get claim (tries to fetch claim first from `claim_token` and if not found then tries to fetch it from PCT. If not found in PCT returns null.)
+- `putClaim(String claimName, Object claimValue)` - put claim
+- `hasClaim(String claimName)` - returns `true` or `false`
+- `removeClaim(String claimName)` - removes claim
+- `addRedirectUserParam(String paramName, String paramValue)` - adds custom user parameter which will be appended during redirect to Claims-Gathering Endpoint.
+- `removeRedirectUserParameter(String paramName, String paramValue)` - removes custom user parameter
+- `getRedirectUserParametersMap()` - returns custom user parameters map
+
+Source code available [here](https://github.com/GluuFederation/oxAuth/blob/version_3.1.1/Server/src/main/java/org/xdi/oxauth/uma/authorization/UmaAuthorizationContext.java)
+
+## UMA Claims-Gathering Context
+
+Available context methods:
+- `persist()` - persists changes made in claims or session objects
+- `getConfigurationAttributes()` - returns configuration attributes `Map<String, SimpleCustomProperty>`
+- `isAuthenticated()` - returns `true` of `false` to identify whether user is logged in
+- `getUser(String... returnAttributes)` - returns logged in user attributes
+- `getUserDn()` - returns logged in user DN
+- `getClient()` - returns client object
+- `getConnectSessionAttributes()` - returns Connect session attributes
+- `getPageClaims()` - returns claims entered by user on given page
+- `getRequestParameters()` - returns request parameters as `Map<String, String[]>`
+- `getStep()` - returns step
+- `setStep(int step)` - sets step
+- `addSessionAttribute(String key, String value)` - adds session attribute
+- `removeSessionAttribute(String key)` - removes session attribute
+- `getSessionAttributes()` - returns session attribute as `Map<String, String>`
+- `addRedirectUserParam(String paramName, String paramValue)` - adds custom user parameter 
+- `removeRedirectUserParameter(String paramName, String paramValue)` - removes custom user parameter
+- `getRedirectUserParametersMap()` - returns custom user parameters map
+- `getPermissions()` - gets permissions for given ticket as `List<UmaPermission>`
+- `getClaim(String key)` - gets claim
+- `putClaim(String claimName, Object claimValue)` - put claim
+- `hasClaim(String claimName)` - returns `true` or `false`
+- `removeClaim(String claimName)` - removes claim
+- `getIssuer()` - returns issuer
+
+Source code available [here](https://github.com/GluuFederation/oxAuth/blob/version_3.1.1/Server/src/main/java/org/xdi/oxauth/uma/authorization/UmaGatherContext.java)
