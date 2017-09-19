@@ -222,7 +222,7 @@ Aug 23 22:40:29 dc4 slapd[79544]: syncprov_matchops: skipping original sid 001
 Aug 23 22:40:29 dc4 slapd[79544]: syncrepl_message_to_op: rid=001 be_modify
 ```
 
-### 7. **If you have your own load balancer, you are done here.** If not, let's configure our NGINX server for oxTrust and oxAuth web failover.
+### 7. **If you have your own load balancer these NGINX configuration files are merely a guide for how to interact with the Gluu server.** Let's configure our NGINX server for oxTrust and oxAuth web failover.
 
 - We need the httpd.crt and httpd.key certs from one of the Gluu servers.   
 
@@ -304,5 +304,3 @@ http {
 
 ## Support
 If you have any questions or run into any issues, please open a ticket on [Gluu Support](https://support.gluu.org).
-
-
