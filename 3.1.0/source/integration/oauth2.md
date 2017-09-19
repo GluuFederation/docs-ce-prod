@@ -1,9 +1,16 @@
 # oxd
 
 ## Overview 
-Gluu offers commercial OAuth 2.0 client software called [oxd](https://oxd.gluu.org) to make securing and integrating applications with the Gluu Server easier. In addition to plugins for popular open source applications like Drupal, there are oxd libraries for many programming languages and frameworks, including Python, Php, C#, .Net, and more. 
+Gluu offers OAuth 2.0 client software called [oxd](https://oxd.gluu.org) to simplify the process of securing and integrating **server-side web applications** with the Gluu Server.  
 
-[Read the docs](http://gluu.org/docs/oxd) 
+## oxd API 
+The oxd server supports the OpenID Connect and UMA profiles of OAuth 2.0. OpenID Connect can be used to send a user for authentication and gather identity information about the user. UMA can be used to manage what digital resources the user should have access to.
 
-[Get an oxd license](http://oxd.gluu.org)
+## Libraries
+There are native libraries that wrap the oxd APIs for Php, Java, Python, Node, Ruby, C#, .Net and more. 
+
+[Read the oxd libraries docs](https://gluu.org/docs/oxd/libraries/api-client-libraries/).
+
+## License
+oxd is commercially licensed software. You can obtain your license and a $50 credit to get started by signing up on the [oxd website](http://oxd.gluu.org). 
 
