@@ -1,6 +1,7 @@
 # SCIM protected by UMA
 
-User-managed access (UMA) is a profile of [OAuth2.0](http://tools.ietf.org/html/rfc6749) and is focused on defining standardized flows and constructs for coordinating the protection of an API or existing web resource. For more information on UMA please visit the corresponding [page](uma.md) in the docs - the specification can be found at [kantara website](https://docs.kantarainitiative.org/uma/rec-uma-core.html).
+User-managed access (UMA) is a profile of [OAuth2.0](http://tools.ietf.org/html/rfc6749) and is focused on defining standardized flows and constructs for coordinating the protection of an API or existing web resource. 
+For more information on UMA please visit the corresponding [page](uma.md) in the docs - the specification can be found at [kantara website](https://docs.kantarainitiative.org/uma/rec-uma-core-v1_0_1.html).
 
 Gluu Server CE supports UMA protection for SCIM endpoints from version 2.4.0 onwards. This functionality is built-in and does not require any special package or installation. 
 

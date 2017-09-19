@@ -65,11 +65,15 @@ import project in Android Studio:
  
 1. Extract the source code zip file in your desired folder in your
 computer's file system.
+
 2. Open Android Studio, Go to File -> New -> Import project. It will
 prompt to select existing project from your computer.
+
 3. Browse the folder where you extracted source code file and select
 the build.gradle file of the project.
-![import_project](../img/app-auth/import_project.png)
+
+    ![import_project](../../img/app-auth/import_project.png)
+
 4. Click **OK** and it will start building project.
  
 Another way if you don't want to download source code manually and want
@@ -77,22 +81,23 @@ to clone repository then follow below steps:
  
 1. Open Android Studio, Go to File -> New -> Project from Version Control
 -> Git.
-![clone_repo_init](../img/app-auth/clone_repo_init.png)
+
+    ![clone_repo_init](../../img/app-auth/clone_repo_init.png)
+
 2. It will prompt in which you need to provide following details and then
 click **Clone**.
  
-   Git Repository URL: Repository URL which you want to clone
- 
-   Parent Directory: Folder location in which you want to store
-   project in your computer
- 
-   Directory Name: Project Name
-![clone_repo_details](../img/app-auth/clone_repo_details.png)
+    - Git Repository URL: Repository URL which you want to clone
+    - Parent Directory: Folder location in which you want to store
+    - project in your computer
+    - Directory Name: Project Name
+    ![clone_repo_details](../../img/app-auth/clone_repo_details.png)
+
 3. It will Clone repository into the folder you mentioned
 in **Parent Directory** above and start building the project.
  
-If you get an error like: Error:Could not find
-com.android.support:customtabs:26.0.1. then be sure you have installed
+If you get an error like: "Error:Could not find
+com.android.support:customtabs:26.0.1." then be sure you have installed
 the Android Support Library from the Android SDK Manager. Follow the
 Android Studio prompts to resolve the dependencies automatically.
  
@@ -100,6 +105,7 @@ Once the project build successfully, you can see that there are two
 modules in the project.
  
 1. app(Demo app which use AppAuth library)
+
 2. library(AppAuth library project)
  
 ## Configure the Client
@@ -109,21 +115,18 @@ In order to configure client you need to specify following:
 ### issuer
    Here Gluu server is the issuer hence configuration will be discovered from Gluu server
    discovery uri.
-   <br><br>
    so your discover url will be like this "_(IDP hostname).well-known/openid-configuration_"
-   <br><br>
-   **.well-known/openid-configuration** is the standard suffix for open-id issuers.
+   
+   `.well-known/openid-configuration` is the standard suffix for open-id issuers.
  
 ### clientId
    Can be obtained after client registration.
- 
 You can either manually create a client in oxTrust or register dynamically through app but
 it is recommended you should manually register client in oxTrust.
  
-Here is the example of client id which will be return from client registration process :- **@!7469.0167.60D3.F85F!0001!951A.0E33!0008!5406.D19F**
- 
- 
- 
+Here is the example of client id which will be return 
+from client registration process :- **@!7469.0167.60D3.F85F!0001!951A.0E33!0008!5406.D19F**
+
 #### Manual client registration (Recommended)
  
 To create client manually in oxTrust, follow the Gluu Server's [OpenID Connect client registration documentation](https://gluu.org/docs/ce/admin-guide/openid-connect/#client-registration-configuration).
@@ -131,10 +134,12 @@ To create client manually in oxTrust, follow the Gluu Server's [OpenID Connect c
 After successful registration, it will return client id which
 will use for Authorization.
  
-Here you need to set "none" for  "Authentication method for the Token Endpoint" option. otherwise you will be needed to use client secrete in AppAuth for Token refresh which is not recommended to store client secrete in Android app.
+Here you need to set `none` for  `Authentication method for the Token Endpoint` option.
+Otherwise you will be needed to use client secrete in AppAuth for Token refresh which is 
+not recommended to store client secrete in Android app.
  
-If you still want to use client secrete in you app for  "Authentication method for the Token Endpoint" you can check official doc by [AppAuth](https://github.com/openid/AppAuth-Android/blob/master/README.md#utilizing-client-secrets-dangerous)  
- 
+If you still want to use client secrete in you app for  `Authentication method for the Token Endpoint` 
+you can check official doc by [AppAuth](https://github.com/openid/AppAuth-Android/blob/master/README.md#utilizing-client-secrets-dangerous)  
  
 #### Dynamic client registration (Optional)
  
@@ -248,14 +253,14 @@ of the `AndroidManifest.xml`
  
 Now, You are all set to run your demo app.
 As soon as app will launch, it will look like this
-![initial screen](../img/app-auth/start_authorization.png)
+![initial screen](../../img/app-auth/start_authorization.png)
  
 Congratulations, You've configured demo app correctly. Go ahead and click
 'Start Authorization' button to make authorization request.
  
 Authorization success will look like this
  
-![Success Auth](../img/app-auth/authorization_success.png)
+![Success Auth](../../img/app-auth/authorization_success.png)
  
 ## Auth Flow
  
