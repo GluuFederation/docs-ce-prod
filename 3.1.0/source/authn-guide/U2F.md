@@ -57,12 +57,6 @@ Now U2F is an available authentication mechanism for your Gluu Server. This mean
     To make sure U2F has been enabled successfully, you can check your Gluu Server's OpenID Connect 
     configuration by navigating to the following URL: `https://<hostname>/.well-known/fido-u2f-configuration`. 
     Find `"acr_values_supported":` and you should see `"u2f"`. 
-    
-## FIDO entries in LDAP
-Entries of FIDO U2F can be found in LDAP under the user section as in the below. You can use your preferred LDAP browser
-to view the entries.
-
-![fidoldap](../img/admin-guide/multi-factor/fido-ldap-entry.png)
 
 ## Make U2F the Default Authentication Mechanism
 
@@ -79,5 +73,9 @@ Now applications can request U2F authentication, but what if you want to make U2
 
 You can change one or both fields to U2F authentication as you see fit. If you want U2F to be the default authentication mechanism for access to oxTrust (the admin portal) and all other applications that leverage your Gluu Server, change both fields to U2F.  
 
-     
+## FIDO entries in LDAP
+Entries of FIDO U2F can be found in LDAP under the user section as in the below. You can use your preferred LDAP browser
+to view the entries.
+
+![fidoldap](../img/admin-guide/multi-factor/fido-ldap-entry.png)
 
