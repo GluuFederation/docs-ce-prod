@@ -103,7 +103,7 @@ The default NameID for oxTrust generated SAML trust relationships is `transientI
 ```
  <resolver:AttributeDefinition id="testcustomattribute" xsi:type="Simple"
                               xmlns="urn:mace:shibboleth:2.0:resolver:ad"
-                              sourceAttributeID="email">
+                              sourceAttributeID="mail">
 
         <resolver:Dependency ref="siteLDAP"/>
         <resolver:AttributeEncoder xsi:type="SAML2StringNameID"
