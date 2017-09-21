@@ -79,3 +79,61 @@ to view the entries.
 
 ![fidoldap](../img/admin-guide/multi-factor/fido-ldap-entry.png)
 
+## FIDO Discovery Endpoint  
+Your Gluu Server FIDO discovery endpoint can be found at `https://<hostname>/.well-known/fido-u2f-configuration`
+
+## FIDO SCIM APIs
+
+The SCIM standard is concerned with two classes of resources, namely, users and groups. However, according to spec, the service can be extended to add new resource types. The Gluu Server implementation of SCIM contains a resource type called "Fido device". 
+
+### FIDO devices
+
+A FIDO device represents a user credential stored in the Gluu Server LDAP that is compliant with the [FIDO](https://fidoalliance.org) standards. These devices are used for strong authentication.
+
+Including FIDO devices as a resource type will allow application developers to query, update and delete a users existing FIDO devices. Adding devices does not take place through the service though since this process requires direct end-user interaction, i.e. device enrollment.
+
+The following is a summary of features of a FIDO Device SCIM resource:
+
+* Schema urn: `urn:ietf:params:scim:schemas:core:2.0:FidoDevice`
+* Name of resource: `FidoDevice`
+* Endpoint URL (relative to base URL of service): `/scim/v2/FidoDevices`
+* Device attributes: Attributes pertaining to this resource type are listed by visiting the URL `https://<host-name>/identity/restv1/scim/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:FidoDevice`. 
+
+Currently the service supports:
+* Device search and retrieval (via `GET` and `POST`)
+* Single device update via `PUT`
+* Single device deletion via `DELETE`
+
+### Example: querying enrolled Super Gluu devices
+Say we are interested in having a list of iOS supergluu devices a user has enrolled. In a setting of test mode, we may issue a query like this:
+
+```
+curl -G -H 'Authorization: Bearer ...access token...' --data-urlencode 'filter=deviceData co "ios"' -d count=10 -o output.json https://<host-name>/identity/seam/resource/restv1/scim/v2/FidoDevices/
+```
+
+Your result list might look like:
+
+```
+{
+  "totalResults": ...,
+  "itemsPerPage": ...,
+  "startIndex": 1,
+  "schemas": [
+    "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+  ],
+  "Resources": [
+    {
+      "id": "...",
+      "meta": {...},
+      "schemas": ["urn:ietf:params:scim:schemas:core:2.0:FidoDevice"],
+      "userId": "...",
+      ...
+      "deviceData": "{\"uuid\":\"ABC123\", \"type\":\"iPhone\", \"platform\":\"ios\", \"name\":\"Someone's iPhone\", \"os_name\":\"iOS\", \"os_version\":\"10.0.1\"}",
+      "displayName": ...,
+    }
+  ]
+}
+``` 
+
+
+
