@@ -62,7 +62,7 @@ Now U2F is an available authentication mechanism for your Gluu Server. This mean
 Entries of FIDO U2F can be found in LDAP under the user section as in the below. You can use your preferred LDAP browser
 to view the entries.
 
-![fidoldap](../../img/admin-guide/multi-factor/fido-ldap-entry.png)
+![fidoldap](../img/admin-guide/multi-factor/fido-ldap-entry.png)
 
 ## Make U2F the Default Authentication Mechanism
 
