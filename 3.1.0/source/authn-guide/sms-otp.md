@@ -3,14 +3,6 @@
 ## Overview
 In this document you will learn how to configure second-factor authentication in Gluu Server using One-time passcodes (OTP) sent via SMS. Here, we will use the [Twilio](https://www.twilio.com) service to deliver messages.
 
-## Twilio Configuration
-
-Twilio accounts feature Voice, SMS, and MMS capabilities but we will only need SMS here. You can start with a trial account to see how SMS OTP authentication is integrated into Gluu Server, however, in a real production setting you would have to buy a plan.
-
-When registering for a Twilio account, you will be asked to verify your personal phone number, and then will be given a Twilio phone number. Ensure the number given is [SMS enabled](https://support.twilio.com/hc/en-us/articles/223183068-Twilio-international-phone-number-availability-and-their-capabilities) and that it supports sending messages to the countries you are targeting. You may need to enable such countries manually (see the [Geo permissions page](https://www.twilio.com/console/sms/settings/geo-permissions)).
-
-Trial accounts only allow sending messages to mobile numbers already linked to the account, so for testing you will have to add (and verify) some numbers (besides your personal one) to see if integration with Gluu authentication is going well.
-
 ## Prerequisites 
 
 - A Gluu Server (installation instructions [here](../installation-guide/index.md))
@@ -18,6 +10,14 @@ Trial accounts only allow sending messages to mobile numbers already linked to t
 
 !!! Note:
     The SMS OTP script included in the default Gluu Server distribution relies on the Twilio messaging service. If you use a different messaging service, you will need to modify your interception script.
+    
+## Twilio Configuration
+
+Twilio accounts feature Voice, SMS, and MMS capabilities but we will only need SMS here. You can start with a trial account to see how SMS OTP authentication is integrated into Gluu Server. When you are ready to move to production, you will want to purchase a Twilio plan.
+
+When registering for a Twilio account, you will be asked to verify your personal phone number, and then will be given a Twilio phone number. Ensure the number given is [SMS enabled](https://support.twilio.com/hc/en-us/articles/223183068-Twilio-international-phone-number-availability-and-their-capabilities) and that it supports sending messages to the countries you are targeting. You may need to enable such countries manually (see the [Geo permissions page](https://www.twilio.com/console/sms/settings/geo-permissions)).
+
+Trial accounts only allow sending messages to mobile numbers already linked to the account, so for testing you will want to add (and verify) some additional numbers (besides your personal one) to make sure the integration is working as expected. 
     
 ## Properties
 
