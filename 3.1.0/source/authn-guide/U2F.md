@@ -55,7 +55,7 @@ Now U2F is an available authentication mechanism for your Gluu Server. This mean
 
 !!! Note 
     To make sure U2F has been enabled successfully, you can check your Gluu Server's OpenID Connect 
-    configuration by navigating to the following URL: `https://<hostname>/.well-known/fido-u2f-configuration`. 
+    configuration by navigating to the following URL: `https://<hostname>/.well-known/openid-configuration`. 
     Find `"acr_values_supported":` and you should see `"u2f"`. 
 
 ## Make U2F the Default Authentication Mechanism
