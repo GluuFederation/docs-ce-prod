@@ -39,7 +39,8 @@ The default Gluu Server distribution includes interception scripts to implement 
 - [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)
 - [Duo Security](./duo.md)
 - [Certificate Authentication](./cert-auth.md)
-- [OTP](./otp.md)
+- [HOTP/TOTP](./otp.md)
+- [SMS OTP](./sms-otp.md)
 
 ## Default Authentication Mechanism
 In oxTrust, you can navigate to `Configuration` > `Manage Authentication` > `Default Authentication` to specify the default authentication mechanism for two use cases: 
