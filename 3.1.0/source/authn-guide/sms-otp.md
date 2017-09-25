@@ -7,6 +7,8 @@ In this document you will learn how to configure second-factor authentication in
 
 - A Gluu Server (installation instructions [here](../installation-guide/index.md))
 - The [Twilio SMS OTP script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/twilio_sms/twilio2FA.py) (included in the default Gluu Server distribution)
+- A Twilio Account
+- A mobile phone that received sms text messages
 
 !!! Note:
     The SMS OTP script included in the default Gluu Server distribution relies on the Twilio messaging service. If you use a different messaging service, you will need to modify your interception script.
