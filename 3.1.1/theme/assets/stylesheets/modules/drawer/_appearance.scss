@@ -1,0 +1,123 @@
+
+
+/* ----------------------------------------------------------------------------
+ * Drawer appearance
+ * ------------------------------------------------------------------------- */
+
+/*
+ * Drawer container
+ */
+.drawer {
+
+  /* [tablet landscape-]: Light gray background */
+  @include break-to-device(tablet landscape) {
+    background: $white;
+  }
+
+  /*
+   * Color links
+   */
+  .toc a {
+
+    /*
+     * Current active element
+     */
+    &.current {
+      color: $primary;
+    }
+
+    /*
+     * Hovered link
+     */
+    &:hover, &:focus {
+      color: $primary;
+    }
+  }
+
+  /*
+   * Color anchors menu
+   */
+  .anchor a {
+    border-left: 2px solid $primary;
+  }
+
+  /*
+   * Main sections
+   */
+  .section {
+    color: $black-light;
+  }
+}
+
+/*
+ * Project information
+ */
+.project {
+
+  /* [tablet landscape-]: Add drop shadow */
+  @include break-to-device(tablet landscape) {
+    @include drop-shadow(1);
+
+    background: $primary;
+    color: $white;
+  }
+
+  /*
+   * Add status bar overlay for iOS web application
+   */
+  .ios.standalone &:before {
+    background: $black-lightest;
+  }
+
+  /*
+   * Project logo
+   */
+  .logo img {
+    background: $white;
+    border-radius: 100%;
+  }
+
+  /*
+   * Scale logo on hover
+   */
+  &:hover .logo img,
+  &:focus .logo img {
+    @include drop-shadow(2);
+  }
+}
+
+/*
+ * Repository buttons
+ */
+.repo a {
+  background: $accent;
+  color: $white;
+  border-radius: 3px;
+
+  /*
+   * Hovered button
+   */
+  &:hover, &:focus {
+    @include drop-shadow(2);
+
+    opacity: 0.8;
+  }
+
+  /*
+   * Stars
+   */
+  .count {
+    background: $black-lighter;
+    color: $white;
+    border-radius: 0px 3px 3px 0px;
+
+    /*
+     * Star bubble
+     */
+    &:before {
+      border-width: 15px 5px 15px 0;
+      border-color: transparent $black-lighter;
+      border-style: solid;
+    }
+  }
+}

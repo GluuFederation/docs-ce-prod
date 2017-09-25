@@ -1,0 +1,22 @@
+{
+  "assets/images/apple-touch-icon-57x57.png": "assets/images/apple-touch-icon-57x57-dc5c81a0ea.png",
+  "assets/images/apple-touch-icon-60x60.png": "assets/images/apple-touch-icon-60x60-5dec9ae961.png",
+  "assets/images/apple-touch-icon-72x72.png": "assets/images/apple-touch-icon-72x72-1f7a4949ed.png",
+  "assets/images/apple-touch-icon-76x76.png": "assets/images/apple-touch-icon-76x76-8445852ae9.png",
+  "assets/images/apple-touch-icon-precomposed.png": "assets/images/apple-touch-icon-precomposed-909e18c37e.png",
+  "assets/images/apple-touch-icon.png": "assets/images/apple-touch-icon-8445852ae9.png",
+  "assets/images/favicon-16x16.png": "assets/images/favicon-16x16-d518e58f2b.png",
+  "assets/images/favicon-32x32.png": "assets/images/favicon-32x32-e4237ecb23.png",
+  "assets/images/favicon-96x96.png": "assets/images/favicon-96x96-bb4f85cf77.png",
+  "assets/images/favicon.ico": "assets/images/favicon.ico",
+  "assets/images/icon_white.png": "assets/images/icon_white-33f901449d.png",
+  "assets/images/icon_white_32.png": "assets/images/icon_white_32-d8d9b3ea4f.png",
+  "assets/images/mstile-150x150.png": "assets/images/mstile-150x150-0007125c88.png",
+  "assets/images/mstile-310x150.png": "assets/images/mstile-310x150-4b45059024.png",
+  "assets/images/mstile-70x70.png": "assets/images/mstile-70x70-3e4a0cb973.png",
+  "assets/javascripts/application.js": "assets/javascripts/application-ce3999cf34.js",
+  "assets/javascripts/modernizr.js": "assets/javascripts/modernizr-4a5cc7e01e.js",
+  "assets/stylesheets/application.css": "assets/stylesheets/application-f58e216493.css",
+  "assets/stylesheets/palettes.css": "assets/stylesheets/palettes-2d6c5d2926.css",
+  "assets/stylesheets/zenburn.css": "assets/stylesheets/zenburn-28d5b94970.css"
+}
