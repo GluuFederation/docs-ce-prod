@@ -271,7 +271,7 @@ You need to create a custom attribute named 'issuerIDP' in this stage. Here is h
 ```
 <SSO entityID="https://[proxy3_hostname]/idp/shibboleth"
      discoveryProtocol="SAMLDS" discoveryURL="https://ds.example.org/DS/WAYF">
-     SAML2 SAML1
+     SAML2 
 </SSO>
 ```
    - Metadata provider: 
