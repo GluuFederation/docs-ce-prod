@@ -1,7 +1,7 @@
 # Notice
 
 This document, also known as the Gluu Release Note, 
-relates to the Gluu Release versioned 3.1.0. The work is licensed under “The MIT License” 
+relates to the Gluu Release versioned 3.1.1. The work is licensed under “The MIT License” 
 allowing the use, copy, modify, merge, publish, distribute, sub-license and sale without 
 limitation and liability. This document extends only to the aforementioned release version 
 in the heading.
@@ -29,8 +29,8 @@ The most common use cases for the Gluu Server include single sign-on (SSO), mobi
 Please visit the [Gluu Documentation Page](http://www.gluu.org/docs) for the complete 
 documentation and administrative guide. 
 
-## Components included in Gluu Server CE 3.1.0
-- oxAuth, oxTrust,oxCore v3.1.0
+## Components included in Gluu Server CE 3.1.1
+- oxAuth, oxTrust,oxCore v3.1.1
 - OpenLDAP v2.4.44-5
 - Shibboleth v3.2.1
 - Asimba forked from v1.3.0 + v1.3.1 snapshot changes (v1.3.1 was never released)
@@ -42,7 +42,7 @@ documentation and administrative guide.
 - Weld 3.0.0
 - FluentD 3.5
 
-## What's new in version 3.1.0
+## What's new in version 3.1.1
 
 ### New Features
 #### oxAuth
