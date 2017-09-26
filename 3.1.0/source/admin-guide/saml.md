@@ -135,7 +135,7 @@ For this documentation we used three demo servers:
 
 - https://[proxy3_hostname] is the Gluu server v3 with Shibboleth and Asimba installed along with other default components. 
 - https://[idp_hostname] is the remote authentication Gluu server v2 with Shibboleth installed with other default components. 
-- https://[sp_hostname] is the remote SP Gluu Server with the Shibboleth SP v26 installed.
+- https://[sp_hostname] is the remote SP Gluu Server with the Shibboleth SP v2.6 installed.
   
 This doc is divided into three major parts. Configuration in proxy server, configuration of remote AuthN server and Service Provider. 
 In this whole setup we are using Gluu Servers, it's associcated open source pieces and all other well developed and maintained softwares like Shibboleth Service Provider. 
