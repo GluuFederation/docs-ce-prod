@@ -131,6 +131,7 @@ and
 ```
 tail -f /opt/gluu/jetty/oxauth/logs/oxauth_script.log | grep "OTP"
 ```
+
 ## Don't have a QR code to scan:
 If you have changed your mobile or you have reinstalled Google Authenticator app, 
 and if the app is looking for QR code to scan, and you don't see a QR code.
