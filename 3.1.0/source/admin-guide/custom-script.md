@@ -9,7 +9,7 @@ These are just a couple examples demonstrating how interception scripts can be u
 
 The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scritps`.
 
-## Jython
+### Jython
 Interception scripts are written in [Jython](http://www.jython.org/docs/tutorial/indexprogress.html). 
 
 Jython was chosen because an interpreted language facilitates dynamic creation of business logic, and makes it easier to distribute this logic to a cluster of Gluu servers. 
