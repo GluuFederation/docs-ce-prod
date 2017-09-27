@@ -162,9 +162,9 @@ Wait about 10 minutes in total for the server to restart and finalize its config
 
 Note: If the Gluu Server login page is still not appearing after you've received the success message and waited about 10 minutes, check if port 443 is open in the VM. If it is not open, open port 443 and try to reach the host in your browser again. 
 
-## Clustering
+<!--## Clustering
 
-If you have requirements for high availability (HA) or failover, you can configure your Gluu Server for multi-master replication by following the documention for [configuring replication](./cluster.md).
+If you have requirements for high availability (HA) or failover, you can configure your Gluu Server for multi-master replication by following the documention for [configuring replication](./cluster.md).-->
 
 ## Uninstallation
 
