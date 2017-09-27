@@ -1,12 +1,9 @@
-Each method is detailed below.
+# Local User Management
+In this document we cover managing people and managing user registration in oxTrust, the graphical user interface for managing your Gluu Server. 
 
-## Local User Management
+While the Gluu Server does expose a generic user registration page at `https://<hostname>/identity/register`, we almost always recommend writing a registration page in your app, and using the SCIM APIs to add users to the Gluu Server. You can learn more about using SCIM in the [user management with SCIM 2.0](../user_management/user-scim.md) docs. 
 
-In oxTrust, you can add, edit and manage people, groups and user
-attributes and claims to ensure the proper information is released about
-the right people.
-
-### Manage People
+## Manage People
 To manage people, navigate to `User` > `Manage People`.
 
 From this interface you can add and search users. Because the user database can potentially be very large, a value is required in the search field. In other words, you can not click search with a blank entry to populate all users. If you need to see all users, this would be best performed manually within the Gluu LDAP server. Upon performing a user search in oxTrust a list will be populated with all users that match the search.
@@ -19,7 +16,7 @@ can modify specific attributes relating to that user.
 
 ![Manage Users](../img/admin-guide/user/admin_users_edituser.png)
 
-### Manage Groups
+## Manage Groups
 Out of the box, the Gluu Server includes one group: the Gluu Manager
 Group (`gluuManager`). Groups can be added and populated as
 needed. By using the `Manage Groups` feature, the Gluu Server
@@ -40,7 +37,7 @@ button. The flow is _Add Member --> Search the name/email of the user
 --> Select the user --> Click OK --> Update._
 ![Add Member](../img/admin-guide/user/admin_users_addmember.png)
 
-### Import People
+## Import People
 Gluu Server allows the administrator to import users from a file. 
 This can be accessed by navigating to `Users` > `Import People`.
 
@@ -55,7 +52,7 @@ This feature has been tested with a `xls` file.
 
 * Click on the `Import` button to complete the import of users.
 
-#### File Structure
+### File Structure
 
 The file needs to contain the following fields from which the user data will be pulled. 
 Please remember to use the exact spelling as shown here.
