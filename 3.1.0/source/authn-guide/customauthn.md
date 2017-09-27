@@ -214,9 +214,9 @@ Pure Python libraries can be added to `/opt/gluu/python/libs`, and jar files can
 
 ## Testing
 
-When the scripting is done, you can test the script by printing the statments to `oxtrust.log` under `/opt/gluu/jetty/identity/logs/oxtrust.log`. 
+When the scripting is done, you can test the script by printing the statements to `oxtrust.log` under `/opt/gluu/jetty/identity/logs/oxtrust.log`. 
 
-Prefixing the logs will help to find the script using tail command `tail -f | grep <prefix>`, the prefix logs will provide the script output while one trys to login using the script.
+Prefixing the logs will help to find the script using tail command `tail -f | grep <prefix>`, the prefix logs will provide the script output while one tries to login using the script.
 
 In the Twilio test script, a specific method called `printOut` has been scripted to make it easier to add this prefix.
 
