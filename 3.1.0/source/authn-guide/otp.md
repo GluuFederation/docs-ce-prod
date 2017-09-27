@@ -1,7 +1,7 @@
 # One-Time Password (OTP) Authentication
 
 ## Overview
-This document will explain how to configure the Gluu Server for a two-step authentication process with username and password as the first step, and HOTP as the second step.
+This document will explain how to configure the Gluu Server for a two-step authentication process with username and password as the first step, and HOTP/TOTP as the second step.
 
 ## Prerequisites
 - A Gluu Server ([installation instructions](../installation-guide/index.md));
@@ -56,7 +56,7 @@ RP->Gluu Server: Request user_info
 ## Properties
 The module has a few properties:
 
-1) otp_type - It's mandatory property. It's specify OTP mode: HOTP/ TOTP.
+1) otp_type - It's mandatory property. It's specify OTP mode: HOTP/TOTP.
    Allowed values: hotp/totp
    Example: hotp
 
@@ -77,7 +77,7 @@ The module has a few properties:
     
 ## Configure OTP with Gluu Server
 
-This list of steps needed to  enable OTP person authentication module.
+This is the list of steps needed to enable OTP person authentication module:
 
 1. Confire new custom module in oxTrust:
     - Log into oxTrust with administrative permissions.
@@ -129,7 +129,7 @@ tail -f /opt/gluu/jetty/identity/logs/oxtrust.log | grep "OTP"
 
 and
 ```
-tail -f /opt/gluu/jetty/identity/logs/oxtrust_script.log | grep "OTP"
+tail -f /opt/gluu/jetty/oxauth/logs/oxauth_script.log | grep "OTP"
 ```
 ## Don't have a QR code to scan:
 If you have changed your mobile or you have reinstalled Google Authenticator app, 
