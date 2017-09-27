@@ -43,10 +43,8 @@ pages:
             - 'Account Lockout': 'authn-guide/lockout.md'
             - 'Custom Script Tutorial': 'authn-guide/customauthn.md'
         - 'Attributes' : 'admin-guide/attribute.md'
-        - User Management: 
-            - 'Local User Management': 'user_management/local_user_management.md'
-            - 'AD/LDAP Synchronization': 'user_management/user_store_sync.md'
-            - 'User Management with SCIM': 'user_management/user-scim.md'
+        - 'User Management' : 'admin-guide/user-management.md'
+        - 'User Management with SCIM' : 'admin-guide/user-scim.md'
         - 'SCIM protected by UMA' : 'admin-guide/scim-uma.md'
         - 'SAML' : 'admin-guide/saml.md'
         #        - 'OAuth2 Grants' : 'admin-guide/oauth2.md'

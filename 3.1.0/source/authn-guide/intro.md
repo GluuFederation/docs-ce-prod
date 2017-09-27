@@ -19,7 +19,7 @@ Follow [this tutorial](./customauthn.md) to better understand the process of wri
 
 ## Basic Authentication
 
-By default, LDAP is used to authenticate usernames and passwords. Passwords can either be checked in your Gluu Server's local LDAP server, or in an existing backend LDAP server if you have configured [LDAP synchronization](../user_management/user_store_sync.md). Until additional authentication scripts are enabled, default authentication will always be username and password. 
+By default, LDAP is used to authenticate usernames and passwords. Passwords can either be checked in your Gluu Server's local LDAP server, or in an existing backend LDAP server if you have configured [LDAP synchronization](../admin-guide/user-management.md#ldap-synchronization). Until additional authentication scripts are enabled, default authentication will always be username and password. 
 
 Learn how to [configure basic authentication](./basic.md).
 
