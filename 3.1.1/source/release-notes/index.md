@@ -16,7 +16,7 @@ OR USING THE RELEASE.
 
 ## Purpose
 
-The document is released with the Version 3.1.0 of the Gluu Software. The purpose of this document is to provide the changes made/new features included in this release of the Gluu Software. The list is not exhaustive and there might be some omission of negligible issues, but the noteworthy features, enhancements and fixes are covered. 
+The document is released with the Version 3.1.1 of the Gluu Software. The purpose of this document is to provide the changes made/new features included in this release of the Gluu Software. The list is not exhaustive and there might be some omission of negligible issues, but the noteworthy features, enhancements and fixes are covered. 
 
 ## Background
 
