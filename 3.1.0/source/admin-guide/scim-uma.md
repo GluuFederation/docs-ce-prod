@@ -16,7 +16,7 @@ If you are really in a hurry, you can proceed straight to the [enable section](#
 
 The image shown [here](../api-guide/uma-api.md#uma-api-document) summarizes the phases and actors involved in UMA. While you don't need to get through to that complex flow in Gluu server for SCIM setup, it is important to familiarize yourself with the different parties interacting there, namely a resource owner, a client, a resource server, and an authorization server.
 
-* For the case of SCIM, the "resource" is what we are intended to protect, i.e. our database of users and groups stored in LDAP. More exactly we are interested in protecting the set of URLs that expose our data, in other words, the so-called "SCIM endpoint" - something that looks like this: `http://<your_host>/identity/seam/resource/restv1/scim/v2/`.
+* For the case of SCIM, the "resource" is what we are intended to protect, i.e. our database of users and groups stored in LDAP. More exactly we are interested in protecting the set of URLs that expose our data, in other words, the so-called "SCIM endpoint" - something that looks like this: `http://<your_host>/identity/restv1/scim/v2/`.
 
 * The resource owner is normally a legal entity (e.g. your company), or someone acting on its behalf (the administrator of Gluu CE installation). The owner should be capable of granting access to protected resources.
 
@@ -156,7 +156,7 @@ import java.util.List;
 
 public class TestScimClient {
 
-    private String domain = "https://<host-name>/identity/seam/resource/restv1";
+    private String domain = "https://<host-name>/identity/restv1";
     private String umaMetaDataUrl = "https://<host-name>/.well-known/uma-configuration";
     private String umaAatClientId = "<requesting-party-client-id>";
     private String umaAatClientJksPath = "<path-to-RP-jks>/scim-rp.jks";
