@@ -11,6 +11,9 @@ Answer: No. Here is how you can apply new IP in Gluu Server 3.1.0
     - Apply new IP by replacing old one
     - Restart apache2
     
+!!!Note: 
+    For centos and redhat systems, `https_gluu.conf` will be in the location `/etc/httpd/conf/httpd.conf`
+   
     `service httpd stop`
     
     `service httpd start`
