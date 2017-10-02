@@ -47,7 +47,7 @@ pages:
         - User Management:
             - 'Local User Management': 'user-management/local-user-management.md'
             - 'AD/LDAP Synchronization': 'user-management/user-store-sync.md'
-            - 'User Management with SCIM': 'user-management/user-scim.md'
+            - 'SCIM 2.0 User Management': 'user-management/user-scim.md'
         #- 'SCIM protected by UMA' : 'admin-guide/scim-uma.md'
         - 'SAML' : 'admin-guide/saml.md'
         #        - 'OAuth2 Grants' : 'admin-guide/oauth2.md'
