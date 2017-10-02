@@ -1,22 +1,36 @@
 # User Managed Access 2.0 ("UMA 2")
 
 ## Overview
-As a profile of OAuth 2.0 that is complementary to OpenID Connect, UMA 2 defines RESTful, JSON-based, standardized flows and constructs for coordinating the protection of any API or web resource in a way that will be familiar to any developer already acquainted with OAuth.
+As a profile of OAuth 2.0 that is complementary to OpenID Connect, UMA 2 defines RESTful, 
+JSON-based, standardized flows and constructs for coordinating the protection of any API or 
+web resource in a way that will be familiar to any developer already acquainted with OAuth.
 
-UMA 2 defines interfaces between authorization servers (AS) and resource servers (RS) that, by default, enable centralized policy decision-making for improved service delivery, auditing, policy administration, and accountability, even in a very loosely coupled "public API" environment. Custom profiles enable flexibility to move the decision-making line outward to distributed applications, to account for local preferences in API ecosystems. 
+UMA 2 defines interfaces between authorization servers (AS) and resource servers (RS) that, 
+by default, enable centralized policy decision-making for improved service delivery, auditing, 
+policy administration, and accountability, even in a very loosely coupled "public API" environment. 
+Custom profiles enable flexibility to move the decision-making line outward to distributed applications, 
+to account for local preferences in API ecosystems. 
 
-The Gluu Server functions as an UMA 2 AS and provides an interface for scripting unique policies for access management. Learn more about the Gluu Server's [UMA-API](../api-guide/uma-api.md). 
+The Gluu Server functions as an UMA 2 AS and provides an interface for scripting unique policies 
+for access management. Learn more about the Gluu Server's [UMA-API](../api-guide/uma-api.md). 
 
-Learn more about the UMA 2 [Federated Authorization](https://docs.kantarainitiative.org/uma/ed/oauth-uma-federated-authz-2.0-07.html) and [Grant](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-06.html) specifications on Kantara's website.
+Learn more about the UMA 2 
+[Federated Authorization](https://docs.kantarainitiative.org/uma/ed/oauth-uma-federated-authz-2.0-07.html) 
+and [Grant](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-06.html) specifications on 
+Kantara's website.
 
 !!! Note
     If you need to secure apps with OAuth 2.0 RP and UMA 2 RS code, you can use the [oxd client software](http://oxd.gluu.org).
 
 ### Terminology
-UMA 2 introduces new terms and enhancements of OAuth term definitions. For a complete overview of UMA terminology, see the [specification](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-06.html#roles).
+UMA 2 introduces new terms and enhancements of OAuth term definitions. 
+For a complete overview of UMA terminology, 
+see the [specification](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-06.html#roles).
 
 ### Authorization Policy Expression Language
-UMA 2 does not standardize a policy expression language, enabling flexibility in policy expression and evaluation through XACML, other declarative policy languages, or procedural code as warranted by conditions. 
+UMA 2 does not standardize a policy expression language, enabling flexibility in 
+policy expression and evaluation through XACML, other declarative policy languages, 
+or procedural code as warranted by conditions. 
 
 ### Authentication-Agnostic
 UMA 2 inherits authentication agnosticism from OAuth. It concentrates on authorization, not authentication. 
@@ -31,7 +45,9 @@ The resources protected by UMA 2 must be registered in oxTrust. The following pr
 - type
 - icon\_uri
 
-The resource type can be a string, URI or any other value type supported by the Gluu Server. The properties shown above are not concrete, and it is possible that a resource may contain custom properties. An example of the resource JSON is given beow:
+The resource type can be a string, URI or any other value type supported by the Gluu Server. 
+The properties shown above are not concrete, and it is possible that a resource may contain 
+custom properties. An example of the resource JSON is given beow:
 
 ```
 {
@@ -49,7 +65,8 @@ The search bar can be used to find existing available resources. New resources c
 
 ![add-resource-set](../img/uma/add-resource-set.png)
 
-The properties of a resource are visible on this page. There are two additional buttons that allow the administrator to add specific resources and/or scopes. By default, Gluu Server is shipped with SCIM resources protected by UMA. Learn more in the [SCIM protected by UMA documentation](./scim-uma.md). 
+The properties of a resource are visible on this page. There are two additional buttons that allow the administrator to add specific resources and/or scopes. By default, Gluu Server is shipped with SCIM resources protected by UMA. 
+Learn more in the [SCIM protected by UMA documentation](../user-management/user-scim#scim-protected-by-UMA). 
 
 ![add-resource](../img/uma/add-resource.png)
 
