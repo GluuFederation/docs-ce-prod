@@ -1,7 +1,7 @@
 # Local User Management
-In this document we cover managing people and managing user registration in oxTrust, the graphical user interface for managing your Gluu Server. 
+In this document we cover managing people, groups, and user registration in oxTrust, the graphical user interface for your Gluu Server. 
 
-While the Gluu Server does expose a generic user registration page at `https://<hostname>/identity/register`, we almost always recommend writing a registration page in your app, and using the SCIM APIs to add users to the Gluu Server. You can learn more about using SCIM in the [user management with SCIM 2.0](./user-scim.md) docs. 
+While the Gluu Server does expose a generic user registration page at `https://<hostname>/identity/register`, we almost always recommend writing a registration page in your app, and using the Gluu Server's SCIM APIs to register and add new users to your IAM service. You can learn more about using SCIM in the [user management with SCIM 2.0](./user-scim.md) docs. 
 
 ## Manage People
 To manage people, navigate to `User` > `Manage People`.
