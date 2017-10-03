@@ -200,7 +200,8 @@ The Gluu Server also support the draft for [Front Channel Logout](http://openid.
 is our recommended logout strategy. Using this mechanism, an html page is rendered which contains one iFrame for each application that 
 needs to be notified of a logout. The Gluu Server keeps track of which clients are associated with a session (i.e. your browser). This 
 mechanism is not perfect. If the end user's web browser is blocking third party cookies, it may break front channel logout. Also, the Gluu Server has no record if the logout is successful--only the browser knows. This means that if the logout fails, it will not be logged or retried. The good thing about front channel logout is that the application can clear application cookies in the end user's browser. To use front channel logout, the client should register logout_uri's, or `frontchannel_logout_uri` for clients using the Dynamic Client Registration API. 
-### Disable OpenID Connect
+
+### Disable OpenID Connect Scope
 Gluu Server 3.1.1 provides you an option to disable OpenID connect instead of having to deleting the configuration
 and settings of OpenID Connect created.
 To disable OpenID Connect
