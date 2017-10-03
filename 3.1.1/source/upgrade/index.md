@@ -4,10 +4,10 @@
 The Gluu Server can **not** be upgraded with a simple `apt-get upgrade`. The admin needs to explicitly install the new version of the Gluu Server and export and import the required data using scripts. 
 
 
-## Upgrade from 3.0.x to 3.1.0
+## Upgrade from 3.0.x to 3.1.1
 
 !!! Note
-    This guide assumes that you are upgrading from version 3.0.x to 3.1.0 and are **OK with changing persistence from OpenDJ to OpenLDAP**. If you prefer to keep OpenDJ in Gluu Server 3.x, follow the separate documentation for [upgrading with OpenDJ](../upgrade/manual-update.md/).
+    This guide assumes that you are upgrading from version 3.0.x to 3.1.1 and are **OK with changing persistence from OpenDJ to OpenLDAP**. If you prefer to keep OpenDJ in Gluu Server 3.x, follow the separate documentation for [upgrading with OpenDJ](../upgrade/manual-update.md/).
 
 !!! Warning
     Before proceeding with an upgrade, make sure to [backup](../operation/backup.md) the Gluu container or LDAP Ldif before proceeding with the upgrade. 
@@ -74,9 +74,9 @@ Review the [installation docs](../installation-guide/install.md) to install the 
 ```
 # cp -r /opt/gluu-server-3.0.x/root/backup_3031/ /opt/gluu-server-3.1.0/root/
 
-# service gluu-server-3.1.0 start
+# service gluu-server-3.1.1 start
 
-# service gluu-server-3.1.0 login
+# service gluu-server-3.1.1 login
 
 # cp backup_3031/setup.properties /install/community-edition-setup/
 
@@ -129,10 +129,10 @@ Install the `json-merge` Python package and run the import script.
 
 Any errors or warnings will be displayed in the terminal and can be reviewed in the import log. Now you should be able to log into the oxTrust web UI using the old admin credentials and you should see all previous data in place. 
 
-## Upgrade from 2.x.x to 3.1.0
+## Upgrade from 2.x.x to 3.1.1
 
 !!! Note
-    This guide assumes that you are upgrading from version 2.x.x to 3.1.0 and are **OK with changing persistence from OpenDJ to OpenLDAP**. If you prefer to keep OpenDJ in Gluu Server 3.x, follow the separate documentation for [upgrading with OpenDJ](../upgrade/manual-update.md/).
+    This guide assumes that you are upgrading from version 2.x.x to 3.1.1 and are **OK with changing persistence from OpenDJ to OpenLDAP**. If you prefer to keep OpenDJ in Gluu Server 3.x, follow the separate documentation for [upgrading with OpenDJ](../upgrade/manual-update.md/).
 
 !!! Warning
     Before proceeding with an upgrade, make sure to [backup](../operation/backup.md) the Gluu container or LDAP Ldif before proceeding with the upgrade. 
@@ -199,9 +199,9 @@ Review the [installation docs](../installation-guide/install.md) to install the 
 ```
 # cp -r /opt/gluu-server-2.4.x/root/backup_2431/ /opt/gluu-server-3.1.0/root/
 
-# service gluu-server-3.1.0 start
+# service gluu-server-3.1.1 start
 
-# service gluu-server-3.1.0 login
+# service gluu-server-3.1.1 login
 
 # cp backup_2431/setup.properties /install/community-edition-setup/
 
