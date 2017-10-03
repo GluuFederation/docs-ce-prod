@@ -25,7 +25,7 @@ corresponding archives at the [end of this page](#latest-war-files).
 
 1. Login to chroot container:  
 
-    `# service gluu-server-3.1.0 login`
+    `# service gluu-server-3.1.1 login`
     
 2. Stop the respective service:  
 
