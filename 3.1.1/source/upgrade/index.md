@@ -22,7 +22,7 @@ Upgrading generally involves the following steps:
 
 Gluu provides the necessary [scripts](https://github.com/GluuFederation/community-edition-setup/tree/master/static/scripts) to import and export data in and out of the servers.
 
-## Export the data from the current installation
+### Export the data from the current installation
 
 ```
 # service gluu-server-3.0.x login
@@ -61,7 +61,7 @@ Install the `json-merge` Python package and run the import script.
 
 The export script will generate a directory called `backup_3031` which will have all the data from the current installation. Check the log file generated in the directory for any errors.
 
-## Install the latest version of the Gluu server
+### Install the latest version of the Gluu server
 
 Stop the current version of the gluu-server.
 
@@ -69,7 +69,7 @@ Stop the current version of the gluu-server.
 # service gluu-server-3.0.x stop
 ```
 
-Review the [installation docs](https://gluu.org/docs/ce/3.1.0/installation-guide/install/) to install the Gluu Server using the package manager. Once the package manager has installed version `3.0.2`, then execute the following commands:
+Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.0.2`, then execute the following commands:
 
 ```
 # cp -r /opt/gluu-server-3.0.x/root/backup_3031/ /opt/gluu-server-3.1.0/root/
@@ -87,7 +87,7 @@ Review the [installation docs](https://gluu.org/docs/ce/3.1.0/installation-guide
 
 Enter the required information to complete the installation.
 
-## Import your old data
+### Import your old data
 
 Navigate to where you have the `backup_3031` folder (if the above commands were followed, it is in `/root/`) and execute the following commands to get the necessary scripts.
 
@@ -147,7 +147,7 @@ Upgrading generally involves the following steps:
 
 Gluu provides the necessary [scripts](https://github.com/GluuFederation/community-edition-setup/tree/master/static/scripts) to import and export data in and out of the servers.
 
-## Export the data from the current installation
+### Export the data from the current installation
 
 ```
 # service gluu-server-2.x.x login
@@ -212,7 +212,7 @@ Review the [installation docs](../installation-guide/install.md) to install the 
 
 Enter the required information to complete the installation.
 
-## Import your old data
+### Import your old data
 
 Navigate to where you have the `backup_2431` folder (if the above commands were followed, it is in `/root/`) and execute the following commands to get the necessary scripts.
 
