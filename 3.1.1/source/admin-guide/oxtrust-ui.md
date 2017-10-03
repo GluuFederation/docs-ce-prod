@@ -109,7 +109,12 @@ The Gluu Server needs a mail server in order to send notifications. All fields i
 From the oxTrust Settings page the administrator can find the oxTrust build date and number, and manage the organization name, logo, and favicon. This page also contains the name of the Gluu Server administrator group. Users added to this group will have administrator access to the Gluu Server.
 
 ## JSON Configuration      
-There are three tabs included in the `JSON Configuration` menu:
+There are following tabs included in the `JSON Configuration` menu:
+
+* [oxTrust Configuration](#oxtrust-configuration)
+* [oxAuth Configuration](#oxauth-configuration)
+* [Cache Provider Configuration](#cache-provider-configuration)
+* [oxTrust Import Person Configuration](#oxtrust-import-person-configuration)
 
 ![json-config-head](../img/oxtrust/json-config-head.png "JSON Configuration Headers")
 
@@ -135,6 +140,33 @@ This page also contains the supported response, grants, and algorithms.
 #### Session Management 
 
 The Gluu Server administrator can manage oxAuth sessions by adding the desired session time in seconds as the value for the `sessionIdUnusedLifetime` field. Check the [session management](../admin-guide/session.md) section of the documentation to learn more.
+
+### Cache Provider Configuration
+
+There following supported cache providers (which can be selected via `cacheProviderType` combobox, see screenshot below):
+
+* [In Memory](#in-memory-cache-configuration) - recommended for small deployments only
+* [Memcached](#memcached-cache-configuration ) - recommended for single cache server deployment
+* [Redis](#redis-cache-configuration) - recommended for cluster deployments
+
+#### In Memory Cache Configuration
+
+* defaultPutExpiration - default expiration time for the object put into cache
+
+#### Memcached Cache Configuration 
+
+* servers - space seperated list of servers (e.g. `server1:8081 server2:8082`)
+* maxOperationQueueLength - maximum operation Queue Length.
+* defaultPutExpiration - default expiration time for the object put into cache
+* MemcachedConnectionFactoryType - connection factory type
+
+#### Redis Cache Configuration
+
+* redisProviderType - redis connection type provider. Possible values: `STANALONE` (for standalone redis server only), `CLUSTER` (for redis cluster deployment only), `SHARDED` (client sharding connection).
+* servers - comma seperated list of servers (e.g. `server1:8081,server2:8081,server3:8081,server4:8081,server5:8081,server6:8081,server7:8081`)
+* defaultPutExpiration - default expiration time for the object put into cache
+
+![URI](../img/admin-guide/cacheProvider.png)
 
 ### oxTrust Import Person Configuration
 The oxTrust Import Person Configuration page contains the configuration for 
