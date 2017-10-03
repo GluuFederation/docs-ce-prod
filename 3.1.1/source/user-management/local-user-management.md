@@ -6,7 +6,7 @@ While the Gluu Server does expose a generic user registration page at `https://<
 ## Manage People
 To manage people in oxTrust, navigate to `User` > `Manage People`.
 
-From this interface you can add and search users. Because the user database can potentially be very large, a value with at least two characters is required in the search field. In other words, you can not click search with a blank entry to populate all users. If you need to see all users, this would be best performed manually within the [Gluu LDAP server](#manage-users-in-gluu-LDAP). Upon performing a user search in oxTrust a list will be populated with all users that match the search.
+From this interface you can add and search users. Because the user database can potentially be very large, a value with at least two characters is required in the search field. In other words, you can not click search with a blank entry to populate all users. If you need to see all users, this would be best performed manually within the [Gluu LDAP server](#manage-users-in-gluu-ldap). Upon performing a user search in oxTrust a list will be populated with all users that match the search.
 
 ![Search Users](../img/admin-guide/user/admin_users_searchadmin.png)
 
