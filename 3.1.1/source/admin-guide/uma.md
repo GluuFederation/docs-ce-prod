@@ -66,7 +66,7 @@ The search bar can be used to find existing available resources. New resources c
 ![add-resource-set](../img/uma/add-resource-set.png)
 
 The properties of a resource are visible on this page. There are two additional buttons that allow the administrator to add specific resources and/or scopes. By default, Gluu Server is shipped with SCIM resources protected by UMA. 
-Learn more in the [SCIM protected by UMA documentation](../user-management/user-scim#scim-protected-by-UMA). 
+Learn more in the [SCIM protected by UMA documentation](../user-management/scim2#scim-protected-by-UMA). 
 
 ![add-resource](../img/uma/add-resource.png)
 

@@ -324,4 +324,4 @@ The System for Cross-domain Identity Management (SCIM) simplifies user provision
 1) A canonical user schema;
 2) A RESTful API for all necessary user management operations.
 
-In the [User Management with SCIM](../admin-guide/user-scim.md) section of the docs you can find details for how to use the [SCIM-Client](https://github.com/GluuFederation/SCIM-Client) to perform user CRUD operations in your Gluu Server. 
+In the [User Management with SCIM](../admin-guide/scim2.md) section of the docs you can find details for how to use the [SCIM-Client](https://github.com/GluuFederation/SCIM-Client) to perform user CRUD operations in your Gluu Server. 

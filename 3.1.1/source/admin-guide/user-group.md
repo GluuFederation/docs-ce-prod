@@ -318,6 +318,6 @@ upgraded sections here.
     operation and integrity of any custom script such as a Jython Script.
 
 ## SCIM 2.0 
-In [User Management with SCIM](../admin-guide/user-scim.md) you can find 
+In [User Management with SCIM](../admin-guide/scim2.md) you can find 
 details on how to use the [SCIM-Client](https://github.com/GluuFederation/SCIM-Client)
 to make CRUD operations over the user database of your Gluu Server. 
