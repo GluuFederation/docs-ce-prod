@@ -186,7 +186,7 @@ Install the `json-merge` Python package and run the import script.
 
 The export script will generate a directory called `backup_2431` which will have all the data from the current installation. Check the log file generated in the directory for any errors.
 
-## Install the latest version of the Gluu server
+### Install the latest version of the Gluu server
 
 Stop the current version of the gluu-server.
 
