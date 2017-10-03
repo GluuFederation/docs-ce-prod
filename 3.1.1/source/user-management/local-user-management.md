@@ -1,7 +1,7 @@
 # Local User Management
 In this document we cover managing people, groups and user registration in oxTrust, the graphical user interface for your Gluu Server. 
 
-While the Gluu Server does expose a generic user registration page at `https://<hostname>/identity/register`, we almost always recommend writing a registration page in your app, and using the Gluu Server's SCIM APIs to register and add new users to your IAM service. You can learn more about using SCIM in the [user management with SCIM 2.0](./user-scim.md) docs. 
+While the Gluu Server does expose a generic user registration page at `https://<hostname>/identity/register`, we almost always recommend writing a registration page in your app, and using the Gluu Server's SCIM APIs to register and add new users to your IAM service. You can learn more about using SCIM in the [user management with SCIM 2.0](./scim2.md) docs. 
 
 ## Manage People
 To manage people in oxTrust, navigate to `User` > `Manage People`.
@@ -84,7 +84,7 @@ In the below example we are showing how to connect and use Gluu Server's interna
 ## User Registration
 The Gluu Server is shipped with a user registration script that can be used to enable basic user registration. 
 
-When possible we recommend handling user registration locally in your app, then pushing the user information to the Gluu Server using the [SCIM 2.0 endpoints](./user-scim.md). This will give you more control and flexibility in defining the exact registration process. Also, since oxTrust was primarily designed as an admin interface, it is frequently not Internet facing and therefore the registration page may not be available to a user on the web.        
+When possible we recommend handling user registration locally in your app, then pushing the user information to the Gluu Server using the [SCIM 2.0 endpoints](./scim2.md). This will give you more control and flexibility in defining the exact registration process. Also, since oxTrust was primarily designed as an admin interface, it is frequently not Internet facing and therefore the registration page may not be available to a user on the web.        
 
 To enable user registration via the Gluu Server, follow these steps:
 
