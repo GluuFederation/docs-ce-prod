@@ -204,8 +204,7 @@ below.
     are allowed to be saved in the hard drive of the VM. It is recommended
     to be kept to 20 snapshots.
 
-Latest Gluu Servers (including Community Edition) introduced two
-upgraded sections here.
+The Gluu Server 3.x introduced two upgraded sections here.
 
   * _Server IP Address:_ Include the IP of your Gluu Server here. This
     feature helps to run Cache Refresh mechanism perfectly in a clustered
