@@ -52,6 +52,23 @@ This feature has been tested with a `xls` file.
 
 * Click on the `Import` button to complete the import of users.
 
+## Manage user in Gluu Server LDAP
+
+If you are interested to explore the ldap tree which is inside Gluu Server then it's possible to do that as well. You just need to establish a tunnel from your computer to target Gluu Server's ldap. This tunneling is required because Gluu Server's LDAP port, 1636, is not exposed to internet.
+
+In below example we are showing how you can connect and use Gluu Server's internal LDAP server with any ldap browser. 
+
+ - Create tunnel: 
+   - `ssh -L 5901:localhost:1636 root@[ip_of_Gluu_server]`
+ - Open LDAP browser
+   - Create new connection 
+![Screenshot](../img/users/user_management_ldap_browser_create_new_connection.png)
+   - Perform authentication. 'Password' is the the password of 'admin' user. 
+![Screenshot](../img/users/user_management_ldap_browser_authentication_ldap.png)
+   - Browse ldap and go to 'ou=people'. 
+![Screenshot](../img/users/user_management_ldap_browser_user_info.png)
+   
+
 ### File Structure
 
 The file needs to contain the following fields from which the user data will be pulled. 
