@@ -1,6 +1,21 @@
 # Localization of Gluu Server Admin UI
 
-oxAuth contains the following resource bundles: [messages_en.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_en.properties), [messages_bg.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_bg.properties), [messages_de.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_de.properties), [messages_es.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_es.properties), [messages_fr.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_fr.properties), [messages_it.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_it.properties), [messages_ru.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_ru.properties), [messages_tr.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_tr.properties)
+oxAuth contains the following resource bundles: 
+
+- [messages_en.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_en.properties)
+- [messages_bg.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_bg.properties)
+
+- [messages_de.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_de.properties) 
+
+- [messages_es.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_es.properties) 
+
+- [messages_fr.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_fr.properties) 
+
+- [messages_it.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_it.properties) 
+
+- [messages_ru.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_ru.properties) 
+
+- [messages_tr.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_tr.properties)
 
 These properties files store the translatable text of the messages to be displayed.
 The default properties file, which is called [messages_en.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_en.properties), contains the following lines:
