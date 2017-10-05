@@ -41,6 +41,7 @@ documentation and administrative guide.
 - Jython v2.7.0
 - Weld 3.0.0
 - FluentD 3.5
+- Redis
 
 ## What's new in version 3.1.1
 
