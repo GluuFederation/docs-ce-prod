@@ -44,100 +44,42 @@ documentation and administrative guide.
 
 ## What's new in version 3.1.1
 
-### New Features
+### Enhancements
 #### oxAuth
-- Migration to Weld 3.0.0.CR2[#221](https://github.com/GluuFederation/oxAuth/issues/221)
-- UMA 2: Implement Claims Gathering Endpoint[#300](https://github.com/GluuFederation/oxAuth/issues/300)
-- UMA 2: support plain scopes[#536](https://github.com/GluuFederation/oxAuth/issues/536)
-- UMA 2: introduce/upgrade metadata according to UMA 2 spec[#534](https://github.com/GluuFederation/oxAuth/issues/534)
-- UMA 2: Implement support for client "pushed claims" and PCT[#533](https://github.com/GluuFederation/oxAuth/issues/533)
-- Add support for token_endpoint_auth_signing_alg (OpenID Connect Dynamic Client Registration)[#92](https://github.com/GluuFederation/oxAuth/issues/92)
-- Add expiration time to session_state cookie[#333](https://github.com/GluuFederation/oxAuth/issues/333)
-- Support logout with expired id_token [#332](https://github.com/GluuFederation/oxAuth/issues/332)
-- Request / Resonse Audit Logging[#378](https://github.com/GluuFederation/oxAuth/issues/378)
-- Super-Gluu script should support AWS SNS for push notifications[#630](https://github.com/GluuFederation/oxAuth/issues/630)
-- Customization in 3.1.x [#501](https://github.com/GluuFederation/oxAuth/issues/501}
-- Error handling in 3.1.x[#504](https://github.com/GluuFederation/oxAuth/issues/504)
+- UMA 2 : added convenient methods to UmaAuthorizationContext for fetching user and client claims[#649](https://github.com/GluuFederation/oxauth/issues/649)
+- UMA 2 : make id_token validation configurable against local idp[#644](https://github.com/GluuFederation/oxauth/issues/644)
+- Add attribute to Disable Client[#612](https://github.com/GluuFederation/oxauth/issues/612)
+- Redis : provide ability to specify multiple servers in configuration[#642](https://github.com/GluuFederation/oxAuth/issues/642)
 
 #### oxTrust
-- UMA 2 : added "claims_redirect_uris" to client.[#593](https://github.com/GluuFederation/oxTrust/issues/593)
-- UMA 2 : Introduce new "UMA Claims Gathering Script"[#590](https://github.com/GluuFederation/oxTrust/issues/590)
-- JSF-related changes in SAML pages[#611](https://github.com/GluuFederation/oxTrust/issues/611)
-- Add FluentD support[#589](https://github.com/GluuFederation/oxTrust/issues/589)
-- Support TR without Metadata[#353](https://github.com/GluuFederation/oxTrust/issues/353)
-- Handle coversation timeout[#626](https://github.com/GluuFederation/oxTrust/issues/626)
-- Make SCIM 2.0 search MAX_COUNT configurable[#320](https://github.com/GluuFederation/oxTrust/issues/320)
-- More user-friendly look of the OIDC client configuration page[#226](https://github.com/GluuFederation/oxTrust/issues/226)
-- Make cache provider configurable via UI (oxCacheConfiguration attribute of gluuAppliance OS)[#485](https://github.com/GluuFederation/oxTrust/issues/485)
-- Application should disable controls on processing Ajax requests [#129](https://github.com/GluuFederation/oxTrust/issues/129)
-- Add "active" column to import spreadsheet [#171](https://github.com/GluuFederation/oxTrust/issues/171)
+- Set ACR / Level for LDAP Password Authentication[#33](https://github.com/GluuFederation/oxTrust/issues/33)
+- Force oxAuth to generate new Keys[#69](https://github.com/GluuFederation/oxTrust/issues/69)
+- Show hide value based on SimpleExtendedCustomProperty hideValue field[#714](https://github.com/GluuFederation/oxTrust/issues/714)
+- Added Super gluu Enrol page[#717](https://github.com/GluuFederation/oxTrust/issues/716)
+- Add new redisProviderType configuration property[#729](https://github.com/GluuFederation/oxTrust/issues/729)
+- OpenID Connect Provider Certification[#722](https://github.com/GluuFederation/oxTrust/pull/722)
 
 #### Community Edition
-- Change method of adding scripts to setup[#313](https://github.com/GluuFederation/community-edition-setup/issues/313)
-- Add setup option which allows to import additional templates after base install[#285](https://github.com/GluuFederation/community-edition-setup/issues/285)
-- setup.py - using an Ampersand (&) in admin password field fails[#268](https://github.com/GluuFederation/community-edition-setup/issues/268)
-- Add external configuration file which contains list of indexes whoich setup should add to OpenLDAP[#245](https://github.com/GluuFederation/community-edition-setup/issues/245)
-- Add a section for csync2 tool's logs to our log rotation script.[#171](https://github.com/GluuFederation/community-edition-setup/issues/171)
-- Apache MPMs differ between Gluu's packages for different distros[#139](https://github.com/GluuFederation/community-edition-setup/issues/139)
-- Increase Gluu-LDAP security[#98](https://github.com/GluuFederation/community-edition-setup/issues/98)
-- "Timezone" setting for setup.py[#71](https://github.com/GluuFederation/community-edition-setup/issues/71)
+- New export/import scripts[#332](https://github.com/GluuFederation/community-edition-setup/pull/332)
+- Add property to allow disable clients
+
+### Fixes
+#### oxAuth
+- Update "Super Gluu" script and configuration to use Gluu push notification service[#247](https://github.com/GluuFederation/oxauth/issues/247)
+- Issues with memcached session persistence[#646](https://github.com/GluuFederation/oxauth/issues/646)
+
+#### oxTrust
+- Error on clicking INACTIVE attributes in Oxtrust UI [#724](https://github.com/GluuFederation/oxTrust/issues/724)
+- UMA 2 : resource added via api exists in ldap but is not visible on GUI[#716](https://github.com/GluuFederation/oxTrust/issues/716)
+
+#### Community Edition
+- Update LDAP schema to confirm UMA 2.0 code[#331](https://github.com/GluuFederation/community-edition-setup/issues/331)
+- Update UMA 2.0 scripts
+- Update "Super Gluu" and "Twilio"
 
 ### Deprecated Features
 #### oxAuth
-- Deprecate Authn Scripts: phonefactor, wikid, toopher, oneid, inwebo [#490](https://github.com/GluuFederation/oxAuth/issues/490)
-- Review Justin's UMA 1.0.1 issues workarounds[#187](https://github.com/GluuFederation/oxAuth/issues/187)
-- Remove CAS from default authn scripts[#557](https://github.com/GluuFederation/oxAuth/issues/557)
-- Remove jettison resteasy provider[#220](https://github.com/GluuFederation/oxAuth/issues/220)
-- UMA 2: Remove AAT[#532](https://github.com/GluuFederation/oxAuth/issues/532)
-- UMA 2: Remove GAT Tokens[#531](https://github.com/GluuFederation/oxAuth/issues/531)
+
 #### oxTrust
-- Remove Level from Authorization Script[#581](https://github.com/GluuFederation/oxTrust/issues/581)
-- Deprecate or review native2ascii script usage[#578](https://github.com/GluuFederation/oxTrust/issues/578)
-- Remove old SCIM 1 code[#631](https://github.com/GluuFederation/oxTrust/issues/631)
+
 #### Community Edition
-- Remove CustomAttributes[#311](https://github.com/GluuFederation/community-edition-setup/issues/311)
-- Remove Shib. IDP/SAML Metadata related template duplications[#298](https://github.com/GluuFederation/community-edition-setup/issues/298)
-- Remove CAS as install option[#247](https://github.com/GluuFederation/community-edition-setup/issues/247)
-### Fixes
-#### oxAuth
-- setAmrClaim() in IdTokenFactory.java only allows scripts with usage type of "Both methods", instead of allowing scripts of any type[582](https://github.com/GluuFederation/oxAuth/issues/582)
-- Validation URL incorrect in access token[547](https://github.com/GluuFederation/oxAuth/issues/547)
-- CORS filter doesn't seem to process pre-flight requests in CE 3.1.x[542](https://github.com/GluuFederation/oxAuth/issues/542)
-- Enforce Grant Type Client Restrictions[525](https://github.com/GluuFederation/oxAuth/issues/525)
-- Failed to register client with custom attribute "oxAuthTrustedClient"[476](https://github.com/GluuFederation/oxAuth/issues/476)
-- UMA AM validation in scenarion when oxauth behind te proxy[472](https://github.com/GluuFederation/oxAuth/issues/472)
-- Under high load (400 concurrent threads) we got redirect back to login page after successfull login  in ~1-2% of requests[463](https://github.com/GluuFederation/oxAuth/issues/463)
-- Random session enty update error[408](https://github.com/GluuFederation/oxAuth/issues/408)
-- Support logout with expired id_token[332](https://github.com/GluuFederation/oxAuth/issues/332)
-- Support AD servers without anonymous bind[190](https://github.com/GluuFederation/oxAuth/issues/190)
-- Add filter to auth_ldap_server authentication method[167](https://github.com/GluuFederation/oxAuth/issues/167)
-#### oxTrust
-- Hostname should show FQDN in Configuration/Server Status[222](https://github.com/GluuFederation/oxTrust/issues/222)
-- Use specific LDAP certificate or cacert to connect remote LDAP server[244](https://github.com/GluuFederation/oxTrust/issues/244)
-- InCommon R&S should not be visible for everyone[343](https://github.com/GluuFederation/oxTrust/issues/343)
-- [CR] CR doesn't map attributes like "sn" or "mail" implicitly (when there is no mapping for them in the table) anymore[314](https://github.com/GluuFederation/oxTrust/issues/314)
-- Entityid selection pop-up for TRs created based on federation TR overlaps with other UI elements[306](https://github.com/GluuFederation/oxTrust/issues/306)
-- SCIM v2.x Users resource endpoint returns empty list if count is omitted[360](https://github.com/GluuFederation/oxTrust/issues/360)
-- Fix JSF rendering warnings[347](https://github.com/GluuFederation/oxTrust/issues/347)
-- 'Generate' method in SAML Trust relationship throwing NPE[368](https://github.com/GluuFederation/oxTrust/issues/368)
-- Wrong name is displayed for backend in "Change password" dialogue[376](https://github.com/GluuFederation/oxTrust/issues/376)
-- No left/right scroll bar with sized down window[379](https://github.com/GluuFederation/oxTrust/issues/379)
-- Deactivated SAML TR is activated as side-effect of clicking "Update" button[384](https://github.com/GluuFederation/oxTrust/issues/384)
-- "System error" upon attempt to create user via oxTrust on freshly installed instance[447](https://github.com/GluuFederation/oxTrust/issues/447)
-- List of SAML TRs doesn't show the actual status of its displayed items.[385](https://github.com/GluuFederation/oxTrust/issues/385)
-- 2.4.4.2: It's impossible to remove entries from "Logout URI" property of OIDC client.[470](https://github.com/GluuFederation/oxTrust/issues/470)
-- SAML TR added without custom RP configuration doesn't work[490](https://github.com/GluuFederation/oxTrust/issues/490)
-- dynamicRegistrationExpirationTime cannot be set to 0[508](https://github.com/GluuFederation/oxTrust/issues/508)
-- Federation TR's creation/editing page lacks critical controls and can't be edited[515](https://github.com/GluuFederation/oxTrust/issues/515)
-- Use servers which are in 'Manage Authentication' list[525](https://github.com/GluuFederation/oxTrust/issues/525)
-#### Community Edition
-- apache2 does not start with "service apache2 ..."[#324](https://github.com/GluuFederation/community-edition-setup/issues/324)
-- Some minor security issues in current packages.[#315](https://github.com/GluuFederation/community-edition-setup/issues/315)
-- CentOS/RHEL 7.x resolv.conf is becoming blank after VM reboot[#295](https://github.com/GluuFederation/community-edition-setup/issues/295)
-- Failed to stop Gluu services properly in RHEL 6.7[#272](https://github.com/GluuFederation/community-edition-setup/issues/272)
-- Wrong user:group during rsyslog configuraion[#271](https://github.com/GluuFederation/community-edition-setup/issues/271)
-- Don't update /etc/hosts in old dist[#270](https://github.com/GluuFederation/community-edition-setup/issues/270)
-- OpenDJ schema is broken[#259](https://github.com/GluuFederation/community-edition-setup/issues/259)
-- Hostname is changed outside of the container each time Gluu service is started[#198](https://github.com/GluuFederation/community-edition-setup/issues/198)
-- Gluu Server does not SSL connection for localhost (prevents oxd from working on the same machine where Gluu Server installed)[#157](https://github.com/GluuFederation/community-edition-setup/issues/157)
-- missing LSB information[#57](https://github.com/GluuFederation/community-edition-setup/issues/57)
