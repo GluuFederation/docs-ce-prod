@@ -47,8 +47,8 @@ documentation and administrative guide.
 ### Enhancements
 #### oxAuth
 - [#649](https://github.com/GluuFederation/oxauth/issues/649)UMA 2 : Authorization Context - add user attribute fetching
-- [#644](https://github.com/GluuFederation/oxauth/issues/644)UMA 2 : make id_token validation configurable against local idp
-- [#612](https://github.com/GluuFederation/oxauth/issues/612)Add attribute to Disable Client
+- [#644](https://github.com/GluuFederation/oxauth/issues/644)UMA 2 : `id_token` validation configurable against local idp
+- [#612](https://github.com/GluuFederation/oxauth/issues/612)Add attribute to Disable OpenID Client
 - [#642](https://github.com/GluuFederation/oxAuth/issues/642)Redis : provide ability to specify multiple servers in configuration
 
 #### oxTrust
