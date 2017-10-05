@@ -55,7 +55,7 @@ documentation and administrative guide.
 - [#33](https://github.com/GluuFederation/oxTrust/issues/33)Set ACR / Level for LDAP Password Authentication
 - [#69](https://github.com/GluuFederation/oxTrust/issues/69)Force oxAuth to generate new Keys
 - [#714](https://github.com/GluuFederation/oxTrust/issues/714)Show hide value based on SimpleExtendedCustomProperty hideValue field
-- [#717](https://github.com/GluuFederation/oxTrust/issues/717)Added Super Gluu Enrol page
+- [#717](https://github.com/GluuFederation/oxTrust/issues/717)Added Super Gluu Enroll page
 - [#729](https://github.com/GluuFederation/oxTrust/issues/729)Add new redisProviderType configuration property
 - [#722](https://github.com/GluuFederation/oxTrust/pull/722)OpenID Connect Provider Certification
 
