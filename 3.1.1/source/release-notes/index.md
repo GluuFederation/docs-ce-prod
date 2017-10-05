@@ -46,7 +46,7 @@ documentation and administrative guide.
 
 ### Enhancements
 #### oxAuth
-- UMA 2 : added convenient methods to UmaAuthorizationContext for fetching user and client claims[#649](https://github.com/GluuFederation/oxauth/issues/649)
+- UMA 2 : Authorization Context - add user attribute fetching[#649](https://github.com/GluuFederation/oxauth/issues/649)
 - UMA 2 : make id_token validation configurable against local idp[#644](https://github.com/GluuFederation/oxauth/issues/644)
 - Add attribute to Disable Client[#612](https://github.com/GluuFederation/oxauth/issues/612)
 - Redis : provide ability to specify multiple servers in configuration[#642](https://github.com/GluuFederation/oxAuth/issues/642)
