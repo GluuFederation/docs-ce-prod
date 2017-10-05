@@ -26,7 +26,7 @@ The most common use cases for the Gluu Server include single sign-on (SSO), mobi
 
 ## Documentation
 
-Please visit the [Gluu Documentation Page](http://www.gluu.org/docs) for the complete 
+Please visit the [Gluu Documentation Page](http://www.gluu.org/docs/ce) for the complete 
 documentation and administrative guide. 
 
 ## Components included in Gluu Server CE 3.1.1
@@ -47,18 +47,18 @@ documentation and administrative guide.
 
 ### Enhancements
 #### oxAuth
-- [#649](https://github.com/GluuFederation/oxauth/issues/649)UMA 2 : Authorization Context - add user attribute fetching
-- [#644](https://github.com/GluuFederation/oxauth/issues/644)UMA 2 : `id_token` validation configurable against local idp
-- [#612](https://github.com/GluuFederation/oxauth/issues/612)Add attribute to Disable OpenID Client
-- [#642](https://github.com/GluuFederation/oxAuth/issues/642)Redis : provide ability to specify multiple servers in configuration
+- [#649](https://github.com/GluuFederation/oxauth/issues/649) UMA 2 : Authorization Context - add user attribute fetching
+- [#644](https://github.com/GluuFederation/oxauth/issues/644) UMA 2 : `id_token` validation configurable against local idp
+- [#612](https://github.com/GluuFederation/oxauth/issues/612) Add attribute to Disable OpenID Client
+- [#642](https://github.com/GluuFederation/oxAuth/issues/642) Redis : provide ability to specify multiple servers in configuration
 
 #### oxTrust
-- [#33](https://github.com/GluuFederation/oxTrust/issues/33)Set ACR / Level for LDAP Password Authentication
-- [#69](https://github.com/GluuFederation/oxTrust/issues/69)Force oxAuth to generate new Keys
-- [#714](https://github.com/GluuFederation/oxTrust/issues/714)Show hide value based on SimpleExtendedCustomProperty hideValue field
-- [#717](https://github.com/GluuFederation/oxTrust/issues/717)Added Super Gluu Enroll page
-- [#729](https://github.com/GluuFederation/oxTrust/issues/729)Add new redisProviderType configuration property
-- [#722](https://github.com/GluuFederation/oxTrust/pull/722)OpenID Connect Provider Certification
+- [#33](https://github.com/GluuFederation/oxTrust/issues/33) Set ACR / Level for LDAP Password Authentication
+- [#69](https://github.com/GluuFederation/oxTrust/issues/69) Force oxAuth to generate new Keys
+- [#714](https://github.com/GluuFederation/oxTrust/issues/714) Show hide value based on SimpleExtendedCustomProperty hideValue field
+- [#717](https://github.com/GluuFederation/oxTrust/issues/717) Added Super Gluu Enroll page
+- [#729](https://github.com/GluuFederation/oxTrust/issues/729) Add new redisProviderType configuration property
+- [#722](https://github.com/GluuFederation/oxTrust/pull/722) OpenID Connect Provider Certification
 
 #### Community Edition
 - [#332](https://github.com/GluuFederation/community-edition-setup/pull/332)New export/import scripts
@@ -66,14 +66,14 @@ documentation and administrative guide.
 
 ### Fixes
 #### oxAuth
-- [#247](https://github.com/GluuFederation/oxauth/issues/247)Update "Super Gluu" script and configuration to use Gluu push notification service
-- [#646](https://github.com/GluuFederation/oxauth/issues/646)Issues with memcached session persistence
+- [#247](https://github.com/GluuFederation/oxauth/issues/247) Update "Super Gluu" script and configuration to use Gluu push notification service
+- [#646](https://github.com/GluuFederation/oxauth/issues/646) Issues with memcached session persistence
 
 #### oxTrust
-- [#724](https://github.com/GluuFederation/oxTrust/issues/724)Error on clicking INACTIVE attributes in Oxtrust UI 
-- [#716](https://github.com/GluuFederation/oxTrust/issues/716)UMA 2 : resource added via api exists in ldap but is not visible on GUI
+- [#724](https://github.com/GluuFederation/oxTrust/issues/724) Error on clicking INACTIVE attributes in Oxtrust UI 
+- [#716](https://github.com/GluuFederation/oxTrust/issues/716) UMA 2 : resource added via api exists in ldap but is not visible on GUI
 
 #### Community Edition
-- [#331](https://github.com/GluuFederation/community-edition-setup/issues/331)Update LDAP schema to confirm UMA 2.0 code
+- [#331](https://github.com/GluuFederation/community-edition-setup/issues/331) Update LDAP schema to confirm UMA 2.0 code
 - Update UMA 2.0 scripts
 - Update "Super Gluu" and "Twilio"
