@@ -3,7 +3,7 @@ The integration guide will help you understand how to achieve SSO with your Gluu
 
 The most important thing to understand is that there are a variety of SAML and OpenID Connect SSO integration strategies available depending on the type of application in question. 
 
-The following page provides a number of SAML and OpenID Connect integration strategies for the most common types of applications. This is not a totally exhaustive list of integration mechanisms and strategies. However, the mechanisms described below have been tested to work with the Gluu Server and are well understood by our support and development staff.  
+The following page provides SAML and OpenID Connect integration strategies for the most common types of applications. This is not a totally exhaustive list of integration mechanisms and strategies. However, the mechanisms described below have been tested to work with the Gluu Server and are well understood by our support and development staff.  
 
 ## Server Side Web Apps
 Many applications are "server-side", meaning the web page displays content but most of the dynamic business logic resides on the web server. Two design patterns have emerged for securing server-side web applications: (1) use of web server filters and reverse proxies, and (2) leveraging OAuth2 directly in your application. Which approach to use depends on the trade-off between easier devops (option 1), and how deeply you want to integrate centralized security policies into your application (option 2).
