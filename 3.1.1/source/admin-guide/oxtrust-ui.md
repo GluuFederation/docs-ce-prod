@@ -143,7 +143,7 @@ The Gluu Server administrator can manage oxAuth sessions by adding the desired s
 
 ### Cache Provider Configuration
 
-There following supported cache providers (which can be selected via `cacheProviderType` combobox, see screenshot below):
+The following cache providers are now supported and can be selected via the `cacheProviderType` combo box field (see screenshot below):
 
 * [In Memory](#in-memory-cache-configuration) - recommended for small deployments only
 * [Memcached](#memcached-cache-configuration ) - recommended for single cache server deployment
