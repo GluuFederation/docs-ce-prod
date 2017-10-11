@@ -398,13 +398,7 @@ service redis-server force-reload
 
 ```
 
-- Now click `Submit` on the bottom after all your changes. Now we must reload our configurations in oxAuth and Identity.
-
-```
-
-service identity stop && service oxauth restart && service identity start
-
-```
+- Now click `Submit` on the bottom after all your changes. 
 
 ### 10. Transfer certificates from the first server to the other servers.
 
@@ -420,7 +414,7 @@ scp /opt/gluu-server-3.1.1/etc/certs/* root@c6.gluu.org:/opt/gluu-server-3.1.1/e
 
 - We must give ownership of the certs to gluu, with the exception of `oxauth-keys.j*` which need to be owned by jetty
 
-- On the server the certificates were just transffered to:
+- On the server the certificates were just transferred to:
 
 ```
 
@@ -432,7 +426,7 @@ Gluu.Root # chown jetty.jetty oxauth-keys.j*
 
 - Next we need to update the keystores in all of our Gluu instances, including the primary server. 
 
-- Download this script, which automatically removes and adds the necessary certificates to the keystore.
+- Download this script to **every** server, which automatically removes and adds the necessary certificates to the keystore.
 
 ```
 
@@ -455,7 +449,8 @@ Gluu.Root # python keystore_Config.py
 ```
 
 Gluu.Root # service identity stop && service oxauth restart && service identity start
-Gluu.Root # service gluu-server-3.1.1 restart
+Gluu.Root # logout
+service gluu-server-3.1.1 restart
 
 ```
 
