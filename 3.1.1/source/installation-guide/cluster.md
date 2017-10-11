@@ -60,7 +60,7 @@ cmd_jar=/opt/jre/bin/jar
 oxauth_openid_jks_pass=t1j5ykEaHFs1
 idp3WebappFolder=/opt/shibboleth-idp/webapp
 countryCode=US
-ip=138.197.65.243								                  <------ changed this to the current server IP
+ip=138.197.65.243						<------ changed this to the current server IP
 opendj_ldap_binddn=cn\=directory manager
 installSaml=False
 sysemProfile=/etc/profile
