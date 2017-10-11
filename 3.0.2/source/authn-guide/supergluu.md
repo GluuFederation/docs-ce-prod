@@ -2,14 +2,26 @@
 ## Overview
 [Super Gluu](https://super.gluu.org) is a free and secure two-factor authentication mobile application developed by Gluu. 
 
-This section of the docs explains how to enable and configure Super Gluu for strong authentication to applications that leverage your Gluu Server for login.
+This section of the docs explains how to enable and configure your Gluu Server to use Super Gluu for user authentication. Complete docs for Super Gluu, including a User Guide and Developer Guide, can be found on the [Super Gluu docs site](https://gluu.org/docs/supergluu). 
 
-Complete docs for Super Gluu, including a User Guide and a Developer Guide, can be found on the [Super Gluu docs site](https://gluu.org/docs/supergluu).  
+### FIDO U2F
+During device enrollment, Super Gluu uses the Gluu Server's FIDO U2F endpoints to enroll a public key. When authentication happens, there is a challenge response to ensure that the device has the respective private key. 
+
+Learn more about where Super Gluu entries are stored in LDAP, the Gluu Server FIDO discovery endpoint, and managing FIDO devices using SCIM in the Gluu Server [FIDO U2F docs](./U2F.md). 
+
+### Open source 
+Super Gluu is based on the free open source [oxPush 3](https://github.com/GluuFederation/oxPush3) source code. 
 
 ## Prerequisites 
 - A Gluu Server ([installation instructions](../installation-guide/index.md));
-- [Super Gluu intereption script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/super_gluu/SuperGluuExternalAuthenticator.py) (included in the default Gluu Server distribution);
+- [Super Gluu interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/super_gluu/SuperGluuExternalAuthenticator.py) (included in the default Gluu Server distribution);
 - An Android or iOS device with Super Gluu installed.
+
+### Download Super Gluu
+Super Gluu is available on the iOS and Android marketplaces:
+
+- [Super Gluu for iOS](https://itunes.apple.com/us/app/super-gluu/id1093479646?mt=8)     
+- [Super Gluu for Android](https://play.google.com/store/apps/details?id=gluu.org.super.gluu)     
 
 ## Properties
 The Super Gluu authentication script has the following properties
