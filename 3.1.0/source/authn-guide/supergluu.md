@@ -21,7 +21,7 @@ Super Gluu is based on the free open source [oxPush 3](https://github.com/GluuFe
 Super Gluu is available on the iOS and Android marketplaces:
 
 - [Super Gluu for iOS](https://itunes.apple.com/us/app/super-gluu/id1093479646?mt=8)     
-- [Super Gluu for Android](https://play.google.com/store/apps/details?id=gluu.super.gluu&hl=en)       
+- [Super Gluu for Android](https://play.google.com/store/apps/details?id=gluu.org.super.gluu)       
 
 ## Properties
 The Super Gluu authentication script has the following properties
