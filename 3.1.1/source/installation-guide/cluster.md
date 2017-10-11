@@ -4,7 +4,7 @@
 ## Introduction
 If you have requirements for high availability (HA) or failover, you can configure your Gluu Server for multi-master replication by following the instructions below.
 
-My server configurations are like so:
+For the purpose of this tutorial, my server configurations are as follows:
 
 ```
 45.55.232.15    c4.gluu.org (NGINX server)
@@ -14,30 +14,35 @@ My server configurations are like so:
 
 ## Prerequisites
 
-Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
+Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:   
 
-- A minimum of three (3) servers or VMs--two (2) for Gluu Servers and one (1) for load balancing (in our example, NGINX);
-- To create the following instructions we used Ubuntu 14 Trusty. Some modifications may be necessary
-- To create the following instructions we used an Nginx load balancer/proxy, however if you have your own load balancer, like F5 or Cisco, you should use that instead and disregard the bottom instructions about configuring Nginx.
-- Gluu Server 3.x using OpenLDAP.
-- Redis-server for caching sessions.
-- JXplorer for editing LDAP.
+- A minimum of three (3) servers or VMs--two (2) for Gluu Servers and one (1) for load balancing (in our example, NGINX);      
+
+- To create the following instructions we used Ubuntu 14 Trusty. Some modifications may be necessary.   
+
+- To create the following instructions we used an Nginx load balancer/proxy, however if you have your own load balancer, like F5 or Cisco, you should use that instead and disregard the bottom instructions about configuring Nginx.   
+
+- Gluu Server 3.x using OpenLDAP.   
+
+- Redis-server for caching sessions.   
+
+- JXplorer for editing LDAP.   
 
 ## Concept
 
-Multi-master replication with OpenLDAP through delta-syncrepl by creating an accesslog database and configuring synchronization with the slapd.conf file. The ldap.conf file for all the servers will allow the self-signed certs that Gluu creates and configuring the symas-openldap.conf to allow external connections for LDAP on ports 1636 and 636 (for SSL). There are also some additional steps that are required to persist Gluu functionality across servers. This is where a load-balancer/proxy is required.
+In this tutorial we are configuring multi-master replication with OpenLDAP through delta-syncrepl by creating an accesslog database and configuring synchronization with the slapd.conf file. The ldap.conf file for all the servers will allow the self-signed certs that Gluu creates and configuring the symas-openldap.conf to allow external connections for LDAP on ports 1636 and 636 (for SSL). There are also some additional steps that are required to persist Gluu functionality across servers. This is where a load-balancer/proxy is required.
 
 ## Instructions
 
 ### 1. [Install Gluu](https://gluu.org/docs/ce/3.1.1/installation-guide/install/) on one of the servers
 
-- Make sure to use a separate NGINX/Load-balancing server FQDN as hostname.
+- Make sure to use a separate NGINX/Load-balancing server FQDN as hostname.   
 
-- This will be considered your "primary" server for the sake of this documentation.
+- This will be considered your "primary" server for the sake of this documentation.   
 
-- A separate NGINX server is necessary, because replicating a Gluu server to a different hostname breaks the functionality of the Gluu web page, when using a hostname other than what is in the certificates. For example, if I used c1.gluu.info as my host and copied that to a second server (e.g. c2.gluu.info), the process of accessing the site on c2.gluu.info, even with replication, will fail authentication, due to hostname conflict. So if c1 failed, you couldn't access the Gluu web GUI anymore.
+- A separate NGINX server is necessary, because replicating a Gluu server to a different hostname breaks the functionality of the Gluu web page, when using a hostname other than what is in the certificates. For example, if I used c1.gluu.info as my host and copied that to a second server (e.g. c2.gluu.info), the process of accessing the site on c2.gluu.info, even with replication, will fail authentication, due to hostname conflict. So if c1 failed, you couldn't access the Gluu web GUI anymore.   
 
-- Now for the rest of the servers in the cluster, [Download the Gluu packages](https://gluu.org/docs/ce/3.1.1/installation-guide/install/), but don't run `setup.py` yet.
+- Now for the rest of the servers in the cluster, [Download the Gluu packages](https://gluu.org/docs/ce/3.1.1/installation-guide/install/), but don't run `setup.py` yet.   
 
 - We want to copy the `/install/community-edition-setu/setup.properties.last` file from this first install to the other servers as `setup.properties` so we have the exact same configurations. (Here I have ssh access to my other server outisde the Gluu chroot)
 
@@ -74,7 +79,7 @@ ldapPassFn=/home/ldap/.pw
 
 ```
 
-- Now run setup.py
+- Now run setup.py   
 
 ```
 
@@ -84,22 +89,26 @@ Gluu.Root # ./setup.py
 
 - The rest of the configurations for the install should be automatically loaded and all you need to do here is press `Enter`
 
-### 2. There needs to be primary server to replicate from initially for delta-syncrepl to inject data from. After the initial sync, all servers will be exactly the same, as delta-syncrepl will fill the newly created database.
+### 2. Choose a primary server
 
-- So choose one server as a base and then on every **other** server:
+There needs to be primary server to replicate from initially for delta-syncrepl to inject data from. After the initial sync, all servers will be exactly the same, as delta-syncrepl will fill the newly created database.
+
+- So choose one server as a base and then on every **other** server:   
 
 ```
 Gluu.Root # rm /opt/gluu/data/main_db/*.mdb
 ```
 
-- Now make accesslog directories on **every server** (including the primary server) and give ldap ownership:
+- Now make accesslog directories on **every server** (including the primary server) and give ldap ownership:   
 
 ```
 Gluu.Root # mkdir /opt/gluu/data/accesslog_db
 Gluu.Root # chown -R ldap. /opt/gluu/data/
 ```
 
-### 5. Modify slapd.conf, ldap.conf and symas-openldap.conf files.
+### 3. Modify configuration files
+
+You now need to modify the following configuration files: `slapd.conf`, `ldap.conf` and `symas-openldap.conf`
 
 - Creating the slapd.conf file for replication is relatively easy, but can be prone to errors if done manually. Attached is a script and template files for creating multiple slapd.conf files for every server. Download git and clone the necessary files on **one** server:
 
@@ -226,7 +235,9 @@ With (obviously use your own FQDN's):
 
 Placing all servers in your cluster topology in this config portion.
 
-### 6. It is important that our servers times are synchronized so we must install ntp outside of the Gluu chroot and set ntp to update by the minute (necessary for delta-sync log synchronization). If time gets out of sync, the entries will conflict and their could be issues with replication.
+### 4. Server synchronization
+
+It is important that our server's times are synchronized so we must install `ntp` outside of the Gluu chroot and set `ntp` to update by the minute (necessary for delta-sync log synchronization). If time gets out of sync, the entries will conflict and their could be issues with replication.
 
 ```
 GLUU.root@host:/ # logout
@@ -258,7 +269,7 @@ Aug 23 22:40:29 dc4 slapd[79544]: syncprov_matchops: skipping original sid 001
 Aug 23 22:40:29 dc4 slapd[79544]: syncrepl_message_to_op: rid=001 be_modify
 ```
 
-### 8. Next we install NGINX
+### 5. Install NGINX
 
 - **If you have your own load balancer these NGINX configuration files are merely a guide for how to proxy with the Gluu server.**
 
@@ -340,13 +351,14 @@ http {
 
 ```
 
-### 8. Install and configure redis-server on one or more servers
+### 6. Install and configure redis
 
-- Redis-server is an memory caching solution created by redis-labs. It's ideal for clustering solutions but needs additional encryption.
+Now you need to install and configure redis-server on one or more servers. 
 
+- Redis-server is an memory caching solution created by redis-labs. It's ideal for clustering solutions but needs additional encryption.       
 - Mind you, this can not be configured on your NGINX server or you'll get routing issues when attempting to cache.
-
-- The standard redis-server's configuration file binds to `127.0.0.1`. We need to comment out this entry so that it listens to external requests.
+     
+- The standard redis-server's configuration file binds to `127.0.0.1`. We need to comment out this entry so that it listens to external requests.    
 
 ```
 vi /etc/redis/redis.conf
@@ -372,9 +384,11 @@ service redis-server force-reload
 
 - Redis can also be configured for HA and failover with multiple methods utilizing [Sentinel](https://redis.io/topics/sentinel) or [Redis-cluster](https://redis.io/topics/cluster-tutorial)
 
-### 9. Use JXplorer (or similar LDAP accessing application) to modify some of the JSON entries in LDAP for handling accessible caching and multiple authorization servers.
+### 7. Modify JSON entries 
 
-- In JXplorer, you can connect to your LDAP server using your credentials you configured with setup.py. For example:
+Use JXplorer (or a similar LDAP browser) to modify some of the JSON entries in LDAP for handling accessible caching and multiple authorization servers.      
+
+- In JXplorer, you can connect to your LDAP server using your credentials you configured with setup.py. For example:     
 
 ![alt text](https://raw.githubusercontent.com/GluuFederation/cluster-mgr/master/manual_install/images/JXplorer%20config.png)
 
@@ -400,9 +414,11 @@ service redis-server force-reload
 
 - Now click `Submit` on the bottom after all your changes. 
 
-### 10. Transfer certificates from the first server to the other servers.
+### 8. Transfer certificates
 
-- It's necessary to copy certificates from the primary server we installed Gluu on and replace the certificates in `/etc/certs/` on the other servers.
+Now you need to transfer certificates from the first server to the other servers.
+
+- It's necessary to copy certificates from the primary server we installed Gluu on and replace the certificates in `/etc/certs/` on the other servers.       
 
 - From the primary server:
 
@@ -454,7 +470,7 @@ service gluu-server-3.1.1 restart
 
 ```
 
-- Now your administrator web UI and oxAuth have some failover redundancy. There are obviously more configurations necessary on the network layer of your topology for true HA failover, but that is outside of the scope for this documentation.
+- Now your administrator web UI and oxAuth have some failover redundancy. There are obviously more configurations necessary on the network layer of your topology for true HA failover, but that is outside of the scope for this documentation.          
 
 ## Support
 If you have any questions or run into any issues, please open a ticket on [Gluu Support](https://support.gluu.org).
