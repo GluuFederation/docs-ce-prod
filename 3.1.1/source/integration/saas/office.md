@@ -28,7 +28,7 @@ backend Azure Active Directory (AD).
 
     - [Install and Configure](https://technet.microsoft.com/en-us/library/jj205464) Windows Powershell *cmdlets*
 
-    - Create a script and run through `Connect-MsolService` or you can provide values inside O365 admin panel. 
+    - Create a script and run through `Connect-MsolService`. 
     
     - For Gluu Server, values would be something like these: 
     
