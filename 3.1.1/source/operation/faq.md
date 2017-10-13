@@ -3,6 +3,13 @@
 ## Logs
 When it comes to troubleshooting issues in the Gluu Server--from service hiccups to outages--your [server logs](./logs.md) are the best place to gather relevant information.
 
+See what's going on by tailing the `identity` and `oxauth` logs:
+
+```
+$ tail -f /opt/gluu-server-3.1.1/opt/gluu/jetty/identity/logs/* \
+          /opt/gluu-server-3.1.1/opt/gluu/jetty/oxauth/logs/*
+```       
+
 ## Running out of disk space 
 The Gluu Server doesn't tidy up after itself:
 
@@ -19,6 +26,108 @@ Run the following commands if you find your instance running out of disk space:
 # /etc/init.d/gluu-server-3.1.1 start
 ```
 
+## Connect an external LDAP browser
+
+Sooner or later you will probably want to peek at what is stored in the Gluu Server's local LDAP. This means connecting something like Apache Directory Studio to the `slapd` process running inside the chroot container.
+
+You can find the configuration you need in `/opt/gluu-server-3.1.0/etc/gluu/conf/ox-ldap.properties`, e.g.:
+
+```
+bindDN: cn=directory manager,o=gluu
+bindPassword: foobar
+servers: localhost:1636
+```
+
+Forward the `1636` the same way as you did with the debug ports above. You can then see full details like how OpenID Connect clients are stored and how user objects are mapped in the LDAP tree.
+
+
+## Connect a remote debugger
+Connecting your local debugger up to Gluu can help with troubleshooting. 
+
+### Enable remote debugging 
+
+Change the configuration of the `init.d` scripts for the `identity` and `oxauth` processes:
+
+```
+# /etc/init.d/gluu-server-3.1.1 login
+# vim /etc/default/identity
+```
+
+Change:
+
+```
+JAVA_OPTIONS="-server -Xms256m -Xmx858m -XX:MaxMetaspaceSize=368m
+-XX:+DisableExplicitGC -Dgluu.base=/etc/gluu
+-Dserver.base=/opt/gluu/jetty/identity
+-Dlog.base=/opt/gluu/jetty/identity -Dpython.home=/opt/jython
+-Dorg.eclipse.jetty.server.Request.maxFormContentSize=50000000"
+```
+
+To: 
+
+```
+JAVA_OPTIONS="
+  -server -Xms256m -Xmx858m 
+  -XX:MaxMetaspaceSize=368m 
+  -XX:+DisableExplicitGC 
+  -Dgluu.base=/etc/gluu 
+  -Dserver.base=/opt/gluu/jetty/identity 
+  -Dlog.base=/opt/gluu/jetty/identity 
+  -Dpython.home=/opt/jython 
+  -Dorg.eclipse.jetty.server.Request.maxFormContentSize=50000000 
+  -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=6005
+"
+```
+
+The important bit is the last line starting with `-Xrunjdwp`. 
+
+Then restart the `identity` process:
+
+```
+# /etc/init.d/identity restart
+```
+
+Do the same in `/etc/default/oxauth`, but choose a different port for the debugger to connect to:
+
+```
+-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"
+```
+
+Then restart `oxauth`:
+
+```
+# /etc/init.d/oxauth restart
+```
+
+Now, if you're running the gluu system inside a virtual machine (or just a different machine than your host machine), forward the ports `6005` and `5005` to your local machine. Type this command on your local machine, where you forward these two ports as you `ssh` into the Gluu machine:
+
+```
+$ ssh -L5005:localhost:5005 -L6005:localhost:6005 user@gluu
+```
+
+As long as you keep this `ssh` connection open, you can access the debug ports `5005` and `6005` as if they were running locally.
+
+Now, you can open up your favorite IDE like IntelliJ IDEA, Eclipse or Emacs and set up the debugger to connect to `5005` for `oxauth` and `6005` for `identity`.
+
+### Getting the correct sources
+For remote debugging to make sense, you must have the source code checked out locally and you must check out the Git tag corresponding to the gluu server you're running.
+
+For `oxAuth`:
+
+```
+$ git clone https://github.com/GluuFederation/oxAuth.git
+$ cd oxAuth
+$ git checkout version_3.1.1
+```
+
+For `identity`:
+
+```
+$ git clone https://github.com/GluuFederation/oxTrust.git
+$ cd oxTrust
+$ git checkout version_3.1.1
+```
+
 ## Changing hostnamed/IP addresses/listening ports
 It is not recommended to change the hostname or IP address or the listening port of any installed Gluu Server instance. The hostname and the IP address is used in many settings stored in LDAP configuration entries, Apache/Jetty configuration and into the custom authentication script. It is strongly recommended to use a fresh install in a new VM. 
 
@@ -30,6 +139,7 @@ Ports other than 443 are not supported as the port is used by Apache Web Server.
 
 !!! Note
     Please use a virtual ethernet interface and a different IP address on your server
+
 
 ## Request email instead of username for login
 In oxTrust navigate to the Manage Authentication tab within the Configuration section. By default the Primary Key and Local Key are set to `uid`. Set those va    lues to `mail` and now your Gluu Server will expect email as the identifier instead of username.
