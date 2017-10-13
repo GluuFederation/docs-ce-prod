@@ -20,21 +20,6 @@ Run the following commands if you find your instance running out of disk space:
 # /etc/init.d/gluu-server-3.1.1 start
 ```
 
-## Connect an external LDAP browser
-
-Sooner or later you will probably want to peek at what is stored in the Gluu Server's local LDAP. This means connecting something like Apache Directory Studio to the `slapd` process running inside the chroot container.
-
-You can find the configuration you need in `/opt/gluu-server-3.1.0/etc/gluu/conf/ox-ldap.properties`, e.g.:
-
-```
-bindDN: cn=directory manager,o=gluu
-bindPassword: foobar
-servers: localhost:1636
-```
-
-Forward the `1636` the same way as you did with the debug ports above. You can then see full details like how OpenID Connect clients are stored and how user objects are mapped in the LDAP tree.
-
-
 ## Connect a remote debugger
 Connecting your local debugger up to Gluu can help with troubleshooting. 
 
@@ -103,7 +88,7 @@ As long as you keep this `ssh` connection open, you can access the debug ports `
 
 Now, you can open up your favorite IDE like IntelliJ IDEA, Eclipse or Emacs and set up the debugger to connect to `5005` for `oxauth` and `6005` for `identity`.
 
-### Getting the correct sources
+### Grab the source
 For remote debugging to make sense, you must have the source code checked out locally and you must check out the Git tag corresponding to the gluu server you're running.
 
 For `oxAuth`:
@@ -121,6 +106,21 @@ $ git clone https://github.com/GluuFederation/oxTrust.git
 $ cd oxTrust
 $ git checkout version_3.1.1
 ```
+
+## Connect an external LDAP browser
+
+Sooner or later you will probably want to peek at what is stored in the Gluu Server's local LDAP. This means connecting something like Apache Directory Studio to the `slapd` process running inside the chroot container.
+
+You can find the configuration you need in `/opt/gluu-server-3.1.0/etc/gluu/conf/ox-ldap.properties`, e.g.:
+
+```
+bindDN: cn=directory manager,o=gluu
+bindPassword: foobar
+servers: localhost:1636
+```
+
+Forward the `1636` the same way as you did with the debug ports above. You can then see full details like how OpenID Connect clients are stored and how user objects are mapped in the LDAP tree.
+
 
 ## Changing hostnames/IP addresses/listening ports
 It is not recommended to change the hostname or IP address or the listening port of any installed Gluu Server instance. The hostname and the IP address is used in many settings stored in LDAP configuration entries, Apache/Jetty configuration and into the custom authentication script. It is strongly recommended to use a fresh install in a new VM. 
