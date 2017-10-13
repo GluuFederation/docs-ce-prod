@@ -1,21 +1,37 @@
 # FAQ
-## General 
-### Logs
+
+## Logs
 When it comes to troubleshooting issues in the Gluu Server--from service hiccups to outages--your [server logs](./logs.md) are the best place to gather relevant information.
 
-### How to change the hostname/IP address/listening port of Gluu Server
+## Running out of disk space 
+The Gluu Server doesn't tidy up after itself:
+
+```
+$ du -hs /opt/gluu-server-3.1.1/opt/jetty-9.3/temp/
+2.4G /opt/gluu-server-3.1.1/opt/jetty-9.3/temp/
+```
+
+Run the following commands if you find your instance running out of disk space:
+
+```
+# /etc/init.d/gluu-server-3.1.1 stop
+# rm -rf /opt/gluu-server-3.1.1/opt/jetty-9.3/temp/*
+# /etc/init.d/gluu-server-3.1.1 start
+```
+
+## Changing hostnamed/IP addresses/listening ports
 It is not recommended to change the hostname or IP address or the listening port of any installed Gluu Server instance. The hostname and the IP address is used in many settings stored in LDAP configuration entries, Apache/Jetty configuration and into the custom authentication script. It is strongly recommended to use a fresh install in a new VM. 
 
 !!! Note
     Please use static IP address with reverse proxy or load balancer or simple port forwarding.
 
-### How to set the port to something other than 443
+## Setting the port to something other than 443
 Ports other than 443 are not supported as the port is used by Apache Web Server. In theory, the change must reflect in the SAML and OpenID Connect metadata and still there might be errors.
 
 !!! Note
     Please use a virtual ethernet interface and a different IP address on your server
 
-### How to customize IDP to ask for Email instead of username
+## Request email instead of username for login
 In oxTrust navigate to the Manage Authentication tab within the Configuration section. By default the Primary Key and Local Key are set to `uid`. Set those va    lues to `mail` and now your Gluu Server will expect email as the identifier instead of username.
 
 ![change2mail](../img/admin-guide/faq/change2mail.png)
@@ -24,17 +40,17 @@ Now you will want to update your IDP login page to display `Email Address` as th
 
 ![update-login](../img/admin-guide/faq/update-login.png)
 
-### How to add additional roles to oxTrust and change permissions for existing ones
+## Adding additional roles to oxTrust and changing permissions for existing roles
 The additional role requires the implementation of dynamic rules in Jboss SEAM and then uitlize them in oxTrust as the available _manager_ and _user_ roles are defined within the `securit.drl` hard-coded into oxTrust. The file checks for the _maanger_ group membership and adds the role to the web context. This is currently out of the scope of support. 
 
 !!! Warning
     oxTrust is a tool for administrators and it must nto be used as a user facing application.
     
-### How do I install a patch to my server?
+## Installing a patch
 Follow the documentation for [updating a .war file](../upgrade/update-war.md). 
 
-## Troubleshooting 
-### Add admin for Gluu server
+
+## Adding admin users
 
 Please follow these steps to restore your Gluu admin account (you will
 probably need to substitute actual port, bind names and hostnames with
@@ -117,16 +133,15 @@ specified in the 1st line of the file in step 4).
 This will add tempadmin user to the IdP managers group and you can then
 login and assign another user to act as admin.
 
-## Connectivity Issues
-### DNS names not resolving!
+## DNS errors
 It is possible that even after configuring everything there is a `DNS` resolve error in Gluu Server.
 The reason is the `DNS` used inside the chroot container; the `dns` used by the container is the Google DNS servers 
 and the `DNS` for the host OS is not used. Therefore to fix this issue:
 
 - Change the DNS inside the container by editing the `/etc/resolv.conf` file and adding the DNS used by your organization
 
-### Forgot the admin password! 
-Gluu Server stores the admin password in the file `/install/community-edition-setup/setup.properties.last` under the
+## How to recover an admin password 
+The Gluu Server stores the admin password in the file `/install/community-edition-setup/setup.properties.last` under the
 property `ldapPass`. Retrieve the data using the following command:
 
 ```
@@ -136,10 +151,10 @@ property `ldapPass`. Retrieve the data using the following command:
 !!! Warning
     It is strongly recommended to remove the file from any production environment or encrypt the file
 
-### Revert Authentication Method
-While testing authentication scripts and mechanisms it is not unlikely that you will find yourself locked out of the Gluu Server. In such a case the following method can be used to revert back to the previous authentication method:
+## Revert an authentication method
+You should always test new authentication methods in a different browser to reduce the chance of lockout. However, while testing authentication scripts and mechanisms it is not unlikely that you will find yourself locked out of the Gluu Server admin GUI. 
 
-> Same commands can be used for OpenLDAP as well.
+In such a situation, the following method can be used to revert back to the previous authentication method:
 
 1. Run the following command to collect the `inum` for the Gluu Server installation:   
 
@@ -180,7 +195,7 @@ modifying oxAuthenticationMode to 'internal'. Below are the steps:
 As a secondary option, InPrivate or Incognito or Private Browser from various Browsers can be used.
 
     
-### No admin access after Cache Refresh?
+## No admin access after Cache Refresh?
 Add the password for your admin account to `~/.pw` and then use the commands below to add yourself as an admin.
 
 ```bash
