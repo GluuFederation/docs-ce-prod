@@ -11,12 +11,6 @@ $ tail -f /opt/gluu-server-3.1.1/opt/gluu/jetty/identity/logs/* \
 ```       
 
 ## Running out of disk space 
-The Gluu Server doesn't tidy up after itself:
-
-```
-$ du -hs /opt/gluu-server-3.1.1/opt/jetty-9.3/temp/
-2.4G /opt/gluu-server-3.1.1/opt/jetty-9.3/temp/
-```
 
 Run the following commands if you find your instance running out of disk space:
 
