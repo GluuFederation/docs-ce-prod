@@ -128,7 +128,7 @@ $ cd oxTrust
 $ git checkout version_3.1.1
 ```
 
-## Changing hostnamed/IP addresses/listening ports
+## Changing hostnames/IP addresses/listening ports
 It is not recommended to change the hostname or IP address or the listening port of any installed Gluu Server instance. The hostname and the IP address is used in many settings stored in LDAP configuration entries, Apache/Jetty configuration and into the custom authentication script. It is strongly recommended to use a fresh install in a new VM. 
 
 !!! Note
