@@ -54,7 +54,7 @@ To add a translation for not yet supported languages, just create new properties
 
 oxTrust UI can be used to change the language once oxtrust_[language_code].properties are added in the `identity.war`, and select the preferred language from the dropdown as shown below.
 
-![localization](../img/oxtrust/localization.png)
+![localization](../img/oxtrust/localization1.png)
 
 ## Configuration   
 From the configuration tab, the Gluu Server administrator can manage 
