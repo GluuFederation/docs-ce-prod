@@ -129,7 +129,7 @@ Any errors or warnings will be displayed in the terminal and can be reviewed in 
 ## Upgrade from 2.x.x to 3.1.1
 
 !!! Note
-    This guide assumes that you are upgrading from version 2.x.x to 3.1.1 and are **OK with changing persistence from OpenDJ to OpenLDAP**. If you prefer to keep OpenDJ in Gluu Server 3.x, follow the separate documentation for [upgrading with OpenDJ](../upgrade/manual-update.md/).
+    This guide assumes that you are upgrading from version 2.x.x to 3.1.1 and are **OK with changing persistence from OpenDJ to OpenLDAP**. If you prefer to keep OpenDJ in Gluu Server 3.x, follow the separate documentation for [upgrading with OpenDJ](../upgrade/manual-update.md).
 
 !!! Warning
     Before proceeding with an upgrade, make sure to [backup](../operation/backup.md) the Gluu container or LDAP Ldif before proceeding with the upgrade. 
