@@ -45,9 +45,9 @@ So let's elaborate on those steps.
 
     - oxAuth log is at `/opt/gluu/jetty/oxauth/logs/oxauth.log`
 
-    - It's convenient to set the logging level for both applications to **TRACE** while doing your work. See the (log management)[../operation/logs.md] page for more information.
+    - It's convenient to set the logging level for both applications to **TRACE** while doing your work. See the [log management](../../operation/logs.md) page for more information.
 
-- If you already have some acquaintance with Gluu's SCIM service, quickly glance [this section](#differences-between-current-310-and-older-test-mode) so you can contrast the current approach employed in test mode with the older one (3.0.2 and earlier).
+- If you already have some acquaintance with Gluu's SCIM service, quickly glance [this section](#differences-between-current-31x-and-older-test-mode) so you can contrast the current approach employed in test mode with the older one (3.0.2 and earlier).
 
 - If you are familiar to the Java programming language, you can skip the steps listed above and simply use the [SCIM-Client](#testing-with-the-scim-client): a Java library developed by Gluu. Those steps are already implemented in the library so usage of the service is more straightforward.
 
@@ -79,7 +79,7 @@ In this step we will create an OpenId Connect client that will allow us to reque
 
 Basically, there are two ways of creating a client. One consists of issuing a HTTP POST to the already existing client registration endpoint of your Gluu Server and parsing the received response. Another, more end-user oriented is via oxTrust.
 
-If you want to follow the first approach (interacting with the client registration endpoint), locate the endpoint URL by please visiting `https://<your-gluu-host>/.well-known/openid-configuration` and locate the property `registration_endpoint`. To know how to structure a payload please refer to section 3 of the OpenID Connect [Dynamic Client Registration 1.0 spec](http://openid.net/specs/openid-connect-registration-1_0.html).
+If you want to follow the first approach (interacting with the client registration endpoint), locate the endpoint URL by visiting `https://<your-gluu-host>/.well-known/openid-configuration` and locate the property `registration_endpoint`. To know how to structure a payload please refer to section 3 of the OpenID Connect [Dynamic Client Registration 1.0 spec](http://openid.net/specs/openid-connect-registration-1_0.html).
 
 The more pleasant second alternative is using the Gluu server administration web interface. Just follow these steps:
 
@@ -130,7 +130,7 @@ The **client_credentials** grant chosen in the previous step allows us to obtain
 
 - Create a text string to encode the credentials of your client. Here you have an algorithm to do so:
 
-    - Let `authUsername` be the name of the client
+    - Let `authUsername` be the identifier (`inum`) of the recently created client
 
     - Let `authPassword` be the client secret
 
@@ -238,7 +238,7 @@ To do this, just do the same as in [this section above](https://github.com/jgome
     To request an access token, the OpenId client acting on your behalf must be current: its password expiration also counts. Update your client expiration or create a new client if necessary. Just proceed as you did the first time.
 
 
-### Differences between current (3.1.0) and older test mode
+### Differences between current (3.1.x) and older test mode
 
 Versions 3.0.x and earlier employed a (very) long-lived OAuth2 access token to send requests to the service. As we have seen, current Gluu server uses a safer short-lived token approach in combination with an OpenId Connect client. 
 
@@ -362,7 +362,7 @@ As a response, you will get a JSON document with all of the attributes in the us
 
 The SCIM protocol defines a standard set of parameters that can be used to filter, sort, and paginate resources in a query response (see section 3.4.3 of [RFC 7644](https://tools.ietf.org/html/rfc7644)). Filtering capabilities are very rich and enable developers to build complex queries.
 
-So let's elaborate a bit more on the example already shown in the (test mode section)[#send-requests-to-scim-endpoints]: let's create a query to return the first 2 users whose `userName` contains the sequence of letters "mi". Results should be sorted alphabetically by `givenName`.
+So let's elaborate a bit more on the example already shown in the [test mode section](#send-requests-to-scim-endpoints): let's create a query to return the first 2 users whose `userName` contains the sequence of letters "mi". Results should be sorted alphabetically by `givenName`.
 
 ```
 $ curl -G -H 'Authorization: Bearer ...access token...'  -o output.json 
@@ -792,7 +792,7 @@ assertEquals(Response.Status.NO_CONTENT.getStatusCode(), response.getStatus());
 
 ### Using a different programming language 
 
-Coding service interactions when SCIM endpoints are being protected by UMA is more involved than using test mode. If you are planning to code for a SCIM service protected by UMA, it is advisable to check the flow depicted in section 3 of the [UMA 2.0 spec](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-04.html). Focus only on the interactions of client vs. another party (resource server or authorization server). In a previous (section)[#actors-involved-in-protection] we have talked about the actors involved in UMA protection; this will save you time when reading the specification.
+Coding service interactions when SCIM endpoints are being protected by UMA is more involved than using test mode. If you are planning to code for a SCIM service protected by UMA, it is advisable to check the flow depicted in section 3 of the [UMA 2.0 spec](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-04.html). Focus only on the interactions of client vs. another party (resource server or authorization server). In a previous [section](#actors-involved-in-protection) we have talked about the actors involved in UMA protection; this will save you time when reading the specification.
 
 As a guideline for your own implementation, you can take ideas from the Java class [UmaScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.0/src/main/java/gluu/scim2/client/UmaScimClient.java#L74) found in SCIM-Client. Starting  at the `authorize` method, you will see how steps in the spec flow are being followed there.
 
