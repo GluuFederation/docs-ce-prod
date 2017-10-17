@@ -1,15 +1,24 @@
 # Upgrading Gluu Server CE
 
 ## Overview
-The Gluu Server can **not** be upgraded with a simple `apt-get upgrade`. The admin needs to explicitly install the new version of the Gluu Server and export and import the required data using scripts. 
+The Gluu Server can **not** be upgraded with a simple `apt-get upgrade`. The admin needs to explicitly install the new version of the Gluu Server and export and import the required data using scripts.
+## Upgrade from 3.1.0 to 3.1.1
+Upgrading from 3.1.0 to 3.1.1 involves below steps:
 
+- Stop oxTrust and oxAuth services
+- Back up existing oxTrust and oxAuth war files
+- Download 3.1.1 oxTrust and oxAuth from repo
+- Copy oxTrust and oxAuth war in path
+- Start oxTrust and oxAuth services
+
+To update war, please refer to [update war](../upgrade/update-war.md) docs.
 
 ## Upgrade from 3.0.x to 3.1.1
 
 !!! Warning
     Before proceeding with an upgrade, make sure to [backup](../operation/backup.md) the Gluu container or LDAP Ldif before proceeding with the upgrade. 
 
-Upgrading generally involves the following steps:   
+Upgrading generally involves the following steps:
 
 * Install new version
 * Export the data from your current version

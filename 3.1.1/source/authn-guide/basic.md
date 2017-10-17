@@ -2,7 +2,10 @@
 
 ## Overview
 The [Basic authentication script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/basic/BasicExternalAuthenticator.py) 
-is used to implement username / password authentication. Basic authentication relies on a successful LDAP BIND operation against an LDAP directory--either the local LDAP included in the Gluu Server, or a backend LDAP server like Active Directory that has been configured for use with the Gluu Server via [Cache Refresh](../admin-guide/user-management.md/#ldap-synchronization). 
+is used to implement username / password authentication.
+Basic authentication relies on a successful LDAP BIND operation against an LDAP directory--either the
+local LDAP included in the Gluu Server, or a backend LDAP server like Active Directory that has been configured for
+use with the Gluu Server via [Cache Refresh](../admin-guide/user-management/ldap-sync.md).
 
 ## Configuring Basic Authentication
 Follow the steps below to configure the Basic authentication method:
