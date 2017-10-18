@@ -111,7 +111,7 @@ $ git checkout version_3.1.1
 
 Sooner or later you will probably want to peek at what is stored in the Gluu Server's local LDAP. This means connecting something like Apache Directory Studio to the `slapd` process running inside the chroot container.
 
-You can find the configuration you need in `/opt/gluu-server-3.1.0/etc/gluu/conf/ox-ldap.properties`, e.g.:
+You can find the configuration you need in `/opt/gluu-server-3.1.1/etc/gluu/conf/ox-ldap.properties`, e.g.:
 
 ```
 bindDN: cn=directory manager,o=gluu

@@ -255,7 +255,7 @@ GLUU.root@host:/ # logout
 
 - Force-reload solserver on every server
 ```
-# service gluu-server-3.1.0 login
+# service gluu-server-3.1.1 login
 # service solserver force-reload
 ```
 

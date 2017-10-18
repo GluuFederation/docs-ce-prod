@@ -200,7 +200,7 @@ By now, let's start with a basic query: say we need to find the users whose `use
 
 We need to know:
 
-- The SCIM endpoint for user retrieval, which is `https://<host-name>/identity/restv1/scim/v2/Users` in Gluu Server 3.1.0
+- The SCIM endpoint for user retrieval, which is `https://<host-name>/identity/restv1/scim/v2/Users` in Gluu Server 3.1.1
 
 - How to write a filter for a search. In this case is fairly easy, the filter we need is `filter=userName co "mi"` where `co` stands for *contains*. To learn more about filters see section 3.4.2.2 of [protocol spec](https://tools.ietf.org/html/rfc7644).
 
@@ -469,7 +469,7 @@ Create a project in your favorite IDE, and if using maven add the following snip
 
 ```
 <properties>
-	<scim.client.version>3.1.0</scim.client.version>
+	<scim.client.version>3.1.1</scim.client.version>
 </properties>
 ...
 <repositories>
@@ -601,7 +601,7 @@ Create a project in your favorite IDE, and if using maven add the following snip
 
 ```
 <properties>
-	<scim.client.version>3.1.0</scim.client.version>
+	<scim.client.version>3.1.1</scim.client.version>
 </properties>
 ...
 <repositories>
