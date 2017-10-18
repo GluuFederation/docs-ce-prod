@@ -9,17 +9,17 @@ Upgrading from 3.1.0 to 3.1.1 involves the following steps:
 
 - Stop oxTrust and oxAuth services
 
-- Backup existing oxTrust and oxAuth war files
+- Backup existing oxTrust and oxAuth .war files
 
 - Download 3.1.1 oxTrust and oxAuth from repo
 
-- Copy oxTrust and oxAuth war in path
+- Copy oxTrust and oxAuth .war in path
 
 - Update Gluu schema files
 
 - Start oxTrust and oxAuth services
 
-### Updating war and schema manually
+### Updating .war and schema manually
 
 To upgrade from 3.1.0 to 3.1.1, you have to manually update your .war files as outlined below:
 
