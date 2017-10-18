@@ -45,7 +45,7 @@ So let's elaborate on those steps.
 
     - oxAuth log is at `/opt/gluu/jetty/oxauth/logs/oxauth.log`
 
-    - It's convenient to set the logging level for both applications to **TRACE** while doing your work. See the [log management](../../operation/logs.md) page for more information.
+    - It's convenient to set the logging level for both applications to **TRACE** while doing your work. See the [log management](../operation/logs.md) page for more information.
 
 - If you already have some acquaintance with Gluu's SCIM service, quickly glance [this section](#differences-between-current-31x-and-older-test-mode) so you can contrast the current approach employed in test mode with the older one (3.0.2 and earlier).
 

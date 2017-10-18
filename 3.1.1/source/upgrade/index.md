@@ -2,16 +2,128 @@
 
 ## Overview
 The Gluu Server can **not** be upgraded with a simple `apt-get upgrade`. The admin needs to explicitly install the new version of the Gluu Server and export and import the required data using scripts.
+
 ## Upgrade from 3.1.0 to 3.1.1
+
 Upgrading from 3.1.0 to 3.1.1 involves below steps:
 
 - Stop oxTrust and oxAuth services
 - Back up existing oxTrust and oxAuth war files
 - Download 3.1.1 oxTrust and oxAuth from repo
 - Copy oxTrust and oxAuth war in path
+- Update Gluu schema files
 - Start oxTrust and oxAuth services
 
-To update war, please refer to [update war](../upgrade/update-war.md) docs.
+### Updating war and schema manually
+
+To upgrade Gluu server from 3.1.0 to 3.1.1, you have to manually update war as below:
+
+
+1. Login to chroot container:  
+
+    `# service gluu-server-3.1.1 login`
+    
+    **Updating Identity War**
+
+2. Stop the identity service:  
+
+    `# service identity stop`
+        
+3. Navigate to the `/opt/gluu/jetty` directory and back up the current app in the 
+root's home directory (just in case you need to restore!): 
+
+    `# cd /opt/gluu/jetty/`
+    
+    `# tar -czf ~/identity.tar.gz identity`
+    
+4. Download and install the latest WAR 
+
+    `# cd /opt/gluu/jetty/identity/webapps/`
+    
+    `# rm identity.war`
+    
+    `# wget https://ox.gluu.org/maven/org/xdi/oxtrust-server/3.1.1.Final/oxtrust-server-3.1.1.Final.war -O identity.war`
+
+6. Start the identity service  
+    
+    `# service identity start`
+ 
+    **Updating oxAuth War**
+
+7. Stop oxAuth Service
+
+    `# service oxauth stop`
+    
+8. Navigate to the `/opt/gluu/jetty` directory and back up the current app in the 
+root's home directory (just in case you need to restore!): 
+
+    `# cd /opt/gluu/jetty/`
+    
+    `# tar -czf ~/oxauth.tar.gz identity`
+    
+9. Download and install the latest WAR (assuming the URL was in the $WAR_URL environment variable): 
+
+    `# cd /opt/gluu/jetty/identity/webapps/`
+    
+    `# rm oxauth.war`
+    
+    `# wget https://ox.gluu.org/maven/org/xdi/oxauth-server/3.1.1.Final/oxauth-server-3.1.1.Final.war -O oxauth.war`
+    
+10. Start the oxAuth service
+
+    `# service oxauth start`
+
+    **Updating Gluu Schema Files**
+    
+    To upgrade gluu server 3.1.0 to 3.1.1, Gluu schema files needs to be updated. 
+    Gluu Schema files can be found [here](https://github.com/GluuFederation/community-edition-setup/tree/master/schema) to update.
+
+11. Navigate to `/opt/gluu/schema/openldap` directory 
+
+    `# cd /opt/gluu/schema/openldap/`
+
+12. Stop LDAP service.
+
+    `# Service solserver stop`
+    
+13. Take a back up of the current schema files, which will be `gluu.schema`.
+
+    `# mv gluu.schema gluu.schema.old`
+    
+12. Download the Schema files to `/opt/gluu/schema/openldap`
+
+    `#wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.1/static/openldap/gluu.schema -O gluu.schema`
+
+13. Start LDAP service.
+     
+    `# service solserver start`
+
+!!!Warning
+    If you are using a customized schema, make sure not to change `gluu.schema`.
+
+!!! Note
+    Above procedure can be utilized to update other components of Gluu CE server 3.1.1, mentioned below.
+
+#### Latest WAR files
+
+The latest release of WAR files can be downloaded from the following locations:
+
+- [oxTrust](https://ox.gluu.org/maven/org/xdi/oxtrust-server/)
+- [oxAuth](https://ox.gluu.org/maven/org/xdi/oxauth-server/)
+- [Shibboleth IdP](https://ox.gluu.org/maven/org/xdi/oxshibbolethIdp/)
+- [Asimba SAML proxy](https://ox.gluu.org/maven/org/xdi/oxasimba-proxy/)
+- [oxAuth RP](https://ox.gluu.org/maven/org/xdi/oxauth-rp/)
+
+#### Location of Gluu 3.1.1 Components
+
+Gluu 3.x components which can be updated in this way inside the container can be found at the following locations:
+
+- oxTrust: `/opt/gluu/jetty/identity/webapps/identity.war`
+- oxAuth: `/opt/gluu/jetty/oxauth/webapps/oxauth.war`
+- Shibboleth IdP: `/opt/gluu/jetty/idp/webapps/idp.war`
+- Asimba SAML proxy: `/opt/gluu/jetty/asimba/webapps/asimba.war`
+- oxAuth RP: `/opt/gluu/jetty/oxauth-rp/webapps/oxauth-rp.war`
+
 
 ## Upgrade from 3.0.x to 3.1.1
 
@@ -20,11 +132,15 @@ To update war, please refer to [update war](../upgrade/update-war.md) docs.
 
 Upgrading generally involves the following steps:
 
-* Install new version
-* Export the data from your current version
-* Stop the current Gluu Server
-* Start the new version of Gluu Server
-* Import data into the new server
+- Install new version
+
+- Export the data from your current version
+
+- Stop the current Gluu Server
+
+- Start the new version of Gluu Server
+
+- Import data into the new server
 
 Gluu provides the necessary [scripts](https://github.com/GluuFederation/community-edition-setup/tree/master/static/scripts) to import and export data in and out of the servers.
 
