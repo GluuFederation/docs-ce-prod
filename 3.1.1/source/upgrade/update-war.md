@@ -59,7 +59,7 @@ The latest release of WAR files can be downloaded from the following locations:
 - [oxTrust](https://ox.gluu.org/maven/org/xdi/oxtrust-server/)
 - [oxAuth](https://ox.gluu.org/maven/org/xdi/oxauth-server/)
 - [Shibboleth IdP](https://ox.gluu.org/maven/org/xdi/oxshibbolethIdp/)
-- [Asimba SAML proxy](https://ox.gluu.org/maven/org/xdi/oxasimba-proxy/)
+- [Asimba SAML proxy](https://ox.gluu.org/maven/org/asimba/asimba-wa/)
 - [oxAuth RP](https://ox.gluu.org/maven/org/xdi/oxauth-rp/)
 
 ## Location of Gluu 3.x Components
