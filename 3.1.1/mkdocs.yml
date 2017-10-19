@@ -65,8 +65,8 @@ pages:
             - 'Apache mod_auth_openidc': 'integration/sswebapps/openidc-rp.md'
             - 'Shibboleth SAML SP': 'integration/sswebapps/saml-sp.md'
         - 'Single Page Apps':
+            - 'AppAuth JS': 'integration/spa/appauth-js.md'
             - 'Gluu OIDC JS Client': 'integration/spa/oauth-js-implicit.md'
-            - 'Identity Model OIDC JS Client': 'integration/spa/identity-model-oidc-js-client.md'
         - 'Native Apps':
             - 'AppAuth iOS and macOS': 'integration/native-apps/appauth-ios.md'
             - 'AppAuth Android': 'integration/native-apps/appauth-android.md'
