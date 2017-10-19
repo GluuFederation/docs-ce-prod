@@ -1,5 +1,11 @@
-# Identity Model OIDC JS Client
+# AppAuth JS
 
-Identity Model's oidc-client is a JavaScript library intended to run in browsers (and possibly Cordova style applications). It provides protocol support for OIDC and OAuth2, as well as management functions for user sessions and access tokens management.
+AppAuth for JavaScript is a client SDK for [public clients](https://tools.ietf.org/html/rfc6749#section-2.1)
+for communicating with [OAuth 2.0](https://tools.ietf.org/html/rfc6749)
+and [OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html) providers
+following the best practice
+[RFC 8252 - OAuth 2.0 for Native Apps](https://tools.ietf.org/html/rfc8252).
+The library is designed for use in `Node.js` CLI applications,
+`Chrome Apps` and applications that use `Electron` or similar frameworks.
 
-[Read the docs](https://github.com/IdentityModel/oidc-client-js/wiki)
+[Read the docs](https://github.com/openid/AppAuth-JS/)
