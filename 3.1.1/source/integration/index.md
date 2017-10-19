@@ -27,8 +27,9 @@ Single Page Applications (SPAs) can be seen as a mix between traditional Web SSO
 
 We recommend the following client software to implement OpenID Connect in SPA’s:
 
+- [AppAuth JS](https://github.com/openid/AppAuth-JS/)
 - [Gluu's OIDC JS Client](./spa/oauth-js-implicit.md)
-- [Identity Model's OIDC JS Client](https://github.com/IdentityModel/oidc-client-js)
+
 
 ## Native Apps
 To integrate native apps with your Gluu Server, we recommend the AppAuth libraries for iOS , MacOS, and Android. AppAuth strives to directly map the requests and responses of those specifications, while following the idiomatic style of the implementation language. In addition to mapping the raw protocol flows, convenience methods are available to assist with common tasks like performing an action with fresh tokens.
