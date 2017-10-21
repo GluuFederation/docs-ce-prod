@@ -71,7 +71,7 @@ There are four tabs in the organization configuration page:
 
 #### System Configuration
 
-![system-config-options](../img/oxtrust/system-config-options.png)
+![system-config-options](../img/oxtrust/system-config-options311.png)
 
 - Self-service password reset: Allow users to trigger password reset sequence by following url like `https://your.idp.host/identity/person/passwordReminder.htm`. A new password will be sent to email box provided in "Email" attribute of their user entry (if any). In order for this feature to work, the admin will also need to perform [SMTP Server Configuration](#smtp-server-configuration).      
 

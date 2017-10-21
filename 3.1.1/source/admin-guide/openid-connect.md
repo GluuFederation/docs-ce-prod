@@ -88,7 +88,15 @@ You may not want clients to dynamically register themselves! To disable this end
 If you want to add a client through oxTrust, you can use the manual form:
 by click the `Add Client` button.            
 
-![add-client](../img/openid/add-client.png)
+![add-client](../img/openid/add-client311.png)
+
+![add-client1](../img/openid/add-client1-311.png)
+
+![add-client2](../img/openid/add-client2-311.png)
+
+![add-client3](../img/openid/add-client3-311.png)
+
+![add-client4](../img/openid/add-client4-311.png)
 
 There are many client configuration parameters. Most of these are specified in the OpenID Connect [Dynamic Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html) specification.
 
