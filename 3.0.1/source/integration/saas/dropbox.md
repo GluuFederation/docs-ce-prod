@@ -70,8 +70,7 @@ encryptNameIds: never
 - Access https://www.dropbox.com and click on the `Sign In` button
 
 - If the account is configured for SSO, then a screen similar to the 
-screenshot below will appear after entering the email address.
-![image](../../img/integration/dblogin.png)
+screenshot below will appear after entering the email address. ![image](../../img/integration/dblogin.png)
 
 - Click `Continue` and the website will redirect to Gluu Server for authentication.
 
