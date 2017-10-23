@@ -9,7 +9,7 @@ Please refer [here](../../admin-guide/attribute.md#custom-attributes) on how to 
 The new attribute screen should look like the screenshot below
 ![image](../../img/integration/emailnid.png)
 
-The custom `nameid` needs to be defined in the `attribute-resolver` template file. Documentation is available [here](../../admin-guide/attribute.md#defining-nameid)
+* The custom `nameid` needs to be defined in the `attribute-resolver` template file. Documentation is available [here](../../admin-guide/attribute.md#defining-nameid)
 
 * Restart `identity` and `idp` services
 
