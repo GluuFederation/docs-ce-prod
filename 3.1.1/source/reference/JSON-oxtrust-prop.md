@@ -3,13 +3,12 @@
 This page explains the oxTrust JSON Configuration which can by found by navigating to `Configuration` > `JSON Configuration`. 
 
 ## oxtrust.properties
-![image](../img/reference/config-json_oxtrustproperties.png)
+![image](../img/reference/config-json_oxtrustproperties311.png)
 
 The following fields are available for edit in the menu.
 
 | Fields/Attributes | Description |
 | ------------------|-------------|
-| idpBindDn | The admin user of the ldap server|
 | baseDN | The base doaim name of oxtrust. The default is `o=gluu` |
 | orgIname | This can be left blank |
 | orgSupportEmail | The support email address of the Gluu Server installation |
