@@ -345,3 +345,10 @@ Once the ldif looks right, run this to grant your account admin rights in Gluu:
 ```
 
 Log into the web interface and pick up where you left off :)
+
+## How do I present a different login page depending on where the user came from (i.e. based on the SP/RP)?
+
+### SAML
+The SAML IDP sends an authorization request to oxAuth for user authentication.. In the request there is a JWT state parameter which contains a claim called `relyingPartyId`. You can use this `relyingPartyId` to render the proper form based on the SP... so `SP=relyingPartyId`. 
+
+
