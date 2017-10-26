@@ -63,11 +63,11 @@ root's home directory (just in case you need to restore!):
 
     `# cd /opt/gluu/jetty/`
     
-    `# tar -czf ~/oxauth.tar.gz identity`
+    `# tar -czf ~/oxauth.tar.gz oxauth`
     
 9. Download and install the latest WAR (assuming the URL was in the $WAR_URL environment variable): 
 
-    `# cd /opt/gluu/jetty/identity/webapps/`
+    `# cd /opt/gluu/jetty/oxauth/webapps/`
     
     `# rm oxauth.war`
     
