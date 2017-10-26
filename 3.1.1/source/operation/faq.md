@@ -140,16 +140,14 @@ In oxTrust navigate to the Manage Authentication tab within the Configuration se
 
 ![change2mail](../img/admin-guide/faq/change2mail.png)
 
-Now you will want to update your IDP login page to display `Email Address` as the requested identifier. In order to do that you need to modify the `login.xhtm    l` file, which is located in `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp`. Insert `Email Address` as the value for `outputLabel`; this snippet is under the `dialog` class. S    ee the screenshot below.
+Now you will want to update your IDP login page to display `Email Address` as the requested identifier. In order to do that you need to modify the `login.xhtm    l` file, which is located in `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp`. Insert `Email Address` as the value for `outputLabel`; this snippet is under the `dialog` class. S    ee the screenshot below. Alternative solution is to put customized `login.xhtml` into /opt/gluu/jetty/oxauth/custom/pages and restart `oxauth` service after that:
+
+```
+# service oxauth restart
+``` 
 
 ![update-login](../img/admin-guide/faq/update-login.png)
 
-## Adding additional roles to oxTrust and changing permissions for existing roles
-The additional role requires the implementation of dynamic rules in Jboss SEAM and then uitlize them in oxTrust as the available _manager_ and _user_ roles are defined within the `securit.drl` hard-coded into oxTrust. The file checks for the _maanger_ group membership and adds the role to the web context. This is currently out of the scope of support. 
-
-!!! Warning
-    oxTrust is a tool for administrators and it must nto be used as a user facing application.
-    
 ## Installing a patch
 Follow the documentation for [updating a .war file](../upgrade/update-war.md). 
 
@@ -272,9 +270,7 @@ In such a situation, the following method can be used to revert back to the prev
     
     `changetype: modify`
     
-    `replace: oxAuthenticationMode`
-    
-    `oxAuthenticationMode: internal`
+    `delete: oxAuthenticationMode`
     
     As an example, we shall call this file `changeAuth.ldif`.
     
