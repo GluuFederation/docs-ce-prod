@@ -148,6 +148,9 @@ Now you will want to update your IDP login page to display `Email Address` as th
 
 ![update-login](../img/admin-guide/faq/update-login.png)
 
+!!! Warning
+    oxTrust is a tool for administrators and it must nto be used as a user facing application.
+
 ## Installing a patch
 Follow the documentation for [updating a .war file](../upgrade/update-war.md). 
 
