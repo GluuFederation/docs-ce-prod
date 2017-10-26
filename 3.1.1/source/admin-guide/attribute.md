@@ -97,7 +97,7 @@ The default NameID for oxTrust generated SAML trust relationships is `transientI
 
   * Add declaration for the new attribute
   ```
-  if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('testcustomattribute') ) )
+  #if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('persistentId') $attribute.name.equals('testcustomattribute') ) )
   ```
   * Add definition for the new attribute
 ```
