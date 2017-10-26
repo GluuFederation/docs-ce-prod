@@ -228,5 +228,5 @@ Further logs to debug and monitor the sequence can be done using `oxauth_script.
 
 It is not uncommon to get locked out of the Gluu Server while testing the authentication script.
 
-In such case, refer to [Reverting Authentication Method](../operation/faq/#revert-an-authentication-method) 
+In such case, refer to [Reverting Authentication Method](../operation/faq.md/#revert-an-authentication-method) 
 to revert back to the older authentication method:
