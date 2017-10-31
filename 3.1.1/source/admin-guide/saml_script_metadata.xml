@@ -1,0 +1,17 @@
+<!--
+   Unsigned metadata for Asimba script
+-->
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="https://[proxy3_hostname]/saml">
+  <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://[proxy3_hostname]/oxauth/postlogin" index="0"/>
+  </md:SPSSODescriptor>
+  <md:Organization>
+    <md:OrganizationName xml:lang="en">Gluu</md:OrganizationName>
+    <md:OrganizationDisplayName xml:lang="en">Gluu - Open Source Access Management</md:OrganizationDisplayName>
+    <md:OrganizationURL xml:lang="en">http://www.gluu.org</md:OrganizationURL>
+  </md:Organization>
+  <md:ContactPerson contactType="technical">
+    <md:GivenName>Administrator</md:GivenName>
+    <md:EmailAddress>support@gluu.org</md:EmailAddress>
+  </md:ContactPerson>
+</md:EntityDescriptor> 
