@@ -164,11 +164,11 @@ Let's start!
   - Create a SAML metadata for native SP requestor of asimba. Grab the copy of from below and replace [proxy3_hostname] with your own server's hostname. Make sure to unix format it. 
   - SAML -> SP Requestors
   - 'Add SP Requestor'
-    - ID: https://[proxy_hostname]/saml
+    - ID: https://[proxy3_hostname]/saml
     - Friendly Name: oxAuth SAML
     - Metadata URL: Not required
     - Metadata Timeout: -1
-    - Metadata File: Upload the custom metadata we created couple of mins back. 
+    - Metadata File: You can get an example script's metadata from [here](./saml_script_metadata.xml). Edit it to substitute `[proxy3_hostname]` placeholder with a real hostname your instance uses. Upload the resulting metadata to the requestor
     - Trust Certificate File: Not required
     - Properties: Not required
     - Enabled: Yes
