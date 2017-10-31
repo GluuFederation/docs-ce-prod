@@ -307,7 +307,7 @@ Install the `json-merge` Python package and run the import script.
 
 # chmod +x export2431.py
 
-# ./export2431.py
+# python export2431.py
 ```
 
 The export script will generate a directory called `backup_2431` which will have all the data from the current installation. Check the log file generated in the directory for any errors.
