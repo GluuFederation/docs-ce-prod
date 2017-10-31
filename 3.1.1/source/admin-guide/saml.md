@@ -102,16 +102,16 @@ entity id” will appear. Use this link to find and select the SP entityIDs that
 The Trust Relationship(TR) is added by clicking the `Add` button located in the lower left side of the page.     
 
 ### Relying Party Configuration     
-If the target application does not already support SAML, the Relying Party software must be configured. The relying party configuration is accessible on the TR Creation page. The checkbox `Configure specific Relying Party` must be checked.     
+This feature allows to further customize how different IdP's profiles will respond to requests received from this SP, including encryption and digital signing options. The related underlying IdP's functionality is described in [this doc](https://wiki.shibboleth.net/confluence/display/IDP30/RelyingPartyConfiguration). oxTrust allows to tweak only limited subset of profiles mentioned there, out of which the [SAML2SSO profile](https://wiki.shibboleth.net/confluence/display/IDP30/SAML2SSOConfiguration) is of most interest as it's the most common browser SSO profile used in today's SAML world. The "Configure Relying Party" checkbox is accessible on the TR Creation page and must be enabled with a specific profile(s) selected as active for this TR to generate a valid configuration. In most cases, just adding SAML2SSO profile with default settings to the list to the right will do.
 
 ![enable-relying-party.png](../img/saml/enable-relying-party.png)     
 
-The checkbox will result in a link which can be accessed to find information about configuring the relying party for the TR. The image below shows the relying party config panel from which the administrator can add the specific option.     
+Setting the checkbox will result in a link which, if clicked, will summon a list of profiles currently available for customization. Each entry in the list has a brief description of its purpose and a selection of settings for which custom values may be chosen, as can be seen on image below.     
 
 ![tr-relying-party](../img/saml/tr-relying-party.png)     
 
 !!! Note     
-    If the target application does not already support a federation standard like SAML, and you or the developer are planning on adding federation to the application, we strongly recommend using OpenID Connect rather than SAML. OpenID Connect is newer, easier to use, and follows modern best practices. Learn more in our blog: [OAuth vs. SAML vs. OpenID Connect](http://gluu.co/oauth-saml-openid).
+    If the target application doesn't already make use of legacy protocols like SAML, and your project or organization are just about to adding SSO/federation capabilities to it, we strongly recommend consider using OpenID Connect rather than SAML. OpenID Connect offers newer, easier to use approaches to solutions for the same problems, and follows modern best practices. You can learn more about it in our blog here: [OAuth vs. SAML vs. OpenID Connect](http://gluu.co/oauth-saml-openid).
     
 ### Federation Configuration     
 If the SP is part of an identity federation such as InCommon, the administrator must add the 
@@ -296,26 +296,4 @@ We need to create a trust relationship in Gluu-Asimba server with Shibboleth SP 
      - 'Enabled' `basic` authentication script
      - 'Enabled' `asimba` authentication script
  - 'Manage Authentication' 
-     
 
-#### Files
-
-##### Requestor metadata: 
-
-```
-<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="https://[proxy_hostname]/saml">
-  <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
-    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://[proxy_hostname]/oxauth/postlogin" index="0"/>
-  </md:SPSSODescriptor>
-  <md:Organization>
-    <md:OrganizationName xml:lang="en">Gluu</md:OrganizationName>
-    <md:OrganizationDisplayName xml:lang="en">Gluu - Open Source Access Management</md:OrganizationDisplayName>
-    <md:OrganizationURL xml:lang="en">http://www.gluu.org</md:OrganizationURL>
-  </md:Organization>
-  <md:ContactPerson contactType="technical">
-    <md:GivenName>Administrator</md:GivenName>
-    <md:EmailAddress>support@gluu.org</md:EmailAddress>
-  </md:ContactPerson>
-</md:EntityDescriptor>
-
-```
