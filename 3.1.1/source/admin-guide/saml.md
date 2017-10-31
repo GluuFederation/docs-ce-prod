@@ -147,7 +147,7 @@ Let's start!
 ##### Custom interception script named 'asimba' configuration
 
   - Log into oxTrust
-  - Configuration -> Manage Custom Script
+  - `Configuration` > `Manage Custom Script`
   - Script name 'asimba'
     - asimba_saml_certificate_file: /etc/certs/saml.pem [ Make sure you copy ingredient of `asimba.crt` into `saml.pem` with "BEGIN CERTIFICATE" and "END CERTIFICATE" header and footer] 
     - asimba_entity_id: https://[proxy3_hostname]/saml
@@ -162,7 +162,7 @@ Let's start!
 ##### SP Requestor
 
   - Create a SAML metadata for native SP requestor of asimba. Grab the copy of from below and replace [proxy3_hostname] with your own server's hostname. Make sure to unix format it. 
-  - SAML -> SP Requestors
+  - `SAML` > `SP Requestors`
   - 'Add SP Requestor'
     - ID: https://[proxy3_hostname]/saml
     - Friendly Name: oxAuth SAML
@@ -176,7 +176,7 @@ Let's start!
 
 ##### Add External IDP/AuthN Server
 
- - SAML -> IDPs
+ - `SAML` > `IDPs`
  - 'Add IDP' 
    - ID: EntityID of remote IDP. i.e. https://[idp_hostname]/idp/shibboleth
    - Friendly Name: Remote AuthN Server 1
