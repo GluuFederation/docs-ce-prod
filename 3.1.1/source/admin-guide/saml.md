@@ -111,7 +111,7 @@ Setting the checkbox will result in a link which, if clicked, will summon a list
 ![tr-relying-party](../img/saml/tr-relying-party.png)     
 
 !!! Note     
-    If the target application doesn't already make use of legacy protocols like SAML, and your project or organization are just about to adding SSO/federation capabilities to it, we strongly recommend consider using OpenID Connect rather than SAML. OpenID Connect offers newer, easier to use approaches to solutions for the same problems, and follows modern best practices. You can learn more about it in our blog here: [OAuth vs. SAML vs. OpenID Connect](http://gluu.co/oauth-saml-openid).
+    If the target application doesn't already make use of legacy protocols like SAML, and your project or organization are just about to add SSO/federation capabilities to it, we strongly recommend consider using OpenID Connect rather than SAML. OpenID Connect offers newer, easier to use approaches to solutions for the same problems, and follows modern best practices while doing it. You can learn more about it in our blog here: [OAuth vs. SAML vs. OpenID Connect](http://gluu.co/oauth-saml-openid).
     
 ### Federation Configuration     
 If the SP is part of an identity federation such as InCommon, the administrator must add the 
