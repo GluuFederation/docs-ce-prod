@@ -8,8 +8,15 @@ The Gluu Server is a free open source identity and access management
 - API access management  
 - Two-factor authentication 
 - Customer identity and access management (CIAM)   
-- Identity federation.     
+- Identity federation.  
 
+SaaS, custom, open source and commercial software can be made more 
+secure by leveraging a central authentication and authorization service. 
+Because there are so many different kinds of apps, there is no way to 
+"top down" implement proprietary security mechanisms. This is why
+open standards are so important for IAM. 
+
+## Open Standards
 While there are many open protocols for IAM, Gluu focuses on just a few. Consolidation saves money, and one-off integrations should be avoided. The Gluu Server implements the following open web standards for authentication, authorization, federated identity, and identity management:
 
 - OAuth 2.0    
@@ -19,8 +26,6 @@ While there are many open protocols for IAM, Gluu focuses on just a few. Consoli
 - System for Cross-domain Identity Management (SCIM)    
 - FIDO Universal 2nd Factor (U2F)    
 - Lightweight Directory Access Protocol (LDAP)   
-
-If this is your first exposure to the Gluu Server, welcome to the community! With your help, we can can create a flourishing ecosystem, and ultimately make the Internet a safer, more privacy protected place. 
 
 ## Installation
 You can deploy the Gluu Server on the cloud provider of your choice using one of our easy-to-install Linux packages for Ubuntu, CentOS, RHEL and Debian. Follow our [VM preparation guide](./installation-guide/index.md) to get started. 
