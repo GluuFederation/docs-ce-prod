@@ -64,8 +64,6 @@ Private support, guaranteed response times, and consultative support are availab
 The Gluu Server is a container distribution of free open source identity and access management software. The license 
 for each software component is listed below.
 
-All of Gluu's open source software is published under an
-[MIT License](http://opensource.org/licenses/MIT). 
 
 |	Component	|	License	            |
 |-----------------------|---------------|
