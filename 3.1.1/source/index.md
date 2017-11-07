@@ -16,7 +16,7 @@ Because there are so many different kinds of apps, there is no way to
 "top down" implement proprietary security mechanisms. This is why
 open standards are so important for IAM. 
 
-## Open Standards
+### Open Standards
 While there are many open protocols for IAM, Gluu focuses on just a few. Consolidation saves money, and one-off integrations should be avoided. The Gluu Server implements the following open web standards for authentication, authorization, federated identity, and identity management:
 
 - OAuth 2.0    
