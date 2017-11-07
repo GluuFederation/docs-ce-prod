@@ -17,7 +17,7 @@ Because there are so many different kinds of apps, there is no way to
 open standards are so important for IAM. 
 
 ### Open Standards
-While there are many open standards for IAM, Gluu focuses on just a few. Consolidation saves money, and one-off integrations should be avoided. The Gluu Server implements the following open web standards for authentication, authorization, federated identity, and identity management:
+The Gluu Server implements the following open web standards for authentication, authorization, federated identity, and identity management:
 
 - OAuth 2.0    
 - SAML 2.0   
