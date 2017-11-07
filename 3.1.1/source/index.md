@@ -61,15 +61,19 @@ Gluu provies free and VIP support! Anyone can browse or register and post questi
 Private support, guaranteed response times, and consultative support are available with a paid support contract. For more information, see [our website](https://gluu.org/pricing).
 
 ## License
+The Gluu Server is a container distribution of free open source identity and access management software. The license 
+for each software component is listed below.
+
 All of Gluu's open source software is published under an
-[MIT License](http://opensource.org/licenses/MIT). The licenses 
-for other components are listed below.
+[MIT License](http://opensource.org/licenses/MIT). 
 
 |	Component	|	License	            |
 |-----------------------|---------------|
+|	oxAuth      | [MIT License](http://opensource.org/licenses/MIT)|
+|	oxTrust      | [MIT License](http://opensource.org/licenses/MIT)|
 |	Shibboleth IDP      | [Apache2](http://www.apache.org/licenses/LICENSE-2.0)|
 |	OpenLDAP	        | [OpenLDAP Public License](http://www.openldap.org/software/release/license.html)|
-|	Asimba		        | [GNU APGL 3.0](http://www.gnu.org/licenses/agpl-3.0.html)|
-|  UnboundID LDAP SDK	| [UnboundID LDAP SDK Free Use License](https://github.com/UnboundID/ldapsdk/blob/master/LICENSE-UnboundID-LDAPSDK.txt)|
 | Passport-JS           | [MIT License](https://github.com/jaredhanson/passport/blob/master/LICENSE) |
+|  UnboundID LDAP SDK	| [UnboundID LDAP SDK Free Use License](https://github.com/UnboundID/ldapsdk/blob/master/LICENSE-UnboundID-LDAPSDK.txt)|
 | Jetty / Apache HTTPD  | [Apache2](http://www.apache.org/licenses/LICENSE-2.0)|
+|	Asimba		        | [GNU APGL 3.0](http://www.gnu.org/licenses/agpl-3.0.html)|
