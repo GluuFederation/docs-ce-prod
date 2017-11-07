@@ -1,27 +1,18 @@
 # Gluu Server Community Edition (CE) 3.1.1 Documentation
 ## Introduction
 The Gluu Server is a free open source identity and access management 
-(IAM) platform. The most common use case for the Gluu Server is Single 
-Sign-On (SSO). Other common use cases include mobile authentication, 
-API access management, two-factor authentication, customer identity
-and access management (CIAM) and identity federation. 
+(IAM) platform. 
 
-The Gluu Server is a container distribution composed of software written by Gluu and incorporated from other open source projects. Gluu
-projects are frequently prefixed with our open source handle: **ox** (e.g. oxAuth, oxTrust). Any code in the Gluu Server that we wrote is MIT license, and is available on [Github](https://github.com/GluuFederation/). 
+The most common use cases for the Gluu Server include:
 
-SaaS, custom, open source and commercial software can be made more 
-secure by leveraging a central authentication and authorization service. 
-Because there are so many different kinds of apps, there is no way to 
-"top down" implement proprietary security mechanisms. This is why
-open standards are so important for IAM. 
+- Single Sign-On (SSO)   
+- Mobile authentication    
+- API access management  
+- Two-factor authentication 
+- Customer identity and access management (CIAM)   
+- Identity federation.     
 
-While there are many open protocols for IAM, Gluu focuses on just a few. 
-Consolidation saves money, and one-off integrations should be avoided. 
-Our goal was to support the most widely adopted older protocols, and the 
-most promising new protocols. 
-
-The Gluu Server supports the following open web standards for 
-authentication, authorization, federated identity, and identity management:
+While there are many open protocols for IAM, Gluu focuses on just a few. Consolidation saves money, and one-off integrations should be avoided. The Gluu Server implements the following open web standards for authentication, authorization, federated identity, and identity management:
 
 - OAuth 2.0    
 - SAML 2.0   
@@ -31,17 +22,7 @@ authentication, authorization, federated identity, and identity management:
 - FIDO Universal 2nd Factor (U2F)    
 - Lightweight Directory Access Protocol (LDAP)   
 
-If this is your first exposure to the Gluu Server, welcome to the 
-community! We want to see the ecosystem flourish, and ultimately make 
-the Internet a safer, more privacy protected place. In order to do that, 
-we believe we need to keep the Gluu Server free so all kinds of 
-organizations can use, contribute and benefit from the software.
-
-These docs are not perfect! Please help us make them so by submitting
-any improvements to our [Documentation Github](https://github.com/GluuFederation/docs-ce-prod).
-If you're a Github pro, submit a pull request. If not, just open an issue
-on any typos, bugs, or improvements you'd lie to see. We need your
-help... even if you're not a coder, you can contribute! 
+If this is your first exposure to the Gluu Server, welcome to the community! With your help, we can can create a flourishing ecosystem, and ultimately make the Internet a safer, more privacy protected place. 
 
 ## Installation
 You can deploy the Gluu Server on the cloud provider of your choice using one of our easy-to-install packages for Ubuntu, CentOS, RHEL and Debian. Follow our [VM preparation guide](./installation-guide/index.md) to get started. 
@@ -53,17 +34,24 @@ The Gluu Server uses the open source OpenLDAP server as its internal directory s
 The Gluu Server supports a variety of SSO integration strategies for web and mobile applications. Learn more in our [SSO integration guide](./integration/index.md).
 
 ## Strong Authentication
-One of the biggest benefits of a central authentication system is the ability to enforce strong authentication for all your apps. The Gluu Server was designed to be very flexible in accommodating not only a range of authentication mechanisms, but also custom business logic for how authentication should be applied in practice. Learn more about how to configure the Gluu Server's out-of-the-box and custom strong authentication options in the [authentication guide](./authn-guide/intro.md). 
+One of the biggest benefits of a central authentication system is the ability to enforce strong authentication in one place for all your apps. The Gluu Server was designed to be very flexible in accommodating not only a range of authentication mechanisms, but also custom business logic for how authentication should be applied in practice. Learn more about how to configure the Gluu Server's out-of-the-box and custom strong authentication options in the [authentication guide](./authn-guide/intro.md). 
 
 ## Support
 Gluu provies free and VIP support! Anyone can browse or register and post questions on the [Gluu support portal](https://support.gluu.org). Tickets opened by the community are public, and we do our best to answer them in a timely manner. 
 
 Private support, guaranteed response times, and consultative support are available with a paid support contract. For more information, see [our website](https://gluu.org/pricing).
 
-## License
-The Gluu Server is a container distribution of free open source identity and access management software. The license 
-for each software component is listed below.
+## Contribute 
+These docs are not perfect! Please help us make them so by submitting
+any improvements to our [Documentation Github](https://github.com/GluuFederation/docs-ce-prod).
+If you're a Github pro, submit a pull request. If not, just open an issue
+on any typos, bugs, or improvements you'd lie to see. We need your
+help... even if you're not a coder, you can contribute! 
 
+
+## License
+The Gluu Server is a container distribution composed of software written by Gluu and incorporated from other open source projects. Gluu
+projects are frequently prefixed with our open source handle: **ox** (e.g. oxAuth, oxTrust). Any code in the Gluu Server that we wrote is MIT license, and is available on [Github](https://github.com/GluuFederation/). The license for each software component is listed below.
 
 |	Component	|	License	            |
 |-----------------------|---------------|
