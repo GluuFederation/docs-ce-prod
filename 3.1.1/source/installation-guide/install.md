@@ -108,6 +108,22 @@ For Centos 7.x and Red Hat 7.x:
 
  * Use `enable` just the first time you start the Gluu Server.
 
+## Disable Gluu's repositories added on previous steps
+
+Gluu CE doesn't support package's updates/upgrades via package manager 
+(i.e. using commands like `# yum update` or `# apt-get update`) at the moment 
+of writting. To prevent involuntary overwrites of the currently deployed 
+instance in case a newer version of the same package is found available during 
+regular OS update it's recommended to disable Gluu's repositories added 
+previously in this guide shortly after the initial installation is done.
+
+**To achieve this:**
+
+1. For CentOS/RHEL distro family, file `/etc/yum.repos.d/Gluu.repo` needs to be edited 
+with `enabled=1` clause is to be changed to "enabled=0"
+2. For Ubuntu/Debian distro family, file `/etc/apt/sources.list.d/gluu-repo.list` 
+needs to be edited with all Gluu-related repos listed are to be commented out
+
 ## Run `setup.py`
 
 Configuration is completed by running the `setup.py` script. This generates 
