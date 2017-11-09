@@ -10,7 +10,7 @@ Containership is a containers-as-a-service platform providing users with a singl
 
 2.  Create new cluster by clicking __Create Cluster__ button.
 
-    [[/3.1.1/source/img/csio/cluster-create.png]]
+    ![cluster-create](../img/csio/cluster-create.png "cluster-create")
 
     A series of wizard forms will be displayed to help us configuring the cluster.
 
