@@ -10,51 +10,51 @@ Containership is a containers-as-a-service platform providing users with a singl
 
 2.  Create new cluster by clicking __Create Cluster__ button.
 
-    ![cluster-create](../img/csio/cluster-create.png "cluster-create")
+    ![cluster-create](../img/csio/cluster-create.png)
 
     A series of wizard forms will be displayed to help us configuring the cluster.
 
 3.  Select a cloud provider to host the cluster. In this example, we will use DigitalOcean provider.
 
-    [[/img/cluster-create-1-provider.png]]
+    ![cluster-create-1-provider](../img/csio/cluster-create-1-provider.png)
 
     Choose the DigitalOcean box and then click __CONTINUE__ button at the bottom.
 
 4.  Select Containership as the orchestrator and then click __CONTINUE__ button at the bottom.
 
-    [[/img/cluster-create-2-orchestrator.png]]
+    ![cluster-create-2-orchestrator](../img/csio/cluster-create-2-orchestrator.png)
 
 5.  Select region of hosts and then click __CONTINUE__ button at the bottom.
 
-    [[/img/cluster-create-3-region.png]]
+    ![cluster-create-3-region](../img/csio/cluster-create-3-region.png)
 
 6.  Select Ubuntu operating system.
 
-    [[/img/cluster-create-4-settings-os.png]]
+    ![cluster-create-4-settings-os](../img/csio/cluster-create-4-settings-os.png)
 
     Choose any SSH keys (we can add more later).
 
-    [[/img/cluster-create-4-settings-ssh.png]]
+    ![cluster-create-4-settings-ssh](../img/csio/cluster-create-4-settings-ssh.png)
 
     Afterwards, click __CONTINUE__ button at the bottom.
 
 7.  Create Leader which has 1 CPU and 1 GB RAM, and then click __CONTINUE__ button at the bottom.
 
-    [[/img/cluster-create-5-leader.png]]
+    ![cluster-create-5-leader](../img/csio/cluster-create-5-leader.png)
 
 7.  Create at least 2 Follower hosts which has 4 CPU and 8 GB RAM, and then click __CONTINUE__ button at the bottom.
 
-    [[/img/cluster-create-6-follower.png]]
+    ![cluster-create-6-follower](../img/csio/cluster-create-6-follower.png)
 
 8.  Last step is to add name and environment. Use descriptive ones.
 
-    [[/img/cluster-create-7-name.png]]
+    ![cluster-create-7-name](../img/csio/cluster-create-7-name.png)
 
     Click __LAUNCH__ button at the bottom to start provisioning the hosts.
 
 After finishing the wizard forms, we will be redirected back to page that lists all of our clusters.
 
-[[/img/cluster-list.png]]
+![cluster-list](../img/csio/cluster-list.png)
 
 Please wait until cluster has been 100% provisioned.
 
@@ -62,11 +62,11 @@ For troubleshooting and other admin purposes, we need to add firewall rule to al
 Click the newly created cluster which will redirect us to overview page.
 Go to cluster __Firewall__ tab, add add new rule for SSH connection by clicking __Add Firewall Rule__ button.
 
-[[/img/firewall-add.png]]
+![firewall-add](../img/csio/firewall-add.png)
 
 Complete the forms shown below:
 
-[[/img/firewall-add-ssh.png]]
+![firewall-add-ssh](../img/csio/firewall-add-ssh.png)
 
 Make sure entering a correct IP address of admin's machine (either manually or using __Use My IP__ button) before clicking __Save Rule__ button at the bottom.
 
@@ -77,13 +77,13 @@ __Congratulations__, we have completed first stage of our cluster setup.
 
 1.  Go to __Host__ tab.
 
-    [[/img/host-provisioned.png]]
+    ![host-provisioned](../img/csio/host-provisioned.png)
 
 2.  Click the first follower host and create the following user tags in __Tags__ tab.
 
     __gluu.openldap.master-init = true__
 
-    [[/img/host-tag-openldap-master-init.png]]
+    ![host-tag-openldap-master-init](../img/csio/host-tag-openldap-master-init.png)
 
     This mandatory tag will ensure one of OpenLDAP services that generate initial LDAP data, deployed only to this specific host.
 
@@ -91,19 +91,19 @@ __Congratulations__, we have completed first stage of our cluster setup.
 
     __gluu.openldap.master = true__
 
-    [[/img/host-tag-openldap-master.png]]
+    ![host-tag-openldap-master](../img/csio/host-tag-openldap-master.png)
 
 ## Initialize Configuration
 
 1.  Add Consul service using Containership Marketplace.
 
-    [[/img/service-consul-create.png]]
+    ![service-consul-create](../img/csio/service-consul-create.png)
 
     Consul containers will be deployed to all follower hosts.
 
 2.  Go to __Host__ tag, choose one of the follower hosts. Overview page will be displayed.
 
-    [[/img/host-overview.png]]
+    ![host-overview](../img/csio/host-overview.png)
 
     Copy the Public and Private IP, keep the values somewhere else for reference.
 
@@ -152,7 +152,7 @@ __Note__, at the time this document is written, all Gluu's marketplace services 
 
 Go to __Services__ tab and add another service from marketplace. Pick Gluu OpenLDAP item.
 
-[[/img/service-openldap-create.png]]
+![service-openldap-create](../img/csio/service-openldap-create.png)
 
 The Gluu OpenLDAP marketplace will deploy 2 services, `gluu-openldap-init` and `gluu-openldap`, with their own role:
 
@@ -167,17 +167,17 @@ Upon the creation of services, a form will be displayed asking for configuration
 
 For other configuration, we can leave it as is. We only need to focus on all configuration prefixed by `GLUU_` string for starting point.
 
-[[/img/service-openldap-settings.png]]
+![service-openldap-settings](../img/csio/service-openldap-settings.png)
 
 To get correct values for `GLUU_KV_HOST` and `GLUU_KV_PORT`, we need to go to overview page of Consul service.
 Pick `consul` service in __Services__ tab. Take a note of its DNS entry as shown by example below:
 
-[[/img/service-consul-overview.png]]
+![service-consul-overview](../img/csio/service-consul-overview.png)
 
 Note, the DNS entry shown above is consisting of the actual DNS entry and its discovery port.
 Once we have entered the `GLUU_KV_HOST` and `GLUU_KV_PORT` for `gluu-openldap` service, scroll down to configure `gluu-openldap-init` service.
 
-[[/img/service-openldap-settings-2.png]]
+![service-openldap-settings-2](../img/csio/service-openldap-settings-2.png)
 
 Repeat the process of entering `GLUU_KV_HOST` and `GLUU_KV_PORT` using same values when configuring `gluu-openldap` service.
 
@@ -199,7 +199,7 @@ Click the __STDERR__ button, and then we can see its log messages.
 
 Here's an example of log from successful replication process (note the `LDAP_RES_SEARCH_ENTRY(LDAP_SYNC_ADD)` lines):
 
-[[/img/service-openldap-replication-log.png]]
+![service-openldap-replication-log](../img/csio/service-openldap-replication-log.png)
 
 ### Deploy Auth Services
 
@@ -207,7 +207,7 @@ Once Gluu OpenLDAP services are deployed, we can deploy Auth services.
 
 Go to __Services__ tab and add another service from marketplace. Pick Gluu Auth item.
 
-[[/img/service-auth-create.png]]
+![service-auth-create](../img/csio/service-auth-create.png)
 
 The Gluu Auth marketplace will deploy 3 services, `gluu-oxauth`, `gluu-oxtrust` and `gluu-keyrotation`:
 
@@ -226,18 +226,18 @@ Upon the creation of services, a form will be displayed asking for configuration
 
 Let's start with `gluu-oxauth` configuration:
 
-[[/img/service-oxauth-settings.png]]
+![service-oxauth-settings](../img/csio/service-oxauth-settings.png)
 
 Enter the same `GLUU_KV_HOST` and `GLUU_KV_PORT` from previous process.
 To get correct values for `GLUU_LDAP_URL`, visit `gluu-openldap-init` and `gluu-openldap` overview pages and take note about their DNS entries.
 
 Move on to `gluu-oxtrust` configuration and repeat similar steps when configuring `gluu-oxauth`:
 
-[[/img/service-oxtrust-settings.png]]
+![service-oxtrust-settings](../img/csio/service-oxtrust-settings.png)
 
 The last step is to configure `gluu-keyrotation`:
 
-[[/img/service-keyrotation-settings.png]]
+![service-keyrotation-settings](../img/csio/service-keyrotation-settings.png)
 
 Repeat similar things from previous steps.
 Finally, click __Add Service__ button at the bottom of the page.
@@ -248,7 +248,7 @@ Once Gluu Auth services are deployed, we can deploy Nginx services.
 
 Go to __Services__ tab and add another service from marketplace. Pick Gluu Nginx item.
 
-[[/img/service-nginx-create.png]]
+![service-nginx-create](../img/csio/service-nginx-create.png)
 
 The Gluu Nginx marketplace will deploy 1 service only, the `gluu-nginx`.
 
@@ -259,7 +259,7 @@ Upon the creation of services, a form will be displayed asking for configuration
 3. `GLUU_OXAUTH_BACKEND`: DNS entry and discovery port of existing oxAuth service (`gluu-oxauth`).
 4. `GLUU_OXTRUST_BACKEND`: DNS entry and discovery port of existing oxTrust service (`gluu-oxtrust`).
 
-[[/img/service-nginx-settings.png]]
+![service-nginx-settings](../img/csio/service-nginx-settings.png)
 
 To get correct value for `GLUU_OXAUTH_BACKEND`, go to overview page of `gluu-oxauth` service and take note about its DNS entry.
 To get correct value for `GLUU_OXTRUST_BACKEND`, go to overview page of `gluu-oxtrust` service and take note about its DNS entry.
@@ -279,6 +279,6 @@ As we have 2 services for OpenLDAP, we need to save the connection configuration
 4. Click __Test LDAP Connection__ button.
 5. If we have `LDAP Connection Test Succeeded` popup, click __Update__ button.
 
-[[/img/oxtrust-auth-settings-2.png]]
+![oxtrust-auth-settings-2](../img/csio/oxtrust-auth-settings-2.png)
 
 By having 2 services DNS entry listed in LDAP authentication, if one of the service is unavailable, we still have another one available for authentication.
