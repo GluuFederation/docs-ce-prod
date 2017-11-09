@@ -23,7 +23,7 @@ The Gluu Server implements open web standards for authentication, authorization,
 - Lightweight Directory Access Protocol (LDAP)   
 
 ### Free Open Source Software
-All software included in the Gluu Server distribution is free open source software that can be used by organizations, in production, for free. Learn more about the open source licenses in use [below](#license). 
+All software included in the Gluu Server distribution is free open source software that can be used in production for free. Learn more about the open source licenses in use [below](#license). 
 
 ## Installation
 The Gluu Server can be installed on the cloud provider of your choice using one of our easy-to-install Linux packages for Ubuntu, CentOS, RHEL and Debian. Follow our [VM preparation guide](./installation-guide/index.md) to get started. 
