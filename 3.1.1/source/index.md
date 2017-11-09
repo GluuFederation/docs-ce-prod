@@ -39,7 +39,10 @@ If you have an existing Active Directory or backend LDAP server, you can sync da
 ## Identity Management
 Via the "oxTrust" admin interface and using an LDAP browser, you can manage Gluu Server identity and object data such as user profiles, configuration data, tokens and credentials. The Gluu Server does **not** do things like delegated administration, role definition, approvals and workflows, etc. 
 
-In large enterprise workflows the Gluu Server is a consumer of identity management and Governance data and policies. If you have an existing identity management platform (like SailPoint or Courion), the Gluu Server can be integrated using the System for Cross-domain Identity Management protocol, aka [SCIM](./user-management/scim2.md). 
+In large enterprise workflows the Gluu Server is a consumer of identity management and Governance data and policies. If you have an existing identity management platform, the Gluu Server can be integrated using the System for Cross-domain Identity Management protocol, aka [SCIM](./user-management/scim2.md). 
+
+!!! Note
+    If you are looking for a good open source IDM and governance platform, we recommend checking out [Evolveum Midpoint](https://evolveum.com/midpoint/). 
 
 ##  SSO Integrations
 The Gluu Server acts as an identity provider (IDP) in single sign-on workflows. Users from web and mobile applications are redirected to Gluu for "sign-on", and when successful, are redirected back to applications with claims (or attributes) about themselves. 
