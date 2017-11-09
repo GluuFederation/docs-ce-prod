@@ -1,6 +1,6 @@
 # Gluu Server Community Edition (CE) 3.1.1 Documentation
 ## Introduction
-The Gluu Server is a free open source identity and access management (IAM) platform. SaaS, custom, open source and commercial web and mobile applications can be made more secure by leveraging a central authentication and authorization service like the Gluu Server for user sign-in and access management.
+The Gluu Server is a free open source identity and access management (IAM) platform. With a Gluu Server, you can provide one central authentication and authorization point for many SaaS, custom, open source and commercial web and mobile applications.  
 
 The most common use cases for the Gluu Server include:
 
@@ -12,7 +12,7 @@ The most common use cases for the Gluu Server include:
 - Identity federation.  
 
 ### Open Standards
-The Gluu Server implements the following open web standards for authentication, authorization, federated identity, and identity management:
+The Gluu Server implements open web standards for authentication, authorization, federated identity, and identity management:
 
 - OAuth 2.0    
 - SAML 2.0   
