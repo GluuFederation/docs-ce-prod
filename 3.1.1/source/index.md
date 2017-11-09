@@ -41,7 +41,7 @@ Via the "oxTrust" admin interface, and using an LDAP browser, you can manage you
 
 The Gluu Server does **not** do things like delegated administration, role definition, approvals and workflows, etc. In large enterprise workflows the Gluu Server is a consumer of identity management and governance data and policies. 
 
-If you have an existing identity management platform, the Gluu Server can be integrated using the System for Cross-domain Identity Management protocol, aka [SCIM](./user-management/scim2.md). 
+If you have an existing identity management platform, or have written your own identity management tool(s), you can send identity data to the Gluu Server using the System for Cross-domain Identity Management protocol, aka [SCIM](./user-management/scim2.md). 
 
 !!! Note
     If you are looking for a good open source IDM and governance platform, we recommend checking out [Evolveum Midpoint](https://evolveum.com/midpoint/). 
