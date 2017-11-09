@@ -4,7 +4,7 @@ The Gluu Server is a free open source identity and access management (IAM) platf
 
 The most common use cases for the Gluu Server include:
 
-- Single Sign-On (SSO)   
+- Single sign-on (SSO)   
 - Mobile authentication    
 - API access management  
 - Two-factor authentication 
