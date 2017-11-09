@@ -56,6 +56,11 @@ One of the biggest benefits of a central authentication system is the ability to
 
 Learn more about how to configure the Gluu Server's out-of-the-box and custom strong authentication options in the [authentication guide](./authn-guide/intro.md). 
 
+## Access Management
+The Gluu Server supports the User Managed Access (UMA) 2.0 profile of OAuth 2.0, which provides a RESTful, JSON-based approach to coordinating the protection of APIs and web resources. UMA does not standardize a policy expression language, enabling flexibility in policy expression and evaluation through XACML, other declarative policy languages, or procedural code as warranted by conditions.
+
+Learn more about using the Gluu Server for access management in the [UMA docs](./admin-guide/uma.md).
+
 ## Support
 Gluu provies free and VIP support! Anyone can browse or register and post questions on the [Gluu support portal](https://support.gluu.org). Tickets opened by the community are public, and we do our best to answer them in a timely manner. 
 
