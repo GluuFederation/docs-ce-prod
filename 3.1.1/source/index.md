@@ -37,11 +37,11 @@ If you have an existing Active Directory or backend LDAP server, you can sync da
     The Gluu Server always needs identity data stored locally. Without a local copy of identity data, the service will not work. 
 
 ## Identity Management
-Via the "oxTrust" admin interface, and using an LDAP browser, you can manage Gluu Server identity and object data such as user profiles, configuration data, tokens and credentials. 
+Via the "oxTrust" admin interface, and using an LDAP browser, you can manage your Gluu Server's identity and object data such as user profiles, configuration data, tokens and credentials. 
 
 The Gluu Server does **not** do things like delegated administration, role definition, approvals and workflows, etc. In large enterprise workflows the Gluu Server is a consumer of identity management and governance data and policies. 
 
-If you have an existing identity management platform, the Gluu Server can be integrated using the System for Cross-domain Identity Management protocol, aka [SCIM](./user-management/scim2.md). 
+If you have an existing identity management platform, or have written your own identity management tool(s), you can send identity data to the Gluu Server using the System for Cross-domain Identity Management protocol, aka [SCIM](./user-management/scim2.md). 
 
 !!! Note
     If you are looking for a good open source IDM and governance platform, we recommend checking out [Evolveum Midpoint](https://evolveum.com/midpoint/). 
@@ -55,6 +55,11 @@ The Gluu Server supports a variety of application integration strategies for web
 One of the biggest benefits of a central authentication system is the ability to enforce strong authentication in one place for all your apps. The Gluu Server was designed to be very flexible in accommodating not only a range of authentication mechanisms, but also custom business logic for how authentication should be applied in practice. 
 
 Learn more about how to configure the Gluu Server's out-of-the-box and custom strong authentication options in the [authentication guide](./authn-guide/intro.md). 
+
+## Access Management
+The Gluu Server supports the User Managed Access (UMA) 2.0 profile of OAuth 2.0, which provides a RESTful, JSON-based approach to coordinating the protection of APIs and web resources. UMA does not standardize a policy expression language, enabling flexibility in policy expression and evaluation through XACML, other declarative policy languages, or procedural code as warranted by conditions.
+
+Learn more about using the Gluu Server for access management in the [UMA docs](./admin-guide/uma.md).
 
 ## Support
 Gluu provies free and VIP support! Anyone can browse or register and post questions on the [Gluu support portal](https://support.gluu.org). Tickets opened by the community are public, and we do our best to answer them in a timely manner. 
