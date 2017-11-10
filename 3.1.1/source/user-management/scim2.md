@@ -573,7 +573,7 @@ To make your SCIM endpoint be protected by UMA, you just have to activate a coup
 
 ![enable scim](../img/scim/enable-scim.png)
 
-- Activate UMA custom script in oxTrust admin GUI: Go to `Configuration` > `Manage Custom Scripts`, and in the tab for `UMA Authorization policies` check "Enabled" at the bottom. Finally press the "Update" button.
+- Activate UMA custom script in oxTrust admin GUI: Go to `Configuration` > `Manage Custom Scripts`, and in the tab for `UMA Authorization policies` check "Enabled" for the script labeled "Sample client authz UMA RPT Policy". Finally press the "Update" button.
 
 ![enable uma](../img/scim/enable_uma.png)
 
@@ -736,9 +736,10 @@ user.setName(name);
 
 user.setActive(true);
 
-user.setUserName("newUser_" +  + new Date().getTime());
+user.setUserName("newUser_" + new Date().getTime());
 user.setPassword("secret");
 user.setPreferredLanguage("US_en");
+user.setDisplayName("Dummy human")
 
 List<Email> emails = new ArrayList<Email>();
 Email email = new Email();
@@ -771,7 +772,7 @@ address.setStreetAddress("My Street");
 address.setLocality("My Locality");
 address.setPostalCode("12345");
 address.setRegion("My Region");
-address.setCountry("My Country");
+address.setCountry("RU");
 address.setFormatted("My Formatted Address");
 addresses.add(address);
 user.setAddresses(addresses);
