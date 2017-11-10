@@ -256,7 +256,7 @@ In above snippet replace `idp1` with the name of the IDP for which the IDP confi
 !!! Note
     If you used the setup script, the `passport-saml-config.json` file will be created by the script. You just need to modify the configurations as needed. 
 		
-## Demo
+## Demo Server Cnfig 
 
 ### Instructions 
 
@@ -322,10 +322,10 @@ We are going to follow [this sequence diagram](https://github.com/GluuFederation
     ```
 1) open generated links will lead your application for `SAML IDP MultiAuthentiocation` flow. 
 
-## Demo project(proxy-client)
+## Demo Client Config
 
 
-* Proxy-client is the demo application in node.js to test Passport Inbound SSO
+Proxy-client is the demo application in node.js to test Passport Inbound SSO
 
 
 >It is very easy to run. You just require latest node-js installed on your machine 
