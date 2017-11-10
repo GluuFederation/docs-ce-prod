@@ -49,14 +49,14 @@ If you have an existing identity management platform, or have written your own i
 ##  Single Sign-On (SSO)
 The Gluu Server acts as an identity provider (IDP) in single sign-on (SSO) workflows. Users from web and mobile applications are redirected to Gluu for "sign-on", and when successful, are redirected back to applications with claims (or attributes) about themselves. 
 
-Learn more about the Gluu Server's [OpenID Connect Provider (OP)](./admin-guide/openid-connect.md) and [SAML Identity Provider (IDP)](/source/admin-guide/saml.md) in the admin guide.
+Learn how to configure the Gluu Server's [OpenID Connect Provider (OP)](./admin-guide/openid-connect.md) and [SAML Identity Provider (IDP)](/source/admin-guide/saml.md) in the admin guide.
 
-Learn about securing your apps and integrating them with your Gluu Server in the [SSO integration guide](./integration/index.md).
+Learn how to secure and integrate web and mobile apps in the [SSO integration guide](./integration/index.md).
 
 ## Strong Authentication
-One of the biggest benefits of a central authentication system is the ability to enforce strong authentication in one place for all your apps. The Gluu Server was designed to be very flexible in accommodating not only a range of authentication mechanisms, but also custom business logic for how authentication should be applied in practice. 
+A central authentication system empowers you to enforce strong authentication for all your apps in one place. The Gluu Server was designed to be very flexible in accommodating not only a wide range of authentication mechanisms, but also custom business logic for how authentication should be applied during the user sign-in process. 
 
-Learn more about how to configure the Gluu Server's out-of-the-box and custom strong authentication options in the [authentication guide](./authn-guide/intro.md). 
+Learn how to configure the Gluu Server's out-of-the-box and custom strong authentication options in the [authentication guide](./authn-guide/intro.md). 
 
 ## Access Management
 The Gluu Server supports the User Managed Access (UMA) 2.0 profile of OAuth 2.0, which provides a RESTful, JSON-based approach to coordinating the protection of APIs and web resources. UMA does not standardize a policy expression language, enabling flexibility in policy expression and evaluation through XACML, other declarative policy languages, or procedural code as warranted by conditions.
