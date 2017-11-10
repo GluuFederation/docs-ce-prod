@@ -13,7 +13,7 @@ In an outbound SAML transaction a website or application (SP) redirects a user t
 
 To achieve outbound SAML, the Gluu Server bundles the [Shibboleth SAML IDP](). 
 
-To secure and integrate apps with your Gluu Server SAML IDP, we recommend using the [Shibboleth SAML SP](). 
+To secure and integrate apps with your Gluu Server Shibboleth SAML IDP, we recommend using the [Shibboleth SAML SP](). 
 
 ### Inbound SAML     
 Inbound SAML single sign-on enables an organization to offer SAML authentication as a front door to their digital service. Inbound SAML is a common requirement for SaaS providers that need to support the authentication requirements of large enterprise customers. 
