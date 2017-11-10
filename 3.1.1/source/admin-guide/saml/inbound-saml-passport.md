@@ -8,11 +8,11 @@ Post-authentication, the script uses just-in-time provisioning to add users to t
 !!! Note
     Passport is an Express-based web application. We've modified it to call oxTrust APIs for its non-static configuration. Because its configuration is stored centrally in LDAP, you can scale Passport even in clustered topologies.
 
-### Prerequisites
-- A Gluu Server with Passport.js installed during setup ([Installation Instructions](https://github.com/GluuFederation/gluu-passport#setup-passportjs-with-gluu));
-- [IDP MultiAuthn interception script](https://github.com/GluuFederation/oxAuth/blob/evolveip/Server/integrations/idp/IdpMultiAuthnExternalAuthenticator.py).
+## Prerequisites
+- A Gluu Server with Passport.js installed during setup ([Installation Instructions](https://github.com/GluuFederation/gluu-passport#setup-passportjs-with-gluu));      
+- [IDP MultiAuthn interception script](https://github.com/GluuFederation/oxAuth/blob/evolveip/Server/integrations/idp/IdpMultiAuthnExternalAuthenticator.py).     
 
-### Sequence Diagram
+## Sequence Diagram
 
 Below is a sequence diagram to help clarify the workflow for user authentication and provisioning. 
 
@@ -33,18 +33,35 @@ Below is a sequence diagram to help clarify the workflow for user authentication
 
 
 
-### How to configure Gluu server for Inbound single sign-on
+## Configure Gluu Server
 
-During installation of the Gluu Server select `yes` to install Passport.js when prompted.
+The first step is to make sure you have deployed Passport.js during installation of your Gluu Server. Then follow the next steps:
 
-1. Navigate to `Configuration` > `Manage Custom Scripts`.
-1. Enable Passport script in `Person Authentication` tab. ![Enable passport](https://github.com/GluuFederation/gluu-passport/blob/master/img/passport/enable-passport.png)
-    1. We need to update existing script with [IDP MultiAuthn interception script](https://github.com/GluuFederation/oxAuth/blob/evolveip/Server/integrations/idp/IdpMultiAuthnExternalAuthenticator.py). so open link and copy script and replace passport script with script in the link. If you do not want to replace current script and add new one You can do That as well.For that you can add passport-inboundSAML as new strategy using oxTrust.Follow this link for details [link](https://github.com/GluuFederation/Inbound-SAML-Demo/wiki/Steps-for-creating--SAML_IDP_MultiAuthn_interception_script).
-1. Click on `update` at the end of the page.![update](https://github.com/GluuFederation/gluu-passport/blob/master/img/passport/auth-update.png)
-1. To set the strategies navigate to `Configuration` > `Manage Authentication` > `Default Authenticaion`
-1. Click on `Passport Authentication Method` tab and `Passport Support` to enabled.![enable-authentication](https://github.com/GluuFederation/gluu-passport/blob/master/img/passport/enable-authentication.png)
-1. Add configuration json file `passport-saml-config.json` containing IDP information in `/etc/gluu/conf`
-1. Once the configuration and settings have been entered, restart the passport service or Gluu Server by following the below instructions:
+
+1. Navigate to `Configuration` > `Manage Custom Scripts`;    
+
+2. In the `Person Authentication` tab, find and enable the existing Passport script;      
+
+![Enable passport](https://github.com/GluuFederation/gluu-passport/blob/master/img/passport/enable-passport.png)
+    
+3. Update the existing script with the [IDP MultiAuthn interception script](https://github.com/GluuFederation/oxAuth/blob/evolveip/Server/integrations/idp/IdpMultiAuthnExternalAuthenticator.py);    
+
+!!! Note
+    Rather than replacing the existing script, you can also add a new strategy by scrolling to the bottom of the page. Follow this link for details [link](https://github.com/GluuFederation/Inbound-SAML-Demo/wiki/Steps-for-creating--SAML_IDP_MultiAuthn_interception_script).
+
+4. Click on `update` at the end of the page.
+
+![update](https://github.com/GluuFederation/gluu-passport/blob/master/img/passport/auth-update.png)
+
+5. Now navigate to `Configuration` > `Manage Authentication` > `Default Authenticaion`
+
+5. Set the `Passport Support` field to enabled;    
+
+![enable-authentication](https://github.com/GluuFederation/gluu-passport/blob/master/img/passport/enable-authentication.png)
+
+6. In `/etc/gluu/conf` add configuration json file `passport-saml-config.json` containing IDP information;    
+
+7. Once the configuration and settings have been entered, restart the passport service or Gluu Server by following the below instructions:
     
     a. Login to chroot.
     
@@ -56,7 +73,8 @@ During installation of the Gluu Server select `yes` to install Passport.js when 
 	Strategies names and field names are case sensitive.
 
 
-### How to configure Passport Server Configurations
+### Configure Passport
+
 **You can do passport server configuration either with setup script(beta) or do it your self manually**
 
 #### 1. Configurations with setup script
