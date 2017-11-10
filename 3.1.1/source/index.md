@@ -46,10 +46,12 @@ If you have an existing identity management platform, or have written your own i
 !!! Note
     If you are looking for an open source IDM and governance platform, we recommend checking out [Evolveum Midpoint](https://evolveum.com/midpoint/). 
 
-##  SSO Integrations
-The Gluu Server acts as an identity provider (IDP) in single sign-on workflows. Users from web and mobile applications are redirected to Gluu for "sign-on", and when successful, are redirected back to applications with claims (or attributes) about themselves. 
+##  Single Sign-On (SSO)
+The Gluu Server acts as an identity provider (IDP) in single sign-on (SSO) workflows. Users from web and mobile applications are redirected to Gluu for "sign-on", and when successful, are redirected back to applications with claims (or attributes) about themselves. 
 
-The Gluu Server supports a variety of application integration strategies for web and mobile applications. Learn more in our [SSO integration guide](./integration/index.md).
+Learn more about the Gluu Server's [OpenID Connect Provider (OP)](./admin-guide/openid-connect.md) and [SAML Identity Provider (IDP)](/source/admin-guide/saml.md) in the admin guide.
+
+Learn about securing your apps and integrating them with your Gluu Server in the [SSO integration guide](./integration/index.md).
 
 ## Strong Authentication
 One of the biggest benefits of a central authentication system is the ability to enforce strong authentication in one place for all your apps. The Gluu Server was designed to be very flexible in accommodating not only a range of authentication mechanisms, but also custom business logic for how authentication should be applied in practice. 
