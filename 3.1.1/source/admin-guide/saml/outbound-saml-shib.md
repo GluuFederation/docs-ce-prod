@@ -1,4 +1,4 @@
-## Outbound SAML (Shibboleth)
+## Outbound SAML using Shibboleth
 
 Outbound SAML can also be called SP-initiated Single Sign-On (SSO) 
 or traditional SAML. In an outbound SAML transaction a website or application (SP) 
