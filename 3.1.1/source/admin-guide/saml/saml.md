@@ -13,8 +13,8 @@ In an outbound SAML transaction a website or application (SP) redirects a user t
 
 To achieve outbound SAML SSO, you can refer to the following docs: 
 
-- [Shibboleth SAML IDP]()    
-- [Shibboleth SAML SP]() 
+- [Shibboleth SAML IDP](./outbound-saml-shib.md)    
+- [Shibboleth SAML SP](../../integration/sswebapps/saml-sp.md) 
 
 ### Inbound SAML     
 Inbound SAML single sign-on enables an organization to offer SAML authentication as a front door to their digital service. Inbound SAML is a common requirement for SaaS providers that need to support the authentication requirements of large enterprise customers. 
@@ -30,8 +30,8 @@ A typical inbound SAML user flow is:
 
 The Gluu Server supports two software options for Inbound SAML: 
 
-- [Passport.js SAML IDP]()      
-- [Asimba SAML Proxy]()   
+- [Passport.js SAML IDP](./inbound-saml-passport.md)      
+- [Asimba SAML Proxy](./inbound-saml-asimba.md)   
 
 Both software components are optional during the Gluu Server installation and setup process. 
 
