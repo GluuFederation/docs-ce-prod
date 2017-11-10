@@ -35,8 +35,9 @@ Below is a sequence diagram to help clarify the workflow for user authentication
 
 ## Configure Gluu Server
 
-The first step is to make sure you have deployed Passport.js during installation of your Gluu Server. Then follow the next steps:
+Make sure you have deployed Passport.js during installation of your Gluu Server. 
 
+Then follow the next steps:
 
 1. Navigate to `Configuration` > `Manage Custom Scripts`;    
 
@@ -47,7 +48,7 @@ The first step is to make sure you have deployed Passport.js during installation
 3. Update the existing script with the [IDP MultiAuthn interception script](https://github.com/GluuFederation/oxAuth/blob/evolveip/Server/integrations/idp/IdpMultiAuthnExternalAuthenticator.py);    
 
 !!! Note
-    Rather than replacing the existing script, you can also add a new strategy by scrolling to the bottom of the page. Follow this link for details [link](https://github.com/GluuFederation/Inbound-SAML-Demo/wiki/Steps-for-creating--SAML_IDP_MultiAuthn_interception_script).
+    Rather than replacing the existing script, you can also add a new strategy by scrolling to the bottom of the page. Follow [this link](https://github.com/GluuFederation/Inbound-SAML-Demo/wiki/Steps-for-creating--SAML_IDP_MultiAuthn_interception_script) for details.
 
 4. Click on `update` at the end of the page.
 
@@ -55,13 +56,13 @@ The first step is to make sure you have deployed Passport.js during installation
 
 5. Now navigate to `Configuration` > `Manage Authentication` > `Default Authenticaion`
 
-5. Set the `Passport Support` field to enabled;    
+5. Set the `Passport Support` field to `enabled`;    
 
 ![enable-authentication](https://github.com/GluuFederation/gluu-passport/blob/master/img/passport/enable-authentication.png)
 
 6. In `/etc/gluu/conf` add configuration json file `passport-saml-config.json` containing IDP information;    
 
-7. Once the configuration and settings have been entered, restart the passport service or Gluu Server by following the below instructions:
+7. Once the configuration and settings have been entered, restart the passport service by following the below instructions:
     
     a. Login to chroot.
     
@@ -73,23 +74,32 @@ The first step is to make sure you have deployed Passport.js during installation
 	Strategies names and field names are case sensitive.
 
 
-### Configure Passport
+## Configure Passport
 
-**You can do passport server configuration either with setup script(beta) or do it your self manually**
+You can configure passport with either the setup script (beta) or manually. 
 
-#### 1. Configurations with setup script
-_Steps to use setup scripts_ 
-1) Download or clone [Github repo](https://github.com/GluuFederation/Inbound-SAML-Demo)
-1) Copy setup-script directory/folder in side gluu server's chroot.(command will be like this `cp -a <path to downloaded repo>/setup-script /opt/gluu-server-3.1.1/root/
-`)
-1) Login to gluu-server's chroot with command (` service gluu-server-3.1.1 login`)
-1) Navigte inside setup-script directory (`cd setup-script`)
-1) Run **`passport-setup.py`**(`./passport-setup.py`) it will may take some time depend on you internet speed and machine configurations because script also run commands like `npm install`.
-1) That's it (Follow console intsruction to restart passport and oxauth server or simply just restart gluu server) 
-1) You might require to run `chmod 777 -R /opt/gluu/node/passport/` after runnig this script to reset the file permissions 
+!!! Note
+    If you have made any modifications to your passport server, we recommend using the manual steps. The script will override your changes and replace them with fresh code.
 
-####  2. Configurations manually 
-For saml based authentication with passport. We need to enable saml by following steps:
+### Setup script configuration
+
+1) Download or clone the [Github repo](https://github.com/GluuFederation/Inbound-SAML-Demo);   
+
+2) Copy setup-script directory/folder in side gluu server's chroot (the command will be like:  `cp -a <path to downloaded repo>/setup-script /opt/gluu-server-3.1.1/root/`);   
+
+3) Login to gluu-server's chroot: ` service gluu-server-3.1.1 login`;  
+
+4) Navigate inside the setup-script directory: `cd setup-script`;  
+
+5) Run `passport-setup.py` (it may take some time depending on your Internet speed and machine configurations because script also run commands like `npm install`);  
+
+6) Follow console instructions to restart passport and oxAuth server or simply just restart the Gluu Server;   
+
+7) You might need to run `chmod 777 -R /opt/gluu/node/passport/` after running this script to reset the file permissions . 
+
+### Manual configuration
+
+We can manually configure Passport using the following steps:
 
 ```sh 
 su - node
@@ -99,13 +109,14 @@ npm install passport-saml --save
 
 ```
 		
-In file /opt/gluu/node/passport/server/app.js add configs for saml.
+In `/opt/gluu/node/passport/server/app.js` add configs for saml:
+
 ```javascript
 
 global.saml_config = require('/etc/gluu/conf/passport-saml-config.json')
 ```
 
-In file /opt/gluu/node/passport/server/routes/index.js add the route for saml.
+In `/opt/gluu/node/passport/server/routes/index.js` add the route for saml:
 
 ```javascript
 var passportSAML = require('../auth/saml').passport;
@@ -144,7 +155,7 @@ for (key in entitiesJSON) {
 
 ```
 
-Exposing metadata through global url
+Expose the metadata through a global url
 
 ```javascript
 router.get('/auth/meta/idp/:idp',
@@ -161,7 +172,7 @@ router.get('/auth/meta/idp/:idp',
 
 ```
 
-In file /opt/gluu/node/passport/server/auth/configureStrategies.js add the support for saml strategy.
+In `/opt/gluu/node/passport/server/auth/configureStrategies.js` add support for SAML:
 
 ```javascript
 var SamlStrategy = require('./saml');
@@ -172,12 +183,13 @@ var SamlStrategy = require('./saml');
   SamlStrategy.setCredentials();
 ```
 
-Put saml strategy file name `saml.js` from gluu-passport [repo](https://github.com/GluuFederation/gluu-passport/blob/version_3.1.1/server/auth/saml.js) on path `/opt/gluu/node/passport/server/auth/`
+Put saml file name `saml.js` from gluu-passport [repo](https://github.com/GluuFederation/gluu-passport/blob/version_3.1.1/server/auth/saml.js) on path `/opt/gluu/node/passport/server/auth/`
 
 
 **Important fix**
-next we need to cutomise passportpostlogin.xml to use this project with 3.1.1 this will be fix in next version of gluu
-> copy [passportpostlogin.xhtml](https://github.com/GluuFederation/oxAuth/blob/evolveip/Server/src/main/webapp/auth/passport/passportpostlogin.xhtml) from link and paste to `opt/gluu/jetty/oxauth/custom/pages/auth/passport` (you need to create missing directories(/auth/passport))
+Next we need to customize `passportpostlogin.xml` to use this project with Gluu Server 3.1.1. This will be added to the defaults in next version of Gluu 3.1.2.
+
+Copy the contents of [passportpostlogin.xhtml](https://github.com/GluuFederation/oxAuth/blob/evolveip/Server/src/main/webapp/auth/passport/passportpostlogin.xhtml) and paste to `opt/gluu/jetty/oxauth/custom/pages/auth/passport` (you need to create missing directories (`/auth/passport`))
 
 
 Now restart passport service. 
@@ -187,12 +199,10 @@ service passport stop
 service passport start
 ```
 
-##### Note :- _we recommends you to use  manual step to configure your passport server instead of step if you have done modification to your passport server because script will override your changes and replace with fresh codes._  
-
 
 ## Onboarding new IDP's.
 
-Add new IDP Configuration in /etc/gluu/conf/passport-saml-config.json file. A sample of IDP Configuration is given below:
+Add new IDP Configuration in `/etc/gluu/conf/passport-saml-config.json` file. A sample IDP Configuration is given below:
 
 ```json
 {"idp1": {"entryPoint": "https://dev1.gluu.org/idp/profile/SAML2/POST/SSO",
@@ -216,7 +226,7 @@ Add new IDP Configuration in /etc/gluu/conf/passport-saml-config.json file. A sa
 }
 ```
 
-In above snippet replace "idp1" with the name of IDP for which IDP configuration needed to be added. It has following keys:
+In above snippet replace `idp1` with the name of the IDP for which the IDP configuration is needed. It has the following keys:
 		
 		- `entryPoint` is mandatory field which is identity provider entry point is the address to authenticate through SAML SSO. 
 		- `issuer` is mandatory field which is issuer string supply to identity provider.
@@ -234,18 +244,19 @@ In above snippet replace "idp1" with the name of IDP for which IDP configuration
 		- `givenName` is first name of user
 		- `familyName` is last name of user
 
-##### note :- If you have used Script for setup. passport-saml-config.jsonjson file will be created by script for you just need to modify as per your configurations
+!!! Note
+    If you used the setup script, the `passport-saml-config.json` file will be created by the script. You just need to modify the configurations as needed. 
 		
-## How to use 
+## Demo
 
 ### Instructions 
 
->We are going to follow [sequence diagram](https://github.com/GluuFederation/Inbound-SAML-Demo/wiki/Readme_single#sequence-diagram) to use this project
+We are going to follow [this sequence diagram](https://github.com/GluuFederation/Inbound-SAML-Demo/wiki/Readme_single#sequence-diagram) for this demo. 
 
 ### Steps
-1) We need OpenID connect client to send Authentication request to interception script.
+1. We need OpenID connect client to send Authentication request to interception script.
     1) We assueme that you know how to create openid connect client in gluu server. For more details you can follow this [Client registration Doc](https://gluu.org/docs/ce/admin-guide/openid-connect/#client-registration-configuration).
-    1) If you have not create new separate strategy,In your created client set `passport` as `arc_value`  or if you have created separate script than set `acr_value` as according to it. If you have followed [link](https://github.com/GluuFederation/Inbound-SAML-Demo/wiki/Steps-for-creating--SAML_IDP_MultiAuthn_interception_script) and created strategy with name `passportsaml` your acr_value will be **passportsaml**.
+    1) If you have not create new separate strategy, In your created client set `passport` as `arc_value`  or if you have created separate script than set `acr_value` as according to it. If you have followed [link](https://github.com/GluuFederation/Inbound-SAML-Demo/wiki/Steps-for-creating--SAML_IDP_MultiAuthn_interception_script) and created strategy with name `passportsaml` your acr_value will be **passportsaml**.
     1) set redirect_uri as per your project requirements.
 
 1) Now we will use this client craeted in step 1 for Authentication requests.
