@@ -1,5 +1,5 @@
-# Inbound SAML 
-## Passport.js 
+# Inbound SAML using Passport.js 
+## Overivew
 
 The Gluu Server uses a component called Passport.js to enable organizations to send users from their Gluu Server to an external identity provider (IDP) for login (this concept is also known as: **inbound single sign-on**). Passport not only normalizes authentication, it also provides a standard mapping for user claims.
 
