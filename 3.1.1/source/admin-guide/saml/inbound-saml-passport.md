@@ -270,8 +270,8 @@ We are going to follow [this sequence diagram](https://github.com/GluuFederation
 
 1) Now we will use this client craeted in step 1 for Authentication requests.
     1) We need to call standard gluu GET Authentication request using created clientID and acr_value.
-    1) Follow [GLuu openid-connect-api](https://gluu.org/docs/ce/api-guide/openid-connect-api/#requestauthorizationget)to create authentication request
-    1) Additionally we need to add state and nonce as query params with created  authentication request.
+    1) Follow [Gluu openid-connect-api](https://gluu.org/docs/ce/api-guide/openid-connect-api/#requestauthorizationget) to create authentication request
+    1) Additionally we need to add `state` and `nonce` as query params with created authentication request.
     1) state -> base64 of json {"salt":"<salt_value>","provider":"<idp_name>"}.    
     1) Nonce -> String value used to associate a Client session with an ID Token, and to mitigate replay attacks. The value is passed through unmodified from the Authorization Request to the ID Token. Sufficient entropy MUST be present in the nonce values used to prevent attackers from guessing values.
     ```java
@@ -320,26 +320,24 @@ We are going to follow [this sequence diagram](https://github.com/GluuFederation
      
      //output will be like this :- https://gluu.evp.org/oxauth/authorize?response_type=code+id_token&client_id=%40%215C0B.B148.7E63.326C%210001%21562E.F01E%210008%21664D.7760.0EC3.762D&scope=openid+profile&redirect_uri=https%3A%2F%2Flocalhost%3A8080&state=eyJwcm92aWRlciI6ImlkcDEifQ%3D%3D&nonce=232334315&acr_values=passportsaml
     ```
-1) open generated links will lead your application for `SAML IDP MultiAuthentiocation` flow. 
+1) Opening the generated links will lead your application for `SAML IDP MultiAuthentiocation` flow. 
 
 ## Demo Client Config
 
-
 Proxy-client is the demo application in node.js to test Passport Inbound SSO
 
+The project requires latest version of node-js to be installed on your machine 
 
->It is very easy to run. You just require latest node-js installed on your machine 
 
+### Steps
 
-#### Steps
+1. Clone the [project](https://github.com/GluuFederation/Inbound-SAML-Demo) using git clone 
 
-1. Clone [project](https://github.com/GluuFederation/Inbound-SAML-Demo) using git clone 
+1. Register new OIDC client in your gluu server with redirect uri `http://localhost:3000/profile` and copy `clientID` and `secret`.
 
-1. Register new OIDC client in your gluu server with redirect uri _http://localhost:3000/profile_ and copy clientID and secrete.
+1. Open `client-config.json` and add details like `ClientID`, `clientSecret`, and `hostname`
 
-1. open **client-config.json** and file details like openid ClientID clinetSecret and hostname
-
-1. copy same **passport-saml-config.json** which you used in setting up [**Passport Inbound SSO**](https://github.com/GluuFederation/Inbound-SAML-Demo/wiki/Readme_single#onboarding-new-idps) 
+1. copy same `passport-saml-config.json` which you used in setting up [Passport Inbound SSO](https://github.com/GluuFederation/Inbound-SAML-Demo/wiki/Readme_single#onboarding-new-idps) 
 
 1. open terminal navigate to project directory
 
@@ -347,13 +345,18 @@ Proxy-client is the demo application in node.js to test Passport Inbound SSO
     1. `npm install`
     1.  `node server.js`
 
-1. That's it to open de mo ,hit http:localhost:3000 in browser and click on button with idp name to test your configuration. It will redirects you to your configured idp using SAML SSO for login page.![demo_screenshot1](https://github.com/GluuFederation/Inbound-SAML-Demo/blob/master/images/demo_1.png)
+1. Hit `http:localhost:3000` in browser and click on button with idp name to test your configuration. It will redirects you to your configured idp using SAML SSO.
 
-1. After login, you might ask to allow permission to access your personal data.
+![demo_screenshot1](https://github.com/GluuFederation/Inbound-SAML-Demo/blob/master/images/demo_1.png)
+
+1. After login, you might be asked to authorize the release of your personal data.
+
 ![demo_screenshot2](https://github.com/GluuFederation/Inbound-SAML-Demo/blob/master/images/demo_2.png)
 
-1. On allowing from Authorization page Server will redirect to Prox-client (Demo application) with Query params like  `...../profile/response_type=code&scope=openid&client_id=s6BhdRkqt3&state=af0ifjsldkj&redirect_uri=https%3A%2F%2Fclient.example.og%2Fcb`
+1. On allowing from Authorization page Server will redirect to Proxy-client (Demo application) with Query params like  `...../profile/response_type=code&scope=openid&client_id=s6BhdRkqt3&state=af0ifjsldkj&redirect_uri=https%3A%2F%2Fclient.example.og%2Fcb`
 
-1. using Information from query params of rerdirect uri demo Application will fetch the user information and display it on profile page![demo_screenshot3](https://github.com/GluuFederation/Inbound-SAML-Demo/blob/master/images/demo_3.png)
+1. using Information from query params of redirect uri demo Application will fetch the user information and display it on profile page!
+
+[demo_screenshot3](https://github.com/GluuFederation/Inbound-SAML-Demo/blob/master/images/demo_3.png)
 
 
