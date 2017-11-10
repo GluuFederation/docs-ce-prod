@@ -19,14 +19,23 @@ Below is a sequence diagram to help clarify the workflow for user authentication
 ![Sequence Diagram](sequence-diagram.png "Title")
 
 1. User-Agent calls gluu for Authentication with provided IDP name as base64 encoded json in state param like state=`base64({"salt":"<SALTVALUE>",provider":"<idp_name>"})`;        
+
 2. Gluu Sever multiauthn script checks the IDP name;    
+
 3. Gluu server calls Node-Passport server for a JWT token;       
+
 4. Node-Passport server generates a JWT token and provides it in response to Gluu server;      
+
 5. Gluu Server multiauthn script prepares the URL for passport server with provided IDP;    
+
 6. Gluu server make a request to the Node-Passport server with the JWT token to authenticate the user for IDP provider;    
+
 7. Node-Passport server redirects the user to the external IDP provider;    
+
 8. After successful user authentication, the IDP will callback the Node-Passport server along with user details and access token;   
+
 9. Node-Passport server will redirect back to Gluu Server with the user details and access token;      
+
 10. The multiauthn interception script will check if the user exists in Gluu's OpenLDAP server.         
 	a. If the user exists then the user will be logged into the system.       
 	b. If the user does not exist, the interception script will create a new user with the required details in the Gluu OpenLDAP and log the user into the system.    
@@ -325,13 +334,19 @@ We are going to follow [this sequence diagram](https://github.com/GluuFederation
 #### Steps
 
 1. Clone [project](https://github.com/GluuFederation/Inbound-SAML-Demo) using git clone 
+
 1. Register new OIDC client in your gluu server with redirect uri _http://localhost:3000/profile_ and copy clientID and secrete.
+
 1. open **client-config.json** and file details like openid ClientID clinetSecret and hostname
+
 1. copy same **passport-saml-config.json** which you used in setting up [**Passport Inbound SSO**](https://github.com/GluuFederation/Inbound-SAML-Demo/wiki/Readme_single#onboarding-new-idps) 
+
 1. open terminal navigate to project directory
+
 1. execute following commands 
     1. `npm install`
     1.  `node server.js`
+
 1. That's it to open de mo ,hit http:localhost:3000 in browser and click on button with idp name to test your configuration. It will redirects you to your configured idp using SAML SSO for login page.![demo_screenshot1](https://github.com/GluuFederation/Inbound-SAML-Demo/blob/master/images/demo_1.png)
 
 1. After login, you might ask to allow permission to access your personal data.
