@@ -1,14 +1,12 @@
 # Inbound SAML using Passport.js 
 ## Overivew
 
-The Gluu Server uses a component called Passport.js to enable organizations to send users from their Gluu Server to an external identity provider (IDP) for login (this concept is also known as: **inbound single sign-on**). Passport not only normalizes authentication, it also provides a standard mapping for user claims.
+The Gluu Server uses the [SAML IDP MultiAuthn interception script](https://github.com/GluuFederation/oxAuth/blob/evolveip/Server/integrations/idp/IdpMultiAuthnExternalAuthenticator.py) to enable inbound SAML single sign-on with Passport.js.
 
-Passport is an Express-based web application. We've modified it to call oxTrust APIs for its non-static configuration. Because its configuration is stored centrally in LDAP, you can scale Passport even in clustered topologies.
+Post-authentication, the script uses just-in-time provisioning to add users to the Gluu LDAP server if a local account does not already exist. In this way, the Gluu SAML and OpenID Connect providers can gather claims and maintain SSO as normal.
 
-The Gluu Server uses the [SAML IDP MultiAuthn interception script](https://github.com/GluuFederation/oxAuth/blob/evolveip/Server/integrations/idp/IdpMultiAuthnExternalAuthenticator.py) to enable inbound SAML single sign-on.
-
-Post-authentication, this script uses just-in-time provisioning to add users to the Gluu LDAP server if a local account does not already exist. In this way, the Gluu SAML and OpenID Connect providers can gather claims and maintain SSO as normal.
-
+!!! Note
+    Passport is an Express-based web application. We've modified it to call oxTrust APIs for its non-static configuration. Because its configuration is stored centrally in LDAP, you can scale Passport even in clustered topologies.
 
 ### Prerequisites
 - A Gluu Server with Passport.js installed during setup ([Installation Instructions](https://github.com/GluuFederation/gluu-passport#setup-passportjs-with-gluu));
@@ -16,22 +14,22 @@ Post-authentication, this script uses just-in-time provisioning to add users to 
 
 ### Sequence Diagram
 
-Below is a sequence diagram to help clarify the workflow for user
-authentication and provisioning. 
+Below is a sequence diagram to help clarify the workflow for user authentication and provisioning. 
 
 ![Sequence Diagram](sequence-diagram.png "Title")
 
-1. User-Agent call gluu for Authentication with provided IDP name as base64 encoded json in state param like state=`base64({"salt":"<SALTVALUE>",provider":"<idp_name>"})`
-2. Gluu Sever multiauthn script check IDP name 
-3. Gluu server calls Node-Passport server for JWT token.
-4. Node-Passport server generates a JWT token and provides it in response to Gluu server.
-5. Gluu Server multiauthn script prepare URL for passport server with provided IDP
-6. Gluu server requests Node-Passport server with JWT token to authenticate user for IDP provider.
-7. Node-Passport server will redirect user to IDP provider.
-8. After successful authentication of user, IDP will callback Node-Passport server along with user details and access token.
-9. Node-Passport server will redirect back to Gluu server with user details and access token.
-10. Gluu server’s interception script will check if the user exists in LDAP server. If the user exists then the user will be logged into the system. 
-If not, then interception script will create a new user with the required details and log the user into the system.
+1. User-Agent calls gluu for Authentication with provided IDP name as base64 encoded json in state param like state=`base64({"salt":"<SALTVALUE>",provider":"<idp_name>"})`;        
+2. Gluu Sever multiauthn script checks the IDP name;    
+3. Gluu server calls Node-Passport server for a JWT token;       
+4. Node-Passport server generates a JWT token and provides it in response to Gluu server;      
+5. Gluu Server multiauthn script prepares the URL for passport server with provided IDP;    
+6. Gluu server make a request to the Node-Passport server with the JWT token to authenticate the user for IDP provider;    
+7. Node-Passport server redirects the user to the external IDP provider;    
+8. After successful user authentication, the IDP will callback the Node-Passport server along with user details and access token;   
+9. Node-Passport server will redirect back to Gluu Server with the user details and access token;      
+10. The multiauthn interception script will check if the user exists in Gluu's OpenLDAP server.         
+	a. If the user exists then the user will be logged into the system.       
+	b. If the user does not exist, the interception script will create a new user with the required details in the Gluu OpenLDAP and log the user into the system.    
 
 
 
