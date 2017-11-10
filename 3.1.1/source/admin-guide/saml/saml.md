@@ -11,9 +11,10 @@ Outbound SAML can also be called SP-initiated single sign-on (SSO) or traditiona
 
 In an outbound SAML transaction a website or application (SP) redirects a user to a designated Identity Provider (IDP) for authentication and authorization. The IDP asks for the user's credentials and upon successful authentication redirects the user to the protected content. 
 
-To achieve outbound SAML, the Gluu Server bundles the [Shibboleth SAML IDP](). 
+To achieve outbound SAML SSO, you can refer to the following docs: 
 
-To secure and integrate apps with your Gluu Server Shibboleth SAML IDP, we recommend using the [Shibboleth SAML SP](). 
+- [Shibboleth SAML IDP]()    
+- [Shibboleth SAML SP]() 
 
 ### Inbound SAML     
 Inbound SAML single sign-on enables an organization to offer SAML authentication as a front door to their digital service. Inbound SAML is a common requirement for SaaS providers that need to support the authentication requirements of large enterprise customers. 
@@ -27,11 +28,14 @@ A typical inbound SAML user flow is:
 3. User selects their home IDP and is sent home for authentication;   
 4. Upon successful authentication at their home IDP, user is redirected back to your service with access to the protected resource. 
 
-The Gluu Server supports two software options for Inbound SAML: [Passport.js SAML IDP]() or the [Asimba SAML Proxy](). Both software components are optional during the Gluu Server installation and setup process. 
+The Gluu Server supports two software options for Inbound SAML: 
 
-Of the two options, **we recommend using Passport.js SAML for inbound SAML SSO**. 
+- [Passport.js SAML IDP]()      
+- [Asimba SAML Proxy]()   
 
-Key management is more complicated in Asimba, and using Asimba requires modifications to be made in configuration files.
+Both software components are optional during the Gluu Server installation and setup process. 
+
+Of the two options, **we recommend using Passport.js SAML for inbound SAML SSO**. Key management is more complicated in Asimba, and using Asimba requires modifications to be made in configuration files.
 
 !!! Note
     For a good realworld example of inbound SAML, check out the [Federated Login flow at EDUCAUSE](https://sso-users.educause.edu/?resumePath=%2Fidp%2FZQ4DF%2FresumeSAML20%2Fidp%2FstartSSO.ping&allowInteraction=true&reauth=false). 
