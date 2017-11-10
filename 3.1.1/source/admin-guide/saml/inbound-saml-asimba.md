@@ -1,4 +1,4 @@
-## Inbound SAML (Asimba)
+## Inbound SAML using Asimba
 Inbound SAML allows users from external domains to login at their home identity provider to gain access to resources protected by the Gluu Server. The Gluu Server uses an open source product called [Asimba](http://www.asimba.org/site/) to normalize inbound SAML. 
 
 ![asimba-overview](../img/asimba/Asimba_graph.jpg)
