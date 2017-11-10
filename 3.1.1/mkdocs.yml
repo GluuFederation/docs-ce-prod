@@ -27,7 +27,7 @@ pages:
           - 'Upgrade Gluu Server with OpenDJ': 'upgrade/manual-update.md'
         #- 'Patch Gluu Server' : 'upgrade/update.md'
           - 'Updating a War File': 'upgrade/update-war.md'
-        - 'Gluu in Containership.io': 'installation-guide/containership.md'
+        - 'Containership.io Installation': 'installation-guide/containership.md'
 - Administration Guide:
         - 'oxTrust admin UI' : 'admin-guide/oxtrust-ui.md'
         - 'Interception Scripts': 'admin-guide/custom-script.md'
