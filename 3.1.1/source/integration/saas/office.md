@@ -11,6 +11,7 @@ By using a Gluu Server as your IDP you can bypass the process of storing passwor
 
 - A Gluu Server with the Shibboleth IDP installed;
 - An O365 account with administrative privilege.
+- ADFS which will act as 'Service Provider' to Gluu Server. O365 will be connected to ADFS. 
 
 ## Office 365 Configuration 
 
