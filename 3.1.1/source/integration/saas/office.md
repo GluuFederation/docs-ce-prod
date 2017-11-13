@@ -54,56 +54,36 @@ SigningCertificate                     : The SAML cert ( shibIDP.crt ) from Gluu
 The configuration begins by creating a few custom attributes named `IDPEmail`, `ImmutableID` and `objectguid`. 
 Refer to [this doc](../../admin-guide/attribute/#custom-attributes) to create custom attributes.
 
-`objectguid` syntax will be slightly different from other custom attributes.
-`objectGUID` attributetype should be in the following syntax:
+#### 'objectguid' configuration
 
-```
-{
+'objectguid' is pulling binary data of 'objectGUID' attribute from backend Active Directory. Gluu Server administrator need to configure 
+this attribute in such a way that it can 'pull' the exact binary value from backend Active Directory. Here is the complete process listed below: 
 
-attributetype ( oxAttribute:1003 NAME 'objectGUID'
-        SYNTAX 1.3.6.1.4.1.1466.115.121.1.5        
-       X-ORIGIN 'Gluu - custom person attribute' )
-
-}
-```
-1. On creating custom attributes in the schema, the same attributes needs to be created in the using oxTrust as depicted below.
-
-    1. `IDPEmail` Custom Attribute
-    
-        ![image](../../img/integration/idpemail.png)
-    
-    2. `ImmutableID` Custom Attribute
-    
-        ![image](../../img/integration/immutableid.png)
-    
-    3. `objectguid` Custom Attribute
-    
-        ![image](../../img/integration/objectguid.png)
-
-
-2. Edit the `attribute-resolver.xml.vm` file under `/opt/gluu/jetty/identity/conf/shibboleth3/idp` folder.
-
-    - Add `$attribute.name.equals('ImmutableID')` with the existing transientID and PersistentID to look like the snippet below
+ - Stop cache refresh if you are running Cache Refresh to pull user's information from backend AD. 
+ - Create custom attribute named 'objectguid' according to Gluu doc. 
+   - Name: objectguid
+   - SAML1 URI: urn:gluu:dir:attribute-def:objectguid
+   - SAML2 URI: urn:oid:1.3.6.1.4.1.48710.1.3.1001
+   - Display Name: objectguid
+   - Type: Text
+   - Edit type: admin
+   - View type: admin, user
+   - Usage Type: Not defined
+   - Multivalued: False
+   - oxAuth claim name: blank
+   - SCIM Attribute: False
+   - Description: anything you prefer
+   - Status: Active
+  - Add mapping in 'ox-ldap.properties' file 
+   - Location: /etc/gluu/conf
+   - binaryAttributes=objectGUID, objectguid [ first 'objectGUID' is Active directory one, second one is newly created custom attribute inside Gluu Server ] 
+   - Save configuration
+   - Restart Gluu-Server container
+ - Configure Cache Refresh so this new custom attribute can pull value from 'objectGUID' of active directory
+ - Compare values
  
-            ##if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('persistentId') or$attribute.name.equals('ImmutableID') ) )
-            
-    - Add `IDPEmail` attribute definition
-    
-            <resolver:AttributeDefinition xsi:type="ad:Simple" id="UserId" sourceAttributeID="IDPEmail">
-                                <resolver:Dependency ref="siteLDAP" />
-                                <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="IDPEmail" friendlyName="UserId"/>
-            </resolver:AttributeDefinition> 
-        
-    - Add `ImmutableID` attribute definition
-        
-            <resolver:AttributeDefinition id="ImmutableID" xsi:type="Simple"
-                                      xmlns="urn:mace:shibboleth:2.0:resolver:ad"
-                                      sourceAttributeID="objectguid">
-                <resolver:Dependency ref="siteLDAP"/>
-                <resolver:AttributeEncoder xsi:type="SAML2StringNameID"
-                                        xmlns="urn:mace:shibboleth:2.0:attribute:encoder"
-                                        nameFormat="urn:oasis:names:tc:SAML:2.0:nameid-format:persistent" />
-            </resolver:AttributeDefinition>  
+
+
 
 ### IDP configuration
 The cache refresh mechanism is used to populate the Gluu Server LDAP with data from a backend LDAP/AD. The `objectGUID` 
