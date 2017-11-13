@@ -304,3 +304,20 @@ The UMA 2 policy algorithm has two rules that must be followed:
 2. Multiple policies can protect a single scope. In such a case, all the policies must retun `true` to authorize access or else aceess will be denied.
 
 ![policy-algorithm](../img/uma/policy-algorithm.jpg) 
+
+### UMA 2 Client Authentication
+
+UMA 2 is regular OAuth 2 Token Endpoint. Therefore it support all client authentications then in regular OAuth2/OpenID Connect.
+
+However there is one special client authentication method which is using `access_token` obtained by user to authenticated the client. Means client that was used during user authentication is used for client authentication. Of course `access_token` must be valid.
+
+Non-normative example
+```json
+POST /token HTTP/1.1
+Host: server.example.com
+Content-Type: application/x-www-form-urlencoded
+Authorization: AccessToken czZCaGRSa3F0MzpnWDFmQmF0M2JW
+
+...
+
+```
