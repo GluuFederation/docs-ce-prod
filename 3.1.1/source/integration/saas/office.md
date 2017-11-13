@@ -94,6 +94,8 @@ IDPEmail is pulling email_address from backend Active directory. Standard custom
 
  - SAML1 URI: urn:gluu:dir:attribute-def:IDPEmail
  - SAML2 URI: urn:oid:1.3.6.1.4.1.48710.1.3.1003
+
+Also we need to apply a little snippet for 'IDPEmail' in 'attribute-resolver.xml' velocity template, which is stated below. 
  
 #### 'ImmutableID' nameID configuration
 
