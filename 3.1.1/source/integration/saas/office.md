@@ -39,10 +39,11 @@ PassiveLogonUri                        : https://<hostname>/idp/profile/SAML2/PO
 DefaultInteractiveAuthenticationMethod :
 FederationBrandName                    : Gluu Inc.
 IssuerUri                              : https://<hostname>/idp/shibboleth
-LogOffUri                              : https://<hostname>/identity/logout
+LogOffUri                              : https://<hostname>/idp/logout.jsp
 MetadataExchangeUri                    : https://<hostname>/idp/shibboleth
 NextSigningCertificate                 :
 OpenIdConnectDiscoveryEndpoint         :
+SigningCertificate                     : The SAML cert ( shibIDP.crt ) from Gluu Server
 
 ```
 
