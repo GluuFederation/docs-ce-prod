@@ -273,7 +273,7 @@ This is a 'persistent' type nameID; base attribute 'objectguid'
  - Entity Type: Single SP
  - Metadata Location: File
  - Sp metadata file: 
-   - Save this metadata in a file named 'office365.xml' [ make sure it's unix compatible ] 
+   - Save this metadata in a file named 'office365.xml' [ make sure it's unix compatible ] and upload it durning Trust Relationship creation. 
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" entityID="urn:federation:MicrosoftOnline">
