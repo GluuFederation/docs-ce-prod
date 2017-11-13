@@ -45,10 +45,11 @@ Please follow these steps shown below to update the Apache SSL cert:
 - Rename them to `httpd.key` and `httpd.crt` respectively
 - Import 'httpd.der' into the java keystore
 / Convertion to DER, command:<br/> `openssl x509 -outform der -in httpd.crt -out httpd.der`
-    - Delete the existing certificate to avoid replication and issues after importing the certificates
-       `keytool -delete -alias <hostname_of_your_Gluu_Server>_httpd -keystore cacerts`
+    - Delete the existing certificate to avoid ambiguity due to presense of 2 different 
+    certificates for the same entity after importing the new one:
+       `/opt/jre/jre/bin/keytool -delete -alias <hostname_of_your_Gluu_Server>_httpd -keystore /opt/jre/jre/lib/security/cacerts -storepass changeit`
     - Import certificate in to Java Keystore(cacerts):
-    <br/> `keytool -importcert -file httpd.der -keystore cacerts -alias <hostname_of_your_Gluu_Server>_httpd`
+    <br/> `/opt/jre/jre/bin/keytool -importcert -file httpd.der -keystore /opt/jre/jre/lib/security/cacerts -alias <hostname_of_your_Gluu_Server>_httpd -storepass changeit`
 - Restart LDAP server, apache2/httpd and Identity Services.
 ```
 service solserver stop
