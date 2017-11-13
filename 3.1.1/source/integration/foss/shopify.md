@@ -1,3 +1,0 @@
-#Shopify
-
-Page under construction
