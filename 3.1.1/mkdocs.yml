@@ -38,6 +38,7 @@ pages:
         - User Authentication:
             - 'Introduction': 'authn-guide/intro.md'
             - 'Basic Authentication': 'authn-guide/basic.md'
+            - 'Inbound SAML': 'authn-guide/inbound-saml-asimba.md'
             - 'Social Login using Passport.js': 'authn-guide/passport.md'
             - 'FIDO U2F': 'authn-guide/U2F.md'
             - 'Super Gluu': 'authn-guide/supergluu.md'
