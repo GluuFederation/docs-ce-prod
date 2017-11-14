@@ -8,7 +8,7 @@ The Gluu Server uses the [SAML IDP MultiAuthn interception script](https://githu
 Post-authentication, the script uses just-in-time provisioning to add users to the Gluu LDAP server if a local account does not already exist. In this way, the Gluu SAML and OpenID Connect providers can gather claims and maintain SSO as normal.
 
 !!! Note
-    Previous versions of the Gluu Server used Asimba for inbound SAML. Documentation for Asimba can be found [here](./inbound-saml-asimba.md). For all new inbound SAML requirements, we now recommend using Passport.js and the following docs.  
+    Previous versions of the Gluu Server used Asimba for inbound SAML. Documentation for Asimba can be found [here](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.1/3.1.1/source/authn-guide/inbound-saml-asimba.md). For all new inbound SAML requirements, we now recommend using Passport.js and the following docs.  
 
 ### About Passport  
 Passport is an MIT licensed Express-based web application. We've modified it to call oxTrust APIs for its non-static configuration. Because its configuration is stored centrally in LDAP, you can scale Passport even in clustered topologies.
