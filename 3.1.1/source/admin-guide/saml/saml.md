@@ -21,14 +21,12 @@ With Shibboleth included in your Gluu Server deployment, you can now refer to th
 - [Shibboleth SAML SP](../../integration/sswebapps/saml-sp.md) 
 
 ### Inbound SAML     
-Inbound SAML enables an organization to offer SAML authentication as a front door to their digital service. Inbound SAML is a common requirement for SaaS providers that need to support the authentication requirements of large enterprise customers. 
-
-In many ways, Inbound SAML was the precursor to what is now commonly referred to as "social login". A typical user flow is: 
+Inbound SAML enables you to offer SAML authentication as a front door to your digital service. In many ways, Inbound SAML is a precursor to what is now commonly referred to as "social login". A typical user flow is: 
 
 1. User tries to access a protected resource at your application;    
-2. User is redirected to a discovery page (presented by your IDP) that presents one or more external IDP's where the user may have an existing identity (their "home IDP");   
-3. User selects their home IDP and is sent home for authentication;   
-4. Upon successful authentication at their home IDP, user is redirected back to your service with access to the protected resource. 
+2. User is redirected to a "discovery" page (presented by your IDP) that displays one or more external IDPs where the user may have an existing identity (their "home IDP");   
+3. User selects their home IDP and is sent "home" for authentication;   
+4. Upon successful authentication at their home IDP, the user is redirected back to your service with access to the protected resource. 
 
 The Gluu Server supports two software options for Inbound SAML: 
 
