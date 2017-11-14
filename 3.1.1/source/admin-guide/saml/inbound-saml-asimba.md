@@ -29,11 +29,11 @@ This doc is divided into three main parts:
   - Log into oxTrust
   - `Configuration` > `Manage Custom Script`
   - Script name 'asimba'
-    - asimba_saml_certificate_file: /etc/certs/saml.pem [ Make sure you copy ingredient of `asimba.crt` into `saml.pem` with "BEGIN CERTIFICATE" and "END CERTIFICATE" header and footer] 
-    - asimba_entity_id: https://[proxy3_hostname]/saml
+    - asimba_saml_certificate_file: `/etc/certs/saml.pem` (make sure you copy the contents of `asimba.crt` into `saml.pem` with "BEGIN CERTIFICATE" and "END CERTIFICATE" in the header and footer) 
+    - asimba_entity_id: `https://[proxy3_hostname]/saml`
     - saml_deployment_type: enroll
     - saml_use_authn_context: false
-    - saml_idp_sso_target_url: https://[proxy3_hostname]/asimba/profiles/saml2/sso/web
+    - saml_idp_sso_target_url: `https://[proxy3_hostname]/asimba/profiles/saml2/sso/web`
     - user_object_classes: eduPerson, gluuCustomPerson
     - saml_idp_attributes_mapping: {"uid": ["uid"], "mail": ["mail"], "issuerIDP": ["issuerIDP" ] }
     - enforce_uniqueness_attr_list: issuerIDP, uid
@@ -44,7 +44,7 @@ This doc is divided into three main parts:
   - Create a SAML metadata for native SP requestor of asimba. Grab the copy of from below and replace [proxy3_hostname] with your own server's hostname. Make sure to unix format it. 
   - `SAML` > `SP Requestors`
   - 'Add SP Requestor'
-    - ID: https://[proxy3_hostname]/saml
+    - ID: `https://[proxy3_hostname]/saml`
     - Friendly Name: oxAuth SAML
     - Metadata URL: Not required
     - Metadata Timeout: -1
@@ -58,12 +58,12 @@ This doc is divided into three main parts:
 
  - `SAML` > `IDPs`
  - 'Add IDP' 
-   - ID: EntityID of remote IDP. i.e. https://[idp_hostname]/idp/shibboleth
+   - ID: EntityID of remote IDP. i.e. `https://[idp_hostname]/idp/shibboleth`
    - Friendly Name: Remote AuthN Server 1
    - Metadata URL: Not required
    - Metadata Timeout: -1
    - Metadata File: upload metadata
-   - Trust Certificate File: Grab SAML metadata from remote IDP and upload that. This certificate must be no password protected and x509 format crt. If remote IDP is another Gluu Server then grab 'shibIDP.crt' from /etc/certs/ of that server.
+   - Trust Certificate File: Grab SAML metadata from remote IDP and upload that. This certificate must be no password protected and x509 format crt. If remote IDP is another Gluu Server then grab `shibIDP.crt` from `/etc/certs/` of that server.
    - NameIDFormat: urn:oasis:names:tc:SAML:2.0:nameid-format:transient [ If your remote AuthN server is also a Gluu Server ]. This NameID might vary according to various types of AuthN server. 
    - Enabled: Yes
    - Send Scoping in AuthNRequest: Yes
@@ -108,7 +108,7 @@ You need to create a custom attribute named 'issuerIDP' in this stage. Here is h
 
 ### Create Trust Relationship
 
- - Download you Asimba server's metadata with https://[proxy3_hostname]/asimba/profiles/saml2 and save it as 'gluu_asimba_server_metadata.xml'
+ - Download you Asimba server's metadata with `https://[proxy3_hostname]/asimba/profiles/saml2` and save it as `gluu_asimba_server_metadata.xml`
  - Log into Authentication server oxTrust ( or, management console GUI )
  - Create a new trust relationship with this metadata which you just downloaded.
  - Relying Party Configuration: 
@@ -132,7 +132,7 @@ You need to create a custom attribute named 'issuerIDP' in this stage. Here is h
 
 #### New user registration    
 
- - Hit 'https://[idp_hostname]/identity/register
+ - Hit `https://[idp_hostname]/identity/register`
  - Fill up the form and new user will be registered
  - We will use this user to test our SSO
 
@@ -144,9 +144,9 @@ You need to create a custom attribute named 'issuerIDP' in this stage. Here is h
 
 ### shibboleth2.xml configuration
 
- - Download Shibboleth metadata of your Gluu-Asimba server with 'https://[prox3_hostname]/idp/shibboleth'
- - Put it inside /etc/shibboleth/ location
- - Modify 'shibboleth2.xml' file like below: 
+ - Download Shibboleth metadata of your Gluu-Asimba server with `https://[prox3_hostname]/idp/shibboleth`
+ - Put it inside `/etc/shibboleth/` location
+ - Modify `shibboleth2.xml` file like below: 
    - SSO entityID: 
 ```
 <SSO entityID="https://[proxy3_hostname]/idp/shibboleth"
@@ -165,7 +165,7 @@ You need to create a custom attribute named 'issuerIDP' in this stage. Here is h
 We need to create a trust relationship in Gluu-Asimba server with Shibboleth SP metadata.
 
  - Log into oxTrust
- - Grab Shibboleth SP metadata. You can get that with https://[sp_hostname]/Shibboleth.sso/Metadata
+ - Grab the Shibboleth SP metadata at `https://[sp_hostname]/Shibboleth.sso/Metadata`
 
 
 ## Test SSO
