@@ -18,13 +18,11 @@ Metadata is an XML file which has configuration data used to establish trust bet
 The Gluu Server's SAML metadata may be needed from time to time. It can be found at `https://hostname/idp/shibboleth`.
   
 ### Attribute Release      
-Each SP may require one or more user attributes in order to grant a person access to a protected resource. Required attributes vary depending on the application, and should be explicitly listed in the target application's documentation. The Gluu Server ships with certain preconfigured attributes and also supports the creation of custom attributes. Once the attributes are available in the Gluu Server, the administrator can use the oxTrust interface to release the necessary attributes to the SP (as described [below](#create-a-trust-relationship-in-the-gluu-server). 
-
-For a broader discussion of attributes, including how to create custom attributes, check the [attributes section](./attribute.md) of the documentation.
+Each SP may require one or more user attributes from the IDP in order to grant a person access to a protected resource. Required attributes vary depending on the application, and should be explicitly specified in the target application's documentation. The administrator can use the oxTrust interface to release the necessary attributes to the SP (as described [below](#create-a-trust-relationship-in-the-gluu-server). 
 
 !!! Note    
-    Refer to the attributes section of the documentation to learn how to [configure the NameID attribute](./attribute/#defining-nameid) for your SAML SSO service. 
-
+    For a broader discussion of attributes, including how to create custom attributes and how to [configure the NameID attribute](./attribute/#defining-nameid) for your SAML service, refer to the [attributes documentation](./attribute.md).
+    
 ## Create a Trust Relationship
 Follow these instructions to create a SAML TR in your Gluu Server: 
 
@@ -35,18 +33,18 @@ Follow these instructions to create a SAML TR in your Gluu Server:
 
 ![newTR](../img/saml/samlfederationTR.png)
 
-* _Display Name_: Name of the Trust Relationship (it should be unique for every trust relationship)     
-* _Description_: Little description. Purpose and SSO link can be added here.    
+* _Display Name_: Name of the Trust Relationship (it should be unique for every TR)     
+* _Description_: Purpose of the TR and an SSO link can be added here.    
 * _Metadata Type_: There are four available options to choose from. The correct Type depends on how the SP is delivering Metadata to your IDP.      
     * _None_
-    * _File_: Choose File if the SP has provided an uploadable metadata document in XML format.
-    * _URI_: Chose URI if the SP metadata is hosted on a URI that is accessible from the Internet.
-    * _Generate_: Choose Generate if the SP is an "inhouse application" or the “Shibboleth SP” is going to be installed in the target application (SP). This option will generate a how-to guide for installing the Shibboleth SP. If you plan on using the Generate method, please note the following:          
+    * _File_: Choose `File` if the SP has provided an uploadable metadata document in XML format.
+    * _URI_: Chose `URI` if the SP metadata is hosted on a URI that is accessible from the Internet.
+    * _Generate_: Choose `Generate` if the SP is an "in-house application" or the “Shibboleth SP” is going to be installed in the target application (SP). This option will generate a how-to guide for installing the Shibboleth SP. If you plan on using the Generate method, please note the following:          
             * _URL_ : This is the hostname of the SP.     
             * _Public certificate_ : You must provide the certificate, which is a Base64 encoded ASCII file, and contain "-----BEGIN CERTIFICATE-----" and "-----END CERTIFICATE-----". This certificate **can not** be password protected.               
             * After creating the Trust Relationship, download the generated configuration files from the `Download Shibboleth2 configuration files` link and place these configuration files inside your SP configuration.         
-    * _Federation_: Choose this option if the target application (SP) is affiliated with a federation service (e.g. InCommon, NJEdge etc.). Once you select “Federation” as the Metadata Type, another drop down menu called “Select Federation” will appear. From this drop menu you can select the appropriate federation. After selecting the “Federation Name”, a new link called “Click to select
-entity id” will appear. Use this link to find and select the SP entityIDs that you wish to create SSO with. Learn how to establish trust with a federation [below](#federation-configuration).     
+    * _Federation_: Choose this option if the target application (SP) is affiliated with a federation service (e.g. InCommon, NJEdge etc.). Once you select `Federation` as the Metadata Type, another drop down menu called `Select Federation` will appear. From this drop menu you can select the appropriate federation. After selecting the `Federation Name`, a new link called `Click to select
+entity id` will appear. Use this link to find and select the SP entityIDs that you wish to create SSO with. Learn more about working with a federation [below](#federation-configuration).     
 
 * _Released_: The SPs required attributes must be added to this panel. The required attributes can be selected from the menu on the left with the heading “Release Additional Attributes”.     
 * _Entity Type_: You have two options to choose for entity type.
@@ -58,7 +56,7 @@ The Trust Relationship(TR) is added by clicking the `Add` button located in the 
 ## Relying Party Configuration     
 This feature allows to further customize how different IDPs profiles will respond to requests received from this SP, including encryption and digital signature options. The underlying IDPs functionality is described in [the Shibboleth Wiki](https://wiki.shibboleth.net/confluence/display/IDP30/RelyingPartyConfiguration). 
 
-oxTrust allows to tweak only limited subset of profiles mentioned there, out of which the [SAML2SSO profile](https://wiki.shibboleth.net/confluence/display/IDP30/SAML2SSOConfiguration) is of most interest as it's the most common browser SSO profile used in today's SAML world. 
+oxTrust allows you to tweak a limited subset of profiles mentioned in the Shibboleth wiki (linked above). For our purposes, the [SAML2SSO profile](https://wiki.shibboleth.net/confluence/display/IDP30/SAML2SSOConfiguration) is the most common browser SSO profile used in today's SAML world. 
 
 The "Configure Relying Party" checkbox is accessible on the TR Creation page and must be enabled with a specific profile(s) selected as active for this TR to generate a valid configuration. In most cases, just adding SAML2SSO profile with default settings to the list to the right will do.
 
