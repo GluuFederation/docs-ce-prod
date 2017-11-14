@@ -195,7 +195,8 @@ var SamlStrategy = require('./saml');
 Put saml file name `saml.js` from gluu-passport [repo](https://github.com/GluuFederation/gluu-passport/blob/version_3.1.1/server/auth/saml.js) on path `/opt/gluu/node/passport/server/auth/`
 
 
-**Important fix**
+**Important fix**      
+
 Next we need to customize `passportpostlogin.xml` to use this project with Gluu Server 3.1.1. This will be added to the defaults in next version of Gluu 3.1.2.
 
 Copy the contents of [passportpostlogin.xhtml](https://github.com/GluuFederation/oxAuth/blob/evolveip/Server/src/main/webapp/auth/passport/passportpostlogin.xhtml) and paste to `opt/gluu/jetty/oxauth/custom/pages/auth/passport` (you need to create missing directories (`/auth/passport`))
