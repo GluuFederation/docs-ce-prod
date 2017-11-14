@@ -1,7 +1,9 @@
-# OpenID Connect 
+# OpenID Connect Provider (OP)
+The Gluu Server's oxAuth software passes all [OpenID Provider conformance profiles](http://openid.net/certification/) and supports the following OpenID Connect specifications: Core, Dynamic Client Registration, Discovery, Form Post Response Mode, Session Management, and the draft for Front Channel Logout.
+
+During deployment of the Gluu Server, oxAuth is a required component.  
 
 ## Protocol Overview
-
 OpenID Connect is an identity layer that profiles and extends OAuth 2.0. 
 It defines a sign-in flow that enables an application (client) to 
 authenticate a person, and to obtain authorization to obtain 
@@ -22,9 +24,6 @@ client.
 
 !!! Note
     To learn more about the differences between OAuth, SAML and OpenID Connect, read [this blog](http://gluu.co/oauth-saml-openid).
-
-## Gluu Server OpenID Connect Provider (OP)
-The Gluu Server passes all [OpenID Provider conformance profiles](http://openid.net/certification/) and supports the following OpenID Connect specifications: Core, Dynamic Client Registration, Discovery, Form Post Response Mode, Session Management, and the draft for Front Channel Logout.
 
 ### OpenID Connect APIs
 
