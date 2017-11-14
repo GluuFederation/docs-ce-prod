@@ -221,6 +221,7 @@ To disable OpenID Connect
 2. Scroll to the end of the page and check the `Disabled` checkbox
 
 ![disable-openid](../img/openid/openidconnect-disable.png)
+
 ## OpenID Connect Relying Party (RP)
 
 In order to leverage your Gluu Server OpenID Provider (OP) for central authentication, web and mobile apps will need to support OpenID Connect. In OpenID Connect jargon, your app will act as an OpenID Connect Relying Party (RP) or "client". 
@@ -229,12 +230,9 @@ There are many ways to go about supporting OpenID Connect in your apps. When pos
 
 Review the [SSO integration guide](../integration/index.md) to determine which software and strategy will be best for your target application(s). 
 
-## oxAuth RP
+### oxAuth RP
 
-The Gluu Server ships with an optional OpenID Connect RP web application called oxauth-rp which is handy for testing.
-
-During Gluu Server setup you'll be asked if you want to install the oxauth-rp (it should be installed on 
-a development environment). If you decide to install it, oxAuth RP will be deployed on `https://<hostname>/oxauth-rp`. 
+The Gluu Server ships with an optional OpenID Connect RP web application called oxauth-rp which is handy for testing. During Gluu Server setup you'll be asked if you want to install the oxauth-rp (it should be installed on a development environment). If you decide to install it, oxAuth RP will be deployed on `https://<hostname>/oxauth-rp`. 
 
 Using the oxAuth RP you can exercise all of the OpenID Connect API's, including discovery, client registration, authorization, token, 
 userinfo, and end_session. 
