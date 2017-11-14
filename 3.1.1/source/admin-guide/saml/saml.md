@@ -24,7 +24,7 @@ With Shibboleth included in your Gluu Server deployment, you can now refer to th
 Inbound SAML enables you to offer SAML authentication as a front door to your digital service. In many ways, Inbound SAML is a precursor to what is now commonly referred to as "social login". A typical user flow is: 
 
 1. User tries to access a protected resource at your application;    
-2. User is redirected to a "discovery" page (presented by your IDP) that displays one or more external IDPs where the user may have an existing identity (their "home IDP");   
+2. User is redirected to a "discovery" page (presented by your IDP) that displays one or more external IDPs where the user may have an existing account (their "home IDP");   
 3. User selects their home IDP and is sent "home" for authentication;   
 4. Upon successful authentication at their home IDP, the user is redirected back to your service with access to the protected resource. 
 
