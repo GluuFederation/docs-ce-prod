@@ -76,6 +76,8 @@ If the SP is part of an identity federation such as [InCommon](https://www.incom
 
 The example below shows how an administrator would add a TR for the InCommon Federation.
 
+![adding_fed_tr.png](../img/saml/adding_fed_tr.png)
+
 Once a TR has been established with the federation, the Gluu Server administrator can easily create TRs with any SP included in the federation by selecting the federation from the `Federation Name` drop down menu and selecting the entity-id for the SP. 
 
 In the example below we are creating a TR for the 'Internet2 Wiki', which is an InCommon Federation affiliated SP (meaning, the SPs entityID is available in InCommon metadata). 
