@@ -47,7 +47,7 @@ If you have an existing identity management platform, or have written your own i
     If you are looking for an open source IDM and governance platform, we recommend checking out [Evolveum Midpoint](https://evolveum.com/midpoint/). 
 
 ##  Single Sign-On (SSO)
-The Gluu Server acts as an identity provider (IDP) in single sign-on (SSO) workflows. Users from web and mobile applications are redirected to Gluu for "sign-on", and when successful, are redirected back to applications with claims (or attributes) about themselves. 
+The Gluu Server acts as an identity provider (IDP) in single sign-on (SSO) workflows. Users from web and mobile applications are redirected to Gluu for "sign-on", and when successful, are redirected back to applications with an active session and claims (or attributes) about themselves. 
 
 Learn how to configure the Gluu Server's [OpenID Connect Provider (OP)](./admin-guide/openid-connect.md) and [SAML Identity Provider (IDP)](./admin-guide/saml.md) in the admin guide.
 
