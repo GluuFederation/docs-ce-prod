@@ -1,7 +1,8 @@
 # OpenID Connect Provider (OP)
 The Gluu Server's oxAuth software passes all [OpenID Provider conformance profiles](http://openid.net/certification/) and supports the following OpenID Connect specifications: Core, Dynamic Client Registration, Discovery, Form Post Response Mode, Session Management, and the draft for Front Channel Logout.
 
-During deployment of the Gluu Server, oxAuth is a required component.  
+!!! Note
+    oxAuth is a required component in all Gluu Server deployments.   
 
 ## Protocol Overview
 OpenID Connect is an identity layer that profiles and extends OAuth 2.0. 
@@ -31,26 +32,30 @@ Review the Gluu Server's OpenID Connect API endpoints in the [API Guide](../api-
 
 ## OpenID Connect Flows
 
-The Gluu Server supports all flows defined in the [Core spec](http://openid.net/specs/openid-connect-core-1_0.html), including
-implicit, code, and hybrid flows. The implicit flow, where the token and
-id_token are returned from the authorization endpoint, should only 
+The Gluu Server supports all flows defined in the [OpenID Connect Core spec](http://openid.net/specs/openid-connect-core-1_0.html), including implicit, authorization code, and hybrid flows. 
+
+### Implicit Flow
+The implicit flow, where the token and id_token are returned from the authorization endpoint, should only 
 be used for applications that run in the browser, like a Javascript 
 client. 
 
+### Code / Hybrid Flow
 The code flow or hybrid flow should be used for server side
 applications, where code on the web server can more securely call
-the token endpoint to obtain a token. The most useful response type 
-for the hybrid flow is "code id_token". Using this flow, you can verify
-the integrity of the code by inspecting the `c_hash` claim in the 
-id_token.
+the token endpoint to obtain a token. 
+
+The most useful response type for the hybrid flow is `code id_token`. Using this flow, you can verify
+the integrity of the code by inspecting the `c_hash` claim in the `id_token`.
 
 If you are using the code flow, the response type should only be code.
-There is no point in using response type "code token id_token"--the extra
+There is no point in using response type `code token id_token`--the extra
 tokens returned by the authorization endpoint will only create additional
-calls to the LDAP server and slow you down. If you are going to trade
-the code at the token endpoint for a new token and id_token, you don't
+calls to the LDAP server and slow you down. 
+
+If you are going to trade the code at the token endpoint for a new token and id_token, you don't
 need them from the authorization endpoint too.
 
+### Flow Comparison Chart
 |Step   |  Authorization code flow 	| Implicit flow	 | Hybrid flow |
 |----------|----------|-------------------------------|----------------|
 |1|User accesses an application.|User accesses an application.|User accesses an application.|
@@ -61,11 +66,9 @@ need them from the authorization endpoint too.
 |6|The application uses the ID Token to authorize the user. At this point the application/RP can access the `UserInfo endpoint` for claims.||The application uses the ID Token to authorize the user. At this point the application/RP can access the `UserInfo endpoint` for claims.|
  
 
-
 ## Configuration / Discovery 
 
-A good place to start when you're learning about OpenID Connect is
-the configuration endpoint, which is located in the Gluu Server
+A good place to start when you're learning about OpenID Connect is the configuration endpoint, which is located in the Gluu Server
 at the following URL: `https://{hostname}/.well-known/openid-configuration`.
 
 The Gluu Server also supports [WebFinger](http://en.wikipedia.org/wiki/WebFinger), as specified in the [OpenID Connect discovery specification](http://openid.net/specs/openid-connect-discovery-1_0-21.html). 
