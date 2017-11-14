@@ -38,7 +38,7 @@ pages:
         - User Authentication:
             - 'Introduction': 'authn-guide/intro.md'
             - 'Basic Authentication': 'authn-guide/basic.md'
-            - 'Social Login': 'authn-guide/passport.md'
+            - 'Social Login using Passport.js': 'authn-guide/passport.md'
             - 'FIDO U2F': 'authn-guide/U2F.md'
             - 'Super Gluu': 'authn-guide/supergluu.md'
             - 'Duo Security': 'authn-guide/duo.md'
