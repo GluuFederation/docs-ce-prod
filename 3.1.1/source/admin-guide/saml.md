@@ -59,7 +59,7 @@ A description of each field follows:
     - *Single SP*: 
     - *Federation/Aggregate* 
     
-The Trust Relationship(TR) can be added by clicking the `Add` button located in the lower left side of the page.     
+The Trust Relationship (TR) can be added by clicking the `Add` button located in the lower left side of the page.     
 
 ## Relying Party Configuration     
 Through the Relying Party configuration you can customize how different IDP profiles will respond to requests received from the SP, including encryption and digital signature options. The underlying IDPs functionality is described in [the Shibboleth wiki](https://wiki.shibboleth.net/confluence/display/IDP30/RelyingPartyConfiguration). 
