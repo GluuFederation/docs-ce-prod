@@ -221,92 +221,11 @@ To disable OpenID Connect
 ![disable-openid](../img/openid/openidconnect-disable.png)
 ## OpenID Connect Relying Party (RP)
 
-In order to leverage your Gluu Server OpenID Provider (OP) for central authentication, your web and mobile apps will need to support OpenID Connect. In OpenID Connect jargon, your app will need to act as an OpenID Connect Relying Party (RP) or "client". 
+In order to leverage your Gluu Server OpenID Provider (OP) for central authentication, web and mobile apps will need to support OpenID Connect. In OpenID Connect jargon, your app will act as an OpenID Connect Relying Party (RP) or "client". 
 
-There are many ways to go about supporting OpenID Connect in your apps, however we do not recommend writing your own OpenID Connect client. Rather, it is best to use existing client software implementations that have been verified to implement OpenID Connect properly (and securely!). A good OpenID Connect client will do much of the heavy lifting for you. 
+There are many ways to go about supporting OpenID Connect in your apps. When possible, it is best to use existing client software implementations that have been verified to implement OpenID Connect properly (and securely!). A good OpenID Connect client will do much of the heavy lifting for you. 
 
-!!! Note
-    Although you can use generic OAuth client libraries, you would have to write some extra code to take advantage of the security features baked into OpenID Connect. For example, there is no `id_token` in OAuth, so you won't find any code for `id_token` validation in an OAuth library. 
-
-### Single Page Applications 
-To support OpenID Connect in a single page application (SPA), we recommend using Identity Model's [OpenID JS Client](https://github.com/IdentityModel/oidc-client-js).
-
-You'll have to add the client manually to the Gluu Server via the GUI. 
-When completing the `add client` form, you can use the following 
-configuration:
-
-```
-Client Name: Implicit Test Client
-response_type: token id_token
-Application Type: Web
-Pre-Authorization: Enabled
-Subject Type: public
-Scopes: openid, profile, email
-Response Types: token id_token
-Grant Types: implicit
-```
-
-Once you have registered the client in the Gluu Server, all you need to 
-do is update the `client_id`, `redirect_uri`, and `providerInfo` values 
-in the login page html. Assuming you've checked out the project into a 
-web accessible folder, then navigate to the page and test! 
-
-### Server-Side Web Applications
-Many applications are "server-side", meaning the web page displays content but most of the dynamic business logic resides on the web server. Two design patterns have emerged for securing server-side web applications: (1) use of web server filters and reverse proxies, and (2) leveraging OAuth2 directly in your application. Which approach to use depends on the trade-off between easier devops (option 1), and how deeply you want to integrate centralized security policies into your application (option 2).
-
-#### Add OpenID Connect in the Application
-Calling the OpenID Connect API’s directly will enable “smarter” applications. For example, transaction level security can be more easily implemented by calling the APIs directly. This can have a positive impact on usability. Giving developers more ability to leverage centralized policies may also increase re-use of policies, and ultimately result in better security. 
-
-The OpenID Foundation maintains a list of client libraries on [their website](http://openid.net/developers/libraries). However, our experience has been that the quality of these libraries varies widely. Some are not well documented, other are not updated frequently, and some do not implement essential security features available in OpenID Connect. In addition, if a wide array of client libraries are used it becomes difficult to monitor and patch security vulnerabilities. 
-
-For these reasons, we recommend using our OpenID Connect middleware software called [oxd](http://oxd.gluu.org) to secure and integrate web applications with your Gluu Server.  
-
-oxd is not open source software, but it is very reasonably priced. The code is available on [GitHub](https://github.com/gluufederation/oxd). There are libraries available for PHP, Java, Python, C#, Node, 
-Ruby, Perl and Go. There are also plugins available for several popular open source applications.
-
-[Watch the oxd demo](http://gluu.co/oxd-demo).
-
-[Get an oxd license for free](http://oxd.gluu.org)
-
-#### Use Web Server Plugins
-Web Server filters are a tried and true approach to achieving single sign-on with web applications. The web server filter enforces the presence of a token in a HTTP Request. If no token is present, the Web server may re-direct the person, or return a meaningful code or message to the application. The web server with the filter may directly serve the application, or may proxy to a backend service.
-
-One of the advantages of the web server filter approach is that the application developer does not need to know that much about the 
-security protocols--if the request makes it through to the application, the person has been authenticated and the request is authorized. Another advantage is that the application security is administered by the system administrators, not by developers. For example, it may be easier to manage and audit apache configuration than to read a bunch of code. 
-
-##### Apache Filter
-One of the best OpenID Connect relying party implementations was written 
-by Hans Zandbelt, called [mod_auth_openidc](https://github.com/pingidentity/mod_auth_openidc). It is an authentication and authorization module for the Apache 2.x HTTP server that authenticates users against an OpenID Connect Provider (OP). The software can be found on GitHub and is included in the package management system for several Linux distributions. There are binary packages available, and if you are good at compiling C code, you can build it yourself from the source. 
-
-##### Nginx Filter
-If you are an Nginx fan, there is a similar [Lua implementation](https://github.com/pingidentity/lua-resty-openidc) to make NGINX operate as an OpenID Connect RP or OAuth 2.0 RS. 
-
-### Mobile Applications
-
-One of the most compelling reasons to use Connect is to authenticate 
-people from a mobile application. The IETF draft 
-[OAuth 2.0 for Native Apps](https://tools.ietf.org/html/draft-ietf-oauth-native-apps-06) 
-provides an overview of an improved design for mobile security. In 
-addition to the security features of OpenID Connect, this draft suggests 
-the use of a PKCE and custom URI schemes (i.e. an application can 
-register a URI such as myapp:// instead of https://).
-
-In 2016, Google released and then donated code to the OpenID Foundation 
-called AppAuth for [Android](https://github.com/openid/AppAuth-android) 
-and [iOS](https://github.com/openid/AppAuth-iOS). The AppAuth projects 
-also include sample applications. Simulataneously, Google announced that 
-it was deprecating the use of WebViews--a strategy used by mobile app 
-developers which is vulnerable to malicious application code. Not only 
-does AppAuth provide secure authentication, it enables SSO across the 
-system browser and mobile applications. It accomplishes this by 
-leveraging new operating system features that enable the system browser 
-to be called by an application in an opaque view that does not enable 
-an app developer to steal a person's credentials, or other applications 
-to steal codes or tokens. Using this approach, mobile app developers can 
-use the authorization code or hybrid flow (as described earlier). 
-
-The Gluu Server is the only free open source OpenID Connect Provider 
-that currently supports AppAuth. 
+Review the [SSO integration guide](../integration/index.md) to determine which software and strategy will be best for your target application(s). 
 
 ## oxAuth RP
 
