@@ -75,7 +75,7 @@ Setting the checkbox will result in a link which, if clicked, will summon a list
 ![tr-relying-party](../img/saml/tr-relying-party.png)     
     
 ## Federation Configuration     
-If the SP is part of an identity federation such as [InCommon](https://www.incommon.org/participants/), the Gluu administrator has option to establish a Trust Relationship with it based on the Federation's metadata. To achieve this he must add TR for the federation in the Gluu Server first. This will enable the administrator to more easily create TRs with SPs in the federation. 
+If the SP is part of an identity federation such as [InCommon](https://www.incommon.org/participants/), the Gluu administrator has option to establish a Trust Relationship with it based on the federation's metadata. To achieve this he must add TR for the federation in the Gluu Server first. This will enable the administrator to more easily create TRs with SPs in the federation. 
 
 The example below shows how an administrator would add a TR for the InCommon Federation.
 
