@@ -41,15 +41,14 @@ A description of each field follows:
     - *File*: Choose `File` if the SP has provided an uploadable metadata document in XML format.
     - *URI*: Chose `URI` if the SP metadata is hosted on a URI that is accessible from the Internet.
     - *Generate*: Choose `Generate` if the SP is an "in-house application" or the “Shibboleth SP” is going to be installed in the target application (SP). This option will generate a how-to guide for installing the Shibboleth SP. 
+    - *Federation*: Choose this option if the target application (SP) is affiliated with a federation service (e.g. InCommon, NJEdge etc.). Learn more about working with a federation [below](#federation-configuration).   
     
 !!! Note 
-    If you plan on using the Generate method, please note the following:          
-            - URL is the hostname of the SP.     
-            - You must provide a **non password protected** Public Certificate, which is a Base64 encoded ASCII file, and contain "-----BEGIN CERTIFICATE-----" and "-----END CERTIFICATE-----".               
-            - After creating the Trust Relationship, download the generated configuration files from the `Download Shibboleth2 configuration files` link and place these configuration files inside your SP configuration.         
-    
-    - *Federation*: Choose this option if the target application (SP) is affiliated with a federation service (e.g. InCommon, NJEdge etc.). Learn more about working with a federation [below](#federation-configuration).     
-
+    If you plan on using the Generate method, please note the following:
+    - The URL is the hostname of the SP.           
+    - You must provide a **non password protected** public certificate, which is a Base64 encoded ASCII file, and contain "-----BEGIN CERTIFICATE-----" and "-----END CERTIFICATE-----".        
+    - After creating the Trust Relationship, download the generated configuration files from the `Download Shibboleth2 configuration files` link and place these configuration files inside your SP configuration.              
+      
 - **Released**: The SPs required attributes must be added to this panel. The required attributes can be selected from the menu on the left with the heading “Release Additional Attributes”.     
 
 - **Entity Type**: You have two options to choose for entity type.
