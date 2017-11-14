@@ -469,7 +469,7 @@ Create a project in your favorite IDE, and if using maven add the following snip
 
 ```
 <properties>
-	<scim.client.version>3.1.1</scim.client.version>
+	<scim.client.version>3.1.1.Final</scim.client.version>
 </properties>
 ...
 <repositories>
@@ -601,7 +601,7 @@ Create a project in your favorite IDE, and if using maven add the following snip
 
 ```
 <properties>
-	<scim.client.version>3.1.1</scim.client.version>
+	<scim.client.version>3.1.1.Final</scim.client.version>
 </properties>
 ...
 <repositories>
@@ -628,31 +628,33 @@ If you don't want to use Maven, you can download the jar file for SCIM-Client he
 Create a Java class using the code shown below. Replace with proper values between the angle brackets for private attributes:
 
 ```
+package gluu.scim2.client;
+
 import gluu.scim2.client.factory.ScimClientFactory;
-import org.gluu.oxtrust.model.scim2.*
+import org.gluu.oxtrust.model.scim2.*;
 import org.jboss.resteasy.client.core.BaseClientResponse;
+
 import java.util.List;
 
 public class TestScimClient {
 
     private String domain = "https://<host-name>/identity/restv1";
-    private String umaMetaDataUrl = "https://<host-name>/.well-known/uma-configuration";
     private String umaAatClientId = "<requesting-party-client-id>";
     private String umaAatClientJksPath = "<path-to-RP-jks>/scim-rp.jks";
     private String umaAatClientJksPassword = "<jks-password>";
     private String umaAatClientKeyId = "";
 
-    private static void simpleSearch() throws Exception {
+    private void simpleSearch() throws Exception {
 
-        ScimClient client = ScimClientFactory.getClient(domain, umaMetaDataUrl, umaAatClientId, umaAatClientJksPath, umaAatClientJksPassword, umaAatClientKeyId);
+        ScimClient client = ScimClientFactory.getClient(domain, null, umaAatClientId, umaAatClientJksPath, umaAatClientJksPassword, umaAatClientKeyId);
         String filter = "userName eq \"admin\"";
 
         BaseClientResponse<ListResponse> response = client.searchUsers(filter, 1, 1, "", "", null);
-        List<Resource> results=response.getEntity().getResources();
+        List<BaseScimResource> results=response.getEntity().getResources();
 
         System.out.println("Length of results list is: " + results.size());
-        User admin=(User) results.get(0);
-        System.out.println("First user in the list is: " + admin.getDisplayName());
+        User user=(User) results.get(0);
+        System.out.println("First user in the list is: " + user.getDisplayName());
 
     }
 }
