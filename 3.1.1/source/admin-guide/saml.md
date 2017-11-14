@@ -87,7 +87,7 @@ In the example below we are creating a TR for the 'Internet2 Wiki', which is an 
 
 ![Incommon_affiliated_SP_Trust.png](../img/saml/InCommon_affiliated_SP_Trust.png)
 
-## Securing Apps with SAML
+## SAML SP
 If your target application (SP) does not already support SAML, we recommend using the [Shibboleth SP](../../integration/sswebapps/saml-sp.md) web server filter to secure and integrate the application with your Gluu SAML IDP. 
 
 ## Inbound SAML
