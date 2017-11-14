@@ -200,7 +200,6 @@ Next we need to customize `passportpostlogin.xml` to use this project with Gluu 
 
 Copy the contents of [passportpostlogin.xhtml](https://github.com/GluuFederation/oxAuth/blob/evolveip/Server/src/main/webapp/auth/passport/passportpostlogin.xhtml) and paste to `opt/gluu/jetty/oxauth/custom/pages/auth/passport` (you need to create missing directories (`/auth/passport`))
 
-
 Now restart passport service. 
 
 ```sh 
@@ -209,7 +208,7 @@ service passport start
 ```
 
 
-## Onboarding new IDPs.
+## Onboarding new IDPs
 
 Add new IDP Configuration in `/etc/gluu/conf/passport-saml-config.json` file. A sample IDP Configuration is given below:
 
