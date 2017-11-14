@@ -4,7 +4,7 @@
 SAML is an XML-based, open-standard data format for exchanging authentication and authorization data between an identity provider 
 (like the Gluu Server) and a service provider (like Dropbox, O365, etc.). 
 
-The Gluu Server bundles software to achieve two SAML workflows:
+The Gluu Server bundles a few different software projects to achieve the two primary SAML workflows:
 
 ### Outbound SAML 
 Outbound SAML can also be called SP-initiated single sign-on (SSO) or traditional SAML. 
