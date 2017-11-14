@@ -54,10 +54,10 @@ Then follow the next steps:
 
 ![Enable passport](https://github.com/GluuFederation/gluu-passport/blob/master/img/passport/enable-passport.png)
     
-3. Update the existing script with the [IDP MultiAuthn interception script](https://github.com/GluuFederation/oxAuth/blob/evolveip/Server/integrations/idp/IdpMultiAuthnExternalAuthenticator.py);    
+3. Update the existing content in the Script field with the [IDP MultiAuthn interception script](https://github.com/GluuFederation/oxAuth/blob/evolveip/Server/integrations/idp/IdpMultiAuthnExternalAuthenticator.py);    
 
 !!! Note
-    Rather than replacing the existing script, you can also add a new strategy by scrolling to the bottom of the page. Follow [this link](https://github.com/GluuFederation/Inbound-SAML-Demo/wiki/Steps-for-creating--SAML_IDP_MultiAuthn_interception_script) for details.
+    Rather than replacing the existing script, you can also add a new strategy by scrolling to the bottom of the page.
 
 4. Click on `update` at the end of the page.
 
@@ -192,12 +192,12 @@ var SamlStrategy = require('./saml');
   SamlStrategy.setCredentials();
 ```
 
-Put saml file name `saml.js` from gluu-passport [repo](https://github.com/GluuFederation/gluu-passport/blob/version_3.1.1/server/auth/saml.js) on path `/opt/gluu/node/passport/server/auth/`
+Put the SAML file name, `saml.js`, from the gluu-passport [repo](https://github.com/GluuFederation/gluu-passport/blob/version_3.1.1/server/auth/saml.js) on path `/opt/gluu/node/passport/server/auth/` 
 
+Next we need to customize `passportpostlogin.xml` to use this project with the Gluu Server 3.1.1. 
 
-**Important fix**      
-
-Next we need to customize `passportpostlogin.xml` to use this project with Gluu Server 3.1.1. This will be added to the defaults in next version of Gluu 3.1.2.
+!!! Note
+    This will be added to the defaults in the next version, Gluu Server 3.1.2.
 
 Copy the contents of [passportpostlogin.xhtml](https://github.com/GluuFederation/oxAuth/blob/evolveip/Server/src/main/webapp/auth/passport/passportpostlogin.xhtml) and paste to `opt/gluu/jetty/oxauth/custom/pages/auth/passport` (you need to create missing directories (`/auth/passport`))
 
@@ -211,10 +211,10 @@ service passport start
 
 ## Onboarding new IDPs
 
-Add new IDP Configuration in `/etc/gluu/conf/passport-saml-config.json` file. A sample IDP Configuration is given below:
+Add new IDP configurations in the `/etc/gluu/conf/passport-saml-config.json` file. A sample IDP configuration is provided below:
 
 ```json
-{"idp1": {"entryPoint": "https://dev1.gluu.org/idp/profile/SAML2/POST/SSO",
+{"idp1": {"entryPoint": "https://idp.example.com/idp/profile/SAML2/POST/SSO",
                 "issuer": "urn:test:example",
                 "identifierFormat": "urn:oasis:names:tc:SAML:2.0:nameid-format:transient",
                 "authnRequestBinding": "HTTP-POST",
@@ -235,7 +235,7 @@ Add new IDP Configuration in `/etc/gluu/conf/passport-saml-config.json` file. A 
 }
 ```
 
-In above snippet replace `idp1` with the name of the IDP for which the IDP configuration is needed. It has the following keys:
+In the above snippet replace `https://idp.example.com` with the URL of your IDP. It has the following keys:
 		
 		- `entryPoint` is mandatory field which is identity provider entry point is the address to authenticate through SAML SSO. 
 		- `issuer` is mandatory field which is issuer string supply to identity provider.
