@@ -44,7 +44,7 @@ A description of each field follows:
     - *File*: Choose `File` if the SP has provided an uploadable metadata document in XML format.
     - *URI*: Chose `URI` if the SP metadata is hosted on a URI that is accessible from the Internet.
     - *Generate*: Choose `Generate` if the SP is an "in-house application" or the “Shibboleth SP” is going to be installed in the target application (SP). This option will generate a how-to guide for installing the Shibboleth SP. 
-    - *Federation*: Choose this option if the target application (SP) is affiliated with a federation service (e.g. InCommon, NJEdge etc.). Learn more about working with a federation [below](#federation-configuration).   
+    - *Federation*: Choose this option if the target application (SP) is affiliated with a federation service (e.g. InCommon, NJEdge etc.). Fedeartion's TR must be created first for it to appear in this list. Learn more about working with a federation [below](#federation-configuration).   
     
 !!! Note 
     If you plan on using the Generate method, please note the following:       
@@ -75,9 +75,11 @@ Setting the checkbox will result in a link which, if clicked, will summon a list
 ![tr-relying-party](../img/saml/tr-relying-party.png)     
     
 ## Federation Configuration     
-If the SP is part of an identity federation such as [InCommon](https://www.incommon.org/participants/), the Gluu administrator must add the federation as an SP in the Gluu Server. This will enable the administrator to more easily create TRs with SPs in the federation. 
+If the SP is part of an identity federation such as [InCommon](https://www.incommon.org/participants/), the Gluu administrator has option to establish a Trust Relationship with it based on the Federation's metadata. To achieve this he must add TR for the federation in the Gluu Server first. This will enable the administrator to more easily create TRs with SPs in the federation. 
 
 The example below shows how an administrator would add a TR for the InCommon Federation.
+
+![adding_fed_tr.png](../img/saml/adding_fed_tr.png)
 
 Once a TR has been established with the federation, the Gluu Server administrator can easily create TRs with any SP included in the federation by selecting the federation from the `Federation Name` drop down menu and selecting the entity-id for the SP. 
 
