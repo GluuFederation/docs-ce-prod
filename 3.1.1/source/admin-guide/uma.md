@@ -1,4 +1,4 @@
-# User Managed Access 2.0 ("UMA 2")
+# User Managed Access 2.0 ("UMA 2") Authorization Server (AS)
 
 ## Overview
 As a profile of OAuth 2.0 that is complementary to OpenID Connect, UMA 2 defines RESTful, 
