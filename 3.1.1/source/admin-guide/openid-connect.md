@@ -177,11 +177,11 @@ which is required by the OpenID Connect specification. Gluu server's
 administrator can always explicitly add additional scopes some client is allowed 
 to request by editing its registration metadata manually in web UI later on.
 
-## Multi-Factor Authentication for Clients
+## Authentication
 
-The OpenID Connect `acr_values` parameter is used to specify a specific workflow for authentication. The value of this parameter, or the `default_acr_values` client metadata value, corresponds to the "Name" of a custom authentication script in the Gluu Server.
+The OpenID Connect `acr_values` parameter is used to specify a workflow for authentication. The value of this parameter, or the `default_acr_values` client metadata value, corresponds to the "Name" of a custom authentication script in the Gluu Server.
 
-Out-of-the-box the Gluu Server includes custom authentiation scripts with the following `acr` values: 
+The default distribution of the Gluu Server includes custom authentication scripts with the following `acr` values: 
 
 |  ACR Value  	| Description			|
 |---------------|-------------------------------|
@@ -200,7 +200,9 @@ Out-of-the-box the Gluu Server includes custom authentiation scripts with the fo
 |  basic_lock	| [Enables lockout after a certain number of failures](../authn-guide/intro.md/#configuring-account-lockout) |
 |  basic	| [Sample script using local LDAP authentication](../ce/authn-guide/basic.md/) |
 
-To use any of these `acr_values`, login to your Gluu Server admin interface and navigate to Configuration > Manage Custom Scripts. Find the desired script, tick the `Enabled` check box, scroll to the bottom of the page and click `Update`. Learn more in the [authentication guide](../authn-guide/intro.md).  
+Your client can request any authentication mechanism that is enabled in your Gluu Server. To enable an authentication script, login to your Gluu Server admin interface, navigate to Configuration > Manage Custom Scripts, find the desired script, check the `Enabled` box, scroll to the bottom of the page and click `Update`. 
+
+Learn more in the [authentication guide](../authn-guide/intro.md).  
 
 ## Logout
 
