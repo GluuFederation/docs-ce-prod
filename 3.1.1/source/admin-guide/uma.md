@@ -321,3 +321,6 @@ The UMA 2 policy algorithm has two rules that must be followed:
 2. Multiple policies can protect a single scope. In such a case, all the policies must retun `true` to authorize access or else aceess will be denied.
 
 ![policy-algorithm](../img/uma/policy-algorithm.jpg) 
+
+## UMA RS
+If you need to secure apps with UMA 2 RS code so that the app(s) can defer policy decisions to your Gluu Server, you should use Gluu's [oxd client software](http://oxd.gluu.org).
