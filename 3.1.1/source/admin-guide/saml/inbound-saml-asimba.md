@@ -1,24 +1,30 @@
-## Inbound SAML using Asimba
-Inbound SAML allows users from external domains to login at their home identity provider to gain access to resources protected by the Gluu Server. The Gluu Server uses an open source product called [Asimba](http://www.asimba.org/site/) to normalize inbound SAML. 
+# Inbound SAML using Asimba
+## Overview
+Inbound SAML enables an organization to offer SAML authentication as a front door to their digital service. Inbound SAML is a common requirement for organizations that need to support the authentication requirements of large enterprise customers.
+
+During deployment of the Gluu Server, you can install an open source product called [Asimba](http://www.asimba.org/site/) to normalize inbound SAML. 
 
 ![asimba-overview](../img/asimba/Asimba_graph.jpg)
 
-### End to End configuration of Asimba in Gluu Server v3
+!!! Note
+    For new inbound SSO deployments, we strongly recommend using the [inbound SSO using Passport.js strategy](./inbound-saml-passport.md). 
 
+## Requirements
 For this documentation we used three demo servers:
 
 - https://[proxy3_hostname] is the Gluu server v3 with Shibboleth and Asimba installed along with other default components. 
 - https://[idp_hostname] is the remote authentication Gluu server v2 with Shibboleth installed with other default components. 
 - https://[sp_hostname] is the remote SP Gluu Server with the Shibboleth SP v26 installed.
   
-This doc is divided into three major parts. Configuration in proxy server, configuration of remote AuthN server and Service Provider. 
-In this whole setup we are using Gluu Servers, it's associcated open source pieces and all other well developed and maintained softwares like Shibboleth Service Provider. 
+This doc is divided into three main parts:
 
-Let's start! 
+1. [Proxy server configuration](#proxy-server-configuration);    
+2. [Remote AuthN server configuration](#remote-authn-server-configuration);      
+3. [Service Provider configuration](#service-provider-configuration).     
 
-#### Gluu-Asimba Server Configuration
+## Proxy Server Configuration
 
-##### Custom interception script named 'asimba' configuration
+### Asimba custom interception script
 
   - Log into oxTrust
   - `Configuration` > `Manage Custom Script`
@@ -33,7 +39,7 @@ Let's start!
     - enforce_uniqueness_attr_list: issuerIDP, uid
     - saml_generate_name_id: true
     
-##### SP Requestor
+### SP Requestor
 
   - Create a SAML metadata for native SP requestor of asimba. Grab the copy of from below and replace [proxy3_hostname] with your own server's hostname. Make sure to unix format it. 
   - `SAML` > `SP Requestors`
@@ -48,7 +54,7 @@ Let's start!
     - Enabled: Yes
     - Signing: No
 
-##### Add External IDP/AuthN Server
+### Add External IDP/AuthN Server
 
  - `SAML` > `IDPs`
  - 'Add IDP' 
@@ -67,7 +73,7 @@ Let's start!
    - Send NameIDPolicy: Yes
    - Avoid Sujbect Confirmations: No
 
-##### asimba.xml file configuration
+### asimba.xml file configuration
 
  - Modification of 'asimba.xml' file: 
    - location: `/etc/gluu/conf/asimba/asimba.xml`
@@ -93,14 +99,14 @@ Let's start!
 ```
  - Restart asimba service with 'service asimba restart'
  
-##### Create custom attribute 'issuerIDP'
+### Create custom attribute 'issuerIDP'
 
 You need to create a custom attribute named 'issuerIDP' in this stage. Here is how you can create [custom attributes](./attribute.md#custom-attributes).
 
 
-#### Remote AuthN Server Configuration
+## Remote AuthN Server Configuration
 
-##### Create Trust Relationship
+### Create Trust Relationship
 
  - Download you Asimba server's metadata with https://[proxy3_hostname]/asimba/profiles/saml2 and save it as 'gluu_asimba_server_metadata.xml'
  - Log into Authentication server oxTrust ( or, management console GUI )
@@ -114,9 +120,9 @@ You need to create a custom attribute named 'issuerIDP' in this stage. Here is h
        - encryptNameIds: never
   - Attribute: Release transientID and Username attribute
   
-##### New test user registration
+### New test user registration
 
-###### Enable 'User Registration' module: 
+#### Enable 'User Registration' module:    
   - Log into oxTrust
   - 'Manage Custom Scripts'
   - 'User Registration' tab
@@ -124,19 +130,19 @@ You need to create a custom attribute named 'issuerIDP' in this stage. Here is h
     - 'Enable' it
     - Hit 'Update'
 
-###### New user registration
+#### New user registration    
 
  - Hit 'https://[idp_hostname]/identity/register
  - Fill up the form and new user will be registered
  - We will use this user to test our SSO
 
-#### Remote SP Configuration
+## Service Provider Configuration
 
-##### Shibboleth SP installation
+### Shibboleth SP installation
 
 - Prepare your SP instance by following this doc: https://gluu.org/docs/ce/3.0.2/integration/webapps/saml-sp/#super-quick-ubuntu-shib-apache-install
 
-##### shibboleth2.xml configuration
+### shibboleth2.xml configuration
 
  - Download Shibboleth metadata of your Gluu-Asimba server with 'https://[prox3_hostname]/idp/shibboleth'
  - Put it inside /etc/shibboleth/ location
@@ -154,7 +160,7 @@ You need to create a custom attribute named 'issuerIDP' in this stage. Here is h
 ```
    - Restart shibd and apache2
    
-#### Trust Relationship in Gluu-Asimba server
+## Trust Relationship in Gluu-Asimba server
 
 We need to create a trust relationship in Gluu-Asimba server with Shibboleth SP metadata.
 
@@ -162,7 +168,7 @@ We need to create a trust relationship in Gluu-Asimba server with Shibboleth SP 
  - Grab Shibboleth SP metadata. You can get that with https://[sp_hostname]/Shibboleth.sso/Metadata
 
 
-#### Test SSO
+## Test SSO
 
  - Log into Gluu-Asimba server. 
  - 'Manage Custom Scripts'
