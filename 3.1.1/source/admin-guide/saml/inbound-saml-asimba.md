@@ -12,9 +12,9 @@ During deployment of the Gluu Server, you can install an open source product cal
 ## Requirements
 For this documentation we used three demo servers:
 
-- https://[proxy3_hostname] is the Gluu server v3 with Shibboleth and Asimba installed along with other default components. 
-- https://[idp_hostname] is the remote authentication Gluu server v2 with Shibboleth installed with other default components. 
-- https://[sp_hostname] is the remote SP Gluu Server with the Shibboleth SP v26 installed.
+- `https://[proxy3_hostname]` is the Gluu server v3 with Shibboleth and Asimba installed along with other default components. 
+- `https://[idp_hostname]` is the remote authentication Gluu server v2 with Shibboleth installed with other default components. 
+- `https://[sp_hostname]` is the remote SP Gluu Server with the Shibboleth SP v26 installed.
   
 This doc is divided into three main parts:
 
