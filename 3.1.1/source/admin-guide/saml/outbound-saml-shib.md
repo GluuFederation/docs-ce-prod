@@ -44,7 +44,8 @@ A description of each field follows:
     - *Federation*: Choose this option if the target application (SP) is affiliated with a federation service (e.g. InCommon, NJEdge etc.). Learn more about working with a federation [below](#federation-configuration).   
     
 !!! Note 
-    If you plan on using the Generate method, please note the following:
+    If you plan on using the Generate method, please note the following:       
+    
     - The URL is the hostname of the SP.           
     - You must provide a **non password protected** public certificate, which is a Base64 encoded ASCII file, and contain "-----BEGIN CERTIFICATE-----" and "-----END CERTIFICATE-----".        
     - After creating the Trust Relationship, download the generated configuration files from the `Download Shibboleth2 configuration files` link and place these configuration files inside your SP configuration.              
