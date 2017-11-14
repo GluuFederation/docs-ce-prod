@@ -19,9 +19,7 @@ To achieve outbound SAML SSO, you can refer to the following docs:
 ### Inbound SAML     
 Inbound SAML single sign-on enables an organization to offer SAML authentication as a front door to their digital service. Inbound SAML is a common requirement for SaaS providers that need to support the authentication requirements of large enterprise customers. 
 
-In many ways, Inbound SAML was the precursor to what we now commonly refer to as "social login". 
-
-A typical inbound SAML user flow is: 
+In many ways, Inbound SAML was the precursor to what we now commonly refer to as "social login". A typical user flow is: 
 
 1. User tries to access a protected resource at your application;    
 2. User is redirected to a discovery page (presented by your IDP) that presents one or more external IDP's where the user may have an existing identity (their "home IDP");   
