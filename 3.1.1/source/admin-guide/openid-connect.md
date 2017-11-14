@@ -25,11 +25,11 @@ client.
 !!! Note
     To learn more about the differences between OAuth, SAML and OpenID Connect, read [this blog](http://gluu.co/oauth-saml-openid).
 
-### OpenID Connect APIs
+## OpenID Connect APIs
 
 Review the Gluu Server's OpenID Connect API endpoints in the [API Guide](../api-guide/openid-connect-api.md). 
 
-### OpenID Connect Flows
+## OpenID Connect Flows
 
 The Gluu Server supports all flows defined in the [Core spec](http://openid.net/specs/openid-connect-core-1_0.html), including
 implicit, code, and hybrid flows. The implicit flow, where the token and
@@ -62,7 +62,7 @@ need them from the authorization endpoint too.
  
 
 
-### Configuration / Discovery 
+## Configuration / Discovery 
 
 A good place to start when you're learning about OpenID Connect is
 the configuration endpoint, which is located in the Gluu Server
@@ -70,7 +70,7 @@ at the following URL: `https://{hostname}/.well-known/openid-configuration`.
 
 The Gluu Server also supports [WebFinger](http://en.wikipedia.org/wiki/WebFinger), as specified in the [OpenID Connect discovery specification](http://openid.net/specs/openid-connect-discovery-1_0-21.html). 
 
-### Client Registration / Configuration
+## Client Registration / Configuration
 
 OAuth clients need a client_id, and need to supply a login redirect uri--
 where the Authorization Server should redirect the end user to, post
@@ -111,7 +111,7 @@ There are two configurations params which can only be configured via oxTrust by 
  information. It will cause the data to be persisted under the person's
  entry in the Gluu LDAP server.                
 
-### Custom Client Registration
+## Custom Client Registration
 
 Using the Client Registration custom interception scripts,
 you can implement post-registration business logic. You have access to 
@@ -125,7 +125,7 @@ oxTrust, navigate to Configuration --> Custom Scripts --> Client Registration.
 
 The script is [available here](./sample-client-registration-script.py)     
 
-### Scopes
+## Scopes
 
 In OAuth, scopes are used to specify extents of access. For a sign-in 
 flow like OpenID Connect, scopes end up corresponding to the release of
@@ -174,7 +174,7 @@ which is required by the OpenID Connect specification. Gluu server's
 administrator can always explicitly add additional scopes some client is allowed 
 to request by editing its registration metadata manually in web UI later on.
 
-### Multi-Factor Authentication for Clients
+## Multi-Factor Authentication for Clients
 
 The OpenID Connect `acr_values` parameter is used to specify a specific workflow for authentication. The value of this parameter, or the `default_acr_values` client metadata value, corresponds to the "Name" of a custom authentication script in the Gluu Server.
 
@@ -199,7 +199,7 @@ Out-of-the-box the Gluu Server includes custom authentiation scripts with the fo
 
 To use any of these `acr_values`, login to your Gluu Server admin interface and navigate to Configuration > Manage Custom Scripts. Find the desired script, tick the `Enabled` check box, scroll to the bottom of the page and click `Update`. Learn more in the [authentication guide](../authn-guide/intro.md).  
 
-### Logout
+## Logout
 
 The OpenID Connect [Session Management](http://openid.net/specs/openid-connect-session-1_0.html) specification is still marked as draft, and new mechanisms for logout are in the works. The current specification requires JavaScript to detect that the session has been ended in the browser. It works... unless the tab with the JavaScript happens to be closed when the logout event happens on another tab. Also, inserting JavaScript into every page is not feasible for some applications. 
 
@@ -208,7 +208,7 @@ is our recommended logout strategy. Using this mechanism, an html page is render
 needs to be notified of a logout. The Gluu Server keeps track of which clients are associated with a session (i.e. your browser). This 
 mechanism is not perfect. If the end user's web browser is blocking third party cookies, it may break front channel logout. Also, the Gluu Server has no record if the logout is successful--only the browser knows. This means that if the logout fails, it will not be logged or retried. The good thing about front channel logout is that the application can clear application cookies in the end user's browser. To use front channel logout, the client should register logout_uri's, or `frontchannel_logout_uri` for clients using the Dynamic Client Registration API. 
 
-### Disable OpenID Connect Scope
+## Disable OpenID Connect Scope
 Gluu Server 3.1.1 provides you an option to disable OpenID connect instead of having to deleting the configuration
 and settings of OpenID Connect created.
 To disable OpenID Connect
@@ -228,11 +228,11 @@ Review the [SSO integration guide](../integration/index.md) to determine which s
 
 ## oxAuth RP
 
-The Gluu Server ships with an optional OpenID Connect RP web application, 
-which is handy for testing.  It's called oxauth-rp. During Gluu Server 
-setup, you'll be asked if you want to install it--which you should on 
-a development environment. It will be deployed on `https://<hostname>/oxauth-rp`. 
-Using this tool you can exercise all of the OpenID Connect API's, 
-including discovery, client registration, authorization, token, 
+The Gluu Server ships with an optional OpenID Connect RP web application called oxauth-rp which is handy for testing.
+
+During Gluu Server setup you'll be asked if you want to install the oxauth-rp (it should be installed on 
+a development environment). If you decide to install it, oxAuth RP will be deployed on `https://<hostname>/oxauth-rp`. 
+
+Using the oxAuth RP you can exercise all of the OpenID Connect API's, including discovery, client registration, authorization, token, 
 userinfo, and end_session. 
 
