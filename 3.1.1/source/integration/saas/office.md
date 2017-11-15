@@ -63,6 +63,8 @@ this attribute in such a way that it can 'pull' the exact binary value from back
  
 ##### Create custom attribute named 'objectguid' according to Gluu doc. 
 
+ - Follow [doc](https://gluu.org/docs/ce/3.1.1/admin-guide/attribute/#custom-attributes) to create this custom attribute. Deployer need to follow below rules when creating this attribute in oxTrust ( 2nd phase of creating custom attribute ). 
+
    - Name: objectguid
    - SAML1 URI: urn:gluu:dir:attribute-def:objectguid
    - SAML2 URI: urn:oid:1.3.6.1.4.1.48710.1.3.1001
@@ -99,7 +101,7 @@ Also we need to apply a little snippet for 'IDPEmail' in 'attribute-resolver.xml
  
 #### 'ImmutableID' nameID configuration
 
-This is a 'persistent' type nameID; base attribute 'objectguid'
+This is a 'persistent' type nameID; base attribute 'objectguid'. Follow the doc on how to create [custom NameID doc](https://gluu.org/docs/ce/3.1.1/admin-guide/attribute/#defining-nameid)
 
 ##### Configuration in 'attribute-resolver.xml.vm', the velocity template file: 
 
