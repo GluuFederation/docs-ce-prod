@@ -49,6 +49,7 @@ pages:
             - 'Google+ OAuth 2.0': 'authn-guide/google.md'
             - 'Account Lockout': 'authn-guide/lockout.md'
             - 'Custom Script Tutorial': 'authn-guide/customauthn.md'
+            #- 'Inbound SAML using Asimba' : 'authn-guide/inbound-saml-asimba.md'
         - 'Attributes' : 'admin-guide/attribute.md'
         #- 'SCIM protected by UMA' : 'admin-guide/scim-uma.md'
         - 'SAML IDP' : 'admin-guide/saml.md'
