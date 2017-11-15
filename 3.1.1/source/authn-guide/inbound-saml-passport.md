@@ -259,9 +259,9 @@ In the above snippet replace `https://idp.example.com` with the URL of your IDP.
 !!! Note
     If you used the setup script, the `passport-saml-config.json` file will be created by the script. You just need to modify the configurations as needed. 
 		
-## Getting metadata xmls
+## Gathering SAML Metadata
 
-We also need metadata from the external IDPs to register them with our IDP. 
+We also need SAML metadata from the external IDPs to register them with our IDP. 
 
 Passport will generate SAML IDP metadata for each IDP listed in the `passport-saml-config.json` file. 
 
