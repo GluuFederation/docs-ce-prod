@@ -261,13 +261,13 @@ In the above snippet replace `https://idp.example.com` with the URL of your IDP.
 		
 ## Getting metadata xmls
 
-We also need metadata to register with our idp. Passport server also take care for it.
+We also need metadata from the external IDPs to register them with our IDP. 
 
-Passport server will generate SAML idp  metadata for each listed idps listed in passport-saml-config.json. 
+Passport will generate SAML IDP metadata for each IDP listed in the `passport-saml-config.json` file. 
 
-We can access it using passport server's end point like ... `https://<hostname>/passport/auth/meta/idp/<you idp name from passport-saml-config.json>` 
+It can be accessed at the Passport endpoint: `https://<hostname>/passport/auth/meta/idp/<your-IDP-name-from-passport-saml-config.json>` 
 
-We can also get metadatas as xml file under following path `...<path to gluu server >/opt/gluu/node/passport/server/idp-metadata`   
+We can also get metadata as an XML file at the following path: `...<path to gluu server >/opt/gluu/node/passport/server/idp-metadata`   
 
 ## Demo Server Config 
 
