@@ -1,14 +1,14 @@
 # Inbound SAML using Passport.js 
 ## Overivew
 
-Inbound SAML enables an organization to offer SAML authentication as a front door to their digital service. Inbound SAML is a common requirement for organizations that need to support the authentication requirements of large enterprise customers. 
+Inbound SAML enables an organization to offer SAML authentication as a front door to their digital service. Inbound SAML is a common requirement for organizations that need to support the authentication requirements of enterprise customers. 
 
-The Gluu Server uses the [SAML IDP MultiAuthn interception script](https://github.com/GluuFederation/oxAuth/blob/evolveip/Server/integrations/idp/IdpMultiAuthnExternalAuthenticator.py) to enable inbound SAML single sign-on with Passport.js.
+The Gluu Server uses the Passport.js software and the [SAML IDP MultiAuthn interception script](https://github.com/GluuFederation/oxAuth/blob/evolveip/Server/integrations/idp/IdpMultiAuthnExternalAuthenticator.py) to enable inbound SAML single sign-on SSO.
 
-Post-authentication, the script uses just-in-time provisioning to add users to the Gluu LDAP server if a local account does not already exist. In this way, the Gluu SAML and OpenID Connect providers can gather claims and maintain SSO as normal.
+Post-authentication, if a local account does not already exist for the user, the script performs just-in-time provisioning to add the user to the Gluu OpenLDAP server. In this way, the Gluu SAML and OpenID Connect providers can gather claims and maintain SSO as normal.
 
 !!! Note
-    Previous versions of the Gluu Server used Asimba for inbound SAML. Documentation for Asimba can be found [here](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.1/3.1.1/source/authn-guide/inbound-saml-asimba.md). For all new inbound SAML requirements, we now recommend using Passport.js and the following docs.  
+    Previous versions of the Gluu Server used Asimba for inbound SAML. Documentation for Asimba can be found [here](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.1/3.1.1/source/authn-guide/inbound-saml-asimba.md). For all new inbound SAML requirements, we now recommend using Passport.js and following the docs below.  
 
 ### About Passport  
 Passport is an MIT licensed Express-based web application. We've modified it to call oxTrust APIs for its non-static configuration. Because its configuration is stored centrally in LDAP, you can scale Passport even in clustered topologies.
