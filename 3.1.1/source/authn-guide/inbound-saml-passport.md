@@ -21,7 +21,7 @@ Passport is an MIT licensed Express-based web application. We've modified it to 
 
 Below is a sequence diagram to help clarify the workflow for user authentication and provisioning. 
 
-![Sequence Diagram](sequence-diagram.png "Title")
+![Sequence Diagram](../img/user-authn/passport/sequence_diagram_inbound.png "sequence_diagram")
 
 1. User-Agent calls gluu for Authentication with provided IDP name as base64 encoded json in state param like state=`base64({"salt":"<SALTVALUE>",provider":"<idp_name>"})`;        
 
@@ -55,7 +55,7 @@ Then follow the next steps:
 
 2. In the `Person Authentication` tab, find and enable the existing Passport script;      
 
-![Enable passport](https://github.com/GluuFederation/gluu-passport/blob/master/img/passport/enable-passport.png)
+![Enable passport](../img/user-authn/passport/enable-passport.png)
     
 3. Update the existing content in the Script field with the [IDP MultiAuthn interception script](https://github.com/GluuFederation/oxAuth/blob/evolveip/Server/integrations/idp/IdpMultiAuthnExternalAuthenticator.py);    
 
@@ -64,13 +64,13 @@ Then follow the next steps:
 
 4. Click on `update` at the end of the page.
 
-![update](https://github.com/GluuFederation/gluu-passport/blob/master/img/passport/auth-update.png)
+![update](../img/user-authn/passport/auth-update.png)
 
 5. Now navigate to `Configuration` > `Manage Authentication` > `Default Authenticaion`
 
 5. Set the `Passport Support` field to `enabled`;    
 
-![enable-authentication](https://github.com/GluuFederation/gluu-passport/blob/master/img/passport/enable-authentication.png)
+![enable-authentication](../img/user-authn/passport/enable-authentication3.0.0.png)
 
 6. In `/etc/gluu/conf` add configuration json file `passport-saml-config.json` containing IDP information;    
 
@@ -259,6 +259,15 @@ In the above snippet replace `https://idp.example.com` with the URL of your IDP.
 !!! Note
     If you used the setup script, the `passport-saml-config.json` file will be created by the script. You just need to modify the configurations as needed. 
 		
+##Getting metadata xmls
+We also need metadata to register with our idp. Passport server also take care for it.
+
+Passport server will generate SAML idp  metadata for each listed idps listed in passport-saml-config.json. 
+
+We can access it using passport server's end point like ... `https://<hostname>/passport/auth/meta/idp/<you idp name from passport-saml-config.json>` 
+
+We can also get metadatas in xml file under following path `...<path to gluu server >/opt/gluu/node/passport/server/idp-metadata`   
+
 ## Demo Server Config 
 
 We are going to follow [this sequence diagram](https://github.com/GluuFederation/Inbound-SAML-Demo/wiki/Readme_single#sequence-diagram) for this demo. 
@@ -339,14 +348,13 @@ Proxy-client is the demo node.js application to test Passport Inbound SSO. The p
     a. `npm install`      
     b.  `node server.js`           
 7. In a browser, navigate to `http:localhost:3000` and click on one of the IDP links to test your configuration. It will redirect you to your configured IDP using SAML SSO.
-![demo_screenshot1](https://github.com/GluuFederation/Inbound-SAML-Demo/blob/master/images/demo_1.png)
-
+![demo_screenshot1](../img/user-authn/passport/demo_1.png)
 8. After login, you might be asked to authorize the release of your personal data.
-![demo_screenshot2](https://github.com/GluuFederation/Inbound-SAML-Demo/blob/master/images/demo_2.png)
+![demo_screenshot2](../img/user-authn/passport/demo_2.png)
 
 9. On allowing from Authorization page Server will redirect to Proxy-client (Demo application) with Query params like  `...../profile/response_type=code&scope=openid&client_id=s6BhdRkqt3&state=af0ifjsldkj&redirect_uri=https%3A%2F%2Fclient.example.og%2Fcb`
 
 10. using Information from query params of redirect uri demo Application will fetch the user information and display it on profile page!
-[demo_screenshot3](https://github.com/GluuFederation/Inbound-SAML-Demo/blob/master/images/demo_3.png)
+![demo_screenshot3](../img/user-authn/passport/demo_3.png)
 
 
