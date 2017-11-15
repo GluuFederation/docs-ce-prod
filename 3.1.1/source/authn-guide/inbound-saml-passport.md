@@ -267,7 +267,7 @@ Passport server will generate SAML idp  metadata for each listed idps listed in 
 
 We can access it using passport server's end point like ... `https://<hostname>/passport/auth/meta/idp/<you idp name from passport-saml-config.json>` 
 
-We can also get metadatas in xml file under following path `...<path to gluu server >/opt/gluu/node/passport/server/idp-metadata`   
+We can also get metadatas as xml file under following path `...<path to gluu server >/opt/gluu/node/passport/server/idp-metadata`   
 
 ## Demo Server Config 
 
