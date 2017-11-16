@@ -37,7 +37,7 @@ If you have an existing Active Directory or backend LDAP server, you can sync da
     The Gluu Server always needs identity data stored locally. Without a local copy of identity data, the service will not work. 
 
 ## Identity Management
-Via the "oxTrust" admin interface, and using an LDAP browser, you can manage your Gluu Server's identity and object data such as user profiles, configuration data, tokens and credentials. 
+Via the "oxTrust" admin interface, and using an LDAP browser, you can manage identity and object data such as user profiles, configuration data, tokens and credentials. 
 
 The Gluu Server does **not** do things like delegated administration, role definition, approvals and workflows, etc. In enterprise workflows, the Gluu Server is a consumer of identity management and governance data and policies. 
 
