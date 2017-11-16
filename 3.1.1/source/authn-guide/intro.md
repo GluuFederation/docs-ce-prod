@@ -57,7 +57,7 @@ In oxTrust, navigate to `Configuration` > `Manage Custom Scripts` > `Person Auth
 
 By default, users will get the default authentication mechanism you specified [above](#default-authentication-mechanism) in the `Default acr` field. However, using the OpenID Connect `acr_value`, web and mobile applications can request any *enabled* authentication mechanism. 
 
-You can view enabled scripts in the oxTrust interface, or you can also check your OP URL: `https://<hostname>/.well-known/openid-configuration` and look for `"acr_values_supported"`. 
+You can enable and disable scripts in the oxTrust interface. You can also see which scripts are enabled by checking your OP configuration URL: `https://<hostname>/.well-known/openid-configuration` and look for `"acr_values_supported"`. 
 
 Learn more about `acr_values` in the [OpenID Connect core scpec](http://openid.net/specs/openid-connect-core-1_0.html#acrSemantics) and in the Gluu Server [OpenID Connect docs](../admin-guide/openid-connect.md/#multi-factor-authentication-for-clients).
 
