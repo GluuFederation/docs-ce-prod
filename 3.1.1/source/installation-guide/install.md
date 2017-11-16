@@ -153,11 +153,12 @@ table should help you answer the questions correctly.
 | Install oxAuth OAuth2 Authorization Server | Required. Includes Gluu's OpenID Connect provider (OP) and UMA authorization server (AS) implementations.|
 | Install oxTrust Admin UI | Required. This is the Gluu server admin dashboard. |
 | Install LDAP Server | Required. LDAP is used to store user info and configuration data. |
+| Install Passport |  Install if you want to support external IDP, for instance to offer users social login. |
 | Install Apache HTTPD Server | Required |
 | Install Shibboleth SAML IDP | Optional: only install if you need to a SAML identity provider. |
-| Install Asimba SAML Proxy | Optional: only install if you need to send users to external SAML IDPs for authentication. |
 | Install oxAuth RP | OpenID Connect test client: recommended for test enviornments, for more details see [here](../admin-guide/openid-connect/#oxauth-rp) |
-| Install Passport |  Install if you want to offer users social login. |
+| Install Asimba SAML Proxy | **Not recommended**: previously used to achieve inbound SAML. We now recommend using passport.js (above) |
+
 
 !!! Warning
 	Changing the hostname after installation is not supported. 
