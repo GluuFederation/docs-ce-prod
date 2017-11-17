@@ -87,7 +87,7 @@ You should see a list of current environment variables.
 ```
 
 You'll also need the mod_auth_openidc and libjose packages which can 
-be downloaded from the [Releases Page](https://github.com/pingidentity/mod_auth_openidc/releases).
+be downloaded from the [Releases Page](https://github.com/zmartzone/mod_auth_openidc/releases).
 
 For example, at this time the current release is 2.1.3, so the command would be:
 
@@ -100,9 +100,9 @@ For example, at this time the current release is 2.1.3, so the command would be:
 ```
 
 !!! Note
-    Get the latest packages here: https://github.com/pingidentity/mod_auth_openidc/releases
+    Get the latest packages here: https://github.com/zmartzone/mod_auth_openidc/releases
 
-Note, if you like to build from source, you can clone the project at [Github Page](https://github.com/pingidentity/mod_auth_openidc)
+Note, if you like to build from source, you can clone the project at [Github Page](https://github.com/zmartzone/mod_auth_openidc)
 
 Now you can enable the module
 
@@ -293,7 +293,7 @@ Restart Apache Server and you are done configuring the SSL Module. Use the comma
 
 ### Authentication Module (mod_auth_openidc)
 !!! Note
-    The latest version of the apache OpenID Connect module is available from [this page](https://github.com/pingidentity/mod_auth_openidc/releases)
+    The latest version of the apache OpenID Connect module is available from [this page](https://github.com/zmartzone/mod_auth_openidc/releases)
 
 The latest package for the apache module might have multiple dependencies which must be installed first.
 
@@ -301,7 +301,7 @@ The latest package for the apache module might have multiple dependencies which 
 Run the following command to install the `mod_auth_openidc` module:
 
 ```
-rpm -ivh https://github.com/pingidentity/mod_auth_openidc/releases/download/v1.8.2/mod_auth_openidc-1.8.2-1.el6.x86_64.rpm
+rpm -ivhhttps://github.com/zmartzone/mod_auth_openidc/releases/download/v1.8.2/mod_auth_openidc-1.8.2-1.el6.x86_64.rpm
 ```
 
 !!! Note
