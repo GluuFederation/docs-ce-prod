@@ -21,7 +21,22 @@ As System Administration ( or, SysAdmin ) you need to perform couple of tasks be
    - You need to make sure that port 443 is open from Internet OR from those machines from where Gluu Server operations will be performed. This is inbound tcp/443
    - Make sure you restrict SSH ports ( tcp/22 ) for those IP/machines which will be connected ( in a sense to perform daily operation and/or installation ) in your Gluu Server VM. Also it's better to establish cert-based SSH into your Gluu Server linux boxes than general username/password SSH. 
    - You may/may not need to open / close few other ports according to your Gluu Server setup. 
-   - How to configure static IP in Ubuntu 
+   - Here is a simple method how you can configure Ubuntu Server for static IP, 192.168.150.131 is the static IP for our Ubuntu Server. 
+
+```
+zico@test3:~$ cat /etc/network/interfaces
+# interfaces(5) file used by ifup(8) and ifdown(8)
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+address 192.168.150.131
+netmask 255.255.255.0
+gateway 192.168.150.2
+zico@test3:~$
+```
+   -  
  
 
 
