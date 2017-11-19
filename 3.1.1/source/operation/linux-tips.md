@@ -1,4 +1,4 @@
-# Gluu Server Linux Tips 
+# Gluu Server Linux Tips [ Work in Progress ] 
 
 This documentation is for system administrators who are in charge of Linux servers where Gluu Servers are hosted. 
 
