@@ -36,7 +36,7 @@ netmask 255.255.255.0
 gateway 192.168.150.2
 zico@test3:~$
 ```
-   -  
+   -  Sample method of configuring CentOS/RHEL server for static IP: 
  
 
 
