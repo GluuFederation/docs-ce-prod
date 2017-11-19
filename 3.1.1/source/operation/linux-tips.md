@@ -2,7 +2,7 @@
 
 This documentation is for system administrators who are in charge of Linux servers where Gluu Servers are hosted. 
 
-## Minimum requirements of being a Linux System Administrator of Gluu Servers. 
+## Minimum requirements Gluu Server system administrator 
 
  - Need to be fluent with linux/unix commands through terminal ( not GUI )
  - Need to be fluent with network administration
