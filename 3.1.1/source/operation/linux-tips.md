@@ -15,12 +15,14 @@ As System Administration ( or, SysAdmin ) you need to perform couple of tasks be
 
  - Installation of VM with supported OS. 
    - We are not going to cover 'How to install Linux server' here because that's pretty straight forward and very easy now a days. 
+   - Disk space: Minium required disk space is 40GB in /root OR .............................................
  - Put a specific IP for your linux server
    - You need to remmember that this IP *must be* a static IP; Gluu Server *can not* perform well in dynamic IP / DHCP setup. 
    - You need to make sure that port 443 is open from Internet OR from those machines from where Gluu Server operations will be performed. This is inbound tcp/443
-   - Make sure you restrict SSH ports ( tcp/22 ) for those IP/machines which will be connected ( in a sense to perform daily operation and/or installation ) in your Gluu Server VM. 
+   - Make sure you restrict SSH ports ( tcp/22 ) for those IP/machines which will be connected ( in a sense to perform daily operation and/or installation ) in your Gluu Server VM. Also it's better to establish cert-based SSH into your Gluu Server linux boxes than general username/password SSH. 
    - You may/may not need to open / close few other ports according to your Gluu Server setup. 
- - Disk space
+   - How to configure static IP in Ubuntu 
+ 
 
 
 
