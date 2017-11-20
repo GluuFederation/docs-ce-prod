@@ -90,10 +90,10 @@ pages:
             - 'SCIM API Configuration': 'api-guide/scim-api.md'
             - 'UMA API': 'api-guide/uma-api.md'
         - 'JSON Properties':
-            - 'OxTrust JSON Properties': 'reference/JSON-oxtrust-prop.md'
-            - 'OxAuth JSON Properties': 'reference/JSON-oxauth-prop.md'
+            - 'oxTrust JSON Properties': 'reference/JSON-oxtrust-prop.md'
+            - 'oxAuth JSON Properties': 'reference/JSON-oxauth-prop.md'
         - 'Gluu LDAP Schema':
-            - 'Ox LDAP Properties': 'reference/oxldap.md'
+            - 'oxLDAP Properties': 'reference/oxldap.md'
             - 'OpenLDAP Schema': 'reference/schema.md'
 - Operation Guide:
         - 'Backups': 'operation/backup.md'
