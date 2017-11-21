@@ -72,7 +72,7 @@ Location="https://www.google.com/a/domain.com/acs" ></AssertionConsumerService>
 
 Got the metadata? Great, we are ready to move forward. 
 
-## Create a SAML Trust Relationship
+### Create a SAML Trust Relationship
 - Create Trust Relationship for Google Apps: 
 
    - How to create a trust relationship can be found [here](../../admin-guide/saml.md#trust-relationship-requirements). We need to follow the "File" method for Google Apps trust relationship.
