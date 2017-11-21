@@ -55,6 +55,7 @@ Relationships are created so that the IdP can authorize/authenticate the
 user to the service provider (SP). In this specific case, the SP is
 Google Apps, and the protocol used is SAML.
 
+### Google Metadata
 In order to create a Trust Relationship, we need to grab the metadata of
 Google Apps. This metadata can be collected from Google. It's generally
 specific to an organization account. The following is a template of the Google metadata.
@@ -71,6 +72,7 @@ Location="https://www.google.com/a/domain.com/acs" ></AssertionConsumerService>
 
 Got the metadata? Great, we are ready to move forward. 
 
+## Create a SAML Trust Relationship
 - Create Trust Relationship for Google Apps: 
 
    - How to create a trust relationship can be found [here](../../admin-guide/saml.md#trust-relationship-requirements). We need to follow the "File" method for Google Apps trust relationship.
