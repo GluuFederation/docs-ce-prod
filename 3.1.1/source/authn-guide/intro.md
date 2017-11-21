@@ -1,5 +1,5 @@
 # User Authentication Introduction
-The Gluu Server is very flexible in handling user authentication. By default, LDAP is used for username / password authentication ("basic"). However, you can change the default mechanism to a stronger form of authentication, like One-Time Passwords (OTP) or U2F. You can also support multiple mechanisms at the same time, enabling Web and mobile clients to request a certain authentication type by using standard OpenID Connect request parameters. 
+The Gluu Server is very flexible in handling user authentication. By default, LDAP is used for username / password authentication ("basic"). You can easily enforce stronger forms of authentication, like One-Time Passwords (OTP) or U2F to increase the security of logins. You can even support multiple mechanisms at the same time, enabling Web and mobile apps ("clients") to request a specific authentication type by using standard OpenID Connect request parameters. 
 
 ## Authentication Interception Scripts
 The Gluu Server uses [interception scripts](../admin-guide/custom-script.md) to facilitate the user authentication process. For each supported authentication mechanism--like username/password ("basic"), U2F or OTP--there is a corresponding interception script that specifies how the mechanism should be applied during user sign-in. 
