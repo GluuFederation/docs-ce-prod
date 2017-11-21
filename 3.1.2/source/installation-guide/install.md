@@ -27,7 +27,7 @@ remain the same as the host.
 | Add Gluu Repository     | `# echo "deb https://repo.gluu.org/ubuntu/ trusty main" > /etc/apt/sources.list.d/gluu-repo.list` |
 | Add Gluu GPG Key        | `# curl https://repo.gluu.org/ubuntu/gluu-apt.key | apt-key add -` |
 | Update/Clean Repo       | `# apt-get update`                         |
-| Install Gluu Server     | `# apt-get install gluu-server-3.1.1`      |
+| Install Gluu Server     | `# apt-get install gluu-server-3.1.2`      |
     
 ### Ubuntu Server 16.04.x
 
@@ -36,7 +36,7 @@ remain the same as the host.
 | Add Gluu Repository     | `# echo "deb https://repo.gluu.org/ubuntu/ xenial main" > /etc/apt/sources.list.d/gluu-repo.list` |
 | Add Gluu GPG Key        | `# curl https://repo.gluu.org/ubuntu/gluu-apt.key | apt-key add -` |
 | Update/Clean Repo       | `# apt-get update`                         |
-| Install Gluu Server     | `# apt-get install gluu-server-3.1.1`      |
+| Install Gluu Server     | `# apt-get install gluu-server-3.1.2`      |
 
 ### CentOS 6.x
 
@@ -46,7 +46,7 @@ remain the same as the host.
 | Add Gluu GPG Key        | `# wget https://repo.gluu.org/centos/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU`|
 | Import GPG Key          | `# rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU`|
 | Update/Clean Repo       | `# yum clean all`                          |
-| Install Gluu Server     | `# yum install gluu-server-3.1.1`          |
+| Install Gluu Server     | `# yum install gluu-server-3.1.2`          |
 
 ### CentOS 7.x
 
@@ -56,7 +56,7 @@ remain the same as the host.
 | Add Gluu GPG Key        | `# wget https://repo.gluu.org/centos/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU`|
 | Import GPG Key          | `# rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU` |
 | Update/Clean Repo       | `# yum clean all`                          |
-| Install Gluu Server     | `# yum install gluu-server-3.1.1`          |
+| Install Gluu Server     | `# yum install gluu-server-3.1.2`          |
 
 ### RHEL 6.x
 
@@ -66,7 +66,7 @@ remain the same as the host.
 | Add Gluu GPG Key        | `# wget https://repo.gluu.org/centos/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU`|
 | Import GPG Key          | `# rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU` |
 | Update/Clean Repo       | `# yum clean all`                          |
-| Install Gluu Server     | `# yum install gluu-server-3.1.1`          |
+| Install Gluu Server     | `# yum install gluu-server-3.1.2`          |
 
 ### RHEL 7.x
 
@@ -76,7 +76,7 @@ remain the same as the host.
 | Add Gluu GPG Key        | `# wget https://repo.gluu.org/rhel/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU`|
 | Import GPG Key          | `# rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU` |
 | Update/Clean Repo       | `# yum clean all`                          |
-| Install Gluu Server     | `# yum install gluu-server-3.1.1`          |
+| Install Gluu Server     | `# yum install gluu-server-3.1.2`          |
 
 ### Debian 8 (Jessie)
 
@@ -85,7 +85,7 @@ remain the same as the host.
 | Add Gluu Repository     | `# echo "deb https://repo.gluu.org/debian/ stable main" > /etc/apt/sources.list.d/gluu-repo.list`|
 | Add Gluu GPG Key        | `# curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -` |
 | Update/Clean Repo       | `# apt-get update`                         |
-| Install Gluu Server     | `# apt-get install gluu-server-3.1.1`      |
+| Install Gluu Server     | `# apt-get install gluu-server-3.1.2`      |
 
 ## Start the Gluu Server and Login
 
@@ -94,16 +94,16 @@ The Gluu Server is a chroot container, which you must start to proceed.
 For Centos 6.x, Red Hat 6.x, Ubuntu 14/16, and Debian 8:
 
 ```
-# service gluu-server-3.1.1 start
-# service gluu-server-3.1.1 login
+# service gluu-server-3.1.2 start
+# service gluu-server-3.1.2 login
 ```
 
 For Centos 7.x and Red Hat 7.x: 
 
 ```
-# /sbin/gluu-serverd-3.1.1 enable
-# /sbin/gluu-serverd-3.1.1 start
-# /sbin/gluu-serverd-3.1.1 login
+# /sbin/gluu-serverd-3.1.2 enable
+# /sbin/gluu-serverd-3.1.2 start
+# /sbin/gluu-serverd-3.1.2 login
 ```
 
  * Use `enable` just the first time you start the Gluu Server.
@@ -173,30 +173,30 @@ Something went wrong? No problem, just uninstall and reinstall.
 For Ubuntu 14/16, and Debian 8:
 
 ```
-# service gluu-server-3.1.1 stop
-# apt-get remove gluu-server-3.1.1
-# rm -rf /opt/gluu-server-3.1.1.save
+# service gluu-server-3.1.2 stop
+# apt-get remove gluu-server-3.1.2
+# rm -rf /opt/gluu-server-3.1.2.save
 ```
 
 For Centos 6.x, Red Hat 6.x, 
 
 ```
-# service gluu-server-3.1.1 stop
-# yum remove gluu-server-3.1.1
-# rm -rf /opt/gluu-server-3.1.1.save
+# service gluu-server-3.1.2 stop
+# yum remove gluu-server-3.1.2
+# rm -rf /opt/gluu-server-3.1.2.save
 ```
 
 For Centos 7.x and Red Hat 7.x:
 
 ```
-# /sbin/gluu-serverd-3.1.1 disable
-# /sbin/gluu-serverd-3.1.1 stop
-# yum remove gluu-server-3.1.1 
-# rm -rf /opt/gluu-server-3.1.1.save
+# /sbin/gluu-serverd-3.1.2 disable
+# /sbin/gluu-serverd-3.1.2 stop
+# yum remove gluu-server-3.1.2 
+# rm -rf /opt/gluu-server-3.1.2.save
 ```
 
 !!! Note
-    You can also use `apt-get purge gluu-server-3.1.1` or `apt-get remove --purge gluu-server-3.1.1` to uninstall and 
+    You can also use `apt-get purge gluu-server-3.1.2` or `apt-get remove --purge gluu-server-3.1.2` to uninstall and 
     remove all the folders and services of Gluu server, 
     in case you dont want to have the configuration and services of Gluu Server.
 
