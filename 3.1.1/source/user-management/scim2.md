@@ -954,11 +954,11 @@ In previous sections we covered thoroughy what needs to be done for test mode, f
 
 If you are unsure of how to code a particular step, take a look at the Java client. These three classes do the job:
 
-- [AbstractScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.0/src/main/java/gluu/scim2/client/AbstractScimClient.java)
+- [AbstractScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.1/src/main/java/gluu/scim2/client/AbstractScimClient.java)
 
-- [TestModeScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.0/src/main/java/gluu/scim2/client/UmaScimClient.java)
+- [TestModeScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.1/src/main/java/gluu/scim2/client/UmaScimClient.java)
 
-- [UmaScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.0/src/main/java/gluu/scim2/client/UmaScimClient.java)
+- [UmaScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.1/src/main/java/gluu/scim2/client/UmaScimClient.java)
 
 To test your authorization code, use a simple GET retrieval request.
 
