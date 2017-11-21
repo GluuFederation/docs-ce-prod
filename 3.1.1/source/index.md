@@ -9,7 +9,7 @@ The most common use cases for the Gluu Server include:
 - API access management  
 - Two-factor authentication 
 - Customer identity and access management (CIAM)   
-- Identity federation.  
+- Identity federation      
 
 ### Open Standards
 The Gluu Server implements open web standards for authentication, authorization, federated identity, and identity management:
