@@ -79,8 +79,7 @@ root's home directory (just in case you need to restore!):
 
 #### Update Gluu Schema Files
     
-    To upgrade gluu server 3.1.0 to 3.1.1, Gluu schema files needs to be updated. 
-    Gluu Schema files can be found [here](https://github.com/GluuFederation/community-edition-setup/tree/master/schema) to update.
+  For the OpenLDAP to be able to accomodate new attributes attributes added to some entries in 3.1.1, its schema files needs to be updated. The recent schema files can be found [here](https://github.com/GluuFederation/community-edition-setup/tree/master/schema). Following the next step will upgrade the schema:
 
 11. Navigate to `/opt/gluu/schema/openldap` directory 
 
@@ -103,7 +102,7 @@ root's home directory (just in case you need to restore!):
     `# service solserver start`
 
 !!!Warning
-    If you are using a customized schema, make sure not to change `gluu.schema`.
+    If schema of your old instance was customized, in particular due to adding custom attributes, you'll need to resort to manual migration of your changes done to and `custom.schema` and (if any) to `gluu.schema`.
 
 !!! Note
     Above procedure can be utilized to update other components of Gluu CE server 3.1.1, mentioned below.
