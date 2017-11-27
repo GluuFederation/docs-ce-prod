@@ -20,7 +20,7 @@ installation procedure is similar across all the distributions:
 
 ## Instructions
 
-### 1. Install Gluu Server Package
+### 1. Install Gluu Server package
 
 Installation of the Gluu server will be done under `/root`. 
 The Gluu Server will create its file system under `/root/` and will be 
@@ -119,19 +119,24 @@ For Centos 7.x and Red Hat 7.x, run the following commands:
 
 ### 3. Run `setup.py`
 
-Configuration is completed by running the `setup.py` script. This generates certificates, salt values, and renders configuration files. You must be logged into the Gluu Server chroot container to run `setup.py`. 
+Configuration is completed by running the `setup.py` script. This generates certificates, salt values, and renders configuration files. 
 
 ```
 # cd /install/community-edition-setup
 # ./setup.py
 ```
 
+!!! Note
+    You must be logged into the Gluu Server chroot container to run `setup.py`.
+
 !!! Warning
     Only run setup.py **one time**. Running the above command twice will break the instance.
 
-You will be prompted to answer some questions about your deployment. Hit `Enter` to accept the default values. Refer to the following table for more information on the options available during setup.
+You will be prompted to answer some questions about your deployment. Hit `Enter` to accept the default values.
 
-| Question                |  Explanation                               |
+Refer to the following table for details about the available setup options:
+
+| Setup Option                |  Explanation                               |
 |-------------------------|--------------------------------------------|
 | Enter IP Address | Used primarily by Apache HTTPD for the [Listen](https://httpd.apache.org/docs/2.4/bind.html) directive. **Use an IP address assigned to one of this server's network interfaces (usage of addresses assigned to loopback interfaces is not supported)**|
 | Enter hostname | Internet-facing hostname, FQDN, or CNAME whichever your organization follows to be used to generate certificates and metadata. **Do not use an IP address or localhost.** |
@@ -163,7 +168,7 @@ After 5-10 minutes you should see the following success message: Gluu Server ins
         1. Enter IP Address: Do **not** use `localhost` for either the IP address or hostname.     
 	2. Enter hostname: Use a real hostname--you can always manage via host file entries even if you don't want to mess with DNS for testing. If you are deploying a cluster, use the hostname of the cluster--that is used by the clients connecting to the Gluu Server.    
 
-### 4. Login via Browser
+### 4. Login via browser
 
 Wait about 10 minutes in total for the server to restart and finalize its configuration. After that period you are now ready to log into your Gluu Server via a web browser. 
 
