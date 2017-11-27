@@ -155,7 +155,7 @@ After answering these questions, `setup.py` will show you your selections and as
 
 After 5-10 minutes you will see the following success message: Gluu Server installation successful! Point your browser to [hostname]. 
 
-#### Troubleshooting Setup
+### Troubleshooting Setup
 
 The easiest place to go wrong is with the first two questions:
 
