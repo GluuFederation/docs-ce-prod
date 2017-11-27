@@ -1,11 +1,12 @@
 # Installation 
 ## Overview
-Gluu publishes packages for Ubuntu, CentOS, RHEL and Debian. The 
+Gluu publishes Linux packages for Ubuntu, CentOS, RHEL and Debian. The 
 installation procedure is similar across all the distributions: 
 
-1. [Install the Linux package](#install-gluu-server-package)
-2. [Start the Gluu Server and login to the container](#start-the-gluu-server-and-login)
-3. [Run `setup.py`](#run-setuppy)
+1. [Install the Linux package](#step-1-install-gluu-server-package)
+2. [Start the Gluu Server and login to the container](#step-2-start-the-gluu-server-and-login)
+3. [Run `setup.py`](#step-3-run-setuppy)
+4. [Login via a browser](#step-4-login-via-browser)
 
 !!! Note
     The Gluu Server needs to be installed on a VM or physical server with at least 4GB of RAM and 2CPU units. Containers are not supported. Make sure your box meets the [minimum requirements](../installation-guide/index.md) to deploy the Gluu Server. 
@@ -13,7 +14,7 @@ installation procedure is similar across all the distributions:
 !!! Warning
     You must use a fully qualified domain name (FQDN) to install the Gluu Server. You **can not** use localhost to install the Gluu Server. If you want to run Gluu locally, you can make up a hostname. Just make sure it is in the host file of your VM and the host file of the local windows machine.
 
-## Install Gluu Server Package
+## Step 1: Install Gluu Server Package
 
 Installation of the Gluu server will be done under `/root`. 
 The Gluu Server will create its file system under `/root/` and will be 
@@ -87,7 +88,8 @@ remain the same as the host.
 | Update/Clean Repo       | `# apt-get update`                         |
 | Install Gluu Server     | `# apt-get install gluu-server-3.1.1`      |
 
-## Start the Gluu Server and Login
+
+## Step 2: Start the Gluu Server and Login
 
 The Gluu Server is a chroot container, which you must start to proceed. 
 
@@ -109,21 +111,7 @@ For Centos 7.x and Red Hat 7.x:
 !!! Note
     Only use `enable` the first time you start the Gluu Server.
 
-## Disable Gluu repositories
-
-The Gluu Server does **not** support package updates/upgrades via package manager (i.e. using commands like `# yum update` or `# apt-get update`). 
-
-To prevent involuntary overwrites of the currently deployed instance (in case a newer version of the same package is found during regular OS updates), it is recommended to disable the Gluu repositories added previously after initial installation:
-
-For CentOS/RHEL: 
-
-`/etc/yum.repos.d/Gluu.repo` needs to be edited so that the `enabled=1` clause is changed to `enabled=0`        
-
-For Ubuntu/Debian: 
-
-`/etc/apt/sources.list.d/gluu-repo.list` needs to be edited to comment out all Gluu-related repos.     
-
-## Run `setup.py`
+## Step 3: Run `setup.py`
 
 Configuration is completed by running the `setup.py` script. This generates certificates, salt values, and renders configuration files. You must be logged into the Gluu Server chroot container to run `setup.py`. 
 
@@ -164,7 +152,7 @@ After answering these questions, `setup.py` will show you your selections and as
 
 After 5-10 minutes you will see the following success message: Gluu Server installation successful! Point your browser to [hostname]. 
 
-### Troubleshooting Setup
+#### Troubleshooting Setup
 
 The easiest place to go wrong is with the first two questions:
 
@@ -172,12 +160,26 @@ The easiest place to go wrong is with the first two questions:
 
 2. Enter hostname: Use a real hostname--you can always manage via host file entries even if you don't want to mess with DNS for testing. If you are deploying a cluster, use the hostname of the cluster--that is used by the clients connecting to the Gluu Server.
 
-## Login via Browser
+## Step 4: Login via Browser
 
 Wait about 10 minutes in total for the server to restart and finalize its configuration. After that period you are now ready to log into your Gluu Server via a web browser. 
 
 !!! Note
     If the Gluu Server login page is still not appearing after you've received the success message and waited about 10 minutes, check if port 443 is open in the VM. If it is not open, open port 443 and try to reach the host in your browser again. 
+
+## Disable Gluu repositories
+
+The Gluu Server does **not** support package updates/upgrades via package manager (i.e. using commands like `# yum update` or `# apt-get update`). 
+
+To prevent involuntary overwrites of the currently deployed instance (in case a newer version of the same package is found during regular OS updates), it is recommended to disable the Gluu repositories added previously after initial installation:
+
+For CentOS/RHEL: 
+
+`/etc/yum.repos.d/Gluu.repo` needs to be edited so that the `enabled=1` clause is changed to `enabled=0`        
+
+For Ubuntu/Debian: 
+
+`/etc/apt/sources.list.d/gluu-repo.list` needs to be edited to comment out all Gluu-related repos.     
 
 ## Uninstallation
 
