@@ -27,11 +27,11 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 138.197.65.243  idp2.example.org (Gluu Server 3.1.1 on Ubuntu 14)
 ```
      
-- To create the following instructions we used Ubuntu 14 Trusty. Some modifications may be necessary.   
+- To create the following instructions we used Ubuntu 14 Trusty.     
 
 - To create the following instructions we used an Nginx load balancer/proxy, however if you have your own load balancer, like F5 or Cisco, you should use that instead and disregard the instructions about configuring Nginx.   
 
-- Gluu Server 3.x using OpenLDAP.   
+- Gluu Server version 3.x using OpenLDAP.   
 
 - Redis-server for caching sessions.   
 
