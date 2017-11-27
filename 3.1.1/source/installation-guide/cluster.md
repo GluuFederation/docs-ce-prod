@@ -45,11 +45,11 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 - This will be considered your "primary" server for the sake of this documentation.   
 
-- A separate NGINX server is necessary, because replicating a Gluu server to a different hostname breaks the functionality of the Gluu web page, when using a hostname other than what is in the certificates. For example, if I used idp1.example.com as my host and copied that to a second server (e.g. idp2.example.com), the process of accessing the site on idp2.example.com, even with replication, will fail authentication, due to hostname conflict. So if idp1 failed, you couldn't access the Gluu web GUI anymore.   
+- A separate NGINX server is necessary because replicating a Gluu server to a different hostname breaks the functionality of the Gluu web page when using a hostname other than what is in the certificates. For example, if I use idp1.example.com as my host and copy that to a second server (e.g. idp2.example.com), the process of accessing the site on idp2.example.com, even with replication, will fail authentication due to a hostname conflict. So if idp1 fails, you can't access the Gluu web GUI anymore.   
 
-- Now for the rest of the servers in the cluster, [Download the Gluu packages](https://gluu.org/docs/ce/3.1.1/installation-guide/install/), but don't run `setup.py` yet.   
+- Now for the rest of the servers in the cluster, [download the Gluu packages](https://gluu.org/docs/ce/3.1.1/installation-guide/install/) but **don't run `setup.py` yet**.   
 
-- We want to copy the `/install/community-edition-setu/setup.properties.last` file from this first install to the other servers as `setup.properties` so we have the exact same configurations. (Here I have ssh access to my other server outisde the Gluu chroot)
+- We want to copy the `/install/community-edition-setu/setup.properties.last` file from the first install to the other servers as `setup.properties` so we have the exact same configurations. (Here I have ssh access to my other server outisde the Gluu chroot)
 
 ```
 
@@ -96,9 +96,9 @@ Gluu.Root # ./setup.py
 
 ### 2. Choose a primary server
 
-There needs to be primary server to replicate from initially for delta-syncrepl to inject data from. After the initial sync, all servers will be exactly the same, as delta-syncrepl will fill the newly created database.
+There needs to be a primary server to replicate from initially for delta-syncrepl to inject data. After the initial sync all servers will be exactly the same, as delta-syncrepl will fill the newly created database.
 
-- So choose one server as a base and then on every **other** server:   
+- Choose one server as a base and then on every **other** server:   
 
 ```
 Gluu.Root # rm /opt/gluu/data/main_db/*.mdb
@@ -115,7 +115,7 @@ Gluu.Root # chown -R ldap. /opt/gluu/data/
 
 You now need to modify the following configuration files: `slapd.conf`, `ldap.conf` and `symas-openldap.conf`
 
-- Creating the `slapd.conf` file for replication is relatively easy, but can be prone to errors if done manually. Attached is a script and template files for creating multiple slapd.conf files for every server. Download git and clone the necessary files on **one** server:
+- Creating the `slapd.conf` file for replication is relatively easy but can be prone to errors if done manually. Attached is a script and template files for creating multiple `slapd.conf` files for every server. Download git and clone the necessary files on **one** server:
 
 ```
 Gluu.Root # apt-get update && apt-get install git && cd /tmp/ && git clone https://github.com/GluuFederation/cluster-mgr.git && cd /tmp/cluster-mgr/manual_install/slapd_conf_script/
