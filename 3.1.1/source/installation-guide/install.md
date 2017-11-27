@@ -108,33 +108,31 @@ For Centos 7.x and Red Hat 7.x:
 
  * Use `enable` just the first time you start the Gluu Server.
 
-## Disable Gluu's repositories added on previous steps
+## Disable Gluu repositories
 
-Gluu CE doesn't support package's updates/upgrades via package manager 
-(i.e. using commands like `# yum update` or `# apt-get update`) at the moment 
-of writting. To prevent involuntary overwrites of the currently deployed 
-instance in case a newer version of the same package is found available during 
-regular OS update it's recommended to disable Gluu's repositories added 
-previously in this guide shortly after the initial installation is done.
+The Gluu Server does not support package updates/upgrades via package manager (i.e. using commands like `# yum update` or `# apt-get update`). In case a newer version of the same package is found during regular OS updates, to prevent involuntary overwrites of the currently deployed instance it is recommended to disable the Gluu repositories added previously after initial installation.
 
-**To achieve this:**
+To achieve this:
 
-1. For CentOS/RHEL distro family, file `/etc/yum.repos.d/Gluu.repo` needs to be edited 
-with `enabled=1` clause is to be changed to "enabled=0"
-2. For Ubuntu/Debian distro family, file `/etc/apt/sources.list.d/gluu-repo.list` 
-needs to be edited with all Gluu-related repos listed are to be commented out
+1. For CentOS/RHEL distros, `/etc/yum.repos.d/Gluu.repo` needs to be edited 
+with `enabled=1` clause changed to "enabled=0"        
+
+2. For Ubuntu/Debian distros, `/etc/apt/sources.list.d/gluu-repo.list` 
+needs to be edited to comment out all Gluu-related repos.     
 
 ## Run `setup.py`
 
 Configuration is completed by running the `setup.py` script. This generates 
-certificates, salt values, and renders configuration files. After
-completion, you're done! Note: you must be logged into the Gluu Server 
+certificates, salt values, and renders configuration files. You must be logged into the Gluu Server 
 chroot container to run `setup.py` (see Step 2 above). 
 
 ```
 # cd /install/community-edition-setup
 # ./setup.py
 ```
+
+!!! Note
+    Only run setup.py **one time**. Running this command twice will break the instance.
 
 You will be prompted to answer some questions. Just hit `Enter` to
 accept the default value specified in square brackets. The following
