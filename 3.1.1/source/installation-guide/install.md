@@ -115,11 +115,13 @@ The Gluu Server does **not** support package updates/upgrades via package manage
 
 To prevent involuntary overwrites of the currently deployed instance (in case a newer version of the same package is found during regular OS updates), it is recommended to disable the Gluu repositories added previously after initial installation:
 
-- CentOS/RHEL: `/etc/yum.repos.d/Gluu.repo` needs to be edited 
-with `enabled=1` clause changed to "enabled=0"        
+For CentOS/RHEL: 
 
-- Ubuntu/Debian: `/etc/apt/sources.list.d/gluu-repo.list` 
-needs to be edited to comment out all Gluu-related repos.     
+`/etc/yum.repos.d/Gluu.repo` needs to be edited so that the `enabled=1` clause is changed to `enabled=0`        
+
+For Ubuntu/Debian: 
+
+`/etc/apt/sources.list.d/gluu-repo.list` needs to be edited to comment out all Gluu-related repos.     
 
 ## Run `setup.py`
 
@@ -174,11 +176,8 @@ The easiest place to go wrong is with the first two questions:
 
 Wait about 10 minutes in total for the server to restart and finalize its configuration. After that period you are now ready to log into your Gluu Server via a web browser. 
 
-Note: If the Gluu Server login page is still not appearing after you've received the success message and waited about 10 minutes, check if port 443 is open in the VM. If it is not open, open port 443 and try to reach the host in your browser again. 
-
-<!-- ## Clustering
-
-If you have requirements for high availability (HA) or failover, you can configure your Gluu Server for multi-master replication by following the documention for [configuring replication](./cluster.md).-->
+!!! Note
+    If the Gluu Server login page is still not appearing after you've received the success message and waited about 10 minutes, check if port 443 is open in the VM. If it is not open, open port 443 and try to reach the host in your browser again. 
 
 ## Uninstallation
 
