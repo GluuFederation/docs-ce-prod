@@ -186,8 +186,6 @@ For Ubuntu/Debian:
 
 ## Uninstallation
 
-Something went wrong? No problem, just uninstall and reinstall.
-
 For Ubuntu 14/16, and Debian 8:
 
 ```
@@ -214,7 +212,7 @@ For Centos 7.x and Red Hat 7.x:
 ```
 
 !!! Note
-    You can also use `apt-get purge gluu-server-3.1.1` or `apt-get remove --purge gluu-server-3.1.1` to uninstall and remove all the folders and services of Gluu server, i case you dont want to have the configuration and services of Gluu Server.
+    You can also use `apt-get purge gluu-server-3.1.1` or `apt-get remove --purge gluu-server-3.1.1` to uninstall and remove all the folders and services of Gluu server.
 
 ## Support
 If you run into issues please review the [Gluu support portal](https://support.gluu.org). If you can not find a similar existing public issue, register for an account and open a new ticket. 
