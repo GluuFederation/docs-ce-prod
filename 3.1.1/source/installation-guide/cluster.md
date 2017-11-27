@@ -23,8 +23,8 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
       
 ```
 45.55.232.15    loadbalancer.example.org (NGINX server)
-159.203.126.10  idp1.example.org (Gluu 3.1.1 server/Ubuntu 14)
-138.197.65.243  idp2.example.org (Gluu 3.1.1 server/Ubuntu 14)
+159.203.126.10  idp1.example.org (Gluu Server 3.1.1 on Ubuntu 14)
+138.197.65.243  idp2.example.org (Gluu Server 3.1.1 on Ubuntu 14)
 ```
      
 - To create the following instructions we used Ubuntu 14 Trusty. Some modifications may be necessary.   
