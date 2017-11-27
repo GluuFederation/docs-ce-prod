@@ -106,27 +106,24 @@ For Centos 7.x and Red Hat 7.x:
 # /sbin/gluu-serverd-3.1.1 login
 ```
 
- * Use `enable` just the first time you start the Gluu Server.
+!!! Note
+    Only use `enable` the first time you start the Gluu Server.
 
 ## Disable Gluu repositories
 
 The Gluu Server does **not** support package updates/upgrades via package manager (i.e. using commands like `# yum update` or `# apt-get update`). 
 
-In case a newer version of the same package is found during regular OS updates, to prevent involuntary overwrites of the currently deployed instance it is recommended to disable the Gluu repositories added previously after initial installation.
+To prevent involuntary overwrites of the currently deployed instance (in case a newer version of the same package is found during regular OS updates), it is recommended to disable the Gluu repositories added previously after initial installation:
 
-To achieve this:
-
-1. For CentOS/RHEL distros, `/etc/yum.repos.d/Gluu.repo` needs to be edited 
+- CentOS/RHEL: `/etc/yum.repos.d/Gluu.repo` needs to be edited 
 with `enabled=1` clause changed to "enabled=0"        
 
-2. For Ubuntu/Debian distros, `/etc/apt/sources.list.d/gluu-repo.list` 
+- Ubuntu/Debian: `/etc/apt/sources.list.d/gluu-repo.list` 
 needs to be edited to comment out all Gluu-related repos.     
 
 ## Run `setup.py`
 
-Configuration is completed by running the `setup.py` script. This generates 
-certificates, salt values, and renders configuration files. You must be logged into the Gluu Server 
-chroot container to run `setup.py` (see Step 2 above). 
+Configuration is completed by running the `setup.py` script. This generates certificates, salt values, and renders configuration files. You must be logged into the Gluu Server chroot container to run `setup.py`. 
 
 ```
 # cd /install/community-edition-setup
@@ -134,11 +131,9 @@ chroot container to run `setup.py` (see Step 2 above).
 ```
 
 !!! Note
-    Only run setup.py **one time**. Running this command twice will break the instance.
+    Only run setup.py **one time**. Running the above command twice will break the instance.
 
-You will be prompted to answer some questions. Just hit `Enter` to
-accept the default value specified in square brackets. The following
-table should help you answer the questions correctly.
+You will be prompted to answer some questions about your deployment. Hit `Enter` to accept the default values. Refer to the following table for more information on the options available during setup.
 
 | Question                |  Explanation                               |
 |-------------------------|--------------------------------------------|
@@ -165,13 +160,15 @@ table should help you answer the questions correctly.
 
 After answering these questions, `setup.py` will show you your selections and ask you if you want to continue. If everything looks good, select Y to finish installation. 
 
-Note: the easiest place to go wrong is with the first two questions:
-
-1. Do not use `localhost` for either the IP address or hostname.  
-
-2. Use a real hostname--you can always manage via host file entries even if you don't want to mess with DNS for testing. If you are deploying a cluster, use the hostname of the cluster--that is used by the clients connecting to the Gluu Server.
-
 After 5-10 minutes you will see the following success message: Gluu Server installation successful! Point your browser to [hostname]. 
+
+### Troubleshooting Setup
+
+The easiest place to go wrong is with the first two questions:
+
+1. Enter IP Address: Do **not** use `localhost` for either the IP address or hostname.  
+
+2. Enter hostname: Use a real hostname--you can always manage via host file entries even if you don't want to mess with DNS for testing. If you are deploying a cluster, use the hostname of the cluster--that is used by the clients connecting to the Gluu Server.
 
 ## Login via Browser
 
