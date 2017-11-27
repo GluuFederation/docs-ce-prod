@@ -174,7 +174,7 @@ Wait about 10 minutes in total for the server to restart and finalize its config
 
 The Gluu Server does **not** support package updates/upgrades via package manager (i.e. using commands like `# yum update` or `# apt-get update`). 
 
-To prevent involuntary overwrites of the currently deployed instance (in case a newer version of the same package is found during regular OS updates), it is recommended to disable the Gluu repositories added previously after initial installation:
+To prevent involuntary overwrites of the currently deployed instance (in case a newer version of the same package is found during regular OS updates), disable the previously added Gluu repositories after initial installation.
 
 For CentOS/RHEL: 
 
