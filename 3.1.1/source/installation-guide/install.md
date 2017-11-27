@@ -13,7 +13,7 @@ installation procedure is similar across all the distributions:
 
 ## Prerequisites
 
-- The Gluu Server needs to be installed on a VM or physical server with at least 4GB of RAM and 2CPU units. Containers are not supported. Make sure your box meets the [minimum requirements](../installation-guide/index.md) to deploy the Gluu Server.    
+- The Gluu Server needs to be installed on a VM or physical server with at least 4GB of RAM and 2CPU units. Docker containers are **not** supported. Make sure your box meets the [minimum requirements](../installation-guide/index.md) to deploy the Gluu Server.    
     
 - You must use a fully qualified domain name (FQDN) to install the Gluu Server. You **can not** use localhost to install the Gluu Server. If you want to run Gluu locally, you can make up a hostname. Just make sure it is in the host file of your VM and the host file of the local windows machine.    
 
@@ -96,14 +96,14 @@ remain the same as the host.
 
 The Gluu Server is a chroot container, which you must start to proceed. 
 
-For Centos 6.x, Red Hat 6.x, Ubuntu 14/16, and Debian 8:
+For Centos 6.x, Red Hat 6.x, Ubuntu 14/16, and Debian 8, run the following commands:
 
 ```
 # service gluu-server-3.1.1 start
 # service gluu-server-3.1.1 login
 ```
 
-For Centos 7.x and Red Hat 7.x: 
+For Centos 7.x and Red Hat 7.x, run the following commands: 
 
 ```
 # /sbin/gluu-serverd-3.1.1 enable
@@ -123,7 +123,7 @@ Configuration is completed by running the `setup.py` script. This generates cert
 # ./setup.py
 ```
 
-!!! Note
+!!! Warning
     Only run setup.py **one time**. Running the above command twice will break the instance.
 
 You will be prompted to answer some questions about your deployment. Hit `Enter` to accept the default values. Refer to the following table for more information on the options available during setup.
@@ -153,7 +153,7 @@ You will be prompted to answer some questions about your deployment. Hit `Enter`
 
 After answering these questions, `setup.py` will show you your selections and ask you if you want to continue. If everything looks good, select Y to finish installation. 
 
-After 5-10 minutes you will see the following success message: Gluu Server installation successful! Point your browser to [hostname]. 
+After 5-10 minutes you should see the following success message: Gluu Server installation successful! Point your browser to [hostname]. 
 
 ### Troubleshooting Setup
 
@@ -196,7 +196,7 @@ For Ubuntu 14/16, and Debian 8:
 # rm -rf /opt/gluu-server-3.1.1.save
 ```
 
-For Centos 6.x, Red Hat 6.x, 
+For Centos 6.x, Red Hat 6.x: 
 
 ```
 # service gluu-server-3.1.1 stop
@@ -214,9 +214,7 @@ For Centos 7.x and Red Hat 7.x:
 ```
 
 !!! Note
-    You can also use `apt-get purge gluu-server-3.1.1` or `apt-get remove --purge gluu-server-3.1.1` to uninstall and 
-    remove all the folders and services of Gluu server, 
-    in case you dont want to have the configuration and services of Gluu Server.
+    You can also use `apt-get purge gluu-server-3.1.1` or `apt-get remove --purge gluu-server-3.1.1` to uninstall and remove all the folders and services of Gluu server, i case you dont want to have the configuration and services of Gluu Server.
 
 ## Support
 If you run into issues please review the [Gluu support portal](https://support.gluu.org). If you can not find a similar existing public issue, register for an account and open a new ticket. 
