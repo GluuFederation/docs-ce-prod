@@ -219,6 +219,6 @@ For Centos 7.x and Red Hat 7.x:
     in case you dont want to have the configuration and services of Gluu Server.
 
 ## Support
-If you run into any issues with installation, please review the [Gluu support portal](https://support.gluu.org). If you can not find a similar existing public issue, register for an account and open a new ticket. 
+If you run into issues please review the [Gluu support portal](https://support.gluu.org). If you can not find a similar existing public issue, register for an account and open a new ticket. 
 
 If your organization needs guaranteed responses, SLAs, and priority access to the Gluu support and development team, consider purchasing one of our [VIP support contracts](https://gluu.org/pricing).  
