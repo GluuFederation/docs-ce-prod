@@ -158,13 +158,10 @@ After answering these questions, `setup.py` will show you your selections and as
 
 After 5-10 minutes you should see the following success message: Gluu Server installation successful! Point your browser to [hostname]. 
 
-#### Troubleshooting Setup
-
-The easiest place to go wrong is with the first two questions:
-
-1. Enter IP Address: Do **not** use `localhost` for either the IP address or hostname.  
-
-2. Enter hostname: Use a real hostname--you can always manage via host file entries even if you don't want to mess with DNS for testing. If you are deploying a cluster, use the hostname of the cluster--that is used by the clients connecting to the Gluu Server.
+!!! Note
+    The easiest place to go wrong is with the first two questions:                 
+        1. Enter IP Address: Do **not** use `localhost` for either the IP address or hostname.     
+	2. Enter hostname: Use a real hostname--you can always manage via host file entries even if you don't want to mess with DNS for testing. If you are deploying a cluster, use the hostname of the cluster--that is used by the clients connecting to the Gluu Server.    
 
 ### 4. Login via Browser
 
