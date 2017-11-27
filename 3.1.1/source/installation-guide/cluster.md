@@ -2,22 +2,23 @@
 # Manual Gluu Server Clustering
 
 ## Introduction
-If you have requirements for high availability (HA) or failover, you can configure your Gluu Server for multi-master replication by following the instructions below.
+If you have requirements for high availability (HA) or failover, you can manually configure your Gluu Server for multi-master replication by following the instructions below.
 
-For the purpose of this tutorial, my server configurations are as follows:
-
-```
-45.55.232.15    c4.gluu.org (NGINX server)
-159.203.126.10  c5.gluu.org (Gluu 3.1.1 server/Ubuntu 14)
-138.197.65.243  c6.gluu.org (Gluu 3.1.1 server/Ubuntu 14)
-```
+!!! Note
+    If you are a supported Gluu customer, please [contact us](mailto:sales@gluu.org) for access to our automated clustering tool. 
 
 ## Prerequisites
 
 Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:   
 
-- A minimum of three (3) servers or VMs--two (2) for Gluu Servers and one (1) for load balancing (in our example, NGINX);      
-
+- A minimum of three (3) servers or VMs--two (2) for Gluu Servers and one (1) for load balancing (in our example, NGINX). For the purpose of this tutorial, the server configurations are as follows:
+      
+```
+45.55.232.15    c4.gluu.org (NGINX server)
+159.203.126.10  c5.gluu.org (Gluu 3.1.1 server/Ubuntu 14)
+138.197.65.243  c6.gluu.org (Gluu 3.1.1 server/Ubuntu 14)
+```
+     
 - To create the following instructions we used Ubuntu 14 Trusty. Some modifications may be necessary.   
 
 - To create the following instructions we used an Nginx load balancer/proxy, however if you have your own load balancer, like F5 or Cisco, you should use that instead and disregard the bottom instructions about configuring Nginx.   
@@ -34,7 +35,7 @@ In this tutorial we are configuring multi-master replication with OpenLDAP throu
 
 ## Instructions
 
-### 1. [Install Gluu](https://gluu.org/docs/ce/3.1.1/installation-guide/install/) on one of the servers
+### 1. [Install Gluu](https://gluu.org/docs/ce/3.1.1/installation-guide/install/)
 
 - Make sure to use a separate NGINX/Load-balancing server FQDN as hostname.   
 
