@@ -9,7 +9,7 @@ installation procedure is similar across all the distributions:
 4. [Login via a browser](#step-4-login-via-browser)
 
 !!! Note
-    The below instructions are intended for single server Gluu deployments. If you intend to cluster your Gluu Server to achieve fail-over and high availability, please refer to the [cluster documentation]()
+    The below instructions are intended for single server Gluu deployments. If you intend to cluster your Gluu Server to achieve fail-over and high availability, please refer to the [cluster documentation](./cluster.md)
 
 ## Prerequisites
 
