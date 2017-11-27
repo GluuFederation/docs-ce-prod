@@ -110,7 +110,9 @@ For Centos 7.x and Red Hat 7.x:
 
 ## Disable Gluu repositories
 
-The Gluu Server does not support package updates/upgrades via package manager (i.e. using commands like `# yum update` or `# apt-get update`). In case a newer version of the same package is found during regular OS updates, to prevent involuntary overwrites of the currently deployed instance it is recommended to disable the Gluu repositories added previously after initial installation.
+The Gluu Server does **not** support package updates/upgrades via package manager (i.e. using commands like `# yum update` or `# apt-get update`). 
+
+In case a newer version of the same package is found during regular OS updates, to prevent involuntary overwrites of the currently deployed instance it is recommended to disable the Gluu repositories added previously after initial installation.
 
 To achieve this:
 
