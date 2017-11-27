@@ -174,7 +174,7 @@ After 5-10 minutes you should see the following success message:
 
 Wait about 10 minutes in total for the server to restart and finalize its configuration. After that period you can log into your Gluu Server via a web browser. 
 
-Your username will be `admin` and the password will be the `ldap_password` you provided during installation. 
+Your username will be `admin` and your password will be the `ldap_password` you provided during installation. 
 
 !!! Note
     If the Gluu Server login page is still not appearing after you've received the success message and waited about 10 minutes, check if port 443 is open in the VM. If it is not open, open port 443 and try to reach the host in your browser again. 
