@@ -5,7 +5,7 @@
 If you have requirements for high availability (HA) or failover, you can manually configure your Gluu Server for multi-master replication by following the instructions below.
 
 !!! Note
-    If you are a supported Gluu customer, please email [sales@gluu.org](mailto:sales@gluu.org) for access to our automated clustering tool. 
+    If your organization has a Gluu support contract, please email [sales@gluu.org](mailto:sales@gluu.org) for access to our automated clustering tool. 
 
 ## Prerequisites
 
