@@ -161,7 +161,9 @@ Refer to the following table for details about the available setup options:
 
 After answering these questions, `setup.py` will show you your selections and ask you if you want to continue. If everything looks good, select Y to finish installation. 
 
-After 5-10 minutes you should see the following success message: Gluu Server installation successful! Point your browser to [hostname]. 
+After 5-10 minutes you should see the following success message: 
+
+`Gluu Server installation successful! Point your browser to [hostname].`
 
 !!! Note
     The easiest place to go wrong is with the first two questions:                 
@@ -170,7 +172,9 @@ After 5-10 minutes you should see the following success message: Gluu Server ins
 
 ### 4. Login via browser
 
-Wait about 10 minutes in total for the server to restart and finalize its configuration. After that period you are now ready to log into your Gluu Server via a web browser. 
+Wait about 10 minutes in total for the server to restart and finalize its configuration. After that period you can log into your Gluu Server via a web browser. 
+
+Your username will be `admin` and the password will be the `ldap_password` you provided during installation. 
 
 !!! Note
     If the Gluu Server login page is still not appearing after you've received the success message and waited about 10 minutes, check if port 443 is open in the VM. If it is not open, open port 443 and try to reach the host in your browser again. 
