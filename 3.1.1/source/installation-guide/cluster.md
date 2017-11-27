@@ -276,7 +276,7 @@ Aug 23 22:40:29 dc4 slapd[79544]: syncrepl_message_to_op: rid=001 be_modify
 
 ### 5. Install NGINX
 
-** If you have your own load balancer these NGINX configuration files are merely a guide for how to proxy with the Gluu server.**
+**If you have your own load balancer, you can use the following NGINX configuration documentation as a guide for how to proxy with the Gluu server.**
 
 On loadbalancer.example.org 
 
