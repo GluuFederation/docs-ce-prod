@@ -3,10 +3,11 @@
 Gluu publishes Linux packages for Ubuntu, CentOS, RHEL and Debian. The 
 installation procedure is similar across all the distributions: 
 
-1. [Install the Linux package](#step-1-install-gluu-server-package)
-2. [Start the Gluu Server and login to the container](#step-2-start-the-gluu-server-and-login)
-3. [Run `setup.py`](#step-3-run-setuppy)
-4. [Login via a browser](#step-4-login-via-browser)
+1. [Install the Linux package](#1-install-gluu-server-package)
+2. [Start the Gluu Server and login to the container](#2-start-the-gluu-server-and-login)
+3. [Run `setup.py`](#3-run-setuppy)
+4. [Login via a browser](#4-login-via-browser)
+5. [Disable Gluu repositories](#5-disable-gluu-repositories)
 
 !!! Note
     The below instructions are intended for single server Gluu deployments. If you intend to cluster your Gluu Server to achieve fail-over and high availability, please refer to the [cluster documentation](./cluster.md)
@@ -17,14 +18,16 @@ installation procedure is similar across all the distributions:
     
 - You must use a fully qualified domain name (FQDN) to install the Gluu Server. You **can not** use localhost to install the Gluu Server. If you want to run Gluu locally, you can make up a hostname. Just make sure it is in the host file of your VM and the host file of the local windows machine.    
 
-## Step 1: Install Gluu Server Package
+## Instructions
+
+### 1. Install Gluu Server Package
 
 Installation of the Gluu server will be done under `/root`. 
 The Gluu Server will create its file system under `/root/` and will be 
 installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) 
 remain the same as the host.
 
-### Ubuntu Server 14.04.x
+#### Ubuntu Server 14.04.x
 
 | Command Description     |               Trusty Commands         |
 |-------------------------|---------------------------------------|
@@ -33,7 +36,7 @@ remain the same as the host.
 | Update/Clean Repo       | `# apt-get update`                         |
 | Install Gluu Server     | `# apt-get install gluu-server-3.1.1`      |
     
-### Ubuntu Server 16.04.x
+#### Ubuntu Server 16.04.x
 
 |  Command Description    |               Xenial Commands         |
 |-------------------------|---------------------------------------|
@@ -42,7 +45,7 @@ remain the same as the host.
 | Update/Clean Repo       | `# apt-get update`                         |
 | Install Gluu Server     | `# apt-get install gluu-server-3.1.1`      |
 
-### CentOS 6.x
+#### CentOS 6.x
 
 | Command Description     |               CentOS 6.x              |
 |-------------------------|---------------------------------------|
@@ -52,7 +55,7 @@ remain the same as the host.
 | Update/Clean Repo       | `# yum clean all`                          |
 | Install Gluu Server     | `# yum install gluu-server-3.1.1`          |
 
-### CentOS 7.x
+#### CentOS 7.x
 
 | Command Description     |               CentOS 7.2              |
 |-------------------------|---------------------------------------|
@@ -62,7 +65,7 @@ remain the same as the host.
 | Update/Clean Repo       | `# yum clean all`                          |
 | Install Gluu Server     | `# yum install gluu-server-3.1.1`          |
 
-### RHEL 6.x
+#### RHEL 6.x
 
 | Command Description     |               RHEL 6.x              |
 |-------------------------------|---------------------------------------|
@@ -72,7 +75,7 @@ remain the same as the host.
 | Update/Clean Repo       | `# yum clean all`                          |
 | Install Gluu Server     | `# yum install gluu-server-3.1.1`          |
 
-### RHEL 7.x
+#### RHEL 7.x
 
 | Command Description     |               RHEL 7                  |
 |-------------------------|---------------------------------------|
@@ -82,7 +85,7 @@ remain the same as the host.
 | Update/Clean Repo       | `# yum clean all`                          |
 | Install Gluu Server     | `# yum install gluu-server-3.1.1`          |
 
-### Debian 8 (Jessie)
+#### Debian 8 (Jessie)
 
 | Command Description     |               Jessie Commands         |
 |-------------------------|---------------------------------------|
@@ -92,7 +95,7 @@ remain the same as the host.
 | Install Gluu Server     | `# apt-get install gluu-server-3.1.1`      |
 
 
-## Step 2: Start the Gluu Server and Login
+### 2. Start the Gluu Server and login
 
 The Gluu Server is a chroot container, which you must start to proceed. 
 
@@ -114,7 +117,7 @@ For Centos 7.x and Red Hat 7.x, run the following commands:
 !!! Note
     Only use `enable` the first time you start the Gluu Server.
 
-## Step 3: Run `setup.py`
+### 3. Run `setup.py`
 
 Configuration is completed by running the `setup.py` script. This generates certificates, salt values, and renders configuration files. You must be logged into the Gluu Server chroot container to run `setup.py`. 
 
@@ -155,7 +158,7 @@ After answering these questions, `setup.py` will show you your selections and as
 
 After 5-10 minutes you should see the following success message: Gluu Server installation successful! Point your browser to [hostname]. 
 
-### Troubleshooting Setup
+#### Troubleshooting Setup
 
 The easiest place to go wrong is with the first two questions:
 
@@ -163,14 +166,14 @@ The easiest place to go wrong is with the first two questions:
 
 2. Enter hostname: Use a real hostname--you can always manage via host file entries even if you don't want to mess with DNS for testing. If you are deploying a cluster, use the hostname of the cluster--that is used by the clients connecting to the Gluu Server.
 
-## Step 4: Login via Browser
+### 4. Login via Browser
 
 Wait about 10 minutes in total for the server to restart and finalize its configuration. After that period you are now ready to log into your Gluu Server via a web browser. 
 
 !!! Note
     If the Gluu Server login page is still not appearing after you've received the success message and waited about 10 minutes, check if port 443 is open in the VM. If it is not open, open port 443 and try to reach the host in your browser again. 
 
-## Disable Gluu repositories
+### 5. Disable Gluu repositories
 
 The Gluu Server does **not** support package updates/upgrades via package manager (i.e. using commands like `# yum update` or `# apt-get update`). 
 
