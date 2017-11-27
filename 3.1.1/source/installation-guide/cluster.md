@@ -53,7 +53,7 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 ```
 
-scp /opt/gluu-server-3.1.1/install/community-edition-setup/setup.properties.last root@c6.gluu.org:/opt/gluu-server-3.1.1/install/community-edition-setup/setup.properties
+scp /opt/gluu-server-3.1.1/install/community-edition-setup/setup.properties.last root@idp2.example.org:/opt/gluu-server-3.1.1/install/community-edition-setup/setup.properties
 
 ```
 
