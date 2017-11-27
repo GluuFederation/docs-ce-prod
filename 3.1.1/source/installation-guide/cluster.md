@@ -2,16 +2,24 @@
 # Manual Gluu Server Clustering
 
 ## Introduction
-If you have requirements for high availability (HA) or failover, you can manually configure your Gluu Server for multi-master replication by following the instructions below.
+If you have requirements for high availability (HA) or failover, you can manually configure your Gluu Server for multi-master replication (MMR) by following the instructions below.
 
 !!! Note
     If your organization has a Gluu support contract, please email [sales@gluu.org](mailto:sales@gluu.org) for access to our automated clustering tool. 
+
+## Concept
+
+In this tutorial we are configuring MMR with OpenLDAP using delta-syncrepl by creating an accesslog database and configuring synchronization with the `slapd.conf` file. 
+
+The `ldap.conf` file for each Gluu Server will allow the self-signed certs that Gluu creates and configuring the `symas-openldap.conf` to allow external connections for LDAP on ports 1636 and 636 (for SSL). 
+
+There are also some additional steps that are required to persist Gluu functionality across servers. This is where a load-balancer/proxy is required.
 
 ## Prerequisites
 
 Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:   
 
-- A minimum of three (3) servers or VMs--two (2) for Gluu Servers and one (1) for load balancing (in our example, NGINX). For the purpose of this tutorial, the server configurations are as follows:
+- A minimum of three (3) servers or VMs: two (2) for Gluu Servers and one (1) for load balancing (in our example, NGINX). For the purpose of this tutorial, the server configurations are as follows:
       
 ```
 45.55.232.15    c4.gluu.org (NGINX server)
@@ -21,17 +29,13 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
      
 - To create the following instructions we used Ubuntu 14 Trusty. Some modifications may be necessary.   
 
-- To create the following instructions we used an Nginx load balancer/proxy, however if you have your own load balancer, like F5 or Cisco, you should use that instead and disregard the bottom instructions about configuring Nginx.   
+- To create the following instructions we used an Nginx load balancer/proxy, however if you have your own load balancer, like F5 or Cisco, you should use that instead and disregard the instructions about configuring Nginx.   
 
 - Gluu Server 3.x using OpenLDAP.   
 
 - Redis-server for caching sessions.   
 
-- JXplorer for editing LDAP.   
-
-## Concept
-
-In this tutorial we are configuring multi-master replication with OpenLDAP through delta-syncrepl by creating an accesslog database and configuring synchronization with the slapd.conf file. The ldap.conf file for all the servers will allow the self-signed certs that Gluu creates and configuring the symas-openldap.conf to allow external connections for LDAP on ports 1636 and 636 (for SSL). There are also some additional steps that are required to persist Gluu functionality across servers. This is where a load-balancer/proxy is required.
+- JXplorer or a similar LDAP browser for editing LDAP.   
 
 ## Instructions
 
