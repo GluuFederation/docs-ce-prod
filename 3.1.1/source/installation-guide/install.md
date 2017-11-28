@@ -14,9 +14,11 @@ installation procedure is similar across all the distributions:
 
 ## Prerequisites
 
-- The Gluu Server needs to be installed on a VM or physical server with at least 4GB of RAM and 2CPU units. Docker containers are **not** supported. Make sure your box meets the [minimum requirements](../installation-guide/index.md) to deploy the Gluu Server.    
+- The Gluu Server needs to be installed on a VM or physical server with at least 4GB of RAM and 2CPU units. Docker containers are **not** supported.     
     
-- You must use a fully qualified domain name (FQDN) to install the Gluu Server. You **can not** use localhost to install the Gluu Server. If you want to run Gluu locally, you can make up a hostname. Just make sure it is in the host file of your VM and the host file of the local windows machine.    
+- You must use a fully qualified domain name (FQDN) to install the Gluu Server. You **can not** use localhost to install the Gluu Server. If you want to run Gluu locally, you can make up a hostname. Just make sure it is in the host file of your VM and the host file of the local windows machine.
+
+- **Make sure your box meets the [minimum requirements](../installation-guide/index.md) to deploy the Gluu Server**.
 
 ## Instructions
 
