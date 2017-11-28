@@ -173,7 +173,6 @@ After 5-10 minutes you should see the following success message:
 	2. Enter hostname: Use a real hostname--you can always manage via host file entries even if you don't want to mess with DNS for testing. If you are deploying a cluster, use the hostname of the cluster--that is used by the clients connecting to the Gluu Server.    
 
 ### 4. Login via browser
-
 Wait about 10 minutes in total for the server to restart and finalize its configuration. After that period you can log into your Gluu Server via a web browser. 
 
 Your username will be `admin` and your password will be the `ldap_password` you provided during installation. 
@@ -182,9 +181,6 @@ Your username will be `admin` and your password will be the `ldap_password` you 
     If the Gluu Server login page is still not appearing after you've received the success message and waited about 10 minutes, check if port 443 is open in the VM. If it is not open, open port 443 and try to reach the host in your browser again. 
 
 ### 5. Disable Gluu repositories
-
-The Gluu Server does **not** support package updates/upgrades via package manager (i.e. using commands like `# yum update` or `# apt-get update`). 
-
 To prevent involuntary overwrites of the currently deployed instance (in case a newer version of the same package is found during regular OS updates), disable the previously added Gluu repositories after initial installation.
 
 For CentOS/RHEL: 
@@ -195,8 +191,11 @@ For Ubuntu/Debian:
 
 `/etc/apt/sources.list.d/gluu-repo.list` needs to be edited to comment out all Gluu-related repos.     
 
-## Uninstallation
+!!! Note
+    The Gluu Server does **not** support package updates/upgrades via Linux package management (i.e. using commands like `# yum update` or `# apt-get update`). For upgrade instructions, see the [upgrade docs](../upgrade/index.md).
 
+
+## Uninstallation
 For Ubuntu 14/16, and Debian 8:
 
 ```
