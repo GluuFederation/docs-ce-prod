@@ -85,3 +85,7 @@ for other components are listed below.
 |  UnboundID LDAP SDK	| [UnboundID LDAP SDK Free Use License](https://github.com/UnboundID/ldapsdk/blob/master/LICENSE-UnboundID-LDAPSDK.txt)|
 | Passport-JS           | [MIT License](https://github.com/jaredhanson/passport/blob/master/LICENSE) |
 | Tomcat / Apache HTTPD  | [Apache2](http://www.apache.org/licenses/LICENSE-2.0)|
+
+## End of life
+
+The EOL for support on Gluu Server 2.4.4 is December 31, 2018. 
