@@ -195,6 +195,9 @@ For Ubuntu/Debian:
     The Gluu Server does **not** support package updates/upgrades via Linux package management (i.e. using commands like `# yum update` or `# apt-get update`). For upgrade instructions, see the [upgrade docs](../upgrade/index.md).
 
 
+## Backups
+Sometimes things go wrong! And it can be difficult to troubleshoot issues if the steps to reproduce the issue are not clearly documented. This is why we **always** recommend creating [backups of your Gluu Server](../operation/backup.md). 
+
 ## Uninstallation
 For Ubuntu 14/16, and Debian 8:
 
