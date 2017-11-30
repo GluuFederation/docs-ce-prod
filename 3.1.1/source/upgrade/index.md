@@ -275,14 +275,14 @@ Gluu provides the necessary [scripts](https://github.com/GluuFederation/communit
 
 ### Prepare your old instance
 
-Scripts cover most of tedious tasks of migrating your settings, but certain mechanics are too tricky to automate and still need to be handled manually.
+!!! Note
+    Next steps are only mandatory if you are using some kind of custom authentication script as your main authentication method (it's set as one of defaults at "Configuration" > "Manage Authentication" > "Default Authentication Method"). Scripts support migration of basic authentication settings configured at "Manage LDAP Authentication" tab, including setups using some remote (not internal) LDAP server to verify users' credentials, so no additional preparational efforts are needed otherwise. You'll be prompted to import and apply your old LDAP settings from previous instance during import phase (see below)
+
+Scripts cover most of tedious tasks of migrating your settings, but certain transitions are too tricky to automate and still need to be handled manually.
 
 Architectural differences are significant between 2.x and 3.x packages. Among other compatibility issues is the fact that custom authentication scripts written for 2.x most likely will fail to initialize in 3.x instances. This becomes a problem if your old setup is using such script to authenticate administrator users accessing oxTrust web UI - in such case after migration you risk getting locked out from the easiest way to manage your instance, and will have to resort to directly changing settings in LDAP.
 
-To prevent this, we recommend to temporarily reset your authentication method to the most basic mode available - authentication against internal LDAP server. Please follow next steps to ensure you'll be able to acess web UI after the migration is done:
-
-!!! Note
-    Next steps are only mandatory if you are using some kind of custom authentication script as your main authentication method (it's set as one of defaults at "Configuration" > "Manage Authentication" > "Default Authentication Method"). Scripts support migration of basic authentication settings configured at "Manage LDAP Authentication" tab, including setups using some remote (not internal) LDAP server to verify users' credentials, so no additional preparational efforts are needed otherwise. You'll be prompted to import and apply your old LDAP settings from previous instance during import phase (see below)
+To prevent this, we recommend to temporarily reset your authentication methods to the most basic mode available - authentication against internal LDAP server. Please follow next steps to ensure you'll be able to acess web UI after the migration is done:
 
 1. If "Cache Refresh" is used in your old instance, please proceed to "Configuration" > "Cache Refresh" page and disable it. Also make sure "Keep external persons" checkbox is set there (these changes can be reverted after migration is done, they are simply to prevent the user that will be added next to be removed by CR)
 2. Move to "Users" > "Manage People" page and click "Add person" button. Create a new temporary administrator user providing basic set of mandatory attributes it requirese (don't forget to set a password for it).
