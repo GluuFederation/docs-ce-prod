@@ -264,13 +264,34 @@ Any errors or warnings will be displayed in the terminal and can be reviewed in 
 
 Upgrading generally involves the following steps:   
 
-* Install new version
-* Export the data from your current version
-* Stop the current Gluu Server
-* Start the new version of Gluu Server
+* Install the recent Gluu CE package
+* Prepare the old Gluu Server instance for migration
+* Export the data from your old instance
+* Stop the old instance
+* Start the new instance you installed
 * Import data into the new server
 
 Gluu provides the necessary [scripts](https://github.com/GluuFederation/community-edition-setup/tree/master/static/scripts) to import and export data in and out of the servers.
+
+### Prepare your old instance
+
+Scripts cover most of tedious tasks of migrating your settings, but certain mechanics are too tricky to automate and still need to be handled manually.
+
+Architectural differences are significant between 2.x and 3.x packages. Among other compatibility issues is the fact that custom authentication scripts written for 2.x most likely will fail to initialize in 3.x instances. This becomes a problem if your old setup is using such script to authenticate administrator users accessing oxTrust web UI - in such case after migration you risk getting locked out from the easiest way to manage your instance, and will have to resort to directly changing settings in LDAP.
+
+To prevent this, we recommend to temporarily reset your authentication method to the most basic mode available - authentication against internal LDAP server. Please follow next steps to ensure you'll be able to acess web UI after the migration is done:
+
+!!! Note
+    Next steps are only mandatory if you are using some kind of custom authentication script as your main authentication method (it's set as default at "Configuration" > "Manage Authentication" > "Default Authentication Method"). Scripts support migration of basic authentication settings configured at "Manage LDAP Authentication" tab, including setups using some remote (not internal) LDAP server to verify users' credentials. You'll be prompted to import and apply your old LDAP settings from previous instance during import phase (see below)
+
+1. If "Cache Refresh" is used in your old instance, please proceed to "Configuration" > "Cache Refresh" page and disable it. Also make sure "Keep external persons" checkbox is set there (these changes can be reverted after migration is done, they are simply to prevent the user that will be added next to be removed by CR)
+2. Move to "Users" > "Manage People" page and click "Add person" button. Create a new temporary administrator user providing basic set of mandatory attributes it requirese (don't forget to set a password for it).
+3. Move to "Users" > "Manage People" and add the new user to "Gluu Manager Group" group
+4. Move to "Configuration" > "Manage Authentication" > "Default Authentication Method" and make sure both settings there are set to "Default" (they must not contain the name of your (or any other) script).
+5. Move to "Configuration" > "Manage Custom Scripts" > "Person Authentication" and make sure that for **all** scripts there "Enabled" checkbox is not checked.
+6. Don't log out from your current session which you used to apply recent changes so you will be able to fix any issues if something won't work as expected. In a separate browser try to access old instance's web UI as the new admin user you've just created, to make sure it has full access to its controls.
+
+After migration is done you should be able to log in as the temporary admin user you created. After resolving compatibility issues with your custom scripts and restoring your regular setup, you can remove the temporary user entry from Managers group and delete/disable it.
 
 ### Export the data from the current installation
 
