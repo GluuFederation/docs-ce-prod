@@ -721,7 +721,7 @@ Assuming you named the file above as `scim-client.properties`, the following Jav
 ```
 Properties p= new Properties();
 p.load(new FileInputStream("scim-client.properties"));
-ScimResponse response = scim2Client.createPersonString(p.getProperty("json_string"), MediaType.APPLICATION_JSON);
+BaseClientResponse<User> response=client.createPersonString(p.getProperty("json_string"), MediaType.APPLICATION_JSON);
 ```
 
 ##### User Object
@@ -779,9 +779,8 @@ address.setFormatted("My Formatted Address");
 addresses.add(address);
 user.setAddresses(addresses);
 
-ScimResponse response = scim2Client.createUser(user, new String[]{});
-System.out.println("response HTTP code = " + response.getStatusCode());
-System.out.println("response body = " + response.getResponseBodyString());
+BaseClientResponse<User> response = client.createUser(user, new String[]{});
+logger.info("response HTTP code = " + response.getStatusCode());
 ```
 
 #### Delete a user
