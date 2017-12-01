@@ -396,7 +396,7 @@ Install the `json-merge` Python package and run the import script.
 # ./import2431.py backup_2431
 ```
 
-You'll be asked whether or not you want to import your LDAP server settings from the old instance (the ones specified on "Manage Authentication" > "Manage LDAP Authentication" page/tab). If authentication against some remote backend LDAP server was used in the old instance and you expect to be able to log in with your old credentials after import is done, choose [1]("yes"). Choosing [2]("no") will keep default settings of the new instance (will verify user's credentials against Gluu's internal LDAP server).
+You'll be asked whether or not you want to import your LDAP server settings from the old instance (the ones specified on "Manage Authentication" > "Manage LDAP Authentication" page/tab). If authentication against some remote backend LDAP server was used in the old instance and you expect to be able to log in with your old credentials after import is done, choose `[1]("yes")`. Choosing `[2]("no")` will keep default settings of the new instance (will verify user's credentials against Gluu's internal LDAP server).
 
 
 !!! Note
