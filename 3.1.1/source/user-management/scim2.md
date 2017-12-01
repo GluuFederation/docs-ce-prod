@@ -780,7 +780,7 @@ addresses.add(address);
 user.setAddresses(addresses);
 
 BaseClientResponse<User> response = client.createUser(user, new String[]{});
-logger.info("response HTTP code = " + response.getStatusCode());
+logger.info("response HTTP code = {}", response.getStatusCode());
 ```
 
 #### Delete a user
