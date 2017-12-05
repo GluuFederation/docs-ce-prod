@@ -3,9 +3,9 @@
 ## Overview
 As a profile of OAuth 2.0 that is complementary to OpenID Connect, UMA 2 defines RESTful, JSON-based, standardized flows and constructs for coordinating the protection of any API or web resource in a way that will be familiar to any developer already acquainted with OAuth.
 
-UMA 2 defines interfaces between authorization servers (AS) and resource servers (RS) that, by default, enable centralized policy decision-making for improved service delivery, auditing, policy administration, and accountability, even in a very loosely coupled "public API" environment. Custom profiles enable flexibility to move the decision-making line outward to distributed applications, to account for local preferences in API ecosystems. 
+UMA 2 defines interfaces between authorization servers (AS) and resource servers (RS) that, by default, enable centralized policy decision-making for improved service delivery, auditing, policy administration, and accountability, even in a very loosely coupled "public API" environment. Custom profiles enable flexibility to move the decision-making line outward to distributed applications, to account for local preferences in API ecosystems.
 
-The Gluu Server functions as an UMA 2 AS and provides an interface for scripting unique policies for access management. Learn more about the Gluu Server's [UMA-API](../api-guide/uma-api.md). 
+The Gluu Server functions as an UMA 2 AS and provides an interface for scripting unique policies for access management. Learn more about the Gluu Server's [UMA-API](../api-guide/uma-api.md).
 
 Learn more about the UMA 2 [Federated Authorization](https://docs.kantarainitiative.org/uma/ed/oauth-uma-federated-authz-2.0-07.html) and [Grant](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-06.html) specifications on Kantara's website.
 
@@ -16,12 +16,12 @@ Learn more about the UMA 2 [Federated Authorization](https://docs.kantarainitiat
 UMA 2 introduces new terms and enhancements of OAuth term definitions. For a complete overview of UMA terminology, see the [specification](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-06.html#roles).
 
 ### Authorization Policy Expression Language
-UMA 2 does not standardize a policy expression language, enabling flexibility in policy expression and evaluation through XACML, other declarative policy languages, or procedural code as warranted by conditions. 
+UMA 2 does not standardize a policy expression language, enabling flexibility in policy expression and evaluation through XACML, other declarative policy languages, or procedural code as warranted by conditions.
 
 ### Authentication-Agnostic
-UMA 2 inherits authentication agnosticism from OAuth. It concentrates on authorization, not authentication. 
-It has been profiled to work with OpenID Connect to gather identity claims from whoever is attempting access, 
-and enables true claims-based authorization (with simple group-based or role-based policies a natural subset). 
+UMA 2 inherits authentication agnosticism from OAuth. It concentrates on authorization, not authentication.
+It has been profiled to work with OpenID Connect to gather identity claims from whoever is attempting access,
+and enables true claims-based authorization (with simple group-based or role-based policies a natural subset).
 
 ## Resource Registration
 The resources protected by UMA 2 must be registered in oxTrust. The following propterties describe a resource:
@@ -49,14 +49,14 @@ The search bar can be used to find existing available resources. New resources c
 
 ![add-resource-set](../img/uma/add-resource-set.png)
 
-The properties of a resource are visible on this page. There are two additional buttons that allow the administrator to add specific resources and/or scopes. By default, Gluu Server is shipped with SCIM resources protected by UMA. Learn more in the [SCIM protected by UMA documentation](./scim-uma.md). 
+The properties of a resource are visible on this page. There are two additional buttons that allow the administrator to add specific resources and/or scopes. By default, Gluu Server is shipped with SCIM resources protected by UMA. Learn more in the [SCIM protected by UMA documentation](./scim-uma.md).
 
 ![add-resource](../img/uma/add-resource.png)
 
 ![add-scope](../img/uma/add-scope.png)
 
 ## Scopes
-UMA 2 scopes are used to grant a client permission to do an action on a protected resource. Different scopes can grant access to the same action. For example, a "read" action can be allowed with scope "read" or "all". For some actions the Resource Server (RS) may want multiple scopes at the same time. For instance, a "read" action should only be allowed if the authorization request includes the "read" **and** "all" scopes. UMA 2 scopes are bound to resources and are used to fetch policies that check whether the specified user or client should have access to the resource. 
+UMA 2 scopes are used to grant a client permission to do an action on a protected resource. Different scopes can grant access to the same action. For example, a "read" action can be allowed with scope "read" or "all". For some actions the Resource Server (RS) may want multiple scopes at the same time. For instance, a "read" action should only be allowed if the authorization request includes the "read" **and** "all" scopes. UMA 2 scopes are bound to resources and are used to fetch policies that check whether the specified user or client should have access to the resource.
 
 The scopes are described in JSON and have the following properties:
 
@@ -109,16 +109,16 @@ The search bar can be used to find existing available scopes. New scopes can be 
 Additionally there is an option to add authorization policy with the new scope.
 
 ## UMA RPT Authorization Policies
-UMA RPT Authorization policy's are associated with UMA scopes. An authorization request has a resource_id and scope(s). Each scope can point to one or more policies. If all policies associated with all scopes return `true`, then access is granted. 
+UMA RPT Authorization policy's are associated with UMA scopes. An authorization request has a resource_id and scope(s). Each scope can point to one or more policies. If all policies associated with all scopes return `true`, then access is granted.
 
-For example, let's say we have the following resource, `GET /photo`. In order to access it the Resource Server (RS) requires the `read` scope to be present. If we have a policy that always return `true`, then any authorization request to `/photo` that includes the `read` scope will result in access granted. 
+For example, let's say we have the following resource, `GET /photo`. In order to access it the Resource Server (RS) requires the `read` scope to be present. If we have a policy that always return `true`, then any authorization request to `/photo` that includes the `read` scope will result in access granted.
 
 If we wish to have more sophisticated logic, for example to grant access only to a specific client, then we can add something like `client_id = "@1111"` to the policy. This means that an authorization request to `/photo` will only be granted if the scope includes `read` and is coming from `client_id = "@1111"`.
 
 There are three (3) main properties of a policy:
 
-1. scopes: policy protects resources by scopes; 
-2. authorization script: script that is evaluated in order to grant/deny access; 
+1. scopes: policy protects resources by scopes;
+2. authorization script: script that is evaluated in order to grant/deny access;
 3. name: a human readable name to the UMA policy.
 
 The following section outlines how to define UMA RPT Authorization policies from the Custom Script menu. The Custom Script page is accessed by navigating to `Configuration` > `Custom Scripts` > `UMA RPT Policies`.
@@ -303,7 +303,7 @@ The UMA 2 policy algorithm has two rules that must be followed:
 
 2. Multiple policies can protect a single scope. In such a case, all the policies must retun `true` to authorize access or else aceess will be denied.
 
-![policy-algorithm](../img/uma/policy-algorithm.jpg) 
+![policy-algorithm](../img/uma/policy-algorithm.jpg)
 
 ### UMA 2 Client Authentication
 
@@ -322,8 +322,72 @@ Authorization: AccessToken czZCaGRSa3F0MzpnWDFmQmF0M2JW
 
 ```
 
-### UMA Scope Expressions
+## UMA Scope Expressions
 
-UMA Scope expressions is Gluu invented extension of UMA 2 which give flexible way to combine scopes and thus propose more robust way to grant access.
+The Gluu Server allows resources to specify an UMA Scope Expressions, which
+offers a flexible way to combine OAuth scopes to express security policies.
+The expression syntax uses prefix notation called [JSONLogic](http://jsonlogic.com/)  
+This allows the construction of complex boolean statements.
 
-More information about exact way how it works please find [here](./uma-expression.md)
+### Register registration with scope_expression
+
+To use scope expressions, when the RS registers a resource, it species a
+`scope_expression` field--`resource_scopes` is ignored in this case.
+
+For example:
+
+```json
+{  
+   "resource_scopes":[],
+   "description":"Collection of digital photographs",
+   "icon_uri":"http://www.example.com/icons/flower.png",
+   "name":"Photo Album",
+   "type":"http://www.example.com/rsrcs/photoalbum",
+   "scope_expression": {
+      "rule": {
+         "and": [
+            {
+               "or": [
+                   {"var": 0},
+                   {"var": 1}
+               ]
+            },
+            {"var": 2}
+         ]
+      },
+      "data": [
+         "http://photoz.example.com/dev/actions/all",
+         "http://photoz.example.com/dev/actions/add",
+         "http://photoz.example.com/dev/actions/internalClient"
+      ]
+   }
+}
+
+```
+### Ticket registration with scope_expression
+
+RS registers tickets with all scopes mentioned in JSONLogic "data" array.
+All scopes are required, or the request will fail.
+
+```json
+
+{  
+   "resource_id":"112210f47de98100",
+   "resource_scopes":[  
+       "http://photoz.example.com/dev/actions/all",
+       "http://photoz.example.com/dev/actions/add",
+       "http://photoz.example.com/dev/actions/internalClient"
+   ]
+}
+```
+
+### oxAuth scope_expression evaluation
+
+In oxAuth, the UMA expression evaluation engine iterates over each scope. It fetches
+and evaluates ALL policies for each scope. If any of the policies requires claims
+that are not available, oxAuth will return the UMA `need_info` error.
+
+If a scope evaluates to false, the scope will not be associated with the
+UMA access token (RPT). For example, let's say the expression specifies: (A | B) & C.
+If `A = True`, `B = False` and `C = True`, then only scopes `A` and `C` are granted
+to the token.  
