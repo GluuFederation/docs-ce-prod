@@ -1,6 +1,6 @@
-# UMA 2 Scope Expressions
+# UMA Scope Expressions
 
-UMA 2 Scope expressions is Gluu invented extension of UMA 2 which gives flexible way to combine scopes and thus propose more robust way to grant access.
+UMA Scope Expressions offer a flexible way to combine scopes in order to provide a robust way to grant access.
 
 ## Register resource with scope_expression
 
@@ -53,7 +53,8 @@ RS registers tickets with all scopes mentioned in "data" (we need all scopes in 
 
 ## Evaluation
 
-UMA Engine iterates over each scope and fetch ALL policies for each scope. Evaluates all policies.
+UMA Engine iterates over each scope and fetches and evaluates ALL policies for each scope.
+
 a) not enough claims - return need_info error
 b) enough claims - evaluate results from ALL policies with "AND" rule for ONE given scope.
    b1) `http://photoz.example.com/dev/actions/all` -  `policyA AND policyB` => false
