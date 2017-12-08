@@ -723,6 +723,7 @@ Assuming you named the file above as `scim-client.properties`, the following Jav
 Properties p= new Properties();
 p.load(new FileInputStream("scim-client.properties"));
 BaseClientResponse<User> response=client.createPersonString(p.getProperty("json_string"), MediaType.APPLICATION_JSON);
+User user=response.getEntity();
 ```
 
 ##### User Object
