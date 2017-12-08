@@ -91,6 +91,19 @@ running the `/install/community-edition-setup/setup.py` script, **use the
 Private IP address**. Also, use a hostname other then the long default
 hostname that Amazon provides. Update your DNS or hosts files accordingly.
 
+## Google Cloud Platform
+
+Gluu Server installation in GCP is pretty straight forward. We need to check couple of 
+points for this installation: 
+
+ - Deployer must have to select supported operating system and required resources. 
+ - Enable 'HTTPS' from 'Firewall'
+ - Do not enter any IP durning installation of Gluu Server, setup script will automatically 
+collect appropriate IP. 
+ - When accessing newly installed Gluu server from browser, update your DNS or hosts file accordingly. 
+ 
+ A video tutorial is also available in [Gluu channel](https://www.youtube.com/watch?v=0RskrQG8km8)
+
 ## Microsoft Azure      
 
 Accessing the Gluu Server on Azure can be a little bit tricky because of

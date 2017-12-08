@@ -1,5 +1,5 @@
 # User Authentication Introduction
-The Gluu Server is very flexible in handling user authentication. By default, LDAP is used for username / password authentication ("basic"). However, you can change the default mechanism to a stronger form of authentication, like One-Time Passwords (OTP) or U2F. You can also support multiple mechanisms at the same time, enabling Web and mobile clients to request a certain authentication type by using standard OpenID Connect request parameters. 
+The Gluu Server is very flexible in handling user authentication. By default, LDAP is used for username / password authentication ("basic"). You can easily enforce stronger forms of authentication, like One-Time Passwords (OTP) or U2F to increase the security of logins. You can even support multiple mechanisms at the same time, enabling Web and mobile apps ("clients") to request a specific authentication type by using standard OpenID Connect request parameters. 
 
 ## Authentication Interception Scripts
 The Gluu Server uses [interception scripts](../admin-guide/custom-script.md) to facilitate the user authentication process. For each supported authentication mechanism--like username/password ("basic"), U2F or OTP--there is a corresponding interception script that specifies how the mechanism should be applied during user sign-in. 
@@ -19,7 +19,7 @@ Follow [this tutorial](./customauthn.md) to better understand the process of wri
 
 ## Basic Authentication
 
-By default, LDAP is used to authenticate usernames and passwords. Passwords can either be checked in your Gluu Server's local LDAP server, or in an existing backend LDAP server if you have configured [LDAP synchronization](../admin-guide/user-management.md#ldap-synchronization). Until additional authentication scripts are enabled, default authentication will always be username and password. 
+By default, LDAP is used to authenticate usernames and passwords. Passwords can either be checked in your Gluu Server's local LDAP server, or in an existing backend LDAP server if you have configured [LDAP synchronization](../user-management/ldap-sync.md). Until additional authentication scripts are enabled, default authentication will always be username and password. 
 
 Learn how to [configure basic authentication](./basic.md).
 
@@ -55,14 +55,14 @@ As previously mentioned, your Gluu Server can support multiple authentication me
 
 In oxTrust, navigate to `Configuration` > `Manage Custom Scripts` > `Person Authentication` and check the `Enabled` box for each applicable interception script and save the page. 
 
-By default, users will get the default authentication mechanism you specified [above](#default-authentication-mechanism) in the `Default acr` field. However, using the OpenID Connect `acr_value`, web and mobile applications can now request any enabled authentication mechanism. 
+By default, users will get the default authentication mechanism you specified [above](#default-authentication-mechanism) in the `Default acr` field. However, using the OpenID Connect `acr_value`, web and mobile applications can request any *enabled* authentication mechanism. 
 
-To view which authentication mechanisms are enabled at your Gluu Server, you can check your OP URL: `https://<hostname>/.well-known/openid-configuration`. Find `"acr_values_supported"` to see a list of which `acr_values` applications can use to request a specific type of authentication. 
+You can enable and disable scripts in the oxTrust interface. You can also see which scripts are enabled by checking your OP configuration URL: `https://<hostname>/.well-known/openid-configuration` and look for `"acr_values_supported"`. 
 
 Learn more about `acr_values` in the [OpenID Connect core scpec](http://openid.net/specs/openid-connect-core-1_0.html#acrSemantics) and in the Gluu Server [OpenID Connect docs](../admin-guide/openid-connect.md/#multi-factor-authentication-for-clients).
 
 !!! Note
-    All Gluu Server authentications are routed through oxAuth (the OP). You can take incoming SAML or CAS assertions from a 3rd party IDP, for example ADFS, and use that as the basis for an OpenID Connect session. This eanbles seamless SSO across all your apps.
+    All Gluu Server authentications are routed through oxAuth (the OP). You can take incoming SAML or CAS assertions from a 3rd party IDP, for example ADFS, and use that as the basis for an OpenID Connect session in Gluu. This enables seamless SSO across all your apps.
 
 ## Account Lockout
 
@@ -72,4 +72,4 @@ Learn how to [configure account lockout](./lockout.md).
 
 ## Customizing the Login Page 
 
-Learn how to customize the look and feel of Gluu Server pages in the [Design Customizations](../operation/custom-loginpage.md) section of the Operations Guide.
+Learn how to customize the look and feel of Gluu Server pages in the [Design Customizations](../operation/custom-design.md) section of the Operations Guide.

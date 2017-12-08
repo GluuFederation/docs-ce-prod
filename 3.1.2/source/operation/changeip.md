@@ -2,7 +2,7 @@
 
 Question: What if my IP changes? Do I need to reinstall whole Gluu Server? 
 
-Answer: No. Here is how you can apply new IP in Gluu Server 3.1.0
+Answer: No. Here is how you can apply new IP in Gluu Server 3.1.x
 
 - Start container
 - Log into Gluu Server container

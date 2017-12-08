@@ -1,13 +1,22 @@
 # Interception Scripts
 
 ## Overview
-Interception scripts allow you to customize many aspects of your Gluu Server identity and access management service. For example, if you want to use an external authentication service, like Duo or Yubikey, you would use an an interception script. Or, if you wanted to perform fraud detection during login, you would write an interception script to call the API of your fraud detection service. 
+Interception scripts allow you to customize many aspects of your Gluu Server identity and access management service. 
 
-These are just a couple examples of how interception scripts can be used to customize the behavior of the Gluu Server. Both examples focus on login, but the Gluu Server supports interception scripts for many aspects of the service including registration, user updates, authorization and more. 
+For example, if you want to use an external authentication service, like Duo or Yubikey, you would use an an interception script. Or, if you wanted to perform fraud detection during login, you would write an interception script to call the API of your fraud detection service. 
 
-Interception scripts are written in [Jython](http://www.jython.org/docs/tutorial/indexprogress.html). Jython was chosen because an interpreted language facilitates dynamic creation of business logic, and makes it easier to distribute this logic to a cluster of Gluu servers. Jython enables developers to use either Java or Python classes. Combined with the option of calling web services from Python or Java, this enables the Gluu Server to support any business-driven policy requirement.
+These are just a couple examples demonstrating how interception scripts can be used to customize the behavior of the Gluu Server. Both examples focus on login, but the Gluu Server supports interception scripts for many aspects of the service including registration, user updates, authorization and more. 
 
 The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scritps`.
+
+### Jython
+Interception scripts are written in [Jython](http://www.jython.org/docs/tutorial/indexprogress.html). 
+
+Jython was chosen because an interpreted language facilitates dynamic creation of business logic, and makes it easier to distribute this logic to a cluster of Gluu servers. 
+
+Jython enables developers to use either Java or Python classes. You can use the full power of java in your scripts, including iterators, converting `Set` to `List`, manipulating data as you wish--literally everything that is accessible in context. 
+
+Combined with the option of calling web services from Python or Java, this enables the Gluu Server to support any business-driven policy requirement.
 
 ## Interception Script Methods
 There are three methods that inherit a base interface

@@ -26,7 +26,7 @@ In order to create SSO to certain applications you may need to add custom attrib
  - Add custom attribute to `/opt/gluu/schema/openldap/custom.schema` 
    - In the below example, `customTest` is our custom attribute : 
 ```
-attributetype ( oxAttribute:1003 NAME 'customTest'
+attributetype ( oxAttribute:1001 NAME 'customTest'
         SUBSTR caseIgnoreSubstringsMatch EQUALITY caseIgnoreMatch
         SYNTAX 1.3.6.1.4.1.1466.115.121.1.15        
        X-ORIGIN 'Gluu - custom person attribute' )
@@ -37,7 +37,7 @@ attributetype ( oxAttribute:1003 NAME 'customTest'
 objectclass ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
         SUP ( top )
         AUXILIARY
-        MAY ( telephoneNumber $ mobile $ customTest )
+        MAY ( telephoneNumber $ mobile $ carLicense $ facsimileTelephoneNumber $ departmentNumber $ employeeType $ cn $ st $ manager $ street $ postOfficeBox $ employeeNumber $ preferredDeliveryMethod $ roomNumber $ secretary $ homePostalAddress $ l $ postalCode $ description $ title $ customTest )
         X-ORIGIN 'Gluu - Custom persom objectclass' )
 ```
  - Become `root` user
@@ -97,7 +97,7 @@ The default NameID for oxTrust generated SAML trust relationships is `transientI
 
   * Add declaration for the new attribute
   ```
-  if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('testcustomattribute') ) )
+  #if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('persistentId') $attribute.name.equals('testcustomattribute') ) )
   ```
   * Add definition for the new attribute
 ```

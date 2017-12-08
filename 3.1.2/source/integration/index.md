@@ -1,7 +1,7 @@
 # Single Sign-On (SSO) Integration Guide
-The integration guide will help you understand how to achieve SSO with your Gluu Server across custom developed, open source, off-the-shelf, and SaaS web and mobile applications. The most important thing to understand is that there are a variety of SSO integration strategies available depending on the type of application in question. 
+The integration guide will help you understand how to achieve SSO with your Gluu Server across custom developed, open source, off-the-shelf, and SaaS web and mobile applications using the open web standards the Gluu Server supports--SAML and OpenID Connect. 
 
-The following page provides a number of integration strategies for the most common types of applications. This is not a totally exhaustive list of integration mechanisms and strategies. However, the mechanisms described below have been tested to work with the Gluu Server and are well understood by our support and development staff.  
+The most important thing to understand is that there are a variety of SAML and OpenID Connect SSO integration strategies available depending on the type of application in question. The list of integration strategies presented below is not totally exhaustive. However, the mechanisms described below have been tested to work with the Gluu Server and are well understood by our support and development staff.  
 
 ## Server Side Web Apps
 Many applications are "server-side", meaning the web page displays content but most of the dynamic business logic resides on the web server. Two design patterns have emerged for securing server-side web applications: (1) use of web server filters and reverse proxies, and (2) leveraging OAuth2 directly in your application. Which approach to use depends on the trade-off between easier devops (option 1), and how deeply you want to integrate centralized security policies into your application (option 2).
@@ -13,10 +13,10 @@ We recommend the following SAML and OpenID Connect web server filters:
   
 - SAML: [Shibboleth SP](./sswebapps/saml-sp.md)     
 
-- OpenID Connect: [Apache mod_auth_openidc](./sswebapps/openidc-rp.md), [Nginx lua-resty-openidc](https://github.com/pingidentity/lua-resty-openidc)
+- OpenID Connect: [Apache mod_auth_openidc](./sswebapps/openidc-rp.md), [Nginx lua-resty-openidc](https://github.com/zmartzone/lua-resty-openidc)
 
 ### Client Software 
-Client software performs some of the heavy lifting for developers around leveraging OAuth 2.0 directly in their applications. Calling the API’s directly will enable “smarter” applications. For example, transaction level security can be more easily implemented by calling the APIs directly. This can have a positive impact on usability. Giving developers more ability to leverage centralized policies also increases re-use of policies, and ultimately results in better security. 
+Client software performs some of the heavy lifting for developers around leveraging OAuth 2.0 directly in their applications. Calling the API’s directly will enable “smarter” handling of authentication in your applications. For example, transaction level security can be more easily implemented by calling the APIs directly. This can have a positive impact on usability. Giving developers more ability to leverage centralized policies also increases re-use of policies, and ultimately results in better security. 
 
 We recommend the following client software to implement OpenID Connect in server-side web applications:
 
@@ -27,8 +27,9 @@ Single Page Applications (SPAs) can be seen as a mix between traditional Web SSO
 
 We recommend the following client software to implement OpenID Connect in SPA’s:
 
+- [AppAuth JS](https://github.com/openid/AppAuth-JS/)
 - [Gluu's OIDC JS Client](./spa/oauth-js-implicit.md)
-- [Identity Model's OIDC JS Client](https://github.com/IdentityModel/oidc-client-js)
+
 
 ## Native Apps
 To integrate native apps with your Gluu Server, we recommend the AppAuth libraries for iOS , MacOS, and Android. AppAuth strives to directly map the requests and responses of those specifications, while following the idiomatic style of the implementation language. In addition to mapping the raw protocol flows, convenience methods are available to assist with common tasks like performing an action with fresh tokens.
