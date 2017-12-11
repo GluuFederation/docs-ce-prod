@@ -138,7 +138,7 @@ service httpd restart
 
 Need to protect a test Apache folder using SAML on an Ubuntu server?
 Hate to read? This article is for you. Replace both `yourKey` and
-`hostname` with your website fully qualify name.
+`hostname` with your IDPs fully qualified domain name.
 
 ## Configure Apache
 
