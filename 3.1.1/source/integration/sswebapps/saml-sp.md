@@ -137,8 +137,8 @@ service httpd restart
 ## Super Quick Ubuntu Shib Apache Install
 
 Need to protect a test Apache folder using SAML on an Ubuntu server?
-Hate to read? This article is for you. Replace both `minnow` and
-`minnow.gluu.info` with your desired website hostname.
+Hate to read? This article is for you. Replace both `yourKey` and
+`hostname` with your website fully qualify name.
 
 ## Configure Apache
 
@@ -152,17 +152,17 @@ These are the steps to configure your Apache webserver properly:
 # a2ensite default-ssl
 # mkdir /etc/certs
 # cd /etc/certs
-# openssl genrsa -des3 -out minnow.key 2048
-# openssl rsa -in minnow.key -out minnow.key.insecure
-# mv minnow.key.insecure minnow.key
-# openssl req -new -key minnow.key -out minnow.csr
-# openssl x509 -req -days 365 -in minnow.csr -signkey minnow.key -out minnow.crt
-# shib-metagen -c /etc/certs/minnow.crt -h minnow.gluu.info > /etc/shibboleth/minnow-metadata.xml
+# openssl genrsa -des3 -out yourKey.key 2048
+# openssl rsa -in yourKey.key -out yourKey.key.insecure
+# mv yourKey.key.insecure yourKey.key
+# openssl req -new -key yourKey.key -out yourKey.csr
+# openssl x509 -req -days 365 -in yourKey.csr -signkey yourKey.key -out yourKey.crt
+# shib-metagen -c /etc/certs/yourKey.crt -h hostname > /etc/shibboleth/yourKey-metadata.xml
 # service apache2 start
 # service shibd start
 ```
 
-Download `minnow-metadata.xml` to your machine. You will need this file
+Download `yourKey-metadata.xml` to your machine. You will need this file
 later when you create the Trust Relationship in the Gluu Server.
 
 ```
@@ -211,9 +211,11 @@ ScriptAlias /protected/ /var/www/protected/
 
 ## Configure the Shibboleth SP
 
-Use this for `shibboleth2.xml` and replace `squid.gluu.info` with the
-hostname of your SP, and `albacore.gluu.info` with the hostname of your
+Use this for `shibboleth2.xml` and replace `hostname` with the
+hostname of your SP, and `idphostname` with the hostname of your
 IDP.
+Also replace `idpMetaDataFile` with your IDP metadata file and make sure this file is readable by shibboleth proocess. if your IDP is Gluu Server then the file is accessible 
+at `https://yourGluuHostname/idp/shibboleth`.
 
 ```
 <SPConfig xmlns="urn:mace:shibboleth:2.0:native:sp:config"
@@ -230,12 +232,12 @@ IDP.
     <ReplayCache StorageService="mem"/>
     <RequestMapper type="Native">
         <RequestMap>
-            <Host name="squid.gluu.info">
+            <Host name="hostname">
                 <Path name="protected" authType="shibboleth" requireSession="true"/>
             </Host>
         </RequestMap>
     </RequestMapper>
-    <ApplicationDefaults entityID="https://squid.gluu.info/shibboleth"
+    <ApplicationDefaults entityID="https://hostname/shibboleth"
                          REMOTE_USER="uid"
                          metadataAttributePrefix="Meta-"
                          sessionHook="/Shibboleth.sso/AttrChecker"
@@ -245,7 +247,7 @@ IDP.
             handlerURL="/Shibboleth.sso" handlerSSL="true" cookieProps="https" relayState="ss:mem">
           
             <SessionInitiator type="Chaining" Location="/Login" isDefault="true" id="Login"
-                              entityID="https://albacore.gluu.info/idp/shibboleth">
+                              entityID="https://idphostname/idp/shibboleth">
                 <SessionInitiator type="SAML2" template="bindingTemplate.html"/>
             </SessionInitiator>
             
@@ -274,14 +276,14 @@ IDP.
             helpLocation="/about.html"
             styleSheet="/shibboleth-sp/main.css"/>
         
-        <MetadataProvider type="XML" file="albacore.xml"/>
+        <MetadataProvider type="XML" file="idpMetaDataFile.xml"/>
         <TrustEngine type="ExplicitKey"/>
         <TrustEngine type="PKIX"/>
         <AttributeExtractor type="XML" validate="true" reloadChanges="false" path="attribute-map.xml"/>
         <AttributeExtractor type="Metadata" errorURL="errorURL" DisplayName="displayName"/>
         <AttributeResolver type="Query" subjectMatch="true"/>
         <AttributeFilter type="XML" validate="true" path="attribute-policy.xml"/>
-        <CredentialResolver type="File" key="/etc/certs/squid.key" certificate="/etc/certs/squid.crt"/>
+        <CredentialResolver type="File" key="/etc/certs/yourKey.key" certificate="/etc/certs/yourKey.crt"/>
     </ApplicationDefaults>
     <SecurityPolicyProvider type="XML" validate="true" path="security-policy.xml"/>
     <ProtocolProvider type="XML" validate="true" reloadChanges="false" path="protocols.xml"/>
@@ -324,7 +326,7 @@ service identity start
 
 ## Test
 
-Test the CGI script at `https://minnow.gluu.info/protected/printHeaders.py`.
+Test the CGI script at `https://hostname/protected/printHeaders.py`.
 Enter both the valid username and password (like `admin` and your
 initial admin password). The output will contain something like this:
 
@@ -342,7 +344,7 @@ initial admin password). The output will contain something like this:
     HTTP_CONNECTION: keep-alive
     HTTP_COOKIE: _shibsession_64656661756c7468747470733a2f2f6d696e6e6f772e676c75752e696e666f2f73686962626f6c657468=_6aab7e287072bcc123989d8bf5f0ed5e
     HTTP_DNT: 1
-    HTTP_HOST: minnow.gluu.info
+    HTTP_HOST: hostname
     HTTP_UPGRADE_INSECURE_REQUESTS: 1
     HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36
     PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -357,11 +359,11 @@ initial admin password). The output will contain something like this:
     SCRIPT_NAME: /protected/printHeaders.py
     SERVER_ADDR: 192.168.88.133
     SERVER_ADMIN: webmaster@localhost
-    SERVER_NAME: minnow.gluu.info
+    SERVER_NAME: hostname
     SERVER_PORT: 443
     SERVER_PROTOCOL: HTTP/1.1
     SERVER_SIGNATURE:
-    Apache/2.4.7 (Ubuntu) Server at minnow.gluu.info Port 443
+    Apache/2.4.7 (Ubuntu) Server at hostname Port 443
     SERVER_SOFTWARE: Apache/2.4.7 (Ubuntu)
     SHIB_Shib_Application_ID: default
     SHIB_Shib_Authentication_Instant: 2015-09-17T01:13:23.278Z
@@ -385,18 +387,18 @@ initial admin password). The output will contain something like this:
     SSL_SECURE_RENEG: true
     SSL_SERVER_A_KEY: rsaEncryption
     SSL_SERVER_A_SIG: sha256WithRSAEncryption
-    SSL_SERVER_I_DN: emailAddress=mike@gluu.org,CN=minnow.gluu.info,O=Gluu,L=Austin,ST=TX,C=US
+    SSL_SERVER_I_DN: emailAddress=mike@gluu.org,CN=hostname,O=Gluu,L=Austin,ST=TX,C=US
     SSL_SERVER_I_DN_C: US
-    SSL_SERVER_I_DN_CN: minnow.gluu.info
+    SSL_SERVER_I_DN_CN: hostname
     SSL_SERVER_I_DN_Email: mike@gmail.com
     SSL_SERVER_I_DN_L: Austin
     SSL_SERVER_I_DN_O: Gluu
     SSL_SERVER_I_DN_ST: TX
     SSL_SERVER_M_SERIAL: 9F5E4F891590BB53
     SSL_SERVER_M_VERSION: 1
-    SSL_SERVER_S_DN: emailAddress=mike@gluu.org,CN=minnow.gluu.info,O=Gluu,L=Austin,ST=TX,C=US
+    SSL_SERVER_S_DN: emailAddress=mike@gluu.org,CN=hostname,O=Gluu,L=Austin,ST=TX,C=US
     SSL_SERVER_S_DN_C: US
-    SSL_SERVER_S_DN_CN: minnow.gluu.info
+    SSL_SERVER_S_DN_CN: hostname
     SSL_SERVER_S_DN_Email: mike@gmail.com
     SSL_SERVER_S_DN_L: Austin
     SSL_SERVER_S_DN_O: Gluu
@@ -404,7 +406,7 @@ initial admin password). The output will contain something like this:
     SSL_SERVER_V_END: Sep 10 18:46:32 2016 GMT
     SSL_SERVER_V_START: Sep 11 18:46:32 2015 GMT
     SSL_SESSION_RESUMED: Initial
-    SSL_TLS_SNI: minnow.gluu.info
+    SSL_TLS_SNI: hostname
     SSL_VERSION_INTERFACE: mod_ssl/2.4.7
     SSL_VERSION_LIBRARY: OpenSSL/1.0.1f
     
@@ -422,6 +424,9 @@ initial admin password). The output will contain something like this:
  - Clear the cookies in your web browser for both the Apache site, and 
    the Gluu Server if you are logging in and logging out a lot with 
    lots of server restarts.
+ - If you get error saying that "The ip address your are using is different that the 
+   one your are trying to authenticad with"  then  go inside the file named 
+   `/etc/shibboleth2.xml` and set the value of attribute `checkAddress`  to `false`.
 
 ## IIS SAML Configuration
 
