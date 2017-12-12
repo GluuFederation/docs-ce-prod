@@ -160,7 +160,6 @@ pages:
         #        - 'OAuth2 Grants' : 'admin-guide/oauth2.md'
         - 'OpenID Connect' : 'admin-guide/openid-connect.md'
         - 'UMA' : 'admin-guide/uma.md'
-        - 'UMA Scope Expressions' : 'admin-guide/uma-expression.md'
         - 'Session Management': 'admin-guide/session.md'
         - 'Central Authentication Service (CAS)' : 'admin-guide/cas.md'
         - 'Certificate Management' : 'admin-guide/certificate.md'
