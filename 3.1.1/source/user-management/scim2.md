@@ -163,8 +163,9 @@ Here is an example:
 In `curl` jargon, you may issue a command like this to achieve the same effect:
 
 ```
-$ curl -H 'Content-Type: application/x-www-form-urlencoded' -H 'Authorization: Basic ...' 
-       -d grant_type=client_credentials https://<host-name>/oxauth/restv1/token
+$ curl -u '<authUsername>:<authPassword>' \
+       -d grant_type=client_credentials \
+       https://<host-name>/oxauth/restv1/token
 ```
 
 If you have problems creating your request, see section 4.4.2 of [OAuth 2.0](http://tools.ietf.org/html/rfc6749) for a deeper insight.

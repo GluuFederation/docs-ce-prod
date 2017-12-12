@@ -1198,13 +1198,13 @@ This operation updates the Client Metadata for a registered client.
 #### URL
     http://gluu.org/oxauth/register
 #### Parameters
-The request is sent as an `HTTP POST` to the client registration endpoint as JSON with the parameters.
+The request is sent as an `HTTP PUT` request to the client registration endpoint with JSON object containing updated client's metadata in its body.
 
 |Parameter|Description|
 |---------|-----------|
-|clientId |The unique client identifier usually INUM|
-|authorization| The authorization for the client|
-|httpRequest| The HTTP Request object|
+|client_id |Url query parameter containing id of the client to update|
+|Authorization header|Authorization header carrying "registration_access_token" issued before as a Bearer token|
+|Request's body|JSON object containing client's metadata|
 
 #### Response
 Client Identificator or INUM, a client shared secret and the account expiration date in a [JSON Response](#Client Registration Error Response)
@@ -1220,8 +1220,8 @@ The request is sent as an `HTTP POST` to the client registration endpoint as JSO
 
 |Parameter|Description|
 |---------|-----------|
-|clientId |The unique client identifier usually INUM|
-|registration_access_token |This parameter is not a query url parameter, it is a HTTP header parameter|
+|client_id |Url query parameter containing id of the client which properties are being requested|
+|Authorization header|Authorization header carrying "registration_access_token" issued before as a Bearer token|
  
 #### Response
 Client Identificator or INUM, a client shared secret and the account expiration date in a [JSON Response](#Client Registration Error Response)

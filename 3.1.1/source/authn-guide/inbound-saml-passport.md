@@ -1,11 +1,11 @@
 # Inbound SAML using Passport.js 
 ## Overivew
 
-Inbound SAML enables you to configure your Gluu Server to support user authentication at an external SAML IDP. Inbound SAML is a frequent requirement for B2B SaaS providers that need to allow users from enterprise customers authenticate at their home IDP for access to the SaaS resources. 
+Inbound SAML enables you to support user authentication at an external SAML IDP. Inbound SAML is a frequent requirement for B2B SaaS providers that need to allow users from enterprise customers to authenticate at their home IDP for access to the SaaS resources. 
 
-The user flow is tyically similar to social login, but instead of giving users the option to login at a consumer service like Facebook or GitHub, you can send them to their home organization's SAML IDP for login. 
+The user flow is typically similar to social login, but instead of giving users the option to login at a consumer service like Facebook or GitHub, you can send them to their home organization's SAML IDP for login. 
 
-The Gluu Server uses the Passport.js authentication middleware and the [SAML IDP MultiAuthn interception script](https://github.com/GluuFederation/oxAuth/blob/evolveip/Server/integrations/idp/IdpMultiAuthnExternalAuthenticator.py) to enable inbound SAML SSO.
+The Gluu Server uses the Passport.js authentication middleware and the [SAML IDP MultiAuthn interception script](https://github.com/GluuFederation/oxAuth/blob/evolveip/Server/integrations/idp/IdpMultiAuthnExternalAuthenticator.py) to support inbound SAML SSO.
 
 Post-authentication, if a local account does not already exist for the user, the script performs just-in-time provisioning to add the user to the Gluu OpenLDAP server. In this way, the Gluu SAML and OpenID Connect providers can gather claims and maintain SSO as normal.
 
