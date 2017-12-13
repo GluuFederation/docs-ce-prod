@@ -66,7 +66,7 @@ To enable test mode, do the following:
 
 - Click the Save Configuration button at the bottom.
 
-You can verify the current authentication scheme by querying the `ServiceProviderConfig` endpoint:
+You can verify the current authentication scheme by querying the `ServiceProviderConfig` endpoint @ `https://<host name>/identity/restv1/scim/v2/ServiceProviderConfig`:
 
 ![image](../img/scim/scim-test-mode-config.png)
 
