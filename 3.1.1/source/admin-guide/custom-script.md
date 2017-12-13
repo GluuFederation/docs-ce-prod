@@ -3,7 +3,7 @@
 ## Overview
 Interception scripts allow you to customize many aspects of your Gluu Server identity and access management service. 
 
-For example, if you want to use an external authentication service, like Duo or Yubikey, you would use an an interception script. Or, if you wanted to perform fraud detection during login, you would write an interception script to call the API of your fraud detection service. 
+For example, if you want to use an external authentication service, like Duo or Yubikey, you would use an interception script. Or if you wanted to perform fraud detection during login, you would write an interception script to call the API of your fraud detection service. 
 
 These are just a couple examples demonstrating how interception scripts can be used to customize the behavior of the Gluu Server. Both examples focus on login, but the Gluu Server supports interception scripts for many aspects of the service including registration, user updates, authorization and more. 
 
@@ -195,7 +195,7 @@ This script can be used in an oxAuth application only.
 
 
 ## Dynamic Scopes      
-The dynamic scope custom script allows to generate list of claims (and their values) on the fly, depending on cirtumstances like id of client requesting it, logged user's session parameters, values of other user's attributes, results of some caclucations implementing specific buisness logic and/or requests to remote APIs or databases. Claims are then returned the usual way in a response to a call to the `userinfo endpoint`. 
+The dynamic scope custom script allows to generate list of claims (and their values) on the fly, depending on cirtumstances like id of client requesting it, logged user's session parameters, values of other user's attributes, results of some caclucations implementing specific business logic and/or requests to remote APIs or databases. Claims are then returned the usual way in a response to a call to the `userinfo endpoint`. 
 
 Two parameters are passed to the script:
 
