@@ -25,7 +25,7 @@ Below is a sequence diagram to help clarify the workflow for user authentication
 
 ![Sequence Diagram](../img/user-authn/passport/sequence_diagram_inbound.png "sequence_diagram")
 
-1. User-Agent calls gluu for Authentication with provided IDP name as base64 encoded json in state param like state=`base64({"salt":"<SALTVALUE>",provider":"<idp_name>"})`;        
+1. User-Agent calls gluu for Authentication with provided IDP name as base64 encoded json in state param like state=`base64({"salt":"<SALTVALUE>","provider":"<idp_name>"})`;        
 
 2. Gluu Sever multiauthn script checks the IDP name;    
 
