@@ -651,7 +651,7 @@ public class TestScimClient {
         String filter = "userName eq \"admin\"";
 
         BaseClientResponse<ListResponse> response = client.searchUsers(filter, 1, 1, "", "", null);
-        List<BaseScimResource> results=response.getEntity().getResources();
+        List<Resource> results=response.getEntity().getResources();
 
         System.out.println("Length of results list is: " + results.size());
         User user=(User) results.get(0);
