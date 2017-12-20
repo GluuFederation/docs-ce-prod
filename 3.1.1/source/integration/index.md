@@ -6,7 +6,7 @@ This list of integration methods is not exhaustive. However, the strategies desc
 ## Server Side Web Apps
 Many applications are "server-side", meaning the web page displays content but most of the dynamic business logic resides on the web server. Two design patterns have emerged for securing server-side web applications: 
 
-1. Use of web server filters and reverse proxies; 
+1. Use of web server filters and reverse proxies;            
 1. Leveraging OAuth2 directly in your application. 
 
 Which approach to use depends on whether you prefer easier devops (option 1), or a tighter integration with centralized security policies into your application (option 2).
