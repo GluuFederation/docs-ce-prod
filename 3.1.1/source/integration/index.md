@@ -12,7 +12,7 @@ Many applications are "server-side", meaning the web page displays content but m
 Which approach to use depends on whether you prefer easier devops (option 1), or a tighter integration with centralized security policies into your application (option 2).
 
 ### Web Server Filters
-Web Server filters are a tried and true approach to achieving single sign-on with web applications. The web server filter enforces the presence of a token in a HTTP Request. If no token is present, the Web server may re-direct the person, or return a meaningful code or message to the application. Your devops team will love this approach–they can just manage the web server configuration files. It will be crystal clear to them what policies apply to what URLs. 
+Web Server filters are a tried and true approach to achieving SSO with web applications. The web server filter enforces the presence of a token in a HTTP Request. If no token is present, the Web server may re-direct the person, or return a meaningful code or message to the application. Your devops team will love this approach–they can just manage the web server configuration files. It will be crystal clear to them what policies apply to what URLs. 
 
 We recommend the following SAML and OpenID Connect web server filters: 
   
@@ -21,7 +21,7 @@ We recommend the following SAML and OpenID Connect web server filters:
 - OpenID Connect: [Apache mod_auth_openidc](./sswebapps/openidc-rp.md), [Nginx lua-resty-openidc](https://github.com/zmartzone/lua-resty-openidc)
 
 ### Client Software 
-Client software performs some of the heavy lifting for developers around leveraging OAuth 2.0 directly in their applications. Calling the API’s directly will enable “smarter” handling of authentication in your applications. For example, transaction level security can be more easily implemented by calling the APIs directly. This can have a positive impact on usability. Giving developers more ability to leverage centralized policies also increases re-use of policies, and ultimately results in better security. 
+Client software performs some of the heavy lifting for developers around leveraging OAuth 2.0 directly in their applications. Calling the API’s directly will enable “smarter” handling of authentication in your applications. For example, transaction level security can be more easily implemented by calling the OAuth 2.0 APIs directly. This can have a positive impact on usability. Also, giving developers more ability to leverage centralized policies increases re-use of policies, and ultimately results in better security. 
 
 We recommend the following client software to implement OpenID Connect in server-side web applications:
 
