@@ -4,7 +4,12 @@ The SSO integration guide will help you understand how to use SAML or OpenID Con
 This list of integration methods is not exhaustive. However, the strategies described below have been tested with the Gluu Server and are well understood by our support and development staff.  
 
 ## Server Side Web Apps
-Many applications are "server-side", meaning the web page displays content but most of the dynamic business logic resides on the web server. Two design patterns have emerged for securing server-side web applications: (1) use of web server filters and reverse proxies, and (2) leveraging OAuth2 directly in your application. Which approach to use depends on the trade-off between easier devops (option 1), and how deeply you want to integrate centralized security policies into your application (option 2).
+Many applications are "server-side", meaning the web page displays content but most of the dynamic business logic resides on the web server. Two design patterns have emerged for securing server-side web applications: 
+
+1. Use of web server filters and reverse proxies; 
+1. Leveraging OAuth2 directly in your application. 
+
+Which approach to use depends on whether you prefer easier devops (option 1), or a tighter integration with centralized security policies into your application (option 2).
 
 ### Web Server Filters
 Web Server filters are a tried and true approach to achieving single sign-on with web applications. The web server filter enforces the presence of a token in a HTTP Request. If no token is present, the Web server may re-direct the person, or return a meaningful code or message to the application. Your devops team will love this approach–they can just manage the web server configuration files. It will be crystal clear to them what policies apply to what URLs. 
