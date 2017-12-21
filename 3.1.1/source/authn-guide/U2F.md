@@ -11,7 +11,7 @@ and any U2F device as the second step.
 
 ## U2F Devices
 Some well known U2F devices and manufacturers include:           
-- [Yubico](https://www.yubico.com/)    
+- [Yubico](https://www.yubico.com/products/yubikey-hardware/)    
 - [HyperFIDO](http://hyperfido.com/)       
 - [Feitian Technologies](http://www.ftsafe.com/)      
 - [Vasco DIGIPASS SecureClick](https://www.vasco.com/products/two-factor-authenticators/hardware/one-button/digipass-secureclick.html)   
