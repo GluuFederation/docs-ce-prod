@@ -77,7 +77,7 @@ help... even if you're not a coder, you can contribute!
 
 ## License
 The Gluu Server is a container distribution composed of software written by Gluu and incorporated from other open source projects. Gluu
-projects are frequently prefixed with our handle: **ox** (e.g. oxAuth, oxTrust). The license for each software component available in the Gluu Server is listed below.
+projects are frequently prefixed with **ox** (e.g. oxAuth, oxTrust). The license for each software component available in the Gluu Server is listed below.
 
 |	Component	|	License	            |
 |-----------------------|---------------|
