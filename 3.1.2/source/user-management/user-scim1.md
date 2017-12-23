@@ -72,7 +72,7 @@ Create a project in your favorite IDE, and if using maven add the following snip
 
 ```
 <properties>
-	<scim.client.version>3.1.1</scim.client.version>
+	<scim.client.version>3.1.2</scim.client.version>
 </properties>
 ...
 <repositories>

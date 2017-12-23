@@ -10,7 +10,7 @@ The Gluu Server uses the Passport.js authentication middleware and the [SAML IDP
 Post-authentication, if a local account does not already exist for the user, the script performs just-in-time provisioning to add the user to the Gluu OpenLDAP server. In this way, the Gluu SAML and OpenID Connect providers can gather claims and maintain SSO as normal.
 
 !!! Note
-    Previous versions of the Gluu Server used Asimba for inbound SAML. Documentation for Asimba can be found [here](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.1/3.1.1/source/authn-guide/inbound-saml-asimba.md). For all new inbound SAML requirements, we now recommend using Passport.js and following the docs below.  
+    Previous versions of the Gluu Server used Asimba for inbound SAML. Documentation for Asimba can be found [here](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/authn-guide/inbound-saml-asimba.md). For all new inbound SAML requirements, we now recommend using Passport.js and following the docs below.  
 
 ### About Passport  
 Passport is an MIT licensed Express-based web application. We've modified it to call oxTrust APIs for its non-static configuration. Because its configuration is stored centrally in LDAP, you can scale Passport even in clustered topologies.
@@ -99,9 +99,9 @@ You can configure passport with either the setup script (beta) or manually.
 
 1) Download or clone the [Github repo](https://github.com/GluuFederation/Inbound-SAML-Demo);   
 
-2) Copy setup-script directory/folder in side gluu server's chroot (the command will be like:  `cp -a <path to downloaded repo>/setup-script /opt/gluu-server-3.1.1/root/`);   
+2) Copy setup-script directory/folder in side gluu server's chroot (the command will be like:  `cp -a <path to downloaded repo>/setup-script /opt/gluu-server-3.1.2/root/`);   
 
-3) Login to gluu-server's chroot: ` service gluu-server-3.1.1 login`;  
+3) Login to gluu-server's chroot: ` service gluu-server-3.1.2 login`;  
 
 4) Navigate inside the setup-script directory: `cd setup-script`;  
 
@@ -197,9 +197,9 @@ var SamlStrategy = require('./saml');
   SamlStrategy.setCredentials();
 ```
 
-Put the SAML file name, `saml.js`, from the gluu-passport [repo](https://github.com/GluuFederation/gluu-passport/blob/version_3.1.1/server/auth/saml.js) on path `/opt/gluu/node/passport/server/auth/` 
+Put the SAML file name, `saml.js`, from the gluu-passport [repo](https://github.com/GluuFederation/gluu-passport/blob/version_3.1.2/server/auth/saml.js) on path `/opt/gluu/node/passport/server/auth/` 
 
-Next we need to customize `passportpostlogin.xml` to use this project with the Gluu Server 3.1.1. 
+Next we need to customize `passportpostlogin.xml` to use this project with the Gluu Server 3.1.2. 
 
 !!! Note
     This will be added to the defaults in the next version, Gluu Server 3.1.2.

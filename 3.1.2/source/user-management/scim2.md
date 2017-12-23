@@ -201,7 +201,7 @@ By now, let's start with a basic query: say we need to find the users whose `use
 
 We need to know:
 
-- The SCIM endpoint for user retrieval, which is `https://<host-name>/identity/restv1/scim/v2/Users` in Gluu Server 3.1.1
+- The SCIM endpoint for user retrieval, which is `https://<host-name>/identity/restv1/scim/v2/Users` in Gluu Server 3.1.2
 
 - How to write a filter for a search. In this case is fairly easy, the filter we need is `filter=userName co "mi"` where `co` stands for *contains*. To learn more about filters see section 3.4.2.2 of [protocol spec](https://tools.ietf.org/html/rfc7644).
 
@@ -470,7 +470,7 @@ Create a project in your favorite IDE, and if using maven add the following snip
 
 ```
 <properties>
-	<scim.client.version>3.1.1.Final</scim.client.version>
+	<scim.client.version>3.1.2.Final</scim.client.version>
 </properties>
 ...
 <repositories>
@@ -602,7 +602,7 @@ Create a project in your favorite IDE, and if using maven add the following snip
 
 ```
 <properties>
-	<scim.client.version>3.1.1.Final</scim.client.version>
+	<scim.client.version>3.1.2.Final</scim.client.version>
 </properties>
 ...
 <repositories>
@@ -955,11 +955,11 @@ In previous sections we covered thoroughy what needs to be done for test mode, f
 
 If you are unsure of how to code a particular step, take a look at the Java client. These three classes do the job:
 
-- [AbstractScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.1/src/main/java/gluu/scim2/client/AbstractScimClient.java)
+- [AbstractScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.2/src/main/java/gluu/scim2/client/AbstractScimClient.java)
 
-- [TestModeScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.1/src/main/java/gluu/scim2/client/UmaScimClient.java)
+- [TestModeScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.2/src/main/java/gluu/scim2/client/UmaScimClient.java)
 
-- [UmaScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.1/src/main/java/gluu/scim2/client/UmaScimClient.java)
+- [UmaScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.2/src/main/java/gluu/scim2/client/UmaScimClient.java)
 
 To test your authorization code, use a simple GET retrieval request.
 

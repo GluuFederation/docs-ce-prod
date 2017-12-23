@@ -12,7 +12,7 @@ If you are really in a hurry, you can proceed straight to the [enable section](#
 ## Actors involved in protection
 
 !!! Note
-    Gluu server 3.1.1 supports UMA 2.0 - the latest version of the standard. UMA 1.0.1 is not supported anylonger.
+    Gluu server 3.1.2 supports UMA 2.0 - the latest version of the standard. UMA 1.0.1 is not supported anylonger.
 
 The image shown [here](../api-guide/uma-api.md#uma-api-document) summarizes the phases and actors involved in UMA. While you don't need to get through to that complex flow in Gluu server for SCIM setup, it is important to familiarize yourself with the different parties interacting there, namely a resource owner, a client, a resource server, and an authorization server.
 
@@ -121,7 +121,7 @@ Create a project in your favorite IDE, and if using maven add the following snip
 
 ```
 <properties>
-	<scim.client.version>3.1.1</scim.client.version>
+	<scim.client.version>3.1.2</scim.client.version>
 </properties>
 ...
 <repositories>

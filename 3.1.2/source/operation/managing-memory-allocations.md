@@ -84,7 +84,7 @@ by default, so  you may need to acquire Java 8 SDK before you'll be able to use 
 
 You can follow next step to get GC stats for some of Gluu's JVMs:
 
-1. Move into container: `# service gluu-server-3.1.1 login`
+1. Move into container: `# service gluu-server-3.1.2 login`
 2. List all Java instances running at the moment: `su jetty -c '/path/to/java-8-sdk/bin/jps -ml'` First column contains ID of each JVM; you can guess which component it belongs to by checking pathes in its other parameters, or finding it by its ID in output of `ps -aux | grep -i java`
 3. Connect to the chosen JVM to start gathering GC statistics with `# su jetty -c ''/path/to/java-8-sdk/bin/jstat -gccause -h20 JID 1000'`, where "JID" is numerical ID of JVM you've found out on previous step. You can use "-gccapacity" and "-gcmetacapacity" as well to get different perspectives. Parameters "-h20" and "1000" instruct jstat to print headers each 20 lines and dump a new line of stats each 1000 milliseconds, correspondingly.
 

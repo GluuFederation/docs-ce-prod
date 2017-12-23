@@ -89,7 +89,7 @@ There are four tabs in the organization configuration page:
 
 #### SMTP Server Configuration     
 
-![smtp-config](../img/oxtrust/smtp-config3.1.1.png "SMTP Configuration")
+![smtp-config](../img/oxtrust/smtp-config3.1.2.png "SMTP Configuration")
 
 The Gluu Server needs a mail server in order to send notifications. All fields in this form are manadory and the configuration can be tested before confirmation.
 

@@ -110,7 +110,7 @@ Make sure entering a correct IP address of admin's machine (either manually or u
 2.  In local machine, [install Docker](https://docs.docker.com/engine/installation/) and pull `config-init` image.
 
     ```
-    docker pull gluufederation/config-init:3.1.1_rev1.0.0-beta3
+    docker pull gluufederation/config-init:3.1.2_rev1.0.0-beta3
     ```
 
     Consul service in Containership uses private IP and port 8314 to listen to client connection. Hence we need to do SSH tunneling to expose the port in our local machine.
@@ -132,7 +132,7 @@ Make sure entering a correct IP address of admin's machine (either manually or u
 docker run --rm \
     -v /path/to/org_ssl.crt:/etc/certs/gluu_https.crt \
     -v /path/to/org_ssl.key:/etc/certs/gluu_https.key \
-    gluufederation/config-init:3.1.1_rev1.0.0-beta3 \
+    gluufederation/config-init:3.1.2_rev1.0.0-beta3 \
     --admin-pw my-password \
     --email 'my-email@my.domain.com' \
     --domain my.domain.com \

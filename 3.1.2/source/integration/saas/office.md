@@ -9,7 +9,7 @@ By using a Gluu Server as your IDP you can bypass the process of storing passwor
     
 ## Requirements
 
-- A Gluu Server with the Shibboleth IDP installed; Gluu Server v3.1.1. 
+- A Gluu Server with the Shibboleth IDP installed; Gluu Server v3.1.2. 
 - An O365 account with administrative privilege.
 - ADFS which will act as 'Service Provider' to Gluu Server. O365 will be connected to ADFS. 
 
@@ -63,7 +63,7 @@ this attribute in such a way that it can 'pull' the exact binary value from back
  
 ##### Create custom attribute named 'objectguid' according to Gluu doc. 
 
- - Follow [doc](https://gluu.org/docs/ce/3.1.1/admin-guide/attribute/#custom-attributes) to create this custom attribute. Deployer need to follow below rules when creating this attribute in oxTrust ( 2nd phase of creating custom attribute ). 
+ - Follow [doc](https://gluu.org/docs/ce/3.1.2/admin-guide/attribute/#custom-attributes) to create this custom attribute. Deployer need to follow below rules when creating this attribute in oxTrust ( 2nd phase of creating custom attribute ). 
 
    - Name: objectguid
    - SAML1 URI: urn:gluu:dir:attribute-def:objectguid
@@ -101,7 +101,7 @@ Also we need to apply a little snippet for 'IDPEmail' in 'attribute-resolver.xml
  
 #### 'ImmutableID' nameID configuration
 
-This is a 'persistent' type nameID; base attribute 'objectguid'. Follow the doc on how to create [custom NameID doc](https://gluu.org/docs/ce/3.1.1/admin-guide/attribute/#defining-nameid)
+This is a 'persistent' type nameID; base attribute 'objectguid'. Follow the doc on how to create [custom NameID doc](https://gluu.org/docs/ce/3.1.2/admin-guide/attribute/#defining-nameid)
 
 ##### Configuration in 'attribute-resolver.xml.vm', the velocity template file: 
 
@@ -133,7 +133,7 @@ This is a 'persistent' type nameID; base attribute 'objectguid'. Follow the doc 
 
     <resolver:AttributeDefinition id="eduPersonPrincipalName" xsi:type="ad:Scoped" scope="$idp.scope" sourceAttributeID="uid">
         <resolver:Dependency ref="siteLDAP" />
-        <resolver:AttributeEncoder xsi:type="enc:SAML2ScopedString" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.6" friendlyName="eduPersonPrincipalName" encodeType="false" />
+        <resolver:AttributeEncoder xsi:type="enc:SAML2ScopedString" name="urn:oid:1.3.6.1.4.1.5923.1.2.1.6" friendlyName="eduPersonPrincipalName" encodeType="false" />
     </resolver:AttributeDefinition>
 
 #else

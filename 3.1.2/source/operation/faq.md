@@ -6,8 +6,8 @@ When it comes to troubleshooting issues in the Gluu Server--from service hiccups
 See what's going on by tailing the `identity` and `oxauth` logs:
 
 ```
-$ tail -f /opt/gluu-server-3.1.1/opt/gluu/jetty/identity/logs/* \
-          /opt/gluu-server-3.1.1/opt/gluu/jetty/oxauth/logs/*
+$ tail -f /opt/gluu-server-3.1.2/opt/gluu/jetty/identity/logs/* \
+          /opt/gluu-server-3.1.2/opt/gluu/jetty/oxauth/logs/*
 ```       
 
 ## Running out of disk space 
@@ -15,9 +15,9 @@ $ tail -f /opt/gluu-server-3.1.1/opt/gluu/jetty/identity/logs/* \
 Run the following commands if you find your instance running out of disk space:
 
 ```
-# /etc/init.d/gluu-server-3.1.1 stop
-# rm -rf /opt/gluu-server-3.1.1/opt/jetty-9.3/temp/*
-# /etc/init.d/gluu-server-3.1.1 start
+# /etc/init.d/gluu-server-3.1.2 stop
+# rm -rf /opt/gluu-server-3.1.2/opt/jetty-9.3/temp/*
+# /etc/init.d/gluu-server-3.1.2 start
 ```
 
 ## Connect a remote debugger
@@ -28,7 +28,7 @@ Connecting your local debugger up to Gluu can help with troubleshooting.
 Change the configuration of the `init.d` scripts for the `identity` and `oxauth` processes:
 
 ```
-# /etc/init.d/gluu-server-3.1.1 login
+# /etc/init.d/gluu-server-3.1.2 login
 # vim /etc/default/identity
 ```
 
@@ -96,7 +96,7 @@ For `oxAuth`:
 ```
 $ git clone https://github.com/GluuFederation/oxAuth.git
 $ cd oxAuth
-$ git checkout version_3.1.1
+$ git checkout version_3.1.2
 ```
 
 For `identity`:
@@ -104,14 +104,14 @@ For `identity`:
 ```
 $ git clone https://github.com/GluuFederation/oxTrust.git
 $ cd oxTrust
-$ git checkout version_3.1.1
+$ git checkout version_3.1.2
 ```
 
 ## Connect an external LDAP browser
 
 Sooner or later you will probably want to peek at what is stored in the Gluu Server's local LDAP. This means connecting something like Apache Directory Studio to the `slapd` process running inside the chroot container.
 
-You can find the configuration you need in `/opt/gluu-server-3.1.1/etc/gluu/conf/ox-ldap.properties`, e.g.:
+You can find the configuration you need in `/opt/gluu-server-3.1.2/etc/gluu/conf/ox-ldap.properties`, e.g.:
 
 ```
 bindDN: cn=directory manager,o=gluu

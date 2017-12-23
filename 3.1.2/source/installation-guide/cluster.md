@@ -23,8 +23,8 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
       
 ```
 45.55.232.15    loadbalancer.example.org (NGINX server)
-159.203.126.10  idp1.example.org (Gluu Server 3.1.1 on Ubuntu 14)
-138.197.65.243  idp2.example.org (Gluu Server 3.1.1 on Ubuntu 14)
+159.203.126.10  idp1.example.org (Gluu Server 3.1.2 on Ubuntu 14)
+138.197.65.243  idp2.example.org (Gluu Server 3.1.2 on Ubuntu 14)
 ```
      
 - To create the following instructions we used Ubuntu 14 Trusty.     
@@ -39,7 +39,7 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 ## Instructions
 
-### 1. [Install Gluu](https://gluu.org/docs/ce/3.1.1/installation-guide/install/)
+### 1. [Install Gluu](https://gluu.org/docs/ce/3.1.2/installation-guide/install/)
 
 - Make sure to use a separate NGINX/Load-balancing server FQDN as hostname.   
 
@@ -47,13 +47,13 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 - A separate NGINX server is necessary because replicating a Gluu server to a different hostname breaks the functionality of the Gluu web page when using a hostname other than what is in the certificates. For example, if I use idp1.example.com as my host and copy that to a second server (e.g. idp2.example.com), the process of accessing the site on idp2.example.com, even with replication, will fail authentication due to a hostname conflict. So if idp1 fails, you can't access the Gluu web GUI anymore.   
 
-- Now for the rest of the servers in the cluster, [download the Gluu packages](https://gluu.org/docs/ce/3.1.1/installation-guide/install/) but **don't run `setup.py` yet**.   
+- Now for the rest of the servers in the cluster, [download the Gluu packages](https://gluu.org/docs/ce/3.1.2/installation-guide/install/) but **don't run `setup.py` yet**.   
 
 - We want to copy the `/install/community-edition-setu/setup.properties.last` file from the first install to the other servers as `setup.properties` so we have the exact same configurations. (Here I have ssh access to my other server outisde the Gluu chroot)
 
 ```
 
-scp /opt/gluu-server-3.1.1/install/community-edition-setup/setup.properties.last root@idp2.example.org:/opt/gluu-server-3.1.1/install/community-edition-setup/setup.properties
+scp /opt/gluu-server-3.1.2/install/community-edition-setup/setup.properties.last root@idp2.example.org:/opt/gluu-server-3.1.2/install/community-edition-setup/setup.properties
 
 ```
 
@@ -184,7 +184,7 @@ and for the other server(s), my key to access the other server is outside the ch
 
 ```
 Gluu.Root # logout
-scp /opt/gluu-server-3.1.1/tmp/cluster-mgr/manual_install/slapd_conf_script/idp2_example_org.conf root@idp2.example.org:/opt/gluu-server-3.1.1/opt/symas/etc/openldap/slapd.conf
+scp /opt/gluu-server-3.1.2/tmp/cluster-mgr/manual_install/slapd_conf_script/idp2_example_org.conf root@idp2.example.org:/opt/gluu-server-3.1.2/opt/symas/etc/openldap/slapd.conf
 
 ```
 
@@ -260,7 +260,7 @@ GLUU.root@host:/ # logout
 
 - Force-reload solserver on every server
 ```
-# service gluu-server-3.1.1 login
+# service gluu-server-3.1.2 login
 # service solserver force-reload
 ```
 
@@ -300,8 +300,8 @@ mkdir /etc/nginx/ssl/
 
 ```
 
-scp /opt/gluu-server-3.1.1/etc/certs/httpd.key root@loadbalancer.example.org:/etc/nginx/ssl/
-scp /opt/gluu-server-3.1.1/etc/certs/httpd.crt root@loadbalancer.example.org:/etc/nginx/ssl/
+scp /opt/gluu-server-3.1.2/etc/certs/httpd.key root@loadbalancer.example.org:/etc/nginx/ssl/
+scp /opt/gluu-server-3.1.2/etc/certs/httpd.crt root@loadbalancer.example.org:/etc/nginx/ssl/
 
 ```
 
@@ -429,7 +429,7 @@ Now you need to transfer certificates from the first server to the other servers
 
 ```
 
-scp /opt/gluu-server-3.1.1/etc/certs/* root@idp2.example.org:/opt/gluu-server-3.1.1/etc/certs/
+scp /opt/gluu-server-3.1.2/etc/certs/* root@idp2.example.org:/opt/gluu-server-3.1.2/etc/certs/
 
 ```
 
@@ -471,7 +471,7 @@ Gluu.Root # python keystore_Config.py
 
 Gluu.Root # service identity stop && service oxauth restart && service identity start
 Gluu.Root # logout
-service gluu-server-3.1.1 restart
+service gluu-server-3.1.2 restart
 
 ```
 

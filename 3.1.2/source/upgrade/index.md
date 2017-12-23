@@ -1,17 +1,17 @@
-# Upgrade to Gluu Server 3.1.1
+# Upgrade to Gluu Server 3.1.2
 
 ## Overview
-The Gluu Server can **not** be upgraded with a simple `apt-get upgrade`. You need to explicitly install the new version and export/import your data. Find your existing version below for upgrade instructions to Gluu Server 3.1.1. 
+The Gluu Server can **not** be upgraded with a simple `apt-get upgrade`. You need to explicitly install the new version and export/import your data. Find your existing version below for upgrade instructions to Gluu Server 3.1.2. 
 
-## Upgrade from 3.1.0 to 3.1.1
+## Upgrade from 3.1.0 to 3.1.2
 
-Upgrading from 3.1.0 to 3.1.1 involves the following steps:
+Upgrading from 3.1.0 to 3.1.2 involves the following steps:
 
 - Stop oxTrust and oxAuth services
 
 - Backup existing oxTrust and oxAuth .war files
 
-- Download 3.1.1 oxTrust and oxAuth from repo
+- Download 3.1.2 oxTrust and oxAuth from repo
 
 - Copy oxTrust and oxAuth .war in path
 
@@ -21,11 +21,11 @@ Upgrading from 3.1.0 to 3.1.1 involves the following steps:
 
 ### Updating .war and schema manually
 
-To upgrade from 3.1.0 to 3.1.1, you have to manually update your .war files as outlined below:
+To upgrade from 3.1.0 to 3.1.2, you have to manually update your .war files as outlined below:
 
 1. Login to chroot container:  
 
-    `# service gluu-server-3.1.1 login`
+    `# service gluu-server-3.1.2 login`
     
 #### Update Identity .war
 
@@ -46,7 +46,7 @@ root's home directory (just in case you need to restore!):
     
     `# rm identity.war`
     
-    `# wget https://ox.gluu.org/maven/org/xdi/oxtrust-server/3.1.1.Final/oxtrust-server-3.1.1.Final.war -O identity.war`
+    `# wget https://ox.gluu.org/maven/org/xdi/oxtrust-server/3.1.2.Final/oxtrust-server-3.1.2.Final.war -O identity.war`
 
 6. Start the identity service  
     
@@ -71,7 +71,7 @@ root's home directory (just in case you need to restore!):
     
     `# rm oxauth.war`
     
-    `# wget https://ox.gluu.org/maven/org/xdi/oxauth-server/3.1.1.Final/oxauth-server-3.1.1.Final.war -O oxauth.war`
+    `# wget https://ox.gluu.org/maven/org/xdi/oxauth-server/3.1.2.Final/oxauth-server-3.1.2.Final.war -O oxauth.war`
     
 10. Start the oxAuth service
 
@@ -79,7 +79,7 @@ root's home directory (just in case you need to restore!):
 
 #### Update Gluu Schema Files
     
-  For the OpenLDAP to be able to accomodate new attributes attributes added to some entries in 3.1.1, its schema files needs to be updated. The recent schema files can be found [here](https://github.com/GluuFederation/community-edition-setup/tree/master/schema). Following the next step will upgrade the schema:
+  For the OpenLDAP to be able to accomodate new attributes attributes added to some entries in 3.1.2, its schema files needs to be updated. The recent schema files can be found [here](https://github.com/GluuFederation/community-edition-setup/tree/master/schema). Following the next step will upgrade the schema:
 
 11. Navigate to `/opt/gluu/schema/openldap` directory 
 
@@ -95,7 +95,7 @@ root's home directory (just in case you need to restore!):
     
 12. Download the Schema files to `/opt/gluu/schema/openldap`
 
-    `#wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.1/static/openldap/gluu.schema -O gluu.schema`
+    `#wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.2/static/openldap/gluu.schema -O gluu.schema`
 
 13. Start LDAP service.
      
@@ -105,7 +105,7 @@ root's home directory (just in case you need to restore!):
     If schema of your old instance was customized, in particular due to adding custom attributes, you'll need to resort to manual migration of your changes done to and `custom.schema` and (if any) to `gluu.schema`.
 
 !!! Note
-    Above procedure can be utilized to update other components of Gluu CE server 3.1.1, mentioned below.
+    Above procedure can be utilized to update other components of Gluu CE server 3.1.2, mentioned below.
 
 ### Latest .war files
 
@@ -117,7 +117,7 @@ The latest release of .war files can be downloaded from the following locations:
 - [Asimba SAML proxy](https://ox.gluu.org/maven/org/asimba/asimba-wa/)
 - [oxAuth RP](https://ox.gluu.org/maven/org/xdi/oxauth-rp/)
 
-### Location of Gluu 3.1.1 Components
+### Location of Gluu 3.1.2 Components
 
 Gluu 3.1.x components which can be updated in this way inside the container can be found at the following locations:
 
@@ -128,7 +128,7 @@ Gluu 3.1.x components which can be updated in this way inside the container can 
 - oxAuth RP: `/opt/gluu/jetty/oxauth-rp/webapps/oxauth-rp.war`
 
 
-## Upgrade from 3.0.x to 3.1.1
+## Upgrade from 3.0.x to 3.1.2
 
 !!! Warning
     Before proceeding with an upgrade, make sure to [backup](../operation/backup.md) the Gluu container or LDAP Ldif before proceeding with the upgrade. 
@@ -199,9 +199,9 @@ Review the [installation docs](../installation-guide/install.md) to install the 
 ```
 # cp -r /opt/gluu-server-3.0.x/root/backup_3031/ /opt/gluu-server-3.1.0/root/
 
-# service gluu-server-3.1.1 start
+# service gluu-server-3.1.2 start
 
-# service gluu-server-3.1.1 login
+# service gluu-server-3.1.2 login
 
 # cp backup_3031/setup.properties /install/community-edition-setup/
 
@@ -254,10 +254,10 @@ Install the `json-merge` Python package and run the import script.
 
 Any errors or warnings will be displayed in the terminal and can be reviewed in the import log. Now you should be able to log into the oxTrust web UI using the old admin credentials and you should see all previous data in place. 
 
-## Upgrade from 2.x.x to 3.1.1
+## Upgrade from 2.x.x to 3.1.2
 
 !!! Note
-    This guide assumes that you are upgrading from version 2.x.x to 3.1.1 and are **OK with changing persistence from OpenDJ to OpenLDAP**. If you prefer to keep OpenDJ in Gluu Server 3.x, follow the separate documentation for [upgrading with OpenDJ](../upgrade/manual-update.md).
+    This guide assumes that you are upgrading from version 2.x.x to 3.1.2 and are **OK with changing persistence from OpenDJ to OpenLDAP**. If you prefer to keep OpenDJ in Gluu Server 3.x, follow the separate documentation for [upgrading with OpenDJ](../upgrade/manual-update.md).
 
 !!! Warning
     Before proceeding with an upgrade, make sure to [backup](../operation/backup.md) the Gluu container or LDAP Ldif before proceeding with the upgrade. 
@@ -341,14 +341,14 @@ Stop the current version of the gluu-server.
 # service gluu-server-2.4.x stop
 ```
 
-Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.1.1`, then execute the following commands:
+Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.1.2`, then execute the following commands:
 
 ```
-# cp -r /opt/gluu-server-2.4.x/root/backup_2431/ /opt/gluu-server-3.1.1/root/
+# cp -r /opt/gluu-server-2.4.x/root/backup_2431/ /opt/gluu-server-3.1.2/root/
 
-# service gluu-server-3.1.1 start
+# service gluu-server-3.1.2 start
 
-# service gluu-server-3.1.1 login
+# service gluu-server-3.1.2 login
 
 # cp backup_2431/setup.properties /install/community-edition-setup/
 

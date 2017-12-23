@@ -699,7 +699,7 @@ Available context methods:
 - `removeRedirectUserParameter(String paramName, String paramValue)` - removes custom user parameter
 - `getRedirectUserParametersMap()` - returns custom user parameters map
 
-Source code available [here](https://github.com/GluuFederation/oxAuth/blob/version_3.1.1/Server/src/main/java/org/xdi/oxauth/uma/authorization/UmaAuthorizationContext.java)
+Source code available [here](https://github.com/GluuFederation/oxAuth/blob/version_3.1.2/Server/src/main/java/org/xdi/oxauth/uma/authorization/UmaAuthorizationContext.java)
 
 ## UMA Claims-Gathering Context
 
@@ -729,4 +729,4 @@ Available context methods:
 - `removeClaim(String claimName)` - removes claim
 - `getIssuer()` - returns issuer
 
-Source code available [here](https://github.com/GluuFederation/oxAuth/blob/version_3.1.1/Server/src/main/java/org/xdi/oxauth/uma/authorization/UmaGatherContext.java)
+Source code available [here](https://github.com/GluuFederation/oxAuth/blob/version_3.1.2/Server/src/main/java/org/xdi/oxauth/uma/authorization/UmaGatherContext.java)
