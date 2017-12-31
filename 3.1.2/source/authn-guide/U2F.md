@@ -9,6 +9,8 @@ This document will explain how to use Gluu's [U2F interception script](https://r
 to configure the Gluu Server for a two-step authentication process with username and password as the first step, 
 and any U2F device as the second step.
 
+![u2f](../img/user-authn/u2f.png)
+
 ## U2F Devices
 Some well known U2F devices and manufacturers include:           
 - [Vasco DIGIPASS SecureClick](https://www.vasco.com/products/two-factor-authenticators/hardware/one-button/digipass-secureclick.html)      

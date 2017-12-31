@@ -1,6 +1,6 @@
 # SAML IDP 
 ## Overview
-If you need a SAML IDP to support outbound SAML single sign-on (SSO), you can install Shibboleth during your [Gluu Server deployment](../../installation-guide/install.md).      
+If you need a SAML IDP to support outbound SAML single sign-on (SSO), you can install Shibboleth during your [Gluu Server deployment](../installation-guide/install.md).      
 
 In an outbound SAML SSO transaction a website or application (SP) redirects a user to a designated identity provider (IDP) for authentication and authorization. The IDP will authenticate the user. Upon successful authentication, the user is sent back to the SP logged in. 
 
@@ -19,7 +19,7 @@ Metadata is an XML file which has configuration data used to establish trust bet
 The Gluu Server's SAML metadata may be needed from time to time. It can be found at `https://hostname/idp/shibboleth`.
   
 ### Attribute Release      
-Each SP may require one or more user attributes from the IDP in order to grant a person access to a protected resource. Required attributes vary depending on the application, and should be explicitly specified in the target application's documentation. The administrator can use the oxTrust interface to release the necessary attributes to the SP (as described [below](#create-a-trust-relationship-in-the-gluu-server). 
+Each SP may require one or more user attributes from the IDP in order to grant a person access to a protected resource. Required attributes vary depending on the application, and should be explicitly specified in the target application's documentation. The administrator can use the oxTrust interface to release the necessary attributes to the SP as described [below](#create-a-trust-relationship-in-the-gluu-server). 
 
 !!! Note    
     For a broader discussion of attributes, including how to create custom attributes and how to [configure the NameID attribute](./attribute/#defining-nameid) for your SAML service, refer to the [attributes documentation](./attribute.md).
@@ -88,7 +88,7 @@ In the example below we are creating a TR for the 'Internet2 Wiki', which is an 
 ![Incommon_affiliated_SP_Trust.png](../img/saml/InCommon_affiliated_SP_Trust.png)
 
 ## SAML SP
-If your target application (SP) does not already support SAML, we recommend using the [Shibboleth SP](../../integration/sswebapps/saml-sp.md) web server filter to secure and integrate the application with your Gluu SAML IDP. 
+If your target application (SP) does not already support SAML, we recommend using the [Shibboleth SP](../integration/sswebapps/saml-sp.md) web server filter to secure and integrate the application with your Gluu SAML IDP. 
 
 ## Inbound SAML
 If you need to support inbound SAML to integrate with external partner or customer IDPs, review the [inbound SAML authentication guide](../authn-guide/inbound-saml-passport.md).

@@ -3,6 +3,8 @@
 ## Overview
 In this document you will learn how to configure second-factor authentication in Gluu Server using One-time passcodes (OTP) sent via SMS. Here, we will use the [Twilio](https://www.twilio.com) service to deliver messages.
 
+![sms](../img/user-authn/sms.png)
+
 ## Prerequisites 
 
 - A Gluu Server (installation instructions [here](../installation-guide/index.md))

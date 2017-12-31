@@ -3,6 +3,8 @@
 ## Overview
 This document will explain how to configure the Gluu Server for a two-step authentication process with username and password as the first step, and HOTP as the second step.
 
+![otp](../img/user-authn/otp.png)
+
 ## Prerequisites
 - A Gluu Server ([installation instructions](../installation-guide/index.md));
 - [HOTP / TOTP authentication script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/otp/OtpExternalAuthenticator.py) (included in the default Gluu Server distribution);
