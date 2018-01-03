@@ -47,9 +47,7 @@ documentation and administrative guide.
 
 - [679](https://github.com/GluuFederation/oxAuth/issues/679) Dynamic OpenID Authz script 
 
-- [717](https://github.com/GluuFederation/oxTrust/issues/717) Updated default Super Gluu web pages   
-
-- [Inbound SAML SSO via passport.js](https://github.com/GluuFederation/Inbound-SAML-Demo/wiki/Readme_single)   
+- [Docs](../authn-guide/inbound-saml-passport.md) Inbound SAML SSO via passport.js 
 
 - [686](https://github.com/GluuFederation/oxAuth/issues/686) UMA 2 : Allow access token for authentication at UMA token endpoint
 
@@ -57,9 +55,11 @@ documentation and administrative guide.
 
 - [604](https://github.com/GluuFederation/oxTrust/issues/604) Show u2f creds in user page
 
-## Fixes
+## Fixes / Enhancements
 
 ### [oxAuth](https://github.com/GluuFederation/oxAuth/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.1.2)
+
+- [724](https://github.com/GluuFederation/oxAuth/issues/724) Improve `JwtClaims.setClaim()` to support types `JSONObject` and `List<Object>`
 
 - [699](https://github.com/GluuFederation/oxAuth/issues/699) Create new JWK for use=enc for Client and Server tests
 
@@ -120,6 +120,9 @@ documentation and administrative guide.
 - [684](https://github.com/GluuFederation/oxAuth/issues/684) Test coverage for multi-step authz flows
 
 ### [oxTrust](https://github.com/GluuFederation/oxTrust/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.1.2)
+
+- [717](https://github.com/GluuFederation/oxTrust/issues/717) Updated default Super Gluu web pages   
+
 - [789](https://github.com/GluuFederation/oxTrust/issues/789) Activate/Deactive LDAP server feature of "Manage authentication" page is broken
 
 - [780](https://github.com/GluuFederation/oxTrust/issues/780) On profile update applciation should call update person custom script
