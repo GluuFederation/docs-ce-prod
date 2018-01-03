@@ -1,4 +1,4 @@
-# Notice
+## Notice
 
 This document, also known as the Gluu Release Note, 
 relates to the Gluu Release versioned 3.1.2. The work is licensed under “The MIT License” 
@@ -29,7 +29,7 @@ The most common use cases for the Gluu Server include single sign-on (SSO), mobi
 Please visit the [Gluu Documentation Page](http://www.gluu.org/docs/ce) for the complete 
 documentation and administrative guide. 
 
-## Components included in Gluu Server CE 3.1.2
+## Components included in Gluu Server 3.1.2
 - oxAuth, oxTrust,oxCore v3.1.2
 - OpenLDAP v2.4.44-5
 - Shibboleth v3.2.1
@@ -43,9 +43,7 @@ documentation and administrative guide.
 - FluentD 3.5
 - Redis
 
-## What's new in version 3.1.2
-
-### New features
+## New features
 
 - [658](https://github.com/GluuFederation/oxAuth/issues/658) Make implicit flow configurable and persist all related objects into cache (no ldap at all)
 
@@ -61,9 +59,9 @@ documentation and administrative guide.
 
 - [604](https://github.com/GluuFederation/oxTrust/issues/604) Show u2f creds in user page
 
-### Fixes
+## Fixes
 
-#### [oxAuth](https://github.com/GluuFederation/oxAuth/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.1.2)
+### [oxAuth](https://github.com/GluuFederation/oxAuth/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.1.2)
 
 - [699](https://github.com/GluuFederation/oxAuth/issues/699) Create new JWK for use=enc for Client and Server tests
 
@@ -123,7 +121,7 @@ documentation and administrative guide.
 
 - [684](https://github.com/GluuFederation/oxAuth/issues/684) Test coverage for multi-step authz flows
 
-#### [oxTrust](https://github.com/GluuFederation/oxTrust/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.1.2)
+### [oxTrust](https://github.com/GluuFederation/oxTrust/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.1.2)
 - [789](https://github.com/GluuFederation/oxTrust/issues/789) Activate/Deactive LDAP server feature of "Manage authentication" page is broken
 
 - [780](https://github.com/GluuFederation/oxTrust/issues/780) On profile update applciation should call update person custom script
@@ -180,7 +178,7 @@ documentation and administrative guide.
 
 - [633](https://github.com/GluuFederation/oxTrust/issues/633) Images in developer setup are too small
 
-#### [Community Edition Setup](https://github.com/GluuFederation/community-edition-setup/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.1.2)
+### [Community Edition Setup](https://github.com/GluuFederation/community-edition-setup/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.1.2)
 
 - [393](https://github.com/GluuFederation/community-edition-setup/issues/393) In setup.py allow selection of LDAP server 
 
@@ -204,13 +202,13 @@ documentation and administrative guide.
 
 - [134](https://github.com/GluuFederation/community-edition-setup/issues/134) Cron jobs don't start inside of the container of 2.4.3 CE deb packages
 
-#### [gluu-Asimba](https://github.com/GluuFederation/gluu-asimba/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.1.2)
+### [gluu-Asimba](https://github.com/GluuFederation/gluu-asimba/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.1.2)
 
 - [44](https://github.com/GluuFederation/gluu-Asimba/issues/44) An Asimba setting which controls the number of seconds after which Asimba refuses authentication based on AuthInstant
 
 - [43](https://github.com/GluuFederation/gluu-Asimba/issues/43) Asimba Script's reaction for AuthnFailed message from Asimba
 
-#### [Gluu Passport](https://github.com/GluuFederation/gluu-passport/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.1.2)
+### [Gluu Passport](https://github.com/GluuFederation/gluu-passport/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.1.2)
 
 - [6](https://github.com/GluuFederation/gluu-passport/issues/6) Support other SAML params
 
@@ -218,12 +216,12 @@ documentation and administrative guide.
 
 - [7](https://github.com/GluuFederation/gluu-passport/issues/7) Controls the number of seconds after which Passport refuses authentication
 
-#### [oxCore](https://github.com/GluuFederation/oxCore/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.1.2)
+### [oxCore](https://github.com/GluuFederation/oxCore/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.1.2)
 
 - [56](https://github.com/GluuFederation/oxCore/issues/56) Redis : avoid NPE if key is null
 
 - [59](https://github.com/GluuFederation/oxCore/issues/59) Use same connection in count method
 
-#### [SCIM Client](https://github.com/GluuFederation/SCIM-client/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.1.2)
+### [SCIM Client](https://github.com/GluuFederation/SCIM-client/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.1.2)
 
 - [55](https://github.com/GluuFederation/SCIM-Client/issues/55) Deserialization of custom attributes not taking place in client-side
