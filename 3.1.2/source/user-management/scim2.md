@@ -834,9 +834,26 @@ You can learn more about SCIM Schema and the extension model by reading [RFC 764
 
 ## Additional features of SCIM service
 
-SCIM standard is concerned with two classes of resources, namely, Users and Groups. However, according to spec, the service can be extended to add new resource types. Particularly, Gluu Server implementation of SCIM contains a resource type called "Fido device". 
+### Available operations
+
+The capabilities of the SCIM service implementation included in your Gluu Server are broad. The following are the currently supported operations:
+
+* Creating resources
+* Retrieving resources via GET and POST
+* Modifying resources (PUT only)
+* Deleting resources 
+* Bulk operations
+
+The following are operations present in the spec (RFC 7644) that we aim to include in future releases:
+
+* Support searches from root endpoint using POST
+* Modifying resources via PATCH (section 3.5.2 of spec)
+* Add support for `excludedAttributes` query param throughout all service operations
+* Add support for versioning: Etags (section 3.14 of spec)
 
 ### Fido devices
+
+SCIM standard is concerned with two classes of resources, namely, Users and Groups. However, according to spec, the service can be extended to add new resource types. Particularly, Gluu Server implementation of SCIM contains a resource type called "Fido device". 
 
 A fido device represents a user credential stored in the Gluu Server LDAP that is 
 compliant with the [FIDO](https://fidoalliance.org) standards. 
