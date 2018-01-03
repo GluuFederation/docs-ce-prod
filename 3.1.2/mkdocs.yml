@@ -15,8 +15,7 @@ markdown_extensions:
 pages:
 - Home: 'index.md'
 - Release Notes: 'release-notes/index.md'
-- Whats new in 3.x: '3.x-intro.md'
-- Whats new in 3.1.x: '3.1.x-intro.md'
+- Whats new in v3: '3.1.x-intro.md'
 - Installation Guide:
         - 'Preparing VM': 'installation-guide/index.md'
         - 'Install Gluu Server': 'installation-guide/install.md'
