@@ -100,8 +100,9 @@ It should have an alias of sort “your-instance-hostname_asimba”
 -storepass changeit`
 10. Import the new one with the same alias: `# keytool -import -alias your-instance-hostname_asimba --trustcacerts -file /etc/certs/asimba.der \
 -keystore /usr/java/latest/lib/security/cacerts -storepass changeit`
-11. Restart Tomcat service: `# /etc/init.d/tomcat restart`
-12. Restart Apache service: `# /etc/init.d/apache2 restart`
+11. If Asimba/SAML custom authentication jython script is employed in your setup (which is mostly the case when Asimba module is used in Gluu 2.4.x), new certificate must also be placed into `/etc/certs/saml.pem` file the script uses (with "BEGIN CERTIFICATE/END CERTIFICATE" tags removed from it), overriding the previous one.
+12. Restart Tomcat service: `# /etc/init.d/tomcat restart`
+13. Restart Apache service: `# /etc/init.d/apache2 restart`
 
 ## Updating OpenDJ's certificate in the default java keystore
 
