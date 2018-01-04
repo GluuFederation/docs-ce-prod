@@ -49,10 +49,10 @@ Follow the steps below to enable U2F authentication:
 3. Find the U2F script       
 ![u2f-script](../img/admin-guide/multi-factor/u2f-script.png)
 
-4. Enable the script by ticking the check box       
+4. Enable the script by checking the box       
 ![enable](../img/admin-guide/enable.png)
 
-5. Click `Update`
+5. Scroll to the bottom of the page and click `Update`
 
 Now U2F is an available authentication mechanism for your Gluu Server. This means that, using OpenID Connect `acr_values`, applications can now request U2F authentication for users. 
 
