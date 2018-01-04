@@ -47,7 +47,7 @@ Gluu Server admins can manage user's U2F credentials from within the oxTrust int
 
 Gluu Server 3.1.2 includes support for a new open source app called Credential Manager. Credential Manager is a user facing app that enables people to register and delete ("self-service") U2F credentials, Super Gluu devices, OTP devices, SMS phone numbers, and even change their password (if stored in the local LDAP). Offering people the ability to self-service their 2FA credentials will increase user satisfaction and greatly reduce the cost of supporting 2FA. 
 
-For more information on installing and configuring Credential Manager, view the docs. 
+For more information on installing and configuring Credential Manager, visit the docs. 
 
 ## Social Login
 
