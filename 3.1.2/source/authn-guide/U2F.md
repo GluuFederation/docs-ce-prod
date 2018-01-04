@@ -7,7 +7,7 @@ This document will explain how to use the
 [U2F interception script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/u2f/U2fExternalAuthenticator.py) 
 to implement a two-step authentication process with username and password as the first step, and any U2F device as the second step. 
 
-Below is the illustration of U2F login page, which would be shown after first step.
+Below is an illustration of the Gluu Servers default U2F login page:
 
 ![u2f](../img/user-authn/u2f.png)
 
