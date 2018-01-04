@@ -36,9 +36,8 @@ The script has the following properties
 
 |	Property	|	Description		|	Example	|
 |-----------------------|-------------------------------|---------------|
-|u2f_application_id		|URL of the application		|`https://idp.mycompany.com`|
-|u2f_server_uri		|DNS/URL of the oxauth/u2f server|`https://idp.mycompany.com`|
-|u2f_server_metadata_uri|URL of the u2f server metadata|`https://idp.mycompany.com`|
+|u2f_application_id		|Unique Identifer, normally url of IDP		|`https://idp.mycompany.com`|
+|u2f_server_uri		|URL of the oxAuth U2F server|`https://idp.mycompany.com`|
 
 ## Enable U2F
 
@@ -83,71 +82,12 @@ Now applications can request U2F authentication using the OpenID Connect `acr` v
 One or both fields can be changed to U2F authentication as needed. If U2F should be the default authentication mechanism for all access, change both fields to U2F.  
 
 ## U2F Credential Management
-
-
-
-## FIDO entries in LDAP
-Entries of FIDO U2F can be found in LDAP under the user section as in the below. You can use your preferred LDAP browser
-to view the entries.
+A users FIDO U2F entries can be found in oxTrust under the user entry in `Users` > `Manage People`, or in LDAP under the user entry as in the below screenshot. 
 
 ![fidoldap](../img/admin-guide/multi-factor/fido-ldap-entry.png)
 
-## FIDO Discovery Endpoint  
-Your Gluu Server FIDO discovery endpoint can be found at `https://<hostname>/.well-known/fido-u2f-configuration`
+## FIDO Discovery  
+A discovery document for U2F is published by the Gluu Server at: `https://<hostname>/.well-known/fido-u2f-configuration` This document specifies the URL of the registration and authentication endpoints. 
 
 ## FIDO SCIM APIs
-
-The SCIM standard is concerned with two classes of resources, namely, users and groups. However, according to spec, the service can be extended to add new resource types. The Gluu Server implementation of SCIM contains a resource type called "Fido device". 
-
-### FIDO devices
-
-A FIDO device represents a user credential stored in the Gluu Server LDAP that is compliant with the [FIDO](https://fidoalliance.org) standards. These devices are used for strong authentication.
-
-Including FIDO devices as a resource type will allow application developers to query, update and delete a users existing FIDO devices. Adding devices does not take place through the service though since this process requires direct end-user interaction, i.e. device enrollment.
-
-The following is a summary of features of a FIDO Device SCIM resource:
-
-* Schema urn: `urn:ietf:params:scim:schemas:core:2.0:FidoDevice`
-* Name of resource: `FidoDevice`
-* Endpoint URL (relative to base URL of service): `/scim/v2/FidoDevices`
-* Device attributes: Attributes pertaining to this resource type are listed by visiting the URL `https://<host-name>/identity/restv1/scim/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:FidoDevice`. 
-
-Currently the service supports:
-* Device search and retrieval (via `GET` and `POST`)
-* Single device update via `PUT`
-* Single device deletion via `DELETE`
-
-### Example: querying enrolled Super Gluu devices
-
-Say we are interested in having a list of iOS supergluu devices a user has enrolled. In a setting of test mode, we may issue a query like this:
-
-```
-curl -G -H 'Authorization: Bearer ...access token...' --data-urlencode 'filter=deviceData co "ios"' -d count=10 -o output.json https://<host-name>/identity/seam/resource/restv1/scim/v2/FidoDevices/
-```
-
-Your result list might look like:
-
-```
-{
-  "totalResults": ...,
-  "itemsPerPage": ...,
-  "startIndex": 1,
-  "schemas": [
-    "urn:ietf:params:scim:api:messages:2.0:ListResponse"
-  ],
-  "Resources": [
-    {
-      "id": "...",
-      "meta": {...},
-      "schemas": ["urn:ietf:params:scim:schemas:core:2.0:FidoDevice"],
-      "userId": "...",
-      ...
-      "deviceData": "{\"uuid\":\"ABC123\", \"type\":\"iPhone\", \"platform\":\"ios\", \"name\":\"Someone's iPhone\", \"os_name\":\"iOS\", \"os_version\":\"10.0.1\"}",
-      "displayName": ...,
-    }
-  ]
-}
-``` 
-
-
-
+For a discussion of how to manage FIDO devices using the SCIM protocol, see the [SCIM documentation](../user-management/scim2.md#fido-devices). 
