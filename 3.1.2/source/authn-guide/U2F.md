@@ -11,6 +11,9 @@ Below is an illustration of the Gluu Servers default U2F login page:
 
 ![u2f](../img/user-authn/u2f.png)
 
+!!! Note 
+    For more background on U2F, including a discussion of its strong security advantages, visit the [Yubico blog](https://www.yubico.com/solutions/fido-u2f/). 
+
 ### U2F Devices
 Some well known U2F devices and manufacturers include:           
 
@@ -61,20 +64,27 @@ Now U2F is an available authentication mechanism for your Gluu Server. This mean
     configuration by navigating to the following URL: `https://<hostname>/.well-known/openid-configuration`. 
     Find `"acr_values_supported":` and you should see `"u2f"`. 
 
-## Make U2F the Default Authentication Mechanism
+## Make U2F the Default
 
-Now applications can request U2F authentication. If U2F should be the default authentication mechanism, follow these instructions: 
+Now applications can request U2F authentication using the OpenID Connect `acr` value. If U2F should be the default authentication mechanism, follow these instructions: 
 
 1. Navigate to `Configuration` > `Manage Authentication`. 
+
 2. Select the `Default Authentication Method` tab. 
+
 3. In the Default Authentication Method window you will see two options: `Default acr` and `oxTrust acr`. 
 
 ![u2f](../img/admin-guide/multi-factor/u2f.png)
 
-- The `oxTrust acr` field controls the authentication mechanism that is presented to access the oxTrust dashboard GUI (the application you are in).    
-- The `Default acr` field controls the default authentication mechanism that is presented to users from all applications that leverage your Gluu Server for authentication.    
+3.1 `oxTrust acr` sets the authentication mechanism for accessing the oxTrust dashboard GUI (only managers should have acccess to oxTrust).    
 
-You can change one or both fields to U2F authentication as you see fit. If you want U2F to be the default authentication mechanism for access to oxTrust (the admin portal) and all other applications that leverage your Gluu Server, change both fields to U2F.  
+3.2 `Default acr` sets the default authentication mechanism for accessing all applications that leverage your Gluu Server for authentication (unless otherwise specified).    
+
+One or both fields can be changed to U2F authentication as needed. If U2F should be the default authentication mechanism for all access, change both fields to U2F.  
+
+## U2F Credential Management
+
+
 
 ## FIDO entries in LDAP
 Entries of FIDO U2F can be found in LDAP under the user section as in the below. You can use your preferred LDAP browser
