@@ -41,7 +41,7 @@ Regardless of 2FA type or vendor, users need a secure way to enroll and delete t
 
 By default, the Gluu Server allows each user to enroll just one (1) strong credential per 2FA credential type. For instance, if authentication is set to U2F, by default the user can only enroll one U2F security key. Same for OTP, Super Gluu, etc. The credential is enrolled upon the first authentication attempt, and can be used to pass all subsequent prompts for 2FA. 
 
-Gluu Server admins can manage user's U2F credentials from within the oxTrust interface by finding the user's profile in `Users` > `Manage People`. All credentials can be managed by Gluu admins in the local LDAP. More info about managing specific types of credentials can be found in the corresponding document in this Authentication Guide. 
+Information about managing specific types of credentials can be found in the corresponding document in this Authentication Guide. 
 
 ### Self-Service 2FA 
 
