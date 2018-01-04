@@ -41,11 +41,11 @@ Regardless of 2FA type or vendor, users need a secure way to enroll and delete t
 
 By default, the Gluu Server allows each user to enroll just one (1) strong credential per 2FA credential type. For instance, if authentication is set to U2F, by default the user can only enroll one U2F security key. Same for OTP, Super Gluu, etc. The credential is enrolled upon the first authentication attempt, and can be used to pass all subsequent prompts for 2FA. 
 
-Gluu Server admins can manage users U2F credentials from within the oxTrust interface by finding the user's profile in `Users` > `Manage People`. All other credentials can be managed by Gluu Server admins in the Gluu Server's local LDAP. More about managing the specific type of credential can be found in the corresponding document in this Authentication Guide. 
+Gluu Server admins can manage user's U2F credentials from within the oxTrust interface by finding the user's profile in `Users` > `Manage People`. All credentials can be managed by Gluu admins in the local LDAP. More info about managing specific types of credentials can be found in the corresponding document in this Authentication Guide. 
 
 ### Self-Service 2FA 
 
-Gluu Server 3.1.2 includes support for a new open source app developed by Gluu called Credential Manager. Credential Manager is a user facing app that enables people to register and delete ("self-service") U2F credentials, Super Gluu devices, OTP devices, SMS phone numbers, and even change their password. Offering people the ability to self-service their 2FA credentials will greatly reduce the cost of supporting 2FA. 
+Gluu Server 3.1.2 includes support for a new open source app called Credential Manager. Credential Manager is a user facing app that enables people to register and delete ("self-service") U2F credentials, Super Gluu devices, OTP devices, SMS phone numbers, and even change their password (if stored in the local LDAP). Offering people the ability to self-service their 2FA credentials will increase user satisfaction and greatly reduce the cost of supporting 2FA. 
 
 For more information on installing and configuring Credential Manager, view the docs. 
 
