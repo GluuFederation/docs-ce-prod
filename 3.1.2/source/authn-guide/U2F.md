@@ -43,16 +43,16 @@ Follow the steps below to enable U2F authentication:
 
 1. Navigate to `Configuration` > `Manage Custom Scripts`.    
 
-2. Click on the `Person Authentication` tab       
+1. Click on the `Person Authentication` tab       
 ![person-auth](../img/admin-guide/multi-factor/person-auth.png)
 
-3. Find the U2F script       
+1. Find the U2F script       
 ![u2f-script](../img/admin-guide/multi-factor/u2f-script.png)
 
-4. Enable the script by checking the box       
+1. Enable the script by checking the box       
 ![enable](../img/admin-guide/enable.png)
 
-5. Scroll to the bottom of the page and click `Update`
+1. Scroll to the bottom of the page and click `Update`
 
 Now U2F is an available authentication mechanism for your Gluu Server. This means that, using OpenID Connect `acr_values`, applications can now request U2F authentication for users. 
 
@@ -63,21 +63,21 @@ Now U2F is an available authentication mechanism for your Gluu Server. This mean
 
 ## Make U2F the Default
 
-Now applications can request U2F authentication using the OpenID Connect `acr` value. If U2F should be the default authentication mechanism, follow these instructions: 
+If U2F should be the default authentication mechanism, follow these instructions: 
 
 1. Navigate to `Configuration` > `Manage Authentication`. 
 
-2. Select the `Default Authentication Method` tab. 
+1. Select the `Default Authentication Method` tab. 
 
-3. In the Default Authentication Method window you will see two options: `Default acr` and `oxTrust acr`. 
+1. In the Default Authentication Method window you will see two options: `Default acr` and `oxTrust acr`. 
 
 ![u2f](../img/admin-guide/multi-factor/u2f.png)
 
-3.1 `oxTrust acr` sets the authentication mechanism for accessing the oxTrust dashboard GUI (only managers should have acccess to oxTrust).    
+ - `oxTrust acr` sets the authentication mechanism for accessing the oxTrust dashboard GUI (only managers should have acccess to oxTrust).    
 
-3.2 `Default acr` sets the default authentication mechanism for accessing all applications that leverage your Gluu Server for authentication (unless otherwise specified).    
+ - `Default acr` sets the default authentication mechanism for accessing all applications that leverage your Gluu Server for authentication (unless otherwise specified).    
 
-One or both fields can be changed to U2F authentication as needed. If U2F should be the default authentication mechanism for all access, change both fields to U2F.  
+If U2F should be the default authentication mechanism for all access, change both fields to U2F.  
 
 ## U2F Credential Management
 A users FIDO U2F entries can be found in oxTrust under the user entry in `Users` > `Manage People`, or in LDAP under the user entry as in the below screenshot. 
