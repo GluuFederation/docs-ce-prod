@@ -35,7 +35,9 @@ The default Gluu Server distribution includes interception scripts that implemen
 
 ### 2FA Credential Management
 
-Enabling users to manage and enroll 2FA credentials without undermining the security model is one of the most important things to consider when rolling out 2FA. Regardless of 2FA type or vendor, users need a secure way to enroll and delete their 2FA credentials.
+Enabling users to manage and enroll 2FA credentials without undermining the security model is one of the most important things to consider when rolling out 2FA. 
+
+Regardless of 2FA type or vendor, users need a secure way to enroll and delete their 2FA credentials.
 
 By default, the Gluu Server allows each user to enroll just one (1) strong credential per 2FA credential type. For instance, if authentication is set to U2F, by default the user can only enroll one U2F security key. Same for OTP, Super Gluu, etc. The credential is enrolled upon the first authentication attempt, and can be used to pass all subsequent prompts for 2FA. 
 
