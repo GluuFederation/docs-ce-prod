@@ -1,29 +1,27 @@
 # FIDO U2F
 
 ## Overview
-FIDO Universal 2nd Factor (U2F) is an open authentication standard that 
-strengthens and simplifies two-factor authentication using specialized USB or NFC 
-devices based on similar security technology found in smart cards. 
+FIDO Universal 2nd Factor (U2F) is an open authentication standard that strengthens and simplifies two-factor authentication using specialized USB or NFC devices. 
 
-> Learn more about the U2F standard [on Gluu's website](https://www.gluu.org/resources/documents/standards/fido-u2f/).
-
-This document will explain how to use Gluu's 
+This document will explain how to use the 
 [U2F interception script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/u2f/U2fExternalAuthenticator.py) 
-to configure the Gluu Server for a two-step authentication process with username and password as the first step, 
-and any U2F device as the second step. Below is the illustration of U2F login page, which would be shown after first step.
+to implement a two-step authentication process with username and password as the first step, and any U2F device as the second step. 
+
+Below is the illustration of U2F login page, which would be shown after first step.
 
 ![u2f](../img/user-authn/u2f.png)
 
-## U2F Devices
+### U2F Devices
 Some well known U2F devices and manufacturers include:           
-- [Vasco DIGIPASS SecureClick](https://www.vasco.com/products/two-factor-authenticators/hardware/one-button/digipass-secureclick.html)      
+
 - [Yubico](https://www.yubico.com/)      
+- [Vasco DIGIPASS SecureClick](https://www.vasco.com/products/two-factor-authenticators/hardware/one-button/digipass-secureclick.html)   
 - [HyperFIDO](http://hyperfido.com/)       
 - [Feitian Technologies](http://www.ftsafe.com/)      
 
-Check [FIDO's certified products](https://fidoalliance.org/certification/fido-certified-products/) for a comprehensive list of U2F devices (sort by `Specification` == `U2F`).   
-
 [Purchase U2F devices on Amazon](https://www.amazon.com/s/ref=nb_sb_noss/146-0120855-4781335?url=search-alias%3Daps&field-keywords=u2f). 
+
+Or, check [FIDO's certified products](https://fidoalliance.org/certification/fido-certified-products/) for a comprehensive list of U2F devices (sort by `Specification` == `U2F`). 
 
 ## Prerequisites
 - A Gluu Server ([installation instructions](../installation-guide/index.md));      
@@ -35,13 +33,13 @@ The script has the following properties
 
 |	Property	|	Description		|	Example	|
 |-----------------------|-------------------------------|---------------|
-|u2f_application_id		|URL of the application		|`https://idp.gluu.info`|
-|u2f_server_uri		|DNS/URL of the oxauth/u2f server|`https://idp.gluu.info`|
-|u2f_server_metadata_uri|URL of the u2f server metadata|`https://idp.gluu.info`|
+|u2f_application_id		|URL of the application		|`https://idp.mycompany.com`|
+|u2f_server_uri		|DNS/URL of the oxauth/u2f server|`https://idp.mycompany.com`|
+|u2f_server_metadata_uri|URL of the u2f server metadata|`https://idp.mycompany.com`|
 
-## Configure U2F
+## Enable U2F
 
-Follow the steps below to configure the U2F module in the oxTrust Admin GUI.
+Follow the steps below to enable U2F authentication:
 
 1. Navigate to `Configuration` > `Manage Custom Scripts`.    
 
@@ -65,7 +63,7 @@ Now U2F is an available authentication mechanism for your Gluu Server. This mean
 
 ## Make U2F the Default Authentication Mechanism
 
-Now applications can request U2F authentication, but what if you want to make U2F your default authentication mechanism? You can follow these instructions: 
+Now applications can request U2F authentication. If U2F should be the default authentication mechanism, follow these instructions: 
 
 1. Navigate to `Configuration` > `Manage Authentication`. 
 2. Select the `Default Authentication Method` tab. 
@@ -110,6 +108,7 @@ Currently the service supports:
 * Single device deletion via `DELETE`
 
 ### Example: querying enrolled Super Gluu devices
+
 Say we are interested in having a list of iOS supergluu devices a user has enrolled. In a setting of test mode, we may issue a query like this:
 
 ```
