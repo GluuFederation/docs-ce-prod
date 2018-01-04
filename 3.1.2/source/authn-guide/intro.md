@@ -1,8 +1,10 @@
 # User Authentication Introduction
-The Gluu Server is very flexible in handling user authentication. By default, LDAP is used for username / password authentication ("basic"). You can easily enforce stronger forms of authentication, like One-Time Passwords (OTP) or U2F to increase the security of logins. You can even support multiple mechanisms at the same time, enabling Web and mobile apps ("clients") to request a specific authentication type by using standard OpenID Connect request parameters. 
+The Gluu Server is very flexible in handling user authentication. By default, either the Gluu Server's local LDAP, or an organization's backend LDAP (depending on where passwords are stored), is used for username / password authentication ("basic"). 
+
+Stronger forms of authentication like One-Time Passwords (OTP), U2F Security Keys, and Gluu's free U2F mobile app, Super Gluu, can be implemented to increase the security of logins. In addition, the Gluu Server can support multiple mechanisms at the same time, enabling Web and mobile apps ("clients") to request a specific authentication type by using standard OpenID Connect request parameters. 
 
 ## Authentication Interception Scripts
-The Gluu Server uses [interception scripts](../admin-guide/custom-script.md) to facilitate the user authentication process. For each supported authentication mechanism--like username/password ("basic"), U2F or OTP--there is a corresponding interception script that specifies how the mechanism should be applied during user sign-in. 
+The Gluu Server leverages [interception scripts](../admin-guide/custom-script.md) to facilitate the user authentication process. For each supported authentication mechanism--like username/password ("basic"), U2F or OTP--there is a corresponding interception script that specifies how the mechanism should be applied during user sign-in. 
 
 The Gluu Server ships with interception scripts for a number of authentication mechanisms, including:
 
@@ -11,17 +13,39 @@ The Gluu Server ships with interception scripts for a number of authentication m
 - [U2F](./U2F.md)
 - [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)
 
-You can review all pre-written authentication scripts in the [oxAuth integration folder on GitHub](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations). 
+All pre-written authentication scripts can be viewed in the [oxAuth integration folder on GitHub](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations). 
 
-You can also write custom scripts to support your own unique requirements for authentication. For example, you can add extra authentication steps based on contextual information such as fraud scores, location, or browser profiling via a custom authentication script.   
-
-Follow [this tutorial](./customauthn.md) to better understand the process of writing a custom authentication script. 
+Custom scripts can also be written to support unique requirements for authentication. For example, a custom script could be written to implement extra authentication steps based on contextual information such as fraud scores, location, or browser profiling. Follow [the custom auth tutorial](./customauthn.md) to better understand the process of writing your own custom authentication script. 
 
 ## Basic Authentication
 
-By default, LDAP is used to authenticate usernames and passwords. Passwords can either be checked in your Gluu Server's local LDAP server, or in an existing backend LDAP server if you have configured [LDAP synchronization](../user-management/ldap-sync.md). Until additional authentication scripts are enabled, default authentication will always be username and password. 
+By default, LDAP is used to authenticate usernames and passwords. Passwords can either be authenticated in the Gluu Server's local LDAP server, or in an existing backend LDAP server if [LDAP synchronization](../user-management/ldap-sync.md) has been configured. Until additional authentication scripts are enabled, default authentication will always be username and password. 
 
 Learn how to [configure basic authentication](./basic.md).
+
+## Strong Authentication (2FA)
+
+The default Gluu Server distribution includes interception scripts that implement the following forms of strong authentication (otherwise known as "2FA"):
+
+- [U2F](./U2F.md)
+- [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)
+- [Duo Security](./duo.md)
+- [Certificate Authentication](./cert-auth.md)
+- [OTP](./otp.md)
+
+### 2FA Credential Management
+
+Enabling users to manage and enroll 2FA credentials without undermining the security model is one of the most important things to consider when rolling out 2FA. Regardless of 2FA type or vendor, users need a secure way to enroll and delete their 2FA credentials.
+
+By default, the Gluu Server allows each user to enroll just one (1) strong credential per 2FA credential type. For instance, if authentication is set to U2F, by default the user can only enroll one U2F security key. Same for OTP, Super Gluu, etc. The credential is enrolled upon the first authentication attempt, and can be used to pass all subsequent prompts for 2FA. 
+
+Gluu Server admins can manage users U2F credentials from within the oxTrust interface by finding the user's profile in `Users` > `Manage People`. All other credentials can be managed by Gluu Server admins in the Gluu Server's local LDAP. More about managing the specific type of credential can be found in the corresponding document in this Authentication Guide. 
+
+### Self-Service 2FA 
+
+Gluu Server 3.1.2 includes support for a new open source app developed by Gluu called Credential Manager. Credential Manager is a user facing app that enables people to register and delete ("self-service") U2F credentials, Super Gluu devices, OTP devices, SMS phone numbers, and even change their password. Offering people the ability to self-service their 2FA credentials will greatly reduce the cost of supporting 2FA. 
+
+For more information on installing and configuring Credential Manager, view the docs. 
 
 ## Social Login
 
@@ -30,16 +54,6 @@ During deployment of the Gluu Server you are presented with an option to include
 Passport.js provides a crowd-sourced approach to supporting social login at many popular consumer IDPs, including Facebook, LinkedIn, and GitHub. In addition to normalizing social login, Passport.js provides a standard mapping for user claims, allowing you to dynamically enroll new users into your Gluu Server that have authenticated elsewhere.
 
 Learn how to [configure social login](./passport.md). 
-
-## Strong Authentication
-
-The default Gluu Server distribution includes interception scripts to implement the following forms of strong authentication:
-
-- [U2F](./U2F.md)
-- [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)
-- [Duo Security](./duo.md)
-- [Certificate Authentication](./cert-auth.md)
-- [OTP](./otp.md)
 
 ## Default Authentication Mechanism
 In oxTrust, you can navigate to `Configuration` > `Manage Authentication` > `Default Authentication` to specify the default authentication mechanism for two use cases: 
@@ -64,7 +78,7 @@ Learn more about `acr_values` in the [OpenID Connect core scpec](http://openid.n
 !!! Note
     All Gluu Server authentications are routed through oxAuth (the OP). You can take incoming SAML or CAS assertions from a 3rd party IDP, for example ADFS, and use that as the basis for an OpenID Connect session in Gluu. This enables seamless SSO across all your apps.
 
-## Account Lockout
+## Account Lockout Policy
 
 The default Gluu Server distribution includes an interception script to implement a basic account lockout policy which will deactivate a users account after a set number of consecutive failed login attempts.
 
