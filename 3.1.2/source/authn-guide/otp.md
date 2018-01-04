@@ -1,7 +1,9 @@
 # One-Time Password (OTP) Authentication
 
 ## Overview
-This document will explain how to configure the Gluu Server for a two-step authentication process with username and password as the first step, and HOTP as the second step.
+This document will explain how to configure the Gluu Server for a two-step 
+authentication process with username and password as the first step, and HOTP as the second step. 
+Below screenshot depicts a sample page of OTP login after the first step of authentication. 
 
 ![otp](../img/user-authn/otp.png)
 
