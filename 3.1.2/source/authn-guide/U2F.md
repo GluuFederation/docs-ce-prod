@@ -12,7 +12,7 @@ Below is an illustration of the Gluu Servers default U2F login page:
 ![u2f](../img/user-authn/u2f.png)
 
 !!! Note 
-    For more background on U2F, including a discussion of its strong security advantages, visit the [Yubico blog](https://www.yubico.com/solutions/fido-u2f/). 
+    For more background on U2F, including a discussion of its security advantages, visit the [Yubico blog](https://www.yubico.com/solutions/fido-u2f/). 
 
 ### U2F Devices
 Some well known U2F devices and manufacturers include:           
