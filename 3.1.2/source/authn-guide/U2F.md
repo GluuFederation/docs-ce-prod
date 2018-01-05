@@ -13,7 +13,7 @@ to implement a two-step authentication process with username and password as the
 ## Prerequisites
 - A Gluu Server ([installation instructions](../installation-guide/index.md));      
 - [U2F interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/u2f/U2fExternalAuthenticator.py) (included in the default Gluu Server distribution);     
-- At least one U2F device for testing, like one of the devices [listed above](#u2f-devices).   
+- At least one U2F device for testing, like one of the devices [listed below](#u2f-devices).   
 
 ### U2F Devices
 Some well known U2F devices and manufacturers include:           
