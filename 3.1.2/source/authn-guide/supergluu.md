@@ -78,7 +78,7 @@ If Super Gluu should be the default authentication mechanism for all access, cha
 
 The Gluu Server includes two default login pages for Super Gluu:
 
-1. An **enrollment** page that is displayed the first time a user is prompted for Super Gluu authentication;\
+1. An **enrollment** page that is displayed the first time a user is prompted for Super Gluu authentication;
 ![super-gluu-enrollment](../img/user-authn/super-gluu-enrollment.png)                  
 
 1. A **login** page that is displayed for all subsequent Super Gluu authentications. 
