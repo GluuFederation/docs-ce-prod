@@ -80,7 +80,7 @@ Below is an illustration of the Gluu Server's default U2F login page:
 
 ![u2f](../img/user-authn/u2f.png)
 
-The design is being rendered from the [U2F xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/u2f/login.xhtml). To customize the look and feel of this page, follow the [customization guide](../../operation/custom-design.md). 
+The design is being rendered from the [U2F xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/u2f/login.xhtml). To customize the look and feel of this page, follow the [customization guide](../operation/custom-design.md). 
 
 ## U2F Credential Management
 A users FIDO U2F entries can be found in oxTrust under the user entry in `Users` > `Manage People`, or in LDAP under the user entry as in the below screenshot. 
