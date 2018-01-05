@@ -1,13 +1,15 @@
 # Super Gluu
 ## Overview
-[Super Gluu](https://super.gluu.org) is a free two-factor authentication mobile application designed to add extra security for user sign-ins at web and mobile applications secured by a [Gluu Server](https://gluu.org). 
+[Super Gluu](https://super.gluu.org) is a free two-factor authentication mobile application designed to work with the [Gluu Server IAM platform](https://gluu.org/docs/ce). 
 
-This section of the docs explains how to enable and configure your Gluu Server to use Super Gluu for user authentication. Complete docs for Super Gluu, including a User Guide and Developer Guide, can be found on the [Super Gluu docs site](https://gluu.org/docs/supergluu). 
+This document explains how to use the Gluu Server's included Super Gluu interception script to implement a two-step, two-factor authentication (2FA) process with username / password as the first step, and Super Gluu as the second step. 
+
+Complete docs for Super Gluu, including a User Guide and Developer Guide, can be found on the [Super Gluu docs site](https://gluu.org/docs/supergluu). 
 
 ### Security
-During device enrollment, Super Gluu uses the [FIDO U2F protocol](https://fidoalliance.org/specifications/overview/) to enroll a public key. When authentication happens, there is a challenge response to ensure that the device has the respective private key. 
+Super Gluu uses the Gluu Server's FIDO U2F endpoints to enroll a public key. When authentication happens, there is a challenge response to ensure that the device has the respective private key. 
 
-Learn more about where Super Gluu entries are stored in LDAP, the Gluu Server FIDO discovery endpoint, and managing FIDO devices using SCIM in the Gluu Server [FIDO U2F docs](./U2F.md). 
+Learn more about FIDO U2F in the [spec](https://fidoalliance.org/specifications/overview/)
 
 ### Open source 
 Super Gluu is based on the free open source [oxPush 3](https://github.com/GluuFederation/oxPush3) source code. 
@@ -18,19 +20,26 @@ Super Gluu is based on the free open source [oxPush 3](https://github.com/GluuFe
 - An Android or iOS device with Super Gluu installed.
 
 ### Download Super Gluu
-Super Gluu is available on the iOS and Android marketplaces:
+Super Gluu is available on the iOS and Android app marketplaces:
 
 - [Super Gluu for iOS](https://itunes.apple.com/us/app/super-gluu/id1093479646?mt=8)     
 - [Super Gluu for Android](https://play.google.com/store/apps/details?id=gluu.org.super.gluu)       
 
 ## Properties
-The Super Gluu authentication script has the following properties
+The Super Gluu authentication script has the following properties: 
 
 |	Property	|	Description		|	Example	|
 |-----------------------|-------------------------------|---------------|
-|application_id		|URL of the identity server	|https://idp.example.info|
+|application_id		|URL of the identity server	|https://idp.example.com|
 |authentication_mode	|Determine factor of authentication|two_step|
-|credentials_file	|JSON file for SuperGluu 		|/etc/certs/super_gluu_creds.json| 
+|credentials_file	|JSON file for SuperGluu 		|/etc/certs/super_gluu_creds.json|
+|label  |The name of the application |   Super Gluu| 
+|notification_service_mode   | Service used to enable push notifications | gluu|
+|qr_options| Size of the QR code that is used for enrollment and/or authentication|{ size: 500, mSize: 0.05 }|
+|registration_uri | Registration endpoint of the IDP| https://idp.example.com/identity/register| 
+|supergluu_android_download_url| Android app download link, used in the login page | https://play.google.com/store/apps/details?id=gluu.super.gluu|
+|supergluu_ios_download_url| iOS app download link, used in the login page | https://itunes.apple.com/us/app/super-gluu/id1093479646|
+
 
 ## Enable Super Gluu
 
