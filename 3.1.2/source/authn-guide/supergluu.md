@@ -42,31 +42,51 @@ The Super Gluu authentication script has the following properties:
 
 ## Enable Super Gluu
 
-To get started, log into the Gluu Server dashboard (a.k.a. oxTrust) and do the following: 
+Follow the steps below to enable Super Gluu authentication:
 
-1. Navigate to `Configuration` > `Manage Custom Scripts`.
-2. In the `Person Authentication` tab find the `super_gluu` authentication module.  
-3. Scroll down and find the `Enable` check box. 
-4. Enable the script by clicking the check box.
-5. Scroll to the bottom of the page and click `Update`. 
+1. In oxTrust, navigate to `Configuration` > `Manage Custom Scripts`.
+1. Click on the `Person Authentication` tab
+1. Find the Super Gluu script
+1. Enable the script by checking the box 
+1. Scroll to the bottom of the page and click `Update`
+
 
 Now Super Gluu is an available authentication mechanism for your Gluu Server. This means that, using OpenID Connect `acr_values`, applications can now request Super Gluu authentication for users. 
 
 !!! Note 
     To make sure Super Gluu has been enabled successfully, you can check your Gluu Server's OpenID Connect configuration by navigating to the following URL: `https://<hostname>/.well-known/openid-configuration`. Find `"acr_values_supported":` and you should see `"super_gluu"`. 
 
-## Make Super Gluu the default authentication mechanism
+## Make Super Gluu the Default
 
-Now applications can request Super Gluu authentication, but what if you want to make Super Gluu your default authentication mechanism? You can follow these instructions: 
+If Super Gluu should be the default authentication mechanism, follow these instructions: 
 
 1. Navigate to `Configuration` > `Manage Authentication`. 
-2. Select the `Default Authentication Method` tab. 
-3. In the Default Authentication Method window you will see two options: `Default acr` and `oxTrust acr`. 
 
-- The `oxTrust acr` field controls the authentication mechanism that is presented to access the oxTrust dashboard GUI (the application you are in).    
-- The `Default acr` field controls the default authentication mechanism that is presented to users from all applications that leverage your Gluu Server for authentication.    
+1. Select the `Default Authentication Method` tab. 
 
-You can change one or both fields to Super Gluu authentication as you see fit. If you want Super Gluu to be the default authentication mechanism for access to oxTrust and all other applications that leverage your Gluu Server, change both fields to Super Gluu.  
+1. In the Default Authentication Method window you will see two options: `Default acr` and `oxTrust acr`. 
+
+![u2f](../img/admin-guide/multi-factor/u2f.png)
+
+ - `oxTrust acr` sets the authentication mechanism for accessing the oxTrust dashboard GUI (only managers should have acccess to oxTrust).    
+
+ - `Default acr` sets the default authentication mechanism for accessing all applications that leverage your Gluu Server for authentication (unless otherwise specified).    
+
+If Super Gluu should be the default authentication mechanism for all access, change both fields to Super Gluu.  
+
+## Super Gluu Login Pages
+
+The Gluu Server includes two default login pages for Super Gluu:
+
+1. An enrollment page that is displayed the first time a user is prompted for Super Gluu authentication;\
+
+![super-gluu-enrollment](../img/user-authn/super-gluu-enrollment.png)
+
+1. A login page that is displayed for all subsequent Super Gluu authentications. 
+
+![super-gluu-push-login](../img/user-authn/super-gluu-push-login.png)
+
+The design is being rendered from the [Super Gluu xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/super-gluu/login.xhtml). To customize the look and feel of this page, follow the [customization guide](../operation/custom-design.md). 
  
 ## Register a new device
 
