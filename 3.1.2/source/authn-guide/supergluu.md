@@ -30,7 +30,6 @@ The Super Gluu authentication script has the following properties:
 
 |	Property	|	Description		|	Example	|
 |-----------------------|-------------------------------|---------------|
-|application_id		|URL of the identity server	|https://idp.example.com|
 |authentication_mode	|Determine factor of authentication|two_step|
 |credentials_file	|JSON file for SuperGluu 		|/etc/certs/super_gluu_creds.json|
 |label  |The name of the application |   Super Gluu| 
