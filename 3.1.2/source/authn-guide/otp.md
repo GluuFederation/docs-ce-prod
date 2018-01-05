@@ -53,8 +53,6 @@ If OTP should be the default authentication mechanism, follow these instructions
 
 1. In the Default Authentication Method window you will see two options: `Default acr` and `oxTrust acr`. 
 
-![u2f](../img/admin-guide/multi-factor/u2f.png)
-
  - `oxTrust acr` sets the authentication mechanism for accessing the oxTrust dashboard GUI (only managers should have acccess to oxTrust).    
 
  - `Default acr` sets the default authentication mechanism for accessing all applications that leverage your Gluu Server for authentication (unless otherwise specified).    
