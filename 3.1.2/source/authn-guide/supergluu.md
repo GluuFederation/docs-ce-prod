@@ -79,11 +79,9 @@ If Super Gluu should be the default authentication mechanism for all access, cha
 The Gluu Server includes two default login pages for Super Gluu:
 
 1. An enrollment page that is displayed the first time a user is prompted for Super Gluu authentication;\
-
-![super-gluu-enrollment](../img/user-authn/super-gluu-enrollment.png)
+![super-gluu-enrollment](../img/user-authn/super-gluu-enrollment.png)                  
 
 1. A login page that is displayed for all subsequent Super Gluu authentications. 
-
 ![super-gluu-push-login](../img/user-authn/super-gluu-push-login.png)
 
 The design is being rendered from the [Super Gluu xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/super-gluu/login.xhtml). To customize the look and feel of this page, follow the [customization guide](../operation/custom-design.md). 
