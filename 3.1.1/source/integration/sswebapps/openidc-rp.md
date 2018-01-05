@@ -79,11 +79,11 @@ You should see a list of current environment variables.
 
 ### Installation
 
-`mod_auth_openidc` module depends on the Ubuntu package `libjansson4`: 
+`mod_auth_openidc` module depends on the Ubuntu packages `libjansson4` and `libhiredis0.10`: 
 
 ``` text
 # apt-get install libjansson4
-
+# apt-get install libhiredis0.10
 ```
 
 You'll also need the mod_auth_openidc and libjose packages which can 
