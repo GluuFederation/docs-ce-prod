@@ -32,7 +32,7 @@ The next step is to create a self-signed SSL Certificate.
 * Create a directory to put the generate the ssl certificate
 
 ``` text
-# mkdir /etc/apache2/ssl`
+# mkdir /etc/apache2/ssl
 # openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
 ```
 
@@ -54,7 +54,7 @@ use the SSL module
 1. Open the `default-ssl.conf` file
 
 ``` text
-# vim /etc/apache2/sites-available/default-ssl.conf`
+# vim /etc/apache2/sites-available/default-ssl.conf
 
 ```
 
@@ -82,7 +82,7 @@ You should see a list of current environment variables.
 `mod_auth_openidc` module depends on the Ubuntu package `libjansson4`: 
 
 ``` text
-# apt-get install libjansson
+# apt-get install libjansson4
 
 ```
 
