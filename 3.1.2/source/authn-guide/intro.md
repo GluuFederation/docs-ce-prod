@@ -6,20 +6,22 @@ Stronger forms of authentication like One-Time Passwords (OTP), U2F Security Key
 ## Authentication Interception Scripts
 The Gluu Server leverages [interception scripts](../admin-guide/custom-script.md) to facilitate the user authentication process. For each supported authentication mechanism--like username/password ("basic"), U2F or OTP--there is a corresponding interception script that specifies how the mechanism should be applied during user sign-in. 
 
-The Gluu Server ships with interception scripts for a number of authentication mechanisms, including:
+The Gluu Server ships with interception scripts for a number of authentication mechanisms, such as:
 
+- [FIDO U2F](./U2F.md)
+- [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)
 - [Social Login](./passport.md) 
 - [Duo Security](./duo.md)
-- [U2F](./U2F.md)
-- [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)
 
 All pre-written authentication scripts can be viewed in the [oxAuth integration folder on GitHub](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations). 
 
-Custom scripts can also be written to support unique requirements for authentication. For example, a custom script could be written to implement extra authentication steps based on contextual information such as fraud scores, location, or browser profiling. Follow [the custom auth tutorial](./customauthn.md) to better understand the process of writing your own custom authentication script. 
+Custom scripts can also be written to support unique requirements for authentication. For example, a custom script could be written to implement extra authentication steps based on contextual information such as fraud scores, location, or browser profiling. 
+
+Follow the [custom authentication script tutorial](./customauthn.md) to better understand the process of writing your own interception scripts. 
 
 ## Basic Authentication
 
-By default, LDAP is used to authenticate usernames and passwords. Passwords can either be authenticated in the Gluu Server's local LDAP server, or in an existing backend LDAP server if [LDAP synchronization](../user-management/ldap-sync.md) has been configured. Until additional authentication scripts are enabled, default authentication will always be username and password. 
+By default, LDAP is used to authenticate usernames and passwords. Passwords can either be authenticated in the Gluu Server's local LDAP server, or, if [LDAP synchronization](../user-management/ldap-sync.md) has been configured, in an existing backend LDAP server. Until additional authentication scripts are enabled, default authentication will always be username and password. 
 
 Learn how to [configure basic authentication](./basic.md).
 
