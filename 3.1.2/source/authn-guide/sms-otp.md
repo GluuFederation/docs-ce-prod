@@ -1,7 +1,7 @@
 # SMS One-Time Password (OTP) Authentication
 
 ## Overview
-A common technology used for the delivery of OTPs is text messaging (SMS). Because text messaging is a ubiquitous communication channel, being directly available in nearly all mobile handsets and, through text-to-speech conversion, to any mobile or landline telephone, text messaging has a great potential to reach all users with a low total cost to implement. 
+A common technology used for the delivery of OTPs is text messaging (SMS). Because text messaging is a ubiquitous communication channel, being directly available in nearly all mobile handsets and, through text-to-speech conversion, to any mobile or landline telephone, text messaging has potential to reach many users with a low total cost to implement. 
 
 This document explains how to use the Gluu Server's included 
 [Twilio interception script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/u2f/U2fExternalAuthenticator.py) 
