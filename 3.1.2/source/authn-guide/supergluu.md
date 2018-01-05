@@ -78,31 +78,34 @@ If Super Gluu should be the default authentication mechanism for all access, cha
 
 The Gluu Server includes two default login pages for Super Gluu:
 
-1. An enrollment page that is displayed the first time a user is prompted for Super Gluu authentication;\
+1. An **enrollment** page that is displayed the first time a user is prompted for Super Gluu authentication;\
 ![super-gluu-enrollment](../img/user-authn/super-gluu-enrollment.png)                  
 
-1. A login page that is displayed for all subsequent Super Gluu authentications. 
+1. A **login** page that is displayed for all subsequent Super Gluu authentications. 
 ![super-gluu-push-login](../img/user-authn/super-gluu-push-login.png)
 
-The design is being rendered from the [Super Gluu xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/super-gluu/login.xhtml). To customize the look and feel of this page, follow the [customization guide](../operation/custom-design.md). 
+The designs are being rendered from the [Super Gluu xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/super-gluu/login.xhtml). To customize the look and feel of the pages, follow the [customization guide](../operation/custom-design.md). 
  
-## Register a new device
+## Using Super Gluu
 
-After Super Gluu is enabled and configured you can initiate the standard login sequence to enroll your device. After successfully entering your username and passsword you will be presented with a Super Gluu QR code. If you haven't already downloaded Super Gluu, you will now need to download the app. Once downloaded, open the app and scan the QR code.
+### Device Enrollment
 
-You will be presented with an approve / deny screen. Approve the authentication, and now your device has been associated with your account in the Gluu Server. For all future authentications, you will receive a push notification to approve or deny the request. 
+Super Gluu device enrollment happens during the first authentication attempt. The initial enrollment page displays a QR code that needs to be scanned with the Super Gluu app. 
+
+## Subsequent Logins
+If you use the default Super Gluu interception script, all subsequent authentications will trigger a push notification to the enrolled device which can be approved or denied as needed. 
 
 For more information about using Super Gluu, check the [Super Gluu User Guide](https://gluu.org/docs/supergluu/user-guide/).
 
-## Remove an existing device 
+## Credential Management
 
-When someone loses, breaks, or replaces their device, they will need their existing device removed in order to enroll their new device. The Gluu system administrator will need to do the following: 
+A user's Super Gluu devices can be removed by a Gluu administrator either via the oxTrust UI in `Users` > `Manage People`, or in LDAP under the user entry using the following instructions:  
     
-  - Find the `DN` of this user from ldap; 
+1. Find the `DN` of this user from ldap; 
     
-  - Find the `oxID DN` associated with the user;
+1. Find the `oxID DN` associated with the user;
     
-  - Remove the `oxID DN`. 
+1. Remove the `oxID DN`. 
 
 For example, let's say user `abc` loses their device and wants to enroll a new device to use Super Gluu. 
 
@@ -111,7 +114,7 @@ The Gluu Server admin will do the following:
 1. Get the DN of user `abc` which will be something like this:      
 `dn: inum=@!ABCD.1234.XXX.XXX.YYYY.8770,ou=people,o=@!DEFG.5678.XXX.XXX.ZZZ,o=gluu”`     
  
-2. Now find the `oxID` DN which is associated with this user’s DN. It might be something like:      
+1. Now find the `oxID` DN which is associated with this user’s DN. It might be something like:      
 
 ```
 dn: oxId=1487683146561,ou=fido,inum=@!ABCD.1234.XXX.XXX.YYYY.8770,ou=people,o=@!DEFG.5678.XXX.XXX.ZZZ,o=gluu
@@ -126,10 +129,10 @@ creationDate: 20170221131906.559Z
 oxId: 11111111111111111
 oxDeviceRegistrationConf: {"publicKey":"BIGbwF…………….","attestationCert":"MIICJjCCAcygAwIBAgKBgQDzLA-......L5ztE"}
 oxLastAccessTime: 20170
-```    
-   
+```       
+
 3. Delete the oxID DN. 
 
-Now the old device is gone and the user can enroll a new device following the above instructions for [registering a new device](#register-a-new-device). 
+Now the old device is gone and the user can enroll a new device following the above instructions for [registering a new device](#device-enrollment). 
  
 
