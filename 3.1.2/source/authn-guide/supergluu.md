@@ -92,16 +92,16 @@ The designs are being rendered from the [Super Gluu xhtml page](https://github.c
 
 Super Gluu device enrollment happens during the first authentication attempt. The initial enrollment page displays a QR code that needs to be scanned with the Super Gluu app. 
 
-## Subsequent Logins
+### Subsequent Logins
 If you use the default Super Gluu interception script, all subsequent authentications will trigger a push notification to the enrolled device which can be approved or denied as needed. 
 
-For more information about using Super Gluu, check the [Super Gluu User Guide](https://gluu.org/docs/supergluu/user-guide/).
+For more information about using Super Gluu, visit the [Super Gluu User Guide](https://gluu.org/docs/supergluu/user-guide/).
 
 ## Credential Management
 
-A user's Super Gluu devices can be removed by a Gluu administrator either via the oxTrust UI in `Users` > `Manage People`, or in LDAP under the user entry using the following instructions:  
+A user's Super Gluu device(s) can be removed by a Gluu administrator either via the oxTrust UI in `Users` > `Manage People`, or in LDAP under the user entry:  
     
-1. Find the `DN` of this user from ldap; 
+1. Find the `DN` of the user in ldap; 
     
 1. Find the `oxID DN` associated with the user;
     
@@ -135,4 +135,5 @@ oxLastAccessTime: 20170
 
 Now the old device is gone and the user can enroll a new device following the above instructions for [registering a new device](#device-enrollment). 
  
-
+## FIDO SCIM APIs
+See the [SCIM documentation](../user-management/scim2.md#fido-devices) for a discussion on how to manage FIDO devices, including Super Gluu, using the SCIM protocol. 
