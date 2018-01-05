@@ -55,6 +55,8 @@ documentation and administrative guide.
 
 - [604](https://github.com/GluuFederation/oxTrust/issues/604) Show u2f creds in user page
 
+- [12](https://github.com/GluuFederation/community-edition-package/issues/12) "clear-logs" has been introduced to clear all logs
+
 ## Fixes / Enhancements
 
 ### [oxAuth](https://github.com/GluuFederation/oxAuth/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.1.2)
