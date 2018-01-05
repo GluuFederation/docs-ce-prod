@@ -7,10 +7,6 @@ This document will explain how to use the
 [U2F interception script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/u2f/U2fExternalAuthenticator.py) 
 to implement a two-step authentication process with username and password as the first step, and any U2F device as the second step. 
 
-Below is an illustration of the Gluu Servers default U2F login page:
-
-![u2f](../img/user-authn/u2f.png)
-
 !!! Note 
     For more background on U2F, including a discussion of its security advantages, visit the [Yubico blog](https://www.yubico.com/solutions/fido-u2f/). 
 
@@ -78,6 +74,13 @@ If U2F should be the default authentication mechanism, follow these instructions
  - `Default acr` sets the default authentication mechanism for accessing all applications that leverage your Gluu Server for authentication (unless otherwise specified).    
 
 If U2F should be the default authentication mechanism for all access, change both fields to U2F.  
+
+## U2F Login Page
+Below is an illustration of the Gluu Server's default U2F login page:
+
+![u2f](../img/user-authn/u2f.png)
+
+The design is being rendered from the [U2F xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/u2f/login.xhtml). To customize the look and feel of this page, follow the [customization guide](../../operation/custom-design.md). 
 
 ## U2F Credential Management
 A users FIDO U2F entries can be found in oxTrust under the user entry in `Users` > `Manage People`, or in LDAP under the user entry as in the below screenshot. 
