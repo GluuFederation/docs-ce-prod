@@ -10,6 +10,11 @@ to implement a two-step authentication process with username and password as the
 !!! Note 
     For more background on U2F, including a discussion of its security advantages, visit the [Yubico blog](https://www.yubico.com/solutions/fido-u2f/). 
 
+## Prerequisites
+- A Gluu Server ([installation instructions](../installation-guide/index.md));      
+- [U2F interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/u2f/U2fExternalAuthenticator.py) (included in the default Gluu Server distribution);     
+- At least one U2F device for testing, like one of the devices [listed above](#u2f-devices).   
+
 ### U2F Devices
 Some well known U2F devices and manufacturers include:           
 
@@ -19,11 +24,6 @@ Some well known U2F devices and manufacturers include:
 - [Feitian Technologies](http://www.ftsafe.com/)      
 
 [Purchase U2F devices on Amazon](https://www.amazon.com/s/ref=nb_sb_noss/146-0120855-4781335?url=search-alias%3Daps&field-keywords=u2f). Or, check [FIDO's certified products](https://fidoalliance.org/certification/fido-certified-products/) for a comprehensive list of U2F devices (sort by `Specification` == `U2F`). 
-
-## Prerequisites
-- A Gluu Server ([installation instructions](../installation-guide/index.md));      
-- [U2F interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/u2f/U2fExternalAuthenticator.py) (included in the default Gluu Server distribution);     
-- At least one U2F device for testing, like one of the devices [listed above](#u2f-devices).   
 
 ## Properties
 The script has the following properties
