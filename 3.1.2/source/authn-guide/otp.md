@@ -13,7 +13,7 @@ to implement a two-step, two-factor authentication (2FA) process with username /
 ## Prerequisites
 - A Gluu Server ([installation instructions](../installation-guide/index.md));
 - [HOTP / TOTP authentication script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/otp/OtpExternalAuthenticator.py) (included in the default Gluu Server distribution);
-- An Android or iOS device with a mobile app installed that supports HOTP/TOTP, like [Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2).   
+- A device with an OTP mobile app installed, like one of the apps [listed below](#recommended-otp-apps)
 
 ### Recommended OTP apps
 - Google Authenticator for [Android](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en) or [iOS](https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8)
