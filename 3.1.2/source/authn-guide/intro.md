@@ -28,10 +28,11 @@ Learn how to [configure basic authentication](./basic.md).
 The default Gluu Server distribution includes interception scripts that implement the following forms of strong authentication (otherwise known as "2FA"):
 
 - [U2F](./U2F.md)
-- [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)
+- [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)=
+- [OTP apps](./otp.md)
+- [SMS OTP](./sms-otp.md)
 - [Duo Security](./duo.md)
 - [Certificate Authentication](./cert-auth.md)
-- [OTP](./otp.md)
 
 ### 2FA Credential Management
 
