@@ -42,15 +42,15 @@ Enabling users to manage and enroll 2FA credentials without undermining the secu
 
 Regardless of 2FA type or vendor, users need a secure way to enroll and delete their 2FA credentials.
 
-By default, the Gluu Server allows each user to enroll just one (1) strong credential per 2FA credential type. For instance, if authentication is set to U2F, by default the user can only enroll one U2F security key. Same for OTP, Super Gluu, etc. The credential is enrolled upon the first authentication attempt, and can be used to pass all subsequent prompts for 2FA. 
-
+By default, the Gluu Server allows each user to enroll just one (1) strong credential per 2FA credential type. For instance, if authentication is set to U2F, by default the user can only enroll one U2F security key. Same for OTP, Super Gluu, etc. The credential is enrolled upon the first authentication attempt, and can be used to pass all subsequent prompts for 2FA. Behavior can be customized via interception scripts and custom development. 
+ 
 Information about managing specific types of credentials can be found in the corresponding document in this Authentication Guide. 
 
 ### Self-Service 2FA 
 
-Gluu Server 3.1.2 includes support for a new open source app called Credential Manager. Credential Manager is a user facing app that enables people to register and delete ("self-service") U2F credentials, Super Gluu devices, OTP devices, SMS phone numbers, and even change their password (if stored in the local LDAP). Offering people the ability to self-service their 2FA credentials will increase user satisfaction and greatly reduce the cost of supporting 2FA. 
+Gluu Server 3.1.x includes support for a new open source app called Credential Manager. Credential Manager is a user facing app that enables people to register and delete ("self-service") U2F credentials, Super Gluu devices, OTP devices, SMS phone numbers, and even change their password (if stored in the local LDAP). Offering people the ability to self-service their 2FA credentials will increase user satisfaction and greatly reduce the cost of supporting 2FA. 
 
-For more information on installing and configuring Credential Manager, visit the docs. 
+For more information on installing and configuring Credential Manager, [visit the docs](https://gluu.org/docs/credmanager/1.0.0-beta-1).
 
 ## Social Login
 
