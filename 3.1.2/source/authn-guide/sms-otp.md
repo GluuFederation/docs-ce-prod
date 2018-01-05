@@ -88,10 +88,10 @@ If SMS OTP should be the default authentication mechanism for all access, change
 
 The Gluu Server includes two default login pages for SMS OTP:
 
-1. An **enrollment** page that is displayed the first time a user is prompted for Super Gluu authentication;
+1. An **enrollment** page that is displayed the first time a user is prompted for SMS OTP authentication;
 [insert screenshot]                
 
-1. A **login** page that is displayed for all subsequent Super Gluu authentications. 
+1. A **login** page that is displayed for all subsequent SMS OTP authentications. 
 ![sms](../img/user-authn/sms.png)
 
 The designs are being rendered from the [Twilio SMS xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/twiliosms/twiliosms.xhtml). To customize the look and feel of the pages, follow the [customization guide](../operation/custom-design.md).
