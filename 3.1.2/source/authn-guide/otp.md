@@ -18,6 +18,7 @@ to implement a two-step, two-factor authentication (2FA) process with username /
 ### Recommended OTP apps
 - Google Authenticator for [Android](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en) or [iOS](https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8)
 - [FreeOTP](https://freeotp.github.io/)
+- [Authy](https://authy.com/)
 
 ## Properties
 The OTP authentication script has the following properties: 
