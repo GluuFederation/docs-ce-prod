@@ -1,6 +1,6 @@
 # Super Gluu
 ## Overview
-[Super Gluu](https://super.gluu.org) is a free two-factor authentication mobile application designed to work with the [Gluu Server IAM platform](https://gluu.org/docs/ce). 
+[Super Gluu](https://super.gluu.org) is a free and secure two-factor authentication mobile application.
 
 This document explains how to use the Gluu Server's included Super Gluu interception script to implement a two-step, two-factor authentication (2FA) process with username / password as the first step, and Super Gluu as the second step. 
 
