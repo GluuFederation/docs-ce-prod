@@ -18,7 +18,7 @@ Jython enables developers to use either Java or Python classes. You can use the 
 
 Combined with the option of calling web services from Python or Java, this enables the Gluu Server to support any business-driven policy requirement.
 
-## Interception Script Methods
+### Methods
 There are three methods that inherit a base interface
 
 |Inherited Methods|Method description|
@@ -56,7 +56,7 @@ Here is a sample entry:
 The script manager reloads scripts automatically without needing to
 restart the application once `oxRevision` is increased.
 
-## Interception Script Logs
+### Logs
 The log files regarding interception scripts are stored in the
 `oxauth.log` file. The logs are separated according to the module they
 affect. The oxAuth custom script logs are stored in `oxauth_script.log`
