@@ -55,7 +55,7 @@ documentation and administrative guide.
 
 - [604](https://github.com/GluuFederation/oxTrust/issues/604) Show u2f creds in user page
 
-- [12](https://github.com/GluuFederation/community-edition-package/issues/12) "clear-logs" has been introduced to clear all logs
+- [13](https://github.com/GluuFederation/community-edition-package/issues/13) Add "clear-logs" option to gluu-server init script to clear logs 
 
 ## Fixes / Enhancements
 
