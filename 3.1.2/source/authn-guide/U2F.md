@@ -3,9 +3,9 @@
 ## Overview
 FIDO Universal 2nd Factor (U2F) is an open authentication standard that strengthens and simplifies two-factor authentication using specialized USB or NFC devices. 
 
-This document will explain how to use the 
+This document will explain how to use the Gluu Server's included 
 [U2F interception script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/u2f/U2fExternalAuthenticator.py) 
-to implement a two-step authentication process with username and password as the first step, and any U2F device as the second step. 
+to implement a two-step, two-factor authentication (2FA) process with username / password as the first step, and any U2F device as the second step. 
 
 !!! Note 
     For more background on U2F, including a discussion of its security advantages, visit the [Yubico blog](https://www.yubico.com/solutions/fido-u2f/). 
