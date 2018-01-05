@@ -1,76 +1,121 @@
 # SMS One-Time Password (OTP) Authentication
 
 ## Overview
-In this document you will learn how to configure second-factor authentication in Gluu Server 
-using One-time passcodes (OTP) sent via SMS. Here, we will use the [Twilio](https://www.twilio.com) 
-service to deliver messages. Twilio sends OTP to the registered mobile number, sent OTP needs to be entered in the 
-second login screen, which looks like the screen below. Below is a sample of second step of the authentication.
+A common technology used for the delivery of OTPs is text messaging (SMS). Because text messaging is a ubiquitous communication channel, being directly available in nearly all mobile handsets and, through text-to-speech conversion, to any mobile or landline telephone, text messaging has a great potential to reach all users with a low total cost to implement. 
 
-![sms](../img/user-authn/sms.png)
+This document explains how to use the Gluu Server's included 
+[Twilio interception script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/u2f/U2fExternalAuthenticator.py) 
+to implement a two-step, two-factor authentication (2FA) process with username / password as the first step, and an OTP sent via text message as the second step. 
 
+
+!!! Note
+    As indicated, this script uses the [Twilio cloud communications platform](https://www.twilio.com) to deliver SMS messages.     
+    
 ## Prerequisites 
 
-- A Gluu Server (installation instructions [here](../installation-guide/index.md))
-- The [Twilio SMS OTP script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/twilio_sms/twilio2FA.py) (included in the default Gluu Server distribution)
-
-!!! Note:
-    The SMS OTP script included in the default Gluu Server distribution relies on the Twilio messaging service. If you use a different messaging service, you will need to modify your interception script.
+- A Gluu Server (installation instructions [here](../installation-guide/index.md));    
+- The [Twilio SMS OTP script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/twilio_sms/twilio2FA.py) (included in the default Gluu Server distribution);   
+- A [Twilio account](https://www.twilio.com/).     
+- A mobile device and phone number that can receive SMS text messages
     
+
 ## Twilio Configuration
 
-Twilio accounts feature Voice, SMS, and MMS capabilities but we will only need SMS here. You can start with a trial account to see how SMS OTP authentication is integrated into Gluu Server. When you are ready to move to production, you will want to purchase a Twilio plan.
+Twilio offers Voice, SMS, and MMS capabilities, but we will only need SMS for the purpose of this document. 
 
-When registering for a Twilio account, you will be asked to verify your personal phone number, and then will be given a Twilio phone number. Ensure the number given is [SMS enabled](https://support.twilio.com/hc/en-us/articles/223183068-Twilio-international-phone-number-availability-and-their-capabilities) and that it supports sending messages to the countries you are targeting. You may need to enable such countries manually (see the [Geo permissions page](https://www.twilio.com/console/sms/settings/geo-permissions)).
+When registering for a Twilio account, you will be asked to verify your personal phone number, and then will be given a Twilio phone number. 
 
-Trial accounts only allow sending messages to mobile numbers already linked to the account, so for testing you will want to add (and verify) some additional numbers (besides your personal one) to make sure the integration is working as expected. 
+Ensure the number given is [SMS enabled](https://support.twilio.com/hc/en-us/articles/223183068-Twilio-international-phone-number-availability-and-their-capabilities) and supports sending messages to the countries you are targeting. You may need to enable countries manually (see the [Geo permissions page](https://www.twilio.com/console/sms/settings/geo-permissions)).
+
+Twilio trial accounts only allow sending messages to mobile numbers already linked to the account, so for testing you will want to add (and verify) some additional numbers besides your personal one to make sure the integration is working as expected. When you are ready to move to production, you will want to purchase a Twilio plan.
     
 ## Properties
 
 The custom script has the following properties:
 
-|	Property	|	Description		|
-|-----------------------|-------------------------------|
-|twilio_sid		|Twilio account SID		|
-|twilio_token		|Access token associated to Twilio account|
-|from_number            |Twilio phone number assigned to the account|
+|	Property	|	Description		| Input value     |
+|-----------------------|-------------------------------|---------------|
+|twilio_sid		|Twilio account SID		| Obtain from your Twilio account|
+|twilio_token		|Access token associated to Twilio account| Obtain from your Twilio account|
+|from_number            |Twilio phone number assigned to the account| Obtain from your Twilio account|
 
 
 ## Enable SMS OTP
 
-Using your admin credentials login to oxTrust and go to `Configuration` > `Custom scripts`. 
+Follow the steps below to enable U2F authentication:
 
-Scroll down and find the script whose name is `twilio_sms`. Populate the following properties:
+1. Navigate to `Configuration` > `Manage Custom Scripts`.    
 
-* `twilio_sid`: Paste the *"Account SID"* of your recently created Twilio account. You can find this value in your account dashboard
+1. Click on the `Person Authentication` tab       
 
-* `twilio_token`: Similar to your SID, you were also given a token upon registration.
+1. Find the twilio_sms script.
 
-* `from_number`: Use the Twilio number that was provided when you created your account (not your personal number).
+1. Populate the properties table with the details from your Twilio account:    
 
-If some property is not already being shown in the UI, just press the "Add custom property" and fill the values accordingly. Use the delete icons on the right to remove a row if necessary. Also ensure "Enabled" is checked.
+   -  `twilio_sid`: Paste the *"Account SID"* of your recently created Twilio account. You can find this value in your account dashboard.   
+   - `twilio_token`: Similar to your SID, you were also given a token upon registration.     
+   - `from_number`: Use the Twilio number that was provided when you created your account (not your personal number).      
 
-So far, your configuration may look like this:
+1. Enable the script by checking the box 
 
-![twilio properties](../img/admin-guide/multi-factor/twilio_properties.png)
+1. Scroll to the bottom of the page and click `Update`
 
-Scroll down to the bottom of the page and clik the "Update" button.
+Now SMS OTP is an available authentication mechanism for your Gluu Server. This means that, using OpenID Connect `acr_values`, applications can now request OTP SMS authentication for users. 
 
-## Make SMS OTP the Default Authentication Mechanism
+!!! Note 
+    To make sure OTP SMS has been enabled successfully, you can check your Gluu Server's OpenID Connect 
+    configuration by navigating to the following URL: `https://<hostname>/.well-known/openid-configuration`. 
+    Find `"acr_values_supported":` and you should see `"twilio_sms"`. 
 
-Finally, Navigate to `Configuration` > `Manage Authentication` > `Default Authentication Method`. Select **"twilio_sms"** as default. **Do not** log out yet.
+## Make SMS OTP the Default
+If SMS OTP should be the default authentication mechanism, follow these instructions: 
 
-While the script and configurations are reloaded, have one or more LDAP users ready for the test. Ensure their entries contain the attribute `phoneNumberVerified` with appropriate values set.
+1. Navigate to `Configuration` > `Manage Authentication`. 
 
-Using a separate browser session, try to authenticate to Gluu server. After providing username and password, you will be requested to enter an OTP code. 
+1. Select the `Default Authentication Method` tab. 
 
-In most cases, you will get a SMS with the six-digit code delivered to user's registered mobile phone as soon as the login button was pressed. Enter the code and authentication should have succeeded.
+1. In the Default Authentication Method window you will see two options: `Default acr` and `oxTrust acr`. 
 
-If you encounter a problem, take a look at the logs, specially `/opt/gluu/jetty/oxauth/logs/oxauth_script.log`. You may revert the default authentication method using the browser session in oxTrust you already have open.
+![u2f](../img/admin-guide/multi-factor/u2f.png)
 
-Inspect all messages related to OTP. For instance, the following messages show an example of correct script initialization:
+ - `oxTrust acr` sets the authentication mechanism for accessing the oxTrust dashboard GUI (only managers should have acccess to oxTrust).    
+
+ - `Default acr` sets the default authentication mechanism for accessing all applications that leverage your Gluu Server for authentication (unless otherwise specified).    
+
+If SMS OTP should be the default authentication mechanism for all access, change both fields to twilio_sms.  
+    
+## SMS OTP Login Pages
+
+The Gluu Server includes two default login pages for SMS OTP:
+
+1. An **enrollment** page that is displayed the first time a user is prompted for Super Gluu authentication;
+![super-gluu-enrollment](../img/user-authn/super-gluu-enrollment.png)                  
+
+1. A **login** page that is displayed for all subsequent Super Gluu authentications. 
+![sms](../img/user-authn/sms.png)
+
+The designs are being rendered from the [Twilio SMS xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/twiliosms/twiliosms.xhtml). To customize the look and feel of the pages, follow the [customization guide](../operation/custom-design.md).
+
+
+## Using SMS OTP
+
+### Phone Number Enrollment
+
+SMS OTP phone number enrollment happens during the first authentication attempt. The initial enrollment page displays a field to enter the phone number where text messages with OTPs should be sent. 
+
+### Subsequent Logins
+All subsequent authentications will trigger an SMS with an OTP to the registered phone number. Enter the OTP to pass authentication. 
+
+
+### Troubleshooting    
+If problems are encountered, take a look at the logs, specifically `/opt/gluu/jetty/oxauth/logs/oxauth_script.log`. Inspect all messages related to OTP. For instance, the following messages show an example of correct script initialization:
 
 ```
 OTP. Initialization
 OTP. Load OTP configuration
 OTP. Initialized successfully
 ```
+
+## Credential Management
+    
+A user's registered phone number can be removed by a Gluu administrator either via the oxTrust UI in `Users` > `Manage People`, or in LDAP under the user entry. Once the phone number has been removed from the user's account, the user can re-enroll a new phone number following the [phone number enrollment](#phone-number-enrollment) instructions above. 
