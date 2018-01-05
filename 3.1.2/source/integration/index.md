@@ -1,3 +1,8 @@
+# Single Sign-On (SSO) Integration Guide
+The SSO integration guide will help you understand how to use SAML or OpenID Conenct to secure and integrate custom developed, open source, off-the-shelf, and SaaS web and mobile applications with your Gluu Server. 
+
+This list of integration methods is not exhaustive. However, the strategies described below have been tested with the Gluu Server and are well understood by our support and development staff.  
+
 ## Server Side Web Apps
 Many applications are "server-side", meaning the web page displays content but most of the dynamic business logic resides on the web server. Two design patterns have emerged for securing server-side web applications: 
 
