@@ -76,7 +76,7 @@ If U2F should be the default authentication mechanism, follow these instructions
 If U2F should be the default authentication mechanism for all access, change both fields to U2F.  
 
 !!! Note
-    If U2F is set as the default authentication mechanism for all access, users will **not** be able to access protected resources while using a mobile device or a browser that doesn't support U2F (e.g. Internet Explorer).  
+    If U2F is set as a default authentication mechanism users will **not** be able to access the protected resource(s) while using a mobile device or a browser that does not support U2F (e.g. Internet Explorer).  
 
 ## U2F Login Page
 Below is an illustration of the Gluu Server's default U2F login page:
