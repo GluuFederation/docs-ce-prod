@@ -29,7 +29,7 @@ The OTP authentication script has the following properties:
 |otp_conf_file   | Location of the OTP configuration file | `/etc/certs/otp_configuration.json`|
 |otp_type| Type of OTP in use | totp|
 |qr_options| Size of the QR code that is used for device enrollment|{ size: 400, mSize: 0.05 }|
-|registration_uri | Registration endpoint of the IDP| https://idp.example.com/identity/register| 
+|registration_uri | Registration endpoint of the IDP| `https://idp.example.com/identity/register`| 
     
 ## Enable OTP
 Follow the steps below to enable Super Gluu authentication:
