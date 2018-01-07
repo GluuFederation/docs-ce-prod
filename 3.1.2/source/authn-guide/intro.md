@@ -25,9 +25,9 @@ By default, LDAP is used to authenticate usernames and passwords. Passwords can 
 
 Learn how to [configure basic authentication](./basic.md).
 
-## Strong Authentication (2FA)
+## Two-Factor Authentication (2FA)
 
-The default Gluu Server distribution includes interception scripts that implement the following forms of strong authentication (otherwise known as "2FA"):
+The default Gluu Server distribution includes interception scripts that implement the following forms of two-factor authentication:
 
 - [U2F](./U2F.md)
 - [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)=
@@ -48,9 +48,9 @@ Information about managing specific types of credentials can be found in the cor
 
 ### Self-Service 2FA 
 
-Gluu Server 3.1.x includes support for a new open source app called Credential Manager. Credential Manager is a user facing app that enables people to register and delete ("self-service") U2F credentials, Super Gluu devices, OTP devices, SMS phone numbers, and even change their password (if stored in the local LDAP). Offering people the ability to self-service their 2FA credentials will increase user satisfaction and greatly reduce the cost of supporting 2FA. 
+Gluu Server 3.1.x supports a new open source app called Credential Manager, which enables people to register and delete ("self-service") U2F credentials, Super Gluu devices, OTP devices, SMS phone numbers, and even change their password (if stored in the local LDAP). Offering people the ability to self-service their 2FA credentials will increase user satisfaction and greatly reduce the cost of supporting 2FA. 
 
-For more information on installing and configuring Credential Manager, [visit the docs](https://gluu.org/docs/credmanager/1.0.0-beta-1).
+For more information on installing and configuring Credential Manager, [visit the docs](https://gluu.org/docs/credmanager/1.0.0).
 
 ## Social Login
 
