@@ -1,5 +1,182 @@
 # mod_auth_openidc RP Integration
 
+## Protect a web resource using mod_auth_openidc on Ubuntu 16.04 
+
+ The following section will walk you through the process of protecting an apache web site with mod_auth_openidc using GLUU as a IDP.
+ 
+ This is a sommary of what we are going to do:
+   
+   1. Install apache web server
+   1. Enable and configure ssl module
+   1. Enable and test CGI script
+   1. Install and configure mod_auth_openidc
+   1. Configure a client on IDP(in this case GLUU)
+   1. Test and sure sure it works
+  
+  Let's go!
+  
+### Install apache web server
+
+To install apache web server, follow the commands bellow.
+```
+# apt-get update
+# apt-get install apache2
+# systemctl start apache2
+```
+### Enable and configure ssl module
+
+To enable and configure the ssl module, follow the steps bellow.
+
+ #### Activate the ssl module
+```
+# a2enmod ssl
+```
+ #### Generate ssl certificate and key file
+ 
+```text
+#mkdir /etc/apache2/ssl
+#openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+```
+
+Answer the questions that are asked. A template is given below.
+
+``` text
+	Country Name (2 letter code) [AU]:US
+	State or Province Name (full name) [Some-State]:TX
+	Organization Name (eg, company) [Internet Widgits Pty Ltd]:Acme Inc.
+	Organizational Unit Name (eg, section) []:
+	Common Name (e.g. server FQDN or YOUR name) []:www.mydomain.com
+	Email Address []:help@mydomain.com
+```
+
+ #### Configure Apache to use SSL
+ 
+ This section will guide you through the steps to configure apache to use the SSL module
+ 1. Open the `default-ssl.conf` file
+	``` text
+	# vim /etc/apache2/sites-available/default-ssl.conf
+	```
+ 1. Update the certificate locations with the newly created certificates 
+`/etc/apache2/ssl/apache.key` and `/etc/apache2/ssl/apache.crt`
+
+ 1. Activate the SSL Virtual Host
+
+``` text
+# a2ensite default-ssl.conf
+# systemctl restart apache2
+# systemctl status apache2
+```
+### Enable and test CGI script
+
+Follow the below steps to enable and configure CGI.
+ 1. Enable cgi module
+ 	```text
+ 	 #a2enmod cgid
+ 	 #systemctl restart apache2
+  	 #systemctl status apache2
+ 	```
+ 1. Sample cgi script
+ 	 * Create a file named `printHeaders.cgi` in folder `usr/lib/cgi-bin`
+ 	 ``` text
+ 	 # vi /var/www/cgi-bin/printHeaders.cgi
+ 	 ```
+ 	 * Paste the bellow code in that file
+   	 ```python
+		#!/usr/bin/python
+		import os
+		d = os.environ
+		k = d.keys()
+		k.sort()
+		print "Content-type: text/html\n\n"
+		print "<HTML><Head><TITLE>Print Env Variables</TITLE></Head><BODY>"
+		print "<h1>Environment Variables</H1>"
+		for item in k:
+    		print "<p><B>%s</B>: %s </p>" % (item, d[item])
+   		 print "</BODY></HTML>"
+   	 ```
+ 1. Change permissions
+     ```python
+	#chown www-data:www-data /usr/lib/cgi-bin/printHeaders.cgi
+	#chmod ug+x /usr/lib/cgi-bin/printHeaders.cgi
+     ```
+ 1. Test
+ ```
+  #systemctl stop apache2
+  #apt-get start apache2
+  #systemctl status apache2
+  ```
+  Now you're ready to test. Open your web browser, and point it at 
+	`https://www.mydomain.com/cgi-bin/printHeaders.cgi`
+     You hould see environment variables.	
+  
+  ### Install and configure mod_auth_openidc
+  
+  #### Installation
+  
+ * Download and install libjansson.
+    ```
+   #wget http://launchpadlibrarian.net/227040047/libjansson4_2.7-3_amd64.deb
+   #dpkg -i libjansson4_2.7-3_amd64.deb
+    ```
+  * Install  libapache2-mod-auth-openidc
+   ```
+   #apt-get update
+   #apt-get install libapache2-mod-auth-openidc
+   ```
+ * Enable module
+   ```
+   #a2enmod auth_openidc
+   #systemctl restart apache2
+   ```
+  ### Configuration
+You are almost done! You'll need to configure mod_auth_openidc to
+protect your server.
+
+``` text
+# vi /etc/apache2/sites-available/default-ssl.conf
+```
+Add the following right under `<VirtualHost _default_:443>`
+``` apacheconf
+OIDCProviderMetadataURL https://idp.mydomain.com/.well-known/openid-configuration
+OIDCClientID (client-id-you-got-back-when-you-added-the-client)
+OIDCClientSecret (your-client-secret)
+OIDCRedirectURI https://www.mydomain.com/callback
+OIDCResponseType code
+OIDCScope "openid profile email"
+OIDCSSLValidateServer Off
+OIDCCryptoPassphrase (a-random-seed-value)
+OIDCPassClaimsAs environment
+OIDCClaimPrefix USERINFO_
+OIDCPassIDTokenAs payload
+<Location "/">
+    Require valid-user
+    AuthType openid-connect
+</Location>
+```
+Changes the required parameters to match yours.
+
+### Configure a client on IDP(in this case GLUU)
+
+ Launch your GLUU server and configure an openid conect client with the following parameters:
+ ``` text
+Name: mod_auth_openidc
+Client Secret: something-sufficiently-unguessable
+Application Type: Native
+Pre-Authorization: Enabled
+Redirect login uri: https://www.mydomain.com/callback
+Subject Type: Public
+Scopes: openid, profile, email
+Response Types: code
+```
+Make a note of the `client_secret` (you won't get to see it again)! You'll
+also need the `client_id` for the next step.
+Make sure `Redirect Login URIs` is provided.
+
+### Test and make sure it works
+
+ Point your browser to your website(`https://www.mydomain.com/cgi-bin/printHeaders.cgi`), you will be redirected to gluu idp
+ login page, after successfull sing in, you will have access to your ressource.
+ 
 ## Basic Web Server Installation
 
 Before you can install mod_auth_openidc, you need to have an Apache
