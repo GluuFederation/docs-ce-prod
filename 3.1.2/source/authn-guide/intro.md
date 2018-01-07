@@ -70,13 +70,13 @@ In oxTrust, you can navigate to `Configuration` > `Manage Authentication` > `Def
 Depending on your requirements, you can set both fields to the same authentication mechanism, or choose a different mechanism for each use case. 
 
 ## Multiple Authentication Mechanisms
-As previously mentioned, your Gluu Server can support multiple authentication mechanisms. 
+As previously mentioned, the Gluu Server can concurrently support multiple authentication mechanisms. 
 
-In oxTrust, navigate to `Configuration` > `Manage Custom Scripts` > `Person Authentication` and check the `Enabled` box for each applicable interception script and save the page. 
+In oxTrust, navigate to `Configuration` > `Manage Custom Scripts` > `Person Authentication` and check the `Enabled` box for each applicable interception script. Click the update button at the bottom of the page to save your changes. 
 
-By default, users will get the default authentication mechanism you specified [above](#default-authentication-mechanism) in the `Default acr` field. However, using the OpenID Connect `acr_value`, web and mobile applications can request any *enabled* authentication mechanism. 
+By default, users will get the default authentication mechanism as specified [above](#default-authentication-mechanism). However, using the OpenID Connect `acr_value`, web and mobile clients can request any *enabled* authentication mechanism. 
 
-You can enable and disable scripts in the oxTrust interface. You can also see which scripts are enabled by checking your OP configuration URL: `https://<hostname>/.well-known/openid-configuration` and look for `"acr_values_supported"`. 
+Authentication scripts can be enabled and disabled in the oxTrust interface. Enabled scripts can also be confirmed by checking the OP configuration URL, `https://<hostname>/.well-known/openid-configuration`, and finding the `"acr_values_supported"`. 
 
 Learn more about `acr_values` in the [OpenID Connect core scpec](http://openid.net/specs/openid-connect-core-1_0.html#acrSemantics) and in the Gluu Server [OpenID Connect docs](../admin-guide/openid-connect.md/#multi-factor-authentication-for-clients).
 
@@ -91,4 +91,4 @@ Learn how to [configure account lockout](./lockout.md).
 
 ## Customizing the Login Page 
 
-Learn how to customize the look and feel of Gluu Server pages in the [Design Customizations](../operation/custom-design.md) section of the Operations Guide.
+Learn how to customize the look and feel of Gluu Server login pages in the [Design Customizations](../operation/custom-design.md) section of the Operations Guide.
