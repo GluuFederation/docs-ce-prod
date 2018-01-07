@@ -61,7 +61,7 @@ Gluu Server's LDAP. By default, the deployer can use `localhost:1636`,
 After collecting this information, the deployer can move forward with
 the Cache Refresh setup.
 
-![Cache Refresh Menu](../img/admin-guide/user/admin_cache_menu.png)
+![Cache Refresh Menu](../img/admin-guide/user/admin_cache_menu312.png)
 
 
 * _Last Run:_ The date and time of the latest cache refresh cycle
@@ -95,28 +95,26 @@ filtering mechanism can be used such as "sn=*" whereas the value of this
 field ensures that every user must contain an attribute named SN.
 
 ### Source Backend LDAP Servers
-![Source Backend](../img/admin-guide/user/admin_cache_sourcebackend.png)
+![Source Backend](../img/admin-guide/user/admin_cache_sourcebackend312.png)
 
 This section allows the Gluu Server to connect to the backend Active
 Directory/LDAP server of the organization.
 
 * _Name:_ Please input **source** as the value.
 
-* _Use Anonymous Bind:_ Some customers do now allow username/password
+<!-- * _Use Anonymous Bind:_ Some customers do now allow username/password
   connections to their backend server. Enable this option if this applies
-  to your organization.
+  to your organization. -->
 
 * _Bind DN:_ This contains the username to connect to the backend
   server. You need to use full DN here. As for example,
   _cn=gluu,dc=company,dc=org_.
 
-* _Use SSL:_ Use this feature if the backend server allows SSL
-  connectivity.
-
 * _Max Connections:_ This value defines the maximum number of
   connections that are allowed to read the backend Active Directory/LDAP
   server. It is recommended to keep the value of 2 or 3.
 
+*_Level:_ TBA
 * _Server:_ This contains the backend Active Directory/LDAP server
   hostname with port i.e. backend.organization.com:389. If organization
   has a failover server, click **Add Server** and add more hostnames with
@@ -132,13 +130,16 @@ Directory/LDAP server of the organization.
 * _Change Bind Password:_ This can be used for a new password or to
   change any existing password.
 
+* _Use SSL:_ Use this feature if the backend server allows SSL
+  connectivity.
+  
 If your organization has a multiple Active Directory/LDAP server, click
 on **Add source LDAP server** and add the additional server information.
 Please remember that a *failover server* is not a new server.
 
 ### Inum LDAP Server
 
-![Inum LDAP Server](../img/admin-guide/user/admin_cache_inum.png)
+![Inum LDAP Server](../img/admin-guide/user/admin_cache_inum312.png)
 
 This section of the application allows the server administrator to
 connect to the internal LDAP of the Gluu Server. As Gluu Server
