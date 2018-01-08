@@ -1,71 +1,27 @@
 # User Managed Access 2.0 ("UMA 2") Authorization Server (AS)
 
 ## Overview
+
 As a profile of OAuth 2.0 that is complementary to OpenID Connect, UMA 2 defines RESTful, 
 JSON-based, standardized flows and constructs for coordinating the protection of any API or 
 web resource.
 
 UMA 2 defines interfaces between authorization servers (AS) and resource servers (RS) that enable centralized policy decision-making for improved service delivery, auditing, policy administration, and accountability, even in a very loosely coupled "public API" environment. 
 
-### Terminology
-UMA 2 introduces new terms and enhancements of OAuth term definitions. Learn more about the UMA 2 [Federated Authorization](https://docs.kantarainitiative.org/uma/ed/oauth-uma-federated-authz-2.0-07.html) and [Grant](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-06.html) specifications on Kantara's website.
-
-### UMA API
-Learn more about the Gluu Server's [UMA-API](../api-guide/uma-api.md). 
-
-### Authorization Policy Expression Language
 UMA 2 does not standardize a policy expression language, enabling flexibility in 
 policy expression and evaluation through XACML, other declarative policy languages, 
 or procedural code as warranted by conditions. 
 
-### Authentication-Agnostic
 UMA 2 inherits authentication agnosticism from OAuth. It concentrates on authorization, not authentication. 
 It has been profiled to work with OpenID Connect to gather identity claims from whoever is attempting access, 
-and enables true claims-based authorization (with simple group-based or role-based policies a natural subset). 
+and enables true claims-based authorization (with simple group-based or role-based policies a natural subset).
+ 
+### Terminology
 
-### UMA RS 
-If you need to secure apps with OpenID Connect RP and UMA 2 RS code, you might want to take a look at our [oxd client software](http://oxd.gluu.org).
-
-## Resource Registration
-Resources protected by UMA 2 must be registered in oxTrust by navigating to `UMA` > `Resources`. 
-
-![uma-resources](../img/uma/uma-resources.png)
-
-### Add Resource
-
-Click the `Add Resource Set` button to add a new UMA 2 resource. 
-
-![add-resource-set](../img/uma/add-resource-set.png)
-
-The following propterties describe a resource:
-
-- name
-- scopes
-- type
-- icon\_uri
-
-The resource type can be a string, URI or any other value type supported by the Gluu Server. The properties shown above are not concrete, and it is possible that a resource may contain custom properties. 
-
-An example of the resource JSON is given beow:
-
-```
-{
-"name":"scim_access",
-"icon_uri":"https:\/\/<hostname>\/identity\/uma\/scope\/file\/scim_access"
-}
-```
-
-!!! Note
-    The resource JSON may contain custom properties.
-
-There is an additional button, `Add Scope` that allows the administrator to add specific scopes to the resource. 
-
-![add-scope](../img/uma/add-scope.png)
-
-By default, Gluu Server is shipped with SCIM resources protected by UMA. Learn more in the [SCIM protected by UMA documentation](../user-management/scim2#scim-protected-by-UMA). 
-
+UMA 2 introduces new terms and enhancements of OAuth term definitions. Learn more about the UMA 2 [Federated Authorization](https://docs.kantarainitiative.org/uma/ed/oauth-uma-federated-authz-2.0-07.html) and [Grant](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-06.html) specifications on Kantara's website.
 
 ## Scopes
+
 UMA 2 scopes are used to grant a client permission to do an action on a protected resource. Different scopes can grant access to the same action. For example, a "read" action can be allowed with scope "read" or "all". For some actions the Resource Server (RS) may want multiple scopes at the same time. For instance, a "read" action should only be allowed if the authorization request includes the "read" **and** "all" scopes. UMA 2 scopes are bound to resources and are used to fetch policies that check whether the specified user or client should have access to the resource. 
 
 The scopes are described in JSON and have the following properties:
@@ -118,94 +74,44 @@ The search bar can be used to find existing available scopes. New scopes can be 
 
 Additionally there is an option to add authorization policy with the new scope.
 
-## Scopes Expressions
 
-UMA 2 Scope expressions is Gluu invented extension of UMA 2 which gives flexible way to 
-combine scopes and thus propose more robust way to grant access.
+## Resource Registration
+Resources protected by UMA 2 must be registered in oxTrust by navigating to `UMA` > `Resources`. 
 
-### Register resource with scope_expression
+![uma-resources](../img/uma/uma-resources.png)
 
-RS registers resource 
+### Add Resource
+
+Click the `Add Resource Set` button to add a new UMA 2 resource. 
+
+![add-resource-set](../img/uma/add-resource-set.png)
+
+The following propterties describe a resource:
+
+- name
+- scopes
+- type
+- icon\_uri
+
+The resource type can be a string, URI or any other value type supported by the Gluu Server. The properties shown above are not concrete, and it is possible that a resource may contain custom properties. 
+
+An example of the resource JSON is given beow:
+
+```
+{
+"name":"scim_access",
+"icon_uri":"https:\/\/<hostname>\/identity\/uma\/scope\/file\/scim_access"
+}
+```
 
 !!! Note
-        new `scope_expression` field, `resource_scopes` is ignored in this case
+    The resource JSON may contain custom properties.
 
-```json
-{  
-   "resource_scopes":[],
-   "description":"Collection of digital photographs",
-   "icon_uri":"http://www.example.com/icons/flower.png",
-   "name":"Photo Album",
-   "type":"http://www.example.com/rsrcs/photoalbum",
-   "scope_expression": {
-      "rule": {
-         "and": [
-            {
-               "or": [
-                   {"var": 0},
-                   {"var": 1}
-               ]
-            },
-            {"var": 2}
-         ]
-      },
-      "data": [
-         "http://photoz.example.com/dev/actions/all",
-         "http://photoz.example.com/dev/actions/add",
-         "http://photoz.example.com/dev/actions/internalClient"
-      ]
-   }
-}
+There is an additional button, `Add Scope` that allows the administrator to add specific scopes to the resource. 
 
-```
+![add-scope](../img/uma/add-scope.png)
 
-### Ticket registration
-
-RS registers tickets with all scopes mentioned in "data" (we need all scopes in order to evaluate expression, all or nothing principle)
-
-```json
-
-{  
-   "resource_id":"112210f47de98100",
-   "resource_scopes":[  
-       "http://photoz.example.com/dev/actions/all",
-       "http://photoz.example.com/dev/actions/add",
-       "http://photoz.example.com/dev/actions/internalClient"
-   ]
-}
-```
-
-### Evaluation
-
-UMA Engine iterates over each scope and fetch ALL policies for each scope. Evaluates all policies.
-a) not enough claims - return need_info error
-b) enough claims - evaluate results from ALL policies with "AND" rule for ONE given scope.
-   b1) `http://photoz.example.com/dev/actions/all` -  `policyA AND policyB` => false
-   b2) `http://photoz.example.com/dev/actions/add` -  `policyA AND policyD` => true
-   b3) `http://photoz.example.com/dev/actions/internalClient` - `policyD AND policyE and policyK` => true
-
-Results in expression : `(false OR true) AND true` => `true`
-
-Below is example of including all scopes except `http://photoz.example.com/dev/actions/all` scope (because for this part of expression `false` is returned). 
-
-```json
-{  
-   "active":true,
-   "exp":1256953732,
-   "iat":1256912345,
-   "permissions":[  
-      {  
-         "resource_id":"112210f47de98100",
-         "resource_scopes":[  
-            "http://photoz.example.com/dev/actions/add",
-            "http://photoz.example.com/dev/actions/internalClient"
-         ],
-         "exp":1256953732
-      }
-   ]
-}
-```
-
+By default, Gluu Server is shipped with SCIM resources protected by UMA. Learn more in the [SCIM protected by UMA documentation](../user-management/scim2#scim-protected-by-UMA). 
 
 ## UMA RPT Authorization Policies
 UMA RPT Authorization policy's are associated with UMA scopes. An authorization request has a resource_id and scope(s). Each scope can point to one or more policies. If all policies associated with all scopes return `true`, then access is granted. 
@@ -421,7 +327,100 @@ Authorization: AccessToken czZCaGRSa3F0MzpnWDFmQmF0M2JW
 ```
 
 
+## Scopes Expressions
 
+UMA 2 Scope expressions is Gluu invented extension of UMA 2 which gives flexible way to 
+combine scopes and thus propose more robust way to grant access.
+
+### Register resource with scope_expression
+
+RS registers resource 
+
+!!! Note
+        new `scope_expression` field, `resource_scopes` is ignored in this case
+
+```json
+{  
+   "resource_scopes":[],
+   "description":"Collection of digital photographs",
+   "icon_uri":"http://www.example.com/icons/flower.png",
+   "name":"Photo Album",
+   "type":"http://www.example.com/rsrcs/photoalbum",
+   "scope_expression": {
+      "rule": {
+         "and": [
+            {
+               "or": [
+                   {"var": 0},
+                   {"var": 1}
+               ]
+            },
+            {"var": 2}
+         ]
+      },
+      "data": [
+         "http://photoz.example.com/dev/actions/all",
+         "http://photoz.example.com/dev/actions/add",
+         "http://photoz.example.com/dev/actions/internalClient"
+      ]
+   }
+}
+
+```
+
+### Ticket registration
+
+RS registers tickets with all scopes mentioned in "data" (we need all scopes in order to evaluate expression, all or nothing principle)
+
+```json
+
+{  
+   "resource_id":"112210f47de98100",
+   "resource_scopes":[  
+       "http://photoz.example.com/dev/actions/all",
+       "http://photoz.example.com/dev/actions/add",
+       "http://photoz.example.com/dev/actions/internalClient"
+   ]
+}
+```
+
+### Evaluation
+
+UMA Engine iterates over each scope and fetch ALL policies for each scope. Evaluates all policies.
+a) not enough claims - return need_info error
+b) enough claims - evaluate results from ALL policies with "AND" rule for ONE given scope.
+   b1) `http://photoz.example.com/dev/actions/all` -  `policyA AND policyB` => false
+   b2) `http://photoz.example.com/dev/actions/add` -  `policyA AND policyD` => true
+   b3) `http://photoz.example.com/dev/actions/internalClient` - `policyD AND policyE and policyK` => true
+
+Results in expression : `(false OR true) AND true` => `true`
+
+Below is example of including all scopes except `http://photoz.example.com/dev/actions/all` scope (because for this part of expression `false` is returned). 
+
+```json
+{  
+   "active":true,
+   "exp":1256953732,
+   "iat":1256912345,
+   "permissions":[  
+      {  
+         "resource_id":"112210f47de98100",
+         "resource_scopes":[  
+            "http://photoz.example.com/dev/actions/add",
+            "http://photoz.example.com/dev/actions/internalClient"
+         ],
+         "exp":1256953732
+      }
+   ]
+}
+```
+
+
+## UMA RS Implementation
+If you need to secure apps with OpenID Connect RP and UMA 2 RS code, you might want to take a look at our [oxd client software](http://oxd.gluu.org).
+
+## UMA API
+Learn more about the Gluu Server's [UMA-API](../api-guide/uma-api.md). 
 
 
 
