@@ -427,11 +427,5 @@ Authorization: AccessToken czZCaGRSa3F0MzpnWDFmQmF0M2JW
 ...
 ```
 
-### UMA Scope Expressions
-
-UMA Scope expressions is Gluu invented extension of UMA 2 which give flexible way to combine scopes and thus propose more robust way to grant access.
-
-More information about exact way how it works please find [here](./uma-expression.md)
-
 ## UMA RS
 If you need to secure apps with UMA 2 RS code so that the app(s) can defer policy decisions to your Gluu Server, you should use Gluu's [oxd client software](http://oxd.gluu.org).
