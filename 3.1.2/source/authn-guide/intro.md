@@ -46,12 +46,6 @@ By default, the Gluu Server allows each user to enroll just one (1) strong crede
  
 Information about managing specific types of credentials can be found in the corresponding document in this Authentication Guide. 
 
-### Self-Service 2FA 
-
-Gluu Server 3.1.x supports a new open source app called Credential Manager, which enables people to register and delete ("self-service") U2F credentials, Super Gluu devices, OTP devices, SMS phone numbers, and even change their password (if stored in the local LDAP). Offering people the ability to self-service their 2FA credentials will increase user satisfaction and greatly reduce the cost of supporting 2FA. 
-
-For more information on installing and configuring Credential Manager, [visit the docs](https://gluu.org/docs/credmanager/1.0.0).
-
 ## Social Login
 
 During deployment of the Gluu Server you are presented with an option to include Passport.js in your installation. If you want to support social login, include Passport.js in your Gluu Server deployment. 
