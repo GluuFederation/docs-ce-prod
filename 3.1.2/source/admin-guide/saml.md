@@ -32,6 +32,9 @@ Gluu Server administrator can easily configure NameID with oxTrust. Here is what
    - 'Attribute Base': Attribute value to calculate name Identifier. 
    - 'Attribute Name': Custom attribute name which we created earlier
    - 'Attribute Type': Type of name identifier. 
+ - Restart `identity` and `idp` services by: 
+   - `service identity stop/start`
+   - `service idp stop/start`
 
 ## Create a Trust Relationship
 Follow these instructions to create a SAML TR in your Gluu Server: 
