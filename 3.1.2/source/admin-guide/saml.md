@@ -63,11 +63,11 @@ It's also possible to configure `NameID` through configuration file / velocity t
           p:format="urn:oasis:names:tc:SAML:2.0:nameid-format:email"
           p:attributeSourceIds="#{ {'testcustomattribute'} }"/>
 ```
-* Restart identity service using below command
+* Restart identity and idp services using below command
 
-`service identity stop`
+`service identity/idp stop`
 
-`service identity start`
+`service identity/idp start`
 
 ## Create a Trust Relationship
 Follow these instructions to create a SAML TR in your Gluu Server: 
