@@ -1,5 +1,5 @@
 # Inbound SAML using Passport.js 
-## Overivew
+## Overview
 
 Inbound SAML enables you to support user authentication at an external SAML IDP. Inbound SAML is a frequent requirement for B2B SaaS providers that need to allow users from enterprise customers to authenticate at their home IDP for access to the SaaS resources. 
 
