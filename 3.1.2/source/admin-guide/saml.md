@@ -36,6 +36,39 @@ Gluu Server administrator can easily configure NameID with oxTrust. Here is what
    - `service identity stop/start`
    - `service idp stop/start`
 
+It's also possible to configure `NameID` through configuration file / velocity templates. 
+  The template file for `NameID` definitions are located in the `attribute-resolver.xml.vm` file under `/opt/gluu/jetty/identity/conf/shibboleth3/idp/`.
+  The example below adds `testcustomattribute` as `NameID` based on UID attribute. The following are put into the `attribute-resolver.xml.vm` file.
+
+  * Add declaration for the new attribute
+  ```
+  #if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('persistentId') $attribute.name.equals('testcustomattribute') ) )
+  ```
+  * Add definition for the new attribute
+```
+ <resolver:AttributeDefinition id="testcustomattribute" xsi:type="Simple"
+                              xmlns="urn:mace:shibboleth:2.0:resolver:ad"
+                              sourceAttributeID="mail">
+
+        <resolver:Dependency ref="siteLDAP"/>
+        <resolver:AttributeEncoder xsi:type="SAML2StringNameID"
+                                xmlns="urn:mace:shibboleth:2.0:attribute:encoder"
+                                nameFormat="urn:oasis:names:tc:SAML:2.0:nameid-format:email" />
+</resolver:AttributeDefinition> 
+```
+* Update /opt/shibboleth-idp/conf/saml-nameid.xml to generate SAML 2 NameID content
+
+```
+    <bean parent="shibboleth.SAML2AttributeSourcedGenerator" 
+          p:format="urn:oasis:names:tc:SAML:2.0:nameid-format:email"
+          p:attributeSourceIds="#{ {'testcustomattribute'} }"/>
+```
+* Restart identity service using below command
+
+`service identity stop`
+
+`service identity start`
+
 ## Create a Trust Relationship
 Follow these instructions to create a SAML TR in your Gluu Server: 
 
