@@ -107,7 +107,7 @@ Follow the below steps to enable and configure CGI.
   ```
   Now you're ready to test. Open your web browser, and point it at 
 	`https://www.mydomain.com/cgi-bin/printHeaders.cgi`
-     You hould see environment variables.	
+     You should see environment variables.	
   
   ### Install and configure mod_auth_openidc
   
@@ -118,7 +118,9 @@ Follow the below steps to enable and configure CGI.
    #wget http://launchpadlibrarian.net/227040047/libjansson4_2.7-3_amd64.deb
    #dpkg -i libjansson4_2.7-3_amd64.deb
     ```
-  * Install  libapache2-mod-auth-openidc
+    You can found the latest release of `libjansson` [here](https://launchpad.net/+search?field.text=libjansson).
+    
+  * Install libapache2-mod-auth-openidc
    ```
    #apt-get update
    #apt-get install libapache2-mod-auth-openidc
@@ -128,7 +130,25 @@ Follow the below steps to enable and configure CGI.
    #a2enmod auth_openidc
    #systemctl restart apache2
    ```
-  ### Configuration
+### Configuration
+#### Configure a client on IDP(in this case GLUU)
+
+ Launch your GLUU server and configure an openid conect client with the following parameters:
+ ``` text
+Name: mod_auth_openidc
+Client Secret: something-sufficiently-unguessable
+Application Type: Native
+Pre-Authorization: Enabled
+Redirect login uri: https://www.mydomain.com/callback
+Subject Type: Public
+Scopes: openid, profile, email
+Response Types: code
+```
+Make a note of the `client_secret` (you won't get to see it again)! You'll
+also need the `client_id` for the next step.
+Make sure `Redirect Login URIs` is provided.
+   
+  #### Configuration apache ressource with mod_auth_openidc
 You are almost done! You'll need to configure mod_auth_openidc to
 protect your server.
 
@@ -155,29 +175,12 @@ OIDCPassIDTokenAs payload
 ```
 Changes the required parameters to match yours.
 
-### Configure a client on IDP(in this case GLUU)
-
- Launch your GLUU server and configure an openid conect client with the following parameters:
- ``` text
-Name: mod_auth_openidc
-Client Secret: something-sufficiently-unguessable
-Application Type: Native
-Pre-Authorization: Enabled
-Redirect login uri: https://www.mydomain.com/callback
-Subject Type: Public
-Scopes: openid, profile, email
-Response Types: code
-```
-Make a note of the `client_secret` (you won't get to see it again)! You'll
-also need the `client_id` for the next step.
-Make sure `Redirect Login URIs` is provided.
-
 ### Test and make sure it works
 
  Point your browser to your website(`https://www.mydomain.com/cgi-bin/printHeaders.cgi`), you will be redirected to gluu idp
  login page, after successfull sing in, you will have access to your ressource.
  
-## Basic Web Server Installation
+## Protect a web server ressource using mod_auth_openidc on Ubuntu 14.04
 
 Before you can install mod_auth_openidc, you need to have an Apache
 HTTPD server running with SSL enabled. 
