@@ -4,7 +4,7 @@
 
  The following section will walk you through the process of protecting an apache web site with mod_auth_openidc using GLUU as a IDP.
  
- This is a sommary of what we are going to do:
+ This is a summary of what we are going to do:
    
    1. Install apache web server
    1. Enable and configure ssl module
