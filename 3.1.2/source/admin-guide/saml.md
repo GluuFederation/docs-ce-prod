@@ -134,5 +134,3 @@ In the example below we are creating a TR for the 'Internet2 Wiki', which is an 
 ## SAML SP
 If your target application (SP) does not already support SAML, we recommend using the [Shibboleth SP](../integration/sswebapps/saml-sp.md) web server filter to secure and integrate the application with your Gluu SAML IDP. 
 
-## Inbound SAML
-If you need to support inbound SAML to integrate with external partner or customer IDPs, review the [inbound SAML authentication guide](../authn-guide/inbound-saml-passport.md).
