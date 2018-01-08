@@ -21,9 +21,10 @@ The Gluu Server's SAML metadata may be needed from time to time. It can be found
 ### Attribute Release      
 Each SP may require one or more user attributes from the IDP in order to grant a person access to a protected resource. Required attributes vary depending on the application, and should be explicitly specified in the target application's documentation. The administrator can use the oxTrust interface to release the necessary attributes to the SP as described [below](#create-a-trust-relationship-in-the-gluu-server). 
 
-!!! Note    
-    For a broader discussion of attributes, including how to create custom attributes and how to [configure the NameID attribute](./attribute/#defining-nameid) for your SAML service, refer to the [attributes documentation](./attribute.md).
-    
+## Configure NameID
+
+![name_id](../img/saml/name_id.png)
+
 ## Create a Trust Relationship
 Follow these instructions to create a SAML TR in your Gluu Server: 
 
