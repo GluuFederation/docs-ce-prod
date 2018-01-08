@@ -22,8 +22,16 @@ The Gluu Server's SAML metadata may be needed from time to time. It can be found
 Each SP may require one or more user attributes from the IDP in order to grant a person access to a protected resource. Required attributes vary depending on the application, and should be explicitly specified in the target application's documentation. The administrator can use the oxTrust interface to release the necessary attributes to the SP as described [below](#create-a-trust-relationship-in-the-gluu-server). 
 
 ## Configure NameID
+A NameID or Name Identifier is used to identity the 'subject' of SAML assertion. Format of nameID can be anything but mostly supported are emailAddress. 
+Gluu Server administrator can easily configure NameID with oxTrust. Here is what we need to do: 
 
+ - Create your custom attribute by following [this] (https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/admin-guide/attribute.md#custom-attributes) doc. 
+ - Go to SAML -> 'Configure Custom NameID'
 ![name_id](../img/saml/name_id.png)
+   - 'Enable' `Create NameID`
+   - 'Attribute Base': Attribute value to calculate name Identifier. 
+   - 'Attribute Name': Custom attribute name which we created earlier
+   - 'Attribute Type': Type of name identifier. 
 
 ## Create a Trust Relationship
 Follow these instructions to create a SAML TR in your Gluu Server: 
