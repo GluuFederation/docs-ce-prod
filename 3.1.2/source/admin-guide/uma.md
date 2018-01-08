@@ -322,5 +322,27 @@ The UMA 2 policy algorithm has two rules that must be followed:
 
 ![policy-algorithm](../img/uma/policy-algorithm.jpg) 
 
+### UMA 2 Client Authentication
+
+UMA 2 is regular OAuth 2 Token Endpoint. Therefore it support all client authentications then in regular OAuth2/OpenID Connect.
+
+However there is one special client authentication method which is using `access_token` obtained by user to authenticated the client. Means client that was used during user authentication is used for client authentication. Of course `access_token` must be valid.
+
+Non-normative example
+
+```json
+POST /token HTTP/1.1
+Host: server.example.com
+Content-Type: application/x-www-form-urlencoded
+Authorization: AccessToken czZCaGRSa3F0MzpnWDFmQmF0M2JW
+...
+```
+
+### UMA Scope Expressions
+
+UMA Scope expressions is Gluu invented extension of UMA 2 which give flexible way to combine scopes and thus propose more robust way to grant access.
+
+More information about exact way how it works please find [here](./uma-expression.md)
+
 ## UMA RS
 If you need to secure apps with UMA 2 RS code so that the app(s) can defer policy decisions to your Gluu Server, you should use Gluu's [oxd client software](http://oxd.gluu.org).
