@@ -132,8 +132,11 @@ Follow the below steps to enable and configure CGI.
    ```
 ### Configuration
 #### Configure a client on IDP(in this case GLUU)
-
- Launch your GLUU server and configure an openid conect client with the following parameters:
+There are two methods for client registration:
+1. Dynamic Client Registration
+1. Manual Client Registration
+For this example, let's create the client manually in the Gluu Server.
+Launch your GLUU server and configure an openid conect client with the following parameters:
  ``` text
 Name: mod_auth_openidc
 Client Secret: something-sufficiently-unguessable
@@ -406,7 +409,7 @@ an html page with the `REMOTE_USER` variable populated. Also
 check out the `OIDC_id_token_payload` and all the claims for 
 `USERINFO_` 
 
-## Installation
+## Protect a web server ressource using mod_auth_openidc on CentOS
 
 We assume that all the hostnames will be dns resolvable. If not, then
 add the according entries in `/etc/hosts`, please.
