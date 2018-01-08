@@ -7,4 +7,4 @@ echo "Entered Task: $text"
 git add -A
 git commit -m "updated site & - $text `date +'%Y-%m-%d %H:%M:%S'`"
 git push origin 3.1.2
-echo -n "`date +'%Y-%m-%d %H:%M:%S'`"
+echo -n "Time Commited and Merged : `date +'%Y-%m-%d %H:%M:%S'`"
