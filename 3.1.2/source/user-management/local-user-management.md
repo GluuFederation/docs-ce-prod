@@ -95,8 +95,9 @@ Please remember to use the exact spelling as shown here.
 ## User Registration 
 The Gluu Server is shipped with very basic user registration functionality. In most situations, we recommend writing a custom user registraton app, and then using Gluu's [SCIM 2.0 endpoints](./scim2.md#supporting-a-user-registration-process-with-scim). 
 
-Using SCIM will give you more control and flexibility in defining the exact registration process. Also, since oxTrust was primarily designed as an admin interface, it is frequently not Internet facing and therefore the registration page may not be available to a user on the web.        
+Using SCIM will give you more control and flexibility in defining the exact registration process. Also, since oxTrust is frequently **not Internet facing**, the registration page may not be available to a user on the web.        
 
+### Enable User Registration
 To enable user registration via the Gluu Server, follow these steps:
 
 1. Navigate to `Custom Scripts` and select the `User Registration` tab;   
