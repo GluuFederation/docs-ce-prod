@@ -3,9 +3,9 @@
 ## Overview
 The Gluu Server can **not** be upgraded with a simple `apt-get upgrade`. You need to explicitly install the new version and export/import your data. Find your existing version below for upgrade instructions to Gluu Server 3.1.2. 
 
-## Upgrade from 3.1.0 to 3.1.2
+## Upgrade from 3.1.x to 3.1.2
 
-Upgrading from 3.1.0 to 3.1.2 involves the following steps:
+Upgrading from 3.1.x to 3.1.2 involves the following steps:
 
 - Stop oxTrust and oxAuth services
 
@@ -21,11 +21,11 @@ Upgrading from 3.1.0 to 3.1.2 involves the following steps:
 
 ### Updating .war and schema manually
 
-To upgrade from 3.1.0 to 3.1.2, you have to manually update your .war files as outlined below:
+To upgrade from 3.1.x to 3.1.2, you have to manually update your .war files as outlined below:
 
 1. Login to chroot container:  
 
-    `# service gluu-server-3.1.2 login`
+    `# service gluu-server-3.1.x login`
     
 #### Update Identity .war
 
