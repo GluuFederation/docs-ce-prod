@@ -63,10 +63,10 @@ If OTP should be the default authentication mechanism for all access, change bot
 ## OTP Login Pages
 The Gluu Server includes two default login pages for OTP:
 
-1. An **enrollment** page that is displayed the first time a user is prompted for OTP authentication;
+1. An **enrollment** page that is displayed the first time a user is prompted for OTP authentication;     
 ![otp-enrollment](../img/user-authn/otp-enrollment.png)                  
 
-1. A **login** page that is displayed for all subsequent OTP authentications. 
+1. A **login** page that is displayed for all subsequent OTP authentications.     
 ![otp](../img/user-authn/otp.png)
 
 
