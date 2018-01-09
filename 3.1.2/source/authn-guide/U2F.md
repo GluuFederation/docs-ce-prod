@@ -93,7 +93,7 @@ U2F device enrollment happens during the first authentication attempt.
 ### Subsequent Authentications
 All subsequent U2F authentications for that user account will require the enrolled U2F key. 
 
-## U2F Credential Management
+### U2F Credential Management
 A users FIDO U2F devices can be removed by a Gluu administrator either via the oxTrust UI in `Users` > `Manage People`, or in LDAP under the user entry as shown in the below screenshot. 
 
 ![fidoldap](../img/admin-guide/multi-factor/fido-ldap-entry.png)
