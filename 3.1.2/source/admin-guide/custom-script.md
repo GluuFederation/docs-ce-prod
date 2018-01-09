@@ -119,6 +119,26 @@ For a complete list of pre-written, open source authentication scripts, view our
 
 - View a [sample Authentication Script](./sample-authentication-script.py).    
 
+## Consent Gathering
+OAuth 2.0 allows providers to prompt users for consent before releasing 
+their personal information to a client (application). 
+The standard consent process is binary: approve or deny. 
+Using the consent gathering interception script, the consent flow can be customized 
+to meet unique business requirements, for instance to support payment authorization, 
+where you need to present transactional information, or where you need to step-up authentication 
+to add security. 
+
+Consent Gathering can be enabled via oxTrust UI as shown below 
+
+![consent](../img/admin-guide/consentgathering.png)
+
+Users will be prompted for consent as below.
+
+![consent1](../img/admin-guide/consent1.png)
+
+
+- view a [sample Consent Gathering Script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/authz/ConsentGatheringSample.py)
+
 ## Update User     
 
 oxTrust allows an admin to add and modify users which belong to groups.
@@ -297,3 +317,25 @@ This script can be used in an oxAuth application only.
 - [Sample Application Session Management Script](./sample-application-session-script.py)
 
 [pem]: https://en.wikipedia.org/wiki/Privacy-enhanced_Electronic_Mail "Privacy-enhanced Electronic Mail"
+
+## SCIM
+
+SCIM script extends the default logic by allowing the user to add  or remove new pre-defined attributes to do 
+validation and identify  resources such as users and groups, using http methods. SCIM script calls one of the methods
+(create, update, retrieve or delete) depending on the command triggered by the user at the time of login.
+
+SCIM flow is as follows:
+1. SCIM server process Operation depending on the user commands
+2. SCIM calls script
+3. Persist to LDAP and triggers the action requested.
+
+SCIM scripts needs to be enabled from the SCIM tab
+
+1. Click on `Manage Custom Scripts` > `SCIM`
+2. Add requried attribute value to created, modified, retrieve or delete in the `custom property`
+3. Click on `Enabled` check box
+4. Click on `update` at the bottom of the page
+
+![SCIM](../img/admin-guide/scimscript.png)
+
+- [SCIM sample script to extend default logic](https://github.com/GluuFederation/oxExternal/blob/master/scim_event_handler/sample/SampleScript.py)
