@@ -70,7 +70,7 @@ The Gluu Server includes two default login pages for OTP:
 ![otp](../img/user-authn/otp.png)
 
 
-## Using OTP
+## Using OTP Apps
 
 ### Device Enrollment
 
@@ -79,5 +79,5 @@ OTP device enrollment happens during the first authentication attempt. The initi
 ### Subsequent Logins
 All subsequent authentications will require the user to retreive and enter an OTP from the application.
 
-## Credential Management
+### Credential Management
 A user's OTP device(s) can be removed by a Gluu administrator either via the oxTrust UI in `Users` > `Manage People`, or in LDAP under the user entry. In LDAP, navigate to appliances and search for an attribute `oxExternalUid`. Remove the values of this attribute. Upon the next OTP login attempt, the user will be prompted to enroll a new device. 
