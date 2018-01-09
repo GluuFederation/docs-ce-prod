@@ -136,6 +136,7 @@ Users will be prompted for consent as below.
 
 ![consent1](../img/admin-guide/consent1.png)
 
+![consent2](../img/admin-guide/consent2.png)
 
 - view a [sample Consent Gathering Script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/authz/ConsentGatheringSample.py)
 
