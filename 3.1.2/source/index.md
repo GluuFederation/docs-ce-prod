@@ -43,9 +43,6 @@ The Gluu Server does **not** do things like delegated administration, role defin
 
 If you have an existing identity management platform, or have written your own identity management tool(s), you can send identity data to the Gluu Server using the [SCIM protocol](./user-management/scim2.md). 
 
-!!! Note
-    If you are looking for an open source IDM and governance platform, we recommend checking out [Evolveum Midpoint](https://evolveum.com/midpoint/). 
-
 ##  Single Sign-On (SSO)
 The Gluu Server acts as an identity provider (IDP) in single sign-on (SSO) workflows. Users from web and mobile applications are redirected to Gluu for "sign-on", and when successful, are redirected back to applications with an active session and claims (or attributes) about themselves. 
 
