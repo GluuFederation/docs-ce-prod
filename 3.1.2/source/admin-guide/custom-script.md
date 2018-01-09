@@ -320,7 +320,7 @@ This script can be used in an oxAuth application only.
 
 ## SCIM
 
-SCIM script extends the default logic by allowing the user to add  or remove new pre-defined attributes to do 
+SCIM script allows to extend the default logic by adding  or removing a pre-defined attributes to do 
 validation and identify  resources such as users and groups, using http methods. SCIM script calls one of the methods
 (create, update, retrieve or delete) depending on the command triggered by the user at the time of login.
 
