@@ -85,8 +85,13 @@ Below is an illustration of the Gluu Server's default U2F login page:
 
 The design is being rendered from the [U2F xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/u2f/login.xhtml). To customize the look and feel of this page, follow the [customization guide](../operation/custom-design.md). 
 
-## U2F Credential Enrollment
-U2F device enrollment happens during the first authentication attempt. All subsequent U2F authentications for that user account will require the enrolled U2F key. 
+## Using U2F Tokens 
+
+### Credential Enrollment
+U2F device enrollment happens during the first authentication attempt. 
+
+### Subsequent Authentications
+All subsequent U2F authentications for that user account will require the enrolled U2F key. 
 
 ## U2F Credential Management
 A users FIDO U2F devices can be removed by a Gluu administrator either via the oxTrust UI in `Users` > `Manage People`, or in LDAP under the user entry as shown in the below screenshot. 
