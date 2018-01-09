@@ -338,4 +338,6 @@ SCIM scripts needs to be enabled from the SCIM tab
 
 ![SCIM](../img/admin-guide/scimscript.png)
 
+More on SCIM can be found [here](../user-management/scim2.md)
+
 - [SCIM sample script to extend default logic](https://github.com/GluuFederation/oxExternal/blob/master/scim_event_handler/sample/SampleScript.py)
