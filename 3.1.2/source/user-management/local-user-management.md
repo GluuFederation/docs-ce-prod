@@ -95,9 +95,9 @@ Please remember to use the exact spelling as shown here.
 ## User Registration 
 The Gluu Server is shipped with a user registration script that implements a very basic user registration process. 
 
-In most situations, we recommend writing a custom user registraton app, and then using Gluu's [SCIM 2.0 endpoints](./scim2.md#supporting-a-user-registration-process-with-scim). Using SCIM will give you more control and flexibility in defining the exact registration process. Also, since **oxTrust is frequently not Internet facing**, the registration page (`https://<hostname>/identity/register`) may not be available to a user on the web.        
+In most situations, we recommend writing a custom registraton app and then using Gluu's [SCIM 2.0 endpoints](./scim2.md#supporting-a-user-registration-process-with-scim) to send the identity data to Gluu. Using SCIM will give you more control and flexibility over the registration process. Also, since oxTrust is frequently not Internet facing, the registration page (`https://<hostname>/identity/register`) may not be available to a user on the web.        
 
-Instructions for using the Gluu Server's user registration functionality follows: 
+Instructions for using Gluu's user registration functionality follows: 
 
 ### Enable User Registration
 To enable user registration via the Gluu Server, follow these steps:
