@@ -106,8 +106,11 @@ SMS OTP phone number enrollment happens during the first authentication attempt.
 ### Subsequent Logins
 All subsequent authentications will trigger an SMS with an OTP to the registered phone number. Enter the OTP to pass authentication. 
 
+### Credential Management
+    
+A user's registered phone number can be removed by a Gluu administrator either via the oxTrust UI in `Users` > `Manage People`, or in LDAP under the user entry. Once the phone number has been removed from the user's account, the user can re-enroll a new phone number following the [phone number enrollment](#phone-number-enrollment) instructions above. 
 
-### Troubleshooting    
+## Troubleshooting    
 If problems are encountered, take a look at the logs, specifically `/opt/gluu/jetty/oxauth/logs/oxauth_script.log`. Inspect all messages related to OTP. For instance, the following messages show an example of correct script initialization:
 
 ```
@@ -115,7 +118,3 @@ OTP. Initialization
 OTP. Load OTP configuration
 OTP. Initialized successfully
 ```
-
-## Credential Management
-    
-A user's registered phone number can be removed by a Gluu administrator either via the oxTrust UI in `Users` > `Manage People`, or in LDAP under the user entry. Once the phone number has been removed from the user's account, the user can re-enroll a new phone number following the [phone number enrollment](#phone-number-enrollment) instructions above. 
