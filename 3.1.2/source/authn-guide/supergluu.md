@@ -97,7 +97,7 @@ If you use the default Super Gluu interception script, all subsequent authentica
 
 For more information about using Super Gluu, visit the [Super Gluu User Guide](https://gluu.org/docs/supergluu/user-guide/).
 
-## Credential Management
+### Credential Management
 
 A user's Super Gluu device(s) can be removed by a Gluu administrator either via the oxTrust UI in `Users` > `Manage People`, or in LDAP under the user entry:  
     
@@ -135,5 +135,5 @@ oxLastAccessTime: 20170
 
 Now the old device is gone and the user can enroll a new device following the above instructions for [registering a new device](#device-enrollment). 
  
-## FIDO SCIM APIs
+## U2F SCIM APIs
 See the [SCIM documentation](../user-management/scim2.md#fido-devices) for a discussion on how to manage FIDO devices, including Super Gluu, using the SCIM protocol. 
