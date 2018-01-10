@@ -36,7 +36,7 @@ The following ports are open to the Internet by default.
 |       Port Number     |       Protocol        |   Notes          |
 |-----------------------|-----------------------|------------------|
 |       80              |       tcp             | Forwards to 443  |
-|       443             |       tcp             | Apache HTTPD     |
+|       443             |       tcp             | apache2/httpd    |
 |       22              |       tcp             | ssh              |
 
 
@@ -52,7 +52,7 @@ Follow these steps or research how to do this on your Linux platform.
 * hard nofile 262144
 ```
 
-* Add the following lines to `/etc/pam.d/login`
+* Add the following lines to `/etc/pam.d/login` if not already present.
 ```
 session required pam_limits.so
 ```
