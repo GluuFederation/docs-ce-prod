@@ -271,7 +271,7 @@ sub = base64urlencode(HS256Signature(sectorIdentifier + userInum + salt, key))
 
 key and salt are read from oxAuth configuration entries pairwiseCalculationKey and pairwiseCalculationSalt
 
-To add Sector Identifier
+Below are the steps to add Sector Identifier:
 
 1. Click on `OpenID Connect` > `Sector Identifier`
 
