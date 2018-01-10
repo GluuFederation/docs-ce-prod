@@ -66,7 +66,7 @@ Gluu provies free and VIP support! Anyone can browse or register and post questi
 Private support, guaranteed response times, and consultative support are available with a paid support contract. For more information, see [our website](https://gluu.org/pricing).
 
 ## Contribute 
-These docs are not perfect! Please help us make them so by submitting
+We want to keep improving our docs. Please help us improve by submitting
 any improvements to our [Documentation Github](https://github.com/GluuFederation/docs-ce-prod).
 If you're a Github pro, submit a pull request. If not, just open an issue
 on any typos, bugs, or improvements you'd like to see. We need your
