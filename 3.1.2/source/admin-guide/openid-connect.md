@@ -39,7 +39,7 @@ The implicit flow, where the token and id_token are returned from the authorizat
 be used for applications that run in the browser, like a Javascript 
 client. 
 
-### Code / Hybrid Flow
+### Authorization Code / Hybrid Flow
 The code flow or hybrid flow should be used for server side
 applications, where code on the web server can more securely call
 the token endpoint to obtain a token. 
@@ -90,7 +90,7 @@ You may not want clients to dynamically register themselves! To disable this end
 `dynamicRegistrationEnabled` value to False.                 
 
 ### Manual clent registration
-To add a client through oxTrust, navigate to `OpenID Connect` > `Client` and click the `Add Client` button.            
+To add a client through oxTrust, navigate to `OpenID Connect` > `Client` and click the `Add Client` button to expose the following form:          
 
 ![add-client](../img/openid/add-client311.png)
 
@@ -110,19 +110,15 @@ There are two configurations params which can only be configured via oxTrust by 
  - Persist Client Authorizations: If end users should only be prompted for authorization the *first* time they access the client, set this field to `True`. All data will be persisted under the person's entry in the Gluu LDAP and the end user will not be prompted to release informationd during subsequent logins.
  
 
-## Custom Client Registration
+### Customizing client registration
 
-Using the Client Registration custom interception scripts,
-you can implement post-registration business logic. You have access to 
-the data that the client used to register. You could validate data, 
-populate extra client claim, or modify the scope registrations. You
-could even call API's to determine if you want to allow the 
-registration at all. To access the interface for custom scripts in 
-oxTrust, navigate to Configuration --> Custom Scripts --> Client Registration.
+During client registration, custom interception scripts can be used to implement custom business logic. For instance, data could be validated, extra client claims could be populated, scopes could be modified, or APIs could be called to determine whether the client should be registered at all.
 
-![custom-client](../img/openid/custom-client.png)           
+Access the client registration custom script interfaces by navigating to `Configuration` > `Custom Scripts` > `Client Registration`.     
 
-The script is [available here](./sample-client-registration-script.py)     
+![custom-client](../img/openid/custom-client.png)    
+
+An sample client registration script is [available here](./sample-client-registration-script.py)     
 
 ## Scopes
 
