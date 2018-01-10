@@ -246,10 +246,14 @@ userinfo, and end_session.
 ## Sector Identifier
 
 Sector Identifier is a locally unique and never reassigned identifier within the Issuer for the end user, which is consumed by the client.
-oxAuth2 allows Pairwise Identifier, which provides a different sub value to each client, 
+oxAuth2.0 allows Pairwise Identifier, which provides a different sub value to each client, 
 so as not to enable clients to correlate the End-User's activities without permission.
 When PairWise Identifiers are used, the OpenID provider calculates unique sub (subject) value for each Sector Identifier. 
 The Subject Identifier value must not be reversible by any party other than the OpenID provider.
+
+oxAuth allows two types of pairwise implementation that can be configured:
+- PairwiseIdType.PERSISTENT
+- PairwiseIdType.ALGORITHMIC
 
 For PairwiseIdType.PERSISTENT
 
