@@ -1,64 +1,89 @@
-# Authentication against LDAP (AKA “Basic”, “Internal”)
+# Authentication against LDAP (a.k.a “Basic” or “Internal”)
 
 ## Overview
-The [Basic authentication script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/basic/BasicExternalAuthenticator.py) 
-is used to implement username / password authentication.
+The 'Basic' or 'Internal' method is used to implement username / password authentication.
+
 Basic authentication relies on a successful LDAP BIND operation against an LDAP directory--either the
 local LDAP included in the Gluu Server, or a backend LDAP server like Active Directory that has been configured for
 use with the Gluu Server via [Cache Refresh](../user-management/ldap-sync.md).
 
-## Configuring Basic Authentication
-Follow the steps below to configure the Basic authentication method:
+## Prerequisites
 
-1. Click on `Configuration` > `Manage authentication` 
-![basic](../img/user-authn/basicauthn.png)
+ - Installed Gluu Server
+ - [Basic authentication script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/basic/BasicExternalAuthenticator.py)
+ - If remote LDAP / AD server then
+   - Network connectivity between Gluu Server and backend AD/LDAP
+   - Remote Active Directory / LDAP bind information. 
+   - Successful completion of Cache Refresh
+   
+## Properties
+The script has the following properties: 
 
-You can find more detailed description of each field in the
+|	Property	|	Description		|	Example	|
+|-----------------------|-------------------------------|---------------|
+|Name		|Name of the authentication module		|basic|
+|Description		|Description of the purpose of this script|Basic AuthN Script|
+|Programming Language|Script Developed with Python|Python|
+|Location type|Where this script is located inside Gluu Server|Ldap|
+|Usage type|Purpose of usage|Native|
+|Custom property|Customization properties|Not required by default|
+|Script|The main python script|No change required by default|
+
+
+## Enable 'Basic' Authentication
+
+Basic authentication should be enabled out-of-the-box. In case it needs to be re-enabled, follow these steps: 
+
+ 1. Navitage to `Configuration` > `Manage Custom Scripts`
+ 1. Expand `basic` ![toolbox](../tmp/img/second_basic_authN.png)
+ 1. `Enabled` it
+   - You can tail `oxauth_script.log` to check successful initialization of this script
+```
+GLUU.[root@gluu logs]# tail -f oxauth_script.log
+2018-01-10 10:39:16,847 INFO  [oxAuthScheduler_Worker-5] [org.xdi.service.PythonService$PythonLoggerOutputStream] (PythonService.java:209) - Basic. Initialization
+2018-01-10 10:39:16,853 INFO  [oxAuthScheduler_Worker-5] [org.xdi.service.PythonService$PythonLoggerOutputStream] (PythonService.java:209) - Basic. Initialized successfully
+```
+ 4. Click on `Configuration` > `Manage authentication` > `Manage LDAP Authentication` tab
+![basic](../tmp/img/basicauthn.png)
+
+We can keep it as it is if we use Gluu Server as user's data source. 
+For remote data source ( remote LDAP / AD ); we have to provide sufficient info such as bindDN, bindDN user password, Primary Key ( don't change local primary_key ), Server Name / IP along with port and BaseDN/s accordingly. 
+
+!!! Note You can find more detailed description of each field in the
 [Manage Authentication](../admin-guide/oxtrust-ui/#manage-authentication) 
-section of the Gluu docs. 
+section of the Gluu docs.
 
-Let’s only touch concepts of `primary key` and `local primary key` for now:
 
-- Primary key: name of LDAP attribute used to look up user entries in backend LDAP directory. 
+## Make 'Basic' the Default
 
-- Local primary key:  name of LDAP attribute used to look up user entries in Gluu’s 
-internal LDAP directory.
-
-!!! Note
-    A primary key can also be considered a `uid` (short for: unique identifier).
-
-## Basic Authentication Flow
-
-Basic authentication flow can be divided into three phases:
+By default, basic authentication is the default authentication method for the Gluu Server. In case it needs to be reset, follow these steps:
  
-1. String provided by user in the “Login” field of the login form is treated as a local key. 
-It becomes a part of LDAP search filter similar to 
-`&(..set of predefined filter clauses..)(local_primary_key=provided_login_name)`. 
-If a user entry conforming to this filter is found in Gluu’s internal LDAP directory and 
-its `gluuStatus` attribute is set to `active`, login flow continues, 
-otherwise it’s deemed unsuccessful. That means that even when a backend 
-directory is used for authentication, a mirrored user entry still must be present in 
-Gluu’s internal directory.      
+ 1. Go to `Configuration` > `Manage Authentication` >  `Default Authentication Method` tab
+ 2. Select 'basic' for 'Default acr' and / or 'oxTrust acr' ![image](../tmp/img/second_basic_authN.png)
 
-2. String provided by user in the “Login” field is now treated as a 
-primary key. It becomes a part of LDAP search filter similar to 
-`&(..set hardcoded clauses..)(primary_key=provided_login_name)`. 
-If a user entry conforming to this filter is found in specified backend LDAP directory 
-login flows continues, otherwise it’s deemed unsuccessful      
+## Using Basic Authentication
 
-3. LDAP BIND operation is initiated against backend LDAP directory with DN 
-of user entry found on step 2; for a password it will use string provided 
-by user in the “Password” field of the login form. If bind results in success, 
-login flow ends and user is treated as authenticated.     
+Open up a new browser or incognito window, try to login into your Gluu Server or perform SSOn with an SP or RP. 
 
-## Basic Authentication Using Remote LDAP backend(s)
+### Password reset in local Gluu LDAP
 
-By default the Gluu Server is configured to use its own internal LDAP directory for authentication (as opposed to a remote LDAP backend). 
+If passwords are stored locally, Gluu admins can reset a user's password in two ways: 
 
-To use an external LDAP server like Active Directory instead, you need to provide the backend server's DNS name or IP address in the `Server` field. 
+1. Using oxTrust:    
+   - Navigate to `Users`> `Manage People`
+   - Find the target user
+   - Click the `Update Password` button at the bottom of the user record
+   - Set the new password      
 
-The login name provided by the user will be used as a search term against both the remote and internal directories, meaning there must be a strict relation between user entries in the two directories that ensures both searches will succeed. 
+1. Using LDAP:    
+   - Access the local LDAP following [these instructions](https://gluu.org/docs/ce/3.1.2/user-management/local-user-management/#manage-users-in-gluu-openldap)     
+   - Search for user with 'uid' or 'mail' attribute    
+   - Password attribute ( userPassword ) can be changed using ldapmodify commands      
 
-The simplest way to achieve this is to use the Gluu Server's Cache Refresh feature which allows the admin to set 
-mappings for user attributes imported from a backend directory. Cache Refresh also allows you to customize default mapping behavior with Jython-based scripts. Learn more about [Cache Refresh](../user-management/ldap-sync.md) in the user management portion of these docs.
+### Password reset in Remote Backend Server
+
+It's possible to reset a user's password in a Remote Backend Server, but requires configuration of a [different Authentication module](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/basic.change_password/BasicPassowrdUpdateExternalAuthenticator.py). 
+
+
+
 
