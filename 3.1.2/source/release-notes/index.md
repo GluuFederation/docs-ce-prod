@@ -49,9 +49,9 @@ documentation and administrative guide.
 
 - [Docs](../authn-guide/inbound-saml-passport.md) Inbound SAML SSO via passport.js 
 
-- [686](https://github.com/GluuFederation/oxAuth/issues/686) UMA 2 : Allow access token for authentication at UMA token endpoint
+- [686](https://github.com/GluuFederation/oxAuth/issues/686) UMA 2: Allow access token for authentication at UMA token endpoint
 
-- [688](https://github.com/GluuFederation/oxAuth/issues/688) UMA 2 : support "and", "or" logical operations for scopes (including nested)
+- [688](https://github.com/GluuFederation/oxAuth/issues/688) UMA 2: support "and", "or" logical operations for scopes (including nested)
 
 - [604](https://github.com/GluuFederation/oxTrust/issues/604) Show u2f creds in user page
 
