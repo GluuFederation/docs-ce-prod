@@ -28,7 +28,7 @@ Please visit the [Gluu Documentation Page](http://www.gluu.org/docs/ce) for the 
 documentation and administrative guide. 
 
 ## Components included in Gluu Server 3.1.2
-- oxAuth, oxTrust,oxCore v3.1.2
+- oxAuth, oxTrust, oxCore v3.1.2
 - OpenLDAP v2.4.44-5
 - Shibboleth v3.2.1
 - Asimba forked from v1.3.0 + v1.3.1 snapshot changes (v1.3.1 was never released)
