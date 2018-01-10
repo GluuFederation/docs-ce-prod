@@ -40,7 +40,7 @@ The following ports are open to the Internet by default.
 |       22              |       tcp             | ssh              |
 
 
-## File Descriptors
+## File Descriptors(FD)
 
 The Gluu Server **requires** setting the `file descriptors` to 65k. 
 Follow these steps or research how to do this on your Linux platform.
@@ -57,13 +57,13 @@ Follow these steps or research how to do this on your Linux platform.
 session required pam_limits.so
 ```
 
-* Increase the file descriptor limit to 65535. The system file limit 
+* Increase the FD limit to 65535. The system file limit 
 is set in `/proc/sys/fs/file-max`.
 
-It is recommended to check the file descriptor size before increasing, 
-and if the file descriptor size more than the default and customized, 
-it is the recommended to the use the higher file size.
-File descriptor size can be found using the below command. 
+It is recommended to check the FD limit before increasing it, 
+and if this limit is customized and more than default, 
+we recommend to the use the higher one.
+File descriptors limit can be found using the below command. 
 
 ```
 # cat /proc/sys/fs/file-max
@@ -73,7 +73,7 @@ File descriptor size can be found using the below command.
 ```
 echo 65535 > /proc/sys/fs/file-max**
 ```
-* Use the `ulimit` command to set the file descriptor limit to the hard limit specified in `/etc/security/limits.conf`.
+* Use the `ulimit` command to set the FD limit to the hard limit specified in `/etc/security/limits.conf`.
 
 ```
 ** ulimit -n unlimited**
