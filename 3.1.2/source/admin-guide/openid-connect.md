@@ -252,7 +252,9 @@ When PairWise Identifiers are used, the OpenID provider calculates unique sub (s
 The Subject Identifier value must not be reversible by any party other than the OpenID provider.
 
 oxAuth allows two types of pairwise implementation that can be configured:
+
 - PairwiseIdType.PERSISTENT
+
 - PairwiseIdType.ALGORITHMIC
 
 For PairwiseIdType.PERSISTENT

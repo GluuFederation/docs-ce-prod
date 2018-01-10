@@ -326,8 +326,11 @@ validation and identify  resources such as users and groups, using http methods.
 (create, update, retrieve or delete) depending on the command triggered by the user at the time of login.
 
 SCIM flow is as follows:
+
 1. SCIM server process Operation depending on the user commands
+
 2. SCIM calls script
+
 3. Persist to LDAP and triggers the action requested.
 
 SCIM scripts needs to be enabled from the SCIM tab
