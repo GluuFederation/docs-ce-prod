@@ -88,8 +88,8 @@ echo 65535 > /proc/sys/fs/file-max**
 
 Amazon AWS instances provide a public and private IP address. While
 running the `/install/community-edition-setup/setup.py` script, **use the
-Private IP address**. Also, use a hostname other then the long default
-hostname that Amazon provides. Update your DNS or hosts files accordingly.
+Private IP address**. Also, use a hostname other than the long default
+hostname that Amazon provides as CN(Canonical Name). Update your DNS or hosts file accordingly.
 
 ## Google Cloud Platform
 
@@ -98,8 +98,8 @@ points for this installation:
 
  - Deployer must have to select supported operating system and required resources. 
  - Enable 'HTTPS' from 'Firewall'
- - Do not enter any IP durning installation of Gluu Server, setup script will automatically 
-collect appropriate IP. 
+ - Do not enter any IP during installation of Gluu Server, setup script will automatically 
+gather appropriate IP information. 
  - When accessing newly installed Gluu server from browser, update your DNS or hosts file accordingly. 
  
  A video tutorial is also available in [Gluu channel](https://www.youtube.com/watch?v=0RskrQG8km8)
