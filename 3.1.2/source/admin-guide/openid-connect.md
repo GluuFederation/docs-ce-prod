@@ -75,11 +75,13 @@ The Gluu Server also supports [WebFinger](http://en.wikipedia.org/wiki/WebFinger
 
 ## Client Registration / Configuration
 
-OAuth clients need a client_id, and need to supply a login redirect uri--
-where the Authorization Server should redirect the end user to, post
-authorization. The Gluu Server enables an administrator to manually create
-a client via the oxTrust web interface. However, OpenID Connect also
-defines a standard API where clients can register themselves--
+OAuth clients need a `client_id` and `login_redirect_uri` to indicate to the Authorization Server where users should redirected post
+authorization. 
+
+Clients can be dynamically registered or created manually by a Gluu admin.
+
+### Dynamic client registration
+OpenID Connect defines a standard API where clients can register themselves--
 [Dynamic Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html). You can
 find the registration URL by calling the configuration endpoint 
 (`/.well-known/openid-configuration`).        
@@ -87,8 +89,8 @@ find the registration URL by calling the configuration endpoint
 You may not want clients to dynamically register themselves! To disable this endpoint, in the oxAuth JSON properties, set the 
 `dynamicRegistrationEnabled` value to False.                 
 
-If you want to add a client through oxTrust, you can use the manual form:
-by click the `Add Client` button.            
+### Manual clent registration
+To add a client through oxTrust, navigate to `OpenID Connect` > `Client` and click the `Add Client` button.            
 
 ![add-client](../img/openid/add-client311.png)
 
@@ -100,19 +102,13 @@ by click the `Add Client` button.
 
 ![add-client4](../img/openid/add-client4-311.png)
 
-There are many client configuration parameters. Most of these are specified in the OpenID Connect [Dynamic Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html) specification.
+There are many client configuration parameters. Most are specified in the [Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html#ClientRegistration) section of the OpenID Connect specification.
 
 There are two configurations params which can only be configured via oxTrust by an administrator. These include:
 
- - Pre-Authorization -- Use this if you want to suppress the end user
- authorization prompt. This is handy for SSO scenarios where the clients
- are your own (not third party), and there is no need to prompt the 
- person to approve the release of information.      
+ - Pre-Authorization: If the OAuth authorization prompt should not be displayed to end users, set this field to `Enabled`. This is useful for SSO to internal clients (not third party) where there is no need to prompt the person to approve the release of information.        
+ - Persist Client Authorizations: If end users should only be prompted for authorization the *first* time they access the client, set this field to `True`. All data will be persisted under the person's entry in the Gluu LDAP and the end user will not be prompted to release informationd during subsequent logins.
  
- - Persist Client Authorizations -- Use this option if you only want 
- to prompt the end user once to authorize the release of user 
- information. It will cause the data to be persisted under the person's
- entry in the Gluu LDAP server.                
 
 ## Custom Client Registration
 
