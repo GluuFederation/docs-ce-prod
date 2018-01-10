@@ -35,32 +35,28 @@ The script has the following properties:
 Basic authentication should be enabled out-of-the-box. In case it needs to be re-enabled, follow these steps: 
 
  1. Navitage to `Configuration` > `Manage Custom Scripts`
- 1. Expand `basic` ![toolbox](../tmp/img/second_basic_authN.png)
- 1. `Enabled` it
+ 1. Expand `basic` 
+ 1. Check the box to `Enabled` the script
    - You can tail `oxauth_script.log` to check successful initialization of this script
 ```
 GLUU.[root@gluu logs]# tail -f oxauth_script.log
 2018-01-10 10:39:16,847 INFO  [oxAuthScheduler_Worker-5] [org.xdi.service.PythonService$PythonLoggerOutputStream] (PythonService.java:209) - Basic. Initialization
 2018-01-10 10:39:16,853 INFO  [oxAuthScheduler_Worker-5] [org.xdi.service.PythonService$PythonLoggerOutputStream] (PythonService.java:209) - Basic. Initialized successfully
 ```
- 4. Click on `Configuration` > `Manage authentication` > `Manage LDAP Authentication` tab
-![basic](../tmp/img/basicauthn.png)
+ 
+### Backend AD/LDAP 
+If a backend AD or LDAP is being used to store passwords and authenticate users, navigate to: `Configuration` > `Manage authentication` > `Manage LDAP Authentication` and provide information on the backend directory, incuding bindDN, bindDN user password, Primary Key ( don't change local primary_key ), Server Name / IP along with port and BaseDN/s. 
 
-We can keep it as it is if we use Gluu Server as user's data source. 
-For remote data source ( remote LDAP / AD ); we have to provide sufficient info such as bindDN, bindDN user password, Primary Key ( don't change local primary_key ), Server Name / IP along with port and BaseDN/s accordingly. 
-
-!!! Note You can find more detailed description of each field in the
-[Manage Authentication](../admin-guide/oxtrust-ui/#manage-authentication) 
+A more detailed description of each field can be found in the [Manage Authentication](../admin-guide/oxtrust-ui/#manage-authentication) 
 section of the Gluu docs.
-
 
 ## Make 'Basic' the Default
 
 By default, basic authentication is the default authentication method for the Gluu Server. In case it needs to be reset, follow these steps:
  
- 1. Go to `Configuration` > `Manage Authentication` >  `Default Authentication Method` tab
- 2. Select 'basic' for 'Default acr' and / or 'oxTrust acr' ![image](../tmp/img/second_basic_authN.png)
-
+ 1. Navigate to `Configuration` > `Manage Authentication` >  `Default Authentication Method`
+ 2. Select 'basic' for 'Default acr' and / or 'oxTrust acr' 
+ 
 ## Using Basic Authentication
 
 Open up a new browser or incognito window, try to login into your Gluu Server or perform SSOn with an SP or RP. 
