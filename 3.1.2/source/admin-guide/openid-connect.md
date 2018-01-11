@@ -19,9 +19,7 @@ It's handy to know some OpenID Connect terminology:
 
 - The *end user* or *subject* is the person being authenticated.
 
-- The *OpenID Provider* or *OP* is the equivalent of the SAML IDP. It
-holds the credentials (like a username/ password) and information about
-the subject. The Gluu Server is an OP.
+- The *OpenID Provider (OP)* is the equivalent of a SAML Identity Provider (IDP). It holds end user credentials (like a username/ password) and personally identifiable information. During a single sign-on (SSO) login flow, end users are redirected to the OP for authentication. 
 
 - The *Relying Party* or  *RP*  or *client* is software, like a mobile application
 or website, which needs to authenticate the subject. The RP is an OAuth
@@ -40,8 +38,7 @@ The Gluu Server supports all flows defined in the [OpenID Connect Core spec](htt
 
 ### Implicit Flow
 The implicit flow, where the token and id_token are returned from the authorization endpoint, should only
-be used for applications that run in the browser, like a Javascript
-client.
+be used for applications that run in the browser, like a Javascript client.
 
 ### Authorization Code / Hybrid Flow
 The code flow or hybrid flow should be used for server side
@@ -56,7 +53,7 @@ There is no point in using response type `code token id_token`--the extra
 tokens returned by the authorization endpoint will only create additional
 calls to the LDAP server and slow you down.
 
-If you are going to trade the code at the token endpoint for a new token and id_token, you don't
+If you are going to trade the code at the token endpoint for a new token and `id_token`, you don't
 need them from the authorization endpoint too.
 
 ### Flow Comparison Chart
@@ -79,22 +76,19 @@ The Gluu Server also supports [WebFinger](http://en.wikipedia.org/wiki/WebFinger
 
 ## Client Registration / Configuration
 
-OAuth clients need a `client_id` and `login_redirect_uri` to indicate to the Authorization Server where users should redirected post
+OAuth clients need a `client_id` and `login_redirect_uri` to indicate to the Authorization Server where users should be redirected post
 authorization.
 
-Clients can be dynamically registered or created manually by a Gluu admin.
+Clients can be dynamically registered or created manually in oxTrust.
 
 ### Dynamic client registration
 OpenID Connect defines a standard API where clients can register themselves--
-[Dynamic Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html). You can
-find the registration URL by calling the configuration endpoint
-(`/.well-known/openid-configuration`).
+[Dynamic Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html). The registration URL can be found at the configuration endpoint: `https://<hostname>/.well-known/openid-configuration`.
 
-You may not want clients to dynamically register themselves! To disable this endpoint, in the oxAuth JSON properties, set the
-`dynamicRegistrationEnabled` value to False.
+It may be prefereable to **not allow** clients to dynamically register themselves! To disable this endpoint, in the oxAuth JSON properties, set the `dynamicRegistrationEnabled` value to False.
 
 ### Manual clent registration
-To add a client through oxTrust, navigate to `OpenID Connect` > `Client` and click the `Add Client` button to expose the following form:
+To add a client manually in oxTrust, navigate to `OpenID Connect` > `Client` and click the `Add Client` button to expose the following form:
 
 ![add-client](../img/openid/add-client311.png)
 
@@ -111,18 +105,29 @@ There are many client configuration parameters. Most are specified in the [Clien
 There are two configurations params which can only be configured via oxTrust by an administrator. These include:
 
  - Pre-Authorization: If the OAuth authorization prompt should not be displayed to end users, set this field to `Enabled`. This is useful for SSO to internal clients (not third party) where there is no need to prompt the person to approve the release of information.
+ 
  - Persist Client Authorizations: If end users should only be prompted for authorization the *first* time they access the client, set this field to `True`. All data will be persisted under the person's entry in the Gluu LDAP and the end user will not be prompted to release informationd during subsequent logins.
-
 
 ### Customizing client registration
 
-During client registration, custom interception scripts can be used to implement custom business logic. For instance, data could be validated, extra client claims could be populated, scopes could be modified, or APIs could be called to determine whether the client should be registered at all.
+During client registration, custom interception scripts can be used to implement custom business logic. For instance, data could be validated, extra client claims could be populated, scopes could be modified, or APIs could be called to determine whether the client should get registered at all.
 
-Access the client registration custom script interfaces by navigating to `Configuration` > `Custom Scripts` > `Client Registration`.
+Client registration custom script interfaces can be found by navigating to `Configuration` > `Custom Scripts` > `Client Registration`.
 
 ![custom-client](../img/openid/custom-client.png)
 
 The sample client registration script is [available here](./sample-client-registration-script.py)
+
+### Disable client entry
+Setting up clients can be cumbersome and time consuming. Instead of deleting clients that should be inactive, it may be preferable to simply disable the client. To achieve this:
+
+1. Navigate to `OpenID Connect` > `Clients`
+1. Find and click the target client
+1. Scroll to the end of its settings' list and check the `Disabled` checkbox
+1. Click the "Update" button
+
+![disable-openid](../img/openid/openidconnect-disable.png)
+
 
 ## Scopes
 
@@ -146,34 +151,64 @@ with the following screen:
 
     ![Add Claims](../img/openid/add-scope-claim.png)
 
-
 A description of the fields in the add scope page:
 
-Display Name: Name of the scope which will be displayed when searched
-Description: Text that will be displayed to the end user during approval of the scope
+- Display Name: Name of the scope which will be displayed when searched.
+
+- Description: Text that will be displayed to the end user during approval of the scope.
+
 Scope Type:
-  - OpenID: specifies to the Gluu Server that this scope will
-be used to map user claims
-  - Dynamic: specifies to the Gluu Server that scope values will be generated from the result of the Dynamic Scopes
-custom interception script
-  - OAuth
-Default Scope: If True, the scope may be added to clients' registrations created via Dynamic Client Registration protocol
+   - OpenID: specifies to the Gluu Server that this scope will be used to map user claims.
+   - Dynamic: specifies to the Gluu Server that scope values will be generated from the result of the Dynamic Scopes custom interception script.
+   - OAuth: specifies to the Gluu Server that the scope will have no claims, it will be meaningful to an external resource server.
 
-
-Scope Type "OpenID" ; "Dynamic" ; "OAuth" specifies that the scope will have
-no claims, it will be meaningful to an external resource server.
-
-Specifying a scope as "Default" means that any OIDC client using Dynamic
-Client Registration protocol is allowed to enlist it amongst scopes
-that will be requested by RP(s) the client represents. As this may result in
-sensitive users' data being leaked to unauthorized parties, thorough assessment
-of all claims which belong to scopes about to be marked as "Default" is advised.
-Right after the installation, the only default scope is `openid`,
-which is required by the OpenID Connect specification. Gluu server's
-administrator can always explicitly add additional scopes some client is allowed
-to request by editing its registration metadata manually in web UI later on.
+- Default Scope: If True, the scope may be added to clients' registrations created via Dynamic Client Registration protocol. Specifying a scope as "Default" means that any OIDC client using Dynamic Client Registration can enlist it among requested scopes. Because this may result in sensitive user data being leaked to unauthorized parties, thorough assessment of all claims associated with "Default" scopes is advised. Out-of-the-box, the only default scope is `openid`, which is required by the OpenID Connect specification. Additional scopes can be explicitly add added as needed by editing client registration metadata manually in oxTrust.
 
 ### Customizing scopes
+Similar to client registration, scopes can be customized using interception scripts. The interface can be found in oxTrust by navigating to `Configuration` > `Custom Scripts` > `Dynamic Scopes`. 
+
+The sample dyanmic scope script is [available here](./sample-dynamic-script.py).
+
+## Pairwise Subject Type and Sector Identifier Client Claim
+When PairWise Identifiers are used, Gluu calculates a unique sub (subject) value for each Sector Identifier. The Subject Identifier value must not be reversible by any party other than the OP. This is similar to persistent identifiers in SAML. 
+
+Sector identifiers provide a way to group clients from the same adminstrative domain using pairwise subject identifiers. In this case, each client needs to be given the same pairwise ID for the person to maintain continuity across all the related websites.  
+
+oxAuth provides an easy way to publish a sector identifier URI. The Gluu admin can use this feature to select certain clients or even add ad-hoc redirect URIs. oxAuth will publish a valid sector identifier JSON object as defined in OpenID Connect dynamic client registration spec. A client could then register this sector identifier URI in addition to redirect URIs. 
+
+Gluu allows two types of pairwise implementations that can be configured:
+
+- `PairwiseIdType.PERSISTENT`: stored under `dn: ou=pairwiseIdentifiers,inum=PEOPLE_INUM,ou=people,o=ORG_INUM,o=gluu`
+
+- `PairwiseIdType.ALGORITHMIC`: Any algorithm with the following properties can be used by the OP to calculate pairwise Subject Identifiers:      
+
+   - The Subject Identifier value MUST NOT be reversible by any party other than the OpenID Provider.
+   - Distinct Sector Identifier values MUST result in distinct Subject Identifier values.
+   - The algorithm MUST be deterministic.
+
+The sub value is calculated as follows:
+
+`sub = base64urlencode(HS256Signature(sectorIdentifier + userInum + salt, key))`
+
+Key and salt are read from oxAuth configuration entries `pairwiseCalculationKey` and `pairwiseCalculationSalt`
+
+### Add Sector Identifier
+
+Follow these steps to add a sector identifier:
+
+1. In oxTrust, navigate to `OpenID Connect` > `Sector Identifier`
+
+![Sector](../img/admin-guide/openid/sectoridentifier.png)
+
+1. Click `Add Sector Identifier`
+
+![sector1](../img/admin-guide/openid/sectoridentifier1.png)
+
+![sector2](../img/admin-guide/openid/sectoridentifier2.png)
+
+![sector3](../img/admin-guide/openid/sectoridentifier3.png)
+
+![sector4](../img/admin-guide/openid/sectoridentifier4.png)
 
 
 ## Authentication
@@ -199,33 +234,18 @@ The default distribution of the Gluu Server includes custom authentication scrip
 |  basic_lock	| [Enables lockout after a certain number of failures](../authn-guide/intro.md/#configuring-account-lockout) |
 |  basic	| [Sample script using local LDAP authentication](../ce/authn-guide/basic.md/) |
 
-Your client can request any authentication mechanism that is enabled in your Gluu Server. To enable an authentication script, login to your Gluu Server admin interface, navigate to Configuration > Manage Custom Scripts, find the desired script, check the `Enabled` box, scroll to the bottom of the page and click `Update`.
+Clients can request any enabled authentication mechanism. To enable an authentication script in oxTrust, navigate to `Configuration` > `Manage Custom Scripts`, find the desired script, check the `Enabled` box, scroll to the bottom of the page and click `Update`.
 
 Learn more in the [authentication guide](../authn-guide/intro.md).
 
 ## Logout
 
-The OpenID Connect [Session Management](http://openid.net/specs/openid-connect-session-1_0.html) specification is still marked as draft, and new mechanisms for logout are in the works. The current specification requires JavaScript to detect that the session has been ended in the browser. It works... unless the tab with the JavaScript happens to be closed when the logout event happens on another tab. Also, inserting JavaScript into every page is not feasible for some applications.
+The OpenID Connect [Session Management](http://openid.net/specs/openid-connect-session-1_0.html) specification is still marked as draft, and new mechanisms for logout are in the works. The current specification requires JavaScript to detect when a session has been ended in the browser. It works... unless the tab with the JavaScript happens to be closed when the logout event happens on another tab. Also, inserting JavaScript into every page is not feasible for some applications.
 
 The Gluu Server also support the draft for [Front Channel Logout](http://openid.net/specs/openid-connect-frontchannel-1_0.html). This
-is our recommended logout strategy. Using this mechanism, an html page is rendered which contains one iFrame for each application that
-needs to be notified of a logout. The Gluu Server keeps track of which clients are associated with a session (i.e. your browser). This
-mechanism is not perfect. If the end user's web browser is blocking third party cookies, it may break front channel logout. Also, the Gluu Server has no record if the logout is successful--only the browser knows. This means that if the logout fails, it will not be logged or retried. The good thing about front channel logout is that the application can clear application cookies in the end user's browser. To use front channel logout, the client should register logout_uri's, or `frontchannel_logout_uri` for clients using the Dynamic Client Registration API.
+is our **recommended** logout strategy. Using front channel logout, an html page is rendered which contains one iFrame for each application that needs to be notified of a logout event. The Gluu Server keeps track of which clients are associated with a session (i.e. your browser). 
 
-## Disable OpenID Connect Client registration entry
-Gluu Server 3.1.2 provides you an option to disable specific OpenID Connect client's registration entry instead of deleting it completely.
-
-To achieve this,
-
-1. Navigate to `OpenID Connect` > `Clients`
-
-2. Find registration entry of the client in question and click it
-
-3. Scroll to the end of its settings' list and check the `Disabled` checkbox
-
-4. Click the "Update" button
-
-![disable-openid](../img/openid/openidconnect-disable.png)
+Front channel logout is also not perfect. If the end user's web browser is blocking third party cookies, it may break front channel logout. Also, the Gluu Server has no record if the logout is successful--only the browser knows. This means that if the logout fails, it will not be logged or retried. The good thing about front channel logout is that the application can clear application cookies in the end user's browser. To use front channel logout, the client should register logout_uri's, or `frontchannel_logout_uri` for clients using the Dynamic Client Registration API.
 
 ## OpenID Connect Relying Party (RP)
 
@@ -242,52 +262,4 @@ The Gluu Server ships with an optional OpenID Connect RP web application called 
 Using the oxAuth RP you can exercise all of the OpenID Connect API's, including discovery, client registration, authorization, token,
 userinfo, and end_session.
 
-## Sector Identifier
 
-Sector Identifier is a locally unique and never reassigned identifier within the Issuer for the end user, which is consumed by the client.
-oxAuth2.0 allows Pairwise Identifier, which provides a different sub value to each client,
-so as not to enable clients to correlate the End-User's activities without permission.
-When PairWise Identifiers are used, the OpenID provider calculates unique sub (subject) value for each Sector Identifier.
-The Subject Identifier value must not be reversible by any party other than the OpenID provider.
-
-oxAuth allows two types of pairwise implementation that can be configured:
-
-- PairwiseIdType.PERSISTENT
-
-- PairwiseIdType.ALGORITHMIC
-
-For PairwiseIdType.PERSISTENT
-
-The pairwiseIdentifier is stored under:
-
-dn: ou=pairwiseIdentifiers,inum=PEOPLE_INUM,ou=people,o=ORG_INUM,o=gluu
-
-For PairwiseIdType.ALGORITHMIC
-
-Any algorithm with the following properties can be used by OpenID Providers to calculate pairwise Subject Identifiers:
-
- - The Subject Identifier value MUST NOT be reversible by any party other than the OpenID Provider.
- - Distinct Sector Identifier values MUST result in distinct Subject Identifier values.
- - The algorithm MUST be deterministic.
-
-The sub value is calculated as follows:
-
-sub = base64urlencode(HS256Signature(sectorIdentifier + userInum + salt, key))
-
-key and salt are read from oxAuth configuration entries pairwiseCalculationKey and pairwiseCalculationSalt
-
-Below are the steps to add Sector Identifier:
-
-1. Click on `OpenID Connect` > `Sector Identifier`
-
-![Sector](../img/admin-guide/openid/sectoridentifier.png)
-
-2. Click on `Add Sector Identifier`
-
-![sector1](../img/admin-guide/openid/sectoridentifier1.png)
-
-![sector2](../img/admin-guide/openid/sectoridentifier2.png)
-
-![sector3](../img/admin-guide/openid/sectoridentifier3.png)
-
-![sector4](../img/admin-guide/openid/sectoridentifier4.png)
