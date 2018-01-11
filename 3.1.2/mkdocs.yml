@@ -41,7 +41,7 @@ pages:
             - 'Super Gluu': 'authn-guide/supergluu.md'
             - 'HOTP/TOTP': 'authn-guide/otp.md'
             - 'SMS OTP': 'authn-guide/sms-otp.md'
-            - 'Social Login using Passport.js': 'authn-guide/passport.md'
+            - 'Social Login': 'authn-guide/passport.md'
             - 'Duo Security': 'authn-guide/duo.md'
             - 'Inbound SAML': 'authn-guide/inbound-saml-passport.md'
             - 'Certificate Authentication': 'authn-guide/cert-auth.md'
