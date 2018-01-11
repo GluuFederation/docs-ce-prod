@@ -178,9 +178,9 @@ oxAuth provides an easy way to publish a sector identifier URI. The Gluu admin c
 
 Gluu allows two types of pairwise implementations that can be configured:
 
-- `PairwiseIdType.PERSISTENT`: stored under `dn: ou=pairwiseIdentifiers,inum=PEOPLE_INUM,ou=people,o=ORG_INUM,o=gluu`
+1. `PairwiseIdType.PERSISTENT`: stored under `dn: ou=pairwiseIdentifiers,inum=PEOPLE_INUM,ou=people,o=ORG_INUM,o=gluu`
 
-- `PairwiseIdType.ALGORITHMIC`: Any algorithm with the following properties can be used by the OP to calculate pairwise Subject Identifiers:      
+1. `PairwiseIdType.ALGORITHMIC`: Any algorithm with the following properties can be used by the OP to calculate pairwise Subject Identifiers:      
 
    - The Subject Identifier value MUST NOT be reversible by any party other than the OpenID Provider.
    - Distinct Sector Identifier values MUST result in distinct Subject Identifier values.
