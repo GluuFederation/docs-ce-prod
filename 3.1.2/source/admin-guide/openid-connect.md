@@ -1,15 +1,12 @@
 # OpenID Connect Provider (OP)
 The Gluu Server is a [fully certified OpenID Provider (OP)](http://openid.net/certification/) that supports the following OpenID Connect specifications: 
 
-- Core [spec](http://openid.net/specs/openid-connect-core-1_0.html)
-- Dynamic Client Registration [spec](https://openid.net/specs/openid-connect-registration-1_0.html)
-- Discovery [spec](https://openid.net/specs/openid-connect-discovery-1_0.html)
-- Form Post Response Mode [spec]()
-- Session Management [spec]()
-- Front Channel Logout [(draft)]()
-
-!!! Note
-    oxAuth is a required component in all Gluu Server deployments.
+- Core [(spec)](http://openid.net/specs/openid-connect-core-1_0.html)
+- Dynamic Client Registration [(spec)](https://openid.net/specs/openid-connect-registration-1_0.html)
+- Discovery [(spec)](https://openid.net/specs/openid-connect-discovery-1_0.html)
+- Form Post Response Mode [(spec)](https://openid.net/specs/oauth-v2-form-post-response-mode-1_0.html)
+- Session Management [(spec)](http://openid.net/specs/openid-connect-session-1_0.html)
+- Front Channel Logout [(draft)](http://openid.net/specs/openid-connect-frontchannel-1_0.html)
 
 ## Protocol Overview
 OpenID Connect is an identity layer that profiles and extends OAuth 2.0.
