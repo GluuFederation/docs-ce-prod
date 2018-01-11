@@ -6,7 +6,7 @@ The Gluu Server is a [fully certified OpenID Provider (OP)](http://openid.net/ce
 - Discovery [spec]()
 - Form Post Response Mode [spec]()
 - Session Management [spec]()
-- Front Channel Logout [(draft)}()
+- Front Channel Logout [(draft)]()
 
 !!! Note
     oxAuth is a required component in all Gluu Server deployments.
