@@ -1,9 +1,9 @@
 # OpenID Connect Provider (OP)
 The Gluu Server is a [fully certified OpenID Provider (OP)](http://openid.net/certification/) that supports the following OpenID Connect specifications: 
 
-- Core [spec]()
-- Dynamic Client Registration [spec]()
-- Discovery [spec]()
+- Core [spec](http://openid.net/specs/openid-connect-core-1_0.html)
+- Dynamic Client Registration [spec](https://openid.net/specs/openid-connect-registration-1_0.html)
+- Discovery [spec](https://openid.net/specs/openid-connect-discovery-1_0.html)
 - Form Post Response Mode [spec]()
 - Session Management [spec]()
 - Front Channel Logout [(draft)]()
