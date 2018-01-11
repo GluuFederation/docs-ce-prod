@@ -1,5 +1,12 @@
 # OpenID Connect Provider (OP)
-The Gluu Server's oxAuth software passes all [OpenID Provider conformance profiles](http://openid.net/certification/) and supports the following OpenID Connect specifications: Core, Dynamic Client Registration, Discovery, Form Post Response Mode, Session Management, and the draft for Front Channel Logout.
+The Gluu Server is a [fully certified OpenID Provider (OP)](http://openid.net/certification/) that supports the following OpenID Connect specifications: 
+
+- Core [spec]()
+- Dynamic Client Registration [spec]()
+- Discovery [spec]()
+- Form Post Response Mode [spec]()
+- Session Management [spec]()
+- Front Channel Logout [(draft)}()
 
 !!! Note
     oxAuth is a required component in all Gluu Server deployments.
