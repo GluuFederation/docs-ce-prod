@@ -4,7 +4,7 @@
 A common technology used for the delivery of OTPs is text messaging (SMS). Because text messaging is a ubiquitous communication channel, being directly available in nearly all mobile handsets and, through text-to-speech conversion, to any mobile or landline telephone, text messaging can reach many users with a low total cost to implement. 
 
 This document explains how to use the Gluu Server's included 
-[Twilio interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/twilio_sms/twilio2FA.py) 
+[Twilio interception script](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations/twilio_sms) 
 to implement a two-step, two-factor authentication (2FA) process with username / password as the first step, and an OTP sent via text message as the second step. 
 
 
