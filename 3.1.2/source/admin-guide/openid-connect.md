@@ -104,9 +104,9 @@ There are many client configuration parameters. Most are specified in the [Clien
 
 There are two configurations params which can only be configured via oxTrust by an administrator. These include:
 
- - Pre-Authorization: If the OAuth authorization prompt should not be displayed to end users, set this field to `Enabled`. This is useful for SSO to internal clients (not third party) where there is no need to prompt the person to approve the release of information.
+1. Pre-Authorization: If the OAuth authorization prompt should not be displayed to end users, set this field to `Enabled`. This is useful for SSO to internal clients (not third party) where there is no need to prompt the person to approve the release of information.
  
- - Persist Client Authorizations: If end users should only be prompted for authorization the *first* time they access the client, set this field to `True`. All data will be persisted under the person's entry in the Gluu LDAP and the end user will not be prompted to release informationd during subsequent logins.
+1. Persist Client Authorizations: If end users should only be prompted for authorization the *first* time they access the client, set this field to `True`. All data will be persisted under the person's entry in the Gluu LDAP and the end user will not be prompted to release informationd during subsequent logins.
 
 ### Customizing client registration
 
