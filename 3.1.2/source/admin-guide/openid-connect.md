@@ -139,16 +139,13 @@ Custom scopes can be defined and mapped to any registered user attributes.
 To add OpenID Connect Scopes and Claims:
 
 1. Navigate to `Configuration` > `OpenID Connect` > `Scopes`
-
 ![scopeadd](../img/openid/admin_oauth2_scope.png)
 
 1. Click the `Add scope` button
-
 ![scopedetails](../img/openid/add-scope1.png)
 
 1. To add more claims, simply click "Add Claim" and you will be presented
 with the following screen:
-
 ![Add Claims](../img/openid/add-scope-claim.png)
 
 A description of the fields in the add scope page:
@@ -195,11 +192,9 @@ Sector identifiers provide a way to group clients from the same adminstrative do
 Gluu allows two types of pairwise implementations that can be configured:
 
 1. `PairwiseIdType.PERSISTENT`: oxauth creates a Unique Id (`java.util.UUID`) for the pair of Sector Identifier and local account Id and stores this value under:
-
 `dn: ou=pairwiseIdentifiers,inum=PEOPLE_INUM,ou=people,o=ORG_INUM,o=gluu`
 
 1. `PairwiseIdType.ALGORITHMIC`: The sub value is calculated as follows:
-
 `sub = base64urlencode(HS256Signature(sectorIdentifier + userInum + salt, key))`
 
 Key and salt are read from oxAuth configuration entries `pairwiseCalculationKey` and `pairwiseCalculationSalt`:
