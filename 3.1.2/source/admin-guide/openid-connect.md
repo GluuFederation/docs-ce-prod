@@ -149,7 +149,7 @@ To add OpenID Connect Scopes and Claims:
 1. To add more claims, simply click "Add Claim" and you will be presented
 with the following screen:
 
-    ![Add Claims](../img/openid/add-scope-claim.png)
+![Add Claims](../img/openid/add-scope-claim.png)
 
 A description of the fields in the add scope page:
 
@@ -169,45 +169,61 @@ Similar to client registration, scopes can be customized using interception scri
 
 The sample dyanmic scope script is [available here](./sample-dynamic-script.py).
 
-## Pairwise Subject Type and Sector Identifier Client Claim
-When PairWise Identifiers are used, Gluu calculates a unique sub (subject) value for each Sector Identifier. The Subject Identifier value must not be reversible by any party other than the OP. This is similar to persistent identifiers in SAML. 
 
-Sector identifiers provide a way to group clients from the same adminstrative domain using pairwise subject identifiers. In this case, each client needs to be given the same pairwise ID for the person to maintain continuity across all the related websites.  
+## Subject Identifier Types
 
-oxAuth provides an easy way to publish a sector identifier URI. The Gluu admin can use this feature to select certain clients or even add ad-hoc redirect URIs. oxAuth will publish a valid sector identifier JSON object as defined in OpenID Connect dynamic client registration spec. A client could then register this sector identifier URI in addition to redirect URIs. 
+A Subject Identifier is a locally unique and never reassigned identifier within the Issuer for the End-User, which is intended to be consumed by the Client. Two Subject Identifier types are defined in oxAuth: `public` and `pairwise`.
+ 
+![Subject Types Supported](../img/admin-guide/openid/subjecttypessupported.png)
+
+
+### Public Subject Identifier Type
+
+This provides the same `sub` (subject) value to all Clients. It is the default if the provider has no `subject_types_supported` element in its discovery document.
+
+You can configure the LDAP attribute to be used in the `sub` claim.
+
+![OpenID sub Attribute](../img/admin-guide/openid/openidsubattribute.png)
+
+
+### Pairwise Subject Identifier Type and Sector Identifier Client Claim
+
+When `pairwise` Identifiers are used, Gluu calculates a unique sub (subject) value for each Sector Identifier. The Subject Identifier value must not be reversible by any party other than the OP. This is similar to persistent identifiers in SAML. 
+
+Sector identifiers provide a way to group clients from the same adminstrative domain using pairwise subject identifiers. In this case, each client needs to be given the same pairwise ID for the person to maintain continuity across all the related websites.   
 
 Gluu allows two types of pairwise implementations that can be configured:
 
-1. `PairwiseIdType.PERSISTENT`: stored under `dn: ou=pairwiseIdentifiers,inum=PEOPLE_INUM,ou=people,o=ORG_INUM,o=gluu`
+1. `PairwiseIdType.PERSISTENT`: oxauth creates a Unique Id (`java.util.UUID`) for the pair of Sector Identifier and local account Id and stores this value under:
 
-1. `PairwiseIdType.ALGORITHMIC`: Any algorithm with the following properties can be used by the OP to calculate pairwise Subject Identifiers:      
+`dn: ou=pairwiseIdentifiers,inum=PEOPLE_INUM,ou=people,o=ORG_INUM,o=gluu`
 
-   - The Subject Identifier value MUST NOT be reversible by any party other than the OpenID Provider.
-   - Distinct Sector Identifier values MUST result in distinct Subject Identifier values.
-   - The algorithm MUST be deterministic.
-
-The sub value is calculated as follows:
+1. `PairwiseIdType.ALGORITHMIC`: The sub value is calculated as follows:
 
 `sub = base64urlencode(HS256Signature(sectorIdentifier + userInum + salt, key))`
 
-Key and salt are read from oxAuth configuration entries `pairwiseCalculationKey` and `pairwiseCalculationSalt`
+Key and salt are read from oxAuth configuration entries `pairwiseCalculationKey` and `pairwiseCalculationSalt`:
+
+![Pairwise Algorithmic configuration](../img/admin-guide/openid/pairwiseconfiguration.png)
+
 
 ### Add Sector Identifier
 
+oxAuth provides an easy way to manage and publish a `sector_identifier_uri`. The Gluu admin can use this feature to select certain clients or even add ad-hoc `redirect_uri` values. oxAuth will publish a valid sector identifier JSON object as defined in OpenID Connect dynamic client registration spec. A client could then register this sector identifier URI in addition to redirect URIs.
+
 Follow these steps to add a sector identifier:
 
-1. In oxTrust, navigate to `OpenID Connect` > `Sector Identifier`
-
+1. In oxTrust, navigate to `OpenID Connect` > `Sector Identifier`.
 ![Sector](../img/admin-guide/openid/sectoridentifier.png)
 
-1. Click `Add Sector Identifier`
-
+1. Click `Add Sector Identifier`.
 ![sector1](../img/admin-guide/openid/sectoridentifier1.png)
-
 ![sector2](../img/admin-guide/openid/sectoridentifier2.png)
 
+1. Add redirect URIs to the `Sector Identifier`.
 ![sector3](../img/admin-guide/openid/sectoridentifier3.png)
 
+1. Add clients that uses the `Sector Identifier`.
 ![sector4](../img/admin-guide/openid/sectoridentifier4.png)
 
 
