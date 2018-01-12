@@ -357,7 +357,7 @@ Proxy-client is the demo node.js application to test Passport Inbound SSO. The p
 
 9. On allowing from Authorization page Server will redirect to Proxy-client (Demo application) with Query params like  `...../profile/response_type=code&scope=openid&client_id=s6BhdRkqt3&state=af0ifjsldkj&redirect_uri=https%3A%2F%2Fclient.example.og%2Fcb`
 
-10. using Information from query params of redirect uri demo Application will fetch the user information and display it on profile page!
+10. Using Information from query params of redirect uri demo Application will fetch the user information and display it on profile page!
 ![demo_screenshot3](../img/user-authn/passport/demo_3.png)
 
 
