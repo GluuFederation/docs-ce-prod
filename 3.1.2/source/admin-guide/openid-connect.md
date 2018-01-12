@@ -157,11 +157,11 @@ A description of the fields in the add scope page:
 
 - Description: Text that will be displayed to the end user during approval of the scope.
 
-Scope Type:
+- Scope Type:
    - OpenID: specifies to the Gluu Server that this scope will be used to map user claims.
    - Dynamic: specifies to the Gluu Server that scope values will be generated from the result of the Dynamic Scopes custom interception script.
    - OAuth: specifies to the Gluu Server that the scope will have no claims, it will be meaningful to an external resource server.
-
+       
 - Default Scope: If True, the scope may be added to clients' registrations created via Dynamic Client Registration protocol. Specifying a scope as "Default" means that any OIDC client using Dynamic Client Registration can enlist it among requested scopes. Because this may result in sensitive user data being leaked to unauthorized parties, thorough assessment of all claims associated with "Default" scopes is advised. Out-of-the-box, the only default scope is `openid`, which is required by the OpenID Connect specification. Additional scopes can be explicitly add added as needed by editing client registration metadata manually in oxTrust.
 
 ### Customizing scopes
