@@ -36,18 +36,16 @@ Make sure you have deployed Passport.js during installation of your Gluu Server.
 Then follow the next steps:
 
 1. Navigate to `Configuration` > `Manage Custom Scripts` > `Person Authentication`
-1. Find t
+
+1. Find the script and enable it
     
 1. Update the existing content in the Script field with the [IDP MultiAuthn interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/passport/PassportExternalAuthenticator.py). 
 
 1. Click on `update` at the end of the page.
-![update](img/passport/auth-update.png)
 
 1. Now navigate to `Configuration` > `Manage Authentication` > `Passport Authentication Method`
 
 1. Select "Enabled" from `Passport Support` drop-down list;
-
-![enable-authentication](img/passport/enable-authentication.png)
 
 1. Once the configuration and settings have been entered, restart the passport service by following the below instructions:
     
