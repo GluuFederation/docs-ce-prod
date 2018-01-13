@@ -5,7 +5,7 @@ The Gluu Server can be configured to delegate user authentication to one or more
 
 If only one external SAML IDP needs to be supported, i.e. a one-off integration, follow the [SAML interception script](https://github.com/GluuFederation/oxAuth/tree/evolveip/Server/integrations/saml) instructions. 
 
-If many external IDPs need to be supported, follow the instructions below. 
+If multiple external IDPs need to be supported, follow the instructions below. 
 
 !!! Note
     Previous versions of Gluu relied on the Asimba SAML proxy to achieve inbound SAML. Asimba docs can be found [here](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.1/3.1.1/source/authn-guide/inbound-saml-asimba.md). 
