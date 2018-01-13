@@ -59,7 +59,7 @@ Then follow the next steps:
     Strategies names and field names are case sensitive.
  
  
- ## Deploy custom login page(s)
+ ## Deploy custom login page
 
 Gluu includes default user-facing login pages for inbound authentication. The default login pages expose all supported external IDPs so that, when users are directed to the login page, they can select their home authentication provider. 
 
