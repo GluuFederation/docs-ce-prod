@@ -301,8 +301,6 @@ it could be performed by modifying the slapd.conf file under the above mentioned
 
 ## Clearing Logs
 
-The option "clear-logs" has been introduced first time in version 3.1.2. This option is used to clear all logs including system logs. All log files with the extension ".log" are removed. This helps in troubleshooting the gluu-server in case of some trouble. This option is very helpful during research and development purposes. We discourage the use of the option in production in case requisite logs are not backed-up. Later more features are planned to be added. Please consider this as work in progress.
-
-### Usage
+A new "clear-logs" feature was introduced in CE 3.1.2. This feature can be used to clear all log files with the extension `.log`, including system logs. Clear-logs can be helpful during troubleshooting, as well as research and development. We discourage its use in production systems if the logs are not backed-up. More features are planned. Please consider this as work in progress.
 
 `# service gluu-server-3.1.2 clear-logs`
