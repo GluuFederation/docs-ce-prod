@@ -96,7 +96,6 @@ pages:
             - 'OpenLDAP Schema': 'reference/schema.md'
 - Operation Guide:
         - 'Backups': 'operation/backup.md'
-        - 'Clearing Logs': 'operation/clear-logs.md'
         - 'Find your Gluu Version': 'operation/find-gluu-version.md'
         - 'Ports': 'operation/ports.md'
         - 'Logout': 'operation/logout.md'
