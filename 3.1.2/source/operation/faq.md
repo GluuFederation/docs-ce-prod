@@ -10,6 +10,8 @@ $ tail -f /opt/gluu-server-3.1.2/opt/gluu/jetty/identity/logs/* \
           /opt/gluu-server-3.1.2/opt/gluu/jetty/oxauth/logs/*
 ```       
 
+Logs can be lengthy and difficult to search because of lots of data. In such situations, all logs inside the container can be cleared in one go with the option clear-log. This is explained in [clear-logs](./logs/#clearing-logs).
+
 ## Running out of disk space 
 
 Run the following commands if you find your instance running out of disk space:
