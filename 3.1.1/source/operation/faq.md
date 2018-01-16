@@ -258,23 +258,29 @@ property `ldapPass`. Retrieve the data using the following command:
 
 ## Revert an authentication method
 You should always test new authentication methods in a different browser to reduce the chance of lockout. However, while testing authentication scripts and mechanisms it is not unlikely that you will find yourself locked out of the Gluu Server admin GUI. 
+There are two Methods included in 'Default Authentication Mode': (a) Default acr and (b) oxTrust acr. LDAP attributes value of these two methods are 'oxAuthenticationMode' and 'oxTrustAuthenticationMode' accordingly.  
 
-In such a situation, the following method can be used to revert back to the previous authentication method:
+If you changed both values ( Default acr + oxTrust acr ) durning testing, you have to modify both attribute values. Otherwise just one. The following method can be used to revert back to the previous authentication method:
 
 1. Run the following command to collect the `inum` for the Gluu Server installation:   
 
     ```
-    $/opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager,o=gluu" -j ~/.pw -b "ou=appliances,o=gluu" -s one "objectclass=*" oxAuthenticationMode
+    $/opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager,o=gluu" -j ~/.pw -b "ou=appliances,o=gluu" -s one "objectclass=*" oxAuthenticationMode [ Use `oxTrustAuthenticationMode` for oxTrust acr ] 
     ```
     
-2. Create a `LDIF` file with the contents below:
+2. Create a `LDIF` file with the contents below, here we are replacing both Default acr and oxTrust acr:
  
-    `dn: inum=@!1E3B.F133.14FA.5062!0002!4B66.CF9C,ou=appliances,o=gluu`
-    
-    `changetype: modify`
-    
-    `delete: oxAuthenticationMode`
-    
+```
+dn: inum=@!C40A.6FB7.42B8.3D7A!0002!899B.18F8,ou=appliances,o=gluu
+changetype: modify
+replace: oxAuthenticationMode
+oxAuthenticationMode: auth_ldap_server
+-
+replace: oxTrustAuthenticationMode
+oxTrustAuthenticationMode: auth_ldap_server
+
+```
+
     As an example, we shall call this file `changeAuth.ldif`.
     
     !!! Note
@@ -282,7 +288,7 @@ In such a situation, the following method can be used to revert back to the prev
 
 3. Replace the the authentication mode using `ldapmodify` command.
     ```
-    root@gluu3-ubuntu:/opt/symas/bin# ./ldapmodify -h localhost -p 1389 -D "cn=directory manager,o=gluu" -w "{password provided during setup}" -f revert.ldif
+    $/opt/opendj/bin/ldapmodify -h localhost -p 1636 -Z -x -D "cn=directory manager,o=gluu" -w "{password provided during setup}" -f revert.ldif
     ```
 
 Reverting authentication could also done using LDAP browser and 
