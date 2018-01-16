@@ -19,17 +19,42 @@ After authentication at an external IDP, both strategies mentioned above support
 ## Prerequisites
 - Gluu Server CE 3.1.2 with Passport.js   
 
+## Sequence Diagram
+![passport-saml-sequence-diagram](../img/user-authn/passport/passport-sequence-diagram.png)
+
+1. The user-agent (usually a web browser) calls one of the Gluu Server's endpoints after being redirected there by a remote party (SP), and requests the user's personal data. The SP can provide Gluu with the target remote IDP where the user should authenticate. The authentication takes place in the Gluu server using an encapsulated base64-encoded JSON object in the state url query parameter of the OpenID Connect authorization request (for example the JSON may take the following form: `base64({"salt":"<SALTVALUE>",provider":"<idp_name>"});` 
+
+2. As a session for the user doesn't exist in the Gluu Server, the user-agent is redirected to oxAuth for authentication. This triggers the SAML Multi-IDP Authentication script. Depending on how it is called, the script either retrieves the target IDPs name from the state parameter and sends the user there, or presents an IDP selection page where the user can choose the appropriate IDP
+
+3. The script calls the Gluu Server's passport module requesting a JWT token
+
+4. The passport module generates a JWT token and returns it back to the Gluu Server
+
+5. The script constructs a URL which passport uses to delegate user authentication to the target remote IDP
+
+6. The script makes a request to Gluu's passport module including the JWT token, and initiates the authentication flow
+
+7. The passport module redirects the user to the specified external SAML IDP
+
+8. After successful user authentication, the IDP calls the passport module, and passes the SAML response with the user's personal data
+
+9. The passport module redirects back to Gluu, transferring the user's details and the access token as well
+
+10. The interception script checks if the user exists in Gluu's local LDAP as follows:
+   a. If the user already exists, the user will be logged into the system;
+   b. If the user does not exist, the interception script will create a new user in Gluu's LDAP and log the user into the system.
+
 ## Instructions 
 The general steps for configuring Gluu Server for inbound SAML scenario using Passport.js are as follows:
 
-1. [Enable interception script](#enable-interception-script)
+1. [Enable passport](#enable-passport)
 1. [Deploy custom login pages](#deploy-custom-login-pages)
 1. [Configure trust relationships with external IDP(s)](#configure-trust-relationships-with-external-idps)
 1. [Testing the resulting setup](#testing-the-resulting-setup)
 1. [Implement discovery ("WAYF")](#implement-discovery-wayf)
 1. [Troubleshooting tooltips](#troubleshooting-tooltips)
 
-## Enable interception script
+## Enable Passport
 
 Make sure you have deployed Passport.js during installation of your Gluu Server. 
 
@@ -37,17 +62,23 @@ Then follow the next steps:
 
 1. Navigate to `Configuration` > `Manage Custom Scripts` > `Person Authentication`
 
-1. Find the script and enable it
+1. Find and enable the Passport script
+![enable-passport](../img/user-authn/passport/enable_passport_01.png)
     
 1. Update the existing content in the Script field with the [IDP MultiAuthn interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/passport/PassportExternalAuthenticator.py). 
 
-1. Click on `update` at the end of the page.
+!!! Note 
+    Rather than replacing the existing script, you can also add a new strategy by scrolling to the bottom of the page.
+
+1. Click `update` at the bottom of the page.
+![update-passport](../img/user-authn/passport/update_passport_02.png)
 
 1. Now navigate to `Configuration` > `Manage Authentication` > `Passport Authentication Method`
 
 1. Select "Enabled" from `Passport Support` drop-down list;
+![passport-auth-method](../img/user-authn/passport/passport_auth_method_03.png)
 
-1. Once the configuration and settings have been entered, restart the passport service by following the below instructions:
+1. Once the configuration and settings have been entered, restart the passport service:
     
     a. Login to chroot.
     
@@ -55,8 +86,17 @@ Then follow the next steps:
     
     c. Enter the following command to start: `service passport start`
 
-!!! Warning
-    Strategies names and field names are case sensitive.
+!!! Note
+    If passport is not available as a service, restart the gluu server service.
+
+ ## Configure Passport 
+ 
+The Passport-SAML authentication strategy is included by default in the Gluu package. Therefore it shouldn't require fetching any additional components from the repositories as it did before. Please proceed straight to [configuring trust relationships with your external IDP(s)](https://github.com/GluuFederation/Inbound-SAML-Demo/wiki/3.1.2-inbound-SAML-SSO-instructions#configure-trust-relationships-with-external-idps) section in order to finalize the configuration, and then [testing the resulting setup](https://github.com/GluuFederation/Inbound-SAML-Demo/wiki/3.1.2-inbound-SAML-SSO-instructions#testing-the-resulting-setup). 
+
+ 
+ 
+ 
+ 
  
  
  ## Deploy custom login page
