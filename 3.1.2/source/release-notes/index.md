@@ -61,6 +61,8 @@ documentation and administrative guide.
 
 ### [oxAuth](https://github.com/GluuFederation/oxAuth/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.1.2)
 
+- [728](https://github.com/GluuFederation/oxAuth/issues/728) Username remember me feature in login page
+
 - [724](https://github.com/GluuFederation/oxAuth/issues/724) Improve `JwtClaims.setClaim()` to support types `JSONObject` and `List<Object>`
 
 - [699](https://github.com/GluuFederation/oxAuth/issues/699) Create new JWK for use=enc for Client and Server tests
