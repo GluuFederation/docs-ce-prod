@@ -23,6 +23,7 @@ Install oxAuth RP? [No] : Yes
 Install Passport? [No] : Yes
 Install JCE 1.8? [Yes] : 
 You must accept the Oracle Binary Code License Agreement for the Java SE Platform Products to download this software. Accept License Agreement? [Yes] : 
+Do you acknowledge that use of the Gluu Server is under the MIT license? [N|y] : y
 ```
 !!! Login
     Please log in using the username `admin` and the password from the setup script promtpt e.g `hlE3vzf0hMdD` or the password entered
