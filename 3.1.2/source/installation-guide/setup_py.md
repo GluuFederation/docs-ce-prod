@@ -1,7 +1,7 @@
 ### Setup Prompt
 The `setup.py` script will bring up a prompt to provide information for 
 certificate as well as the IP Address and the hostname for the Gluu Server. 
-The prompt with example values is proided below.
+The prompt with example values is provided below.
 
 ```
 Enter IP Address [192.168.122.60] :
