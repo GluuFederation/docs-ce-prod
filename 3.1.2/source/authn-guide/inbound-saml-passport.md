@@ -175,7 +175,9 @@ The actual process of creating trust will differ across IDP implementations. For
     When registering the Passport SP at each remote IDP, at least `username` and `email` attributes will be required for each user.
 
 ## Testing
-A simple test can be performed by composing an OpenID Connect authorization request to trigger Gluu's Passport interception script. Special composition of the `state` URL query parameter allows any OpenID Connect application to "pre-select" which IDP will be presented for user authentication.
+A simple test can be performed by composing an OpenID Connect authorization request to trigger Gluu's Passport interception script. Insert a specific IDP in the `state` URL query parameter to "pre-select" which IDP to send the user to for authentication. For example:
+
+`https://example.myco.org/oxauth/authorize?response_type=code+id_token&client_id=%40%215C0B.B148.7E63.326C%210001%21562E.F01E%210008%21664D.7760.0EC3.762D&scope=openid+profile&redirect_uri=https:%2F%2Flocalhost:8080&state=eyJwcm92aWRlciI6ImlkcDEifQ%3D%3D&nonce=S3M3R4nd0M&acr_values=passport_saml`
 
 For Passport-SAML scenarios, a "Proxy-client" Demo app is described below.
 
