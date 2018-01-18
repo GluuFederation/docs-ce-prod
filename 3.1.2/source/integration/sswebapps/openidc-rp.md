@@ -131,6 +131,7 @@ login uri: https://www.mydomain.com/callback
 Subject Type: Public
 Scopes: openid, profile, email
 Response Types: code
+Grant Types: authorization_code
 
 ```
 
