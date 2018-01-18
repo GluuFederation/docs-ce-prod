@@ -48,7 +48,7 @@ The steps for configuring Gluu Server for inbound SAML scenario using Passport.j
 
 1. [Enable Passport in Gluu](#enable-passport)
 2. [Configure trust relationships with external IDP(s)](#configure-trust-relationships-with-external-idps)
-3. [Testing the resulting setup](#testing-the-resulting-setup)
+3. [Testing the resulting setup](#testing)
 4. [Implement IDP discovery ("WAYF")](#implement-idp-discovery-wayf)
 5. [Troubleshooting tooltips](#troubleshooting-tooltips)
 
@@ -84,9 +84,9 @@ Then follow the next steps:
 !!! Note 
     In case if Passport is not available as a service, you can also restart the Gluu Server's main service itself.
 
- ## Configure trust relationships with external IDPs
+## Configure trust relationships with external IDPs
  
- ### Register External IDPs with home IDP
+### Register External IDPs with home IDP
 
 Some basic information is required to make Passport aware of the supported external IDPs. By default Passport expects to find this configuration in the `/etc/gluu/conf/passport-saml-config.json` file. Each supported external IDP should be added as a JSON object. 
 
