@@ -1,20 +1,19 @@
 # Inbound SAML using Passport.js 
 ## Overview
 
-The Gluu Server can be configured to delegate user authentication to one or more external SAML IDPs. 
-
-If only one external SAML IDP needs to be supported, i.e. a one-off integration, follow the [SAML interception script](https://github.com/GluuFederation/oxAuth/tree/evolveip/Server/integrations/saml) instructions. 
-
-If multiple external IDPs need to be supported, follow the instructions below. 
+The Gluu Server can be configured to delegate user authentication to one or more external SAML IDPs using the Passport.js authentication middleware. Passport is an MIT licensed, Express-based web application which Gluu has modified to call oxTrust APIs for its non-static configuration.
 
 !!! Note
     Previous versions of Gluu relied on the Asimba SAML proxy to achieve inbound SAML. Asimba docs can be found [here](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.1/3.1.1/source/authn-guide/inbound-saml-asimba.md). 
 
-### About Passport  
-Passport is an MIT licensed Express-based web application. We've modified it to call oxTrust APIs for its non-static configuration. Because its configuration is stored centrally in LDAP, you can scale Passport even in clustered topologies.
+### One External IDPs
+If only one external SAML IDP needs to be supported (a one-off integration), consider following the [SAML interception script](https://github.com/GluuFederation/oxAuth/tree/evolveip/Server/integrations/saml) instructions. 
+
+### Multiple External IDP
+If multiple external IDPs need to be supported, approach described in this paper is recommended. 
 
 ### User Provisioning
-After authentication at an external IDP, both strategies mentioned above support just-in-time (JIT) user provisioning if there is no existing user record in Gluu. Once user information (attributes/claims) is obtained, it can be used by Gluu for SSO to applications.
+After authentication at an external IDP, if there is no existing user record in Gluu, both strategies mentioned above support just-in-time (JIT) user provisioning. Once personal data has been obtained and added to Gluu's local LDAP directory service, it can be used to offer SSO to any application leveraging Gluu for authentication. 
 
 ## Prerequisites
 - Gluu Server CE 3.1.2 with Passport.js   
@@ -22,37 +21,36 @@ After authentication at an external IDP, both strategies mentioned above support
 ## Sequence Diagram
 ![passport-saml-sequence-diagram](../img/user-authn/passport/passport-sequence-diagram.png)
 
-1. The user-agent (usually a web browser) calls one of the Gluu Server's endpoints after being redirected there by a remote party (SP), and requests the user's personal data. The SP can provide Gluu with the target remote IDP where the user should authenticate. The authentication takes place in the Gluu server using an encapsulated base64-encoded JSON object in the state url query parameter of the OpenID Connect authorization request (for example the JSON may take the following form: `base64({"salt":"<SALTVALUE>",provider":"<idp_name>"});` 
+1. The user-agent (usually a web browser) requests one of the Gluu Server's endpoints' url after being redirected there by a remote party asking for release of user's personal data. The remote party has an option of pre-selecting remote IDP that must be used to authenticate the user by passing base64-encoded JSON object of specified format (described in details further in this paper) in `state` url query parameter of OpenID Connect authorization request. For example, the JSON object may take the following form: `{"salt":"<SALTVALUE>",provider":"<idp_name>"}`(base64-encoded)
 
-2. As a session for the user doesn't exist in the Gluu Server, the user-agent is redirected to oxAuth for authentication. This triggers the SAML Multi-IDP Authentication script. Depending on how it is called, the script either retrieves the target IDPs name from the state parameter and sends the user there, or presents an IDP selection page where the user can choose the appropriate IDP
+2. As a session for the user doesn't exist in the Gluu Server yet, the user-agent is redirected to its oxAuth component for authentication, triggering the SAML Passport Authenticator script; depending on how it was called, the script either retrieves the target IDP's id from the `state` parameter, or just presents an IDP selection page to the user, waiting for him to select it
 
-3. The script calls the Gluu Server's passport module requesting a JWT token
+3. The script arranges a call to the Gluu Server's Passport module requesting a JWT token
 
-4. The passport module generates a JWT token and returns it back to the Gluu Server
+4. The Passport module generates a JWT token and returns it back to the Gluu Server
 
-5. The script constructs a URL which passport uses to delegate user authentication to the target remote IDP
+5. The script constructs an URL which the Passport module will need in order the delegate user's authentication to the selected IDP
 
-6. The script makes a request to Gluu's passport module including the JWT token, and initiates the authentication flow
+6. The script makes a request to the Gluu Server's Passport module including the JWT token, and initiates the authentication flow
 
-7. The passport module redirects the user to the specified external SAML IDP
+7. The Passport module redirects the user to the specified external SAML IDP
 
-8. After successful user authentication, the IDP calls the passport module, and passes the SAML response with the user's personal data
+8. After successful authentication user is redirected back to the Passport module, and their personal data is passed within SAML response to module's callback endpoint
 
-9. The passport module redirects back to Gluu, transferring the user's details and the access token as well
+9. The Passport module redirects user  back to the Passport's custom interception script submitting the user's attributes and access token to its `passportpostlogin.xhtml` page
 
-10. The interception script checks if the user exists in Gluu's local LDAP as follows:
-   a. If the user already exists, the user will be logged into the system;
-   b. If the user does not exist, the interception script will create a new user in Gluu's LDAP and log the user into the system.
+10. The interception script verifies whether such user exists in Gluu's OpenLDAP server:
+   a. If the user exists then the user is logged into the system; in case some of their attributes are changed, they will be updated in existing user entry as well
+   b. If the user does not exist, the interception script will first create a new user entry in the Gluu OpenLDAP server's tree and then will log in the user into the system.
 
-## Instructions 
-The general steps for configuring Gluu Server for inbound SAML scenario using Passport.js are as follows:
+## Instructions
+The steps for configuring Gluu Server for inbound SAML scenario using Passport.js are as follows:
 
-1. [Enable passport](#enable-passport)
-1. [Deploy custom login pages](#deploy-custom-login-pages)
-1. [Configure trust relationships with external IDP(s)](#configure-trust-relationships-with-external-idps)
-1. [Testing the resulting setup](#testing-the-resulting-setup)
-1. [Implement discovery ("WAYF")](#implement-discovery-wayf)
-1. [Troubleshooting tooltips](#troubleshooting-tooltips)
+1. [Enable Passport in Gluu](#enable-passport)
+2. [Configure trust relationships with external IDP(s)](#configure-trust-relationships-with-external-idps)
+3. [Testing the resulting setup](#testing-the-resulting-setup)
+4. [Implement IDP discovery ("WAYF")](#implement-idp-discovery-wayf)
+5. [Troubleshooting tooltips](#troubleshooting-tooltips)
 
 ## Enable Passport
 
@@ -60,104 +58,45 @@ Make sure you have deployed Passport.js during installation of your Gluu Server.
 
 Then follow the next steps:
 
-1. Navigate to `Configuration` > `Manage Custom Scripts` > `Person Authentication`
-
-1. Find and enable the Passport script
+1. Navigate to `Configuration `> `Manage Custom Scripts`;
+2. In the `Person Authentication` tab, find and enable the `passport_saml` script;
 ![enable-passport](../img/user-authn/passport/enable_passport_01.png)
-    
-1. Update the existing content in the Script field with the [IDP MultiAuthn interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/passport/PassportExternalAuthenticator.py). 
+
+!!! Note
+    This script is updated from time to time. We recommend checking the [SAML Passport Authenticator script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/saml-passport/SamlPassportAuthenticator.py) and confirming it matches the script included in your distribution of Gluu.
+
+3. Click the "Update" at the bottom of the page.
+![](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/passport/update_passport_02.png)
+
+4. Navigate to `Configuration `>` Manage Authentication` > `Passport Authentication Method`
+
+5. Select "Enabled" from `Passport Support` drop-down list and click "Update"
+![](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/passport/passport_auth_method_03.png)
+
+6. Once initial configuration is completed, restart the `passport` service by following the below instructions:
+
+    6.1. Login to chroot container
+
+    6.2. Stop the service: `service passport stop`
+
+    6.3. Start the service: `service passport start`
 
 !!! Note 
-    Rather than replacing the existing script, you can also add a new strategy by scrolling to the bottom of the page.
+    In case if Passport is not available as a service, you can also restart the Gluu Server's main service itself.
 
-1. Click `update` at the bottom of the page.
-![update-passport](../img/user-authn/passport/update_passport_02.png)
-
-1. Now navigate to `Configuration` > `Manage Authentication` > `Passport Authentication Method`
-
-1. Select "Enabled" from `Passport Support` drop-down list;
-![passport-auth-method](../img/user-authn/passport/passport_auth_method_03.png)
-
-1. Once the configuration and settings have been entered, restart the passport service:
-    
-    a. Login to chroot.
-    
-    b. Enter the following command to stop: `service passport stop`
-    
-    c. Enter the following command to start: `service passport start`
-
-!!! Note
-    If passport is not available as a service, restart the gluu server service.
-
- ## Configure Passport 
+ ## Configure trust relationships with external IDPs
  
-The Passport-SAML authentication strategy is included by default in the Gluu package. Therefore it shouldn't require fetching any additional components from the repositories as it did before. Please proceed straight to [configuring trust relationships with your external IDP(s)](https://github.com/GluuFederation/Inbound-SAML-Demo/wiki/3.1.2-inbound-SAML-SSO-instructions#configure-trust-relationships-with-external-idps) section in order to finalize the configuration, and then [testing the resulting setup](https://github.com/GluuFederation/Inbound-SAML-Demo/wiki/3.1.2-inbound-SAML-SSO-instructions#testing-the-resulting-setup). 
+ ### Register External IDPs with home IDP
 
+Some basic information is required to make Passport aware of the supported external IDPs. By default Passport expects to find this configuration in the `/etc/gluu/conf/passport-saml-config.json` file. Each supported external IDP should be added as a JSON object. 
+
+Once the file is updated, the `passport` service must be restarted in order to apply the changes and trigger generation of new metadata files: 
+
+`# service passport restart`
+
+A sample configuration containing entries for two external IDPs is provided below:
  
- 
- 
- 
- 
- 
- ## Deploy custom login page
-
-Gluu includes default user-facing login pages for inbound authentication. The default login pages expose all supported external IDPs so that, when users are directed to the login page, they can select their home authentication provider. 
-
-1. Acquire [the login page files](https://github.com/GluuFederation/oxAuth/tree/evolveip/Server/src/main/webapp/auth/passport) and add them in the `/opt/gluu/jetty/oxauth/custom/pages/auth/passport/` directory, creating an underlying directory structure as needed. Then set proper permissions for the new tree:
 ```
-# yum -y install svn ("# apt-get install svn" for Debian/Ubuntu distros)
-# mkdir -p /opt/gluu/jetty/oxauth/custom/pages/auth/
-# cd /opt/gluu/jetty/oxauth/custom/pages/auth/
-# svn checkout https://github.com/GluuFederation/oxAuth/branches/evolveip/Server/src/main/webapp/auth/passport
-# rm -rf passport/.svn/
-# chown -R jetty:jetty /opt/gluu/jetty/oxauth/custom/
-```
-
-2. Open the `/opt/gluu/jetty/oxauth/custom/pages/auth/passport/passportpostlogin.xhtml` file for editing and make sure that around line #48 it contains the following instructions:
-
-```
-var userObj = JSON.parse(userQueryString);
-```
-In case it contains next on instead
-```
-var userObj = JSON.parse(userQueryString.substring(0, userQueryString.indexOf('}') + 1));
-```
-..it needs to be edited accordingly.
-
-In the same file, check instruction around line #53, and make sure it looks like
-```
-document.getElementById('loginForm')["loginForm:provider"].value = userObj.provider['_'];
-```
-..and **NOT** like
-```
-document.getElementById('loginForm')["loginForm:provider"].value = userObj.provider;
-```
-
-3. Restart `passport` and `oxauth` services: 
-
-```sh 
-# service passport restart
-# service oxauth restart
-```
-
-## Configure trust relationships with External IDP(s)
-
-### Register External IDP(s) with home IDP 
- 
-Some basic information is needed about the external IDPs. By default the script expects to find this configuration info in `/etc/gluu/conf/passport-saml-config.json`. Each supported external IDP is added as an embedded JSON object here. A sample IDP configuration is provided below. After edits are done to this file the `passport` service must be restarted for changes to be applied and new metadata to be generated:
-
-```sh
-# service passport restart
-```
-
-!!! Note
-    In most cases, at this point the `passport-saml-config.json` file is already present in the container. Simply modify its configurations as needed. If manually creating the file, make sure the "node" user has permissions to access.
-
-!!! Note
-    Certificates used in this file must be in PEM (base64-encoded) format with "BEGIN" and "END" separators stripped, and must not contain any kind of line break characters (new line, carriage return, space etc)
-    Next command may be used to transform an existing X.509, PEM-encoded certificate into text of required format: `# cat ~/your_cert.crt | grep -v '^---' | tr -d '\n'`
-
-```json
 {"idp1": {"entryPoint": "https://idp.example.com/idp/profile/SAML2/POST/SSO",
                 "issuer": "urn:test:example",
                 "identifierFormat": "urn:oasis:names:tc:SAML:2.0:nameid-format:transient",
@@ -182,7 +121,7 @@ Some basic information is needed about the external IDPs. By default the script 
                         "issuer": "urn:test2:example",
                         "identifierFormat": "urn:oasis:names:tc:SAML:2.0:nameid-format:transient",
                         "authnRequestBinding": "HTTP-POST",
-                        "additionalAuthorizeParams": "<Some additinal params json>",
+                        "additionalAuthorizeParams": "",
                         "skipRequestCompression": "true",
                         "logo_img":"{Provider Logo url #1}",
                         "enable":"true",
@@ -200,105 +139,124 @@ Some basic information is needed about the external IDPs. By default the script 
                 }       
 }
 ```
-!!! Note
-    All the given parameters are mandatory and must be included in the file; an empty string value can be used in cases when some of them are not required in a specific setup
+ 
+!!! Note 
+    All parameters listed in the configuration above must be included in the file for it to be validated by Passport. An empty string value can be used when some are not actually needed for a specific external IDP, for example the `additionalAuthorizeParams` parameter of `idp2` in the example above.
+ 
+Placeholder URLs like `https://idp.example.com` must be replaced with the URLs of actual remote IDPs. A description of each property is below:
 
-Placeholder urls like `https://idp.example.com` must be replaced with the url of corresponding actual remote IDPs. Role of each property in the object is clarified below:
-        
-- `entryPoint` - IDP's entry point, an url of endpoint to which SAML request must be addressed
-- `issuer` - string specifying `entityid` which Passport.js must use to represent itself in SAML requests sent to this IDP (thus it allows to use different `entityid` for each of registered IDPs, if needed)
-- `identifierFormat` - name identifier's format to request from IDP
-- `authnRequestBinding` - if set to "HTTP-POST", will request authentication from IDP via HTTP POST binding, otherwise defaults to HTTP Redirect.
-- `additionalAuthorizeParams` - dictionary of additional query params to add to 'authorize' requests.
-- `skipRequestCompression` - if set to "true", the SAML request from the service provider won't be compressed.
-- `logo_img` - url pointing to logo this IDP should be represented with at Gluu's Passport login page.
-- `enable` - if set to "true" this IDP is allowed to be used by users trying to become authenticated at this Gluu Server instance.
-- `cert` - IDP's public PEM-encoded X.509 certificate with `BEGIN CERTIFICATE` and `END CERTIFICATE` tag lines stripped  and all line breaking characters ("\n", "\r") removed.
-- `reverseMapping` - an embedded JSON object defining how SAML attributes' names show be mapped to attributes used internally by Passport.js server:
-    - `email` is the user email
-    - `username` is username (uid) of user
-    - `displayName` is Display Name of user
-    - `id` is userid of user.
-    - `name` is full name of user
-    - `givenName` is the first name of user
-    - `familyName` is the last name of user
+* `entryPoint` - IDP's entry point, an endpoint's URL where a SAML request must be sent to
+* `issuer` - A string specifying an `entityid` Passport's SP must use when communicating with this specific external IDP. In particular, it allows usage of different `entityid` values for each of registered IDPs. If not needed, the same `entityid` can be used in all entries in the file.
+* `identifierFormat` - uri specifying name identifier's ("nameid's") format to request/expect from this remote IDP
+* `authnRequestBinding` - If set to "HTTP-POST", then authentication request sent to `entryPoint` will use POST HTTP method (SAML's HTTP POST binding), otherwise defaults to HTTP method (HTTP Redirect binding)
+* `additionalAuthorizeParams` - A dictionary of additional query parameters which can be added in order to 'authorize' requests
+* `skipRequestCompression` - If set to "true", then the SAML request to this service provider will not be compressed.
+* `logo_img` - A URL pointing to the IDP's logo used by the Gluu's Passport login page. Can be an empty string if not required
+* `enable` - If set to "true", then this IDP is allowed to be used by users that try to get authenticated at this Gluu Server 
+* `cert` - The IDP's PEM-encoded X.509 certificate with the `BEGIN CERTIFICATE` and `END CERTIFICATE` separator lines stripped and all line breaking characters (new line, carriage return, space etc) removed from it. Effectively this means a single base64-encoded string representing body of a certificate. Next command can be used to transform an existing X.509, PEM-encoded certificate into string of the required format: `# cat ~/your_cert.crt | grep -v '^---' | tr -d '\n'`
+* `reverseMapping` - An embedded JSON object defining how the SAML attributes' names must be mapped to attributes that are used internally by the Passport module:
+    * `email` - the user's email
+    * `username` - the user's username (uid) 
+    * `displayName` - a display name for the user
+    * `id` - the user's userid
+    * `name` - the user's full name
+    * `givenName` - the user's first name
+    * `familyName` - the user's last name
+
+### Register Passport's SP with external IDPs
+
+Passport will generate SAML SP metadata for every IDP listed in the `passport-saml-config.json` file once it successfully validates configuration. After this is achieved, the next step is to register its SP at all remote external IDPs.
+
+The metadata is published as URLs similar to this format: `https://<hostname>/passport/auth/meta/idp/<IDP-id-from-passport-saml-config>`. It can also be found under `/opt/gluu/node/passport/server/idp-metadata` directory within Gluu's chroot container, copied to your local machine, then uploaded to remote external IDPs.
+
+The actual process of creating trust will differ across IDP implementations. For example, for cases when the remote IDP is another Gluu Server CE instance, the relevant [documentation page](https://gluu.org/docs/ce/3.1.2/admin-guide/saml/#create-a-trust-relationship) should be followed. In case of other SAML IDP implementations, consult the corresponding documentation.
+
+!!! Note 
+    When registering the Passport SP at each remote IDP, at least `username` and `email` attributes will be required for each user.
+
+## Testing
+A simple test can be performed by composing an OpenID Connect authorization request to trigger Gluu's Passport interception script. Special composition of the `state` URL query parameter allows any OpenID Connect application to "pre-select" which IDP will be presented for user authentication.
+
+For Passport-SAML scenarios, a "Proxy-client" Demo app is described below.
+
+### Testing with the Demo app
+
+The `Proxy-client` demo application relies on the Node.js framework and has been developed by Gluu to provide an easy way to test the Inbound SAML scenario. The project requires the latest version of `Node.js` to be installed on the machine where the app will be running.
+
+For the sake of simplicity, we recommend re-using the `Node.js` setup your Gluu Server's Passport module uses to run the Demo app. Optionally, a separate machine could be used to achieve a more production-ready setup. 
+
+Follow the guidelines below to install the Demo app at your Gluu Server host. Configuration steps are separated in two mandatory parts: (1) web UI phase and (2) console phase.
+
+#### Web UI configuration steps
+
+1. Log in to oxTrust web UI as an administrator user
+2. Navigate to the `OpenID Connect` > `Clients` page, and register a new OIDC client to your Gluu Server with following required properties:    
+    * "Redirect login uri" contains `http://passport-saml-demo-app.example.com:3000/profile/`    
+    * "Grant types" contains `authorization_code` and `implicit`    
+    * "Response types" contains `code` and `id_token`    
+    * "Scopes" must contain `openid`, `email`, `user_name` and `profile`   
+    * "Client secret" must not be empty    
 
 
-### Register SP with external IDPs
+#### Console configuration steps
 
-The Passport.js server generates SAML SP metadata for each IDP listed in the `passport-saml-config.json` file that can be used to register this SP at each remote IDP.
+1. Connect to the Gluu Server via SSH    
+2. Login to the chroot container: `# service gluu-server-3.1.2 login`       
+3. Ensure incoming connections to TCP port 3000 are allowed to reach applications running on this machine     
+4. Download the [project files](https://github.com/GluuFederation/Inbound-SAML-Demo) manually and upload them to this machine, or clone the project using `git`: `# git clone https://github.com/GluuFederation/Inbound-SAML-Demo`     
+5. Move the downloaded files into "node" user home directory: `# cp -R ./Inbound-SAML-Demo /home/node/`       
+6. Ensure correct permissions are set for the directory: `# chown -R node:node /home/node/Inbound-SAML-Demo/`    
+7. Switch to "node" user: `# su - node`
+8. Copy the finalized `passport-saml-config.json` file used during the [registering external IDPs](#configure-trust-relationships-with-external-idps) step into the app's directory: `$ cp /etc/gluu/conf/passport-saml-config.json ~/Inbound-SAML-Demo/`     
+9. Edit the `~/Inbound-SAML-Demo/client-config.json` file and provide proper values for: `ClientID` (the `inum` attribute found in the client's properties after it has been registered in Gluu), `clientSecret`, and `hostname` (FQDN of this Gluu Server instance)      
+10. Initialize the Demo app:      
+    * `$ cd ~/Inbound-SAML-Demo/`
+    * `$ npm install`
+11. Run the application: `$ node server.js` You can stop the server by hitting `Ctrl`+`C` key combo    
 
-The metadata is published at the following url: `https://<hostname>/passport/auth/meta/idp/<IDP-id-from-passport-saml-config>`, and can also be found within the Gluu container at: `/opt/gluu/node/passport/server/idp-metadata`. This can be copied into a file and uploaded to the remote IDP.   
+!!! Note 
+    Starting the server as described above will effectively render this SSH session unusable while allowing to observe a useful debug output it will redirect to stdout. Consider starting another SSH session in a separate console window to be able to modify different parts of configuration and study other logs at the same time.
 
-The actual process of creating this trust will differ depending on the IDP(s) in use. If the remote IDP is another Gluu Server, see the [SAML IDP documentation](https://gluu.org/docs/ce/3.1.2/admin-guide/saml/#create-a-trust-relationship) for required steps. 
-
-!!! Note
-    Passport.js server will generate metadata only when all required data is provided in `passport-saml-config.json`
-
-!!! Note
-    When registering Passport.js Server's SP at each remote IDP you must ensure that at least `username` and `email` attributes are released by it for each user
+!!! Warning 
+    The Demo application is a simplistic web application developed with a sole purpose of showcasing the Passport-SAML authentication strategy. Leaving any such application running on mission critical servers for a prolonged period of time can potentially lead to security vulnerabilities and is strongly discouraged! 
 
 
-## Testing the resulting setup
+#### Test steps
 
-A simple test of any Gluu Passport authentication scenario can be performed by composing and following an OpenID Connect authorization request url triggering a corresponding Gluu custom authentication script. The "Proxy-client" Demo app described below can help with testing.
+1. Add a mapping entry that points to `passport-saml-demo-app.example.come` name to IP address of the Gluu Server where the Demo app is installed to "hosts" file of Operating System where your browser runs. For Unix based OS the usual location of the file is `/etc/hosts`.  
+2. Open a web browser on the same machine and navigate to `http://passport-saml-demo-app.example.come:3000`.    
+3. Select one of the displayed IDPs to initiate the authentication flow at the chosen remote external IDP.     
+![](https://github.com/GluuFederation/Inbound-SAML-Demo/raw/master/images/demo_1.png)        
+4. After logging in at the IDP, you will be redirected back to the Gluu instance where you might be prompted to authorize release of your personal data to the Demo app.      
+![](https://github.com/GluuFederation/Inbound-SAML-Demo/raw/master/images/demo_2.png)    
+5. After consenting to release the requested claims, you'll be sent to the Demo app with an authorization code which is needed for retrieving your personal data
+6. The application will display retrieved claims on its "/profile" page   
+![](https://github.com/GluuFederation/Inbound-SAML-Demo/raw/master/images/demo_3.png)  
 
-Special composition of `state` url query parameter which can be used in authorization url allows OpenID Connect-enabled applications to be able to force Passport-SAML strategy to use a specific IDP for this user by pre-selecting it in advance.
+A video of the Demo app in action can be found [here](https://www.youtube.com/watch?v=ubhDgGU8C8s&feature=youtu.be)
 
-
-### Testing the Demo app
-
-`Proxy-client` is a demo node.js application to test the above documented Inbound SAML scenario. The project requires the latest version of node.js to be installed on the machine where the app will be running.
-
-Steps to configure the demo app:
-
-1. Download the [project's files](https://github.com/GluuFederation/Inbound-SAML-Demo) with `# git clone ttps://github.com/GluuFederation/Inbound-SAML-Demo`.    
-
-2. Register a new OIDC client at your Gluu Server; next properties must be set as specified below:
-    1. "Redirect login uri" contains `http://localhost:3000/profile/`
-    2. "Grant types" contains `authorization_code` and `implicit`
-    3. "Response types" contains `code` and `id_token`
-    4. "Client secret" must not be empty
-
-3. Edit `client-config.json` in the app's main directory and submit proper values for `ClientID` (`inum` attribute found among client's properties after it's registered at Gluu Server), `clientSecret`, and `hostname` (FQDN of your Gluu Server host)
-
-4. Copy the `passport-saml-config.json` which you used when [registering external IdPs for Passport Inbound SSO](#register-external-idps-with-home-idp) into Demo app's main directory
-
-5. In the console make sure Demo app's main directory is the current working directory, then execute following commands:     
-    a. `# npm install`      
-    b. `# node server.js`           
-
-6. Using web browser of your choice navigate to `http://localhost:3000` and select one of the IDPs displayed on the page to initiate test flow. Eventually you should be redirected to the chosen IDP following the Inbound SAML flow
-![demo_screenshot1](https://github.com/GluuFederation/Inbound-SAML-Demo/raw/master/images/demo_1.png)
-
-7. After login at IDP of your choice you'll be redirected back at your Gluu Server instance where you might be asked to authorize the release of your personal data to the Demo app
-![demo_screenshot2](https://github.com/GluuFederation/Inbound-SAML-Demo/raw/master/images/demo_2.png)
-
-9. After giving your consent to release requested claims you'll be sent back to the Demo app with authorization code it needs to retrieve your personal data
-
-10. Application will display claims retrieved using the code on its "/profile" page
-![demo_screenshot3](https://github.com/GluuFederation/Inbound-SAML-Demo/raw/master/images/demo_3.png)
-Video featuring the Demo app in action can be found [here](https://youtu.be/ubhDgGU8C8s)
-
+### Generation of authorization urls
 
 ### Generation of suitable authorization urls
 
-This section describes a composition of OIDC authorization url which can be generated by application aiming for integration with Gluu Server while employing Inbound SAML powered by Passport.jst as authentication method of choice for its users, or to use it for manually testing Passsport-SAML authentication scenario (for the latter to work some OIDC client's registration must still exist at your Gluu Server so you could reference it in the url). 
+This section describes composition of an OIDC authorization url which is generated by an application and used for its integration with Gluu. The underlying authentication method is Inbound SAML. The method can be used in authenticating users, or in manually testing the Passsport-SAML authentication scenario (for the latter scenario, the OIDC client registration must still exist in your Gluu Server so it can be referenced in the URL itself). 
 
-Selection of Passport custom script authentication method at Gluu can be achieved either by passing its id in `acr_values` url query parameter, or by assigning it as the default `acr_value` for this client. In a correctly configured instance such request will trigger login flow presenting you with Gluu's Passport login page allowing to select authentication method you want. In case when Passport-SAML strategy is used and id of remote IDP is provided via `state` url query parameter, login page is not displayed and user is redirected to the pre-selected remote IDP right away.
+Applications can be presented with the Inbound SAML authentication either by passing its ID into `acr_values` url query parameter, or by assigning it as the default `acr_value` for this client. In a correctly configured instance, such a request will trigger the login flow presenting Gluu's IDP chooser login page. 
 
-[Next API article](https://gluu.org/docs/ce/api-guide/openid-connect-api/#requestauthorizationget) can be useful for learning additional details of url's layout, as well as [OIDC core spec paper](http://openid.net/specs/openid-connect-core-1_0.html).
+This page allows users to select their desired authentication method. In case that the Passport-SAML strategy is used along with the ID of a remote IDP (that is provided via the `state` url query parameter), the login page is not displayed and the user is redirected to the pre-selected remote IDP immediately.
 
-A brief summary of url query parameters should be present in the url is provided below:
-1. `clientid` (required) - id of OIDC client sending the request (its `inum` attribute in Gluu Server; the client's registration entry must exist at this Gluu Server)
-1.`acr_values` (optional) - handle of authentication method to use (name of custom authentication script implementing it in Gluu Server, for example "passport"); if omitted some other means of triggering Passport.js's custom authentication script must be employed
-1. `state` (required) - either an opaque random string, or a base64 encoded JSON with layout as follows: {"salt":"<salt_value>","provider":"<idp_id>"}; if the latter approach is used and remote IDP with such id is registered with Passport.js server, it will be automatically used for Inbound SAML scenario (no IDP selection page is displayed)
-1. `nonce` (required) - String value used to associate an OIDC client's session with issued `id_token`, and to mitigate replay attacks; the value is passed through unmodified from authorization request to `id_token`; sufficient entropy MUST be enforced in the `nonce` values to prevent possible attackers from guessing them.
-1. `acr_values` (optional) - String value used to request a specific authentication method from Gluu's oxAuth component; carries id (name) of the custom authentication (Jython) script implementing it, id of the Passport custom script in this case
+This article describes the [API](https://gluu.org/docs/ce/api-guide/openid-connect-api/#requestauthorizationget) which can be used in learning additional features around the URL's query parameters. Additional information around OIDC specification can also be found at [OIDC core spec paper](http://openid.net/specs/openid-connect-core-1_0.html).
 
-Optionally, instead of composing authorization url manually next Java code snippet could be used to generate it.
+A brief summary of the available URL's query parameters are described below:
 
-```java
+1. `clientid` (required) - the id of the OIDC client that sends the request (its `inum` attribute in the Gluu Server; the client's registration entry must already exist in the Gluu Server)    
+2. `state` (required) - either an opaque random string, or a base64 encoded JSON with the following format: {"salt":"<salt_value>","provider":"<idp_id>"}; if the latter approach is used and a remote IDP with such an id is registered with the Passport module (server), it will be automatically used in the Inbound SAML scenario (no IDP selection page is displayed)   
+3. `nonce` (required) - a String value used to associate an OIDC client's session with an issued `id_token`, and to mitigate replay attacks; the value is passed through unmodified from authorization request to `id_token`; a sufficient entropy MUST be applied over the `nonce` values in order to prevent possible attackers from guessing them.   
+4. `acr_values` (optional) - a String value used to request a specific authentication method from Gluu's oxAuth component; it holds the id (name) of the custom authentication (Jython) script; in this case the id of the Passport custom script.  
+
+Optionally, instead of composing the authorization URL manually, the following Java code snippet can be used for the same purpose.
+
+```
       //Example Java code for generation of OIDC authorization request
     
    
@@ -342,20 +300,49 @@ Optionally, instead of composing authorization url manually next Java code snipp
             }
         }
 ```
-A finalized authorization url may look like shown below:
-```
-https://example.gluu.org/oxauth/authorize?response_type=code+id_token&client_id=%40%215C0B.B148.7E63.326C%210001%21562E.F01E%210008%21664D.7760.0EC3.762D&scope=openid+profile&redirect_uri=https:%2F%2Flocalhost:8080&state=eyJwcm92aWRlciI6ImlkcDEifQ%3D%3D&nonce=S3M3R4nd0M&acr_values=passport
-```
-Following a correctly composed url should initiate the Inbound SAML flow powered by Passport.js
+
+A final authorization url may look like:
+
+`https://example.gluu.org/oxauth/authorize?response_type=code+id_token&client_id=%40%215C0B.B148.7E63.326C%210001%21562E.F01E%210008%21664D.7760.0EC3.762D&scope=openid+profile&redirect_uri=https:%2F%2Flocalhost:8080&state=eyJwcm92aWRlciI6ImlkcDEifQ%3D%3D&nonce=S3M3R4nd0M&acr_values=passport`
+
+## Implement IDP discovery (“WAYF”)
+
+IDP Discovery refers to process of determining which IDP users should be sent to for authentication (also known as: "Where Are You From", or WAYF). There are many ways to achieve this, but the following methods are most commonly used in practice.
+
+### Discovery based on supplied email address
+
+Email-based discovery, or "identifier-first" login, relies on an email address to discover where to send an user for authentication. It can be implemented as follows:
+
+1. Users are asked for an email address which they usually use for logging in their home IDP.  
+2. The domain name part of the email address is parsed and evaluated; the domain name part is a sub-string of the email address following the "@" character.
+3. Check if such IDP is allowed to be used with this application is done. The list of allowed IDPs will usually be derived from IDP entries in `passport-saml-config.json` file of target Gluu Server.
+4. If it is found, then an OpenID Connect authorization request is composed passing with id of this IDP passed via the `state` parameter (as described in the 'Generation of suitable authorization urls' previous section).
+5. The user is redirected to the composed URL, triggering the Passport Inbound SAML scenario
+6. The Passport's custom authentication script parses the `state` parameter, recovers id of the IDP chosen for this user, searches its configuration stored in `passport-saml-config.json` file locally, prepares SAML request for designated IDP and redirects user there
+
+### Landing page discovery
+
+If you do not mind exposing list of your external IDP partners, you can opt for allowing your users to choose which IDP suites their needs best by displaying list of all IDPs you've established trusts with. Gluu provides a basic IDP selection capabilities inbuilt to its standard authentication method's selection page shipped with its Passport module as well, which is displayed in case no IDP's id was sent in `state` parameter during flows powered by Passport module.
+
+1. A Landing page listing all trusted IDPs can be presented to unauthenticated users trying to get access to a protected resource. Page then prepares OpenID Connect authorization request to Gluu Server instance requesting for Passport-SAML authentication method and sending id of selected remote IDP encoded into `state` parameter of the request. The list of allowed IDPs will usually be derived from IDP entries in `passport-saml-config.json` file of target Gluu Server.
+
+2. The Passport's custom authentication script parses the `state` parameter, recovers id of the IDP chosen for this user, searches its configuration stored in `passport-saml-config.json` file locally, prepares SAML request for designated IDP and redirects user there.
+
+###  Discovery based on sub-domain or sub-directory
+
+If you provide a dedicated sub-domain or sub-path namespace to your customers or partners (urls like `https://customer1.mydomain.com` or `https://mydomain.com/customer1` illustrate this approach), then you can perform discovery based on this factor as well. When an unauthenticated user tries to access any protected resources related to those dedicated namespaces, an appropriate IDP related to it can be looked up in a configuration file and its id encoded into `state` parameter before redirecting the user to Gluu Server providing Passport-SAML authentication strategy.
 
 ## Troubleshooting tooltips
 
-In case of issues with this flow please make sure next requirements are met:
+In case there are issues during the Passport-SAML flow next suggestions should be considered before asking for help at Gluu Support Boards:
 
-1. Make sure time is synchronized between all machines participating in the flow (NTP is the way to go). When clocks are out of sync it's known to cause a hard to troubleshoot state of "infinite loop" (non-ending redirection to the same set of pages).
+1. Make sure that the system clocks are synchronized between all the machines that participate in the flow (NTP is the way to go). When clocks are out of sync, it's known to cause a hard to troubleshoot state of an "infinite loop" (non-ending redirection across a given set of pages).
 
-2. Ensure that `uid` and `mail` attributes sent by remote IDP don't match corresponding attributes of any other user entry already existing at the Gluu instance where Passport-SAML script is running. By default, OpenLDAP requires both of those attributes to stay unique for each user entry.
+2. Make sure that the `uid` and `mail` attributes sent by a remote IDP do not match any corresponding attributes of any other user entry that already exists in the Gluu Server instance where Passport-SAML script is running, otherwise auto-enrolment will fail. By default, the OpenLDAP requires both of these attributes to stay unique for each user entry.
 
-3. Some IDPs may choose to encrypt assertions in their SAML responses in a way Passport.js won't be able to process. In case of any issues with the flow (especially the ones following the reception of SAML response from remote IDP by Passport server) try to disable assertion encryption at IDP to verify whether this is the cause of it (the response will still normally be passed over encrypted channel ensured by SSL/TLS level, providing strong enough security).
+3. Some IDPs may choose to encrypt assertions in their SAML responses in a way that the Passport module is not able to understand. In case of any issues with the flow (especially the ones following the reception of SAML response from remote IDP by the Passport module) try to disable assertions' encryption at involved IDP in order to verify whether this is the cause of it (the response will still normally being passed over the encrypted channel via the SSL/TLS providing strong enough security).
 
-4. Passport keeps its logs under `/opt/gluu/node/passport/server/logs/` directory which can be checked for error traces and clues.
+4. The Passport module keeps its logs in the `/opt/gluu/node/passport/server/logs/` directory. These files can be very useful source of clues about what is going on deeper under the hood, as well as oxAuth's own log files, `oxauth.log` and `oxauth_script.log` in particular. When creating a support ticket please provide all related logs' entries you've managed to discover to speed up the resolution process.
+
+
+
