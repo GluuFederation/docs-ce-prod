@@ -86,7 +86,7 @@ Then follow the next steps:
 
 ## Configure Trust
  
-### Register External IDPs with home IDP
+### Register external IDPs with home IDP
 
 Some basic information is required to make Passport aware of the supported external IDPs. By default Passport expects to find this configuration in the `/etc/gluu/conf/passport-saml-config.json` file. Each supported external IDP should be added as a JSON object. 
 
@@ -163,7 +163,7 @@ Placeholder URLs like `https://idp.example.com` must be replaced with the URLs o
     * `givenName` - the user's first name
     * `familyName` - the user's last name
 
-### Register Passport's SP with external IDPs
+### Register home SP with external IDPs
 
 Passport will generate SAML SP metadata for every IDP listed in the `passport-saml-config.json` file once it successfully validates configuration. After this is achieved, the next step is to register its SP at all remote external IDPs.
 
