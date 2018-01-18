@@ -47,7 +47,7 @@ After authentication at an external IDP, if there is no existing user record in 
 The steps for configuring Gluu Server for inbound SAML scenario using Passport.js are as follows:
 
 1. [Enable Passport in Gluu](#enable-passport)
-1. [Configure trust relationships with external IDP(s)](#configure-trust-relationships-with-external-idps)
+1. [Configure trust](#configure-trust)
 1. [Testing the resulting setup](#testing)
 1. [Implement IDP discovery ("WAYF")](#implement-idp-discovery-wayf)
 1. [Troubleshooting tooltips](#troubleshooting-tooltips)
@@ -84,7 +84,7 @@ Then follow the next steps:
 !!! Note 
     In case if Passport is not available as a service, you can also restart the Gluu Server's main service itself.
 
-## Configure trust relationships with external IDPs
+## Configure Trust
  
 ### Register External IDPs with home IDP
 
@@ -207,7 +207,7 @@ Follow the guidelines below to install the Demo app at your Gluu Server host. Co
 5. Move the downloaded files into "node" user home directory: `# cp -R ./Inbound-SAML-Demo /home/node/`       
 6. Ensure correct permissions are set for the directory: `# chown -R node:node /home/node/Inbound-SAML-Demo/`    
 7. Switch to "node" user: `# su - node`
-8. Copy the finalized `passport-saml-config.json` file used during the [registering external IDPs](#configure-trust-relationships-with-external-idps) step into the app's directory: `$ cp /etc/gluu/conf/passport-saml-config.json ~/Inbound-SAML-Demo/`     
+8. Copy the finalized `passport-saml-config.json` file used during the [registering external IDPs](#configure-trust) step into the app's directory: `$ cp /etc/gluu/conf/passport-saml-config.json ~/Inbound-SAML-Demo/`     
 9. Edit the `~/Inbound-SAML-Demo/client-config.json` file and provide proper values for: `ClientID` (the `inum` attribute found in the client's properties after it has been registered in Gluu), `clientSecret`, and `hostname` (FQDN of this Gluu Server instance)      
 10. Initialize the Demo app:      
     * `$ cd ~/Inbound-SAML-Demo/`
