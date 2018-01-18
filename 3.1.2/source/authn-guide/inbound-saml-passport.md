@@ -23,23 +23,23 @@ After authentication at an external IDP, if there is no existing user record in 
 
 1. The user-agent (usually a web browser) requests one of the Gluu Server's endpoints' url after being redirected there by a remote party asking for release of user's personal data. The remote party has an option of pre-selecting remote IDP that must be used to authenticate the user by passing base64-encoded JSON object of specified format (described in details further in this paper) in `state` url query parameter of OpenID Connect authorization request. For example, the JSON object may take the following form: `{"salt":"<SALTVALUE>",provider":"<idp_name>"}`(base64-encoded)
 
-2. As a session for the user doesn't exist in the Gluu Server yet, the user-agent is redirected to its oxAuth component for authentication, triggering the SAML Passport Authenticator script; depending on how it was called, the script either retrieves the target IDP's id from the `state` parameter, or just presents an IDP selection page to the user, waiting for him to select it
+1. As a session for the user doesn't exist in the Gluu Server yet, the user-agent is redirected to its oxAuth component for authentication, triggering the SAML Passport Authenticator script; depending on how it was called, the script either retrieves the target IDP's id from the `state` parameter, or just presents an IDP selection page to the user, waiting for him to select it
 
-3. The script arranges a call to the Gluu Server's Passport module requesting a JWT token
+1. The script arranges a call to the Gluu Server's Passport module requesting a JWT token
 
-4. The Passport module generates a JWT token and returns it back to the Gluu Server
+1. The Passport module generates a JWT token and returns it back to the Gluu Server
 
-5. The script constructs an URL which the Passport module will need in order the delegate user's authentication to the selected IDP
+1. The script constructs an URL which the Passport module will need in order the delegate user's authentication to the selected IDP
 
-6. The script makes a request to the Gluu Server's Passport module including the JWT token, and initiates the authentication flow
+1. The script makes a request to the Gluu Server's Passport module including the JWT token, and initiates the authentication flow
 
-7. The Passport module redirects the user to the specified external SAML IDP
+1. The Passport module redirects the user to the specified external SAML IDP
 
-8. After successful authentication user is redirected back to the Passport module, and their personal data is passed within SAML response to module's callback endpoint
+1. After successful authentication user is redirected back to the Passport module, and their personal data is passed within SAML response to module's callback endpoint
 
-9. The Passport module redirects user  back to the Passport's custom interception script submitting the user's attributes and access token to its `passportpostlogin.xhtml` page
+1. The Passport module redirects user  back to the Passport's custom interception script submitting the user's attributes and access token to its `passportpostlogin.xhtml` page
 
-10. The interception script verifies whether such user exists in Gluu's OpenLDAP server:
+1. The interception script verifies whether such user exists in Gluu's OpenLDAP server:
    a. If the user exists then the user is logged into the system; in case some of their attributes are changed, they will be updated in existing user entry as well
    b. If the user does not exist, the interception script will first create a new user entry in the Gluu OpenLDAP server's tree and then will log in the user into the system.
 
@@ -47,10 +47,10 @@ After authentication at an external IDP, if there is no existing user record in 
 The steps for configuring Gluu Server for inbound SAML scenario using Passport.js are as follows:
 
 1. [Enable Passport in Gluu](#enable-passport)
-2. [Configure trust relationships with external IDP(s)](#configure-trust-relationships-with-external-idps)
-3. [Testing the resulting setup](#testing)
-4. [Implement IDP discovery ("WAYF")](#implement-idp-discovery-wayf)
-5. [Troubleshooting tooltips](#troubleshooting-tooltips)
+1. [Configure trust relationships with external IDP(s)](#configure-trust-relationships-with-external-idps)
+1. [Testing the resulting setup](#testing)
+1. [Implement IDP discovery ("WAYF")](#implement-idp-discovery-wayf)
+1. [Troubleshooting tooltips](#troubleshooting-tooltips)
 
 ## Enable Passport
 
@@ -66,14 +66,14 @@ Then follow the next steps:
     This script is updated from time to time. We recommend checking the [SAML Passport Authenticator script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/saml-passport/SamlPassportAuthenticator.py) and confirming it matches the script included in your distribution of Gluu.
 
 3. Click the "Update" at the bottom of the page.
-![](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/passport/update_passport_02.png)
+![](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/passport/update_passport_02.png)   
 
-4. Navigate to `Configuration `>` Manage Authentication` > `Passport Authentication Method`
+4. Navigate to `Configuration `>` Manage Authentication` > `Passport Authentication Method`   
 
 5. Select "Enabled" from `Passport Support` drop-down list and click "Update"
-![](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/passport/passport_auth_method_03.png)
+![](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/passport/passport_auth_method_03.png)    
 
-6. Once initial configuration is completed, restart the `passport` service by following the below instructions:
+6. Once initial configuration is completed, restart the `passport` service by following the below instructions:   
 
     6.1. Login to chroot container
 
