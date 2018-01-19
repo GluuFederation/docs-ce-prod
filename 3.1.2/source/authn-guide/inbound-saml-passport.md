@@ -3,14 +3,10 @@
 
 The Gluu Server can be configured to delegate user authentication to one or more external SAML IDPs using the Passport.js authentication middleware. Passport is an MIT licensed, Express-based web application which Gluu has modified to call oxTrust APIs for its non-static configuration.
 
+The instructions below are best suited to setup a Gluu environment that can support multiple external SAML IDPs. If only one external SAML IDP needs to be supported (i.e. a one-off integration), consider following the [SAML interception script](https://github.com/GluuFederation/oxAuth/tree/evolveip/Server/integrations/saml) instructions. 
+
 !!! Note
     Previous versions of Gluu relied on the Asimba SAML proxy to achieve inbound SAML. Asimba docs can be found [here](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.1/3.1.1/source/authn-guide/inbound-saml-asimba.md). 
-
-### One External IDP
-If only one external SAML IDP needs to be supported (a one-off integration), consider following the [SAML interception script](https://github.com/GluuFederation/oxAuth/tree/evolveip/Server/integrations/saml) instructions. 
-
-### Multiple External IDPs
-If multiple external IDPs need to be supported, approach described in this paper is recommended. 
 
 ### User Provisioning
 After authentication at an external IDP, if there is no existing user record in Gluu, both strategies mentioned above support just-in-time (JIT) user provisioning. Once personal data has been obtained and added to Gluu's local LDAP directory service, it can be used to offer SSO to any application leveraging Gluu for authentication. 
