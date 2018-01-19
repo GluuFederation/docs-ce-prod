@@ -29,8 +29,8 @@ documentation and administrative guide.
 
 ## Available components in Gluu Server 3.1.2
 - oxAuth, oxTrust, oxCore v3.1.2
-- OpenLDAP v2.4.44-5
-- OpenDJ v3.0
+- Gluu OpenLDAP v2.4.44-5
+- Gluu OpenDJ v3.0
 - Shibboleth v3.2.1
 - Asimba forked from v1.3.0 + v1.3.1 snapshot changes (v1.3.1 was never released)
 - Passport v0.3.2
