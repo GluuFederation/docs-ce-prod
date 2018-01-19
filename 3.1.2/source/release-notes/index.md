@@ -27,9 +27,10 @@ The most common use cases for the Gluu Server include single sign-on (SSO), mobi
 Please visit the [Gluu Documentation Page](http://www.gluu.org/docs/ce) for the complete 
 documentation and administrative guide. 
 
-## Components included in Gluu Server 3.1.2
+## Available components in Gluu Server 3.1.2
 - oxAuth, oxTrust, oxCore v3.1.2
 - OpenLDAP v2.4.44-5
+- OpenDJ v3.0
 - Shibboleth v3.2.1
 - Asimba forked from v1.3.0 + v1.3.1 snapshot changes (v1.3.1 was never released)
 - Passport v0.3.2
