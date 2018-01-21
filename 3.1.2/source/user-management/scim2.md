@@ -10,9 +10,9 @@ For your reference, current version of the standard is governed by the following
 
 This API must not be anonymously accessed but SCIM standard does not define a specific mechanism to prevent unauthorized requests to endpoints. There are just a few guidelines in section 2 of [RFC 7644](https://tools.ietf.org/html/rfc7644) concerned with authentication and authorization. 
 
-Gluu Server CE allows you to protect your endpoints with [UMA](#scim-protected-by-UMA) (a profile of [OAuth 2.0](http://tools.ietf.org/html/rfc6749)). This is a safe and standardized approach for controling access to web resources. For SCIM protection, we **strongly recommend** its usage. 
+Gluu Server CE allows you to protect your endpoints with [UMA](#scim-protected-by-uma) (a profile of [OAuth 2.0](http://tools.ietf.org/html/rfc6749)). This is a safe and standardized approach for controling access to web resources. For SCIM protection, we **strongly recommend** its usage. 
 
-Alternatively, for testing purposes you can temporarily enable the test mode. In this "mode" some complexity is taken out of the way so it serves as a quick and easy way to start interacting with your service and learning about SCIM.
+Alternatively, for testing purposes you can temporarily enable the test mode. In this "mode" some complexity is taken out of the way so it serves as a quick and easy way to start interacting with your service as well as learning about SCIM.
 
 ### Protection using UMA
 
@@ -981,7 +981,7 @@ To test your authorization code, use a simple GET retrieval request.
 
 #### Code a dummy insertion routine
 
-Use the information given in the section (Creating resources)[#creating-resources] to make a hard-coded POST to the user endpoint.
+Use the information given in the section [Creating resources](#creating-resources) to make a hard-coded POST to the user endpoint.
 
 In summary, make sure the following works for you:
 
