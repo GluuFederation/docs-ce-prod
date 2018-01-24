@@ -87,7 +87,7 @@ root's home directory (just in case you need to restore!):
 
 12. Stop LDAP service.
 
-    `# Service solserver stop`
+    `# service solserver stop`
     
 13. Take a back up of the current schema files, which will be `gluu.schema`.
 
