@@ -95,7 +95,7 @@ root's home directory (just in case you need to restore!):
     
 12. Download the Schema files to `/opt/gluu/schema/openldap`
 
-    `#wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.2/static/openldap/gluu.schema -O gluu.schema`
+    `# wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.2/static/openldap/gluu.schema -O gluu.schema`
 
 13. Start LDAP service.
      
