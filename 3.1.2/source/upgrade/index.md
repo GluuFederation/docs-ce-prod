@@ -101,7 +101,7 @@ root's home directory (just in case you need to restore!):
      
     `# service solserver start`
 
-!!!Warning
+!!! Warning
     If schema of your old instance was customized, in particular due to addition of custom attributes and/or object classes, you'll need to resort to manual migration of your changes (if any) to the just acquired newest `gluu.schema` file.
 
 !!! Note
