@@ -65,7 +65,7 @@ root's home directory (just in case you need to restore!):
     
     `# tar -czf ~/oxauth.tar.gz oxauth`
     
-9. Download and install the latest WAR (assuming the URL was in the $WAR_URL environment variable): 
+9. Download and install the latest WAR: 
 
     `# cd /opt/gluu/jetty/oxauth/webapps/`
     
@@ -102,7 +102,7 @@ root's home directory (just in case you need to restore!):
     `# service solserver start`
 
 !!!Warning
-    If schema of your old instance was customized, in particular due to adding custom attributes, you'll need to resort to manual migration of your changes done to and `custom.schema` and (if any) to `gluu.schema`.
+    If schema of your old instance was customized, in particular due to addition of custom attributes and/or object classes, you'll need to resort to manual migration of your changes (if any) to the just acquired newest `gluu.schema` file.
 
 !!! Note
     Above procedure can be utilized to update other components of Gluu CE server 3.1.2, mentioned below.
