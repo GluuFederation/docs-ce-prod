@@ -4,7 +4,7 @@ The SSO integration guide will help you understand how to use existing SAML and 
 This list of integration methods is not exhaustive. However, the strategies below have been tested and are well understood by our support and development staff. 
 
 !!! Warning
-    Writing your own client software is very challenging and outside the scope of Gluu Support. Therefore, we recommend sticking the one of the methods listed below.  
+    Writing your own client software is very challenging and **outside the scope of Gluu Support**. Therefore, we recommend sticking to the one of the methods listed below.  
 
 !!! Note
     Unless otherwise noted, all software listed below is free open source software.
