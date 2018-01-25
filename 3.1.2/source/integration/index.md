@@ -1,13 +1,11 @@
 # Single Sign-On (SSO) Integration Guide
 The SSO integration guide will help you understand how to use existing SAML and OpenID Conenct "client" (or SP/RP) software to secure and integrate web and mobile applications with your Gluu Server IDP. 
 
-This list of integration methods is not exhaustive. However, the strategies below have been tested and are well understood by our support and development staff. 
+This list of integration methods is not exhaustive. However, the strategies below have been tested and are well understood by our support and development staff. Unless otherwise noted, all software included in the integration guide is free open source software (FOSS).
 
 !!! Warning
     Writing your own client software is very challenging and **outside the scope of Gluu Support**. Therefore, we recommend sticking to the one of the methods listed below.  
-
-!!! Note
-    Unless otherwise noted, all software included in the integration guide is free open source software.
+    
 
 ## Server Side Web Apps
 Many applications are "server-side", meaning the web page displays content but most of the dynamic business logic resides on the web server. Two design patterns have emerged for securing server-side web applications: 
