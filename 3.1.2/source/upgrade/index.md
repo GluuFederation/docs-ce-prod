@@ -109,7 +109,12 @@ root's home directory (just in case you need to restore!):
 
 ### Latest .war files
 
-The latest release of .war files can be downloaded from the following locations:
+The latest release of .war files can be downloaded from locations provided below. Select the subdirectory corresponding to 
+version of your package.
+
+!!! Note
+    Subdirectories marked as "-SNAPSHOT" are not safe for general public's use and should be avoided unless you were specifically 
+    instructed by Gluu stuff to use one.
 
 - [oxTrust](https://ox.gluu.org/maven/org/xdi/oxtrust-server/)
 - [oxAuth](https://ox.gluu.org/maven/org/xdi/oxauth-server/)
