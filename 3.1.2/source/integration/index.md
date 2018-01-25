@@ -7,7 +7,7 @@ This list of integration methods is not exhaustive. However, the strategies belo
     Writing your own client software is very challenging and **outside the scope of Gluu Support**. Therefore, we recommend sticking to the one of the methods listed below.  
 
 !!! Note
-    Unless otherwise noted, all software listed below is free open source software.
+    Unless otherwise noted, all software included in the integration guide is free open source software.
 
 ## Server Side Web Apps
 Many applications are "server-side", meaning the web page displays content but most of the dynamic business logic resides on the web server. Two design patterns have emerged for securing server-side web applications: 
