@@ -18,7 +18,7 @@ Option 1 offers easier devops. Option 2 enables a tighter integration with centr
 ### Web Server Filters
 Web Server filters are a tried and true approach to achieving SSO with web applications. The web server filter enforces the presence of a token in a HTTP Request. If no token is present, the Web server may re-direct the person, or return a meaningful code or message to the application. Your devops team will love this approach–they can just manage the web server configuration files. It will be crystal clear to them what policies apply to what URLs. 
 
-We recommend the following SAML and OpenID Connect web server filters: 
+Gluu supports the following SAML and OpenID Connect web server filters: 
   
 - SAML: [Shibboleth SP](./sswebapps/saml-sp.md)     
 
@@ -27,14 +27,14 @@ We recommend the following SAML and OpenID Connect web server filters:
 ### Client Software 
 Client software performs some of the heavy lifting for developers around leveraging OAuth 2.0 in applications. Calling API’s directly enables “smarter” handling of authentication and authorization in applications. For example, transaction level security can be more easily implemented by calling OAuth 2.0 APIs directly. This approach will have a positive impact on usability and security. 
 
-We recommend the following client software to implement OpenID Connect in server-side web applications:
+Gluu supports the following client software to secure and integrate server-side web applications:
 
 - [oxd](https://gluu.org/docs/oxd) (commercial software)
 
 ## Single Page Apps
 Single Page Applications (SPAs) can be seen as a mix between traditional Web SSO and API access: the application itself is loaded from a (possibly protected) regular website and the Javascript code starts calling APIs in another (or the same) domain(s). For this use case, the OpenID Connect spec points to using the “Implicit grant type” for passing token(s) to the SPA since that grant was specifically designed with the “in-browser client” in mind. 
 
-We recommend the following client software to implement OpenID Connect in SPA’s:
+Gluu supports the following client software to secure and integrate SPA’s:
 
 - [AppAuth JS](https://github.com/openid/AppAuth-JS/)
 - [Gluu's OIDC JS Client](./spa/oauth-js-implicit.md)
@@ -42,6 +42,8 @@ We recommend the following client software to implement OpenID Connect in SPA’
 
 ## Native Apps
 To integrate native apps with your Gluu Server, we recommend the AppAuth libraries for iOS , MacOS, and Android. AppAuth strives to directly map the requests and responses of those specifications, while following the idiomatic style of the implementation language. In addition to mapping the raw protocol flows, convenience methods are available to assist with common tasks like performing an action with fresh tokens.
+
+Gluu supports the following client software to secure and integrate native apps:
 
 - [AppAuth iOS and macOS](https://github.com/openid/AppAuth-iOS)
 - [AppAuth Android](https://github.com/openid/AppAuth-Android)
