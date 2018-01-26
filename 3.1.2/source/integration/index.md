@@ -27,7 +27,7 @@ We recommend the following SAML and OpenID Connect web server filters:
 - OpenID Connect: [Apache mod_auth_openidc](./sswebapps/openidc-rp.md), [Nginx lua-resty-openidc](https://github.com/zmartzone/lua-resty-openidc)
 
 ### Client Software 
-Client software performs some of the heavy lifting for developers around leveraging OAuth 2.0 directly in their applications. Calling the API’s directly will enable “smarter” handling of authentication in your applications. For example, transaction level security can be more easily implemented by calling the OAuth 2.0 APIs directly. This can have a positive impact on usability. Also, giving developers more ability to leverage centralized policies increases re-use of policies, and ultimately results in better security. 
+Client software performs some of the heavy lifting for developers around leveraging OAuth 2.0 in applications. Calling API’s directly enables “smarter” handling of authentication and authorization in applications. For example, transaction level security can be more easily implemented by calling OAuth 2.0 APIs directly. This approach will have a positive impact on usability and security. 
 
 We recommend the following client software to implement OpenID Connect in server-side web applications:
 
