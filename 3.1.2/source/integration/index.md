@@ -1,7 +1,9 @@
 # Single Sign-On (SSO) Integration Guide
 The SSO integration guide will help you understand how to use existing SAML and OpenID Conenct "client" (or SP/RP) software to secure and integrate web and mobile applications with your Gluu Server IDP. 
 
-This list of integration methods is not exhaustive. However, the strategies below have been tested and are well understood by our support and development staff. Unless otherwise noted, all software included in the integration guide is free open source software (FOSS).
+This list of integration methods is not exhaustive. However, the strategies below have been tested and are well understood by our support and development staff. 
+
+Unless otherwise noted, all software included in the integration guide is free open source software (FOSS).
 
 !!! Warning
     Writing your own client software is very challenging and **outside the scope of Gluu Support**. Therefore, we recommend sticking to the one of the methods listed below.  
@@ -47,7 +49,9 @@ To integrate native apps with your Gluu Server, we recommend the AppAuth librari
 - [AppAuth Android](https://github.com/openid/AppAuth-Android)
 
 ## SaaS Applications 
-Integrating SaaS applications with your Gluu Server is fairly straightforward. Presumably the app already supports SAML or OpenID Connect and provides documentation for configuring your IDP (Gluu Server) for SSO. We have documentation for configuring the Gluu Server for SSO to a few popular SaaS applications like Google and Salesforce. If we do not have a guide for configuring the app in question, simply perform a Goolge search for `<SaaS Provider> SAML` or `<SaaS Provider> OpenID Connect`. Follow the provider's instructions for configuring your IDP for SSO and test (and re-test!). 
+Integrating SaaS applications with your Gluu Server should be fairly straightforward. Presumably the app already supports SAML or OpenID Connect and provides documentation for configuring your IDP (Gluu Server) for SSO. 
+
+There is existing Gluu documentation for configuring SSO to a few popular SaaS applications like Google and Salesforce. If there is not an existing guide, perform a Goolge search for `<SaaS Provider> SAML` or `<SaaS Provider> OpenID Connect`. Follow the provider's instructions for configuring your IDP for SSO and test (and re-test!). 
 
 !!!Note
     If the SaaS application in question does not already support SAML or OpenID Connect, our best advice is find a similar product or provider that does integrate with your standards-based security infrastructure. 
