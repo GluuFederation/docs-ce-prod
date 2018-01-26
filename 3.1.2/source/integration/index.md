@@ -2,8 +2,8 @@
 The SSO integration guide offers a list of supported SAML and OpenID Conenct "client" (SP/RP) software projects that can be used to secure and integrate web and mobile applications with the Gluu Server IDP. 
 
 !!! Warning
-    Writing custom client software is challenging and **outside the scope of Gluu Support**. Therefore, we recommend sticking to the one of the methods listed below.  
-
+    Writing custom client software is challenging and **outside the scope of Gluu Support**. Therefore, we strongly recommend using one of the pre-selected software projects listed below to secure and integrate applications. 
+    
 !!! Note  
     Unless otherwise noted, all software in the integration guide is free open source software (FOSS).
 
