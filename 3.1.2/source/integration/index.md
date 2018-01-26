@@ -6,7 +6,7 @@ This list of integration methods is not exhaustive. However, the strategies belo
 Unless otherwise noted, all software included in the integration guide is free open source software (FOSS).
 
 !!! Warning
-    Writing your own client software is very challenging and **outside the scope of Gluu Support**. Therefore, we recommend sticking to the one of the methods listed below.  
+    Writing custom client software is challenging and **outside the scope of Gluu Support**. Therefore, we recommend sticking to the one of the methods listed below.  
     
 
 ## Server Side Web Apps
