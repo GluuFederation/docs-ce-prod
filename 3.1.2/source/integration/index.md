@@ -27,14 +27,14 @@ Gluu supports the following SAML and OpenID Connect web server filters:
 ### Client Software 
 Client software performs some of the heavy lifting for developers around leveraging OAuth 2.0 in applications. Calling API’s directly enables “smarter” handling of authentication and authorization in applications. For example, transaction level security can be more easily implemented by calling OAuth 2.0 APIs directly. This approach will have a positive impact on usability and security. 
 
-Gluu supports the following client software to secure and integrate server-side web applications:
+Gluu supports the following software to secure and integrate server-side web applications:
 
 - [oxd](https://gluu.org/docs/oxd) (commercial software)
 
 ## Single Page Apps
 Single Page Applications (SPAs) can be seen as a mix between traditional Web SSO and API access: the application itself is loaded from a (possibly protected) regular website and the Javascript code starts calling APIs in another (or the same) domain(s). For this use case, the OpenID Connect spec points to using the “Implicit grant type” for passing token(s) to the SPA since that grant was specifically designed with the “in-browser client” in mind. 
 
-Gluu supports the following client software to secure and integrate SPA’s:
+Gluu supports the following software to secure and integrate SPA’s:
 
 - [AppAuth JS](https://github.com/openid/AppAuth-JS/)
 - [Gluu's OIDC JS Client](./spa/oauth-js-implicit.md)
@@ -43,7 +43,7 @@ Gluu supports the following client software to secure and integrate SPA’s:
 ## Native Apps
 To integrate native apps with your Gluu Server, we recommend the AppAuth libraries for iOS , MacOS, and Android. AppAuth strives to directly map the requests and responses of those specifications, while following the idiomatic style of the implementation language. In addition to mapping the raw protocol flows, convenience methods are available to assist with common tasks like performing an action with fresh tokens.
 
-Gluu supports the following client software to secure and integrate native apps:
+Gluu supports the following software to secure and integrate native apps:
 
 - [AppAuth iOS and macOS](https://github.com/openid/AppAuth-iOS)
 - [AppAuth Android](https://github.com/openid/AppAuth-Android)
