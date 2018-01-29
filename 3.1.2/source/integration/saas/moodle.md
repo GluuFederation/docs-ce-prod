@@ -1,6 +1,4 @@
-# Single Sign-On (SSO) To Moodle
-## Overview
-
+# Single Sign-On (SSO) to Moodle
 The following doc describes how to achieve SSO to [Moodle](https://moodle.org/) using the Gluu Server IDP and the Moodle OpenID Connect (OIDC) plugin from Office 365.
 
 ## Install OIDC in Moodle
