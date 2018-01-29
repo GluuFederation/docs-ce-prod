@@ -1,4 +1,4 @@
-# SAML SSO to Salesforce.com
+# Single Sign-On (SSO) to Salesforce.com
 
 By default Salesforce suggest deployers to implement IDP-initiated SSO.
 The initialization of IDP-initiated SSO is little bit complex as it
