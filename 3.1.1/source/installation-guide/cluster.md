@@ -1,6 +1,8 @@
 
 # Manual Gluu Server Clustering
 
+# At this time the Symas OpenLDAP distribution in Gluu Server is experiencing issues with replication. You should Cluster with OpenDJ in [Gluu Server 3.1.2](https://gluu.org/docs/ce/3.1.2/installation-guide/cluster/). 
+
 ## Introduction
 If you have requirements for high availability (HA) or failover, follow the instructions below to manually configure multi-master replication (MMR) across multiple Gluu Servers.
 
