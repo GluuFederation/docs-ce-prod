@@ -75,13 +75,13 @@ pages:
         - 'SaaS Integrations':
             - 'Google Apps': 'integration/saas/google.md'
             - 'Office 365': 'integration/saas/office.md'
-            - 'Testing Shibboleth with TestShib2': 'integration/saas/testShib2.md'
-#    - 'Hobsons Education Sol': 'integration/saas/hobsons.md'
+            - 'Moodle': 'integration/saas/moodle.md'
             - 'Salesforce': 'integration/saas/salesforce.md'
             - 'Dropbox': 'integration/saas/dropbox.md'
             - 'GitHub Enterprise': 'integration/saas/github-enterprise.md'
             - 'Cisco WebEx': 'integration/saas/webex.md'
             - 'Amazon Web Services (AWS)': 'integration/saas/aws.md'
+            - 'TestShib2': 'integration/saas/testShib2.md'
 - Reference:
         - Gluu API Guide:
             - 'Custom ID Generation': 'api-guide/api.md'
