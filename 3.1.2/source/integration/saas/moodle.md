@@ -11,7 +11,9 @@ Clone the `moodle-auth_oidc` source code from its git repo:
 # git clone https://github.com/Microsoft/moodle-auth_oidc.git
 ```
 
-Let's assume that Moodle is installed at the following location: `/var/www/html/moodle.yoursite.com/public_html/`. 
+Let's assume that Moodle is installed at the following location: 
+
+`/var/www/html/moodle.yoursite.com/public_html/`. 
 
 Move the code to auth as follows:
 
