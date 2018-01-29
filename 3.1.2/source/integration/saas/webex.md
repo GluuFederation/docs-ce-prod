@@ -1,4 +1,4 @@
-# Cisco WebEx configuration in Gluu Server v3
+# Single Sign-On (SSO) to Cisco WebEx
 
 ## Custom Attribute Creation
 
