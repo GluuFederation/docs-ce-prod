@@ -47,10 +47,10 @@ Gluu supports the following software to secure and integrate native apps:
 - [AppAuth iOS and macOS](https://github.com/openid/AppAuth-iOS)
 - [AppAuth Android](https://github.com/openid/AppAuth-Android)
 
-## SaaS Applications 
-Integrating SaaS applications with your Gluu Server should be fairly straightforward. Presumably the app already supports SAML or OpenID Connect and provides documentation for configuring your IDP (Gluu Server) for SSO. 
+## SaaS / Off-the-shelf Applications 
+Integrating SaaS and off-the-shelf applications with your Gluu Server should be fairly straightforward. Presumably the app already supports SAML or OpenID Connect and provides documentation for configuring your IDP (Gluu Server) for SSO. 
 
-There is existing Gluu documentation for configuring SSO to a few popular SaaS applications like [Google](./saas/google.md) and [Salesforce](./saas/salesforce.md). If there is not an existing guide, perform a Goolge search for `<SaaS Provider> SAML` or `<SaaS Provider> OpenID Connect`. Follow the provider's instructions for configuring your IDP for SSO and test (and re-test!). 
+There is existing Gluu documentation for configuring SSO to popular applications like [Google](./saas/google.md) and [Salesforce](./saas/salesforce.md). If there is not an existing guide, perform a Goolge search for `<SaaS Provider> SAML` or `<SaaS Provider> OpenID Connect`. Follow the provider's instructions for configuring your IDP for SSO and test (and re-test!). 
 
 !!!Note
     If the SaaS application in question does not already support SAML or OpenID Connect, our best advice is find a similar product or provider that does integrate with your standards-based security infrastructure. 
