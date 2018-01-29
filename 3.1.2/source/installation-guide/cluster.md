@@ -4,16 +4,14 @@
 ## Introduction
 If you have requirements for high availability (HA) or failover, follow the instructions below to manually configure multi-master replication (MMR) across multiple Gluu Servers.
 
+**The preferred method of replication is the Gluu fork of OpenDJ**
+
 !!! Note
     If your organization has a Gluu support contract, please email [sales@gluu.org](mailto:sales@gluu.org) for access to our automated clustering tool. 
 
 ## Concept
 
-In this tutorial we are configuring MMR with OpenLDAP using delta-syncrepl by creating an accesslog database and configuring synchronization with the `slapd.conf` file. 
-
-The `ldap.conf` file for each Gluu Server will allow the self-signed certs that Gluu creates and configuring the `symas-openldap.conf` to allow external connections for LDAP on ports 1636 and 636 (for SSL). 
-
-There are also some additional steps that are required to persist Gluu functionality across servers. This is where a load-balancer/proxy is required.
+Enable OpenDJ replication and also make configuration changes to make Gluu Server highly avaiable, via a proxy.
 
 ## Prerequisites
 
@@ -31,7 +29,7 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 - To create the following instructions we used an Nginx load balancer/proxy, however if you have your own load balancer, like F5 or Cisco, you should use that instead and disregard the instructions about configuring Nginx.   
 
-- Gluu Server version 3.x using OpenLDAP.   
+- Gluu Server version 3.1.2 using OpenDJ.   
 
 - Redis-server for caching sessions.   
 
@@ -43,9 +41,11 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 - Make sure to use a separate NGINX/Load-balancing server FQDN as hostname.   
 
+- Make sure to select OpenDJ as your LDAP choice [1].
+
 - This will be considered your "primary" server for the sake of this documentation.   
 
-- A separate NGINX server is necessary because replicating a Gluu server to a different hostname breaks the functionality of the Gluu web page when using a hostname other than what is in the certificates. For example, if I use idp1.example.com as my host and copy that to a second server (e.g. idp2.example.com), the process of accessing the site on idp2.example.com, even with replication, will fail authentication due to a hostname conflict. So if idp1 fails, you can't access the Gluu web GUI anymore.   
+- A separate NGINX server is necessary because replicating a Gluu server to a different hostname breaks the functionality of the Gluu web page when using a hostname other than what is in the certificates. For example, if I use idp1.example.com as my host and copy that to a second server (e.g. idp2.example.com), the process of accessing the site on idp2.example.com, even with replication, will fail authentication due to a hostname conflict. So if idp1 fails, you won't be able to use Gluu Server effectively.
 
 - Now for the rest of the servers in the cluster, [download the Gluu packages](https://gluu.org/docs/ce/3.1.2/installation-guide/install/) but **don't run `setup.py` yet**.   
 
@@ -94,184 +94,33 @@ Gluu.Root # ./setup.py
 
 - The rest of the configurations for the install should be automatically loaded and all you need to do here is press `Enter`
 
-### 2. Choose a primary server
+### 3. Enable LDAP replication
 
-There needs to be a primary server to replicate from initially for delta-syncrepl to inject data. After the initial sync all servers will be exactly the same, as delta-syncrepl will fill the newly created database.
+!!! 45.55.232.15    loadbalancer.example.org (NGINX server)
+!!! 159.203.126.10  idp1.example.org (Gluu Server 3.1.2 on Ubuntu 14)
+!!! 138.197.65.243  idp2.example.org (Gluu Server 3.1.2 on Ubuntu 14)
 
-- Choose one server as a base and then on every **other** server:   
-
-```
-Gluu.Root # rm /opt/gluu/data/main_db/*.mdb
-```
-
-- Now make accesslog directories on **every server** (including the primary server) and give ldap ownership:   
+On the first server (idp1.example.org, in our example), utilize these commands inside the Gluu chroot to initialize and enable replication.
 
 ```
-Gluu.Root # mkdir /opt/gluu/data/accesslog_db
-Gluu.Root # chown -R ldap. /opt/gluu/data/
+# /opt/opendj/bin/dsreplication enable --host1 idp1.example.org --port1 4444 --bindDN1 "cn=directory manager" --bindPassword1 <password> --replicationPort1 8989 --host2 idp2.example.org --port2 4444 --bindDN2 "cn=directory manager" --bindPassword2 <password> --replicationPort2 8989 --adminUID admin --adminPassword <password> --baseDN "o=gluu" -X -n
+
+# /opt/opendj/bin/dsreplication initialize --baseDN "o=gluu" --adminUID admin --adminPassword <password> --hostSource idp1.gluu.org --portSource 4444  --hostDestination idp2.gluu.org --portDestination 4444 -X -n
 ```
 
-### 3. Modify configuration files
-
-You now need to modify the following configuration files: `slapd.conf`, `ldap.conf` and `symas-openldap.conf`
-
-- Creating the `slapd.conf` file for replication is relatively easy but can be prone to errors if done manually. Attached is a script and template files for creating multiple `slapd.conf` files for every server. Download git and clone the necessary files on **one** server:
+Now on the second server (idp2.example.org):
 
 ```
-Gluu.Root # apt-get update && apt-get install git && cd /tmp/ && git clone https://github.com/GluuFederation/cluster-mgr.git && cd /tmp/cluster-mgr/manual_install/slapd_conf_script/
+# /opt/opendj/bin/dsreplication enable --host1 c1.gluu.org --port1 4444 --bindDN1 "cn=directory manager" --bindPassword1 <password> --replicationPort1 8989 --host2 idp1.gluu.org --port2 4444 --bindDN2 "cn=directory manager" --bindPassword2 <password> --replicationPort2 8989 --adminUID admin --adminPassword password --baseDN "o=gluu" -X -n
+
+# /opt/opendj/bin/dsreplication initialize --baseDN "o=gluu" --adminUID admin --adminPassword <password> --hostSource idp2.gluu.org --portSource 4444  --hostDestination idp1.gluu.org --portDestination 4444 -X -n
 ```
 
-- We need to change the configuration file for our own specific needs:
+Now run these commands on both servers:
 
 ```
-Gluu.Root # vi syncrepl.cfg
-```
-
-- Here we want to change the `ip_address`, `fqn_hostname`, `ldap_password` to our specific server instances. For example:
-
-```
-
-[server_1]
-ip_address = 159.203.126.10
-fqn_hostname = idp1.example.org
-ldap_password = (your password)
-enable = Yes
-
-[server_2]
-ip_address = 138.197.65.243
-fqn_hostname = idp2.example.org
-ldap_password = (your password)
-enable = Yes
-
-[server_3]
-...
-[nginx]
-fqn_hostname = loadbalancer.example.org
-
-```
-
- - Include the FQDN's and IP addresses of your Gluu servers and NGINX server (if you want the NGINX configuration file to be created automatically)
-
-- If required, you can change the `/tmp/cluster-mgr/manual_install/slapd_conf_script/ldap_templates/slapd.conf` to fit your specific needs to include different schemas, indexes, etc. Avoid changing any of the `{#variables#}`.
-
-- Now run the python script `create_slapd_conf.py` (Built with python 2.7) in the `/tmp/cluster-mgr/manual_install/slapd_conf_script/` directory :
-
-```
-
-Gluu.Root # python create_slapd_conf.py
-
-```
-
-- This will output multiple `.conf` files in `/tmp/cluster-mgr/manual_install/slapd_conf_script/` named to match your server FQDN:
-
-```
-
-Gluu.Root #  ls
-
-... idp1.example.org   idp2.example.org  ... nginx.conf
-
-```
-
-- Move each .conf file to their respective server replacing the `slapd.conf`:
-
-```
-
-Gluu.Root # cp /tmp/cluster-mgr/manual_install/slapd_conf_script/idp1_example_org.conf /opt/symas/etc/openldap/slapd.conf
-
-```
-
-and for the other server(s), my key to access the other server is outside the chroot so I have to logout to transfer
-
-```
-Gluu.Root # logout
-scp /opt/gluu-server-3.1.2/tmp/cluster-mgr/manual_install/slapd_conf_script/idp2_example_org.conf root@idp2.example.org:/opt/gluu-server-3.1.2/opt/symas/etc/openldap/slapd.conf
-
-```
-
-- Now create and modify the ldap.conf **on every server**:
-
-```
-
-Gluu.Root # vi /opt/symas/etc/openldap/ldap.conf
-
-```
-
-- Add these lines (it's an empty file)
-
-```
-
-TLS_CACERT /etc/certs/openldap.pem
-TLS_REQCERT never
-
-```
-
-- Modify the HOST_LIST entry of symas-openldap.conf **on every server**:
-
-```
-
-vi /opt/symas/etc/openldap/symas-openldap.conf
-
-```
-
-
-- Replace:
-
-```
-
-HOST_LIST="ldaps://127.0.0.1:1636/"
-
-```
-
-- With:
-
-```
-
-HOST_LIST="ldaps://0.0.0.0:1636/ ldaps:///"
-
-```
-
-- **On all your servers**, inside the chroot, modify `/etc/gluu/conf/ox-ldap.properties` replacing:
-
-`servers: localhost:1636`
-
-With (obviously use your own FQDN's):
-
-`servers: idp1.example.org:1636,idp2.example.org:1636`
-
-Placing all servers in your cluster topology in this config portion.
-
-### 4. Server synchronization
-
-It is important that our server's times are synchronized so we must install `ntp` outside of the Gluu chroot and set `ntp` to update by the minute (necessary for delta-sync log synchronization). If time gets out of sync, the entries will conflict and their could be issues with replication.
-
-```
-GLUU.root@host:/ # logout
-# apt install ntp
-# crontab -e
-```
-
-- Select your preferred editor and add this to the bottom of the file:
-
-```
-* * * * * /usr/sbin/ntpdate -s time.nist.gov
-```
- 
-- This synchronizes the time every minute.
-
-- Force-reload solserver on every server
-```
-# service gluu-server-3.1.2 login
-# service solserver force-reload
-```
-
-- Delta-sync multi-master replication should be initializing and running. Check the logs for confirmation. It might take a moment for them to sync, but you should end up see something like the following:
-
-```
-# tail -f /var/log/openldap/ldap.log | grep sync
-
-Aug 23 22:40:29 dc4 slapd[79544]: do_syncrep2: rid=001 cookie=rid=001,sid=001,csn=20170823224029.216104Z#000000#001#000000
-Aug 23 22:40:29 dc4 slapd[79544]: syncprov_matchops: skipping original sid 001
-Aug 23 22:40:29 dc4 slapd[79544]: syncrepl_message_to_op: rid=001 be_modify
+/opt/opendj/bin/dsconfig -h idp1.gluu.org -p 4444 -D "cn=Directory Manager" -w secret --trustAll -n set-crypto-manager-prop --set ssl-encryption:true
+/opt/opendj/bin/dsconfig -h idp2.gluu.org -p 4444 -D "cn=Directory Manager" -w secret --trustAll -n set-crypto-manager-prop --set ssl-encryption:true
 ```
 
 ### 5. Install NGINX
