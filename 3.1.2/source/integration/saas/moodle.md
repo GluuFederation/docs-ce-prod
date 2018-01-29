@@ -23,6 +23,9 @@ Login as admin to your Moodle site and then navigate to:
 
 Follow the on-screen instructions about updating the database. 
 
+## Add OIDC Client in Gluu 
+In oxTrust, navigate to `OpenID Connect` > `Clients`. 
+
 Create a new client under OpenID Connect with the following specifications:
 
 | Attribute Name     |              Values       |
