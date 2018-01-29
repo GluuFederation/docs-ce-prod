@@ -1,4 +1,4 @@
-# Office 365 configuration in Gluu Server v3
+# Single Sign-On (SSO) to Office 365
 
 This doc will guide you on how to setup a Gluu Server as your identity provider (IDP) for access to Office 365. 
 By using a Gluu Server as your IDP you can bypass the process of storing passwords directly in O365.
