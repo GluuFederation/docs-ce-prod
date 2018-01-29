@@ -94,13 +94,13 @@ Gluu.Root # ./setup.py
 
 - The rest of the configurations for the install should be automatically loaded and all you need to do here is press `Enter`
 
-### 3. Enable LDAP replication
+### 2. Enable LDAP replication
 
 !!! 45.55.232.15    loadbalancer.example.org (NGINX server)
 !!! 159.203.126.10  idp1.example.org (Gluu Server 3.1.2 on Ubuntu 14)
 !!! 138.197.65.243  idp2.example.org (Gluu Server 3.1.2 on Ubuntu 14)
 
-On the first server (idp1.example.org, in our example), utilize these commands inside the Gluu chroot to initialize and enable replication.
+On the first server (idp1.example.org, in our example), utilize these commands inside the Gluu chroot to initialize and enable replication. All `<password>`'s should be changed to the same password.
 
 ```
 # /opt/opendj/bin/dsreplication enable --host1 idp1.example.org --port1 4444 --bindDN1 "cn=directory manager" --bindPassword1 <password> --replicationPort1 8989 --host2 idp2.example.org --port2 4444 --bindDN2 "cn=directory manager" --bindPassword2 <password> --replicationPort2 8989 --adminUID admin --adminPassword <password> --baseDN "o=gluu" -X -n
@@ -111,7 +111,7 @@ On the first server (idp1.example.org, in our example), utilize these commands i
 Now on the second server (idp2.example.org):
 
 ```
-# /opt/opendj/bin/dsreplication enable --host1 c1.gluu.org --port1 4444 --bindDN1 "cn=directory manager" --bindPassword1 <password> --replicationPort1 8989 --host2 idp1.gluu.org --port2 4444 --bindDN2 "cn=directory manager" --bindPassword2 <password> --replicationPort2 8989 --adminUID admin --adminPassword password --baseDN "o=gluu" -X -n
+# /opt/opendj/bin/dsreplication enable --host1 idp1.example.org --port1 4444 --bindDN1 "cn=directory manager" --bindPassword1 <password> --replicationPort1 8989 --host2 idp2.gluu.org --port2 4444 --bindDN2 "cn=directory manager" --bindPassword2 <password> --replicationPort2 8989 --adminUID admin --adminPassword password --baseDN "o=gluu" -X -n
 
 # /opt/opendj/bin/dsreplication initialize --baseDN "o=gluu" --adminUID admin --adminPassword <password> --hostSource idp2.gluu.org --portSource 4444  --hostDestination idp1.gluu.org --portDestination 4444 -X -n
 ```
@@ -123,7 +123,7 @@ Now run these commands on both servers:
 /opt/opendj/bin/dsconfig -h idp2.gluu.org -p 4444 -D "cn=Directory Manager" -w secret --trustAll -n set-crypto-manager-prop --set ssl-encryption:true
 ```
 
-### 5. Install NGINX
+### 3. Install NGINX
 
 **If you have your own load balancer, you can use the following NGINX configuration documentation as a guide for how to proxy with the Gluu server.**
 
@@ -205,7 +205,7 @@ http {
 
 ```
 
-### 6. Install and configure redis
+### 4. Install and configure redis
 
 Now you need to install and configure redis-server on one or more servers. 
 
@@ -238,7 +238,7 @@ service redis-server force-reload
 
 - Redis can also be configured for HA and failover with multiple methods utilizing [Sentinel](https://redis.io/topics/sentinel) or [Redis-cluster](https://redis.io/topics/cluster-tutorial)
 
-### 7. Modify JSON entries 
+### 5. Modify JSON entries 
 
 Use JXplorer (or a similar LDAP browser) to modify some of the JSON entries in LDAP for handling accessible caching and multiple authorization servers.      
 
@@ -268,7 +268,7 @@ Use JXplorer (or a similar LDAP browser) to modify some of the JSON entries in L
 
 - Now click `Submit` on the bottom after all your changes. 
 
-### 8. Transfer certificates
+### 6. Transfer certificates
 
 Now you need to transfer certificates from the first server to the other servers.
 
@@ -324,7 +324,7 @@ service gluu-server-3.1.2 restart
 
 ```
 
-- Now your administrator web UI and oxAuth have some failover redundancy. There are obviously more configurations necessary on the network layer of your topology for true HA failover, but that is outside of the scope for this documentation.          
+- Now your administrator web UI and oxAuth has some failover redundancy. There are obviously more configurations necessary on the network layer of your topology for true HA failover, but that is outside of the scope for this documentation.          
 
 ## Support
 If you have any questions or run into any issues, please open a ticket on [Gluu Support](https://support.gluu.org).
