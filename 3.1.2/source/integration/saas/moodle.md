@@ -45,7 +45,7 @@ Create a new client with the following specifications:
 
 ![image](../../img/integration/Moodles_OIDC_Values.png)
 
-The values in above image as shown are:
+Enter the corresponding values in the Moodle OIDC form:
 
 | OIDC Form Field Name     |              Values       |
 |-------------------------|---------------------------------------|
