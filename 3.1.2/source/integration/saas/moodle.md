@@ -46,6 +46,7 @@ The values in above image as shown are:
 |-------------------------|---------------------------------------|
 | Provider Name | Gluu OpenID Connect |
 | Client ID | Take the value from the newly created client |
-| Client Secret | This too is to be taken from client created at Gluu server|| Authorization Endpoint | Take the value from `https://<hostname>/.well-known/openid-configuration` |
-| Token Endpoint |Take the value from `https://<idp-hostname>/.well-known/openid-configuration` |
+| Client Secret | This too is to be taken from client created at Gluu server|
+| Authorization Endpoint | Take the authorization_endpoint value which looks like `"https://<idp-hostname>/oxauth/seam/resource/restv1/oxauth/authorize"` from `https://<hostname>/.well-known/openid-configuration` |
+| Token Endpoint |Take the token_endpoint value which looks like `"https://<idp-hostname>/oxauth/seam/resource/restv1/oxauth/token` from `https://<idp-hostname>/.well-known/openid-configuration` |
 | Redirect URI auth_oidc | `https://<hostname>/auth/oidc/` |
