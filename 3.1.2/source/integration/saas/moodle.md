@@ -3,7 +3,7 @@ The following doc describes how to achieve SSO to Moodle using the Gluu Server I
 
 ## Install OIDC in Moodle
 
-Clone the `moole-auth_oidc` source code from its git repo:
+Clone the `moodle-auth_oidc` source code from its git repo:
 
 ```
 # git clone https://github.com/Microsoft/moodle-auth_oidc.git
