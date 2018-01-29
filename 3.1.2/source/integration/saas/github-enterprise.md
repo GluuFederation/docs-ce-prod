@@ -1,4 +1,4 @@
-# SSO to Github Enterprise 
+# Single Sign-On (SSO) to Github Enterprise 
 
 ## Configuration in Gluu Server
 
