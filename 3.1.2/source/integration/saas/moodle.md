@@ -1,9 +1,9 @@
-# SSO To Moodles 
+# SSO To Moodle
 ​
-The doc is going to describe the process of doing SSO to Moodles based site with Gluu server as Identity Provider.
+The doc is going to describe the process of doing SSO to Moodle based site with Gluu server as Identity Provider.
 For the process we've used OpenID Connect(oidc) plugin from Office 365.
 
-### Installing OIDC in Moodles
+### Installing OIDC in Moodle
 
 Before moving forward we require moole-auth_oidc package. We can clone the source code from git repo of Microsoft as below:
 
@@ -11,13 +11,13 @@ Before moving forward we require moole-auth_oidc package. We can clone the sourc
 # git clone https://github.com/Microsoft/moodle-auth_oidc.git
 ```
 
-Let's assume that the moodles is installed at the location: /var/www/html/moodles.yoursite.com/public_html/, then you need to move above code to auth as follows:
+Let's assume that the moodle is installed at the location: /var/www/html/moodle.yoursite.com/public_html/, then you need to move above code to auth as follows:
 
 ```
-# mv  moodle-auth_oidc   /var/www/html/moodles.yoursite.com/public_html/auth/oidc
+# mv  moodle-auth_oidc   /var/www/html/moodle.yoursite.com/public_html/auth/oidc
 
 ```
-Login as admin to your moodles site and tehn follow the path: 
+Login as admin to your moodle site and tehn follow the path: 
 
 Site administration ===> Plugins ===> Authentication 
 
@@ -36,7 +36,7 @@ Create a new client under OpenID Connect with the following specifications:
 | Grant Types | authorization_code, implicit, refresh_token |
 | Logout Session Required | True |
 
-### Configure Gluu Server as IdP in Moodles
+### Configure Gluu Server as IdP in Moodle
 
 ![image](../../img/integration/Moodles_OIDC_Values.png)
 
