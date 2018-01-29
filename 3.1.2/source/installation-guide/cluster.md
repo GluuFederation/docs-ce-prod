@@ -96,10 +96,6 @@ Gluu.Root # ./setup.py
 
 ### 2. Enable LDAP replication
 
-!!! 45.55.232.15    loadbalancer.example.org (NGINX server)
-!!! 159.203.126.10  idp1.example.org (Gluu Server 3.1.2 on Ubuntu 14)
-!!! 138.197.65.243  idp2.example.org (Gluu Server 3.1.2 on Ubuntu 14)
-
 On the first server (idp1.example.org, in our example), utilize these commands inside the Gluu chroot to initialize and enable replication. All `<password>`'s should be changed to the same password.
 
 ```
