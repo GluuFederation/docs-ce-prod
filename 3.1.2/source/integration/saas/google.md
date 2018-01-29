@@ -1,4 +1,4 @@
-# SSO to Google Apps
+# Single Sign-On (SSO) to Google Apps
 
 Google Apps supports SAML. This document will explain how to configure Google Apps and the Gluu Server for single sign-on (SSO).
 
