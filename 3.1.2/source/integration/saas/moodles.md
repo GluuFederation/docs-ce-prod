@@ -30,7 +30,7 @@ Create a new client under OpenID Connect with the following specifications:
 | Client Name     | Your desired value|| Application Type        | Web |
 | Pre-Authorization        |Enabled                        |
 | Authentication method for the Token Endpoint     |   client_secret_post    |
-| Redirect Login URIs   | https://yourdomain.com/auth/oidc/ |
+| Redirect Login URIs   | https://<hostname>/auth/oidc/ |
 | Scopes | address, email, openid, permission, phone, profile, user_name |
 | Response Types | code, token, id_token |
 | Grant Types | authorization_code, implicit, refresh_token |
@@ -46,6 +46,6 @@ The values in above image as shown are:
 |-------------------------|---------------------------------------|
 | Provider Name | Gluu OpenID Connect |
 | Client ID | Take the value from the newly created client |
-| Client Secret | This too is to be taken from client created at Gluu server|| Authorization Endpoint | Take the value from https://gluu.server.installation/.well-known/openid-configuration |
-| Token Endpoint |Take the value from https://gluu.server.installation/.well-known/openid-configuration |
-| Redirect URI auth_oidc | https://yourdomain.com/auth/oidc/ |
+| Client Secret | This too is to be taken from client created at Gluu server|| Authorization Endpoint | Take the value from https://<hostname>/.well-known/openid-configuration |
+| Token Endpoint |Take the value from https://<idp-hostname>/.well-known/openid-configuration |
+| Redirect URI auth_oidc | https://<hostname>/auth/oidc/ |
