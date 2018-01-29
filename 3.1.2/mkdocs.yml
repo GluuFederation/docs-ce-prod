@@ -72,7 +72,7 @@ pages:
         - 'Native Apps':
             - 'AppAuth iOS and macOS': 'integration/native-apps/appauth-ios.md'
             - 'AppAuth Android': 'integration/native-apps/appauth-android.md'
-        - 'SaaS Integrations':
+        - 'SaaS / Off-the-shelf Apps':
             - 'Google Apps': 'integration/saas/google.md'
             - 'Office 365': 'integration/saas/office.md'
             - 'Moodle': 'integration/saas/moodle.md'
