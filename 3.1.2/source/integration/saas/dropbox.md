@@ -1,4 +1,4 @@
-# SSO to Dropbox
+# Sngle Sign-On (SSO) to Dropbox
 
 This document is a step-by-step guide to setting up Dropbox SSO in Gluu Server.
 This SSO requires setting a custom `nameid` called `emailnid`.
