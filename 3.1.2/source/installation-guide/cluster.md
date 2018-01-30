@@ -101,14 +101,26 @@ On the first server (idp1.example.org, in our example), utilize these commands i
 ```
 # /opt/opendj/bin/dsreplication enable --host1 idp1.example.org --port1 4444 --bindDN1 "cn=directory manager" --bindPassword1 <password> --replicationPort1 8989 --host2 idp2.example.org --port2 4444 --bindDN2 "cn=directory manager" --bindPassword2 <password> --replicationPort2 8989 --adminUID admin --adminPassword <password> --baseDN "o=gluu" -X -n
 
-# /opt/opendj/bin/dsreplication initialize --baseDN "o=gluu" --adminUID admin --adminPassword <password> --hostSource idp1.gluu.org --portSource 4444  --hostDestination idp2.gluu.org --portDestination 4444 -X -n
+# /opt/opendj/bin/dsreplication initialize --baseDN "o=gluu" --adminUID admin --adminPassword <password> --hostSource idp1.example.org --portSource 4444  --hostDestination idp2.gluu.org --portDestination 4444 -X -n
 ```
 
-Now run these commands on both servers:
+Now run these commands on the first server to secure the communication:
 
 ```
-/opt/opendj/bin/dsconfig -h idp1.gluu.org -p 4444 -D "cn=Directory Manager" -w <password> --trustAll -n set-crypto-manager-prop --set ssl-encryption:true
-/opt/opendj/bin/dsconfig -h idp2.gluu.org -p 4444 -D "cn=Directory Manager" -w <password> --trustAll -n set-crypto-manager-prop --set ssl-encryption:true
+/opt/opendj/bin/dsconfig -h idp1.example.org -p 4444 -D "cn=Directory Manager" -w <password> --trustAll -n set-crypto-manager-prop --set ssl-encryption:true
+/opt/opendj/bin/dsconfig -h idp2.example.org -p 4444 -D "cn=Directory Manager" -w <password> --trustAll -n set-crypto-manager-prop --set ssl-encryption:true
+```
+
+Now archive the OpenDJ keystore:
+
+```
+# tar -cf opendj_crts.tar -C /opt/opendj/config/ keystore keystore.pin truststore
+```
+
+And transfer them to the other nodes and run the following code:
+
+```
+# tar -xf opendj_crts.tar -C /opt/opendj/config/
 ```
 
 ### 3. Install NGINX
