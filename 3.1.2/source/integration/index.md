@@ -52,8 +52,8 @@ Integrating SaaS and off-the-shelf applications with your Gluu Server should be 
 
 There is existing Gluu documentation for configuring SSO to popular applications like [Google](./saas/google.md) and [Salesforce](./saas/salesforce.md). If there is not an existing guide, perform a Goolge search for `<SaaS Provider> SAML` or `<SaaS Provider> OpenID Connect`. Follow the provider's instructions for configuring your IDP for SSO and test (and re-test!). 
 
-- Refer to the [OpenID Connect Provider (OP) documentation](../admin-guide/openid-connect.md) for configuring your OP for SSO
-- Refer to the [SAML Identity Provider (IDP) documentation](../admin-guide/saml.md) for configuring your SAML IDP for SSO
+- Refer to the [OpenID Connect Provider (OP) documentation](../admin-guide/openid-connect.md) for configuring your Gluu OP for SSO
+- Refer to the [SAML Identity Provider (IDP) documentation](../admin-guide/saml.md) for configuring your Gluu SAML IDP for SSO
 
 !!!Note
     If the SaaS application in question does not already support SAML or OpenID Connect, our best advice is find a similar product or provider that does integrate with your standards-based security infrastructure. 
