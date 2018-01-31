@@ -56,7 +56,7 @@ There is existing Gluu documentation for configuring SSO to popular applications
 - Refer to the [SAML Identity Provider (IDP) documentation](../admin-guide/saml.md) for configuring your Gluu SAML IDP for SSO
 
 !!!Note
-    If the SaaS application in question does not already support SAML or OpenID Connect, our best advice is find a similar product or provider that does integrate with your standards-based security infrastructure. 
+    If the target application does not already support SAML or OpenID Connect, our best advice is find a similar product or provider that does support one of these open web standards for single sign-on (SSO).  
 
 
 
