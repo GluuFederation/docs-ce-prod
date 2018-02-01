@@ -555,7 +555,7 @@ These clients won't clutter your LDAP, they are also short-lived (one day) so th
 
 User-managed access (UMA) is a profile of [OAuth2.0](http://tools.ietf.org/html/rfc6749) and is focused on defining standardized flows and constructs for coordinating the protection of an API or existing web resource. 
 
-For more information on UMA please visit the corresponding [page](../admin-guide/uma.md) in the docs - the specification can be found at [kantara website](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-04.html).
+For more information on UMA please visit the corresponding [page](../admin-guide/uma.md) in the docs - the specification can be found at [kantara website](https://docs.kantarainitiative.org/uma/wg/rec-oauth-uma-grant-2.0.html).
 
 Gluu Server CE supports UMA protection for SCIM endpoints from version 2.4.0 onwards. This functionality is built-in and does not require any special package or installation. 
 
@@ -795,7 +795,7 @@ assertEquals(Response.Status.NO_CONTENT.getStatusCode(), response.getStatus());
 
 ### Using a different programming language 
 
-Coding service interactions when SCIM endpoints are being protected by UMA is more involved than using test mode. If you are planning to code for a SCIM service protected by UMA, it is advisable to check the flow depicted in section 3 of the [UMA 2.0 spec](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-04.html). Focus only on the interactions of client vs. another party (resource server or authorization server). In a previous [section](#actors-involved-in-protection) we talked about the actors involved in UMA protection; this will save you time when reading the specification.
+Coding service interactions when SCIM endpoints are being protected by UMA is more involved than using test mode. If you are planning to code for a SCIM service protected by UMA, it is advisable to check the flow depicted in section 3 of the [UMA 2.0 spec](https://docs.kantarainitiative.org/uma/wg/rec-oauth-uma-grant-2.0.html). Focus only on the interactions of client vs. another party (resource server or authorization server). In a previous [section](#actors-involved-in-protection) we talked about the actors involved in UMA protection; this will save you time when reading the specification.
 
 As a guideline for your own implementation, you can take ideas from the Java class [UmaScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.2/src/main/java/gluu/scim2/client/UmaScimClient.java#L72) found in SCIM-Client. Starting  at the `authorize` method, you will see how steps in the spec flow are being followed there.
 
