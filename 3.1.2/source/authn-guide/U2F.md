@@ -14,7 +14,7 @@ to implement a two-step, two-factor authentication (2FA) process with username /
 - A Gluu Server ([installation instructions](../installation-guide/index.md));      
 - [U2F interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/u2f/U2fExternalAuthenticator.py) (included in the default Gluu Server distribution);     
 - At least one U2F device for testing, like one of the devices [listed below](#u2f-devices). 
-- For Linux based operating system, a little modification required in udev rule, that is stated [below](#u2f-linux)
+- For Linux based operating system, a little modification required in udev rule, that is stated [below](#u2f-linux).
 
 ### U2F Devices
 Some well known U2F devices and manufacturers include:           
