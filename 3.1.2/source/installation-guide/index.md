@@ -39,6 +39,8 @@ The following ports are open to the Internet by default.
 |       443             |       tcp             | apache2/httpd    |
 |       22              |       tcp             | ssh              |
 
+!!! Note
+    See the [operations guide](../operation/ports.md) for a list of internal ports used by Gluu Server components (e.g. oxAuth, oxTrust, etc.). 
 
 ## File Descriptors(FD)
 
