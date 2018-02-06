@@ -1,6 +1,6 @@
 # Gluu Server Backup
 
-The Gluu Server should be backed up frequently--we recommend at least one daily backup and one weekly backup. There are multiple methods for backing up the Gluu Server. A couple recommended strategies are provided below.
+The Gluu Server should be backed up frequently--**we recommend at least one daily backup and one weekly backup.** There are multiple methods for backing up the Gluu Server. A couple recommended strategies are provided below.
 
 ## Tarball Method
 Tarball the entire Gluu Server CE `chroot` folder using the `tar` command: 
