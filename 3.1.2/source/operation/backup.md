@@ -1,27 +1,33 @@
 # Gluu Server Backup
 
-The method of backing up Gluu Server CE is given below:
-
-* Tarball Method: using `tar` command to tarball the entire 
-Gluu Server CE `chroot` folder
-
-<!-- * Script Method : using the provided export and 
-import scripts to back up ldif of the LDAP. -->
+The Gluu Server should be backed up frequently--we recommend at least one daily backup and one weekly backup. There are multiple methods for backing up the Gluu Server. A couple recommended strategies are provided below.
 
 ## Tarball Method
+Tarball the entire Gluu Server CE `chroot` folder using the `tar` command: 
 
-1. Stop the server using below command
-
-	`# service gluu-server-3.1.2 stop`
+1. Stop the server using below command: `# service gluu-server-3.1.2 stop`
 	
-2. use tar command to take a backup
-
-	`# tar cvf gluu301-backup.tar /opt/gluu-server-3.1.2/`
+1. use tar command to take a backup: `# tar cvf gluu301-backup.tar /opt/gluu-server-3.1.2/`
 	
-3. Start the server again
-
-	`# service gluu-server-3.1.2 start`
+1. Start the server again: `# service gluu-server-3.1.2 start`
 	
+
+## LDIF Data Backup
+From time to time (daily or weekly) you will want to export the LDAP database to a standard LDIF format. If you have the data in plain text, it gives you some options for recovery that are not possible with a binary backup. 
+
+In Gluu OpenDJ, you could stop the LDAP server and issue the following command:
+
+`# export-ldif`
+
+In Gluu OpenLDAP, you would do the following:
+
+`/opt/symas/bin/slapcat -b "o=gluu" ` 
+
+At runtime (if you don't want to stop the LDAP server), you can always use the `ldapsearch` command: 
+
+`$ /opt/opendj/bin/export-ldif -n userRoot -l backup.ldif`
+
+
 <!--
 ## Script Method
 
