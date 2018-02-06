@@ -19,6 +19,7 @@ Enable OpenDJ replication and also make configuration changes to make Gluu Serve
 
 |Port| Application| Relation |
 -----|------------- | ---
+| 22 | SSH | Utility |
 | 443| SSL/TLS | Load-balancer to oxAuth |
 |4444| OpenDJ Replication| Between Gluu Servers |
 |6379| Redis Server | From oxAuth to Redis |
