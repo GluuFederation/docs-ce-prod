@@ -5,9 +5,9 @@ The Gluu Server should be backed up frequently--we recommend at least one daily 
 ## Tarball Method
 Tarball the entire Gluu Server CE `chroot` folder using the `tar` command: 
 
-1. Stop the server using below command: `# service gluu-server-3.1.2 stop`
+1. Stop the server: `# service gluu-server-3.1.2 stop`
 	
-1. use tar command to take a backup: `# tar cvf gluu301-backup.tar /opt/gluu-server-3.1.2/`
+1. Use `tar` to take a backup: `# tar cvf gluu301-backup.tar /opt/gluu-server-3.1.2/`
 	
 1. Start the server again: `# service gluu-server-3.1.2 start`
 	
