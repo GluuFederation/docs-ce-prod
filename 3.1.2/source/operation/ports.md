@@ -1,12 +1,11 @@
-# Different Ports used for the applications in Gluu
+# Ports used for Gluu Server components
 
-Internally Gluu server uses different ports for the application 
-incorporated or installed during installation.
+The following ports are used by internal Gluu Server applications (i.e. oxAuth, oxTrust, LDAP, Passport, etc.). These are backend ports, not open to the world, that listen at loopback iface (127.0.0.x).
 
 |Port| Application|
 -----|-------------
-|8081| OxAuth Server|
-|8082| OxTrust Server|
+|8081| oxAuth Server|
+|8082| oxTrust Server|
+|8086| Shibboleth IDP|
+|8085| oxAuth-RP|
 |8084| Asimba|
-|8085| OxAuth-RP|
-|8086| IDP|
