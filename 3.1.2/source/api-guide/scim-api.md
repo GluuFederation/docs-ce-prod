@@ -41,7 +41,7 @@ Additionally the following resource extensions are defined:
 
 To learn about the specific capabilities of the service, inspect your `/ServiceProvider`, `/ResourceTypes`,  and `/Schemas` endpoints (see [below](#service-provider-configuration-endpoints)). These endpoints are not protected so you can use a web browser to check. 
 
-# SCIM Endpoints
+## SCIM Endpoints
 
 The following table summarizes the available endpoints in Gluu implementation of SCIM service
 
