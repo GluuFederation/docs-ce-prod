@@ -13,7 +13,19 @@ If you have requirements for high availability (HA) or failover, follow the inst
 
 Enable OpenDJ replication and also make configuration changes to make Gluu Server highly avaiable, via a proxy.
 
+
 ## Prerequisites
+
+
+Gluu Server Ports:
+
+|Port| Application|
+-----|-------------
+| 443| SSL/TLS file from LB |
+|1636| OpenDJ Standard |
+|4444| OpenDJ Replication|
+|8989| OpenDJ Replication|
+|30865| Csync2 Default |
 
 Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:   
 
@@ -94,7 +106,7 @@ Gluu.Root # ./setup.py
 
 - The rest of the configurations for the install should be automatically loaded and all you need to do here is press `Enter`
 
-### 2. Enable LDAP replication
+### 2. Enable Replication
 
 On the first server (idp1.example.org, in our example), utilize these commands inside the Gluu chroot to initialize and enable replication. All `<password>`'s should be changed to the same password.
 
@@ -117,10 +129,32 @@ Now archive the OpenDJ keystore:
 # tar -cf opendj_crts.tar -C /opt/opendj/config/ keystore keystore.pin truststore
 ```
 
-And transfer them to the other nodes and run the following code:
+And transfer them to the other nodes and run the following command:
 
 ```
 # tar -xf opendj_crts.tar -C /opt/opendj/config/
+```
+
+Note, if you want to check the status of OpenDJ replication run the following command:
+
+```
+/opt/opendj/bin/dsreplication status -n -X -h idp1.example.org -p 4444 -D "cn=Directory Manager" -I admin -w <password>
+```
+
+Next we should (install csync2)[https://linuxaria.com/howto/csync2-a-filesystem-syncronization-tool-for-linux] for file system replication.
+
+The necessary directories to replicate are as follows:
+
+```
+/opt/gluu/jetty/identity/conf/shibboleth3/idp/
+/opt/gluu/jetty/identity/conf/shibboleth3/sp/
+/opt/shibboleth-idp/conf
+/opt/shibboleth-idp/metadata/
+/opt/shibboleth-idp/sp/
+/opt/shibboleth-idp/temp_metadata/
+/etc/gluu/conf/
+/etc/certs/
+/opt/symas/etc/openldap/schema
 ```
 
 ### 3. Install NGINX
@@ -156,32 +190,31 @@ scp /opt/gluu-server-3.1.2/etc/certs/httpd.crt root@loadbalancer.example.org:/et
 
 - And from the server we created our nginx.conf file (idp1.example.org in my case), to the NGINX server (loadbalancer.example.org)
 
-- The following configuration is the base template for what was created in our script.
+- The following is a working `nginx.conf` example template for a Gluu cluster.
 
 ```
 events {
-        worker_connections 768;
+        worker_connections 6500;
 }
 
 http {
   upstream backend_id {
-    ip_hash;
-    server {server1_ip_or_FQDN}:443;
-    server {server2_ip_or_FQDN}:443;
+  ip_hash;
+  server idp1.example.org:443 max_fails=2 fail_timeout=10s;
+  server idp2.example.org:443 max_fails=2 fail_timeout=10s;
   }
   upstream backend {
-    server {server1_ip_or_FQDN}:443;
-    server {server2_ip_or_FQDN}:443;
-        
+  server idp1.example.org:443 max_fails=2 fail_timeout=10s;
+  server idp2.example.org:443 max_fails=2 fail_timeout=10s;
   }
   server {
     listen       80;
-    server_name  {NGINX_server_FQDN};
-    return       301 https://{NGINX_server_FQDN}$request_uri;
+    server_name  loadbalancer.example.org;
+    return       301 https://loadbalance.example.org$request_uri;
    }
   server {
     listen 443;
-    server_name {NGINX_server_FQDN};
+    server_name loadbalancer.example.org;
 
     ssl on;
     ssl_certificate         /etc/nginx/ssl/httpd.crt;
@@ -189,21 +222,75 @@ http {
 
     location ~ ^(/)$ {
       proxy_pass https://backend;
+      proxy_redirect          off;
+      proxy_next_upstream     error timeout invalid_header http_500;
+      proxy_connect_timeout   2;
+      proxy_set_header        Host            $host;
+      proxy_set_header        X-Real-IP       $remote_addr;
+      proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
     }
     location /.well-known {
         proxy_pass https://backend/.well-known;
+        proxy_redirect          off;
+        proxy_next_upstream     error timeout invalid_header http_500;
+        proxy_connect_timeout   2;
+        proxy_set_header        Host            $host;
+        proxy_set_header        X-Real-IP       $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
     }
     location /oxauth {
         proxy_pass https://backend/oxauth;
+        proxy_redirect          off;
+        proxy_next_upstream     error timeout invalid_header http_500;
+        proxy_connect_timeout   2;
+        proxy_set_header        Host            $host;
+        proxy_set_header        X-Real-IP       $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
     }
     location /identity {
         proxy_pass https://backend_id/identity;
+        proxy_redirect          off;
+        proxy_next_upstream     error timeout invalid_header http_500;
+        proxy_connect_timeout   2;
+        proxy_set_header        Host            $host;
+        proxy_set_header        X-Real-IP       $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location /cas {
+        proxy_pass https://backend/cas;
+        proxy_redirect          off;
+        proxy_next_upstream     error timeout invalid_header http_500;
+        proxy_connect_timeout   2;
+        proxy_set_header        Host            $host;
+        proxy_set_header        X-Real-IP       $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location /asimba {
+        proxy_pass https://backend/asimba;
+        proxy_redirect          off;
+        proxy_next_upstream     error timeout invalid_header http_500;
+        proxy_connect_timeout   2;
+        proxy_set_header        Host            $host;
+        proxy_set_header        X-Real-IP       $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location /passport {
+        proxy_pass https://backend/passport;
+        proxy_redirect          off;
+        proxy_next_upstream     error timeout invalid_header http_500;
+        proxy_connect_timeout   2;
+        proxy_set_header        Host            $host;
+        proxy_set_header        X-Real-IP       $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
     }
 
   }
 }
 
+
 ```
+
+Please adjust the configuration for your IDP (Gluu Servers) and your Load Balancer FQDN's
 
 ### 4. Install and configure redis
 
@@ -306,12 +393,26 @@ Gluu.Root # wget https://raw.githubusercontent.com/GluuFederation/cluster-mgr/ma
 
 - Modify the `hostname` to your NGINX/Load-balancer's FQDN.
 
+```
+import os.path
+import subprocess
+
+cmd_keytool = '/opt/jre/bin/keytool'
+hostname = "loadbalancer.example.org"
+```
+
 - Run the script
 
 ```
 
 Gluu.Root # python keystore_Config.py
 
+```
+
+This error is fine, if OpenLDAP is not installed, and vice versa for OpenDJ.
+
+```
+keytool error: java.io.FileNotFoundException: /etc/certs/openldap.crt (No such file or directory)
 ```
 
 - Restart Identity and oxAuth on all servers, then restart all your Gluu servers.
