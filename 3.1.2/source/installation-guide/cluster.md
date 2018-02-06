@@ -16,6 +16,8 @@ Enable OpenDJ replication and also make configuration changes to make Gluu Serve
 
 ## Prerequisites
 
+Next ports are used by different components to communicate with their peers at other nodes of a cluster. Additional configuration 
+efforts may be needed to ensure they can be reached by incoming connections.
 
 |Port| Application| Relation |
 -----|------------- | ---
