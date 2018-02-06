@@ -10,7 +10,7 @@ VM Snapshot backups are highly recommended. In the event of disastrous productio
 
 All platform virtualization software and cloud vendors should have snapshot backup features available. For instance, Digital Ocean has Live Snapshot and Droplet Snapshot, VMWare has Snapshot Manager, etc. 
 
-Prod, Dev and QA environments should all be snapshotted regularly. In addition, it's a good practice to test snapshots periodically to confirm consistency and integrity.   
+Prod, Dev and QA environments should all be backed up regularly. In addition, it's a good practice to test snapshots periodically to confirm consistency and integrity.   
 
 ## Tarball Method
 Tarball the entire Gluu Server CE `chroot` folder using the `tar` command: 
