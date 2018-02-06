@@ -1,4 +1,17 @@
-# Ports used for Gluu Server components
+# Ports
+
+## Ports open to the Internet
+
+The following ports are open to the Internet by default.
+
+|       Port Number     |       Protocol        |   Notes          |
+|-----------------------|-----------------------|------------------|
+|       80              |       tcp             | Forwards to 443  |
+|       443             |       tcp             | apache2/httpd    |
+|       22              |       tcp             | ssh              |
+
+
+## Ports used by Gluu Server components
 
 The following ports are used by internal Gluu Server applications (i.e. oxAuth, oxTrust, LDAP, Passport, etc.). These are backend ports, not open to the world, that listen at loopback iface (127.0.0.x).
 
