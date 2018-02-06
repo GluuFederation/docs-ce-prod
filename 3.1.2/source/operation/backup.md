@@ -15,9 +15,9 @@ Tarball the entire Gluu Server CE `chroot` folder using the `tar` command:
 ## LDIF Data Backup
 From time to time (daily or weekly) you will want to export the LDAP database to a standard LDIF format. If you have the data in plain text, it gives you some options for recovery that are not possible with a binary backup. 
 
-In Gluu OpenDJ, you could stop the LDAP server and issue the following command:
+In Gluu OpenDJ, you could stop the LDAP server and issue the following command (specifying the proper directory and file):
 
-`/opt/opendj/bin/export-ldif -n userRoot -l records.ldif`  
+`/opt/opendj/bin/export-ldif -n userRoot -l /path/to/back/directory/<backup_file>.ldif`  
 
 In Gluu OpenLDAP, you would do the following:
 
