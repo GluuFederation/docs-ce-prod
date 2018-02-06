@@ -6,11 +6,11 @@ There are multiple methods for backing up the Gluu Server. A few recommended str
 
 ## VM Snapshot Backup
 
-VM Snapshot backups are highly recommended. A proper snapshot of the last working condition can help rapidly restore service in the event of disastrous situations in production systems. Organization's should keep a VM snapshot periodically for Dev and QA if development and qualtiy assurance work continues. 
+VM Snapshot backups are highly recommended. In the event of disastrous production situations, a proper snapshot of the last working condition will help rapidly restore service. 
 
-All platform virtualization software and cloud vendors should have snapshot backups available. For instance, Digital Ocean has Live Snapshot and Droplet Snapshot, VMWare has Spanshot Manager, etc. 
+All platform virtualization software and cloud vendors should have snapshot backup features available. For instance, Digital Ocean has Live Snapshot and Droplet Snapshot, VMWare has Snapshot Manager, etc. 
 
-It's a good practice to test snapshots periodically to confirm consistency and integrity.   
+Prod, Dev and QA environments should all be snapshotted regularly. In addition, it's a good practice to test snapshots periodically to confirm consistency and integrity.   
 
 ## Tarball Method
 Tarball the entire Gluu Server CE `chroot` folder using the `tar` command: 
