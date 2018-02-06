@@ -17,7 +17,7 @@ From time to time (daily or weekly) you will want to export the LDAP database to
 
 In Gluu OpenDJ, you could stop the LDAP server and issue the following command:
 
-`# export-ldif`
+`/opt/opendj/bin/export-ldif -n userRoot -l records.ldif`  
 
 In Gluu OpenLDAP, you would do the following:
 
