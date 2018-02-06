@@ -1,8 +1,16 @@
 # Gluu Server Backup
 
-The Gluu Server should be backed up frequently--**we recommend at least one daily and one weekly VM snaphot backup for every VM of standalone or clustered Gluu Server setup.** 
+The Gluu Server should be backed up frequently--**we recommend at least one daily and one weekly backup of Gluu Server's data and/or VM.** 
 
 There are multiple methods for backing up the Gluu Server. A couple recommended strategies are provided below.
+
+## VM Snapshot Backup
+
+VM Snapshot backup is highly recommended. A proper snapshot of 'last working condition' can help organization to become operational in little amount of time if any disastrous situation happen in production environment. Organization should keep VM snapshot periodically for Dev and QA if development and qualtiy assurance work continues. 
+
+All platform virtualization softwares or cloud vendors has this feature available. Such as 'Live Snapshot' and 'Droplet Snapshot' are available for DigitalOcean or VMWare has 'Spanshot Manager' etc. 
+
+It's a good practice to check the status of snapshots periodically to confirm it's consistency and integrity.   
 
 ## Tarball Method
 Tarball the entire Gluu Server CE `chroot` folder using the `tar` command: 
