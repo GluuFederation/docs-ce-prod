@@ -113,7 +113,7 @@ From the oxTrust Settings page the administrator can find the oxTrust build date
 This page also contains the name of the Gluu Server administrator group. 
 Users added to this group will have administrator access to the Gluu Server.
 
-#### oxTrust Settings
+#### oxAuth Settings
 
 oxAuth Settings allows you to mention the server Ip of the oxAuth server.
 
