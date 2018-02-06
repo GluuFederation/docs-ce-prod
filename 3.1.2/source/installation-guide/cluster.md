@@ -17,15 +17,13 @@ Enable OpenDJ replication and also make configuration changes to make Gluu Serve
 ## Prerequisites
 
 
-Gluu Server Ports:
-
-|Port| Application|
------|-------------
-| 443| SSL/TLS file from LB |
-|1636| OpenDJ Standard |
-|4444| OpenDJ Replication|
-|8989| OpenDJ Replication|
-|30865| Csync2 Default |
+|Port| Application| Relation |
+-----|------------- | ---
+| 443| SSL/TLS | Load-balancer to oxAuth |
+|4444| OpenDJ Replication| Between Gluu Servers |
+|6379| Redis Server | From oxAuth to Redis |
+|8989| OpenDJ Replication|  Between Gluu Servers |
+|30865| Csync2 Default |  Between Gluu Servers |
 
 Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:   
 
