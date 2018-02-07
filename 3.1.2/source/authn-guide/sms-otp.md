@@ -30,7 +30,7 @@ Ensure the number given is [SMS enabled](https://support.twilio.com/hc/en-us/art
 
 Twilio trial accounts only allow sending messages to mobile numbers already linked to the account, so for testing you will want to add (and verify) some additional numbers besides your personal one to make sure the integration is working as expected. When you are ready to move to production, you will want to purchase a Twilio plan.
 
-## Include the twilio library into oxAuth
+## Add Twilio library to oxAuth
 
 Copy the Twilio jar file to the following oxAuth folder inside the Gluu Server chroot: `/opt/gluu/jetty/oxauth/custom/libs`. Restart oxAuth to confirm the changes (this is a one-time task): `# service oxauth restart`.
     
