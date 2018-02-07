@@ -32,7 +32,7 @@ Twilio trial accounts only allow sending messages to mobile numbers already link
 
 ## Include the twilio library into oxAuth
 
-Copy the jar file of Twilio to folder `/opt/gluu/jetty/oxauth/custom/libs` inside Gluu Server chroot. To make oxAuth pick the library, a restart is required (this is a one-time task only): `# service oxauth restart`.
+Copy the jar file of Twilio to folder `/opt/gluu/jetty/oxauth/custom/libs` inside Gluu Server chroot. To make oxAuth pick the library, a restart is required (this is a one-time task only). Example: `# service oxauth restart`.
     
 ## Properties
 
@@ -110,7 +110,7 @@ The designs are being rendered from the [Twilio SMS xhtml page](https://github.c
 The script assumes the user phone number is already stored in his corresponding LDAP entry (attribute `phoneNumberVerified`). You can change the attribute by altering the script directly (see authenticate routine).
 
 ### Subsequent Logins
-All subsequent authentications will trigger an SMS with an OTP to the registered phone number. Enter the OTP to pass authentication. 
+All <!--subsequent--> authentications will trigger an SMS with an OTP to the registered phone number. Enter the OTP to pass authentication. 
 
 ### Credential Management
     
