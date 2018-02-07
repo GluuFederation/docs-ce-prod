@@ -44,19 +44,19 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 - Gluu Server version 3.1.2 using OpenDJ.   
 
-- Redis-server for caching sessions.   
+- Redis-server for caching short-lived tokens.   
 
 - JXplorer or a similar LDAP browser for editing LDAP.   
 
 ## Instructions
 
-### 1. [Install Gluu](https://gluu.org/docs/ce/3.1.2/installation-guide/install/)
+### 1. Install Gluu
 
-- Make sure to use a separate NGINX/Load-balancing server FQDN as hostname.   
+- First you need to [Install Gluu](https://gluu.org/docs/ce/3.1.2/installation-guide/install/) on one of the servers. It will be referred to as the "primary" for the sake of simplification. Once everything is configured, there will be no primary in the multi-master configuration.
 
-- Make sure to select OpenDJ as your LDAP choice [1].
-
-- This will be considered your "primary" server for the sake of this documentation.   
+!!! Warning
+    Make sure to use a separate NGINX/Load-balancing server FQDN as hostname.   
+    Make sure to select OpenDJ as your LDAP choice [1].
 
 - A separate NGINX server is necessary because replicating a Gluu server to a different hostname breaks the functionality of the Gluu web page when using a hostname other than what is in the certificates. For example, if I use idp1.example.com as my host and copy that to a second server (e.g. idp2.example.com), the process of accessing the site on idp2.example.com, even with replication, will fail authentication due to a hostname conflict. So if idp1 fails, you won't be able to use Gluu Server effectively.
 
