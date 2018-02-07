@@ -16,6 +16,7 @@ to implement a two-step, two-factor authentication (2FA) process with username /
 - A Gluu Server (installation instructions [here](../installation-guide/index.md));    
 - The [Twilio SMS OTP script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/twilio_sms/twilio2FA.py) (included in the default Gluu Server distribution);   
 - A [Twilio account](https://www.twilio.com/).     
+- The twilio [jar library](http://search.maven.org/remotecontent?filepath=com/twilio/sdk/twilio/7.17.6/twilio-7.17.6.jar) added to oxAuth
 - A mobile device and phone number that can receive SMS text messages
     
 
@@ -28,6 +29,10 @@ When registering for a Twilio account, you will be asked to verify your personal
 Ensure the number given is [SMS enabled](https://support.twilio.com/hc/en-us/articles/223183068-Twilio-international-phone-number-availability-and-their-capabilities) and supports sending messages to the countries you are targeting. You may need to enable countries manually (see the [Geo permissions page](https://www.twilio.com/console/sms/settings/geo-permissions)).
 
 Twilio trial accounts only allow sending messages to mobile numbers already linked to the account, so for testing you will want to add (and verify) some additional numbers besides your personal one to make sure the integration is working as expected. When you are ready to move to production, you will want to purchase a Twilio plan.
+
+## Include the twilio library into oxAuth
+
+Copy the jar file of Twilio to folder `/opt/gluu/jetty/oxauth/custom/libs` inside Gluu Server chroot. To make oxAuth pick the library, a restart is required (this is a one-time task only): `# service oxauth restart`.
     
 ## Properties
 
@@ -38,7 +43,6 @@ The custom script has the following properties:
 |twilio_sid		|Twilio account SID		| Obtain from your Twilio account|
 |twilio_token		|Access token associated to Twilio account| Obtain from your Twilio account|
 |from_number            |Twilio phone number assigned to the account| Obtain from your Twilio account|
-
 
 ## Enable SMS OTP
 
@@ -86,12 +90,14 @@ If SMS OTP should be the default authentication mechanism for all access, change
     
 ## SMS OTP Login Pages
 
-The Gluu Server includes two default login pages for SMS OTP:
+The Gluu Server includes <!--two default login pages --> one page for SMS OTP:
 
+<!--
 1. An **enrollment** page that is displayed the first time a user is prompted for SMS OTP authentication;
 [insert screenshot]                
+-->
 
-1. A **login** page that is displayed for all subsequent SMS OTP authentications. 
+1. A **login** page that is displayed for all <!--subsequent--> SMS OTP authentications. 
 ![sms](../img/user-authn/sms.png)
 
 The designs are being rendered from the [Twilio SMS xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/twiliosms/twiliosms.xhtml). To customize the look and feel of the pages, follow the [customization guide](../operation/custom-design.md).
@@ -101,7 +107,7 @@ The designs are being rendered from the [Twilio SMS xhtml page](https://github.c
 
 ### Phone Number Enrollment
 
-SMS OTP phone number enrollment happens during the first authentication attempt. The initial enrollment page displays a field to enter the phone number where text messages with OTPs should be sent. 
+The script assumes the user phone number is already stored in his corresponding LDAP entry (attribute `phoneNumberVerified`). You can change the attribute by altering the script directly (see authenticate routine).
 
 ### Subsequent Logins
 All subsequent authentications will trigger an SMS with an OTP to the registered phone number. Enter the OTP to pass authentication. 
@@ -114,7 +120,6 @@ A user's registered phone number can be removed by a Gluu administrator either v
 If problems are encountered, take a look at the logs, specifically `/opt/gluu/jetty/oxauth/logs/oxauth_script.log`. Inspect all messages related to OTP. For instance, the following messages show an example of correct script initialization:
 
 ```
-OTP. Initialization
-OTP. Load OTP configuration
-OTP. Initialized successfully
+Twilio SMS. Initialization
+Twilio SMS. Initialized successfully
 ```
