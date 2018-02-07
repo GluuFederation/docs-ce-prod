@@ -1,12 +1,9 @@
 # SMS One-Time Password (OTP) Authentication
 
-## Overview
-A common technology used for the delivery of OTPs is text messaging (SMS). Because text messaging is a ubiquitous communication channel, being directly available in nearly all mobile handsets and, through text-to-speech conversion, to any mobile or landline telephone, text messaging can reach many users with a low total cost to implement. 
+## Overview 
+SMS is a common technology used for the delivery of OTPs. Text messages provide a ubiquitous communication channel, and are directly available in nearly all mobile handsets and, through text-to-speech conversion, any mobile or landline telephone. 
 
-This document explains how to use the Gluu Server's included 
-[Twilio interception script](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations/twilio_sms) 
-to implement a two-step, two-factor authentication (2FA) process with username / password as the first step, and an OTP sent via text message as the second step. 
-
+This document explains how to configure the Gluu Server for two-step, two-factor authentication (2FA) with username / password as the first step, and an OTP sent via text message as the second step. 
 
 !!! Note
     As indicated, this script uses the [Twilio cloud communications platform](https://www.twilio.com) to deliver SMS messages.     
@@ -32,11 +29,12 @@ Twilio trial accounts only allow sending messages to mobile numbers already link
 
 ## Add Twilio library to oxAuth
 
-Copy the Twilio jar file to the following oxAuth folder inside the Gluu Server chroot: `/opt/gluu/jetty/oxauth/custom/libs`. Restart oxAuth to confirm the changes (this is a one-time task): `# service oxauth restart`.
+- Copy the Twilio jar file to the following oxAuth folder inside the Gluu Server chroot: `/opt/gluu/jetty/oxauth/custom/libs`     
+- Restart oxAuth to confirm the changes (this is a one-time task): `# service oxauth restart`     
     
 ## Properties
 
-The custom script has the following properties:
+The custom script has the following properties:    
 
 |	Property	|	Description		| Input value     |
 |-----------------------|-------------------------------|---------------|
