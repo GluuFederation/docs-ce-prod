@@ -22,7 +22,7 @@ status to active/inactive, by clicking on a specific attribute.
 In order to create SSO to certain applications you may need to add custom attributes to your Gluu Server. Custom attributes can be added by following the instructions below: 
 
 ### Add the attribute to LDAP
-**OpenLDAP**:
+#### OpenLDAP
 
  - In OpenLDAP, add custom attributes to `/opt/gluu/schema/openldap/custom.schema` 
  - In the below example, `customTest` is our custom attribute : 
@@ -45,7 +45,7 @@ objectclass ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
  - Test custom configuration with `/opt/symas/bin/slaptest -f /opt/symas/etc/openldap/slapd.conf`
  - Start LDAP server with command `service solserver start`
  
-**OpenDJ**:
+#### OpenDJ
 
  - In OpenDJ, add custom attributes to `/opt/opendj/config/schema/77-customAttributes.ldif`
  - In the below example, `customTest` is our custom attribute : 
