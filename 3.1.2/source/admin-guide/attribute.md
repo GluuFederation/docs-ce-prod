@@ -23,8 +23,9 @@ In order to create SSO to certain applications you may need to add custom attrib
 
 ### Add the attribute to LDAP
  - Become `ldap` user 
- - Add custom attribute to `/opt/gluu/schema/openldap/custom.schema` 
-   - In the below example, `customTest` is our custom attribute : 
+ - In OpenLDAP, add custom attributes to `/opt/gluu/schema/openldap/custom.schema` 
+ - In OpenDJ, add custom attributes to `/opt/opendj/config/schema/77-customAttributes.ldif`
+ - In the below example, `customTest` is our custom attribute : 
 ```
 attributetype ( oxAttribute:1001 NAME 'customTest'
         SUBSTR caseIgnoreSubstringsMatch EQUALITY caseIgnoreMatch
@@ -41,9 +42,12 @@ objectclass ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
         X-ORIGIN 'Gluu - Custom persom objectclass' )
 ```
  - Become `root` user
+ OpenLDAP:
  - Stop LDAP server with command `service solserver stop`
  - Test custom configuration with `/opt/symas/bin/slaptest -f /opt/symas/etc/openldap/slapd.conf`
  - Start LDAP server with command `service solserver start`
+ OpenDJ:
+ - Restart OpenDJ with `service opendj restart`
 
 This creates the attribute in the local LDAP server. 
 
