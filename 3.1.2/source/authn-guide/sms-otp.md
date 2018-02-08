@@ -115,9 +115,11 @@ All <!--subsequent--> authentications will trigger an SMS with an OTP to the reg
 A user's registered phone number can be removed by a Gluu administrator either via the oxTrust UI in `Users` > `Manage People`, or in LDAP under the user entry. Once the phone number has been removed from the user's account, the user can re-enroll a new phone number following the [phone number enrollment](#phone-number-enrollment) instructions above. 
 
 ## Troubleshooting    
-If problems are encountered, take a look at the logs, specifically `/opt/gluu/jetty/oxauth/logs/oxauth_script.log`. Inspect all messages related to OTP. For instance, the following messages show an example of correct script initialization:
+If problems are encountered, take a look at the logs, specifically `/opt/gluu/jetty/oxauth/logs/oxauth_script.log`. Inspect all messages related to Twilio. For instance, the following messages show an example of correct script initialization:
 
 ```
 Twilio SMS. Initialization
 Twilio SMS. Initialized successfully
 ```
+
+Also make sure you are using the latest version of the script that can be found [here](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/twilio_sms/twilio2FA.py).
