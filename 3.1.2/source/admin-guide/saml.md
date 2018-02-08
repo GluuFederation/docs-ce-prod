@@ -22,6 +22,8 @@ The Gluu Server's SAML metadata may be needed from time to time. It can be found
 Each SP may require one or more user attributes from the IDP in order to grant a person access to a protected resource. Required attributes vary depending on the application, and should be explicitly specified in the target application's documentation. The administrator can use the oxTrust interface to release the necessary attributes to the SP as described [below](#create-a-trust-relationship-in-the-gluu-server). 
 
 ## Configure NameID
+
+### oxTrust GUI
 A NameID or Name Identifier is used to identity the 'subject' of a SAML assertion. The format of nameID can be anything but is typically `emailAddress`. Here is how to configure NameID in oxTrust: 
 
  - Create your custom attribute by following [this guide](./attribute.md#custom-attributes). 
@@ -34,10 +36,11 @@ A NameID or Name Identifier is used to identity the 'subject' of a SAML assertio
  - Restart `identity` and `idp` services by: 
    - `service identity stop/start`
    - `service idp stop/start`
-
+ 
+### Manual Configuration
 It's also possible to configure `NameID` through configuration file / velocity templates. The template file for `NameID` definitions are located in the `attribute-resolver.xml.vm` file under `/opt/gluu/jetty/identity/conf/shibboleth3/idp/`.
 
-The example below adds `customTest` as `NameID` based on UID attribute. The following are put into the `attribute-resolver.xml.vm` file.
+The example below adds `customTest`, which we [created earlier here.](https://gluu.org/docs/ce/3.1.2/admin-guide/attribute/#custom-attributes), as `NameID` based on UID attribute. The following are put into the `attribute-resolver.xml.vm` file.
 
   * Add declaration for the new attribute
   ```
