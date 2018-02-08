@@ -29,7 +29,7 @@ A NameID or Name Identifier is used to identity the 'subject' of a SAML assertio
 ![name_id](../img/saml/name_id.png)
    - 'Enable' `Create NameID`
    - 'Attribute Base': Attribute value to calculate name Identifier. 
-   - 'Attribute Name': Custom attribute name which we created earlier
+   - 'Attribute Name': Custom attribute name which we created [earlier here.](https://gluu.org/docs/ce/3.1.2/admin-guide/attribute/#custom-attributes)
    - 'Attribute Type': Type of name identifier. 
  - Restart `identity` and `idp` services by: 
    - `service identity stop/start`
@@ -37,15 +37,15 @@ A NameID or Name Identifier is used to identity the 'subject' of a SAML assertio
 
 It's also possible to configure `NameID` through configuration file / velocity templates. The template file for `NameID` definitions are located in the `attribute-resolver.xml.vm` file under `/opt/gluu/jetty/identity/conf/shibboleth3/idp/`.
 
-The example below adds `testcustomattribute` as `NameID` based on UID attribute. The following are put into the `attribute-resolver.xml.vm` file.
+The example below adds `customTest` as `NameID` based on UID attribute. The following are put into the `attribute-resolver.xml.vm` file.
 
   * Add declaration for the new attribute
   ```
-  #if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('persistentId') $attribute.name.equals('testcustomattribute') ) )
+  #if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('persistentId') $attribute.name.equals('customTest') ) )
   ```
   * Add definition for the new attribute
 ```
- <resolver:AttributeDefinition id="testcustomattribute" xsi:type="Simple"
+ <resolver:AttributeDefinition id="customTest" xsi:type="Simple"
                               xmlns="urn:mace:shibboleth:2.0:resolver:ad"
                               sourceAttributeID="mail">
 
@@ -60,7 +60,7 @@ The example below adds `testcustomattribute` as `NameID` based on UID attribute.
 ```
     <bean parent="shibboleth.SAML2AttributeSourcedGenerator" 
           p:format="urn:oasis:names:tc:SAML:2.0:nameid-format:email"
-          p:attributeSourceIds="#{ {'testcustomattribute'} }"/>
+          p:attributeSourceIds="#{ {'customTest'} }"/>
 ```
 * Restart identity and idp services using below command
 
