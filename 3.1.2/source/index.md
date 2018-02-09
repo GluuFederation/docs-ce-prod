@@ -25,14 +25,14 @@ The Gluu Server includes software that implements open web standards for authent
 ### Free Open Source Software
 All software included in the Gluu Server distribution is free open source software that can be used in production for free. Availabe  components include:
 
-- oxAuth: fully compliant OpenID Connect Provider (OP) and UMA Authorization Server (AS). 
-- oxTrust: admin management GUI.
-- Gluu OpenDJ/OpenLDAP: directory service where all user data, session data, etc. is stored for the Gluu identity & access management service. Due to replication issues in Gluu OpenLDAP, Gluu OpenDJ is currently the recommended directory server.
-- Shibboleth: robust SAML Identity Provider.
-- Passport.JS: authentication middleware to support inbound identity, for instance social login.
-- oxAuth RP: simple one-page app that provides sample request and response for all OpenID Connect operations: 
-- Apache2 Web Server: secure, efficient and extensible server that provides HTTP services in sync with current HTTP standards.
-- JCE 1.8: Java cryptography extension. 
+- **oxAuth**: fully compliant OpenID Connect Provider (OP) and UMA Authorization Server (AS). 
+- **oxTrust**: admin management GUI.
+- **Gluu OpenDJ/OpenLDAP**: directory service where all user data, session data, etc. is stored for the Gluu identity & access management service. Due to replication issues in Gluu OpenLDAP, Gluu OpenDJ is currently the recommended directory server.
+- **Shibboleth**: robust SAML Identity Provider.
+- **Passport.JS**: authentication middleware to support inbound identity, for instance social login.
+- **oxAuth RP**: simple one-page app that provides sample request and response for all OpenID Connect operations: 
+- **Apache2 Web Server**: secure, efficient and extensible server that provides HTTP services in sync with current HTTP standards.
+- **JCE 1.8**: Java cryptography extension. 
 
 Learn more about the open source licenses in use [below](#license). 
 
