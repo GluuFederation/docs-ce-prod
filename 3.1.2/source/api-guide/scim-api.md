@@ -66,6 +66,21 @@ SCIM 2.0 is governed by the [SCIM:Core Schema](https://tools.ietf.org/html/rfc76
 
 * All payloads sent to endpoints using POST or PUT should be supplied using *Content-Type:* `application/scim+json` or `application/json`, and using UTF-8 encoding. Liwewise, output is sent from server in UTF-8.
 
+## Conformance matrix
+
+The following table lists characteristics of SCIM protocol (see section 3 of RFC 7644) and correlates the level of support and conformance provided by Gluu Server implementation.
+
+|Characteristic|Compliance|Available via methods|Notes on support|
+|--------|--------|---------------|-------|
+|Resource creation|Full|POST||
+|Resource retrieval by identifier|Full|GET||
+|Resource(s) retrieval by query|Full|GET and POST||
+|Resource attributes replacement|Partial|PUT|To avoid clients to accidentally clear data, only attributes present in the request are modified. No need to pass the whole resource|
+|Resource removal|Full|DELETE|-|
+|Bulk operations|POST|Full|Circular reference processing not supported. bulkIds can be used not only in "data" attribute of operations but in "path" too|
+|"/me" URI alias|-|-|Not applicable: operations actually not executed on a user's behalf or other SCIM resource|
+|Resource versioning|-|-|This feature will be available upon explicit customer demand|
+
 ## `/Users`
 
 ### GET
