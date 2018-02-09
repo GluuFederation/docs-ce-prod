@@ -44,7 +44,7 @@ The example below adds `customTest`, which we [created earlier here.](https://gl
 
   * Add declaration for the new attribute
   ```
-  #if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('persistentId') $attribute.name.equals('customTest') ) )
+  #if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('persistentId') or $attribute.name.equals('customTest') ) )
   ```
   * Add definition for the new attribute
 ```
