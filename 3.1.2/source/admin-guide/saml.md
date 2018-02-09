@@ -40,7 +40,7 @@ A NameID or Name Identifier is used to identity the 'subject' of a SAML assertio
 ### Manual Configuration
 It's also possible to configure `NameID` through configuration file / velocity templates. The template file for `NameID` definitions are located in the `attribute-resolver.xml.vm` file under `/opt/gluu/jetty/identity/conf/shibboleth3/idp/`.
 
-The example below adds `customTest`, which we [created earlier here.](https://gluu.org/docs/ce/3.1.2/admin-guide/attribute/#custom-attributes), as `NameID` based on UID attribute. The following are put into the `attribute-resolver.xml.vm` file.
+The example below adds `customTest`, which we [created earlier here](https://gluu.org/docs/ce/3.1.2/admin-guide/attribute/#custom-attributes), as `NameID` based on UID attribute. The following are put into the `attribute-resolver.xml.vm` file.
 
   * Add declaration for the new attribute
   ```
