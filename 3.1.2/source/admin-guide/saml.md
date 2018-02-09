@@ -23,8 +23,11 @@ Each SP may require one or more user attributes from the IDP in order to grant a
 
 ## Configure NameID
 
+A NameID or Name Identifier is used to identity the 'subject' of a SAML assertion. The format of nameID can be anything but is typically `emailAddress`.
+
 ### oxTrust GUI
-A NameID or Name Identifier is used to identity the 'subject' of a SAML assertion. The format of nameID can be anything but is typically `emailAddress`. Here is how to configure NameID in oxTrust: 
+
+Here is how to configure NameID in oxTrust: 
 
  - Create your custom attribute by following [this guide](./attribute.md#custom-attributes). 
  - Go to SAML -> 'Configure Custom NameID'
