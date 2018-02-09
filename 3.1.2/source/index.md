@@ -97,4 +97,5 @@ projects are frequently prefixed with our open source handle: **ox** (e.g. oxAut
 | Passport-JS           | [MIT License](https://github.com/jaredhanson/passport/blob/master/LICENSE) |
 |  UnboundID LDAP SDK	| [UnboundID LDAP SDK Free Use License](https://github.com/UnboundID/ldapsdk/blob/master/LICENSE-UnboundID-LDAPSDK.txt)|
 | Jetty / Apache HTTPD  | [Apache2](http://www.apache.org/licenses/LICENSE-2.0)|
+|JCE 1.8 | [Oracle Binary License Agreement](http://www.oracle.com/technetwork/java/javase/terms/license/index.html)|
 |	Asimba		        | [GNU APGL 3.0](http://www.gnu.org/licenses/agpl-3.0.html)|
