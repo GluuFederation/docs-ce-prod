@@ -70,16 +70,16 @@ SCIM 2.0 is governed by the [SCIM:Core Schema](https://tools.ietf.org/html/rfc76
 
 The following table lists characteristics of SCIM protocol (see section 3 of RFC 7644) and correlates the level of support and conformance provided by Gluu Server implementation.
 
-|Characteristic|Compliance|Available via methods|Notes on support|
+|Characteristic|Compliant|Available via methods|Notes on support|
 |--------|--------|---------------|-------|
-|Resource creation|Full|POST||
-|Resource retrieval by identifier|Full|GET||
-|Resource(s) retrieval by query|Full|GET and POST||
-|Resource attributes replacement|Partial|PUT|To avoid clients to accidentally clear data, only attributes present in the request are modified. No need to pass the whole resource|
-|Resource removal|Full|DELETE|-|
-|Bulk operations|POST|Full|Circular reference processing not supported. bulkIds can be used not only in "data" attribute of operations but in "path" too|
+|Resource creation|Yes|POST|Creation of Fido Devices not applicable|
+|Resource retrieval by identifier|Yes|GET||
+|Resource(s) retrieval by query|Yes|GET and POST|No support for searches combining different resource types|
+|Resource attributes replacement|Partially|PUT|To avoid clients to accidentally clear data, only attributes found in payload are modified|
+|Resource removal|Yes|DELETE||
+|Bulk operations|Yes|POST|Circular reference processing not supported|
 |"/me" URI alias|-|-|Not applicable: operations actually not executed on a user's behalf or other SCIM resource|
-|Resource versioning|-|-|This feature will be available upon explicit customer demand|
+|Resource versioning|-|-|Feature may be available upon explicit customer demand|
 
 ## `/Users`
 
