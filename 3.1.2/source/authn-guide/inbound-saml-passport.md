@@ -149,7 +149,8 @@ Placeholder URLs like `https://idp.example.com` must be replaced with the URLs o
 * `skipRequestCompression` - If set to "true", then the SAML request to this service provider will not be compressed.
 * `logo_img` - A URL pointing to the IDP's logo used by the Gluu's Passport login page. Can be an empty string if not required
 * `enable` - If set to "true", then this IDP is allowed to be used by users that try to get authenticated at this Gluu Server 
-* `cert` - The IDP's PEM-encoded X.509 certificate with the `BEGIN CERTIFICATE` and `END CERTIFICATE` separator lines stripped and all line breaking characters (new line, carriage return, space etc) removed from it. Effectively this means a single base64-encoded string representing body of a certificate. Next command can be used to transform an existing X.509, PEM-encoded certificate into string of the required format: `# cat ~/your_cert.crt | grep -v '^---' | tr -d '\n'`
+* `cert` - The IDP's PEM-encoded X.509 certificate with the `BEGIN CERTIFICATE` and `END CERTIFICATE` separator lines stripped and all line breaking characters (new line, carriage return, space etc) removed from it. Effectively this means a single base64-encoded string representing body of a certificate. Next command can be used to transform an existing X.509, PEM-encoded certificate into string of the required format: `# cat ~/your_cert.crt | grep -v '^---' | tr -d '\n'`.
+   The certificate supplied here is the one intended for signing. For instance, if you are using Shibboleth bundled in a Gluu Server instance, visit `https://<gluu-host>/idp/shibboleth` and see the contents of XML tag `KeyDescriptor` where `use="signing"` inside `IDPSSODescriptor` tag. 
 * `reverseMapping` - An embedded JSON object defining how the SAML attributes' names must be mapped to attributes that are used internally by the Passport module:
     * `email` - the user's email
     * `username` - the user's username (uid) 
