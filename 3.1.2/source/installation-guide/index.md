@@ -108,11 +108,12 @@ gather appropriate IP information.
 
 ## Microsoft Azure      
 
-Accessing the Gluu Server on Azure can be a little bit tricky because of
+Accessing the Gluu Server on Azure can be a little tricky because of
 the Public/Private IP. Azure assigns a new Public/Private IP
 addresses each time the server is started. 
 
-### Setting up VM       
+Follow these steps to setup the VM on Azure:
+    
 1. Log into Windows Azure Administrative Panel
 
 2. Click on `Virtual Machines` tab, and click `Create a Virtual Machine` link
