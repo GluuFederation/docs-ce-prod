@@ -29,7 +29,7 @@ This class holds the relation between the person entry and it's relative object 
 | personCustomObjectClass| |
 
 ## personObjectClassDisplayNames
-This class holds the relation betwee the display name of the person and the relative object class.
+This class holds the relation between the display name of the person and the relative object class.
 
 | Fields/Attributes | Description |
 | ------------------|-------------|
