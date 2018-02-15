@@ -15,9 +15,9 @@ The most common use cases for the Gluu Server include:
 The Gluu Server includes software that implements open web standards for authentication, authorization, federated identity, and identity management:
 
 - OAuth 2.0    
-- SAML 2.0   
 - OpenID Connect    
 - User Managed Access 2.0 (UMA)    
+- SAML 2.0   
 - System for Cross-domain Identity Management (SCIM)    
 - FIDO Universal 2nd Factor (U2F)    
 - Lightweight Directory Access Protocol (LDAP)   
