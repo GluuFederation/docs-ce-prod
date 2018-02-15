@@ -7,7 +7,7 @@ This document will explain how to configure GSuite and the Gluu Server for singl
 !!! Note
     It is highly recommended to use Google's staging apps environment before migrating to production.
     
-## :arrow_right: Create a GSuite account for you organization
+## Create a GSuite account for you organization
 
    You can do that [here](https://gsuite.google.com/signup/basic/welcome). Don't forget to add at least one user account(we are going to used that user to test that SSO is working.
    If you already have an account skip to the next section.
@@ -15,7 +15,7 @@ This document will explain how to configure GSuite and the Gluu Server for singl
 !!! Note
     You need a valid and not used domain name
    
-## :arrow_right: Configuring G Suite
+## Configuring G Suite
 
 
 - Login to your GSuite admin dashboard [here](admin.google.com).
@@ -60,11 +60,11 @@ options.
 
 Refer [Google SSO](https://support.google.com/a/answer/60224?hl=en) to know more.
 
-## :arrow_right: Configuring the Gluu Server
+## Configuring the Gluu Server
 
 Now we need to get the Google Metadata and create a SAML Trust Relationship in the Gluu Server. Trust Relationships are created so that the IDP (your Gluu Server) can authorize/authenticate the user to the service provider (SP)--in this case, GSuite. 
 
-### :black_small_square: Google Metadata
+### Google Metadata
 In order to create a Trust Relationship, we need to grab the metadata of
 GSuite. This metadata can be collected from Google. It's generally
 specific to an organization account. The following is a template of the Google metadata.
@@ -82,7 +82,7 @@ Location="https://www.google.com/a/domain.com/acs" ></AssertionConsumerService>
 
 Got the metadata? Great, we are ready to move forward. 
 
-### :black_small_square: Create a SAML Trust Relationship
+### Create a SAML Trust Relationship
 - Create Trust Relationship for Google Apps: 
 
    - How to create a trust relationship can be found [here](../../admin-guide/saml.md#trust-relationship-requirements). We need to follow the "File" method for Google Apps trust relationship.
@@ -99,7 +99,7 @@ Got the metadata? Great, we are ready to move forward.
         * encryptAssertions: never
         * encryptNameIds: never 
         
-## :arrow_right: Configure Shibboleth to support `unspecified` nameId format required by Gsuite.
+### Configure Shibboleth to support `unspecified` nameId format required by Gsuite.
     
  The `unspecified` mean the SP don't care about the nameID format. But in our case we know that Gsuite require an email(`user@yourdomain`) address. This is why we are going to configure shibboleth to support `email`.
   
@@ -117,18 +117,17 @@ Got the metadata? Great, we are ready to move forward.
                           p:nameIDFormatPrecedence="urn:oasis:names:tc:SAML:2.0:nameid-format:email" 
         
      
-## :arrow_right: Test phase
+## Test 
   
-   :one: Create a user in Gluu Server representing the Gsuite account you want to log into.
+1. Create a user in Gluu Server representing the Gsuite account you want to log into.
    
-   :two: In the Trust relationShip make sure you have release the following attributes: `email, yourcustomAttribute and username`
+1.In the Trust relationShip make sure you have release the following attributes: `email, yourcustomAttribute and username`
    
-   :three: Make sure the user created in step one has the field named `yourcustomAttribute` and `email` populate with a right email(example `user@yourdomain`).
+1. Make sure the user created in step one has the field named `yourcustomAttribute` and `email` populate with a right email(example `user@yourdomain`).
    
-    
-   :four: Open a different browser and point it at [this](https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmyaccount.google.com%2Fintro%3Futm_source%3DOGB%26utm_medium%3Dapp&followup=https%3A%2F%2Fmyaccount.google.com%2Fintro%3Futm_source%3DOGB%26utm_medium%3Dapp&osid=1&service=accountsettings&flowName=GlifWebSignIn&flowEntry=ServiceLogin) link and provide the user email(example `user@yourdomain`).
+1. Open a different browser and point it at [this](https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmyaccount.google.com%2Fintro%3Futm_source%3DOGB%26utm_medium%3Dapp&followup=https%3A%2F%2Fmyaccount.google.com%2Fintro%3Futm_source%3DOGB%26utm_medium%3Dapp&osid=1&service=accountsettings&flowName=GlifWebSignIn&flowEntry=ServiceLogin) link and provide the user email(example `user@yourdomain`).
    
-   :five: Enjoy :clap: :clap:
+1. Enjoy!
     
 
 
