@@ -264,9 +264,9 @@ You should always test new authentication methods in a different browser to redu
 In such a situation, the following method can be used to revert back to the previous authentication method:
 
 1. Run the following command to collect the `inum` for the Gluu Server installation:   
-
+    
     ```
-    $/opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager,o=gluu" -j ~/.pw -b "ou=appliances,o=gluu" -s one "objectclass=*" oxAuthenticationMode
+    $/opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w 'yourPassword' -b "ou=appliances,o=gluu" -s one "objectclass=*" oxAuthenticationMode
     ```
     
 2. Create a `LDIF` file with the contents below:
