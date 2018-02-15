@@ -6,7 +6,8 @@ The Gluu Server can be deployed with the Shibboleth IDP, and incorporates all CA
 
 Shibboleth supports most of the [CAS protocol v2 specification](https://apereo.github.io/cas/5.0.x/protocol/CAS-Protocol-V2-Specification.html), including attribute release and CAS proxy support.
 
-CAS should *only* be used if there are legacy applications which only support CAS. Otherwise, all new SSO development should use [OpenID Connect](../admin-guide/openid-connect.md). 
+!!! Note
+    CAS should *only* be used if there are legacy applications which only support CAS. Otherwise, all new SSO development should use [OpenID Connect](../admin-guide/openid-connect.md). 
 
 ## Key CAS server's endpoints
 
