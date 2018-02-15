@@ -173,7 +173,7 @@ The following cache providers are now supported and can be selected via the `cac
 
 #### Redis Cache Configuration
 
-* redisProviderType - redis connection type provider. Possible values: `STANALONE` (for standalone redis server only), `CLUSTER` (for redis cluster deployment only), `SHARDED` (client sharding connection).
+* redisProviderType - redis connection type provider. Possible values: `STANDALONE` (for standalone redis server only), `CLUSTER` (for redis cluster deployment only), `SHARDED` (client sharding connection).
 * servers - comma seperated list of servers (e.g. `server1:8081,server2:8081,server3:8081,server4:8081,server5:8081,server6:8081,server7:8081`)
 * defaultPutExpiration - default expiration time for the object put into cache
 
