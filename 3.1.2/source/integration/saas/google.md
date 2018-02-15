@@ -119,15 +119,11 @@ Got the metadata? Great, we are ready to move forward.
      
 ## Test 
   
-1. Create a user in Gluu Server representing the Gsuite account you want to log into.
-   
-1.In the Trust relationShip make sure you have release the following attributes: `email, yourcustomAttribute and username`
-   
-1. Make sure the user created in step one has the field named `yourcustomAttribute` and `email` populate with a right email(example `user@yourdomain`).
-   
-1. Open a different browser and point it at [this](https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmyaccount.google.com%2Fintro%3Futm_source%3DOGB%26utm_medium%3Dapp&followup=https%3A%2F%2Fmyaccount.google.com%2Fintro%3Futm_source%3DOGB%26utm_medium%3Dapp&osid=1&service=accountsettings&flowName=GlifWebSignIn&flowEntry=ServiceLogin) link and provide the user email(example `user@yourdomain`).
-   
-1. Enjoy!
+1. Create a user in Gluu Server representing the Gsuite account you want to log into.       
+1. In the Trust relationShip make sure you have release the following attributes: `email, yourcustomAttribute and username`    
+1. Make sure the user created in step one has the field named `yourcustomAttribute` and `email` populate with a right email(example `user@yourdomain`).    
+1. Open a different browser and point it at [this](https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmyaccount.google.com%2Fintro%3Futm_source%3DOGB%26utm_medium%3Dapp&followup=https%3A%2F%2Fmyaccount.google.com%2Fintro%3Futm_source%3DOGB%26utm_medium%3Dapp&osid=1&service=accountsettings&flowName=GlifWebSignIn&flowEntry=ServiceLogin) link and provide the user email(example `user@yourdomain`).    
+1. Enjoy!   
     
 
 
