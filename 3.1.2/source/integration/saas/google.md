@@ -7,10 +7,11 @@ This document will explain how to configure GSuite and the Gluu Server for singl
 !!! Note
     It is highly recommended to use Google's staging apps environment before migrating to production.
     
-## Create a GSuite account for you organization
+## Create a GSuite account
 
-   You can do that [here](https://gsuite.google.com/signup/basic/welcome). Don't forget to add at least one user account(we are going to used that user to test that SSO is working.
-   If you already have an account skip to the next section.
+You can do that [here](https://gsuite.google.com/signup/basic/welcome). Don't forget to add at least one user account(we are going to used that user to test that SSO is working.
+
+If you already have an account skip to the next section.
    
 !!! Note
     You need a valid and not used domain name
