@@ -1,31 +1,12 @@
 # CAS
 ## Overview
-The Central Authentication Service (CAS) is a single sign-on protocol for the web. 
-Its purpose is to permit a user to access multiple applications while providing their 
-credentials (such as userid and password) only once while allowing applications to 
-authenticate users without gaining access to those credentials, such as a password. 
-The name CAS also refers to a software package that implements this protocol, which 
-recently has become a part of Shibboleth IdP v3 package. As Gluu CE includes Shibboleth to 
-add support for SAML protocol flows, it incorporates all CAS-related functionality that 
-comes with it. The most recent version of CAS protocol is 3. 
-Shibboleth supports most of the [CAS protocol v2 specification](https://apereo.github.io/cas/5.0.x/protocol/CAS-Protocol-V2-Specification.html), 
-including attribute release and CAS proxy support.
+Central Authentication Service (CAS) is a legacy single sign-on (SSO) protocol for web applications. The name CAS also refers to a software package that implements this protocol, which has recently been included in the Shibboleth IDP v3 package. 
 
-Nowadays CAS is hardly the most advanced and agile SSO protocol. Unless you've got a legacy software or pre-existing infrastructure
-in your network which revolves around it, chances are high there are much better solutions at hand.
+The Gluu Server can be deployed with the Shibboleth IDP, and incorporates all CAS-related functionality included in Shib.
 
-Please refer to these five considerations to determine which protocol 
-to use for single sign-on (SSO):
+Shibboleth supports most of the [CAS protocol v2 specification](https://apereo.github.io/cas/5.0.x/protocol/CAS-Protocol-V2-Specification.html), including attribute release and CAS proxy support.
 
-- If you have an application that already supports SAML, use SAML.
-- If you need to support user login at an external IDP (like a customer or partner IDP), use SAML.
-- If you have a mobile application, use OpenID Connect.
-- If you are writing a new application, use OpenID Connect.
-- If you have some legacy applications which only support CAS for SSO, use CAS
-
-If you are continuing with the CAS documentation it is presumed your use case aligns with the last bullet above.
-If it doesn't and your app provides other options for SSO (like, SAML) - may be it's time for a switch? You may want to
-see [SAML](../admin-guide/saml.md) and [OpenID Connect](../admin-guide/openid-connect.md) portions of the Gluu Server docs in this case. 
+CAS should *only* be used if there are legacy applications which only support CAS. Otherwise, all new SSO development should use [OpenID Connect](../admin-guide/openid-connect.md). 
 
 ## Key CAS server's endpoints
 
