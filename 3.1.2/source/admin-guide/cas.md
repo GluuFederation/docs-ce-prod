@@ -2,9 +2,7 @@
 ## Overview
 Central Authentication Service (CAS) is a legacy single sign-on (SSO) protocol for web applications. The name CAS also refers to a software package that implements the CAS protocol, which is now included in the Shibboleth IDP v3 package. 
 
-The Gluu Server can be deployed with the Shibboleth IDP, and incorporates all CAS-related functionality included in Shib.
-
-Shibboleth supports most of the [CAS protocol v2 specification](https://apereo.github.io/cas/5.0.x/protocol/CAS-Protocol-V2-Specification.html), including attribute release and CAS proxy support.
+The Gluu Server can be deployed with the Shibboleth IDP, which supports most of the [CAS protocol v2 specification](https://apereo.github.io/cas/5.0.x/protocol/CAS-Protocol-V2-Specification.html), including attribute release and CAS proxy support.
 
 !!! Note
     CAS should *only* be used if there are legacy applications which only support CAS. Otherwise, all new SSO development should use [OpenID Connect](../admin-guide/openid-connect.md). 
