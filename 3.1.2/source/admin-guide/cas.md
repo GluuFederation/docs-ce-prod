@@ -1,6 +1,6 @@
 # CAS
 ## Overview
-Central Authentication Service (CAS) is a legacy single sign-on (SSO) protocol for web applications. The name CAS also refers to a software package that implements the CAS protocol, which has recently been included in the Shibboleth IDP v3 package. 
+Central Authentication Service (CAS) is a legacy single sign-on (SSO) protocol for web applications. The name CAS also refers to a software package that implements the CAS protocol, which is now included in the Shibboleth IDP v3 package. 
 
 The Gluu Server can be deployed with the Shibboleth IDP, and incorporates all CAS-related functionality included in Shib.
 
