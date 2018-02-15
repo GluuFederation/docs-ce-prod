@@ -7,7 +7,7 @@ The most common use cases for the Gluu Server include:
 - Single sign-on (SSO)   
 - Mobile authentication    
 - API access management  
-- Two-factor authentication 
+- Two-factor authentication (2FA)
 - Customer identity and access management (CIAM)   
 - Identity federation      
 
