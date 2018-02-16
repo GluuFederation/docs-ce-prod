@@ -31,10 +31,10 @@ Notice that the values to the right side of the equal sign have been translated 
 To add translation for not yet supported languages, just create new properties file in [resource](https://github.com/GluuFederation/oxAuth/tree/master/Server/src/main/resources) folder and name it messages_[language_code].properties, then add language code as supported-locale to the [faces-config.xml](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/WEB-INF/faces-config.xml#L9).
 
 
-```
+
 1. this is a list
   and this is text
   
 1. this is second
-```
+
 
