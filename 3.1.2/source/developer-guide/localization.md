@@ -32,9 +32,4 @@ To add translation for not yet supported languages, just create new properties f
 
 
 
-1. this is a list     
-  and this is text
-  
-1. this is second
-
 
