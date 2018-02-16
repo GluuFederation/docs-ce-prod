@@ -29,3 +29,12 @@ login.register=Registre
 Notice that the values to the right side of the equal sign have been translated but that the keys on the left side have not been changed. These keys must not change, because they will be referenced when oxAuth fetches the translated text.
 
 To add translation for not yet supported languages, just create new properties file in [resource](https://github.com/GluuFederation/oxAuth/tree/master/Server/src/main/resources) folder and name it messages_[language_code].properties, then add language code as supported-locale to the [faces-config.xml](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/WEB-INF/faces-config.xml#L9).
+
+
+```
+1. this is a list
+  and this is text
+  
+1. this is second
+```
+
