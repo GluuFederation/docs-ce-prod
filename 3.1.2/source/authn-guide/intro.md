@@ -36,6 +36,8 @@ The default Gluu Server distribution includes interception scripts that implemen
 - [Duo Security](./duo.md)
 - [Certificate Authentication](./cert-auth.md)
 
+Follow each link to learn how to implement that specific type of 2FA with Gluu. 
+
 ### 2FA Credential Management
 
 Enabling users to manage and enroll 2FA credentials without undermining the security model is one of the most important things to consider when rolling out 2FA. 
