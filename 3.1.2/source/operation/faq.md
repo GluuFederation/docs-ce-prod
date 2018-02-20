@@ -261,15 +261,19 @@ property `ldapPass`. Retrieve the data using the following command:
 ## Revert an authentication method
 You should always test new authentication methods in a different browser to reduce the chance of lockout. However, while testing authentication scripts and mechanisms it is not unlikely that you will find yourself locked out of the Gluu Server admin GUI. 
 
-In such a situation, the following method can be used to revert back to the previous authentication method:
+In such a situation, you can use the following methods to revert back to the previous authentication method:
 
-1. Run the following command to collect the `inum` for the Gluu Server installation:   
+1. Manual Method: 
+
+This method rely on ldif file to change the authentication mode in LDAP server directly.
+
+- Run the following command to collect the `inum` for the Gluu Server installation:   
     
     ```
     $/opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w 'yourPassword' -b "ou=appliances,o=gluu" -s one "objectclass=*" oxAuthenticationMode
     ```
     
-2. Create a `LDIF` file with the contents below:
+- Create a `LDIF` file with the contents below:
  
     `dn: inum=@!1E3B.F133.14FA.5062!0002!4B66.CF9C,ou=appliances,o=gluu`
     
@@ -282,22 +286,25 @@ In such a situation, the following method can be used to revert back to the prev
     !!! Note
         Replace the `inum` from the example above with the `inum` of your Gluu Server from the `ldapsearch` command.
 
-3. Replace the the authentication mode using `ldapmodify` command.
+- Replace the the authentication mode using `ldapmodify` command.
     ```
     root@gluu3-ubuntu:/opt/symas/bin# ./ldapmodify -h localhost -p 1389 -D "cn=directory manager,o=gluu" -w "{password provided during setup}" -f revert.ldif
     ```
+2. Graphical method:
 
-Reverting authentication could also done using LDAP browser and 
-modifying oxAuthenticationMode to 'internal'. Below are the steps:
+The idea here is to use an LDAP browser, hence this method is much more simple.
 
-1. Open LDAP in a LDAP Browser (JXplorer is used here and recommended).
-2. Navigate to "gluu > appliances > {GUID or appliance number}". ![Revert authentication](../img/integration/revert-authentication1.png)
-3. Search for "oxAuthenticationMode"  and "oxTrustAuthenticationMode" attribute and delete the values. ![Revert authentication attrb](../img/integration/revert-authentication2.png)
+You have to update one or both oxAuthenticationMode and OxTrustAuthenticationMode values to match the desired authentication method value. For example for ldap which is the default authentication mode for Gluu, the value is `auth_ldap_server`. Below are the steps:
+
+- Open LDAP in a LDAP Browser (JXplorer is used here and recommended).
+- Navigate to "gluu > appliances > {GUID or appliance number}". ![Revert authentication](../img/integration/revert-authentication1.png)
+- Search for "oxAuthenticationMode"  and "oxTrustAuthenticationMode" attribute and delete the values. ![Revert authentication attrb](../img/integration/revert-authentication2.png)
     - OxAuthenticationMode attribute is used for Login pages, which stores the name of the custom script used.
     - OxTrustAuthenticationMode is used for OxTrust Admin UI page.
-4. Submit the changes.
-5. Try to access the login page or Gluu Admin UI.
-As a secondary option, InPrivate or Incognito or Private Browser from various Browsers can be used.
+- Submit the changes.
+- Try to access the login page or Gluu Admin UI.
+
+One more option, InPrivate or Incognito or Private Browser from various Browsers can be used.
 
     
 ## No admin access after Cache Refresh?
