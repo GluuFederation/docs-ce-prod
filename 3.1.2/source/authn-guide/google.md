@@ -14,35 +14,36 @@ Follow the steps below to configure the certificate authentication in the oxTrus
 
 1. Navigate to `Configuration` > `Manage Custom Scripts` > `Person Authentication`.        
 
-2. Click the `Add Custom Scritp` button       
+1. Click the `Add Custom Scritp` button       
 [add-script-button](../img/admin-guide/multi-factor/add-script-button.png)       
 
-3. Fill in the form and add the [Google External Authenticator](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/gplus/GooglePlusExternalAuthenticator.py) Script.       
+1. Fill in the form and add the [Google External Authenticator](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/gplus/GooglePlusExternalAuthenticator.py) Script.       
 
-You'll also need to add some custom properties:       
+1. Add custom properties.
 
- * __gplus_client_secrets_file__: `/etc/gluu/conf/google.json`
- * __gplus_deployment_type__: enroll
- * __gplus_remote_attributes_list__: email, given_name, family_name, and locale
- * __gplus_local_attributes_list__: uid, mail, givenName, sn, cn, preferredLanguage
+Google Plus interception script requires some custom properties. Click on `Add custom properties` button and add the following properties:       
+
+ * __gplus_deployment_type__: `enroll`
+ * __gplus_remote_attributes_list__:`email, email, given_name, family_name,locale`
+ * __gplus_local_attributes_list__: `uid,mail, givenName, sn,preferredLanguage`
  * __gplus_client_secrets_file__ - It is a mandatory property that holds
    the path to the application configuration file downloaded from Google
-   console for application. An example is `/etc/certs/gplus_client_secrets.json`.
+   console for application. Let set that to `/etc/certs/mygplus_client_secrets.json`.
 
-### Setting Google App
+## Setting Google App
 In order to call Google API's you will need to register as a developer and
 create client credentials. You can follow these 
 [instructions](https://developers.google.com/identity/protocols/OAuth2).
 
-The first thing you'll need to do is Create a Project on Google to obtain
-client credentials. Click "Create project" and enter your desired
+The first thing you'll need to do is create a Project on Google to obtain
+client credentials. Click **Create project** and enter your desired
 project name.        
 
 ![image](../img/admin-guide/multi-factor/01-create-project.png)              
 
 Then click on your newly created project from the listing on the
-dashboard, and under the Credentials section, create a new "OAuth 2.0
-client ID".        
+dashboard, and under the Credentials section, create a new **OAuth 2.0
+client ID**.        
 
 ![image](../img/admin-guide/multi-factor/02-create-oauth2-creds.png)       
 
@@ -56,19 +57,16 @@ Fill out the form...
 
 ![image](../img/admin-guide/multi-factor/04-configure-authorization-page.png)       
        
-Now you're ready to create the credentials. Enter "Authorized JavaScript
-origins". It should be the uri of your Gluu Server--for example `https://idp.example.com`.       
+Now you're ready to create the credentials. Enter **Authorized JavaScript
+origins**. It should be the uri of your Gluu Server--for example `https://idp.example.com`.       
 
 ![image](../img/admin-guide/multi-factor/05-create-oauth2-creds.png)       
 
-Google will display the client-id and secret. Ignore that for now. Instead, download the JSON file which you are going to upload into
-your Gluu Server next.       
+Google will display the client-id and secret. Ignore that for now. Instead, download the JSON file which you are going to upload into your Gluu Server.
 
-![image](../img/admin-guide/multi-factor/06-download_json.png)       
-
-Move this file to the location `/etc/gluu/conf/google.json`. The JSON
-file will look something like this example:       
-
+![image](../img/admin-guide/multi-factor/06-download_json.png)   
+Edit the downloaded file and escape slashes. An example is provide below.
+     
 ```
 {
   "web": {
@@ -83,14 +81,15 @@ file will look something like this example:
   }
 }
 ```
+Rename the updated file to `mygplus_client_secrets.json` and move it in Gluu container inside `/etc/certs/` folder
 
 The last step is to enable Google+ API's:       
 
 - Navigate back to the Google API [console](https://console.developers.google.com/project)
 - Select project and enter project name
-- Open new project "API & auth -> API" menu item in configuration navigation tree
-- Click "Google+ API"
-- Click "Enable API" button
+- Open new project **API & auth -> API** menu item in configuration navigation tree
+- Click **Google+ API**
+- Click **Enable API** button
 
 
 1) **gplus_deployment_type** - Specify the deployment mode. It is an
@@ -141,8 +140,8 @@ configuration.
 ## Testing
 
 One simple way to test the configuration is to use oxTrust. In the
-"Configure Authentication" dropdown menu, select "Google" (or whatever
-you entered as the "Name" of the custom authentication script--as the
+**Configure Authentication** dropdown menu, select *Google* (or whatever
+you entered as the **Name** of the custom authentication script--as the
 default authentication method.       
 
 ![image](../img/admin-guide/multi-factor/08-select_default_authentication.png)       
