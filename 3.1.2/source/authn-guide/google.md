@@ -14,7 +14,7 @@ Follow the steps below to configure the certificate authentication in the oxTrus
 
 1. Navigate to `Configuration` > `Manage Custom Scripts` > `Person Authentication`.        
 
-1. Click the `Add Custom Scritp` button       
+1. Click the `Add Custom Script` button       
 [add-script-button](../img/admin-guide/multi-factor/add-script-button.png)       
 
 1. Fill in the form and add the [Google External Authenticator](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/gplus/GooglePlusExternalAuthenticator.py) Script.       
