@@ -51,14 +51,14 @@ objectclass ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
  - In the below example, `customTest` is our custom attribute : 
 ```
 attributeTypes: ( 1.3.6.1.4.1.48710.1.3.1400 NAME 'customTest'
-  DESC 'Custom Attribute'
-  EQUALITY caseIgnoreMatch
-  SUBSTR caseIgnoreSubstringsMatch
-  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  DESC 'Custom Attribute' 
+  EQUALITY caseIgnoreMatch 
+  SUBSTR caseIgnoreSubstringsMatch 
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 
   X-ORIGIN 'Gluu custom attribute' )
 ```
 !!! Warning
-    Spacing is extremely important here. There must be 2 spaces before every entry (i.e. DESC), or your custom schema will fail to load properly.
+    Spacing is extremely important here. There must be 2 spaces before and 1 after every entry (i.e. DESC), or your custom schema will fail to load properly.
 
   - Add custom attribute to the `gluuCustomPerson` objectClasses:
   
