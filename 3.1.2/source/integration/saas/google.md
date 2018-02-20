@@ -167,7 +167,7 @@ objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
 
 ##### NameID configuration in shib v3 velocity template
 
- - File name: attribute-filter.xml.vm
+ - File name: attribute-resolver.xml.vm
  - Location: /opt/gluu/jetty/identity/conf/shibboleth3/idp
  - Configuration: 
 ```
