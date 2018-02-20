@@ -76,22 +76,148 @@ Replace `domain.com` with your own domain name(the one used when creating Gsuite
     <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
        <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</NameIDFormat>
             <AssertionConsumerService index="1" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
-            Location="https://www.google.com/a/domain.com/acs" ></AssertionConsumerService>
+            Location="https://www.google.com/a/domain.com/acs" >
+            </AssertionConsumerService>
     </SPSSODescriptor>
 </EntityDescriptor>
-
 ```
 
 Got the metadata? Great, we are ready to move forward. 
+
+### Configure custom nameID
+
+We are going to use 'googlenmid' as custom nameID which is 'email' Type and 'mail' attribute value will be this nameID's source attribute. 
+
+
+#### Configure Shibboleth to support `unspecified` nameId format required by G-Suite
+
+The `unspecified` mean the SP don't care about the nameID format. But in our case we know that Gsuite require an email(`user@yourdomain`) address. This is why we are going to configure shibboleth to support `email`.
+
+Edit the file `/opt/gluu/jetty/identity/conf/shibboleth3/idp/relying-party.xml.vm` and set the namedIDFormatPrecedence to `urn:oasis:names:tc:SAML:2.0:nameid-format:email`.
+
+Configuration should be something like below: 
+
+```
+....
+....
+#foreach( $trustRelationship in $trustParams.trusts )
+
+    <!-- TrustRelationship -->
+        #set ($profileConfigMap = $trustRelationship.profileConfigurations)
+        <!--#if(!$profileConfigMap.isEmpty())-->
+
+        #set($entityId = $trustParams.trustEntityIds.get($trustRelationship.inum).get(0))
+        #set($relyingPartyId = $StringHelper.removePunctuation($trustRelationship.inum))
+
+        <bean parent="RelyingPartyByName" id="$relyingPartyId" c:relyingPartyIds="$entityId">
+            <property name="profileConfigurations">
+                <list>
+            #if($trustRelationship.specificRelyingPartyConfig and (not $trustRelationship.isFederation()))
+                #foreach ($mapEntry in $profileConfigMap.entrySet())
+
+                    #set($profileConfig = $mapEntry.value)
+
+                    #if($mapEntry.key == "SAML2SSO")
+
+                    <bean parent="SAML2.SSO"
+                          p:includeAttributeStatement="$profileConfig.includeAttributeStatement"
+                          p:assertionLifetime="$profileConfig.assertionLifetime"
+                          **p:nameIDFormatPrecedence="urn:oasis:names:tc:SAML:2.0:nameid-format:email"**
+                        #if ($profileConfig.signResponses == 'conditional')
+                          p:signResponses-ref="SignNoIntegrity"
+                          ........
+                          ........
+
+```
+
+Restart `identity` and `idp` services with commands like: 
+
+ - service identity stop/start
+ - service idp stop/start
+ 
+
+#### Configure custom nameID named 'googlenmid' 
+
+##### Add 'googlenmid' in LDAP schema
+
+ - File name: 77-customAttributes.ldif
+ - Location: /opt/opendj/config/schema
+ - Configuration: 
+```
+dn: cn=schema
+objectClass: top
+objectClass: ldapSubentry
+objectClass: subschema
+cn: schema
+attributeTypes: ( 1.3.6.1.4.1.48710.1.3.1400 NAME 'googlenmid'
+  DESC 'Custom Attribute'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  X-ORIGIN 'Gluu custom attribute' )
+objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
+  SUP ( top )
+  AUXILIARY
+  MAY ( googlenmid $ telephoneNumber $ mobile $ carLicense $ facsimileTelephoneNumber $ departmentNumber $ employeeType $ cn $ st $ manager $ street $ postOfficeBox $ employeeNumber $ preferredDeliveryMethod $ roomNumber $ secretary $ homePostalAddress $ l $ postalCode $ description $ title )
+  X-ORIGIN 'Gluu - Custom persom objectclass' )
+```
+ - Restart opendj with: 
+   - service opendj stop
+   - service opendj start
+
+##### NameID configuration in shib v3 velocity template
+
+ - File name: attribute-filter.xml.vm
+ - Location: /opt/gluu/jetty/identity/conf/shibboleth3/idp
+ - Configuration: 
+```
+...........
+...........
+#foreach( $attribute in $attrParams.attributes )
+#if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('persistentId') or $attribute.name.equals('googlenmid') ) )
+#if($attribute.name.equals('eppnForNIH'))
+
+    <resolver:AttributeDefinition id="eduPersonPrincipalName" xsi:type="ad:Scoped" scope="%{idp.scope}" sourceAttributeID="uid">
+        <resolver:Dependency ref="siteLDAP" />
+        <resolver:AttributeEncoder xsi:type="enc:SAML2ScopedString" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.6" friendlyName="eduPersonPrincipalName" encodeType="false" />
+    </resolver:AttributeDefinition>
+
+#else
+    <resolver:AttributeDefinition xsi:type="ad:Simple" id="$attribute.name" sourceAttributeID="$attribute.name">
+        <resolver:Dependency ref="siteLDAP" />
+        <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="$attrParams.attributeSAML2Strings.get($attribute.name)" friendlyName="$attribute.name" encodeType="false" />
+    </resolver:AttributeDefinition>
+#end
+#end
+#end
+
+ <resolver:AttributeDefinition id="googlenmid" xsi:type="Simple"
+                              xmlns="urn:mace:shibboleth:2.0:resolver:ad"
+                              sourceAttributeID="mail">
+
+        <resolver:Dependency ref="siteLDAP"/>
+        <resolver:AttributeEncoder xsi:type="SAML2StringNameID"
+                                xmlns="urn:mace:shibboleth:2.0:attribute:encoder"
+                                nameFormat="urn:oasis:names:tc:SAML:2.0:nameid-format:email" />
+</resolver:AttributeDefinition>
+
+#if( $resovlerParams.size() > 0 )
+.............
+.............
+```
+ - Restart identity and idp services like below: 
+   - service identity stop/start
+   - service idp stop/start
 
 ### Create a SAML Trust Relationship
 - Create Trust Relationship for Google Apps: 
 
    - How to create a trust relationship can be found [here](../../admin-guide/saml.md#trust-relationship-requirements). We need to follow the "File" method for Google Apps trust relationship.
     - Required attributes: 
-    A nameID attribute is required. Follow the [custom nameID](../../admin-guide/saml.md#custom-nameid) documentation. When configuring namedID attribute, we recommend to follow the manual method.  
-    You need to release the following attribute: mail, username and the custom attritue created early(as nameID).
-    - Relying Party Configuration: SAML2SSO should be configured. 
+       - You need to release the following attribute: mail and googlenmid.
+       - Relying Party Configuration: SAML2SSO should be configured. 
+
+```
         * includeAttributeStatement: check
         * assertionLifetime: default 
         * assertionProxyCount: default
@@ -100,32 +226,15 @@ Got the metadata? Great, we are ready to move forward.
         * signRequests: conditional
         * encryptAssertions: never
         * encryptNameIds: never 
-        
-### Configure Shibboleth to support `unspecified` nameId format required by Gsuite.
-    
- The `unspecified` mean the SP don't care about the nameID format. But in our case we know that Gsuite require an email(`user@yourdomain`) address. This is why we are going to configure shibboleth to support `email`.
-  
- Edit the file `/opt/gluu/jetty/identity/conf/shibboleth3/idp/relying-party.xml.vm` and set the namedIDFormatPrecedence to `urn:oasis:names:tc:SAML:2.0:nameid-format:email`.
    
- See example below 
-   
-  > #if($trustRelationship.specificRelyingPartyConfig and (not $trustRelationship.isFederation()))
-                #foreach ($mapEntry in $profileConfigMap.entrySet())
-                    #set($profileConfig = $mapEntry.value)
-                    #if($mapEntry.key == "SAML2SSO")
-                    <bean parent="SAML2.SSO"
-                          p:includeAttributeStatement="$profileConfig.includeAttributeStatement"
-                          p:assertionLifetime="$profileConfig.assertionLifetime"
-                          p:nameIDFormatPrecedence="urn:oasis:names:tc:SAML:2.0:nameid-format:email" 
-        
-     
+```
+ 
 ## Test 
   
-1. Create a user in Gluu Server representing the Gsuite account you want to log into.       
-1. In the Trust relationShip make sure you have release the following attributes: `email, yourcustomAttribute and username`    
-1. Make sure the user created in step one has the field named `yourcustomAttribute` and `email` populate with a right email(example `user@yourdomain`).    
-1. Open a different browser and point it at [this](https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmyaccount.google.com%2Fintro%3Futm_source%3DOGB%26utm_medium%3Dapp&followup=https%3A%2F%2Fmyaccount.google.com%2Fintro%3Futm_source%3DOGB%26utm_medium%3Dapp&osid=1&service=accountsettings&flowName=GlifWebSignIn&flowEntry=ServiceLogin) link and provide the user email(example `user@yourdomain`).    
-1. Enjoy!   
+ - Create an user in Gluu Server representing the Gsuite account you want to log into ( 2nd user other than G-Suite admin account ).       
+ - Make sure the user created in step one has mail attribute available whose value is equals to what is given there in G-Suite account (example `user@yourdomain`). 
+ - Initiate SSO with `http://www.google.com/gmail/hosted/[hostname_configured]`. 
+ - Enjoy!   
     
 
 
