@@ -122,7 +122,7 @@ Configuration should be something like below:
                     <bean parent="SAML2.SSO"
                           p:includeAttributeStatement="$profileConfig.includeAttributeStatement"
                           p:assertionLifetime="$profileConfig.assertionLifetime"
-                          **p:nameIDFormatPrecedence="urn:oasis:names:tc:SAML:2.0:nameid-format:email"**
+                          p:nameIDFormatPrecedence="urn:oasis:names:tc:SAML:2.0:nameid-format:email"
                         #if ($profileConfig.signResponses == 'conditional')
                           p:signResponses-ref="SignNoIntegrity"
                           ........
