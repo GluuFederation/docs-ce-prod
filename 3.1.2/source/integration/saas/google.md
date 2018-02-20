@@ -21,7 +21,7 @@ If you already have an account skip to the next section.
 
 - Login to your GSuite admin dashboard [here](admin.google.com).
 
-![Image](../../img/integration/admin_console.png)
+![Image](../../img/integration/admin_console_new.png)
 
 - From the list of options choose the `Security` tab.
 
