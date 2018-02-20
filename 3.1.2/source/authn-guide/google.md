@@ -36,14 +36,14 @@ create client credentials. You can follow these
 [instructions](https://developers.google.com/identity/protocols/OAuth2).
 
 The first thing you'll need to do is create a Project on Google to obtain
-client credentials. Click **Create project** and enter your desired
+client credentials. Click `Create project` and enter your desired
 project name.        
 
 ![image](../img/admin-guide/multi-factor/01-create-project.png)              
 
 Then click on your newly created project from the listing on the
-dashboard, and under the Credentials section, create a new **OAuth 2.0
-client ID**.        
+dashboard, and under the Credentials section, create a new OAuth 2.0
+client ID.        
 
 ![image](../img/admin-guide/multi-factor/02-create-oauth2-creds.png)       
 
@@ -57,8 +57,8 @@ Fill out the form...
 
 ![image](../img/admin-guide/multi-factor/04-configure-authorization-page.png)       
        
-Now you're ready to create the credentials. Enter **Authorized JavaScript
-origins**. It should be the uri of your Gluu Server--for example `https://idp.example.com`.       
+Now you're ready to create the credentials. Enter Authorized JavaScript
+origins. It should be the URI of your Gluu Server, e.g.: `https://idp.example.com`.       
 
 ![image](../img/admin-guide/multi-factor/05-create-oauth2-creds.png)       
 
@@ -85,11 +85,11 @@ Rename the updated file to `mygplus_client_secrets.json` and move it in Gluu con
 
 The last step is to enable Google+ API's:       
 
-- Navigate back to the Google API [console](https://console.developers.google.com/project)
-- Select project and enter project name
-- Open new project **API & auth -> API** menu item in configuration navigation tree
-- Click **Google+ API**
-- Click **Enable API** button
+- Navigate back to the Google API [console](https://console.developers.google.com/project)    
+- Select project and enter project name    
+- Open new project `API & auth` > `API` menu item in configuration navigation tree   
+- Click `Google+ API`  
+- Click `Enable API`   
 
 
 1) **gplus_deployment_type** - Specify the deployment mode. It is an
@@ -139,14 +139,11 @@ configuration.
 
 ## Testing
 
-One simple way to test the configuration is to use oxTrust. In the
-**Configure Authentication** dropdown menu, select *Google* (or whatever
-you entered as the **Name** of the custom authentication script--as the
-default authentication method.       
+One simple way to test the configuration is to use oxTrust (using an incognito browser!). In oxTrust, navigate to `Configuration` > `Manage Authentication` > `Default Authentication Method` and set the `oxTrust ACR` field to the new custom authentication script, e.g. `Google`.
 
 ![image](../img/admin-guide/multi-factor/08-select_default_authentication.png)       
 
-After you login and logout, you should be presented with a new login
+After you logout and navigate back to the login page, you should be presented with a new login
 form that has the Google login button:       
        
 ![image](../img/admin-guide/multi-factor/09-google-authentication-button.png)       
@@ -158,7 +155,7 @@ the Gluu Server:
 ![image](../img/admin-guide/multi-factor/10-google-authorization.png)       
 
 If the script doesn't work, and you locked yourself out of oxTrust,
-don't worry! You could always revert back. Refer to [Reverting authentication method](../operation/faq/#revert-authentication-method)       
+don't worry! Refer to [Reverting authentication method](../operation/faq/#revert-authentication-method)       
 
 If things go wrong, it can leave the sessions in your browser in a bad
 state. If things get really weird, remove the cookies in your browser
