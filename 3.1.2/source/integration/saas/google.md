@@ -9,7 +9,7 @@ This document will explain how to configure GSuite and the Gluu Server for singl
     
 ## Create a GSuite account
 
-You can do that [here](https://gsuite.google.com/signup/basic/welcome). Don't forget to add at least one more user account(we are going to use that user to test that SSO is working) other than default 'admin' account you are using in Google Admin panel.
+You can do that [here](https://gsuite.google.com/signup/basic/welcome). Don't forget to add at least one more user account(we are going to use that user to test SSO) other than default 'admin' account you are using in Google Admin panel.
 
 If you already have an account skip to the next section.
    
