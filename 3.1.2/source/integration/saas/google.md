@@ -212,7 +212,7 @@ objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
 ### Create a SAML Trust Relationship
 - Create Trust Relationship for Google Apps: 
 
-   - How to create a trust relationship can be found [here](../../admin-guide/saml.md#trust-relationship-requirements). We need to follow the "File" method for Google Apps trust relationship.
+   - How to create a trust relationship can be found [here](../../admin-guide/saml.md#trust-relationship-requirements). We need to follow the "File" method for Google Apps trust relationship. Upload the metadata which we created couple of steps back. 
     - Required attributes: 
        - You need to release the following attribute: mail and googlenmid.
        - Relying Party Configuration: SAML2SSO should be configured. 
