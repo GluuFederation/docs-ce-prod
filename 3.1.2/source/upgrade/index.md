@@ -356,13 +356,13 @@ Review the [installation docs](../installation-guide/install.md) to install the 
 
 4. For 3.1.2 packages which use OpenDJ, `setup.properties` needs to be modified before feeded to `./setup.py`.
 
-  4.1. Open it for editing: `# vi backup_2431/setup.properties`
+    4.1. Open it for editing: `# vi backup_2431/setup.properties`
 
-  4.2. Find the "ldap_type=openldap" line and change it to "ldap_type=opendj"
+    4.2. Find the "ldap_type=openldap" line and change it to "ldap_type=opendj"
   
-  4.3. Add the "opendj_version=3.0" line at the end of the file
+    4.3. Add the "opendj_version=3.0" line at the end of the file
   
-  4.4. Save your changes and exit the editor.
+    4.4. Save your changes and exit the editor.
 
 5. `# cp backup_2431/setup.properties /install/community-edition-setup/`
 
