@@ -378,7 +378,7 @@ Navigate to where you have the `backup_2431` folder (if the above commands were 
 
 ```
 
-# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/import2431.py
+# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/ae419a5bc9abf17875f23e6d1c224461aad924d1/static/scripts/import2431.py
 
 # wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/ldif.py
 ```
