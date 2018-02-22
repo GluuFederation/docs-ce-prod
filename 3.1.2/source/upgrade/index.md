@@ -346,21 +346,29 @@ Stop the current version of the gluu-server.
 # service gluu-server-2.4.x stop
 ```
 
-Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.1.2`, then execute the following commands:
+Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.1.2`, then follow next steps to prepare :
 
-```
-# cp -r /opt/gluu-server-2.4.x/root/backup_2431/ /opt/gluu-server-3.1.2/root/
+1. `# cp -r /opt/gluu-server-2.4.x/root/backup_2431/ /opt/gluu-server-3.1.2/root/`
 
-# service gluu-server-3.1.2 start
+2. `# service gluu-server-3.1.2 start`
 
-# service gluu-server-3.1.2 login
+3. `# service gluu-server-3.1.2 login`
 
-# cp backup_2431/setup.properties /install/community-edition-setup/
+4. For 3.1.2 packages which use OpenDJ, `setup.properties` needs to be modified before feeded to `./setup.py`.
 
-# cd /install/community-edition-setup/
+  4.1. Open it for editing: `# vi backup_2431/setup.properties`
 
-# ./setup.py
-```
+  4.2. Find the "ldap_type=openldap" line and change it to "ldap_type=opendj"
+  
+  4.3. Add the "opendj_version=3.0" line at the end of the file
+  
+  4.4. Save your changes and exit the editor.
+
+5. `# cp backup_2431/setup.properties /install/community-edition-setup/`
+
+6. `# cd /install/community-edition-setup/`
+
+7. `# ./setup.py`
 
 Enter the required information to complete the installation.
 
