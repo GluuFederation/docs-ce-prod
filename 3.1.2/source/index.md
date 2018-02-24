@@ -1,3 +1,6 @@
+!!! Note
+    The Gluu website is down for maintenance. It will be restored shortly. 
+
 # Gluu Server Community Edition (CE) 3.1.2 Documentation
 ## Introduction
 The Gluu Server is a container distribution of free open source software for identity and access management (IAM). With a Gluu Server, you can offer a central authentication and authorization service for many SaaS, custom, open source and commercial web and mobile applications.  
@@ -34,10 +37,7 @@ All software included in the Gluu Server distribution is free open source softwa
 - **Apache2 Web Server***: secure, efficient and extensible server that provides HTTP services in sync with current HTTP standards
 - **JCE 1.8***: Java cryptography extension 
 
-_*_ _Required component. All other components are optional._
-
-!!! Note
-    Due to replication issues in Gluu OpenLDAP, Gluu OpenDJ is currently the recommended directory server.
+_*_ _Required component._
 
 Learn more about the open source licenses in use [below](#license). 
 
