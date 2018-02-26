@@ -1,5 +1,5 @@
 !!! Note
-    The Gluu website is down for maintenance. It will be restored shortly. 
+    The Gluu website is down for maintenance. It will be restored shortly. If you need to get in touch, open a [support ticket](https://support.gluu.org) or [schedule a call](https://gluu.org/docs). 
 
 # Gluu Server Community Edition (CE) 3.1.2 Documentation
 ## Introduction
