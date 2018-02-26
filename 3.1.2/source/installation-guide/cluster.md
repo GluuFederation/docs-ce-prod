@@ -4,8 +4,6 @@
 ## Introduction
 If you have requirements for high availability (HA) or failover, follow the instructions below to manually configure multi-master replication (MMR) across multiple Gluu Servers.
 
-**The preferred method of replication is the Gluu fork of OpenDJ**
-
 !!! Note
     If your organization has a Gluu support contract, please email [sales@gluu.org](mailto:sales@gluu.org) for access to our automated clustering tool. 
 
@@ -16,6 +14,7 @@ Enable OpenDJ replication and also make configuration changes to make Gluu Serve
 
 ## Prerequisites
 
+### Ports
 Next ports are used by different components to communicate with their peers at other nodes of a cluster. Additional configuration 
 efforts may be needed to ensure they can be reached by incoming connections.
 
@@ -28,6 +27,7 @@ efforts may be needed to ensure they can be reached by incoming connections.
 |8989| OpenDJ Replication|  Between Gluu Servers |
 |30865| Csync2 Default |  Between Gluu Servers |
 
+### Software
 Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:   
 
 - A minimum of three (3) servers or VMs: two (2) for Gluu Servers and one (1) for load balancing (in our example, NGINX). For the purpose of this tutorial, the server configurations are as follows:
