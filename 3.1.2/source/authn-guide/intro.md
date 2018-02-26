@@ -91,4 +91,4 @@ Learn how to customize the look and feel of Gluu Server login pages in the [Desi
 
 ## Revert authentication 
 
-You should always test new authentication flows and methods in a different browser to reduce the chance of lockout. However, in case you find yourself locked out, refer to the [revert authentication mechanism docs](https://gluu.org/docs/ce/operation/faq/#revert-an-authentication-method). 
+You should always test new authentication flows and methods in a different browser to reduce the chance of lockout. However, in case you find yourself locked out, refer to the [revert authentication mechanism docs](../operation/faq.md#revert-an-authentication-method). 
