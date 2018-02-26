@@ -5,7 +5,7 @@
 If you have requirements for high availability (HA) or failover, follow the instructions below to manually configure multi-master replication (MMR) across multiple Gluu Servers.
 
 !!! Note
-    If your organization has a Gluu support contract, please email [sales@gluu.org](mailto:sales@gluu.org) for access to our automated clustering tool. 
+    If your organization has a Gluu support contract, you have a license to use our automated clustering tool: [Cluster Manager](https://gluu.org/docs/cm). Highly recommended :)  
 
 ## Concept
 
