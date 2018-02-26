@@ -1,6 +1,4 @@
-# Single Sign-On (SSO) to GSuite(formely Google apps)
-GSuite is a brand of cloud computing, productivity and collaboration tools, software and products developed by Google.
-GSuite comprises Gmail, Hangouts, Calendar, and Google+ for communication; Drive for storage; Docs, Sheets, Slides, Forms, and Sites for collaboration and supports SAML.
+# Single Sign-On (SSO) to GSuite 
 
 This document will explain how to configure GSuite and the Gluu Server for single sign-on (SSO).
 
