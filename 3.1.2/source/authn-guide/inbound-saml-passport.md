@@ -4,7 +4,7 @@
 The Gluu Server can be configured to delegate user authentication to one or more external SAML IDPs using the Passport.js authentication middleware. Passport is an MIT licensed, Express-based web application which Gluu has modified to call oxTrust APIs for its non-static configuration. 
 
 ### User Provisioning
-After authentication at an external IDP, if there is no existing user record in Gluu, both strategies mentioned above support just-in-time (JIT) user provisioning. Once personal data has been obtained and added to Gluu's local LDAP directory service, it can be used to offer SSO to any application leveraging Gluu for authentication. 
+After authentication at an external IDP, if there is no existing user record in Gluu, one will be created dynamically. Once personal data has been obtained and added to Gluu's local LDAP directory service, it can be used to offer SSO to all applications leveraging Gluu for authentication. 
 
 ## Prerequisites
 - Gluu Server CE 3.1.2 with Passport.js   
