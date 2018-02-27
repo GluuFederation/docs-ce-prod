@@ -1,5 +1,5 @@
 # User Authentication Introduction
-The Gluu Server is very flexible in handling user authentication. By default, either the Gluu Server's local LDAP, or an organization's backend LDAP (depending on where passwords are stored), is used for username / password authentication ("basic"). 
+The Gluu Server was designed to be very flexible in handling user authentication. By default, either the Gluu Server's local LDAP, or an organization's backend LDAP (depending on where passwords are stored), is used for username / password authentication ("basic"). 
 
 Stronger forms of authentication, like One-Time Passcodes (OTP), U2F Security Keys, and Gluu's free U2F mobile app, Super Gluu, can be implemented to increase the security of logins. 
 
