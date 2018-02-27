@@ -26,7 +26,7 @@ Resource Server (RS): A server that hosts resources on a resource owner's behalf
 
 Authorization Server (AS)_*_: A server that protects, on a resource owner's behalf, resources managed at a resource server.
 
-* _Gluu acts as an UMA AS_.
+_*_ _Gluu acts as an UMA AS_.
 
 Learn more in the UMA 2 [Core](https://docs.kantarainitiative.org/uma/wg/uma-core-2.0-20.html), [Federated Authorization](https://docs.kantarainitiative.org/uma/ed/oauth-uma-federated-authz-2.0-07.html) and [Grant](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-06.html) specifications.
 
