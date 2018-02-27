@@ -5,9 +5,9 @@ Stronger forms of authentication, like One-Time Passcodes (OTP), U2F Security Ke
 
 
 ## Authentication Interception Scripts
-The Gluu Server leverages [interception scripts](../admin-guide/custom-script.md) to facilitate the user authentication process. For each supported authentication mechanism--like username/password ("basic"), U2F or OTP--there is a corresponding interception script that specifies how the mechanism should be applied during user sign-in. 
+The Gluu Server leverages [interception scripts](../admin-guide/custom-script.md) to facilitate the user authentication process. For each supported authentication mechanism--like username/password ("basic"), U2F or OTP--a corresponding interception script is stored in Gluu to specify how the mechanism should be applied during user sign-in. 
 
-The Gluu Server ships with interception scripts for a number of authentication mechanisms, such as:
+The Gluu Server ships with interception scripts that implement a number of authentication mechanisms, such as:
 
 - [FIDO U2F](./U2F.md)
 - [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)
