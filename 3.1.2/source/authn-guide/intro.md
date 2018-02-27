@@ -1,7 +1,8 @@
 # User Authentication Introduction
 The Gluu Server is very flexible in handling user authentication. By default, either the Gluu Server's local LDAP, or an organization's backend LDAP (depending on where passwords are stored), is used for username / password authentication ("basic"). 
 
-Stronger forms of authentication like One-Time Passwords (OTP), U2F Security Keys, and Gluu's free U2F mobile app, Super Gluu, can be implemented to increase the security of logins. In addition, the Gluu Server can support multiple mechanisms at the same time, enabling Web and mobile apps ("clients") to request a specific authentication type by using standard OpenID Connect request parameters. 
+Stronger forms of authentication, like One-Time Passcodes (OTP), U2F Security Keys, and Gluu's free U2F mobile app, Super Gluu, can be implemented to increase the security of logins. 
+
 
 ## Authentication Interception Scripts
 The Gluu Server leverages [interception scripts](../admin-guide/custom-script.md) to facilitate the user authentication process. For each supported authentication mechanism--like username/password ("basic"), U2F or OTP--there is a corresponding interception script that specifies how the mechanism should be applied during user sign-in. 
@@ -66,7 +67,7 @@ In oxTrust, you can navigate to `Configuration` > `Manage Authentication` > `Def
 Depending on your requirements, you can set both fields to the same authentication mechanism, or choose a different mechanism for each use case. 
 
 ## Multiple Authentication Mechanisms
-As previously mentioned, the Gluu Server can concurrently support multiple authentication mechanisms. 
+The Gluu Server can concurrently support multiple authentication mechanisms, enabling Web and mobile apps ("clients") to request a specific type of authentication using standard OpenID Connect request parameters (`acr_values`). 
 
 In oxTrust, navigate to `Configuration` > `Manage Custom Scripts` > `Person Authentication` and check the `Enabled` box for each applicable interception script. Click the update button at the bottom of the page to save your changes. 
 
