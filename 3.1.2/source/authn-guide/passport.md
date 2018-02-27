@@ -2,13 +2,12 @@
 
 ## Overview
 
-The Gluu Server uses a component called [Passport.js](http://passportjs.org/) to enable social login. With over 300 existing
-"strategies", Passport provides a crowd-sourced approach to offering your users social login at popular consumer IDPs. Passport not only normalizes authentication, it also provides a standard mapping for user claims. 
+The Gluu Server uses [Passport.js](http://passportjs.org/) to enable social login. With over 300 existing
+"strategies", Passport provides a crowd-sourced approach to offering users social login at popular consumer IDPs. Passport not only normalizes authentication, it also provides a standard mapping for user claims. 
 
-Passport is an Express-based web application. We've modified it to call oxTrust APIs for its non-static configuration. Because its 
-configuration is stored centrally in LDAP, you can scale Passport even in clustered topologies.
+After authentication at the external IDP, if there is no existing user record in Gluu, one will be created dynamically. Once personal data has been obtained and added to Gluu's local LDAP directory service, it can be used to offer SSO to all applications leveraging Gluu for authentication.
 
-The Gluu Server uses its [Passport interception script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/passport/PassportExternalAuthenticator.py) to enable social login. This script is included in our default distribution. Post-authentication, this script uses just-in-time provisioning to add users to the Gluu LDAP server if a local account does not already exist. In this way, the Gluu SAML and OpenID Connect providers can gather claims and maintain SSO as normal.
+Passport is an MIT licensed, Express-based web application which Gluu has modified to call oxTrust APIs for its non-static configuration.
 
 ## Prerequisites
 - A Gluu Server with Passport.js installed during setup ([Installation Instructions](../installation-guide/index.md));
