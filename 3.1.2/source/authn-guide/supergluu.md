@@ -17,7 +17,8 @@ Super Gluu is based on the free open source [oxPush 3](https://github.com/GluuFe
 ## Prerequisites 
 - An Internet accessible (non-internal or localhost) Gluu Server with DNS pointing at the public Internet address of the server ([installation instructions](../installation-guide/index.md)) ;
 - [Super Gluu interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/super_gluu/SuperGluuExternalAuthenticator.py) (included in the default Gluu Server distribution);
-- An Android or iOS device with Super Gluu installed.
+- An Android or iOS device with Super Gluu installed;   
+- If the Gluu Server is using a self-signed certificate, `Trust All` **must** be enabled in Super Gluu (open the app, navigate to `Menu` > `Trust all (SSL)` and enable). 
 
 ### Download Super Gluu
 Super Gluu is available on the iOS and Android app marketplaces:
