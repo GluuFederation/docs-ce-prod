@@ -4,7 +4,7 @@ The SSO integration guide offers a list of supported SAML and OpenID Conenct "cl
 Unless otherwise noted, all software in the integration guide is free open source software (FOSS).
 
 !!! Note
-    Due to a wide range of variability, Gluu (the organization) only provides support for the following SAML, OpenID Connect, and OAuth client software projects.  
+    Due to a wide range of variability in implementation quality, Gluu (the organization) only provides support for the following SAML, OpenID Connect, and OAuth client software projects.  
     
 ## Server Side Web Apps
 Many applications are "server-side", meaning the web page displays content but most of the dynamic business logic resides on the web server. Two design patterns have emerged for securing server-side web applications: 
