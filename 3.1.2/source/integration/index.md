@@ -7,7 +7,7 @@ Unless otherwise noted, all software in the integration guide is free open sourc
     Due to a wide range of variability in implementation quality, Gluu (the organization) only provides support for the following SAML, OpenID Connect, and OAuth client software projects.  
     
 ## Server Side Web Apps
-Many applications are "server-side", meaning the web page displays content but most of the dynamic business logic resides on the web server. Two design patterns have emerged for securing server-side web applications: 
+Many applications are "server-side", meaning the web page displays content but most of the dynamic business logic resides on the web server. Two design patterns have emerged for integrating server-side web applications with an IDP like Gluu: 
 
 1. Web server filters and reverse proxies;            
 1. Leveraging OAuth 2.0 directly in your application. 
