@@ -16,9 +16,17 @@ UMA 2 inherits authentication agnosticism from OAuth. It concentrates on authori
 It has been profiled to work with OpenID Connect to gather identity claims from whoever is attempting access, 
 and enables attribute-based ("claims" in OAuth2) authorization (with group-based or role-based policies a natural subset).
  
-### Terminology
+## Terminology
 
-UMA 2 introduces new terms and enhancements of OAuth term definitions. Learn more about the UMA 2 [Federated Authorization](https://docs.kantarainitiative.org/uma/ed/oauth-uma-federated-authz-2.0-07.html) and [Grant](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-06.html) specifications on Kantara's website.
+UMA 2 introduces new terms and enhancements of OAuth term definitions. A few important terms include:
+
+Resource Owner (RO): An entity capable of granting access to a protected resource--the "user" in User-Managed Access. This is typically an end-user, but it can also be non-human entity that is treated as a person for limited legal purposes, such as a corporation.
+
+Resource Server (RS): A server that hosts resources on a resource owner's behalf, registers resources for protection at an authorization server, and is capable of accepting and responding to requests for protected resources.
+
+Authorization Server (AS): A server that protects, on a resource owner's behalf, resources managed at a resource server (like the Gluu Server).
+
+Learn more in the UMA 2 [Core](https://docs.kantarainitiative.org/uma/wg/uma-core-2.0-20.html), [Federated Authorization](https://docs.kantarainitiative.org/uma/ed/oauth-uma-federated-authz-2.0-07.html) and [Grant](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-06.html) specifications.
 
 ## Scopes
 
