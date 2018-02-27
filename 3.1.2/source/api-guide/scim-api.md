@@ -74,7 +74,7 @@ The following table lists characteristics of SCIM protocol (see section 3 of RFC
 |--------|--------|---------------|-------|
 |Resource creation|Yes|POST|Creation of Fido Devices not applicable|
 |Resource retrieval by identifier|Yes|GET||
-|Resource(s) retrieval by query|Yes|GET and POST|No support for searches combining different resource types|
+|Resource(s) retrieval by query|Yes|GET and POST|No support for searches combining different resource types. Sorting is a experimental feature|
 |Resource attributes replacement|Partially|PUT|To avoid clients to accidentally clear data, only attributes found in payload are modified|
 |Resource removal|Yes|DELETE||
 |Bulk operations|Yes|POST|Circular reference processing not supported|
