@@ -15,7 +15,7 @@ Learn more about FIDO U2F in the [spec](https://fidoalliance.org/specifications/
 Super Gluu is based on the free open source [oxPush 3](https://github.com/GluuFederation/oxPush3) source code. 
 
 ## Prerequisites 
-- A Gluu Server ([installation instructions](../installation-guide/index.md));
+- An Internet accessible (non-internal or localhost) Gluu Server with DNS pointing at the public Internet address of the server ([installation instructions](../installation-guide/index.md)) ;
 - [Super Gluu interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/super_gluu/SuperGluuExternalAuthenticator.py) (included in the default Gluu Server distribution);
 - An Android or iOS device with Super Gluu installed.
 
