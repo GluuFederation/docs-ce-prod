@@ -86,14 +86,16 @@ echo 65535 > /proc/sys/fs/file-max**
 
 * Restart your system.     
 
-## Amazon AWS      
+## Cloud-specific notes
+
+### Amazon AWS      
 
 Amazon AWS instances provide a public and private IP address. While
 running the `/install/community-edition-setup/setup.py` script, **use the
 Private IP address**. Also, use a hostname other than the long default
 hostname that Amazon provides as CN(Canonical Name). Update your DNS or hosts file accordingly.
 
-## Google Cloud Platform
+### Google Cloud Platform
 
 Gluu Server installation in GCP is pretty straight forward. We need to check couple of 
 points for this installation: 
@@ -106,7 +108,7 @@ gather appropriate IP information.
  
  A video tutorial is also available in [Gluu channel](https://www.youtube.com/watch?v=0RskrQG8km8)
 
-## Microsoft Azure      
+### Microsoft Azure      
 
 Accessing the Gluu Server on Azure can be a little tricky because of
 the Public/Private IP. Azure assigns a new Public/Private IP
@@ -148,7 +150,7 @@ Follow these steps to setup the VM on Azure:
     installation.
 
 
-## Linode VM
+### Linode VM
 
 Linode Virtual Machines (VM) use a custom kernel which is not 
 supported by the Gluu Server, therefore the kernel must be updated before 
