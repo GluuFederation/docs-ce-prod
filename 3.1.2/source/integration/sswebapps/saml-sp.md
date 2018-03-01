@@ -247,7 +247,7 @@ IDP.
             handlerURL="/Shibboleth.sso" handlerSSL="true" cookieProps="https" relayState="ss:mem">
 
             <SessionInitiator type="Chaining" Location="/Login" isDefault="true" id="Login"
-                              entityID="https://idp.gluu.am/idp/shibboleth">
+                              entityID="https://idp.gluu.info/idp/shibboleth">
                 <SessionInitiator type="SAML2" template="bindingTemplate.html"/>
             </SessionInitiator>
 
@@ -428,7 +428,7 @@ initial admin password). The output will contain something like this:
    lots of server restarts.
    
  - If you do test in local environment and using proxies you may need  
-   to bypass proxy address checking by seting checkAddress="false" in
+   to bypass proxy address checking by setting checkAddress="false" in
    shibboleth2.xml configuration 
     
 
