@@ -137,8 +137,8 @@ service httpd restart
 ## Super Quick Ubuntu Shib Apache Install
 
 Need to protect a test Apache folder using SAML on an Ubuntu server?
-Hate to read? This article is for you. Replace both `minnow` and
-`minnow.gluu.info` with your desired website hostname.
+Hate to read? This article is for you. Replace both `sp` and
+`sp.gluu.info` with your desired website hostname (SP hostname).
 
 ## Configure Apache
 
@@ -152,18 +152,19 @@ These are the steps to configure your Apache webserver properly:
 # a2ensite default-ssl
 # mkdir /etc/certs
 # cd /etc/certs
-# openssl genrsa -des3 -out minnow.key 2048
-# openssl rsa -in minnow.key -out minnow.key.insecure
-# mv minnow.key.insecure minnow.key
-# openssl req -new -key minnow.key -out minnow.csr
-# openssl x509 -req -days 365 -in minnow.csr -signkey minnow.key -out minnow.crt
-# shib-metagen -c /etc/certs/minnow.crt -h minnow.gluu.info > /etc/shibboleth/minnow-metadata.xml
+# openssl genrsa -des3 -out sp.key 2048
+# openssl rsa -in sp.key -out sp.key.insecure
+# mv sp.key.insecure sp.key
+# openssl req -new -key sp.key -out sp.csr
+# openssl x509 -req -days 365 -in sp.csr -signkey sp.key -out sp.crt
+# shib-metagen -c /etc/certs/sp.crt -h sp.gluu.info > /etc/shibboleth/SP-metadata.xml
 # service apache2 start
 # service shibd start
 ```
 
-Download `minnow-metadata.xml` to your machine. You will need this file
+Download `SP-metadata.xml` to your machine. You will need this file
 later when you create the Trust Relationship in the Gluu Server.
+
 
 ```
 # mkdir /var/www/protected
@@ -211,9 +212,10 @@ ScriptAlias /protected/ /var/www/protected/
 
 ## Configure the Shibboleth SP
 
-Use this for `shibboleth2.xml` and replace `squid.gluu.info` with the
-hostname of your SP, and `albacore.gluu.info` with the hostname of your
+Use this for `shibboleth2.xml` and replace `sp.gluu.info` with the
+hostname of your SP, and `idp.gluu.info` with the hostname of your
 IDP.
+
 
 ```
 <SPConfig xmlns="urn:mace:shibboleth:2.0:native:sp:config"
@@ -230,12 +232,12 @@ IDP.
     <ReplayCache StorageService="mem"/>
     <RequestMapper type="Native">
         <RequestMap>
-            <Host name="squid.gluu.info">
+            <Host name="sp.gluu.info">
                 <Path name="protected" authType="shibboleth" requireSession="true"/>
             </Host>
         </RequestMap>
     </RequestMapper>
-    <ApplicationDefaults entityID="https://squid.gluu.info/shibboleth"
+    <ApplicationDefaults entityID="https://sp.gluu.info/shibboleth"
                          REMOTE_USER="uid"
                          metadataAttributePrefix="Meta-"
                          sessionHook="/Shibboleth.sso/AttrChecker"
@@ -243,12 +245,12 @@ IDP.
 
         <Sessions lifetime="28800" timeout="3600" checkAddress="true"
             handlerURL="/Shibboleth.sso" handlerSSL="true" cookieProps="https" relayState="ss:mem">
-          
+
             <SessionInitiator type="Chaining" Location="/Login" isDefault="true" id="Login"
-                              entityID="https://albacore.gluu.info/idp/shibboleth">
+                              entityID="https://idp.gluu.info/idp/shibboleth">
                 <SessionInitiator type="SAML2" template="bindingTemplate.html"/>
             </SessionInitiator>
-            
+
             <md:AssertionConsumerService Location="/SAML2/POST-SimpleSign" index="2"
                 Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign"/>
             <md:AssertionConsumerService Location="/SAML2/POST" index="1"
@@ -270,18 +272,18 @@ IDP.
                 attributes="uid" flushSession="true"/>
         </Sessions>
 
-        <Errors supportContact="root@localhost"
+        <Errors supportContact="root@sp.gluu.info"
             helpLocation="/about.html"
             styleSheet="/shibboleth-sp/main.css"/>
-        
-        <MetadataProvider type="XML" file="albacore.xml"/>
+
+        <MetadataProvider type="XML" file="IDP-metadata.xml"/>
         <TrustEngine type="ExplicitKey"/>
         <TrustEngine type="PKIX"/>
         <AttributeExtractor type="XML" validate="true" reloadChanges="false" path="attribute-map.xml"/>
         <AttributeExtractor type="Metadata" errorURL="errorURL" DisplayName="displayName"/>
         <AttributeResolver type="Query" subjectMatch="true"/>
         <AttributeFilter type="XML" validate="true" path="attribute-policy.xml"/>
-        <CredentialResolver type="File" key="/etc/certs/squid.key" certificate="/etc/certs/squid.crt"/>
+        <CredentialResolver type="File" key="/etc/certs/sp.key" certificate="/etc/certs/sp.crt"/>
     </ApplicationDefaults>
     <SecurityPolicyProvider type="XML" validate="true" path="security-policy.xml"/>
     <ProtocolProvider type="XML" validate="true" reloadChanges="false" path="protocols.xml"/>
@@ -289,9 +291,11 @@ IDP.
 </SPConfig>
 ```
 
+Open `https://your-gluu-server/idp/shibboleth` You will see your IDP server's metadata.
+Copy it into `/etc/shibboleth/IDP-metadata.xml`: 
+
 Copy this file into `/etc/shibboleth/attribute-map.xml`:
 ```
-
 <Attributes xmlns="urn:mace:shibboleth:2.0:attribute-map" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <Attribute name="urn:oid:2.5.4.42" id="givenName"/>
     <Attribute name="urn:oid:2.5.4.4" id="sn"/>
@@ -422,6 +426,11 @@ initial admin password). The output will contain something like this:
  - Clear the cookies in your web browser for both the Apache site, and 
    the Gluu Server if you are logging in and logging out a lot with 
    lots of server restarts.
+   
+ - If you do test in local environment and using proxies you may need  
+   to bypass proxy address checking by setting checkAddress="false" in
+   shibboleth2.xml configuration 
+    
 
 ## IIS SAML Configuration
 
