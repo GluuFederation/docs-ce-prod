@@ -377,12 +377,12 @@ As a response, you will get a JSON document with all of the attributes in the us
 
 The SCIM protocol defines a standard set of parameters that can be used to filter, sort, and paginate resources in a query response (see section 3.4.3 of [RFC 7644](https://tools.ietf.org/html/rfc7644)). Filtering capabilities are very rich and enable developers to build complex queries.
 
-So let's elaborate a bit more on the example already shown in the [test mode section](#send-requests-to-scim-endpoints): let's create a query to return the first 2 users whose `userName` contains the sequence of letters "mi". Results should be sorted alphabetically by `givenName`.
+So let's elaborate a bit more on the example already shown in the [test mode section](#send-requests-to-scim-endpoints): let's create a query to return the first 2 users whose `userName` contains the sequence of letters "mi".
 
 ```
 $ curl -G -H 'Authorization: Bearer ...access token...'  -o output.json 
       --data-urlencode 'filter=userName co "mi"' 
-      -d startIndex=1 -d count=2 -d sortBy=name.givenName
+      -d startIndex=1 -d count=2
       https://<host-name>/identity/restv1/scim/v2/Users
 ```
 
@@ -816,6 +816,9 @@ Despite schema covers to a good extent many attributes one might thing of, at ti
 Please visit this [page](../admin-guide/attribute.md#custom-attributes) for a more detailed explanation. When registering the attribute in the admin GUI, please ensure you have set the `SCIM Attribute` parameter to `true`.
 
 ![image](../img/admin-guide/user/scim-attribute.png)
+
+!!! Note
+    Only the following data types for extended attributes are supported in SCIM server implementation: `string`, `numeric`, `boolean`, and `date`.
 
 Once you submit this form, your attribute will be part of the User Extension. You can verify this by inspecting the `Schema` endpoint:
 
