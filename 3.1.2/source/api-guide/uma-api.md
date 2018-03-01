@@ -299,7 +299,9 @@ Content-Type: application/json
    ],
    "icon_uri":"http://www.example.com/icons/sharesocial.png",
    "name":"Tweedl Social Service",
-   "type":"http://www.example.com/rsrcs/socialstream/140-compatible"
+   "type":"http://www.example.com/rsrcs/socialstream/140-compatible",
+   "exp": 1419356238,
+   "iat": 1419350238
 }
 ```
 
@@ -341,7 +343,8 @@ Authorization: Bearer 204c69636b6c69
    "description":"Collection of digital photographs",
    "icon_uri":"http://www.example.com/icons/sky.png",
    "name":"Photo Album",
-   "type":"http://www.example.com/rsrcs/photoalbum"
+   "type":"http://www.example.com/rsrcs/photoalbum",
+   "exp": 1419356238
 }
 ```
 
@@ -448,7 +451,8 @@ Authorization: Bearer MHg3OUZEQkZBMjcx
    ],
    "icon_uri":"http://www.example.com/icons/sharesocial.png",
    "name":"Tweedl Social Service",
-   "type":"http://www.example.com/rsrcs/socialstream/140-compatible"
+   "type":"http://www.example.com/rsrcs/socialstream/140-compatible",
+   "exp": 1419356238
 }
 ```
 
@@ -631,11 +635,19 @@ token=sbjsbhs(/SSJHBSUSSJHVhjsgvhsgvshgsv
 
 ###### Response
 
-- resource_id - REQUIRED. A string that uniquely identifies the protected resource, access to which has been granted to this client on behalf of this requesting party. The identifier MUST correspond to a resource that was previously registered as protected.
-- resource_scopes - REQUIRED. An array referencing zero or more strings representing scopes to which access was granted for this resource. Each string MUST correspond to a scope that was registered by this resource server for the referenced resource.
+- active - REQUIRED. Boolean indicator of whether or not the presented token is currently active.
 - exp - OPTIONAL. Integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this permission will expire. If the token-level exp value pre-dates a permission-level exp value, the token-level value takes precedence.
 - iat - OPTIONAL. Integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this permission was originally issued. If the token-level iat value post-dates a permission-level iat value, the token-level value takes precedence.
+- client_id - OPTIONAL. Client id used to obtain RPT.
+- sub - OPTIONAL. Subject of the token. Usually a machine-readable identifier of the resource owner who authorized this token.
+- aud - OPTIONAL. Service-specific string identifier or list of string identifiers representing the intended audience for this token
+- permissions - REQUIRED. List of permissions granted to RPT.
+- pct_claims - OPTIONAL. PCT token claims.
+- iss - OPTIONAL. String representing the issuer of this token, as defined in JWT [RFC7519].
+- jti - OPTIONAL. String identifier for the token, as defined in JWT [RFC7519].
 - nbf - OPTIONAL. Integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating the time before which this permission is not valid. If the token-level nbf value post-dates a permission-level nbf value, the token-level value takes precedence.
+- resource_id - REQUIRED. A string that uniquely identifies the protected resource, access to which has been granted to this client on behalf of this requesting party. The identifier MUST correspond to a resource that was previously registered as protected.
+- resource_scopes - REQUIRED. An array referencing zero or more strings representing scopes to which access was granted for this resource. Each string MUST correspond to a scope that was registered by this resource server for the referenced resource.
 
 Sample response
 ```
@@ -648,6 +660,9 @@ Cache-Control: no-store
    "active":true,
    "exp":1256953732,
    "iat":1256912345,
+   "client_id": "@!38D4.410C.1D43.8932!0001!37F2.B744!0008!0DC3.E462.BBFE.A12A",
+   "sub": null,
+   "aud": "@!38D4.410C.1D43.8932!0001!37F2.B744!0008!0DC3.E462.BBFE.A12A",
    "permissions":[  
       {  
          "resource_id":"112210f47de98100",
@@ -657,7 +672,13 @@ Cache-Control: no-store
          ],
          "exp":1256953732
       }
-   ]
+   ],
+   "pct_claims": {
+      "name":["John"]
+   }
+   "iss": null,
+   "jti": null,
+   "nbf": null,
 }
 ```
 
