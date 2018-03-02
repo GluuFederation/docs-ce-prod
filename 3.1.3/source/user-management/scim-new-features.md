@@ -161,7 +161,7 @@ The object you used to obtain when calling `gluu.scim2.client.factory.ScimClient
 
 ### Changes for reading responses
 
-As mentioned above, we upgraded to newer RestEasy 3.0 practices for building clients. We replaced the Resteasy client framework in `resteasy-jaxrs` by the JAX-RS 2.0 compliant resteasy-client module. The project now uses the JAX-RS 2.0 Client API in conjuction with the Resteasy Proxy Framework (see **links 49.1/2??**) and we share an interface between client and server. We have already touched upon this point: the client proxy now resembles more closely the service contract (we reuse the same service interface instead of defining a new one as in the older client).
+As mentioned above, we upgraded to newer RestEasy 3.0 practices for building clients. We replaced the Resteasy client framework in `resteasy-jaxrs` by the JAX-RS 2.0 compliant resteasy-client module. The project now uses the JAX-RS 2.0 Client API in conjuction with the Resteasy Proxy Framework (see [jboss doc page](https://docs.jboss.org/resteasy/docs/3.0.21.Final/userguide/html/RESTEasy_Client_Framework.html)) and we share an interface between client and server. We have already touched upon this point: the client proxy now resembles more closely the service contract (we reuse the same service interface instead of defining a new one as in the older client).
 
 The most important implication regarding RestEasy changes is that `org.jboss.resteasy.client.core.BaseClientResponse<T>` is no longer used and instead `javax.ws.rs.core.Response` comes into play. So you will have no more something like:
 
