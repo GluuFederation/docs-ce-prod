@@ -818,7 +818,7 @@ Please visit this [page](../admin-guide/attribute.md#custom-attributes) for a mo
 ![image](../img/admin-guide/user/scim-attribute.png)
 
 !!! Note
-    Only the following data types for extended attributes are supported in SCIM server implementation: `string`, `numeric`, `boolean`, and `date`.
+    Only the following data types for extended attributes are supported in SCIM server implementation: `string`, `numeric`, and `date`.
 
 Once you submit this form, your attribute will be part of the User Extension. You can verify this by inspecting the `Schema` endpoint:
 
