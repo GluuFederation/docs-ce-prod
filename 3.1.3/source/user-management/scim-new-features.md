@@ -12,7 +12,7 @@ Also we have added business logic to correctly apply the processing rules when i
 
 We have added searching capabilities so that it's possible to make general searches now, that is, you can have in your search results a mix of different resource types (Users, groups, etc.).
 
-Sorting is not an experimental feature anymore. Developers can now retrieve results sorted by most of SCIM resource attributes. Check [here](scim2.md#retrieval-with-filtering) to learn more.
+Sorting is not an experimental feature anymore: developers can retrieve results sorted by most of SCIM resource attributes.
 
 The processing of filter expressions used in searches adheres more closely to spec and now it generates more accurate LDAP expressions to run. Not only you can use filters with string attributes but also any mix of boolean, date, and integer typed attributes.
 
@@ -28,7 +28,7 @@ To learn more about PATCH see section 3.5.2 of RFC 7644. For users of SCIM-Clien
 
 Now **all operations** (except for bulk and delete) allow developers to specify the attributes that will be returned for every resource (User, group, etc.) included in a response by means of `attributes` and `excludedAttributes` query params. See section 3.9 of RFC 7644.
 
-## More precise error descriptions and message logging
+## More precise error messages
 
 When an anomaly is presented as a result of processing a service request (e.g. a malformed input, attribute mutability conflicts, non-existing resources, etc.), the trace of messages appearing in the log is more expressive so it's easier to be on the errors trail. The error responses returned by the server are accurate about the cause of errors so ideally instead of checking logs, developers just need to inspect the contents of the reponse.
 
@@ -44,7 +44,7 @@ Formerly, developers might execute custom code via Python interception scripts j
 We have striven after standard compliance and fixed subtle mistakes and deviations from the spec that were detected in serialization routines. 
 
 ## Better javadocs
-Java users can benefit from comprehensive api docs in maven projects such as `scim-client` and `oxtrust-scim`.
+Java users can benefit from comprehensive api docs in maven projects such as `scim-client2` and `oxtrust-scim`.
 
 
 # Important updates for developers
@@ -65,7 +65,7 @@ The implementation takes care of updating group and user entries in LDAP accordi
 
 Two aspects have changed with regards to multi-valued attributes:
 
-* The subattribute *operation* was removed because it is simply not part of the specification. You will not be able to set its value or retrieve it now (even if it was stored in LDAP in the past)
+* The subattribute called *operation* was removed because it is simply not part of the specification. You will not be able to set its value or retrieve it now (even if it was stored in LDAP in the past)
 * When a multi-valued attribute is empty, it is not returned in the response. Previously, any operation (create, retrieve, update, etc...) that returned a resource was showing an empty json list `[]` for multi-valued attributes that had no data assigned (e.g. a user with no addresses). Update your code to account for the fact that the attribute will not be there when it has no info.
 
 For single-valued attributes that are not assigned (no data), the same rule applies. The previous implementation returned the attribute with null value in the Json response, like this:
@@ -117,7 +117,7 @@ If you have been using SCIM-Client in your projects, and want to take advantage 
 * Do custom error handling
 * Release resources when no more requests will be issued
 
-If you definitely do not want to alter your existing code base you can still use the old style `SCIM-Client` artifact and work as you used to (a few [special cases apply](#are-there-any-special-cases-to-account-if-still-using-older-client). 
+If you definitely do not want to alter your existing code base you can still use the old style `SCIM-Client` artifact and work as you used to (a few [special cases apply](#are-there-any-special-cases-to-account-if-still-using-older-client)). 
 
 In summary, version 3.1.3 of the project includes two modules:
 
