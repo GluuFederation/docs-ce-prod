@@ -853,7 +853,7 @@ Assuming you named the file above as `scim-client.properties`, the following Jav
 Properties p = new Properties();
 p.load(new FileInputStream("scim-client.properties"));
 Response response = client.createUser(p.getProperty("json_string"), null, null);
-User user=response.getEntity();
+UserResource user=response.readEntity(UserResource.class);
 ```
 
 ##### User Object
@@ -1041,33 +1041,16 @@ Former SCIM-Client versions used to deal with `BaseClientResponse<T>` objects an
 
 ## Additional features of SCIM service
 
-### Available operations
-
-The capabilities of the SCIM service implementation included in your Gluu Server are broad. The following are the currently supported operations:
-
-* Creating resources
-* Retrieving resources via GET and POST
-* Modifying resources (PUT only)
-* Deleting resources 
-* Bulk operations
-
-The following are operations present in the spec (RFC 7644) that we aim to include in future releases:
-
-* Support searches from root endpoint using POST
-* Modifying resources via PATCH (section 3.5.2 of spec)
-* Add support for `excludedAttributes` query param throughout all service operations
-* Add support for versioning: Etags (section 3.14 of spec)
-
 ### Fido devices
 
-SCIM standard is concerned with two classes of resources, namely, Users and Groups. However, according to spec, the service can be extended to add new resource types. Particularly, Gluu Server implementation of SCIM contains a resource type called "Fido device". 
+SCIM standard is concerned with two types of resources, namely, Users and Groups. However, according to spec, the service can be extended to add new resource types. Particularly, Gluu Server implementation of SCIM contains a resource type called "Fido device". 
 
 A fido device represents a user credential stored in the Gluu Server LDAP that is 
 compliant with the [FIDO](https://fidoalliance.org) standards. 
 These devices are used as a second factor in a setting of strong authentication. 
 Examples of fido devices are [u2f security keys](../authn-guide/U2F/) and [Super Gluu devices](../authn-guide/supergluu/).
 
-Including FIDO devices as one of resource types will allow application developers querying, 
+Having FIDO devices as one of resource types allow application developers querying, 
 updating and deleting already existing (added) devices. Addition of devices do not take place 
 through the service since this process requires direct end-user interaction, ie. device enrolling.
 
@@ -1086,7 +1069,7 @@ Currently the service supports only:
 
 - Devices search and retrieval (via GET and POST)
 
-- Single device update via PUT
+- Single device update via PUT or PATCH
 
 - Single device deletion via DELETE
 
@@ -1101,7 +1084,7 @@ curl -G -H 'Authorization: Bearer ...access token...' --data-urlencode 'filter=d
 -d count=10 -o output.json https://<host-name>/identity/seam/resource/restv1/scim/v2/FidoDevices/
 ```
 
-Your result list might look like:
+Your result list might look like this:
 
 ```
 {
