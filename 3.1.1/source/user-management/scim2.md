@@ -66,7 +66,7 @@ To enable test mode, do the following:
 
 - Click the Save Configuration button at the bottom.
 
-You can verify the current authentication scheme by querying the `ServiceProviderConfig` endpoint:
+You can verify the current authentication scheme by querying the `ServiceProviderConfig` endpoint @ `https://<host name>/identity/restv1/scim/v2/ServiceProviderConfig`:
 
 ![image](../img/scim/scim-test-mode-config.png)
 
@@ -651,7 +651,7 @@ public class TestScimClient {
         String filter = "userName eq \"admin\"";
 
         BaseClientResponse<ListResponse> response = client.searchUsers(filter, 1, 1, "", "", null);
-        List<BaseScimResource> results=response.getEntity().getResources();
+        List<Resource> results=response.getEntity().getResources();
 
         System.out.println("Length of results list is: " + results.size());
         User user=(User) results.get(0);
@@ -781,7 +781,7 @@ addresses.add(address);
 user.setAddresses(addresses);
 
 BaseClientResponse<User> response = client.createUser(user, new String[]{});
-logger.info("response HTTP code = {}", response.getStatusCode());
+logger.info("response HTTP code = {}" + response.getStatusCode());
 ```
 
 #### Delete a user
