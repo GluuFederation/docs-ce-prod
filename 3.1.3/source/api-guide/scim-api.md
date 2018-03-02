@@ -14,7 +14,7 @@ Then enable the protection mode you want for your API, see details [here](../use
 
 ## HTTP verbs
 
-As a summary, these are the HTTP verbs SCIM server implementation speaks:
+As a summary, these are the verbs a compliant SCIM server implementation (like Gluu) speaks:
 
 |HTTP Method|Description	|
 |--------|------------------------------|
@@ -22,6 +22,7 @@ As a summary, these are the HTTP verbs SCIM server implementation speaks:
 |POST|Creates new resources, executes searches, send bulk requests (batches)|
 |PUT|Modifies resources by adding and replacing attributes|
 |DELETE|Deletes a resource|
+|PATCH|Modifies a resource using a client-provided specific set of changes (additions, removals, and updates)|
 
 ## Resource types
 
@@ -38,6 +39,8 @@ Additionally the following resource extensions are defined:
 |Resource|Schema URI|Attributes|
 |-|-|-|
 |User|urn:ietf:params:scim:schemas:extension:gluu:2.0:User|Attributes can be assigned dynamically via oxTrust|
+
+In [this section](#conformance-matrix) we provide a conformance matrix where you can see which features from the spec are supported by Gluu implementation. 
 
 To learn about the specific capabilities of the service, inspect your `/ServiceProvider`, `/ResourceTypes`,  and `/Schemas` endpoints (see [below](#service-provider-configuration-endpoints)). These endpoints are not protected so you can use a web browser to check. 
 
@@ -70,14 +73,16 @@ SCIM 2.0 is governed by the [SCIM:Core Schema](https://tools.ietf.org/html/rfc76
 
 The following table lists characteristics of SCIM protocol (see section 3 of RFC 7644) and correlates the level of support and conformance provided by Gluu Server implementation.
 
-|Characteristic|Compliant|Available via methods|Notes on support|
+|Characteristic|Compliance|Available via methods|Notes on support|
 |--------|--------|---------------|-------|
-|Resource creation|Yes|POST|Creation of Fido Devices not applicable|
-|Resource retrieval by identifier|Yes|GET||
-|Resource(s) retrieval by query|Yes|GET and POST|No support for searches combining different resource types. Sorting is a experimental feature|
-|Resource attributes replacement|Partially|PUT|To avoid clients to accidentally clear data, only attributes found in payload are modified|
-|Resource removal|Yes|DELETE||
-|Bulk operations|Yes|POST|Circular reference processing not supported|
+|Resource creation|Full|POST|Creation of Fido Devices not applicable|
+|Resource retrieval by identifier|Full|GET||
+|Resource(s) retrieval by query|Full|GET and POST|Supports searches from root endpoint too. Complex multi-valued attributes not supported in sortBy param|
+|Resource attributes replacement|Partial|PUT|To avoid clients to accidentally clear data, only attributes found in payload are modified. No need to pass the whole resource nor required attributes|
+|Resource attributes modification|Full|PATCH|All three types of operations supported: add/remove/replace|
+|Resource removal|Full|DELETE||
+|Bulk operations|Full|POST|Circular reference processing not supported. bulkIds can be used not only in "data" attribute of operations but in "path" too|
+|Returned attributes control|Full|GET, POST, PUT, PATCH|Supports `attributes`/`excludedAttributes` params and attribute notation (sections 3.9/3.10)|
 |"/me" URI alias|-|-|Not applicable: operations actually not executed on a user's behalf or other SCIM resource|
 |Resource versioning|-|-|Feature may be available upon explicit customer demand|
 
@@ -125,11 +130,11 @@ Search users based on filter criteria (see [section 3.4.2](https://tools.ietf.or
         <td>no</td>
         <td>string (comma-separated list)</td>
     </tr>
-    <!--tr>
+    <tr>
         <td>excludedAttributes</td>
         <td>no</td>
         <td>string (comma-separated list)</td>
-    </tr-->
+    </tr>
 </table>
 
 #### Response
@@ -157,12 +162,12 @@ Creates a user (see [section 3.3](https://tools.ietf.org/html/rfc7644#section-3.
         <td>url</td>
         <td>string (comma-separated list)</td>
     </tr>
-    <!--tr>
+    <tr>
         <td>excludedAttributes</td>
         <td>no</td>
         <td>url</td>
         <td>string (comma-separated list)</td>
-    </tr-->
+    </tr>
     <tr>
         <td> </td>
         <td>yes</td>
@@ -221,11 +226,11 @@ Search groups based on filter criteria (see [section 3.4.3](https://tools.ietf.o
         <td>no</td>
         <td>string (comma-separated list)</td>
     </tr>
-    <!--tr>
+    <tr>
         <td>excludedAttributes</td>
         <td>no</td>
         <td>string (comma-separated list)</td>
-    </tr-->
+    </tr>
 </table>
 
 #### Response
@@ -255,12 +260,12 @@ Returns a user by id (see [section 3.4.1](https://tools.ietf.org/html/rfc7644#se
         <td>url</td>
         <td>string (comma-separated list)</td>
     </tr>
-    <!--tr>
+    <tr>
         <td>excludedAttributes</td>
         <td>no</td>
         <td>url</td>
         <td>string (comma-separated list)</td>
-    </tr-->
+    </tr>
 </table>
 
 #### Response
@@ -288,12 +293,12 @@ Updates a user (see [section 3.5.1](https://tools.ietf.org/html/rfc7644#section-
         <td>url</td>
         <td>string (comma-separated list)</td>
     </tr>
-    <!--tr>
+    <tr>
         <td>excludedAttributes</td>
         <td>no</td>
         <td>url</td>
         <td>string (comma-separated list)</td>
-    </tr-->
+    </tr>
     <tr>
         <td> </td>
         <td>yes</td>
@@ -364,11 +369,11 @@ Search groups based on filter criteria (see [section 3.4.2](https://tools.ietf.o
         <td>no</td>
         <td>string (comma-separated list)</td>
     </tr>
-    <!--tr>
+    <tr>
         <td>excludedAttributes</td>
         <td>no</td>
         <td>string (comma-separated list)</td>
-    </tr-->
+    </tr>
 </table>
 
 #### Response
@@ -396,12 +401,12 @@ Creates a group (see [section 3.3](https://tools.ietf.org/html/rfc7644#section-3
         <td>url</td>
         <td>string (comma-separated list)</td>
     </tr>
-    <!--tr>
+    <tr>
         <td>excludedAttributes</td>
         <td>no</td>
         <td>url</td>
         <td>string (comma-separated list)</td>
-    </tr-->
+    </tr>
     <tr>
         <td> </td>
         <td>yes</td>
@@ -460,11 +465,11 @@ Search groups based on filter criteria (see [section 3.4.3](https://tools.ietf.o
         <td>no</td>
         <td>string (comma-separated list)</td>
     </tr>
-    <!--tr>
+    <tr>
         <td>excludedAttributes</td>
         <td>no</td>
         <td>string (comma-separated list)</td>
-    </tr-->
+    </tr>
 </table>
 
 #### Response
@@ -494,12 +499,12 @@ Returns a group by id (see [section 3.4.1](https://tools.ietf.org/html/rfc7644#s
         <td>url</td>
         <td>string (comma-separated list)</td>
     </tr>
-    <!--tr>
+    <tr>
         <td>excludedAttributes</td>
         <td>no</td>
         <td>url</td>
         <td>string (comma-separated list)</td>
-    </tr-->
+    </tr>
 </table>
 
 #### Response
@@ -527,12 +532,12 @@ Updates a group (see [section 3.5.1](https://tools.ietf.org/html/rfc7644#section
         <td>url</td>
         <td>string (comma-separated list)</td>
     </tr>
-    <!--tr>
+    <tr>
         <td>excludedAttributes</td>
         <td>no</td>
         <td>url</td>
         <td>string (comma-separated list)</td>
-    </tr-->
+    </tr>
     <tr>
         <td> </td>
         <td>yes</td>
@@ -604,11 +609,11 @@ Search fido devices based on filter criteria (see [section 3.4.2](https://tools.
         <td>no</td>
         <td>string (comma-separated list)</td>
     </tr>
-    <!--tr>
+    <tr>
         <td>excludedAttributes</td>
         <td>no</td>
         <td>string (comma-separated list)</td>
-    </tr->
+    </tr>
 </table>
 
 #### Response
@@ -662,11 +667,11 @@ Search fido devices based on filter criteria (see [section 3.4.3](https://tools.
         <td>no</td>
         <td>string (comma-separated list)</td>
     </tr>
-    <!--tr>
+    <tr>
         <td>excludedAttributes</td>
         <td>no</td>
         <td>string (comma-separated list)</td>
-    </tr-->
+    </tr>
 </table>
 
 #### Response
@@ -696,12 +701,12 @@ Returns a fido device by id (see [section 3.4.1](https://tools.ietf.org/html/rfc
         <td>url</td>
         <td>string (comma-separated list)</td>
     </tr>
-    <!--tr>
+    <tr>
         <td>excludedAttributes</td>
         <td>no</td>
         <td>url</td>
         <td>string (comma-separated list)</td>
-    </tr-->
+    </tr>
 </table>
 
 #### Response
@@ -729,12 +734,12 @@ Updates a fido device (see [section 3.5.1](https://tools.ietf.org/html/rfc7644#s
         <td>url</td>
         <td>string (comma-separated list)</td>
     </tr>
-    <!--tr>
+    <tr>
         <td>excludedAttributes</td>
         <td>no</td>
         <td>url</td>
         <td>string (comma-separated list)</td>
-    </tr-->
+    </tr>
     <tr>
         <td> </td>
         <td>yes</td>

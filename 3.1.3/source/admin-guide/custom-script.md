@@ -321,24 +321,16 @@ This script can be used in an oxAuth application only.
 
 ## SCIM
 
-SCIM script allows to extend the default logic by adding  or removing a pre-defined attributes to do 
-validation and identify  resources such as users and groups, using http methods. SCIM script calls one of the methods
-(create, update, retrieve or delete) depending on the command triggered by the user at the time of login.
+SCIM script allows you to execute custom logic when certain SCIM API operations are invoked. Particularly for create, update, and delete 
+ users and groups, custom code can be called just before and after data is persisted to LDAP.
 
-SCIM flow is as follows:
-
-1. SCIM server process Operation depending on the user commands
-
-2. SCIM calls script
-
-3. Persist to LDAP and triggers the action requested.
-
-SCIM scripts needs to be enabled from the SCIM tab
+To enable this feature, SCIM script needs to be enabled from the SCIM tab:
 
 1. Click on `Manage Custom Scripts` > `SCIM`
-2. Add requried attribute value to created, modified, retrieve or delete in the `custom property`
-3. Click on `Enabled` check box
-4. Click on `update` at the bottom of the page
+
+1. Click on `Enabled` check box
+
+1. Click on `update` at the bottom of the page
 
 ![SCIM](../img/admin-guide/scimscript.png)
 

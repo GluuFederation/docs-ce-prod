@@ -8,7 +8,7 @@ For your reference, current version of the standard is governed by the following
 
 ## API protection
 
-This API must not be anonymously accessed but SCIM standard does not define a specific mechanism to prevent unauthorized requests to endpoints. There are just a few guidelines in section 2 of [RFC 7644](https://tools.ietf.org/html/rfc7644) concerned with authentication and authorization. 
+Clearly this API must not be anonymously accessed, however, SCIM standard does not define a specific mechanism to prevent unauthorized requests to endpoints. There are just a few guidelines in section 2 of [RFC 7644](https://tools.ietf.org/html/rfc7644) concerned with authentication and authorization. 
 
 Gluu Server CE allows you to protect your endpoints with [UMA](#scim-protected-by-uma) (a profile of [OAuth 2.0](http://tools.ietf.org/html/rfc6749)). This is a safe and standardized approach for controling access to web resources. For SCIM protection, we **strongly recommend** its usage. 
 
@@ -345,12 +345,11 @@ One of the simplest ways to test retrieval is querying all information about a s
 !!! Note:
     In the Gluu Server, `inums` are long strings consisting of alphanumeric characters and typically start with @!, include these two characters as well. Note that the URL was surrounded with single quotes: bang characters might be misleading to your command line interpreter.
     
-As a response, you will get a JSON document with all of the attributes in the user schema and their corresponding values. For Joe, almost all of them will have a *null* or an empty array as value, as in the following:
+As a response, you will get a JSON document with all of the attributes in the user schema and their corresponding values. Note that only non-null attributes are present in the output:
 
 ```
 {
   "id": ...,
-  "externalId": null,
   "meta": {...},
   "schemas": [...],
   "userName": "ajsmith",
@@ -362,13 +361,11 @@ As a response, you will get a JSON document with all of the attributes in the us
   },
   "displayName": "Average Joe",
   ...
-  "locale": null,
+  "emails": [ ... ],
   ...
-  "emails": [],
+  "phoneNumbers": [ ... ],
   ...
-  "phoneNumbers": [],
-  ...
-  "addresses": []
+  "addresses": [ ... ]
   ...
 }
 ```
@@ -377,12 +374,12 @@ As a response, you will get a JSON document with all of the attributes in the us
 
 The SCIM protocol defines a standard set of parameters that can be used to filter, sort, and paginate resources in a query response (see section 3.4.3 of [RFC 7644](https://tools.ietf.org/html/rfc7644)). Filtering capabilities are very rich and enable developers to build complex queries.
 
-So let's elaborate a bit more on the example already shown in the [test mode section](#send-requests-to-scim-endpoints): let's create a query to return the first 2 users whose `userName` contains the sequence of letters "mi".
+So let's elaborate a bit more on the example already shown in the [test mode section](#send-requests-to-scim-endpoints): let's create a query to return the first 2 users whose `userName` contains the sequence of letters "mi". Results should be sorted alphabetically by `givenName`.
 
 ```
 $ curl -G -H 'Authorization: Bearer ...access token...'  -o output.json 
       --data-urlencode 'filter=userName co "mi"' 
-      -d startIndex=1 -d count=2
+      -d startIndex=1 -d count=2 -d sortBy=name.givenName
       https://<host-name>/identity/restv1/scim/v2/Users
 ```
 
@@ -410,10 +407,10 @@ As response you will have a JSON file that looks like this:
 ```
 
 
-### Updating a user
+### Updating a user (PUT)
 
 !!! Note
-    SCIM spec defines two ways to update resources: HTTP PUT and PATCH. Current Gluu implementation only supports PUT (PATCH being scheduled for a future release).
+    SCIM spec defines two ways to update resources: HTTP PUT and PATCH.
 
 Overwrite your `input.json` with the following. Replace content in angle brackets accordingly:
 
@@ -430,7 +427,7 @@ Overwrite your `input.json` with the following. Replace content in angle bracket
 	"emails": [{
 		"value": "jsmith@foodstuffs.eat",
 		"type": "work",
-		"primary": "true"
+		"primary": true
 	}]	
 }
 ```
@@ -439,7 +436,7 @@ And issue the PUT with `curl`:
 
 ```
 $ curl -X PUT -H 'Authorization: Bearer ...access token...' 
-       -H 'Content-Type: application/scim+json' -H 'cache-control: no-cache' 
+       -H 'Content-Type: application/scim+json'
        -d @input.json -o output.json 
        'https://<host-name>/identity/restv1/scim/v2/Users/<user-inum>'
 ```
@@ -448,6 +445,117 @@ Response (`output.json`) will show the same contents of a full retrieval.
 
 Please verify changes were applied whether by inspecting LDAP or issuing a GET. If you have followed the steps properly, you should notice a new e-mail added and the change in `displayName` attribute.
 
+### Updating a user (PATCH)
+
+With patching you can be very precise about the modifications you want to apply. Patching syntax follows closely Json Patch spec (RFC 6902). While it's not a must to read the RFC to learn how patch works, at least you may like glancing section 3.5.2 of SCIM protocol (RFC 7644) to get the grasp.
+
+If you prefer reading code, [patch test cases](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.3/scim-client2/src/test/java/gluu/scim2/client/patch) found in the Java SCIM-Client project are worth to look at.
+
+The following is a simple example that illustrates the kind of modifications developers can achieve via PATCH. Overwrite your `input.json` with the following:
+
+```
+{
+  "schemas": [
+    "urn:ietf:params:scim:api:messages:2.0:PatchOp"
+  ],
+  "Operations": [
+    {
+      "op": "replace",
+      "value": {
+        "name": { "givenName": "Joey" }
+      }
+    },
+    {
+      "op": "replace",
+      "path" : "emails[type eq \"work\" or primary eq false].value",
+      "value": "jsmith@foodmafia.com"
+    },
+    {
+      "op": "add",
+      "value": {
+        "name": { "middleName": "Jhon" }
+      }
+    },
+    {
+      "op": "add",
+      "value": {
+        "emails" : [
+          { "primary": true, "value" : "my@own.mail" }
+        ],
+        "phoneNumbers" : [
+          { "type" : "home", "value": "5 123 8901"},
+          { "value": "5 123 8902"}
+        ]
+      }
+    },
+    {
+      "op": "remove",
+      "path": "name.middleName"
+    },
+    {
+      "op": "remove",
+      "path": "phoneNumbers[value ew \"01\"].type"
+    },
+  ]
+}
+```
+
+A collection of modification are provided under "Operations". They are processed in order of appearance. Also, every operation has a type; patching supports add, remove and replace.
+
+The first operations states the following: replace the value of `givenName` subattribute (that belongs to complex attribute `name`) with the string "Joey".
+
+Operations are easier to understand when using a "path". This is the case of second operation: it replaces the `value` subattribute inside the complex multi-valued attribute `emails`. Inside the square brackets we find a filter expression, so the replacement does not apply to all `emails` in the list but only to those matching the criterion. 
+
+So second operation can be read as "set the value of `value` subattribute to string *jsmith@foodmafia.com* where the `type` subattribute of the email equals to string "work" or if `primary` attribute is false".
+
+Third operation is similar to first. It sets the value of a subattribute which was unassigned (null). You could have used "replace" operation in this case and results would have been identical.
+
+Fourth operation is more interesting. It adds to the current list of `emails` a new one. It supplies a couple of subattributes for the email to include: `primary` and `value`. Additionally here we set the value of (previously unassigned) `phoneNumbers` multi-valued attribute passing a list of elements.
+
+In fifth operation, we remove the `middleName` attribute that was set in operation three. Note how we make explicit the path of data to nullify: "name.middleName".
+
+Sixth operation allows us to remove a specific subattribute of `phoneNumbers`. The aim is to nullify the "type" of the item whose phone number value ends with "01". The remove operation can also be used to remove a complete item from a list, or empty the whole list by providing a suitable value for "path".
+
+Now let's see it in action:
+
+```
+$ curl -X PATCH -H 'Authorization: Bearer ...access token...' 
+       -H 'Content-Type: application/scim+json' 
+       -d @input.json -o output.json 
+       'https://<host-name>/identity/restv1/scim/v2/Users/<user-inum>'
+```
+
+So far, our resource should look like:
+
+```
+{
+  "schemas": [ "urn:ietf:params:scim:schemas:core:2.0:User" ],
+  "userName": "ajsmith",
+  "name": { "familyName": "Smith", "givenName": "Joey" },
+  "displayName": "Joe Smith",
+  "emails": [
+    {
+      "value": "jsmith@foodmafia.com",
+      "type": "work",
+      "primary": true
+    },
+    {
+      "value": "my@own.mail",
+      "primary": false
+    }
+  ],
+  "phoneNumbers": [
+    { "value": "5 123 8901" }, { "value": "5 123 8902" }
+  ]
+}
+```
+
+Note the `primary` subattribute accompanying email "my@own.mail" is false but when inserted we provided true. This is so because SCIM spec states that after modifications are applied to resources (PUT or PATCH), there cannot be more than one item in a multi-valued attribute with primary value set as true.
+
+To see more sample Json payloads, check the `.json` files used by the SCIM-Client test cases referenced above.
+
+Lots of fun with patch? In conjunction with bulk operations, patch becomes a very powerful tool to transform data.
+
 ### Deleting users
 
 For deleting, the DELETE method of HTTP is used.
@@ -455,7 +563,7 @@ For deleting, the DELETE method of HTTP is used.
 No input file is used in this case. A delete request could be the following:
 
 ```
-$ curl -X DELETE -H 'Authorization: Bearer ...access token...' -H 'cache-control: no-cache' 
+$ curl -X DELETE -H 'Authorization: Bearer ...access token...'
         'https://<host-name>/identity/seam/resource/restv1/scim/v2/Users/<user-inum>'
 ```
 
@@ -484,7 +592,7 @@ Create a project in your favorite IDE, and if using maven add the following snip
 
 ```
 <properties>
-	<scim.client.version>3.1.2.Final</scim.client.version>
+	<scim.client.version>3.1.3.Final</scim.client.version>
 </properties>
 ...
 <repositories>
@@ -497,12 +605,12 @@ Create a project in your favorite IDE, and if using maven add the following snip
 ...
 <dependency>
   <groupId>gluu.scim.client</groupId>
-  <artifactId>SCIM-Client</artifactId>
+  <artifactId>scim-client2</artifactId>
   <version>${scim.client.version}</version>
 </dependency>
 ```
 
-Ideally the SCIM-Client you use should match your Gluu version. For example, if you are running Gluu Server CE v3.1.2, you should also use SCIM-Client v3.1.2.
+Ideally the SCIM-Client you use should match your Gluu version. For example, if you are running Gluu Server CE v3.1.3, you should also use SCIM-Client v3.1.3.
 
 If you don't want to use Maven, you can download the jar file for SCIM-Client here: [https://ox.gluu.org/maven/gluu/scim/client/SCIM-Client](https://ox.gluu.org/maven/gluu/scim/client/SCIM-Client). This may require you to add other libraries (jar files dependencies) manually.
 
@@ -512,35 +620,47 @@ Create a Java class using the code shown below. Replace with proper values betwe
 
 ```
 import gluu.scim2.client.factory.ScimClientFactory;
-import org.gluu.oxtrust.model.scim2.*
-import org.jboss.resteasy.client.core.BaseClientResponse;
+import gluu.scim2.client.rest.ClientSideService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.gluu.oxtrust.model.scim2.BaseScimResource;
+import org.gluu.oxtrust.model.scim2.ListResponse;
+import org.gluu.oxtrust.model.scim2.user.UserResource;
+
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 public class TestScimClient {
 
     private String domainURL="https://<host-name>/identity/restv1";
     private String OIDCMetadataUrl="https://<host-name>/.well-known/openid-configuration";
+    
+    private Logger logger = LogManager.getLogger(getClass());
 
     private void simpleSearch() throws Exception {
 
-        ScimClient client = ScimClientFactory.getTestClient(domainURL, OIDCMetadataUrl);
+        ClientSideService client=ScimClientFactory.getTestClient(domainURL, OIDCMetadataUrl);
         String filter = "userName eq \"admin\"";
 
-        BaseClientResponse<ListResponse> response = client.searchUsers(filter, 1, 1, "", "", null);
-        List<Resource> results=response.getEntity().getResources();
+        Response response = client.searchUsers(filter, 1, 1, null, null, null, null);
+        List<BaseScimResource> resources=response.readEntity(ListResponse.class).getResources();
 
-        System.out.println("Length of results list is: " + results.size());
-        User admin=(User) results.get(0);
-        System.out.println("First user in the list is: " + admin.getDisplayName());
+        logger.info("Length of results list is: {}", resources.size());
+        UserResource admin=(UserResource) resources.get(0);
+        logger.info("First user in the list is: {}" + admin.getDisplayName());
+        
+        client.close();
 
     }
 
 }
 ```
 
-The first line of method `simpleSearch` is getting an object that conforms to the `ScimClient` interface. This interface consists of a number of methods that will allow you to do all CRUD (create, retrieve, update, delete) you may need.
+The first line of method `simpleSearch` is getting an object that conforms to the `ClientSideService` interface. This interface is a "mashup" of several interfaces and gives access to a rich number of methods that will allow you to do all CRUD (create, retrieve, update, delete) you may need. Other methods in `ScimClientFactory` class allow to supply a specific interface class and so get an object that adheres to that interface.
 
-Create a main method for class `TestScimClient` and call `simpleSearch` from there. When running you will see the output of retrieving one user (admin) and see his `displayName` on the screen.
+Create a main method for class `TestScimClient` and call `simpleSearch` from there. When running you will see the output of retrieving one user (admin) and see his `displayName` on the screen or wherever you have configured your logs to be written to. Here we are using `log4j2` as framework, but you may use the any other logging framework.
+
+Note the usage of `close` in the last statement. While it's not a requirement, it is recommended to call `close` whenever you know there will not be any other request associated to the client you obtained.
 
 The [SCIM protected by UMA section](#scim-protected-by-UMA) contains examples for [adding](#adding-a-user) and [deleting](#delete-a-user) users.  The only actual difference in coding for test mode or UMA-protected service is the way in which you initially get a `ScimClient` object instance. For test mode, just call `ScimClientFactory.getTestClient` as shown in the previous example.
 
@@ -604,7 +724,7 @@ Create a project in your favorite IDE, and if using maven add the following snip
 
 ```
 <properties>
-	<scim.client.version>3.1.2.Final</scim.client.version>
+	<scim.client.version>3.1.3.Final</scim.client.version>
 </properties>
 ...
 <repositories>
@@ -617,12 +737,12 @@ Create a project in your favorite IDE, and if using maven add the following snip
 ...
 <dependency>
   <groupId>gluu.scim.client</groupId>
-  <artifactId>SCIM-Client</artifactId>
+  <artifactId>scim-client2</artifactId>
   <version>${scim.client.version}</version>
 </dependency>
 ```
 
-Ideally the SCIM-Client you use should match your Gluu version. For example, if you are running Gluu Server CE v3.1.2, you should also use SCIM-Client v3.1.2.
+Ideally the SCIM-Client you use should match your Gluu version. For example, if you are running Gluu Server CE v3.1.3, you should also use SCIM-Client v3.1.3.
 
 If you don't want to use Maven, you can download the jar file for SCIM-Client here: [https://ox.gluu.org/maven/gluu/scim/client/SCIM-Client](https://ox.gluu.org/maven/gluu/scim/client/SCIM-Client). This may require you to add other libraries (jar files dependencies) manually.
 
@@ -631,35 +751,43 @@ If you don't want to use Maven, you can download the jar file for SCIM-Client he
 Create a Java class using the code shown below. Replace with proper values between the angle brackets for private attributes:
 
 ```
-package gluu.scim2.client;
-
 import gluu.scim2.client.factory.ScimClientFactory;
-import org.gluu.oxtrust.model.scim2.*;
-import org.jboss.resteasy.client.core.BaseClientResponse;
+import gluu.scim2.client.rest.ClientSideService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.gluu.oxtrust.model.scim2.BaseScimResource;
+import org.gluu.oxtrust.model.scim2.ListResponse;
+import org.gluu.oxtrust.model.scim2.user.UserResource;
 
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 public class TestScimClient {
 
-    private String domain = "https://<host-name>/identity/restv1";
+    private String domainURL="https://<host-name>/identity/restv1";
     private String umaAatClientId = "<requesting-party-client-id>";
     private String umaAatClientJksPath = "<path-to-RP-jks>/scim-rp.jks";
     private String umaAatClientJksPassword = "<jks-password>";
     private String umaAatClientKeyId = "";
+    
+    private Logger logger = LogManager.getLogger(getClass());
 
     private void simpleSearch() throws Exception {
 
-        ScimClient client = ScimClientFactory.getClient(domain, null, umaAatClientId, umaAatClientJksPath, umaAatClientJksPassword, umaAatClientKeyId);
+        ClientSideService client=ScimClientFactory.getClient(domain, umaAatClientId, umaAatClientJksPath, umaAatClientJksPassword, umaAatClientKeyId);
         String filter = "userName eq \"admin\"";
 
-        BaseClientResponse<ListResponse> response = client.searchUsers(filter, 1, 1, "", "", null);
-        List<Resource> results=response.getEntity().getResources();
+        Response response = client.searchUsers(filter, 1, 1, null, null, null, null);
+        List<BaseScimResource> resources=response.readEntity(ListResponse.class).getResources();
 
-        System.out.println("Length of results list is: " + results.size());
-        User user=(User) results.get(0);
-        System.out.println("First user in the list is: " + user.getDisplayName());
+        logger.info("Length of results list is: {}", resources.size());
+        UserResource admin=(UserResource) resources.get(0);
+        logger.info("First user in the list is: {}" + admin.getDisplayName());
+        
+        client.close();
 
     }
+
 }
 ```
 
@@ -694,26 +822,26 @@ json_string = {	\
   "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"],	\
   "externalId": "12345",	\
   "userName": "newUser",	\
-  "name": { "givenName": "json", "familyName": "json", "middleName": "N/A", "honorificPrefix": "", "honorificSuffix": ""},	\
+  "name": { "givenName": "json", "familyName": "json"},	\
   "displayName": "json json",	\
   "nickName": "json",	\
   "profileUrl": "http://www.gluu.org/",	\
   "emails": [	\
-    {"value": "json@gluu.org", "type": "work", "primary": "true"},	\
-    {"value": "json2@gluu.org", "type": "home", "primary": "false"}	\
+    {"value": "json@gluu.org", "type": "work", "primary": true},	\
+    {"value": "json2@gluu.org", "type": "home", "primary": false}	\
   ],	\
-  "addresses": [{"type": "work", "streetAddress": "621 East 6th Street Suite 200", "locality": "Austin", "region": "TX", "postalCode": "78701", "country": "US", "formatted": "621 East 6th Street Suite 200  Austin , TX 78701 US", "primary": "true"}],	\
+  "addresses": [{"type": "work", "streetAddress": "621 East 6th Street Suite 200", "locality": "Austin", "region": "TX", "postalCode": "78701", "country": "US", "formatted": "621 East 6th Street Suite 200  Austin , TX 78701 US", "primary": true}],	\
   "phoneNumbers": [{"value": "646-345-2346", "type": "work"}],	\
   "ims": [{"value": "test_user", "type": "Skype"}],	\
   "userType": "CEO",	\
   "title": "CEO",	\
   "preferredLanguage": "en-us",	\
   "locale": "en_US",	\
-  "active": "true",	\
+  "active": true,	\
   "password": "secret",	\
   "roles": [{"value": "Owner"}],	\
   "entitlements": [{"value": "full access"}],	\
-  "x509Certificates": [{"value": "cert-12345"}]	\
+  "x509Certificates": [{"value": "MIIDQzCCAqy...blah...blah}]	\
 }
 ```
 
@@ -722,9 +850,9 @@ Here, backslashes "\\" allow us to span the contents in several lines.
 Assuming you named the file above as `scim-client.properties`, the following Java code will create the new user:
 
 ```
-Properties p= new Properties();
+Properties p = new Properties();
 p.load(new FileInputStream("scim-client.properties"));
-BaseClientResponse<User> response=client.createPersonString(p.getProperty("json_string"), MediaType.APPLICATION_JSON);
+Response response = client.createUser(p.getProperty("json_string"), null, null);
 User user=response.getEntity();
 ```
 
@@ -733,7 +861,7 @@ User user=response.getEntity();
 You may also use an "*objectual*" approach to dealing with users. The following code snippet employs the class `org.gluu.oxtrust.model.scim2.User` of SCIM-Client.
 
 ```
-User user = new User();
+UserResource user = new UserResource();
 
 Name name = new Name();
 name.setGivenName("Given Name");
@@ -741,18 +869,16 @@ name.setFamilyName("Family Name");
 user.setName(name);
 
 user.setActive(true);
-
-user.setUserName("newUser_" + new Date().getTime());
+user.setUserName("newUser_" + System.currentTimeMillis());
 user.setPassword("secret");
 user.setPreferredLanguage("US_en");
-user.setDisplayName("Dummy human")
+user.setDisplayName("Dummy human");
 
 List<Email> emails = new ArrayList<Email>();
 Email email = new Email();
 email.setPrimary(true);
 email.setValue("a@b.com");
-email.setDisplay("a@b.com");
-email.setType(Email.Type.WORK);
+email.setType("work");
 emails.add(email);
 user.setEmails(emails);
 
@@ -760,28 +886,22 @@ List<PhoneNumber> phoneNumbers = new ArrayList<PhoneNumber>();
 PhoneNumber phoneNumber = new PhoneNumber();
 phoneNumber.setPrimary(true);
 phoneNumber.setValue("123-456-7890");
-phoneNumber.setDisplay("123-456-7890");
-phoneNumber.setType(PhoneNumber.Type.WORK);
+phoneNumber.setType("work");
 phoneNumbers.add(phoneNumber);
 user.setPhoneNumbers(phoneNumbers);
 
 List<Address> addresses = new ArrayList<Address>();
 Address address = new Address();
 address.setPrimary(true);
-address.setValue("test");
-address.setDisplay("My Address");
-address.setType(Address.Type.WORK);
+address.setType("work");
 address.setStreetAddress("My Street");
-address.setLocality("My Locality");
 address.setPostalCode("12345");
-address.setRegion("My Region");
 address.setCountry("RU");
-address.setFormatted("My Formatted Address");
 addresses.add(address);
 user.setAddresses(addresses);
 
-BaseClientResponse<User> response = client.createUser(user, new String[]{});
-logger.info("response HTTP code = {}", response.getStatusCode());
+Response response = client.createUser(user, null, null);
+logger.info("response HTTP code = {}", response.getStatus());
 ```
 
 #### Delete a user
@@ -789,7 +909,7 @@ logger.info("response HTTP code = {}", response.getStatusCode());
 To delete a user only his id (the `inum` LDAP attribute) is needed. You can see the `id` of the user just created by inspecting the JSON response.
 
 ```
-BaseClientResponse<User>response=client.deletePerson(id);
+Response response=client.deleteUser("id");
 assertEquals(Response.Status.NO_CONTENT.getStatusCode(), response.getStatus());
 ```
 
@@ -797,13 +917,13 @@ assertEquals(Response.Status.NO_CONTENT.getStatusCode(), response.getStatus());
 
 Coding service interactions when SCIM endpoints are being protected by UMA is more involved than using test mode. If you are planning to code for a SCIM service protected by UMA, it is advisable to check the flow depicted in section 3 of the [UMA 2.0 spec](https://docs.kantarainitiative.org/uma/wg/rec-oauth-uma-grant-2.0.html). Focus only on the interactions of client vs. another party (resource server or authorization server). In a previous [section](#actors-involved-in-protection) we talked about the actors involved in UMA protection; this will save you time when reading the specification.
 
-As a guideline for your own implementation, you can take ideas from the Java class [UmaScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.2/src/main/java/gluu/scim2/client/UmaScimClient.java#L72) found in SCIM-Client. Starting  at the `authorize` method, you will see how steps in the spec flow are being followed there.
+As a guideline for your own implementation, you can take ideas from the Java class [UmaScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.3/scim-client2/src/main/java/gluu/scim2/client/UmaScimClient.java) found in SCIM-Client. Starting at the `authorize` method, you will see how steps in the spec flow are being followed there.
 
 Check the metadata URL of UMA 2 to discover the oxAuth endpoint that issues tokens. Visit `https://<host-name>/.well-known/uma2-configuration`.
 
 ## Creating your own attributes: extensions
 
-[RFC 7643](https://tools.ietf.org/html/rfc7643) defines the schema for resource types in SCIM. In other words, defines structures in terms of attributes to represent users and groups as well as attribute types, mutability, cardinality, and so on. 
+[RFC 7643](https://tools.ietf.org/html/rfc7643) defines the schema for resource types in SCIM (see section 3.3). In other words, defines structures in terms of attributes to represent users and groups as well as attribute types, mutability, cardinality, and so on. 
 
 Despite schema covers to a good extent many attributes one might thing of, at times you will need to add your own attributes for specific needs. This is where user extensions pitch in, they allow you to create custom attributes for SCIM. To do so, you will have to:
 
@@ -828,11 +948,96 @@ Once you submit this form, your attribute will be part of the User Extension. Yo
 
 In the JSON response, your new added attribute will appear.
 
-You can learn more about SCIM Schema and the extension model by reading [RFC 7643](https://tools.ietf.org/html/rfc7643). Also refer to the following unit tests in SCIM-Client project for code examples in which custom attributes are involved:
+### Handling custom attributes in SCIM-Client
 
-- [User Extensions Object Test](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.2/src/test/java/gluu/scim2/client/UserExtensionsObjectTest.java)
+To access the name/values of custom attributes please use the `getCustomAttributes` method of your SCIM resource and pass the `uri` of the extension that these custom attributes are associated to. Likewise, to set the values for your custom attributes, call the `addCustomAttributes` and pass a `CustomAttributes` instance. 
 
-- [User Extensions JSON Test](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.2/src/test/java/gluu/scim2/client/UserExtensionsJsonTest.java)
+The following test cases contain illustrative examples:
+
+* [FullUserTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.3/scim-client2/src/test/java/gluu/scim2/client/singleresource/FullUserTest.java)
+
+* [QueryParamCreateUpdateTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.3/scim-client2/src/test/java/gluu/scim2/client/singleresource/QueryParamCreateUpdateTest.java)
+
+* [PatchUserExtTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.3/scim-client2/src/test/java/gluu/scim2/client/patch/PatchUserExtTest.java)
+
+
+## Error handling
+
+When something happens that prevents an operation to succeed you can do some post-processing and show meaningful errors to your users. The strategy is simple:
+
+* Detect if the status code of the response is what you expect: 201 for creations, 204 for removals, and 200 for updates and searches.
+* If not, parse the response contents according to the error format of SCIM spec (section 3.12 of RFC 7644)
+* Do your custom processing using the `scimType` and `detail` properties of the error (again see section 3.12 of RFC 7644).
+
+The following are sample response errors:
+
+* A GET for a non-existent resource:
+
+```
+{
+	"schemas": ["urn:ietf:params:scim:api:messages:2.0:Error"],
+	"detail":"Resource @!3245.DF39.6A34.9E97!0001!0000!B2B4.52F0.88EA not found", 
+	"status": "404"
+}
+```
+
+* A POST in an attempt to create a user with an already assigned username:
+
+```
+{
+	"schemas": ["urn:ietf:params:scim:api:messages:2.0:Error"],
+	"detail": ""Duplicate UID value: admin", 
+	"scimType" : "uniqueness",
+	"status": "409"
+}
+```
+
+
+### Custom error handling using SCIM-Client
+
+The following snippet sends a user creation request and shows how to check if the status code is appropriate. If not, the error details are parsed using the `ErrorResponse` class.
+
+```
+...
+
+public void failedCreate() {
+
+        UserResource u = new UserResource();
+        u.setUserName("admin");
+        
+        Response r = client.createUser(u, null, null);
+        Status status = Status.fromStatusCode(r.getStatus());
+
+        switch (r.getStatusInfo().getFamily()) {
+            case SUCCESSFUL:
+                //2xx HTTP sucess, add your processing logic here...
+                break;
+            case CLIENT_ERROR:
+                //4xx HTTP error
+                ErrorResponse error = r.readEntity(ErrorResponse.class);
+                if (status.equals(Status.BAD_REQUEST)) {
+                    handleError("The request is syntactically incorrect", error.getDetail(), error.getScimType());
+                }
+                else
+                if (status.equals(Status.CONFLICT)) {
+                    handleError("An attempt to create an already existing user occurred", error.getDetail(), error.getScimType());
+                }
+                break;
+            case SERVER_ERROR:
+                //5xx HTTP error
+                break;
+        }
+        
+}
+
+public void handleError(String title, String description, String scimType) {
+    //Do your custom processing...
+    //For a list of possible values of scimType, see table 9 of RFC7644
+}
+```
+
+Former SCIM-Client versions used to deal with `BaseClientResponse<T>` objects and it was not possible to read the entity as an instance of a class other than `T` (usually `T` being User or Group) because the response was already fully consumed. This usually led to errors like "Stream closed". Newer client allows you to read the response as many times as you need without restriction of type parameter `T` as the underlying response stream is buffered by default.
+
 
 ## Additional features of SCIM service
 
@@ -972,13 +1177,11 @@ This task has to do with creating utility code that will allow you to obtain tok
 
 In previous sections we covered thoroughy what needs to be done for test mode, for UMA basic [guidelines](#using-a-different-programming-language) were given. Ensure you have already enabled the protection of your preference in oxTrust.
 
-If you are unsure of how to code a particular step, take a look at the Java client. These three classes do the job:
+If you are unsure of how to code a particular step, take a look at the Java client. These two classes do the job:
 
-- [AbstractScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.2/src/main/java/gluu/scim2/client/AbstractScimClient.java)
+- [TestModeScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.3/scim-client2/src/main/java/gluu/scim2/client/TestModeScimClient.java)
 
-- [TestModeScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.2/src/main/java/gluu/scim2/client/UmaScimClient.java)
-
-- [UmaScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.2/src/main/java/gluu/scim2/client/UmaScimClient.java)
+- [UmaScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.3/scim-client2/src/main/java/gluu/scim2/client/UmaScimClient.java)
 
 To test your authorization code, use a simple GET retrieval request.
 
