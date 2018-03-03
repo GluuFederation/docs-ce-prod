@@ -54,6 +54,7 @@ The following table summarizes the available endpoints in Gluu implementation of
 |[/Groups](#groups)|Group|GET, POST, PUT, DELETE|Retrieve, add, modify and delete Groups|
 |[/FidoDevices](#fidodevices)|Fido devices|GET, PUT, DELETE|Retrieve, modify and delete Fido devices|
 |[/Bulk](#bulk)||POST|Applies operations of different kind to a set of resources|
+|[/.search](#search)||POST|Search resources of all kind|
 |[/ServiceProvider](#serviceprovider)||GET|Retrieve service provider configuration|
 |[/ResourceTypes](#resourcetypes)||GET|Retrieve supported resource types|
 |[/Schemas](#schemas)||GET|Retrieve supported schemas info|
@@ -79,7 +80,7 @@ The following table lists characteristics of SCIM protocol (see section 3 of RFC
 |Resource retrieval by identifier|Full|GET||
 |Resource(s) retrieval by query|Full|GET and POST|Supports searches from root endpoint too. Complex multi-valued attributes not supported in sortBy param|
 |Resource attributes replacement|Partial|PUT|To avoid clients to accidentally clear data, only attributes found in payload are modified. No need to pass the whole resource nor required attributes|
-|Resource attributes modification|Full|PATCH|All three types of operations supported: add/remove/replace|
+|Resource attributes modification|Full|PATCH|All types of operations supported (add/remove/replace) for user and group resources|
 |Resource removal|Full|DELETE||
 |Bulk operations|Full|POST|Circular reference processing not supported. bulkIds can be used not only in "data" attribute of operations but in "path" too|
 |Returned attributes control|Full|GET, POST, PUT, PATCH|Supports `attributes`/`excludedAttributes` params and attribute notation (sections 3.9/3.10)|
@@ -312,6 +313,45 @@ For payload data, it's not necessary to provide the whole User representation. P
 #### Response
 
 The representation of the <a href="#/definitions/User">user</a> (after the update) containing the attributes whose returnability is "default". This can be overriden by supplying **attributes** or **excludedAttributes** query parameters (see [section 3.4.2.5](https://tools.ietf.org/html/rfc7644#section-3.4.2.5) of RFC 7644).
+
+Status code 200 is returned upon successful operation. If the id supplied as part of the URL does not map to an existing user, then 404 is returned.
+
+### PATCH
+
+Modifies a user (see [section 3.5.2](https://tools.ietf.org/html/rfc7644#section-3.5.2) of RFC 7644).
+
+#### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Required</th>
+        <th>Located in</th>
+        <th>Data type</th>
+    </tr>
+    <tr>
+        <td>attributes</th>
+        <td>no</td>
+        <td>url</td>
+        <td>string (comma-separated list)</td>
+    </tr>
+    <tr>
+        <td>excludedAttributes</td>
+        <td>no</td>
+        <td>url</td>
+        <td>string (comma-separated list)</td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td>yes</td>
+        <td>body (payload)</td>
+        <td><a href="#/definitions/PatchRequest">PatchRequest</a></td>
+    </tr>
+</table>
+
+#### Response
+
+The representation of the <a href="#/definitions/User">user</a> (after modification) containing the attributes whose returnability is "default". This can be overriden by supplying **attributes** or **excludedAttributes** query parameters (see [section 3.4.2.5](https://tools.ietf.org/html/rfc7644#section-3.4.2.5) of RFC 7644).
 
 Status code 200 is returned upon successful operation. If the id supplied as part of the URL does not map to an existing user, then 404 is returned.
 
@@ -551,6 +591,45 @@ For payload data, it's not necessary to provide the whole Group representation. 
 #### Response
 
 The representation of the <a href="#/definitions/Group">group</a> (after the update) containing the attributes whose returnability is "default". This can be overriden by supplying **attributes** or **excludedAttributes** query parameters (see [section 3.4.2.5](https://tools.ietf.org/html/rfc7644#section-3.4.2.5) of RFC 7644).
+
+Status code 200 is returned upon successful operation. If the id supplied as part of the URL does not map to an existing group, then 404 is returned.
+
+### PATCH
+
+Modifies a group (see [section 3.5.2](https://tools.ietf.org/html/rfc7644#section-3.5.2) of RFC 7644).
+
+#### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Required</th>
+        <th>Located in</th>
+        <th>Data type</th>
+    </tr>
+    <tr>
+        <td>attributes</th>
+        <td>no</td>
+        <td>url</td>
+        <td>string (comma-separated list)</td>
+    </tr>
+    <tr>
+        <td>excludedAttributes</td>
+        <td>no</td>
+        <td>url</td>
+        <td>string (comma-separated list)</td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td>yes</td>
+        <td>body (payload)</td>
+        <td><a href="#/definitions/PatchRequest">PatchRequest</a></td>
+    </tr>
+</table>
+
+#### Response
+
+The representation of the <a href="#/definitions/Group">group</a> (after modification) containing the attributes whose returnability is "default". This can be overriden by supplying **attributes** or **excludedAttributes** query parameters (see [section 3.4.2.5](https://tools.ietf.org/html/rfc7644#section-3.4.2.5) of RFC 7644).
 
 Status code 200 is returned upon successful operation. If the id supplied as part of the URL does not map to an existing group, then 404 is returned.
 
@@ -797,10 +876,67 @@ A <a href="#/definitions/BulkResponse">BulkResponse</a> with details of every at
 
 Status code 200 is returned upon successful operation. Every operation result in <a href="#/definitions/BulkResponse">BulkResponse</a> contains at the same time its own status code.
 
+## `/.search`
+
+Search resources based on filter criteria (see [section 3.4.3](https://tools.ietf.org/html/rfc7644#section-3.4.3) of RFC 7644). 
+
+### POST
+
+#### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Required</th>
+        <th>Data type</th>
+    </tr>
+    <tr>
+        <td>filter</td>
+        <td>no</td>
+        <td>string</td>
+    </tr>
+    <tr>
+        <td>startIndex</td>
+        <td>no</td>
+        <td>string</td>
+    </tr>
+    <tr>
+        <td>count</td>
+        <td>no</td>
+        <td>int</td>
+    </tr>
+    <tr>
+        <td>sortBy</td>
+        <td>no</td>
+        <td>string</td>
+    </tr>
+    <tr>
+        <td>sortOrder</td>
+        <td>no</td>
+        <td>string</td>
+    </tr>
+    <tr>
+        <td>attributes</td>
+        <td>no</td>
+        <td>string (comma-separated list)</td>
+    </tr>
+    <tr>
+        <td>excludedAttributes</td>
+        <td>no</td>
+        <td>string (comma-separated list)</td>
+    </tr>
+</table>
+
+#### Response
+
+Output data is in form of a [ListResponse](#/definitions/ListResponse). Resources returned belong to <a href="#/definitions/Resource">Resource</a>.
+
+Status code 200 is returned for a successful response.
+
 ## Service Provider Configuration Endpoints
 
 There are three endpoints that facilitate discovery of features of the service itself and about the schema used; in other words, service metadata. Please check section 4 of RFC 7644 for more information.
-   
+
 ### `/ServiceProvider`
 
 #### Security
@@ -1059,6 +1195,53 @@ This section summarizes data model definitions useful to understand what values 
     <tr>
         <td>response</td>
         <td> object </td>
+        <td>no</td>
+    </tr>
+</table>
+
+#### Patches
+
+<a name="/definitions/PatchRequest">PatchRequest</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+    </tr>
+    <tr>
+        <td>schemas</td>
+        <td> array[string] </td>
+        <td>yes</td>
+    </tr>
+    <tr>
+        <td>Operations</td>
+        <td> array[<a href="#/definitions/PatchOperation">PatchOperation</a>] </td>
+        <td>yes</td>
+    </tr>
+</table>
+
+<a name="/definitions/PatchOperation">PatchOperation</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+    </tr>
+    <tr>
+        <td>op</td>
+        <td> string </td>
+        <td>yes</td>
+    </tr>
+    <tr>
+        <td>path</td>
+        <td> string </td>
+        <td>no</td>
+    </tr>
+    <tr>
+        <td>value</td>
+        <td> Object </td>
         <td>no</td>
     </tr>
 </table>
@@ -1604,7 +1787,7 @@ This section summarizes data model definitions useful to understand what values 
 </table>
 
 
-#### Fido devices related
+#### Fido devices-related
 
 <a name="/definitions/FidoDevice">FidoDevice</a>
 
