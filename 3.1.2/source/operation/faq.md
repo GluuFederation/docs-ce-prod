@@ -265,31 +265,46 @@ In such a situation, you can use the following methods to revert back to the pre
 
 1. Manual Method: 
 
-This method rely on ldif file to change the authentication mode in LDAP server directly.
+This method rely on ldif file to change the authentication mode in LDAP server directly. There are two acr available for 'Default Authentication Method': (a) Default acr and (b) oxTrust acr. These two acr are being represented by `oxAuthenticationMode` and `oxTrustAuthenticationMode` attribute respectively. Depending on your scenario you might need to change single or both values to revert the default authentication method. 
 
-- Run the following command to collect the `inum` for the Gluu Server installation:   
+Here for example we are going to change both attributes as we applied Duo ( the 2FA used for this testing ) for both 'Default acr' and 'oxTrust acr'. 
+
+- Run the following command to get the value of `oxAuthenticationMode` along with the DN inum:   
     
     ```
-    $/opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w 'yourPassword' -b "ou=appliances,o=gluu" -s one "objectclass=*" oxAuthenticationMode
+    /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -j <your_password_file> -b 'o=gluu' -T 'oxAuthenticationMode=*' oxAuthenticationMode
+    
     ```
+You might get bunch of outputs but just take one which would be something like: 
+
+```
+dn: inum=@!B382.75BE.B0CF.1968!0002!F907.8C8C,ou=appliances,o=gluu
+oxAuthenticationMode: auth_ldap_server
+```
+
+- Do same for `oxTrustAuthenticationMode` attribute
+
     
-- Create a `LDIF` file with the contents below:
- 
-    `dn: inum=@!1E3B.F133.14FA.5062!0002!4B66.CF9C,ou=appliances,o=gluu`
-    
-    `changetype: modify`
-    
-    `delete: oxAuthenticationMode`
-    
-    As an example, we shall call this file `changeAuth.ldif`.
-    
+- Create a `LDIF` file like below. As an example, we shall call this file `changeAuth.ldif`.:
+
+```
+dn: inum=@!B382.75BE.B0CF.1968!0002!F907.8C8C,ou=appliances,o=gluu
+changetype: modify
+replace: oxTrustAuthenticationMode
+oxTrustAuthenticationMode: auth_ldap_server
+-
+replace: oxAuthenticationMode
+oxAuthenticationMode: auth_ldap_server
+```   
     !!! Note
         Replace the `inum` from the example above with the `inum` of your Gluu Server from the `ldapsearch` command.
 
-- Replace the the authentication mode using `ldapmodify` command.
+- Push this LDIF file with ldapmodify command to apply changes.
+
     ```
-    root@gluu3-ubuntu:/opt/symas/bin# ./ldapmodify -h localhost -p 1389 -D "cn=directory manager,o=gluu" -w "{password provided during setup}" -f revert.ldif
+    /opt/opendj/bin/ldapmodify -h localhost -p 1636 -Z -X -D "cn=directory manager" -j <your_password_file> -f /home/ldap/mod_change.ldif
     ```
+    
 2. Graphical method:
 
 The idea here is to use an LDAP browser, hence this method is much more simple.
