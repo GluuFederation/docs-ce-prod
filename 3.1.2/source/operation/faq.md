@@ -261,51 +261,51 @@ property `ldapPass`. Retrieve the data using the following command:
 ## Revert an authentication method
 You should always test new authentication methods in a different browser to reduce the chance of lockout. However, while testing authentication scripts and mechanisms it is not unlikely that you will find yourself locked out of the Gluu Server admin GUI. 
 
-In such a situation, you can use the following methods to revert back to the previous authentication method:
+In such a situation, you can use either of the following methods to revert back to the previous authentication method.
 
-1. Manual Method: 
+### Manual Method: 
 
-This method rely on ldif file to change the authentication mode in LDAP server directly. There are two acr available for 'Default Authentication Method': (a) Default acr and (b) oxTrust acr. These two acr are being represented by `oxAuthenticationMode` and `oxTrustAuthenticationMode` attribute respectively. Depending on your scenario you might need to change single or both values to revert the default authentication method. 
+This method relies on an ldif file to change the authentication mode in the LDAP server directly. 
 
-Here for example we are going to change both attributes as we applied Duo ( the 2FA used for this testing ) for both 'Default acr' and 'oxTrust acr'. 
+There are two acr's available for `Default Authentication Method`: (1) Default acr and (2) oxTrust acr. These two acr's are represented by the `oxAuthenticationMode` and `oxTrustAuthenticationMode` attributes, respectively. Depending on the scenario, one or both values may need to be reverted. 
+
+For this example, we applied Duo authentication to both `Default acr` and `oxTrust acr`, so we will change both attributes back to basic. 
 
 - Run the following command to get the value of `oxAuthenticationMode` along with the DN inum:   
     
-    ```
-    /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -j <your_password_file> -b 'o=gluu' -T 'oxAuthenticationMode=*' oxAuthenticationMode
+          ```
+          /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -j <your_password_file> -b 'o=gluu' -T 'oxAuthenticationMode=*' oxAuthenticationMode
     
-    ```
-You might get bunch of outputs but just take one which would be something like: 
+          ```
+    You might get bunch of outputs but just take one which would be something like: 
 
-```
-dn: inum=@!B382.75BE.B0CF.1968!0002!F907.8C8C,ou=appliances,o=gluu
-oxAuthenticationMode: auth_ldap_server
-```
+          ```
+          dn: inum=@!B382.75BE.B0CF.1968!0002!F907.8C8C,ou=appliances,o=gluu oxAuthenticationMode: auth_ldap_server
+          ```
 
-- Do same for `oxTrustAuthenticationMode` attribute
+- Do the same for `oxTrustAuthenticationMode` attribute:
+  
+- Create an `LDIF` file like below. As an example, we shall call this file `changeAuth.ldif`.:
 
-    
-- Create a `LDIF` file like below. As an example, we shall call this file `changeAuth.ldif`.:
-
-```
-dn: inum=@!B382.75BE.B0CF.1968!0002!F907.8C8C,ou=appliances,o=gluu
-changetype: modify
-replace: oxTrustAuthenticationMode
-oxTrustAuthenticationMode: auth_ldap_server
--
-replace: oxAuthenticationMode
-oxAuthenticationMode: auth_ldap_server
-```   
+          ```
+          dn: inum=@!B382.75BE.B0CF.1968!0002!F907.8C8C,ou=appliances,o=gluu
+          changetype: modify
+          replace: oxTrustAuthenticationMode
+          oxTrustAuthenticationMode: auth_ldap_server
+          -
+          replace: oxAuthenticationMode
+          oxAuthenticationMode: auth_ldap_server
+          ```   
     !!! Note
         Replace the `inum` from the example above with the `inum` of your Gluu Server from the `ldapsearch` command.
 
 - Push this LDIF file with ldapmodify command to apply changes.
 
-    ```
-    /opt/opendj/bin/ldapmodify -h localhost -p 1636 -Z -X -D "cn=directory manager" -j <your_password_file> -f /home/ldap/mod_change.ldif
-    ```
+           ```
+           /opt/opendj/bin/ldapmodify -h localhost -p 1636 -Z -X -D "cn=directory manager" -j <your_password_file> -f  /home/ldap/mod_change.ldif
+          ```
     
-2. Graphical method:
+### Graphical method:
 
 The idea here is to use an LDAP browser, hence this method is much more simple.
 
