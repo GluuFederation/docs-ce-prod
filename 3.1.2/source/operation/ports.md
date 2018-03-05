@@ -24,3 +24,11 @@ The following ports are open to the Internet by default.
 |       80              |       tcp             | Forwards to 443  |
 |       443             |       tcp             | apache2/httpd    |
 |       22              |       tcp             | ssh              |
+
+
+!!! Note
+    This is a note.
+    
+    
+!!! Warning
+    This is a warning. 
