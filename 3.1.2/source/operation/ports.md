@@ -26,9 +26,3 @@ The following ports are open to the Internet by default.
 |       22              |       tcp             | ssh              |
 
 
-!!! Note
-    This is a note.
-    
-    
-!!! Warning
-    This is a warning. 
