@@ -539,6 +539,7 @@ following properties:
 
 - resource_id - REQUIRED. The identifier for a resource to which the resource server is requesting a permission on behalf of the client. The identifier MUST correspond to a resource that was previously registered.
 - resource_scopes - REQUIRED. An array referencing zero or more identifiers of scopes to which the resource server is requesting access for this resource on behalf of the client. Each scope identifier MUST correspond to a scope that was previously registered by this resource server for the referenced resource.
+- params - OPTIONAL. An key/value map that can contain custom parameters.
 
 Sample request
 
@@ -554,7 +555,11 @@ Authorization: Bearer 204c69636b6c69
    "resource_scopes":[  
       "view",
       "http://photoz.example.com/dev/actions/print"
-   ]
+   ],
+   "params": {
+      "key1":"value1",
+      "key2":"value2"
+   }
 }
 ```
 
