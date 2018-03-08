@@ -12,7 +12,7 @@ Common use cases for Gluu include:
 - Identity federation      
 
 ### Open Standards
-Gluu includes software that implements open web standards for authentication, authorization, federated identity, and identity management:
+Gluu includes software that implements the following open web standards for authentication, authorization, federated identity, and identity management:
 
 - OAuth 2.0    
 - OpenID Connect    
