@@ -6,6 +6,8 @@ This page provides an interface for request authorization through REST web servi
 
 ## Authorization Endpoint
 
+`/.well-known/openid-configuration/
+
 ### Path
 `/oxauth/authorize`
 
