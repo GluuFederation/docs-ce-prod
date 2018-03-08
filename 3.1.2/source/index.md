@@ -11,10 +11,8 @@ Common use cases for Gluu include:
 - Customer identity and access management (CIAM)   
 - Identity federation      
 
-
-
 ### Open Standards
-The Gluu Server includes software that implements open web standards for authentication, authorization, federated identity, and identity management:
+Gluu includes software that implements open web standards for authentication, authorization, federated identity, and identity management:
 
 - OAuth 2.0    
 - OpenID Connect    
