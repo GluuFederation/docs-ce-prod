@@ -57,7 +57,7 @@ Most of the documentation is based on UMA 2 specifications since implementation 
 
 ## UMA Discovery API
 
-** /.well-known/uma2-configuration**
+`/.well-known/uma2-configuration`
 
 #### Overview
 
