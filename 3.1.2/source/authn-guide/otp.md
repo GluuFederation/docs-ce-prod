@@ -5,7 +5,7 @@ This document explains how to use the Gluu Server's included
 [OTP interception script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/otp/OtpExternalAuthenticator.py) 
 to implement a two-step, two-factor authentication (2FA) process with username / password as the first step, and any OTP *app* as the second step. 
 
-Gluu's OTP interception script uses the two-factor event/counter-based HOTP algorithm [RFC4226](https://tools.ietf.org/html/rfc4226) and the time-based TOTP algorithm [RFC6238](https://tools.ietf.org/html/rfc6238).
+The OTP interception script uses the two-factor event/counter-based HOTP algorithm [RFC4226](https://tools.ietf.org/html/rfc4226) and the time-based TOTP algorithm [RFC6238](https://tools.ietf.org/html/rfc6238).
 
 !!! Note
     To support SMS OTP, follow the [SMS OTP](./sms-otp.md) documentation.
