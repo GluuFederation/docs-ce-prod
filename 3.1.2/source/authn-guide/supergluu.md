@@ -6,7 +6,7 @@ This document explains how to configure the Gluu Server for two-factor authentic
 
 A User Guide and Developer Guide can be found on the [Super Gluu docs site](https://gluu.org/docs/supergluu). 
 
-### Security
+### U2F Security
 Super Gluu uses the Gluu Server's FIDO U2F endpoints to enroll a public key. When authentication happens, there is a challenge response to ensure that the device has the respective private key. 
 
 Learn more about FIDO U2F in the [spec](https://fidoalliance.org/specifications/overview/)
@@ -19,6 +19,14 @@ Super Gluu is based on the free open source [oxPush 3](https://github.com/GluuFe
 - [Super Gluu interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/super_gluu/SuperGluuExternalAuthenticator.py) (included in the default Gluu Server distribution);
 - An Android or iOS device with Super Gluu installed;   
 - If the Gluu Server is using a self-signed certificate, `Trust All` **must** be enabled in Super Gluu (open the app, navigate to `Menu` > `Trust all (SSL)` and enable). 
+
+### Development Mode
+
+The Gluu Server and Super Gluu can work in the same network, without a DNS server hostname and with a self signed SSL certificate. There is only one limitation: both components should belong to same network.
+
+Instead of assigning a hostname during Gluu Server installation, an IP address can be specified. And in the Super Gluu mobile app, enable `Trust all (SSL)`.
+
+There is [one check in oxAuth](https://github.com/GluuFederation/oxAuth/issues/758) which validates if U2F application has DNS name. It has been removed in Gluu 3.1.3. To disable this check in Gluu 3.1.2, deploy [this patch](http://ox.gluu.org/maven/org/xdi/oxauth-server/3.1.2.1.Final/oxauth-server-3.1.2.1.Final.war) instead of `/opt/gluu/jetty/oxauth/webapps/oxauth.war`.
 
 ### Download Super Gluu
 Super Gluu is available on the iOS and Android app marketplaces:
