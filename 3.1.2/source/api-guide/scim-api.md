@@ -1,6 +1,6 @@
 # SCIM API
 
-Gluu Server Community Edition supports the System for Cross-domain Identity Management (SCIM) version 2.0 out of the box. The SCIM configuration endpoint can be found at:
+Gluu Server Community Edition supports the System for Cross-domain Identity Management (SCIM) version 2.0. The SCIM configuration endpoint can be found at:
 
 `https://<idp_hostname>/.well-known/scim-configuration`
 
