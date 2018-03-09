@@ -1,14 +1,14 @@
 # One-Time Password (OTP) Authentication
 
 ## Overview
-A one-time password (OTP) is a password that is valid for only one login session or transaction, on a computer system or other digital device.
-
 This document explains how to use the Gluu Server's included 
 [OTP interception script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/otp/OtpExternalAuthenticator.py) 
-to implement a two-step, two-factor authentication (2FA) process with username / password as the first step, and any OTP app as the second step. 
+to implement a two-step, two-factor authentication (2FA) process with username / password as the first step, and any OTP *app* as the second step. 
+
+Gluu's OTP interception script uses the two-factor event/counter-based HOTP algorithm [RFC4226](https://tools.ietf.org/html/rfc4226) and the time-based TOTP algorithm [RFC6238](https://tools.ietf.org/html/rfc6238).
 
 !!! Note
-    Gluu's OTP interception script uses the two-factor event/counter-based HOTP algorithm [RFC4226](https://tools.ietf.org/html/rfc4226) and the time-based TOTP algorithm [RFC6238](https://tools.ietf.org/html/rfc6238).
+    To support SMS OTP, follow the [SMS OTP](./sms-otp.md) documentation.
 
 ## Prerequisites
 - A Gluu Server ([installation instructions](../installation-guide/index.md));
