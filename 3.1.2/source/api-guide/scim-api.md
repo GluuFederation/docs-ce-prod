@@ -4,6 +4,7 @@ Gluu Server Community Edition supports the System for Cross-domain Identity Mana
 
 `https://<idp_hostname>/.well-known/scim-configuration`
 
+## Enable SCIM
 To enable SCIM open the oxTrust administration interface and navigate to `Organization Configuration` > `System Configuration`, find `SCIM Support` and select `Enabled`.
 
 ![enable](../img/scim/enable.png)
