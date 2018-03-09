@@ -26,7 +26,7 @@ The Gluu Server and Super Gluu can work in the same network, without a DNS serve
 
 Instead of assigning a hostname during Gluu Server installation, an IP address can be specified. And in the Super Gluu mobile app, enable `Trust all (SSL)`.
 
-There is [one check in oxAuth](https://github.com/GluuFederation/oxAuth/issues/758) which validates if U2F application has DNS name. It has been removed in Gluu 3.1.3. To disable this check in Gluu 3.1.2, deploy [this patch](http://ox.gluu.org/maven/org/xdi/oxauth-server/3.1.2.1.Final/oxauth-server-3.1.2.1.Final.war) instead of `/opt/gluu/jetty/oxauth/webapps/oxauth.war`.
+There is [one check in oxAuth](https://github.com/GluuFederation/oxAuth/issues/758) which validates if the U2F application has a DNS name. It has been removed in the upcoming Gluu 3.1.3 release. To disable this check in Gluu 3.1.2, deploy [this patch](http://ox.gluu.org/maven/org/xdi/oxauth-server/3.1.2.1.Final/oxauth-server-3.1.2.1.Final.war) instead of `/opt/gluu/jetty/oxauth/webapps/oxauth.war`.
 
 ### Download Super Gluu
 Super Gluu is available on the iOS and Android app marketplaces:
