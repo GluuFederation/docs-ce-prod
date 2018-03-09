@@ -6,7 +6,7 @@ SMS is a common technology used for the delivery of OTPs. Text messages provide 
 This document explains how to configure the Gluu Server for two-step, two-factor authentication (2FA) with username / password as the first step, and an OTP sent via text message as the second step. 
 
 !!! Note
-    As indicated, this script uses the [Twilio cloud communications platform](https://www.twilio.com) to deliver SMS messages.     
+    To support OTP *apps*, like Google Authenticator, follow the [OTP mobile app](./sms-otp.md) documentation.     
     
 ## Prerequisites 
 
