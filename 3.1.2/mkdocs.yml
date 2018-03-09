@@ -39,7 +39,7 @@ pages:
             - 'Basic Authentication': 'authn-guide/basic.md'
             - 'FIDO U2F': 'authn-guide/U2F.md'
             - 'Super Gluu': 'authn-guide/supergluu.md'
-            - 'HOTP/TOTP': 'authn-guide/otp.md'
+            - 'OTP apps': 'authn-guide/otp.md'
             - 'SMS OTP': 'authn-guide/sms-otp.md'
             - 'Social Login': 'authn-guide/passport.md'
             - 'Duo Security': 'authn-guide/duo.md'
