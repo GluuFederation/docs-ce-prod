@@ -181,7 +181,7 @@ Status code 201 is returned upon successful operation.
 
 ## `/Users/.search`
 
-Search groups based on filter criteria (see [section 3.4.3](https://tools.ietf.org/html/rfc7644#section-3.4.3) of RFC 7644). 
+Search users based on filter criteria (see [section 3.4.3](https://tools.ietf.org/html/rfc7644#section-3.4.3) of RFC 7644). 
 
 ### POST
 
