@@ -143,7 +143,6 @@ The following documentation provides a step-by-step guide for configuring Asimba
  - Configuration -> Manage Custom Scripts
  - Script name 'saml'
     - Custom property ( key/value ):
-        - asimba_saml_certificate_file: `/etc/certs/saml.pem`
         - asimba_entity_id: `https://[proxy_hostname]/saml`
         - enforce_uniqueness_attr_list: issuerIDP, uid
         - saml_deployment_type: enroll_all_attr
