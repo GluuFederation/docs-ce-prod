@@ -5,8 +5,12 @@ like the login and registration pages, to match their own corporate branding.
 The below documentation will provide the file locations of public facing pages, 
 as well as instructions for adding custom html, css, and javascript files to your Gluu Server. 
 
+!!! Note 
+    Customizations should be made by people with a solid understanding of web-development. Before changing any files we recommend creating backups to easily revert your instance to original state.
+    
 !!! Warning: 
-    Customizations should only be made by people with a solid understanding of web-development. Before changing any files we recommend creating backups to easily revert your instance to original state.
+    A customization bug has been reported in Gluu 3.1.2. [A work around can be found here](https://support.gluu.org/customization/5215/custom-login-pages-not-taking-place-in-312/).
+
 
 ## Overview
 
