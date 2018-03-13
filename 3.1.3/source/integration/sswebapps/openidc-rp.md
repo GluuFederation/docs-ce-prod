@@ -79,25 +79,49 @@ You should see a list of current environment variables.
 
 ### Installation
 
-`mod_auth_openidc` module depends on the Ubuntu package `libjansson4`: 
+`mod_auth_openidc` module depends on the Ubuntu package `libjansson` and `libhiredis`: 
+
+
+For ubuntu 14.04
 
 ``` text
-# apt-get install libjansson
+# apt-get install libjansson4 libhiredis0.10
+
+```
+
+For ubuntu 16.04
+
+``` text
+# apt-get install libjansson4 libhiredis0.13
 
 ```
 
 You'll also need the mod_auth_openidc and libjose packages which can 
 be downloaded from the [Releases Page](https://github.com/zmartzone/mod_auth_openidc/releases).
 
-For example, at this time the current release is 2.1.3, so the command would be:
+For example, at this time the current release for mod_auth_openidc is 2.3.3 and for libjose is 2.3.0, so the command would be:
+
+
+For ubuntu 14.04
 
 ``` text
-# wget https://github.com/pingidentity/mod_auth_openidc/releases/download/v2.1.3/libcjose_0.4.1-1ubuntu1.trusty.1_amd64.deb
-# wget https://github.com/pingidentity/mod_auth_openidc/releases/download/v2.1.3/libapache2-mod-auth-openidc_2.1.3-1ubuntu1.trusty.1_amd64.deb
-# dpkg -i libcjose_0.4.1-1ubuntu1.trusty.1_amd64.deb
-# dpkg -i libapache2-mod-auth-openidc_2.1.3-1ubuntu1.trusty.1_amd64.deb
+# wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.0/libcjose0_0.5.1-1.trusty.1_amd64.deb
+# wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.3/libapache2-mod-auth-openidc_2.3.3-1.trusty.1_amd64.deb
+# dpkg -i libcjose0_0.5.1-1.trusty.1_amd64.deb
+# dpkg -i libapache2-mod-auth-openidc_2.3.3-1.trusty.1_amd64.deb
 
 ```
+
+For ubuntu 16.04
+
+``` text
+# wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.0/libcjose0_0.5.1-1.xenial.1_amd64.deb
+# wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.3/libapache2-mod-auth-openidc_2.3.3-1.xenial.1_amd64.deb
+# dpkg -i libcjose0_0.5.1-1.xenial.1_amd64.deb
+# dpkg -i libapache2-mod-auth-openidc_2.3.3-1.xenial.1_amd64.deb
+
+```
+
 
 !!! Note
     Get the latest packages here: https://github.com/zmartzone/mod_auth_openidc/releases
@@ -126,8 +150,8 @@ When you add the client, use the following parameters:
 Name: mod_auth_openidc
 Client Secret: something-sufficiently-unguessable
 Application Type: Web
-Pre-Authorization: Enabled
-login uri: https://www.mydomain.com/callback
+Pre-Authorization: True
+Redirect Login URIs: https://www.mydomain.com/callback
 Subject Type: Public
 Scopes: openid, profile, email
 Response Types: code
