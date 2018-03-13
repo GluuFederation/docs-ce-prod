@@ -1069,10 +1069,13 @@ Currently the service supports only:
 
 - Devices search and retrieval (via GET and POST)
 
-- Single device update via PUT or PATCH
-
 - Single device deletion via DELETE
 
+- Single device update via PUT or PATCH
+
+!!! Note
+    Given the nature of this resource, most of its attributes are not modifiable. Edition is limited to attributes `displayName` and `description`.
+    
 The following sub-section shows an example of fido device retrieval using filters.
 
 ### Example: querying enrolled Super Gluu devices
