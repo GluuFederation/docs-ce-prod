@@ -149,14 +149,22 @@ _If you keeps client_id blank it will Automatically initialize "**Dynamic client
  
 ## Demonstration
 
-Now, You are all set to run your demo app.
-As soon as app will launch, it will look like this
-![initial screen](../../img/app-auth/start_authorization.png)
- 
-Congratulations, You've configured demo app correctly. Go ahead and click
-'Start Authorization' button to make authorization request.
- 
-Authorization success will look like this
- 
-![Success Auth](../../img/app-auth/authorization_success.png)
+- Make sure there is a user register in Gluu server that you can use to test the application.
+Use Oxtrust Gui to do that.
+- Launch the app from Android Studio:
+  You will see this screen:
+
+   <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591210.png" width="50%" height="400">
+
+- Click the `START AUTHORIZATION` button:
+  That will redirect you to your gluu instance login page
+
+ <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591219.png" width="33%" height="400">
+ <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591224.png" width="33%" height="400">
+ <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591231.png" width="33%" height="400">
+
+- Provide the user credentials and hit the `login` button
+  The result is something like this:
+<img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591248.png" width="47%" height="400">
+<img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591256.png" width="47%" height="400">
  
