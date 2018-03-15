@@ -11,7 +11,7 @@ Common use cases include:
 - Customer identity and access management (CIAM)   
 - Identity federation      
 
-### Free Open Source Software
+### Free Open Source Software (FOSS)
 All software included in the Gluu Server distribution is free open source software that can be used in production for free. Available  components include:
 
 - **oxAuth***: fully compliant OpenID Connect Provider (OP) and UMA Authorization Server (AS) 
