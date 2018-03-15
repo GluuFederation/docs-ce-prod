@@ -11,17 +11,6 @@ Common use cases include:
 - Customer identity and access management (CIAM)   
 - Identity federation      
 
-### Open Standards
-Gluu includes software that implements the following open web standards for authentication, authorization, federated identity, and identity management:
-
-- OAuth 2.0    
-- OpenID Connect    
-- User Managed Access 2.0 (UMA)    
-- SAML 2.0   
-- System for Cross-domain Identity Management (SCIM)    
-- FIDO Universal 2nd Factor (U2F)    
-- Lightweight Directory Access Protocol (LDAP)   
-
 ### Free Open Source Software
 All software included in the Gluu Server distribution is free open source software that can be used in production for free. Available  components include:
 
@@ -37,6 +26,17 @@ All software included in the Gluu Server distribution is free open source softwa
 _*_ _Required component._
 
 Learn more about the open source licenses in use [below](#license). 
+
+### Open Standards
+Gluu includes software that implements the following open web standards for authentication, authorization, federated identity, and identity management:
+
+- OAuth 2.0    
+- OpenID Connect    
+- User Managed Access 2.0 (UMA)    
+- SAML 2.0   
+- System for Cross-domain Identity Management (SCIM)    
+- FIDO Universal 2nd Factor (U2F)    
+- Lightweight Directory Access Protocol (LDAP)   
 
 ## Installation
 Gluu can be installed on the cloud provider of your choice using one of our Linux packages for Ubuntu, CentOS, RHEL and Debian. Follow our [VM preparation guide](./installation-guide/index.md) to get started. 
