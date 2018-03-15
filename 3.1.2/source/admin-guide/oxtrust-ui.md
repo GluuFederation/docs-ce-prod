@@ -328,9 +328,15 @@ Attributes are individual pieces of user data, like `uid` or `email`, that are r
 
 ## Import/Export Attribute LDIF
 Gluu Server provides you with an option to import and export attribute LDIF. 
-This allows you to export your current attributes and import it to another instances of Gluu Server.
+This allows you to export attributes from one Gluu Server instance and import them to another instance.
  
 ![import-export](../img/admin-guide/import-export.png)
+
+!!! Note
+    Before importing attributes to another instance, perfom the appropiate change in the `dn` value so that it match with the structure of the instance we are about to apply import to.
+    For instance let's say we have this dn `dn: inum=@!C6F1.6ADE.4777.2F1B!0001!3B73.1218!0005!9472,ou=attributes,o=@!C6F1.6ADE.4777.2F1B!0001!3B73.1218,o=gluu`.
+    In this case we have to make sure that there is an organisation with id `@!C6F1.6ADE.4777.2F1B!0001!3B73.1218` under `gluu`.
+    We can check with ldap search command or using a ldap  browser like `jxplorer`.
 
 ## Cache Refresh
 Cache Refresh, a.k.a. LDAP Synchronization, is the process of connecting one or more existing backend LDAP servers, like Microsoft Active Directory, with the Gluu Server's local LDAP server. `Cache Refresh` periodically searches these data sources, compares the results to previous searches, and if a changed user account is found, it is updated.The frequency of cache refresh is also set from this page via the `Polling interval (minutes)`. The `key attribute(s)` is used to correlate a user if the user is found in more then one LDAP server. In this case, the two entries are joined. The source attributes specify which attributes will be pulled from the backend LDAP server. The backend server address, bind DN and other connection information is speciifed in the `Source Backend LDAP Servers` tab. More information on [LDAP Syncronization](../user-management/ldap-sync.md) can be found in the user management section of the docs. 
