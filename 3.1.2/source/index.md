@@ -27,7 +27,7 @@ _*_ _Required component._
 
 Learn more about the open source licenses in use [below](#license). 
 
-### Open Standards
+### Open Web Standards
 Gluu includes software that implements the following open web standards for authentication, authorization, federated identity, and identity management:
 
 - OAuth 2.0    
