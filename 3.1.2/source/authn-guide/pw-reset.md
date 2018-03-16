@@ -27,14 +27,14 @@ A suitable UI is provided to gather the SMTP server configuation on Gluu OxTrust
 1. Navigate to `Configuration` > `Organization Configuration`
 
 1. Select the `SMTP Server Configuration` tab
-  ![here](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/passwordRestFormEmpty.png)
+  ![here](../img/user-authn/passwordRestFormEmpty.png)
 
 1. Fill the form with correct values according to your SMTP Server settings
-  ![here](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/PasswordResetFormFilled.png)
+  ![here](../img/user-authn/PasswordResetFormFilled.png)
 
 1. Click the `Test Configuration` button to ensure the SMTP server is working: 
-If the confuguration is correct, then you will see a successful message like this:
-![here](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/SMTPServerTestSucceed.png)
+If the configuration is correct, then you will see a successful message like this:
+![here](../img/user-authn/SMTPServerTestSucceed.png)
 
 1. Click the `Update` button to save changes
   
@@ -45,7 +45,7 @@ If the confuguration is correct, then you will see a successful message like thi
 1. Select the `System Configuration` tab
 
 1. Enable `Self-Service Password Reset` 
-  ![enable](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/PasswordResetEnable.png)
+  ![enable](../img/user-authn/PasswordResetEnable.png)
 
 1. Click the `Update` button to save changes
 
@@ -56,15 +56,15 @@ If the confuguration is correct, then you will see a successful message like thi
 1. Go to the Gluu Server login page
 
 1. Click the `Forgot your Password?` link
-  ![login](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/ForgetPasswordLink.png)
+  ![login](../img/user-authn/ForgetPasswordLink.png)
   
 1. Fill the form with the user email and click the `Send Mail` button
-  ![form](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/PasswordResetForm.png)
+  ![form](../img/user-authn/PasswordResetForm.png)
   
 1. You'll get the following result:
-  ![form](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/ResetPasswordSucceed.png)
+  ![form](../img/user-authn/ResetPasswordSucceed.png)
   
 1. Check the user's mailbox  
-  ![form](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/SampleMailReceived.png)
+  ![form](../img/user-authn/SampleMailReceived.png)
 
 
