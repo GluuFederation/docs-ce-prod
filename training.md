@@ -4,10 +4,10 @@ The following is a five-day Gluu Server training curriculum. Each day's activiti
 ## Day 1
 
  - Install Gluu Server ( latest version ) in any preferred distro. - 1 hour
- - Install OpenID Connect Resource Provider by oxd plugin - 2 hours
+ - Install OpenID Connect Resource Provider using oxd and an existing plugin, or the mod_auth_openidc web filter- 2 hours
  - Connect with Gluu Server - 30 mins
  - Test Single Sign On - 30 mins
-   - You should be able to perform SSO operation for your RP which you just configured with oxd plugin; authentication will perform in Gluu Server you installed. 
+   - You should be able to perform SSO operation for your RP which you just configured; authentication will be performed at the Gluu Server you installed. 
 
 ## Day 2
 
@@ -43,6 +43,27 @@ The following is a five-day Gluu Server training curriculum. Each day's activiti
  - Start cluster - 2 hours onward...
 
 # Educational Resources
+
+## Gluu Links
+
+Gluu Docs:
+http://gluu.org/docs/ce
+
+Application integration guide:
+https://gluu.org/docs/ce/3.1.2/integration/
+
+Authentication guide:
+https://gluu.org/docs/ce/3.1.2/authn-guide/intro/
+
+Gluu Support (Register and ask here if you have any questions!):
+https://support.gluu.org
+
+Super Gluu - Free Mobile two factor authentication:
+http://super.gluu.org
+
+Gluu Github:
+https://github.com/GluuFederation/
+
 
 ## OpenID Connect
 
@@ -137,22 +158,4 @@ http://gluu.co/google-scopes
 Gluu UMA Kong Plugin
 http://getkong.org
 https://github.com/GluuFederation/kong-plugins/tree/master/kong-uma-rs
-
-## Gluu Links
-
-
-Super Gluu - Free Mobile two factor authentication
-http://super.gluu.org
-
-Open Source Version: https://github.com/GluuFederation/oxPush3
-
-Gluu Github:
-https://github.com/GluuFederation/
-
-Gluu Docs:
-http://gluu.org/docs
-
-Gluu Support (Register and ask here if you have any questions!)
-https://support.gluu.org
-
 
