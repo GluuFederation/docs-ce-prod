@@ -12,9 +12,10 @@ Below are the steps to configure that feature:
 
 ## Prerequisites
 
-The requirements are:
-1. A running Gluu Server instance
-1. A working SMTP Server
+The requirements are:  
+
+1. A running Gluu Server instance  
+1. A working SMTP Server  
 
 ## Provide the SMTP Server Configuration
 
