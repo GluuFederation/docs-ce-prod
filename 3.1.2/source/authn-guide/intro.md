@@ -7,9 +7,10 @@ The Gluu Server leverages [interception scripts](../admin-guide/custom-script.md
 The Gluu Server ships with interception scripts that implement a number of authentication mechanisms, such as:
 
 - [FIDO U2F](./U2F.md)
+- [TOTP/HOTP](./otp.md)
 - [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)
-- [Social Login](./passport.md) 
 - [Duo Security](./duo.md)
+- [Social Login](./passport.md) 
 
 Custom scripts can also be written to support unique requirements for authentication. For example, a custom script could be written to implement extra authentication steps based on contextual information such as fraud scores, location, or browser profiling. 
 
