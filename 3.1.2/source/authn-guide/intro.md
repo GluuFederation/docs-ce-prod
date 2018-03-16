@@ -14,7 +14,7 @@ Out-of-the-box, the Gluu Server includes interception scripts for a number of au
 
 Existing interception scripts can be customized and extended, or new scripts can be written to support unique business requirements for authentication. For example, a custom script could be written to implement extra authentication steps based on contextual information such as fraud scores, location, or browser profiling. 
 
-Follow the [custom authentication script tutorial](./customauthn.md) to better understand the process of writing your own interception scripts. 
+Follow the [custom authentication script tutorial](./customauthn.md) to better understand how interception scripts work. 
 
 !!! Note
     All pre-written authentication scripts can be viewed in the [oxAuth integration folder on GitHub](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations). 
