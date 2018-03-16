@@ -4,7 +4,7 @@ The Gluu Server was designed to be very flexible in handling user authentication
 ## Authentication Interception Scripts
 The Gluu Server leverages [interception scripts](../admin-guide/custom-script.md) to facilitate the user authentication process. Interception scripts specify how an authentication mechanism should be applied, and what pages should be presented, during sign-in.
 
-Out-of-the-box, the Gluu Server includes interception scripts for a number of authentication mechanisms, such as:
+The Gluu Server includes interception scripts for a number of authentication mechanisms, such as:
 
 - [FIDO U2F](./U2F.md)
 - [TOTP/HOTP](./otp.md)
