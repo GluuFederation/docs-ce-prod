@@ -17,7 +17,7 @@ Existing interception scripts can be customized and extended, or new scripts can
 Follow the [custom authentication script tutorial](./customauthn.md) to better understand how interception scripts work. 
 
 !!! Note
-    All pre-written authentication scripts can be viewed in the [oxAuth integration folder on GitHub](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations). 
+    All pre-written authentication scripts can be found in the [oxAuth integration folder on GitHub](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations). 
 
 ## Basic Authentication
 
