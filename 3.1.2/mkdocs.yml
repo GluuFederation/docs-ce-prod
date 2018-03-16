@@ -47,6 +47,7 @@ pages:
             - 'Certificate Authentication': 'authn-guide/cert-auth.md'
             - 'Google+ OAuth 2.0': 'authn-guide/google.md'
             - 'Account Lockout': 'authn-guide/lockout.md'
+            - 'Password Reset': 'authn-guide/pw-reset.md'
             - 'Custom Script Tutorial': 'authn-guide/customauthn.md'
             #- 'Inbound SAML using Asimba' : 'authn-guide/inbound-saml-asimba.md'
         - 'Attributes' : 'admin-guide/attribute.md'
