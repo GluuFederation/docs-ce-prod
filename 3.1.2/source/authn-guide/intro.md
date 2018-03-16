@@ -21,13 +21,13 @@ Follow the [custom authentication script tutorial](./customauthn.md) to better u
 
 ## Basic Authentication
 
-By default, LDAP is used to authenticate usernames and passwords. Passwords can either be authenticated in the Gluu Server's local LDAP server, or, if [LDAP synchronization](../user-management/ldap-sync.md) has been configured, in an existing backend LDAP server. Until additional authentication scripts are enabled, default authentication will always be username and password. 
+By default, usernames and passwords are stored and authenticated against the local Gluu LDAP. If [LDAP synchronization](../user-management/ldap-sync.md) has been configured, an existing backend LDAP server can be used for authentication.
 
 Learn how to [configure basic authentication](./basic.md).
 
 ## Two-Factor Authentication (2FA)
 
-The default Gluu Server distribution includes interception scripts that implement the following forms of two-factor authentication:
+Gluu includes interception scripts for the following forms of 2FA:
 
 - [U2F](./U2F.md)
 - [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)=
@@ -37,16 +37,6 @@ The default Gluu Server distribution includes interception scripts that implemen
 - [Certificate Authentication](./cert-auth.md)
 
 Follow each link to learn how to implement that specific type of 2FA with Gluu. 
-
-### 2FA Credential Management
-
-Enabling users to manage and enroll 2FA credentials without undermining the security model is one of the most important things to consider when rolling out 2FA. 
-
-Regardless of 2FA type or vendor, users need a secure way to enroll and delete their 2FA credentials.
-
-By default, the Gluu Server allows each user to enroll just one (1) strong credential per 2FA credential type. For instance, if authentication is set to U2F, by default the user can only enroll one U2F security key. Same for OTP, Super Gluu, etc. The credential is enrolled upon the first authentication attempt, and can be used to pass all subsequent prompts for 2FA. Behavior can be customized via interception scripts and custom development. 
- 
-Information about managing specific types of credentials can be found in the corresponding document in this Authentication Guide. 
 
 ## Social Login
 
