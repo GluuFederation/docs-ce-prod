@@ -1,8 +1,7 @@
 # User Authentication Introduction
-The Gluu Server was designed to be very flexible in handling user authentication. Usernames and passwords can either be stored in Gluu's local LDAP server or an existing backend LDAP like Microsoft Active Directory (AD). 
+The Gluu Server was designed to be very flexible in handling user authentication. 
 
-Stronger forms of authentication, like One-Time Passcodes (OTP), U2F Security Keys, and Gluu's free U2F mobile app, Super Gluu, can be implemented to increase the security of logins. 
-
+Username / password is the default form of authentication ("Basic"). Stronger forms of authentication, like One-Time Passcodes (OTP), U2F Security Keys, and Gluu's free U2F mobile app, Super Gluu, can be implemented to increase the security of logins. 
 
 ## Authentication Interception Scripts
 The Gluu Server leverages [interception scripts](../admin-guide/custom-script.md) to facilitate the user authentication process. For each supported authentication mechanism--like username/password ("basic"), U2F or OTP--a corresponding interception script is stored in Gluu to specify how the mechanism should be applied during user sign-in. 
