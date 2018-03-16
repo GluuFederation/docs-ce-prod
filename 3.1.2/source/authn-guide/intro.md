@@ -8,7 +8,7 @@ The Gluu Server includes interception scripts for a number of authentication mec
 
 - [FIDO U2F](./U2F.md)
 - [TOTP/HOTP](./otp.md)
-- [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)
+- [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)   
 - [Duo Security](./duo.md)
 - [Social Login](./passport.md) 
 
@@ -30,7 +30,7 @@ Learn how to [configure basic authentication](./basic.md).
 Gluu includes interception scripts for the following forms of 2FA:
 
 - [U2F](./U2F.md)
-- [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile app)=
+- [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile push app)
 - [OTP apps](./otp.md)
 - [SMS OTP](./sms-otp.md)
 - [Duo Security](./duo.md)
