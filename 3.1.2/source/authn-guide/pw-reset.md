@@ -1,9 +1,4 @@
 # Password Reset
-## Prerequisites
-
-The requirements are:
-1. A running Gluu Server instance
-1. A working SMTP Server
 
 ## Overview
 
@@ -14,6 +9,12 @@ Below are the steps to configure that feature:
 1. Provide the SMTP Server configuration
 1. Enable password reset on OxTrust adminUI
 1. Test
+
+## Prerequisites
+
+The requirements are:
+1. A running Gluu Server instance
+1. A working SMTP Server
 
 ## Provide the SMTP Server Configuration
 
