@@ -11,11 +11,12 @@ The Gluu Server ships with interception scripts that implement a number of authe
 - [Social Login](./passport.md) 
 - [Duo Security](./duo.md)
 
-All pre-written authentication scripts can be viewed in the [oxAuth integration folder on GitHub](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations). 
-
 Custom scripts can also be written to support unique requirements for authentication. For example, a custom script could be written to implement extra authentication steps based on contextual information such as fraud scores, location, or browser profiling. 
 
 Follow the [custom authentication script tutorial](./customauthn.md) to better understand the process of writing your own interception scripts. 
+
+!!! Note
+    All pre-written authentication scripts can be viewed in the [oxAuth integration folder on GitHub](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations). 
 
 ## Basic Authentication
 
