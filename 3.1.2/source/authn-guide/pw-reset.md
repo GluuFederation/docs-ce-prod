@@ -1,1 +1,67 @@
 # Password Reset
+## Prerequisites
+
+The requirements are:
+1. A running Gluu Server instance
+2. A working SMTP Server
+
+## Overview
+
+As a privilege user(administrator), we can configure password reset feature build into Gluu Server.
+This feature give users the ability to reset their password.
+Below are the steps to configure that feature:
+
+1. Provide the SMTP Server configuration
+1. Enable password reset on OxTrust adminUI
+1. Test
+
+## Provide the SMTP Server configuration
+
+Gluu server require a SMTP server to be able to send password reset mail to user mailbox. 
+A suitable Ui is provide to gather the SMTP server configuation on Gluu OxTrust AdminUi.
+
+1. Login into Gluu server as a user with admin privileges
+
+1. Navigate to `Configuration` > `Organization configuration`
+
+1. Select the `SMTP Server Configuration` tab
+  ![here](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/passwordRestFormEmpty.png)
+
+1. Filled the form with correct values according to you SMTP Server settings
+  ![here](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/PasswordResetFormFilled.png)
+
+1. Click **Test configuration** button to ensure the SMTP server is working: 
+If the confuguration is correct, then you will see a successful message like this.
+![here](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/SMTPServerTestSucceed.png)
+
+1. Click **Update** button to save changes
+  
+## Enable password reset on OxTrust 
+
+1. Navigate to `Configuration` > `Organization configuration`
+
+1. Select the `System Configuration` tab
+
+1. Enable `Self-Service Password Reset` 
+  ![enable](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/PasswordResetEnable.png)
+
+1. Click **Update** button to save changes
+
+## Test
+
+1. Create a test user in Gluu Server
+
+1. Go to Gluu server login page
+1. Click `**Forget your Password**` link
+  ![login](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/ForgetPasswordLink.png)
+  
+1. Filled the form with the user email and click the **Send Mail** button
+  ![form](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/PasswordResetForm.png)
+  
+1. Result
+  ![form](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/ResetPasswordSucceed.png)
+  
+1. Check the user mailbox  
+  ![form](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/SampleMailReceived.png)
+
+
