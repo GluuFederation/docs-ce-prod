@@ -2,7 +2,7 @@
 The Gluu Server was designed to be very flexible in handling user authentication. Username / password is the default form of authentication ("basic"). Stronger forms of authentication, like One-Time Passcodes (OTP), U2F Security Keys, and Gluu's free U2F mobile app, Super Gluu, can be implemented to increase account security. 
 
 ## Authentication Interception Scripts
-The Gluu Server leverages [interception scripts](../admin-guide/custom-script.md) to facilitate the user authentication process. For each supported authentication mechanism--like username/password, U2F or OTP--a corresponding interception script is stored in Gluu to specify how the mechanism should be applied during sign-in, including what pages to render to the user. 
+The Gluu Server leverages [interception scripts](../admin-guide/custom-script.md) to facilitate the user authentication process. For each supported authentication mechanism--like username/password, U2F or OTP--a corresponding interception script is stored in Gluu to specify how the mechanism should be applied, and what pages should be presented, during sign-in.
 
 The Gluu Server ships with interception scripts that implement a number of authentication mechanisms, such as:
 
