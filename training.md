@@ -30,7 +30,7 @@ The following is a five-day Gluu Server training curriculum. Each day's activiti
 
 ## Day 4
 
-`Task completed in previous three days: A Gluu Serer is ready with OpenID + SAML protocols, Cache Refresh working, MFA enabled, user can login with multi attributes`
+`Task completed in previous three days: A Gluu Server is ready with OpenID + SAML protocols, Cache Refresh working, MFA enabled, user can login with multi attributes`
 
  - Free test drive / whatever you want to do with Gluu Server - 2 hours
  - Try to play with jython interception script to configure and map ePSA mapping - 2 hours
