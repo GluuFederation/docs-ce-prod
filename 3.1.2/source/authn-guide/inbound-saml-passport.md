@@ -136,7 +136,18 @@ A sample configuration containing entries for two external IDPs is provided belo
  
 Placeholder URLs like `https://idp.example.com` must be replaced with the URLs of actual remote IDPs. A description of each property is below:
 
-* `entryPoint` - IDP's entry point, an endpoint's URL where a SAML request must be sent to
+* `entryPoint` - IDP's entry point, an endpoint's URL where a SAML request must be sent to, for instance: 
+
+```
+<SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://<hostname>/idp/profile/SAML2/POST/SSO"/>
+```
+
+or, if using the redirect method:
+
+```
+<SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://bowler.gluu.info/idp/profile/SAML2/Redirect/SSO"/>
+```
+
 * `issuer` - A string specifying an `entityid` Passport's SP must use when communicating with this specific external IDP. In particular, it allows usage of different `entityid` values for each of registered IDPs. If not needed, the same `entityid` can be used in all entries in the file.
 * `identifierFormat` - uri specifying name identifier's ("nameid's") format to request/expect from this remote IDP
 * `authnRequestBinding` - If set to "HTTP-POST", then authentication request sent to `entryPoint` will use POST HTTP method (SAML's HTTP POST binding), otherwise defaults to HTTP method (HTTP Redirect binding)
