@@ -1,6 +1,6 @@
 # Preparing VM for Gluu Server Installation
 ## Overview
-Thank you for your interest in the Gluu Server! This document will provide instructions for preparing your VM for a standard Gluu Server deployment. Once your servers are ready you can move on to the [installation instructions](../installation-guide/install.md). 
+Thank you for your interest in the Gluu Server! This document will provide instructions for preparing a VM for a standard Gluu Server deployment. Once the server is ready, move on to the [installation instructions](../installation-guide/install.md). 
 
 Good luck with your deployment, and welcome to the community!
 
