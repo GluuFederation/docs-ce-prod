@@ -6,8 +6,7 @@ Good luck with your deployment, and welcome to the community!
 
 ## System Requirements
 
-The Gluu Server Community Edition (CE) needs to be deployed on a 
-server or VM with the following **minimum** requirements. 
+The Gluu Server needs to be deployed on a server or VM with the following **minimum** requirements: 
 
 |CPU Unit  |    RAM     |   Disk Space      | Processor Type |
 |----------|------------|-------------------|----------------|
