@@ -4,7 +4,7 @@ The following is a five-day Gluu Server training curriculum. Each day's activiti
 ## Day 1
 
  - Install Gluu Server ( latest version ) in any preferred distro. - 1 hour
- - Install OpenID Connect Resource Provider using oxd and an existing plugin, or the mod_auth_openidc web filter- 2 hours
+ - Install OpenID Connect Resource Provider using oxd, a 'ready-to-go' plugin, or the mod_auth_openidc web filter- 2 hours
  - Connect with Gluu Server - 30 mins
  - Test Single Sign On - 30 mins
    - You should be able to perform SSO operation for your RP which you just configured; authentication will be performed at the Gluu Server you installed. 
