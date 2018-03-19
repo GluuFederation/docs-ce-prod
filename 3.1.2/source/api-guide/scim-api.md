@@ -201,7 +201,7 @@ Search users based on filter criteria (see [section 3.4.3](https://tools.ietf.or
     <tr>
         <td>startIndex</td>
         <td>no</td>
-        <td>string</td>
+        <td>int</td>
     </tr>
     <tr>
         <td>count</td>
@@ -440,7 +440,7 @@ Search groups based on filter criteria (see [section 3.4.3](https://tools.ietf.o
     <tr>
         <td>startIndex</td>
         <td>no</td>
-        <td>string</td>
+        <td>int</td>
     </tr>
     <tr>
         <td>count</td>
@@ -584,7 +584,7 @@ Search fido devices based on filter criteria (see [section 3.4.2](https://tools.
     <tr>
         <td>startIndex</td>
         <td>no</td>
-        <td>string</td>
+        <td>int</td>
     </tr>
     <tr>
         <td>count</td>
@@ -642,7 +642,7 @@ Search fido devices based on filter criteria (see [section 3.4.3](https://tools.
     <tr>
         <td>startIndex</td>
         <td>no</td>
-        <td>string</td>
+        <td>int</td>
     </tr>
     <tr>
         <td>count</td>
