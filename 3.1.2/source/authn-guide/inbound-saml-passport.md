@@ -136,31 +136,31 @@ A sample configuration containing entries for two external IDPs is provided belo
  
 Placeholder URLs like `https://idp.example.com` must be replaced with the URLs of actual remote IDPs. A description of each property is below:
 
-* `entryPoint` - IDP's entry point, an endpoint's URL where a SAML request must be sent to, for instance: 
+* `entryPoint` - URL where Passport should redirect the user for authentication. You can use either the Post or Redirect request binding. If you were sent IDP, you can find the URL in the following XML elements:
 
-```
+```xml
 <SingleSignOnService  
 Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"  
-Location="https://<hostname>/idp/profile/SAML2/POST/SSO"/> 
+Location="https://idp.example.com/idp/profile/SAML2/POST/SSO"/> 
 ```
 
 or, if using the redirect method:
 
-```
+```xml
 <SingleSignOnService  
 Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"     
-Location="https://<hostname>/idp/profile/SAML2/Redirect/SSO"/>     
+Location="https://idp.example.com/idp/profile/SAML2/Redirect/SSO"/>     
 ```
 
-* `issuer` - A string specifying an `entityid` Passport's SP must use when communicating with this specific external IDP. In particular, it allows usage of different `entityid` values for each of registered IDPs. If not needed, the same `entityid` can be used in all entries in the file.
+* `issuer` - A string specifying the `entityid` of the IDP. The value for each `entityid` should be unique.
 * `identifierFormat` - uri specifying name identifier's ("nameid's") format to request/expect from this remote IDP
-* `authnRequestBinding` - If set to "HTTP-POST", then authentication request sent to `entryPoint` will use POST HTTP method (SAML's HTTP POST binding), otherwise defaults to HTTP method (HTTP Redirect binding)
+* `authnRequestBinding` - "HTTP-POST" for Post binding or "HTTP" for redirect binding. 
+* `cert` - The IDP's PEM-encoded X.509 certificate with the `BEGIN CERTIFICATE` and `END CERTIFICATE` separator lines stripped and all line breaking characters (new line, carriage return, space etc) removed from it. Effectively this means a single base64-encoded string representing body of a certificate. Next command can be used to transform an existing X.509, PEM-encoded certificate into string of the required format: `# cat ~/your_cert.crt | grep -v '^---' | tr -d '\n'`.
+   The certificate supplied here is the one intended for signing. For instance, if you are using Shibboleth bundled in a Gluu Server instance, visit `https://<gluu-host>/idp/shibboleth` and see the contents of XML tag `KeyDescriptor` where `use="signing"` inside `IDPSSODescriptor` tag. 
+* `enable` - If set to "true", then this IDP is allowed to be used by users that try to get authenticated at this Gluu Server 
 * `additionalAuthorizeParams` - A dictionary of additional query parameters which can be added in order to 'authorize' requests
 * `skipRequestCompression` - If set to "true", then the SAML request to this service provider will not be compressed.
 * `logo_img` - A URL pointing to the IDP's logo used by the Gluu's Passport login page. Can be an empty string if not required
-* `enable` - If set to "true", then this IDP is allowed to be used by users that try to get authenticated at this Gluu Server 
-* `cert` - The IDP's PEM-encoded X.509 certificate with the `BEGIN CERTIFICATE` and `END CERTIFICATE` separator lines stripped and all line breaking characters (new line, carriage return, space etc) removed from it. Effectively this means a single base64-encoded string representing body of a certificate. Next command can be used to transform an existing X.509, PEM-encoded certificate into string of the required format: `# cat ~/your_cert.crt | grep -v '^---' | tr -d '\n'`.
-   The certificate supplied here is the one intended for signing. For instance, if you are using Shibboleth bundled in a Gluu Server instance, visit `https://<gluu-host>/idp/shibboleth` and see the contents of XML tag `KeyDescriptor` where `use="signing"` inside `IDPSSODescriptor` tag. 
 * `reverseMapping` - An embedded JSON object defining how the SAML attributes' names must be mapped to attributes that are used internally by the Passport module:
     * `email` - the user's email
     * `username` - the user's username (uid) 
