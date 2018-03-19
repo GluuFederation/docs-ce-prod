@@ -11,7 +11,7 @@ The following is a five-day Gluu Server training curriculum. Each day's activiti
 
 ## Day 2
 
-`A Gluu Server is ready with one RP` 
+`Task completed in Day 1: A Gluu Server is ready with one RP` 
 
  - Configure and test one Multi factor AuthN script ( i.e. SuperGluu ) - 30 mins
  - SSO with RP through SuperGluu - 30 mins
@@ -21,7 +21,7 @@ The following is a five-day Gluu Server training curriculum. Each day's activiti
 
 ## Day 3
 
-`A Gluu Server is ready with one RP + Cache Refresh working + MFA enabled`
+`Task completed in previous two days: A Gluu Server is ready with one RP + Cache Refresh working + MFA enabled`
 
  - Install one SAML Service Provider by Shibboleth SP - 1 hour
  - Configure Shib SP with Gluu Server for SAML SSO - 1 hour
@@ -30,14 +30,14 @@ The following is a five-day Gluu Server training curriculum. Each day's activiti
 
 ## Day 4
 
-`A Gluu Serer is ready with OpenID + SAML protocols, Cache Refresh working, MFA enabled, user can login with multi attributes`
+`Task completed in previous three days: A Gluu Serer is ready with OpenID + SAML protocols, Cache Refresh working, MFA enabled, user can login with multi attributes`
 
  - Free test drive / whatever you want to do with Gluu Server - 2 hours
  - Try to play with jython interception script to configure and map ePSA mapping - 2 hours
 
 ## Day 5
 
-`A Gluu Serer is ready with OpenID + SAML protocols, Cache Refresh working, MFA enabled, user can login with multi attributes. eduPersonScopedAffiliation attribute is populated`
+`Task completed in previous four days: A Gluu Serer is ready with OpenID + SAML protocols, Cache Refresh working, MFA enabled, user can login with multi attributes. eduPersonScopedAffiliation attribute is populated`
 
  - Question / Answer session to Gluu team - 2 hours
  - Start cluster - 2 hours onward...
