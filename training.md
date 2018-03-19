@@ -37,7 +37,7 @@ The following is a five-day Gluu Server training curriculum. Each day's activiti
 
 ## Day 5
 
-`Task completed in previous four days: A Gluu Serer is ready with OpenID + SAML protocols, Cache Refresh working, MFA enabled, user can login with multi attributes. eduPersonScopedAffiliation attribute is populated`
+`Task completed in previous four days: A Gluu Server is ready with OpenID + SAML protocols, Cache Refresh working, MFA enabled, user can login with multi attributes. eduPersonScopedAffiliation attribute is populated`
 
  - Question / Answer session to Gluu team - 2 hours
  - Start cluster - 2 hours onward...
