@@ -12,7 +12,7 @@ After authentication at an external IDP, if there is no existing user record in 
 ## Sequence Diagram
 ![passport-saml-sequence-diagram](../img/user-authn/passport/passport-sequence-diagram.png)
 
-1. The user-agent (usually a web browser) requests one of the Gluu Server's endpoints' url after being redirected there by a remote party asking for release of user's personal data. The remote party has an option of pre-selecting remote IDP that must be used to authenticate the user by passing base64-encoded JSON object of specified format (described in details further in this paper) in `state` url query parameter of OpenID Connect authorization request. For example, the JSON object may take the following form: `{"salt":"<SALTVALUE>",provider":"<idp_name>"}`(base64-encoded)
+1. The user-agent (usually a web browser) requests one of the Gluu Server's endpoints' url after being redirected there by a remote party asking for release of user's personal data. The remote party has an option of pre-selecting remote IDP that must be used to authenticate the user by passing base64-encoded JSON object of specified format (described in details further in this paper) in `state` url query parameter of OpenID Connect authorization request. For example, the JSON object may take the following form: `{"salt":"<SALTVALUE>","provider":"<idp_name>"}`(base64-encoded)
 
 1. As a session for the user doesn't exist in the Gluu Server yet, the user-agent is redirected to its oxAuth component for authentication, triggering the SAML Passport Authenticator script; depending on how it was called, the script either retrieves the target IDP's id from the `state` parameter, or just presents an IDP selection page to the user, waiting for him to select it
 
