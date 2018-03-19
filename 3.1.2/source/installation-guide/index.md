@@ -26,7 +26,7 @@ The Gluu Server should be deployed on a server or VM using one of the following 
 - RHEL 6.x, 7.x
 - Debian 8
 
-Note: You can try installing Gluu on other versions or operating systems, but the above operating systems have been tested and confirmed to work. We will not support deployments on other operating systems. 
+You can try installing Gluu on other versions or operating systems, however we can not provide support for deployments on other operating systems. 
 
 ## Ports
 
