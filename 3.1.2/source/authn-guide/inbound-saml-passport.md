@@ -178,8 +178,11 @@ The metadata is published as URLs similar to this format: `https://<hostname>/pa
 
 The actual process of creating trust will differ across IDP implementations. For example, for cases when the remote IDP is another Gluu Server CE instance, the relevant [documentation page](https://gluu.org/docs/ce/3.1.2/admin-guide/saml/#create-a-trust-relationship) should be followed. In case of other SAML IDP implementations, consult the corresponding documentation.
 
-!!! Note 
-    When registering the Passport SP at each remote IDP, at least `username` and `email` attributes will be required for each user.
+#### Required attributes
+When registering the Passport SP at each remote IDP, the IDP will need to release at least the following attributes for each user:
+
+- `username` or `uid`    
+- `email`   
 
 ## Testing
 A simple test can be performed by composing an OpenID Connect authorization request to trigger Gluu's Passport interception script. Insert a specific IDP in the `state` URL query parameter to "pre-select" which IDP to send the user to for authentication. For example:
