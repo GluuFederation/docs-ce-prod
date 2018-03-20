@@ -232,8 +232,8 @@ Follow the guidelines below to install the Demo app at your Gluu Server host. Co
 
 #### Test steps
 
-1. Add a mapping entry that points to `passport-saml-demo-app.example.come` name to IP address of the Gluu Server where the Demo app is installed to "hosts" file of Operating System where your browser runs. For Unix based OS the usual location of the file is `/etc/hosts`.  
-2. Open a web browser on the same machine and navigate to `http://passport-saml-demo-app.example.come:3000`.    
+1. Add a mapping entry that points to `passport-saml-demo-app.example.com` name to IP address of the Gluu Server where the Demo app is installed to "hosts" file of Operating System where your browser runs. For Unix based OS the usual location of the file is `/etc/hosts`.  
+2. Open a web browser on the same machine and navigate to `http://passport-saml-demo-app.example.com:3000`.    
 3. Select one of the displayed IDPs to initiate the authentication flow at the chosen remote external IDP.     
 ![](https://github.com/GluuFederation/Inbound-SAML-Demo/raw/master/images/demo_1.png)        
 4. After logging in at the IDP, you will be redirected back to the Gluu instance where you might be prompted to authorize release of your personal data to the Demo app.      
