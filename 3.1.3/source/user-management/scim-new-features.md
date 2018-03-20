@@ -117,7 +117,7 @@ If you have been using SCIM-Client in your projects, and want to take advantage 
 * Do custom error handling
 * Release resources when no more requests will be issued
 
-If you definitely do not want to alter your existing code base you can still use the old style `SCIM-Client` artifact and work as you used to (a few [special cases apply](#are-there-any-special-cases-to-account-if-still-using-older-client)). 
+If you definitely do not want to alter your existing code base you can still use the old style `scim-client` artifact and work as you used to (a few [special cases apply](#are-there-any-special-cases-to-account-if-still-using-older-client)). 
 
 In summary, version 3.1.3 of the project includes two modules:
 
@@ -139,7 +139,7 @@ Choose one of the following pom fragments for your projects:
 <!-- deprecated -->
 <dependency>
   <groupId>gluu.scim.client</groupId>
-  <artifactId>SCIM-Client</artifactId>
+  <artifactId>scim-client</artifactId>
   <version>3.1.3.Final</version>
 </dependency>
 ```
