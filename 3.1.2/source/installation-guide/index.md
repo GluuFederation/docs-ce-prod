@@ -61,15 +61,14 @@ session required pam_limits.so
 * Increase the FD limit to 65535. The system file limit 
 is set in `/proc/sys/fs/file-max`.
 
-It is recommended to check the FD limit before increasing it, 
-and if this limit is customized and more than default, 
-we recommend to the use the higher one.
+It is recommended to check the FD limit before increasing it, and if this limit is customized and more than default, we recommend to the use the higher one. 
+    
 File descriptors limit can be found using the below command. 
 
 ```
 # cat /proc/sys/fs/file-max
 ```
-> Please note command may vary depending on the OS flavor used.
+Please note, the command may vary depending on the OS flavor used.
 
 ```
 echo 65535 > /proc/sys/fs/file-max**
@@ -77,11 +76,11 @@ echo 65535 > /proc/sys/fs/file-max**
 * Use the `ulimit` command to set the FD limit to the hard limit specified in `/etc/security/limits.conf`.
 
 ```
-** ulimit -n unlimited**
+ulimit -n unlimited
 ```
 
 !!!Note:
-    Centos by default will not accept more than the default maximum of 65535. You may get an error while performing the above command.
+    Centos by default will not accept more than the default maximum. You may get an error while performing the above command. If you do get an error, set it to `ulimit -n 262144`, or `65535` if you get a second error.
 
 * Restart your system.     
 
