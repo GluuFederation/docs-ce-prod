@@ -61,7 +61,7 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 - Now for the rest of the servers in the cluster, [download the Gluu packages](https://gluu.org/docs/ce/3.1.2/installation-guide/install/) but **don't run `setup.py` yet**.   
 
-- We want to copy the `/install/community-edition-setu/setup.properties.last` file from the first install to the other servers as `setup.properties` so we have the exact same configurations. (Here I have ssh access to my other server outisde the Gluu chroot)
+- We want to copy the `/install/community-edition-setu/setup.properties.last` file from the first install to the other servers as `setup.properties` so we have the exact same configurations. (Here I have ssh access to my other server outside the Gluu chroot)
 
 ```
 
