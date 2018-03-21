@@ -15,7 +15,7 @@ markdown_extensions:
 pages:
 - Home: 'index.md'
 - Gluu Introduction:
-        - 'Histroy': 'introduction/history.md'
+        - 'History': 'introduction/history.md'
         - 'Design Goals': 'introduction/design.md'
         - 'Gluu Server Architecture': 'introduction/architecture.md'
 #- Whats new in 3.0: 'operation/intro.md'
