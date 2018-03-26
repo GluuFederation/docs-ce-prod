@@ -252,7 +252,7 @@ This script type adds only one method to the base script type:
 
 This script can be used in an oxTrust application only.
 
-- [Sample ID Generation Script](./sample-id-generation.py)      
+- [Sample ID Generation Script](./sample-id-generation-script.py)      
 
 ## Cache Refresh       
 
