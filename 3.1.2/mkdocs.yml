@@ -85,7 +85,7 @@ pages:
             - 'TestShib2': 'integration/saas/testShib2.md'
 - Reference:
         - Gluu API Guide:
-            - 'Custom ID Generation': 'api-guide/api.md'
+            #   - 'Custom ID Generation': 'api-guide/api.md'
             - 'OpenID Connect API': 'api-guide/openid-connect-api.md'
             - 'SCIM API Configuration': 'api-guide/scim-api.md'
             - 'UMA API': 'api-guide/uma-api.md'
