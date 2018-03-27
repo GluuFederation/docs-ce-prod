@@ -38,6 +38,13 @@ Gluu includes interception scripts for the following forms of 2FA:
 
 Follow each link to learn how to implement that specific type of 2FA with Gluu. 
 
+### 2FA Credential Management	
+	
+Once 2FA is enforced, people need a good way to enroll, delete and manage their strong credentials (that doesn't involve calling the support desk!). In an effort to make the 2FA experience better for people and organizations, the Gluu Server now supports a new open source application called [Credential Manager](https://gluu.org/docs/creds). 
+
+Credential Manager is a simple, user-facing applications people can use to manage their 2FA credentials in the Gluu Server. 
+
+
 ## Social Login
 
 During deployment of the Gluu Server you are presented with an option to include Passport.js in your installation. If you want to support social login, include Passport.js in your Gluu Server deployment. 
