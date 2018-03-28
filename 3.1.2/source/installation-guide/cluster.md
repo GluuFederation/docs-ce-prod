@@ -8,7 +8,7 @@ Gluu also offers a tool to automate the steps below, called [Cluster Manager](ht
     
 ## Concept
 
-Enable OpenDJ replication and also make configuration changes to make Gluu Server highly avaiable, via a proxy.
+Enable OpenDJ replication and also make configuration changes to make Gluu Server highly available, via a proxy.
 
 
 ## Prerequisites
