@@ -55,7 +55,7 @@ Identity and object data such as user profiles, configuration data, tokens and c
 The Gluu Server also supports the [SCIM protocol](./user-management/scim2.md) in order to standardize communication between identity data stores and make it fast, cheap, and easy to move users in to, out of, and around the cloud.. 
 
 !!! Note
-    The Gluu Server does **not** include features for delegated administration, role definition, approvals and workflows, etc. In enterprise workflows, the Gluu Server is a consumer of separate systems that house identity management and governance data and policies. 
+    The Gluu Server does **not** include features for delegated administration, role definition, approvals and workflows, etc. In enterprise workflows, Gluu is a consumer of information from identity management and governance systems. 
 
 ##  Single Sign-On (SSO)
 The Gluu Server is an identity provider (IDP) in single sign-on (SSO) workflows. Users from web and mobile applications are redirected to Gluu for "sign-on", and are then redirected back to applications with an active session and claims (or attributes) about themselves. 
