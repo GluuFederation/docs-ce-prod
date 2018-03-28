@@ -19,14 +19,12 @@ The Gluu Server needs to be deployed on a server or VM with the following **mini
     Docker deployments are not currently supported! 
 
 ## Supported Operating Systems
-The Gluu Server should be deployed on a server or VM using one of the following operating systems:
+Deploy Gluu on a server or VM with one of the following supported operating systems:
 
 - Ubuntu 14.04, 16.04
 - CentOS 6.x, 7.x
 - RHEL 6.x, 7.x
 - Debian 8
-
-You can try installing Gluu on other versions or operating systems, however we can not provide support for deployments on other operating systems. 
 
 ## Ports
 
