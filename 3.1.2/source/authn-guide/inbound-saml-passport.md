@@ -223,6 +223,7 @@ Follow the guidelines below to install the Demo app at your Gluu Server host. Co
 9. Edit the `~/Inbound-SAML-Demo/client-config.json` file and provide proper values for: `ClientID` (the `inum` attribute found in the client's properties after it has been registered in Gluu), `clientSecret`, and `hostname` (FQDN of this Gluu Server instance)      
 10. Initialize the Demo app:      
     * `$ cd ~/Inbound-SAML-Demo/`
+    * `$ export PATH=$PATH:/opt/node/bin`
     * `$ npm install`
 11. Run the application: `$ node server.js` You can stop the server by hitting `Ctrl`+`C` key combo    
 
