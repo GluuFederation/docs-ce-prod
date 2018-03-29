@@ -42,7 +42,7 @@ Follow each link to learn how to implement that specific type of 2FA with Gluu.
 	
 Once 2FA is enforced, people need a good way to enroll, delete and manage their strong credentials (that doesn't involve calling the support desk!). In an effort to make the 2FA experience better for people and organizations, the Gluu Server now supports a new open source application called [Credential Manager](https://gluu.org/docs/creds). 
 
-Credential Manager is a simple, user-facing applications people can use to manage their 2FA credentials in the Gluu Server. 
+Credential Manager is a simple, user-facing applications people can use to manage 2FA credentials in the Gluu Server. 
 
 
 ## Social Login
