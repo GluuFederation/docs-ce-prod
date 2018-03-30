@@ -1,7 +1,7 @@
 # Attributes
 
 ## Overview
-Attributes are individual pieces of user data, like `uid` or `email`, that are required by applications in order to identify a user and grant access to protected resources. The user attributes that are available in your Gluu service can be found by navigating to `Configuration` > `Attributes`. 
+Attributes are individual pieces of user data, like `uid` or `email`, that are required by applications in order to identify a user and grant access to protected resources. Default user attributes can be found by navigating to `Configuration` > `Attributes`. 
 
 ![Attribute Menu](../img/admin-guide/attribute/admin_attribute_menu.png)
 
@@ -19,7 +19,7 @@ status to active/inactive, by clicking on a specific attribute.
 
 
 ## Custom Attributes
-In order to create SSO to certain applications you may need to add custom attributes to your Gluu Server. Custom attributes can be added by following the instructions below: 
+SSO to certain applications may require the creation of custom attributes. Custom attributes can be added by following the instructions below: 
 
 ### Add the attribute to LDAP
  - Become `ldap` user 
@@ -48,7 +48,7 @@ objectclass ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
 This creates the attribute in the local LDAP server. 
 
 ### Add the attribute to oxTrust
-Now you need to register the new attribute in the Gluu Server GUI by navigating to `Configuration` > `Attributes`  and then click the `Register Attribute` button. 
+Register the new attribute in the Gluu Server GUI by navigating to `Configuration` > `Attributes`  and then click the `Register Attribute` button. 
 
 The following screen will appear:
 
