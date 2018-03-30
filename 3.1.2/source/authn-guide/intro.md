@@ -2,7 +2,7 @@
 The Gluu Server was designed to be very flexible in handling user authentication. Username / password is the default form of authentication ("basic"). Stronger forms of authentication, like One-Time Passcodes (OTP), U2F Security Keys, and Gluu's free U2F mobile app, Super Gluu, can be implemented to increase account security. 
 
 ## Authentication Interception Scripts
-The Gluu Server leverages [interception scripts](../admin-guide/custom-script.md) to facilitate the user authentication process. Interception scripts specify how an authentication mechanism should be applied, and what pages should be presented during sign-in.
+The Gluu Server leverages [interception scripts](../admin-guide/custom-script.md) to facilitate the user authentication process. Interception scripts specify how an authentication mechanism should be applied, and what pages should be presented during sign-in. 
 
 The Gluu Server includes interception scripts for a number of authentication mechanisms, such as:
 
@@ -12,7 +12,9 @@ The Gluu Server includes interception scripts for a number of authentication mec
 - [Duo Security](./duo.md)
 - [Social Login](./passport.md) 
 
-Existing interception scripts can be customized and extended, or new scripts can be written to support unique business requirements for authentication. For example, a custom script could be written to implement extra authentication steps based on contextual information such as fraud scores, location, or browser profiling. 
+Default authentication mechanisms can be set [as described below](#default-authentication-mechanism), and OpenID Connect clients can request any enabled authentication mechanism using the OpenID Connect `acr_value`. The name of the script in Gluu == acr_value, so for example, if an OpenID Connect client wanted users to get U2F authentication from Gluu, the client would pass the following request: `"acr_values": ["u2f"]`. 
+
+Interception scripts included in Gluu's default distribution can be customized and extended, or new scripts can be written to support unique business requirements for authentication. For example, a script could be extendeded to implement extra authentication steps based on contextual information such as fraud scores, location, or browser profiling. 
 
 Follow the [custom authentication script tutorial](./customauthn.md) to better understand how interception scripts work. 
 
