@@ -1,15 +1,14 @@
 ## UMA 2 API Document
-User-Managed Access (UMA) is a profile of OAuth 2.0. UMA defines how 
-resource owners can manipulate to protect the resources.
+User-Managed Access (UMA) is a profile of OAuth 2.0. 
 The client can have access by arbitrary requesting parties, which means the 
 requesting resource can be any number of resource servers and a centralized 
 authorization server managing the access based on protected resource rules and policies defined.
 
 
 In order to increase interoperable communication among the 
-authorization server, resource server, and client, UMA leverages 
+authorization server, resource server and client, UMA leverages 
 two purpose-built APIs related to the outsourcing of authorization, 
-themselves protected by OAuth (or an OAuth-based authentication protocol) in embedded fashion.
+themselves protected by OAuth (or an OAuth-based authentication protocol) in an embedded fashion.
 
 
 A summary of UMA 2.0 communications as below
@@ -140,7 +139,7 @@ Client Requests RPT.
 
 - grant_type - REQUIRED. MUST be the value urn:ietf:params:oauth:grant-type:uma-ticket.
 - ticket - REQUIRED. The most recent permission ticket received by the client as part of this authorization process.
-- claim_token - OPTIONAL. If this parameter is used, it MUST appear together with the claim_token_format parameter. A string containing directly pushed claim information in the indicated format. It MUST be base64url encoded unless specified otherwise by the claim token format. The client MAY provide this information on both first and subsequent requests to this endpoint. The client and authorization server together might need to establish proper audience restrictions for the claim token prior to claims pushing.
+- claim_token - OPTIONAL. If this parameter is used, it MUST appear together with the claim_token_format parameter. It is string containing directly pushed claim information in the indicated format. It MUST be base64url encoded unless specified otherwise by the claim token format. The client MAY provide this information on both first and subsequent requests to this endpoint. The client and authorization server together might need to establish proper audience restrictions for the claim token prior to claims pushing.
 - claim_token_format - OPTIONAL. If this parameter is used, it MUST appear together with the claim_token parameter. A string specifying the format of the claim token in which the client is directly pushing claims to the authorization server. The string MAY be a URI. Examples of potential types of claim token formats are [OIDCCore] ID Tokens and SAML assertions.
 - pct - OPTIONAL. If the authorization server previously returned a PCT along with an RPT, the client MAY include the PCT in order to optimize the process of seeking a new RPT. Given that some claims represented by a PCT are likely to contain identity information about a requesting party, a client supplying a PCT in its RPT request MUST make a best effort to ensure that the requesting party using the client now is the same as the requesting party that was associated with the PCT when it was issued. The client MAY use the PCT for the same requesting party when seeking an RPT for a resource different from the one sought when the PCT was issued, or a protected resource at a different resource server entirely. See Section 5.3 for additional PCT security considerations. See Section 3.3.5 for the form of the authorization server's response with a PCT.
 - rpt - OPTIONAL. Supplying an existing RPT gives the authorization server the option of upgrading that RPT instead of issuing a new one (see Section 3.3.5.1 for more about this option).
