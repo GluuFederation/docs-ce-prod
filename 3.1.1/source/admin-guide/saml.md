@@ -1,13 +1,9 @@
 # SAML IDP 
 ## Overview
-If you need a SAML IDP to support outbound SAML single sign-on (SSO), you can install Shibboleth during your [Gluu Server deployment](../../installation-guide/install.md).      
-
-In an outbound SAML SSO transaction a website or application (SP) redirects a user to a designated identity provider (IDP) for authentication and authorization. The IDP will authenticate the user. Upon successful authentication, the user is sent back to the SP logged in. 
-
-In order for this transaction to happen successfully there must be pre-established trust between your IDP (Gluu Server) and SP (target application). The following section of the docs cover how to create trust with SPs in your Gluu SAML IDP. 
+The Gluu Server can be deployed with the Shibboleth SAML IDP to support outbound SAML single sign-on (SSO). In an outbound SAML SSO transaction a website or application (SP) redirects users to a designated identity provider (IDP) for authentication and authorization. Upon successful authentication at the IDP, the user is returned to the SP with an active session. 
 
 !!! Note 
-    If you need to support inbound SAML to integrate with external partner or customer IDPs, review the [inbound SAML authentication guide](../authn-guide/inbound-saml-passport.md).
+    To support authentication at an external SAML IDP, review the [inbound SAML authentication guide](../authn-guide/inbound-saml-passport.md).
 
 ## Trust Relationship Requirements     
 In the Gluu Server, the SAML IDPs SSO configuration is called a Trust Relationship (TR). Each TR requires the infomation listed below.
@@ -22,14 +18,14 @@ The Gluu Server's SAML metadata may be needed from time to time. It can be found
 Each SP may require one or more user attributes from the IDP in order to grant a person access to a protected resource. Required attributes vary depending on the application, and should be explicitly specified in the target application's documentation. The administrator can use the oxTrust interface to release the necessary attributes to the SP (as described [below](#create-a-trust-relationship-in-the-gluu-server). 
 
 !!! Note    
-    For a broader discussion of attributes, including how to create custom attributes and how to [configure the NameID attribute](./attribute/#defining-nameid) for your SAML service, refer to the [attributes documentation](./attribute.md).
+    For a broader discussion of attributes, including how to create custom attributes and how to [configure the SAML NameID attribute](./attribute/#defining-nameid), refer to the [attributes documentation](./attribute.md).
     
 ## Create a Trust Relationship
-Follow these instructions to create a SAML TR in your Gluu Server: 
+Follow these instructions to create a SAML TR: 
 
 1. Go to `SAML` > `Trust Relationships`    
 2. Click on `Add Trust Relationship`     
-3. A new page will appear where you can provide all the required information to create a Trust
+3. A new page will appear with fields for all required information to create a Trust
   Relationship(TR).     
 
 ![newTR](../img/saml/samlfederationTR.png)
@@ -38,8 +34,7 @@ A description of each field follows:
 
 - **Display Name**: Name of the Trust Relationship (it should be unique for every TR);       
 - **Description**: Purpose of the TR and an SSO link can be added here;         
-
-- **Metadata Type**: There are four available options to choose from. The correct Type depends on how the SP is delivering Metadata to your IDP.      
+- **Metadata Type**: There are four available Metadata options to choose from. The correct type depends on how the SP is delivering Metadata to the IDP.      
 
     - *File*: Choose `File` if the SP has provided an uploadable metadata document in XML format.
     - *URI*: Chose `URI` if the SP metadata is hosted on a URI that is accessible from the Internet.
@@ -47,15 +42,15 @@ A description of each field follows:
     - *Federation*: Choose this option if the target application (SP) is affiliated with a federation service (e.g. InCommon, NJEdge etc.). Fedeartion's TR must be created first for it to appear in this list. Learn more about working with a federation [below](#federation-configuration).   
     
 !!! Note 
-    If you plan on using the Generate method, please note the following:       
+    If the Generate method is being used:       
     
     - The URL is the hostname of the SP.           
-    - You must provide a **non password protected** public certificate, which is a Base64 encoded ASCII file, and contain "-----BEGIN CERTIFICATE-----" and "-----END CERTIFICATE-----".        
-    - After creating the Trust Relationship, download the generated configuration files from the `Download Shibboleth2 configuration files` link and place these configuration files inside your SP configuration.              
+    - Pprovide a **non password protected** public certificate, which is a Base64 encoded ASCII file, and contain "-----BEGIN CERTIFICATE-----" and "-----END CERTIFICATE-----".        
+    - After creating the Trust Relationship, download the generated configuration files from the `Download Shibboleth2 configuration files` link and place these configuration files inside the SP configuration.              
       
 - **Released**: The SPs required attributes must be added to this panel. The required attributes can be selected from the menu on the left with the heading “Release Additional Attributes”.     
 
-- **Entity Type**: You have two options to choose for entity type.
+- **Entity Type**: There are two options to choose for entity type.
     - *Single SP*: 
     - *Federation/Aggregate* 
     
