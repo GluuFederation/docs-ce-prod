@@ -50,14 +50,14 @@ The following table summarizes the available endpoints in Gluu implementation of
 
 |Endpoint|Resource			|HTTP methods		|Description	|
 |-|-|-|-|
-|[/Users](#users)|User|GET, POST, PUT, DELETE|Retrieve, add, modify and delete Users|
-|[/Groups](#groups)|Group|GET, POST, PUT, DELETE|Retrieve, add, modify and delete Groups|
-|[/FidoDevices](#fidodevices)|Fido devices|GET, PUT, DELETE|Retrieve, modify and delete Fido devices|
-|[/Bulk](#bulk)||POST|Applies operations of different kind to a set of resources|
-|[/.search](#search)||POST|Search resources of all kind|
-|[/ServiceProvider](#serviceprovider)||GET|Retrieve service provider configuration|
-|[/ResourceTypes](#resourcetypes)||GET|Retrieve supported resource types|
-|[/Schemas](#schemas)||GET|Retrieve supported schemas info|
+|[/Users](#identityrestv1scimv2users)|User|GET, POST, PUT, DELETE|Retrieve, add, modify and delete Users|
+|[/Groups](#identityrestv1scimv2groups)|Group|GET, POST, PUT, DELETE|Retrieve, add, modify and delete Groups|
+|[/FidoDevices](#identityrestv1scimv2fidodevices)|Fido devices|GET, PUT, DELETE|Retrieve, modify and delete Fido devices|
+|[/Bulk](#identityrestv1scimv2bulk)||POST|Applies operations of different kind to a set of resources|
+|[/.search](#identityrestv1scimv2search)||POST|Search resources of all kind|
+|[/ServiceProvider](#identityrestv1scimv2serviceprovider)||GET|Retrieve service provider configuration|
+|[/ResourceTypes](#identityrestv1scimv2resourcetypes)||GET|Retrieve supported resource types|
+|[/Schemas](#identityrestv1scimv2schemas)||GET|Retrieve supported schemas info|
 
 !!! Note:
     Actual endpoint URLs are prefixed accordingly with the root URL of SCIM API. As an example, the user's endpoint URL to use in your applications should be `https://your.gluu-host.com/identity/restv1/scim/v2/Users`.
@@ -87,7 +87,7 @@ The following table lists characteristics of SCIM protocol (see section 3 of RFC
 |"/me" URI alias|-|-|Not applicable: operations actually not executed on a user's behalf or other SCIM resource|
 |Resource versioning|-|-|Feature may be available upon explicit customer demand|
 
-## `/Users`
+## `/identity/restv1/scim/v2/Users`
 
 ### GET
 
@@ -183,7 +183,7 @@ The representation of the <a href="#/definitions/User">user</a> created containi
 
 Status code 201 is returned upon successful operation.
 
-## `/Users/.search`
+## `/identity/restv1/scim/v2/Users/.search`
 
 Search groups based on filter criteria (see [section 3.4.3](https://tools.ietf.org/html/rfc7644#section-3.4.3) of RFC 7644). 
 
@@ -240,7 +240,7 @@ Output data is in form of a [ListResponse](#/definitions/ListResponse). Resource
 Status code 200 is returned for a successful response.
 
 
-## `/Users/{id}`
+## `/identity/restv1/scim/v2/Users/{id}`
 
 ### GET
 
@@ -365,7 +365,7 @@ None
 #### Response
 A no content response (status code 204) if the operation was a successful. If the id supplied as part of the URL does not map to an existing user, then 404 is returned.  
 
-## `/Groups`
+## `/identity/restv1/scim/v2/Groups`
 
 ### GET
 
@@ -461,7 +461,7 @@ The representation of the <a href="#/definitions/Group">group</a> created contai
 
 Status code 201 is returned upon successful operation.
 
-## `/Groups/.search`
+## `/identity/restv1/scim/v2/Groups/.search`
 
 Search groups based on filter criteria (see [section 3.4.3](https://tools.ietf.org/html/rfc7644#section-3.4.3) of RFC 7644). 
 
@@ -518,7 +518,7 @@ Output data is in form of a [ListResponse](#/definitions/ListResponse). Resource
 Status code 200 is returned for a successful response.
 
 
-## `/Groups/{id}`
+## `/identity/restv1/scim/v2/Groups/{id}`
 
 ### GET
 
@@ -644,7 +644,7 @@ None
 A no content response (status code 204) if the operation was a successful. If the id supplied as part of the URL does not map to an existing group, then 404 is returned.  
 
 
-## `/FidoDevices`
+## `/identity/restv1/scim/v2/FidoDevices`
 
 ### GET
 
@@ -702,7 +702,7 @@ Output data is in form of a [ListResponse](#/definitions/ListResponse). Resource
 Status code 200 is returned for a successful response.
 
 
-## `/FidoDevices/.search`
+## `/identity/restv1/scim/v2/FidoDevices/.search`
 
 Search fido devices based on filter criteria (see [section 3.4.3](https://tools.ietf.org/html/rfc7644#section-3.4.3) of RFC 7644). 
 
@@ -759,7 +759,7 @@ Output data is in form of a [ListResponse](#/definitions/ListResponse). Resource
 Status code 200 is returned for a successful response.
 
 
-## `/FidoDevices/{id}`
+## `/identity/restv1/scim/v2/FidoDevices/{id}`
 
 ### GET
 
@@ -847,7 +847,7 @@ None
 #### Response
 A no content response (status code 204) if the operation was a successful. If the id supplied as part of the URL does not map to an existing fido device, then 404 is returned.  
 
-## `/Bulk` 
+## `/identity/restv1/scim/v2/Bulk` 
 
 Applies bulk operations (see [section 3.7](https://tools.ietf.org/html/rfc7644#section-3.7) of RFC 7644).
 
@@ -876,7 +876,7 @@ A <a href="#/definitions/BulkResponse">BulkResponse</a> with details of every at
 
 Status code 200 is returned upon successful operation. Every operation result in <a href="#/definitions/BulkResponse">BulkResponse</a> contains at the same time its own status code.
 
-## `/.search`
+## `/identity/restv1/scim/v2/.search`
 
 Search resources based on filter criteria (see [section 3.4.3](https://tools.ietf.org/html/rfc7644#section-3.4.3) of RFC 7644). 
 
@@ -937,7 +937,7 @@ Status code 200 is returned for a successful response.
 
 There are three endpoints that facilitate discovery of features of the service itself and about the schema used; in other words, service metadata. Please check section 4 of RFC 7644 for more information.
 
-### `/ServiceProvider`
+### `/identity/restv1/scim/v2/ServiceProvider`
 
 #### Security
 This endpoint is not protected
@@ -954,7 +954,7 @@ Information about the capabilities of the server in Json format as decribed in s
 
 Status code 200 is returned for a successful response.
    
-### `/ResourceTypes`
+### `/identity/restv1/scim/v2/ResourceTypes`
 
 #### Security
 This endpoint is not protected
@@ -973,7 +973,7 @@ It's possible to request the information for a single resource type by adding a 
 
 Status code 200 is returned for a successful response.
    
-### `/Schemas`
+### `/identity/restv1/scim/v2/Schemas`
 
 #### Security
 This endpoint is not protected
