@@ -886,7 +886,7 @@ Currently the service supports only:
 - Single device update via PUT
 
 !!! Note
-    Given the nature of this resource, most of its attributes are not modifiable. Editing is limited to the fllowing attributes: `displayName` and `description`.
+    Given the nature of this resource, most of its attributes are not modifiable. Editing is limited to the following attributes: `displayName` and `description`.
 
 The following sub-section shows an example of fido device retrieval using filters.
 
