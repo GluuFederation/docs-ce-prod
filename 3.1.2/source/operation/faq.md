@@ -22,6 +22,31 @@ Run the following commands if you find your instance running out of disk space:
 # /etc/init.d/gluu-server-3.1.2 start
 ```
 
+## Find your Gluu Server version
+
+1. SSH into VM
+2. Log into Gluu-Server container. 
+
+    a. Using below command
+    
+     `# service gluu-server-3.1.2 login`
+     
+3. To find oxTrust version
+
+      `# cat /opt/jetty-9.3/temp/jetty-localhost-8082-identity.war-_identity-any-8734901518752897483.dir/webapp/META-INF/MANIFEST.MF`
+
+4. oxAuth version can be found using below command 
+
+    `# cat /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-6134601069165491713.dir/webapp/META-INF/MANIFEST.MF`
+
+Another simple way to find out the Gluu Server installed or upgraded version can be found on the top the oxTrust Admin UI.
+
+![Gluu Version](../img/oxtrust/welcome-page.png)
+
+Versions of other apps like idp, oxauth-rp, etc.,
+can be found or viewed in the same directory. These app can be 
+identified with the [port number](./ports.md) after the localhost.
+
 ## Connect a remote debugger
 Connecting your local debugger up to Gluu can help with troubleshooting. 
 
@@ -122,7 +147,6 @@ servers: localhost:1636
 ```
 
 Forward the `1636` the same way as you did with the debug ports above. You can then see full details like how OpenID Connect clients are stored and how user objects are mapped in the LDAP tree.
-
 
 ## Changing hostnames/IP addresses/listening ports
 It is not recommended to change the hostname or IP address or the listening port of any installed Gluu Server instance. The hostname and the IP address is used in many settings stored in LDAP configuration entries, Apache/Jetty configuration and into the custom authentication script. It is strongly recommended to use a fresh install in a new VM. 
@@ -367,7 +391,7 @@ Once the ldif looks right, run this to grant your account admin rights in Gluu:
 
 Log into the web interface and pick up where you left off :)
 
-## How do I present a different login page depending on where the user came from (i.e. based on the SP/RP)?
+## How to present a different login page depending on where the user came from (i.e. based on the SP/RP)?
 
 ### SAML
 The SAML IDP sends an authorization request to oxAuth for user authentication.. In the request there is a JWT state parameter which contains a claim called `relyingPartyId`. You can use this `relyingPartyId` to render the proper form based on the SP... so `SP=relyingPartyId`. 
