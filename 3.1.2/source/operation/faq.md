@@ -24,6 +24,8 @@ Run the following commands if you find your instance running out of disk space:
 
 ## Find your Gluu Server version
 
+The Gluu Server version can be found in the oxTrust dashboard. Alternatively, you can:
+
 1. SSH into VM
 2. Log into Gluu-Server container. 
 
@@ -39,12 +41,8 @@ Run the following commands if you find your instance running out of disk space:
 
     `# cat /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-6134601069165491713.dir/webapp/META-INF/MANIFEST.MF`
 
-Another simple way to find out the Gluu Server installed or upgraded version can be found on the top the oxTrust Admin UI.
-
-![Gluu Version](../img/oxtrust/welcome-page.png)
-
-Versions of other apps like idp, oxauth-rp, etc.,
-can be found or viewed in the same directory. These app can be 
+Versions of included software like idp, oxauth-rp, etc.,
+can be viewed in the same directory. These apps can be 
 identified with the [port number](./ports.md) after the localhost.
 
 ## Connect a remote debugger
