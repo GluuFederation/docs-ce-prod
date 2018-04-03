@@ -6,9 +6,9 @@ Containership is a containers-as-a-service platform that makes it easy to deploy
 
 ## Prepare Cluster
 
-1.  Login to https://containership.io cloud dashboard.
+1.  Log into https://containership.io cloud dashboard.
 
-2.  Create new cluster by clicking `Create Cluster` button.
+2.  Create a new cluster by clicking `Create Cluster` button.
 
     ![cluster-create](../img/csio/cluster-create.png)
 
@@ -38,7 +38,7 @@ Containership is a containers-as-a-service platform that makes it easy to deploy
 
     Afterwards, click `CONTINUE` button at the bottom.
 
-7.  Create Leader which has 1 CPU and 1 GB RAM, and then click `CONTINUE` button at the bottom.
+7.  Create Leader, which has 1 CPU and 1 GB RAM, and then click `CONTINUE` button at the bottom.
 
     ![cluster-create-5-leader](../img/csio/cluster-create-5-leader.png)
 
@@ -46,7 +46,7 @@ Containership is a containers-as-a-service platform that makes it easy to deploy
 
     ![cluster-create-6-follower](../img/csio/cluster-create-6-follower.png)
 
-8.  Last step is to add name and environment. Use descriptive ones.
+8.  The last step is to add name and environment. Use descriptive ones.
 
     ![cluster-create-7-name](../img/csio/cluster-create-7-name.png)
 
@@ -58,9 +58,9 @@ After finishing the wizard forms, we will be redirected back to page that lists 
 
 Please wait until cluster has been 100% provisioned.
 
-For troubleshooting and other admin purposes, we need to add firewall rule to allow SSH connection for admin users.
+For troubleshooting and other admin purposes, we need to add a firewall rule to allow SSH connection for admin users.
 Click the newly created cluster which will redirect us to overview page.
-Go to cluster `Firewall` tab, add add new rule for SSH connection by clicking `Add Firewall Rule` button.
+Go to the cluster `Firewall` tab, and add a new rule for SSH connection by clicking `Add Firewall Rule` button.
 
 ![firewall-add](../img/csio/firewall-add.png)
 
@@ -68,7 +68,7 @@ Complete the forms shown below:
 
 ![firewall-add-ssh](../img/csio/firewall-add-ssh.png)
 
-Make sure entering a correct IP address of admin's machine (either manually or using `Use My IP` button) before clicking `Save Rule` button at the bottom.
+Make sure to enter a correct IP address of admin's machine (either manually or using `Use My IP` button) before clicking `Save Rule` button at the bottom.
 
 `Congratulations`, we have completed first stage of our cluster setup.
 
@@ -110,7 +110,7 @@ Make sure entering a correct IP address of admin's machine (either manually or u
 2.  In local machine, [install Docker](https://docs.docker.com/engine/installation/) and pull `config-init` image.
 
     ```
-    docker pull gluufederation/config-init:3.1.2_rev1.0.0-beta3
+    docker pull gluufederation/config-init:3.1.3_rev1.0.0-beta3
     ```
 
     Consul service in Containership uses private IP and port 8314 to listen to client connection. Hence we need to do SSH tunneling to expose the port in our local machine.
@@ -121,10 +121,10 @@ Make sure entering a correct IP address of admin's machine (either manually or u
 
     After tunneling established, in another terminal, we can start generating initial config in our local machine for our Gluu Server cluster.
 
-    Prepare following steps before generating initial config:
+    Prepare the following steps before generating initial config:
 
-    - Use resolvable public domain
-    - Use SSL certificate and key for the domain (create them if we don't have one yet; self-signed is possible)
+    - Use a resolvable public domain
+    - Use an SSL certificate and key for the domain (create them if you don't have one yet; self-signed is possible)
 
     Here's an example on how to run `config-init` container:
 
@@ -132,7 +132,7 @@ Make sure entering a correct IP address of admin's machine (either manually or u
 docker run --rm \
     -v /path/to/org_ssl.crt:/etc/certs/gluu_https.crt \
     -v /path/to/org_ssl.key:/etc/certs/gluu_https.key \
-    gluufederation/config-init:3.1.2_rev1.0.0-beta3 \
+    gluufederation/config-init:3.1.3_rev1.0.0-beta3 \
     --admin-pw my-password \
     --email 'my-email@my.domain.com' \
     --domain my.domain.com \
@@ -169,8 +169,8 @@ For other configuration, we can leave it as is. We only need to focus on all con
 
 ![service-openldap-settings](../img/csio/service-openldap-settings.png)
 
-To get correct values for `GLUU_KV_HOST` and `GLUU_KV_PORT`, we need to go to overview page of Consul service.
-Pick `consul` service in `Services` tab. Take a note of its DNS entry as shown by example below:
+To get the correct values for `GLUU_KV_HOST` and `GLUU_KV_PORT`, go to the overview page of Consul service.
+Pick `consul` service in `Services` tab. Take a note of its DNS entry, as shown in the example below:
 
 ![service-consul-overview](../img/csio/service-consul-overview.png)
 
@@ -181,17 +181,17 @@ Once we have entered the `GLUU_KV_HOST` and `GLUU_KV_PORT` for `gluu-openldap` s
 
 Repeat the process of entering `GLUU_KV_HOST` and `GLUU_KV_PORT` using same values when configuring `gluu-openldap` service.
 
-Optionally you can add redis service here, supported ENV variables are:
+Optionally, you can add redis service here, supported ENV variables are:
 
-`GLUU_CACHE_TYPE:` supported values are 'IN_MEMORY' and 'REDIS', default is 'IN_MEMORY'
+- `GLUU_CACHE_TYPE:` supported values are 'IN_MEMORY' and 'REDIS', default is 'IN_MEMORY'
 
-`GLUU_REDIS_URL:` Url of redis service, fornat is redis_host1:redis_port1,redis_host2:redis_port2
+- `GLUU_REDIS_URL:` URL of redis service, format is redis_host1:redis_port1,redis_host2:redis_port2
 
 Finally, click `Add Service` button at the bottom of the page.
 
 #### OpenLDAP Multi-Master Replication
 
-OpenLDAP services take care the process replicating data (using multi-master topology) automatically when new instance is deployed (though the process started one minute after container successfully deployed).
+OpenLDAP services take care of replicating data (using multi-master topology) automatically when a new instance is deployed (though the process started one minute after container successfully deployed).
 Although the process is hidden from users, we can check it from container's log directly in web UI.
 To check the log, select `gluu-openldap` service in `Services` tab.
 Scroll down to bottom and click one of the container listed there.
@@ -229,7 +229,7 @@ Let's start with `gluu-oxauth` configuration:
 ![service-oxauth-settings](../img/csio/service-oxauth-settings.png)
 
 Enter the same `GLUU_KV_HOST` and `GLUU_KV_PORT` from previous process.
-To get correct values for `GLUU_LDAP_URL`, visit `gluu-openldap-init` and `gluu-openldap` overview pages and take note about their DNS entries.
+To get the correct values for `GLUU_LDAP_URL`, visit `gluu-openldap-init` and `gluu-openldap` overview pages and take note about their DNS entries.
 
 Move on to `gluu-oxtrust` configuration and repeat similar steps when configuring `gluu-oxauth`:
 
@@ -242,15 +242,15 @@ The last step is to configure `gluu-keyrotation`:
 Repeat similar things from previous steps.
 Finally, click `Add Service` button at the bottom of the page.
 
-### Deploy Nginx Services
+### Deploy NGINX Services
 
-Once Gluu Auth services are deployed, we can deploy Nginx services.
+Once Gluu Auth services are deployed, we can deploy NGINX services.
 
 Go to `Services` tab and add another service from marketplace. Pick Gluu Nginx item.
 
 ![service-nginx-create](../img/csio/service-nginx-create.png)
 
-The Gluu Nginx marketplace will deploy 1 service only, the `gluu-nginx`.
+The Gluu NGINX marketplace will deploy one service only, the `gluu-nginx`.
 
 Upon the creation of services, a form will be displayed asking for configuration values.
 
@@ -271,13 +271,13 @@ Add CNAME record to domain, the value should be the `gluu-nginx` DNS entry.
 
 ## Managing LDAP Authentication
 
-As we have 2 services for OpenLDAP, we need to save the connection configuration using oxTrust UI:
+As we have two services for OpenLDAP, we need to save the connection configuration using oxTrust UI:
 
 1. Visit `https://<your-domain>/identity/authentication/configuration`
-2. In `Server` form field, make sure we have `gluu-openldap-init`'s DNS entry.
-3. In same form field, click `Add server` link (a new form field will appear). Add `gluu-openldap`'s DNS entry.
-4. Click `Test LDAP Connection` button.
-5. If we have `LDAP Connection Test Succeeded` popup, click `Update` button.
+2. In `Server` form field, make sure we have `gluu-openldap-init`'s DNS entry
+3. In same form field, click `Add server` link (a new form field will appear). Add `gluu-openldap`'s DNS entry
+4. Click `Test LDAP Connection` button
+5. If we have `LDAP Connection Test Succeeded` popup, click `Update` button
 
 ![oxtrust-auth-settings-2](../img/csio/oxtrust-auth-settings-2.png)
 
