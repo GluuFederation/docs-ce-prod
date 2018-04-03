@@ -58,9 +58,9 @@ session required pam_limits.so
 * Increase the FD limit to 65535. The system file limit 
 is set in `/proc/sys/fs/file-max`.
 
-It is recommended to check the FD limit before increasing it, and if this limit is customized and more than default, we recommend to the use the higher one. 
+It is recommended to check the FD limit before increasing it, and if this limit is customized and more than default, we recommend using the higher one. 
     
-File descriptors limit can be found using the below command. 
+The FD limit can be found using the below command. 
 
 ```
 # cat /proc/sys/fs/file-max
@@ -76,7 +76,7 @@ echo 65535 > /proc/sys/fs/file-max**
 ulimit -n unlimited
 ```
 
-!!!Note:
+!!!Note
     Centos by default will not accept more than the default maximum. You may get an error while performing the above command. If you do get an error, set it to `ulimit -n 262144`, or `65535` if you get a second error.
 
 * Restart your system.     
@@ -92,28 +92,28 @@ hostname that Amazon provides as CN(Canonical Name). Update your DNS or hosts fi
 
 ### Google Cloud Platform
 
-Gluu Server installation in GCP is pretty straight forward. We need to check couple of 
+Gluu Server installation in GCP is pretty straight forward. We need to check a couple of 
 points for this installation: 
 
- - Deployer must have to select supported operating system and required resources. 
+ - Deployer must select supported operating system and required resources. 
  - Enable 'HTTPS' from 'Firewall'
- - Do not enter any IP during installation of Gluu Server, setup script will automatically 
+ - Do not enter any IP during the installation of Gluu Server, the setup script will automatically 
 gather appropriate IP information. 
- - When accessing newly installed Gluu server from browser, update your DNS or hosts file accordingly. 
+ - When accessing the newly installed Gluu server from a browser, update the DNS or hosts file accordingly. 
  
- A video tutorial is also available in [Gluu channel](https://www.youtube.com/watch?v=0RskrQG8km8)
+ A video tutorial is also available in the [Gluu channel](https://www.youtube.com/watch?v=0RskrQG8km8)
 
 ### Microsoft Azure      
 
 Accessing the Gluu Server on Azure can be a little tricky because of
-the Public/Private IP. Azure assigns a new Public/Private IP
+the Public/Private IP. Azure assigns new Public/Private IP
 addresses each time the server is started. 
 
-Follow these steps to setup the VM on Azure:
+Follow these steps to set up the VM on Azure:
     
 1. Log into Windows Azure Administrative Panel
 
-2. Click on `Virtual Machines` tab, and click `Create a Virtual Machine` link
+2. Navigate to `Virtual Machines` > `Create a Virtual Machine`
 
 3. From the menu, choose `Compute` > `Virtual Machine` > `From Gallery` branch.
 
@@ -124,15 +124,15 @@ Follow these steps to setup the VM on Azure:
 
 6. Select a server with at least 4GB RAM in the `Size` dropdown menu.
 
-7. Provide a username/password to connect via ssh and upload ssh certificate. Click `Next`.
+7. Provide a username/password to connect via SSH and upload an SSH certificate. Click `Next`.
 
 8. Create a new cloud service and select `None` for the `Availability Set` option.
         * Endpoints Section: This is where port forwarding is set so
       that the internal IP address can be selectively reachable from
-      the outside world. By default, only tcp /22 is there for ssh. The
+      the outside world. By default, only tcp /22 is there for SSH. The
       public ports for `http` and `https` (tcp ports 80 and 443) have to be
       added and mapped to the same private ports. If the cloud mappings
-      are flagged conflicting, proceed without setting them. Remember to
+      are flagged as conflicting, proceed without setting them. Remember to
       set them after the creation of the VM. Then, click `Next`.
 
 9. Choose not to install `VM Agent` and click the `tick` button to
@@ -141,7 +141,7 @@ Follow these steps to setup the VM on Azure:
 10. Go to the `Dashboard` tab of VM Management Panel and copy the `DNS
     Name`. This is the name that is used to access the Gluu Server.
 
-11. You should now be able to ssh to the server and proceed with the 
+11. SSH to the server and proceed with the 
     installation.
 
 
