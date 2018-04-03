@@ -158,21 +158,8 @@ Gluu provides the necessary [scripts](https://github.com/GluuFederation/communit
 # service gluu-server-3.0.x login
 
 # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/export3031.py
+# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/ldif.py
 ```
-Install the `python-ldap` package:
-  * on Ubuntu:
-```
-apt-get update
-apt-get install -y python-ldap
-```
-  * on CentOS/RHEL:
-
-```
-# yum install epel-release
-# yum clean all
-# yum install python-ldap
-```
-
 Install the `python-pip` package.
 
 ```
@@ -234,14 +221,24 @@ Install the `python-pip` package using your package manager.
 # curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
 # python get-pip.py
 ```
+Install the `python-ldap` package:
+  * on Ubuntu:
+```
+apt-get update
+apt-get install -y python-ldap
+```
+  * on CentOS/RHEL:
 
+```
+# yum install epel-release
+# yum clean all
+# yum install python-ldap
+```
 Install the `json-merge` Python package and run the import script.
 
 ```
 # pip install jsonmerge
-
 # chmod +x import3031.py
-
 # ./import3031.py backup_3031
 ```
 
@@ -294,24 +291,9 @@ After migration is done you should be able to log in as the temporary admin user
 
 ```
 # service gluu-server-2.x.x login
-
 # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/export2431.py
+# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/ldif.py
 ```
-
-Install the `python-ldap` package:
-  * on Ubuntu:
-```
-apt-get update
-apt-get install -y python-ldap
-```
-  * on CentOS/RHEL:
-
-```
-# yum install epel-release
-# yum clean all
-# yum install python-ldap
-```
-
 Install the `python-pip` package:
 
 ```
@@ -370,10 +352,8 @@ Enter the required information to complete the installation.
 Navigate to where you have the `backup_2431` folder (if the above commands were followed, it is in `/root/`) and execute the following commands to get the necessary scripts.
 
 ```
-
-# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/ae419a5bc9abf17875f23e6d1c224461aad924d1/static/scripts/import2431.py
-
-wget -c https://raw.githubusercontent.com/GluuFederation/cluster-mgr/master/testing/ldifschema_utils.py
+# wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/import2431.py
+# wget -c https://raw.githubusercontent.com/GluuFederation/cluster-mgr/master/testing/ldifschema_utils.py
 ```
 
 Install the `python-pip` package:
@@ -381,6 +361,19 @@ Install the `python-pip` package:
 ```
 # curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
 # python get-pip.py
+```
+Install the `python-ldap` package:
+  * on Ubuntu:
+```
+apt-get update
+apt-get install -y python-ldap
+```
+  * on CentOS/RHEL:
+
+```
+# yum install epel-release
+# yum clean all
+# yum install python-ldap
 ```
 
 Install the `json-merge` Python package and run the import script.
