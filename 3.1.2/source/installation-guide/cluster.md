@@ -4,7 +4,8 @@
 ## Introduction
 The below instructions offer guidance for manually configuring multi-master replication (MMR) across multiple Gluu Servers to achieve high availability (HA) and failover.
  
-Gluu also offers a tool to automate the steps below, called [Cluster Manager](https://gluu.org/docs/cm). Cluster Manager is licensed under the [Gluu Support license](https://github.com/GluuFederation/cluster-mgr/blob/master/LICENSE), which requires a Gluu support contract for use *in production*. All organizations may use Cluster Manager for development purposes. 
+!!! Note 
+    Gluu offers a tool called [Cluster Manager](https://gluu.org/docs/cm) to automate the steps below and simplify ongoing cluster operations. Cluster Manager is licensed under the [Gluu Support license](https://github.com/GluuFederation/cluster-mgr/blob/master/LICENSE), which requires a Gluu support contract for use *in production*.
     
 ## Concept
 
