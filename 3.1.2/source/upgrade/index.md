@@ -174,6 +174,10 @@ Install the `json-merge` Python package and run the import script.
 # chmod +x export3031.py
 # ./export3031.py
 ```
+!!! Note
+    Most probably your current LDAP server is openldap, so you should choose opendlap when you are asked:
+    `Choose the target LDAP Server - 1.OpenLDAP, 2.OpenDJ [2]: 1` <----- Chose 1
+    If you choose 2, users won't be able to login.
 
 The export script will generate a directory called `backup_3031` which will have all the data from the current installation. Check the log file generated in the directory for any errors.
 
