@@ -4,9 +4,9 @@ There are Gluu Server Linux packages for Ubuntu, CentOS, RHEL and Debian operati
 installation procedure is similar across all the distributions: 
 
 1. [Install the Linux package](#1-install-gluu-server-package)
-2. [Start the Gluu Server and login to the container](#2-start-the-gluu-server-and-log-in)
+2. [Start the Gluu Server and log into the container](#2-start-the-gluu-server-and-log-in)
 3. [Run `setup.py`](#3-run-setuppy)
-4. [Login via a browser](#4-log-in-via-browser)
+4. [Log in via a browser](#4-log-in-via-browser)
 5. [Disable Gluu repositories](#5-disable-gluu-repositories)
 
 !!! Note
