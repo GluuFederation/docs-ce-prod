@@ -1,17 +1,17 @@
-# Upgrade to Gluu Server 3.1.2
+# Upgrade to Gluu Server 3.1.3
 
 ## Overview
-The Gluu Server can **not** be upgraded with a simple `apt-get upgrade`. You need to explicitly install the new version and export/import your data. Find your existing version below for upgrade instructions to Gluu Server 3.1.2. 
+The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You need to explicitly install the new version and export/import your data. Find your existing version below for upgrade instructions to Gluu Server 3.1.3. 
 
-## Upgrade from 3.1.x to 3.1.2
+## Upgrade from 3.1.x to 3.1.3
 
-Upgrading from 3.1.x to 3.1.2 involves the following steps:
+Upgrading from 3.1.x to 3.1.3 involves the following steps:
 
 - Stop oxTrust and oxAuth services
 
 - Backup existing oxTrust and oxAuth .war files
 
-- Download 3.1.2 oxTrust and oxAuth from repo
+- Download 3.1.3 oxTrust and oxAuth from repo
 
 - Copy oxTrust and oxAuth .war in path
 
@@ -19,11 +19,11 @@ Upgrading from 3.1.x to 3.1.2 involves the following steps:
 
 - Start oxTrust and oxAuth services
 
-### Updating .war and schema manually
+### Updating .war and Schema Manually
 
-To upgrade from 3.1.x to 3.1.2, you have to manually update your .war files as outlined below:
+To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as outlined below:
 
-1. Login to chroot container:  
+1. Log into chroot container:  
 
     `# service gluu-server-3.1.x login`
     
@@ -33,7 +33,7 @@ To upgrade from 3.1.x to 3.1.2, you have to manually update your .war files as o
 
     `# service identity stop`
         
-3. Navigate to the `/opt/gluu/jetty` directory and backup the current app in the 
+3. Navigate to the `/opt/gluu/jetty` directory and back up the current app in the 
 root's home directory (just in case you need to restore!): 
 
     `# cd /opt/gluu/jetty/`
@@ -46,7 +46,7 @@ root's home directory (just in case you need to restore!):
     
     `# rm identity.war`
     
-    `# wget https://ox.gluu.org/maven/org/xdi/oxtrust-server/3.1.2.Final/oxtrust-server-3.1.2.Final.war -O identity.war`
+    `# wget https://ox.gluu.org/maven/org/xdi/oxtrust-server/3.1.3.Final/oxtrust-server-3.1.3.Final.war -O identity.war`
 
 6. Start the identity service  
     
@@ -71,7 +71,7 @@ root's home directory (just in case you need to restore!):
     
     `# rm oxauth.war`
     
-    `# wget https://ox.gluu.org/maven/org/xdi/oxauth-server/3.1.2.Final/oxauth-server-3.1.2.Final.war -O oxauth.war`
+    `# wget https://ox.gluu.org/maven/org/xdi/oxauth-server/3.1.3.Final/oxauth-server-3.1.3.Final.war -O oxauth.war`
     
 10. Start the oxAuth service
 
@@ -79,33 +79,33 @@ root's home directory (just in case you need to restore!):
 
 #### Update Gluu Schema Files
     
-  For the OpenLDAP to be able to accomodate new attributes attributes added to some entries in 3.1.2, its schema files needs to be updated. The recent schema files can be found [here](https://github.com/GluuFederation/community-edition-setup/tree/master/schema). Following the next step will upgrade the schema:
+  For the OpenLDAP to be able to accomodate new attributes added to some entries in 3.1.3, its schema files need to be updated. The recent schema files can be found [here](https://github.com/GluuFederation/community-edition-setup/tree/master/schema). Following the next step will upgrade the schema:
 
 11. Navigate to `/opt/gluu/schema/openldap` directory 
 
     `# cd /opt/gluu/schema/openldap/`
 
-12. Stop LDAP service.
+12. Stop LDAP service
 
     `# service solserver stop`
     
-13. Take a back up of the current schema files, which will be `gluu.schema`.
+13. Make a backup of the current schema files, which will be `gluu.schema`
 
     `# mv gluu.schema gluu.schema.old`
     
-12. Download the Schema files to `/opt/gluu/schema/openldap`
+12. Download the schema files to `/opt/gluu/schema/openldap`
 
-    `# wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.2/static/openldap/gluu.schema -O gluu.schema`
+    `# wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.3/static/openldap/gluu.schema -O gluu.schema`
 
-13. Start LDAP service.
+13. Start LDAP service
      
     `# service solserver start`
 
 !!! Warning
-    If schema of your old instance was customized, in particular due to addition of custom attributes and/or object classes, you'll need to resort to manual migration of your changes (if any) to the just acquired newest `gluu.schema` file.
+    If the schema of your old instance was customized, such as through the addition of custom attributes and/or object classes, you'll need to resort to manual migration of your changes (if any) to the newest `gluu.schema` file.
 
 !!! Note
-    Above procedure can be utilized to update other components of Gluu CE server 3.1.2, mentioned below.
+    The above procedure can be utilized to update other components of Gluu CE server 3.1.3, mentioned below.
 
 ### Latest .war files
 
@@ -122,7 +122,7 @@ version of your package.
 - [Asimba SAML proxy](https://ox.gluu.org/maven/org/asimba/asimba-wa/)
 - [oxAuth RP](https://ox.gluu.org/maven/org/xdi/oxauth-rp/)
 
-### Location of Gluu 3.1.2 Components
+### Location of Gluu 3.1.3 Components
 
 Gluu 3.1.x components which can be updated in this way inside the container can be found at the following locations:
 
@@ -133,10 +133,10 @@ Gluu 3.1.x components which can be updated in this way inside the container can 
 - oxAuth RP: `/opt/gluu/jetty/oxauth-rp/webapps/oxauth-rp.war`
 
 
-## Upgrade from 3.0.x to 3.1.2
+## Upgrade from 3.0.x to 3.1.3
 
 !!! Warning
-    Before proceeding with an upgrade, make sure to [backup](../operation/backup.md) the Gluu container or LDAP Ldif before proceeding with the upgrade. 
+    Before proceeding with an upgrade, make sure to [backup](../operation/backup.md) the Gluu container or LDAP LDIF before proceeding with the upgrade. 
 
 Upgrading generally involves the following steps:
 
@@ -152,7 +152,7 @@ Upgrading generally involves the following steps:
 
 Gluu provides the necessary [scripts](https://github.com/GluuFederation/community-edition-setup/tree/master/static/scripts) to import and export data in and out of the servers.
 
-### Export the data from the current installation
+### Export the Data from the Current Installation
 
 ```
 # service gluu-server-3.0.x login
@@ -191,22 +191,22 @@ Install the `json-merge` Python package and run the import script.
 
 The export script will generate a directory called `backup_3031` which will have all the data from the current installation. Check the log file generated in the directory for any errors.
 
-### Install the latest version of the Gluu server
+### Install the Latest Version of the Gluu Server
 
-Stop the current version of the gluu-server.
+Stop the current version of the Gluu Server.
 
 ```
 # service gluu-server-3.0.x stop
 ```
 
-Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.0.2`, then execute the following commands:
+Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.1.3`, then execute the following commands:
 
 ```
-# cp -r /opt/gluu-server-3.0.x/root/backup_3031/ /opt/gluu-server-3.1.2/root/
+# cp -r /opt/gluu-server-3.0.x/root/backup_3031/ /opt/gluu-server-3.1.3/root/
 
-# service gluu-server-3.1.2 start
+# service gluu-server-3.1.3 start
 
-# service gluu-server-3.1.2 login
+# service gluu-server-3.1.3 login
 
 # cp backup_3031/setup.properties /install/community-edition-setup/
 
@@ -217,7 +217,7 @@ Review the [installation docs](../installation-guide/install.md) to install the 
 
 Enter the required information to complete the installation.
 
-### Import your old data
+### Import your Old Data
 
 Navigate to where you have the `backup_3031` folder (if the above commands were followed, it is in `/root/`) and execute the following commands to get the necessary scripts.
 
@@ -259,13 +259,13 @@ Install the `json-merge` Python package and run the import script.
 
 Any errors or warnings will be displayed in the terminal and can be reviewed in the import log. Now you should be able to log into the oxTrust web UI using the old admin credentials and you should see all previous data in place. 
 
-## Upgrade from 2.x.x to 3.1.2
+## Upgrade from 2.x.x to 3.1.3
 
 !!! Note
-    This guide assumes that you are upgrading from version 2.x.x to 3.1.2 and are **OK with changing persistence from OpenDJ to OpenLDAP**. If you prefer to keep OpenDJ in Gluu Server 3.x, follow the separate documentation for [upgrading with OpenDJ](../upgrade/manual-update.md).
+    This guide assumes that you are upgrading from version 2.x.x to 3.1.3 and are **OK with changing persistence from OpenDJ to OpenLDAP**. If you prefer to keep OpenDJ in Gluu Server 3.x, follow the separate documentation for [upgrading with OpenDJ](../upgrade/manual-update.md).
 
 !!! Warning
-    Before proceeding with an upgrade, make sure to [backup](../operation/backup.md) the Gluu container or LDAP Ldif before proceeding with the upgrade. 
+    Before proceeding with an upgrade, make sure to [backup](../operation/backup.md) the Gluu container or LDAP LDIF before proceeding with the upgrade. 
 
 Upgrading generally involves the following steps:   
 
@@ -278,7 +278,7 @@ Upgrading generally involves the following steps:
 
 Gluu provides the necessary [scripts](https://github.com/GluuFederation/community-edition-setup/tree/master/static/scripts) to import and export data in and out of the servers.
 
-### Prepare your old instance
+### Prepare your Old Instance
 
 !!! Note
     The following steps are only mandatory if you are using a custom authentication script as one of your default authentication methods. The upgrade scripts support migration of the basic authentication settings configured in the "Manage LDAP Authentication" tab, including use cases where a remote LDAP server is used to authenticate user credentials. During the import phase of the upgrade, you will be prompted to import and apply your old LDAP settings from the previous instance. If you are using both LDAP authentication and custom scripts, disable your scripts as explained in steps 4-5 below, and make sure one of users you import from your LDAP backend can still log in and has administrator's level of access
@@ -290,16 +290,16 @@ Architectural differences are significant between 2.x and 3.x packages. Among ot
 To prevent this, we recommend to temporarily reset your authentication methods to the most basic mode available - authentication against internal LDAP server. Please follow next steps to ensure you'll be able to acess web UI after the migration is done:
 
 1. If "Cache Refresh" is used in your old instance, please proceed to "Configuration" > "Cache Refresh" page and disable it. Also make sure "Keep external persons" checkbox is set there (these changes can be reverted after migration is done, they are simply to prevent the user that will be added next to be removed by CR)
-2. Move to "Users" > "Manage People" page and click "Add person" button. Create a new temporary administrator user providing basic set of mandatory attributes it requirese (don't forget to set a password for it).
-3. Move to "Users" > "Manage People" and add the new user to "Gluu Manager Group" group
-4. Move to "Configuration" > "Manage Authentication" > "Default Authentication Method" and make sure both settings there are set to "Default" (they must not contain the name of your (or any other) script).
-5. Move to "Configuration" > "Manage Custom Scripts" > "Person Authentication" and make sure that for **all** scripts there "Enabled" checkbox is not checked.
-6. Don't log out from your current session which you used to apply recent changes so that you'll be able to revert them if something goes wrong. In a **separate** browser application (i.e. not in the different tab of the same browser you've been using so far) try to access old instance's web UI as the new admin user you've just created, to make sure it has full access to its controls.
-7. Log out from both your sessions and procceed with exporting your data (see the next chapter)
+1. Move to "Users" > "Manage People" page and click "Add person" button. Create a new temporary administrator user providing basic set of mandatory attributes it requirese (don't forget to set a password for it)
+1. Move to "Users" > "Manage People" and add the new user to "Gluu Manager Group" group
+1. Move to "Configuration" > "Manage Authentication" > "Default Authentication Method" and make sure both settings there are set to "Default" (they must not contain the name of your (or any other) script)
+1. Move to "Configuration" > "Manage Custom Scripts" > "Person Authentication" and make sure that for **all** scripts there "Enabled" checkbox is not checked
+1. Don't log out from your current session which you used to apply recent changes so that you'll be able to revert them if something goes wrong. In a **separate** browser application (i.e. not in the different tab of the same browser you've been using so far) try to access old instance's web UI as the new admin user you've just created, to make sure it has full access to its controls
+1. Log out from both your sessions and procceed with exporting your data (see the next chapter)
 
 After migration is done you should be able to log in as the temporary admin user you created. After resolving compatibility issues with your custom scripts (in case you're using one of our standard scripts, you can simply fetch the most recent source for it from [the repos](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations); if your script is written from scratch or is a some modified verson of the standard one, you may need to manually resolve any conflicts; please see [this doc](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/Migration_stepts_to_3.1.x.txt) for useful hints) and restoring your regular setup, you can remove the temporary user entry from "Managers" group and delete/disable it.
 
-### Export the data from the current installation
+### Export the Data from the Current Installation
 
 ```
 # service gluu-server-2.x.x login
@@ -338,23 +338,23 @@ Install the `json-merge` Python package and run the import script.
 
 The export script will generate a directory called `backup_2431` which will have all the data from the current installation. Check the log file generated in the directory for any errors.
 
-### Install the latest version of the Gluu server
+### Install the Latest Version of the Gluu Server
 
-Stop the current version of the gluu-server.
+Stop the current version of the Gluu Server.
 
 ```
 # service gluu-server-2.4.x stop
 ```
 
-Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.1.2`, then follow next steps to prepare :
+Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.1.3`, then follow next steps to prepare :
 
-1. `# cp -r /opt/gluu-server-2.4.x/root/backup_2431/ /opt/gluu-server-3.1.2/root/`
+1. `# cp -r /opt/gluu-server-2.4.x/root/backup_2431/ /opt/gluu-server-3.1.3/root/`
 
-2. `# service gluu-server-3.1.2 start`
+2. `# service gluu-server-3.1.3 start`
 
-3. `# service gluu-server-3.1.2 login`
+3. `# service gluu-server-3.1.3 login`
 
-4. For 3.1.2 packages which use OpenDJ, `setup.properties` needs to be modified before feeded to `./setup.py`.
+4. For 3.1.3 packages which use OpenDJ, `setup.properties` needs to be modified before feeded to `./setup.py`.
 
     4.1. Open it for editing: `# vi backup_2431/setup.properties`
 
@@ -372,7 +372,7 @@ Review the [installation docs](../installation-guide/install.md) to install the 
 
 Enter the required information to complete the installation.
 
-### Import your old data
+### Import your Old Data
 
 Navigate to where you have the `backup_2431` folder (if the above commands were followed, it is in `/root/`) and execute the following commands to get the necessary scripts.
 
@@ -413,7 +413,7 @@ You'll be asked whether or not you want to import your LDAP server settings from
 
 
 !!! Note
-    After completion of import, stop/start gluu-server container one final time
+    After completion of import, stop/start gluu-server container one final time.
 
 Any errors or warnings will be displayed in the terminal and can be reviewed in the import log. 
 Now you should be able to log into the oxTrust web UI using the old admin credentials and 
