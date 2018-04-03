@@ -316,7 +316,7 @@ Install the `python-pip` package:
 
 ```
 # curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
-# pytho
+# python get-pip.py
 ```
 
 Install the `json-merge` Python package and run the import script.
