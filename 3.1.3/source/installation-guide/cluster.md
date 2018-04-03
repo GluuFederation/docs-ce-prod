@@ -4,13 +4,11 @@
 ## Introduction
 If you have requirements for high availability (HA) or failover, follow the instructions below to manually configure multi-master replication (MMR) across multiple Gluu Servers.
 
-!!! Note
-    If your organization has a Gluu support contract, you have a license to use our automated clustering tool: [Cluster Manager](https://gluu.org/docs/cm). Highly recommended :)  
+Gluu also offers a tool to automate the steps below, called [Cluster Manager](https://gluu.org/docs/cm). Cluster Manager is licensed under the [Gluu Support license](https://github.com/GluuFederation/cluster-mgr/blob/master/LICENSE), which requires a Gluu support contract for use *in production*. All organizations may use Cluster Manager for development purposes.  
 
 ## Concept
 
-Enable OpenDJ replication and also make configuration changes to make Gluu Server highly avaiable, via a proxy.
-
+Clustering uses OpenDJ replication and configuration changes to greatly improve Gluu Server availability, via a proxy.
 
 ## Prerequisites
 
@@ -34,39 +32,39 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
       
 ```
 45.55.232.15    loadbalancer.example.org (NGINX server)
-159.203.126.10  idp1.example.org (Gluu Server 3.1.2 on Ubuntu 14)
-138.197.65.243  idp2.example.org (Gluu Server 3.1.2 on Ubuntu 14)
+159.203.126.10  idp1.example.org (Gluu Server 3.1.3 on Ubuntu 14)
+138.197.65.243  idp2.example.org (Gluu Server 3.1.3 on Ubuntu 14)
 ```
      
-- To create the following instructions we used Ubuntu 14 Trusty.     
+- To create the following instructions we used Ubuntu 14 Trusty     
 
-- To create the following instructions we used an Nginx load balancer/proxy, however if you have your own load balancer, like F5 or Cisco, you should use that instead and disregard the instructions about configuring Nginx.   
+- To create the following instructions we used an Nginx load balancer/proxy, however if you have your own load balancer, like F5 or Cisco, you should use that instead and disregard the instructions about configuring NGINX   
 
-- Gluu Server version 3.1.2 using OpenDJ.   
+- Gluu Server version 3.1.3 using OpenDJ   
 
-- Redis-server for caching short-lived tokens.   
+- Redis-server for caching short-lived tokens   
 
-- JXplorer or a similar LDAP browser for editing LDAP.   
+- JXplorer or a similar LDAP browser for editing LDAP   
 
 ## Instructions
 
 ### 1. Install Gluu
 
-- First you need to [Install Gluu](https://gluu.org/docs/ce/3.1.2/installation-guide/install/) on one of the servers. It will be referred to as the "primary" for the sake of simplification. Once everything is configured, there will be no primary in the multi-master configuration.
+- First you need to [Install Gluu](https://gluu.org/docs/ce/3.1.3/installation-guide/install/) on one of the servers. It will be referred to as the "primary" for the sake of simplification. Once everything is configured, there will be no primary in the multi-master configuration
 
 !!! Warning
     Make sure to use a separate NGINX/Load-balancing server FQDN as hostname.   
     Make sure to select OpenDJ as your LDAP choice [1].
 
-- A separate NGINX server is necessary because replicating a Gluu server to a different hostname breaks the functionality of the Gluu web page when using a hostname other than what is in the certificates. For example, if I use idp1.example.com as my host and copy that to a second server (e.g. idp2.example.com), the process of accessing the site on idp2.example.com, even with replication, will fail authentication due to a hostname conflict. So if idp1 fails, you won't be able to use Gluu Server effectively.
+- A separate NGINX server is necessary because replicating a Gluu server to a different hostname breaks the functionality of the Gluu web page when using a hostname other than what is in the certificates. For example, if I use idp1.example.com as my host and copy that to a second server (e.g. idp2.example.com), the process of accessing the site on idp2.example.com, even with replication, will fail authentication due to a hostname conflict. So if idp1 fails, you won't be able to use Gluu Server effectively
 
-- Now for the rest of the servers in the cluster, [download the Gluu packages](https://gluu.org/docs/ce/3.1.2/installation-guide/install/) but **don't run `setup.py` yet**.   
+- Now for the rest of the servers in the cluster, [download the Gluu packages](https://gluu.org/docs/ce/3.1.3/installation-guide/install/) but **don't run `setup.py` yet**   
 
-- We want to copy the `/install/community-edition-setu/setup.properties.last` file from the first install to the other servers as `setup.properties` so we have the exact same configurations. (Here I have ssh access to my other server outisde the Gluu chroot)
+- We want to copy the `/install/community-edition-setu/setup.properties.last` file from the first install to the other servers as `setup.properties` so we have the exact same configurations. (Here I have SSH access to my other server outisde the Gluu chroot)
 
 ```
 
-scp /opt/gluu-server-3.1.2/install/community-edition-setup/setup.properties.last root@idp2.example.org:/opt/gluu-server-3.1.2/install/community-edition-setup/setup.properties
+scp /opt/gluu-server-3.1.3/install/community-edition-setup/setup.properties.last root@idp2.example.org:/opt/gluu-server-3.1.3/install/community-edition-setup/setup.properties
 
 ```
 
@@ -160,7 +158,7 @@ The necessary directories to replicate are as follows:
 
 ### 3. Install NGINX
 
-**If you have your own load balancer, you can use the following NGINX configuration documentation as a guide for how to proxy with the Gluu server.**
+**If you have your own load balancer, you can use the following NGINX configuration documentation as a guide for how to proxy with the Gluu Server.**
 
 On loadbalancer.example.org 
 
@@ -180,16 +178,16 @@ mkdir /etc/nginx/ssl/
 
 ```
 
-- From the first Gluu server you installed:
+- From the first Gluu Server you installed:
 
 ```
 
-scp /opt/gluu-server-3.1.2/etc/certs/httpd.key root@loadbalancer.example.org:/etc/nginx/ssl/
-scp /opt/gluu-server-3.1.2/etc/certs/httpd.crt root@loadbalancer.example.org:/etc/nginx/ssl/
+scp /opt/gluu-server-3.1.3/etc/certs/httpd.key root@loadbalancer.example.org:/etc/nginx/ssl/
+scp /opt/gluu-server-3.1.3/etc/certs/httpd.crt root@loadbalancer.example.org:/etc/nginx/ssl/
 
 ```
 
-- And from the server we created our nginx.conf file (idp1.example.org in my case), to the NGINX server (loadbalancer.example.org)
+- And from the server, we created our nginx.conf file (idp1.example.org in my case), to the NGINX server (loadbalancer.example.org)
 
 - The following is a working `nginx.conf` example template for a Gluu cluster.
 
@@ -291,22 +289,22 @@ http {
 
 ```
 
-Please adjust the configuration for your IDP (Gluu Servers) and your Load Balancer FQDN's
+Please adjust the configuration for your IDP (Gluu Servers) and your Load Balancer FQDNs
 
-### 4. Install and configure redis
+### 4. Install and Configure Redis
 
 Now you need to install and configure redis-server on one or more servers. 
 
-- Redis-server is an memory caching solution created by redis-labs. It's ideal for clustering solutions but needs additional encryption.       
-- Mind you, this can not be configured on your NGINX server or you'll get routing issues when attempting to cache.
+- Redis-server is an memory caching solution created by redis-labs. It's ideal for clustering solutions but needs additional encryption       
+- Mind you, this can not be configured on your NGINX server or you'll get routing issues when attempting to cache
      
-- The standard redis-server's configuration file binds to `127.0.0.1`. We need to comment out this entry so that it listens to external requests.    
+- The standard redis-server's configuration file binds to `127.0.0.1`. We need to comment out this entry so that it listens to external requests    
 
 ```
 vi /etc/redis/redis.conf
 ```
 
-- Modify this entry
+- Modify this entry:
 
 ```
 
@@ -328,7 +326,7 @@ service redis-server force-reload
 !!! Note
     Redis can also be configured for HA and failover with multiple methods utilizing [Sentinel](https://redis.io/topics/sentinel) or [Redis-cluster](https://redis.io/topics/cluster-tutorial)
 
-### 5. Modify JSON entries 
+### 5. Modify JSON Entries 
 
 Use JXplorer (or a similar LDAP browser) to modify some of the JSON entries in LDAP for handling accessible caching and multiple authorization servers.      
 
@@ -336,19 +334,19 @@ Use JXplorer (or a similar LDAP browser) to modify some of the JSON entries in L
 
 ![alt text](https://raw.githubusercontent.com/GluuFederation/cluster-mgr/master/manual_install/images/JXplorer%20config.png)
 
-- What we need to do is open "gluu" -> "appliances" -> the first inum here will be where all the attributes we need to modify will be.
+- What we need to do is open "Gluu" -> "appliances" -> the first inum here will be where all the attributes we need to modify will be
 
-- We have to modify the "oxCacheConfig" attribute to include our redis-server FQDN. Here I installed redis-server outside of one of my Gluu chroots.
+- We have to modify the "oxCacheConfig" attribute to include our redis-server FQDN. Here I installed redis-server outside of one of my Gluu chroots
 
 ![alt text](https://raw.githubusercontent.com/GluuFederation/cluster-mgr/master/manual_install/images/ManualCache_ox.png)
 
-- The important things I changed were "cacheProviderType" from "IN_MEMORY" to "REDIS". After that, in the "redisConfiguration" portion of "servers", I added "idp1.example.org:6379" which is the server I installed redis-server. 6379 is the default port redis-server listens and you can add as many servers as you want her, they just need to be comma separated.
+- The important things I changed were "cacheProviderType" from "IN_MEMORY" to "REDIS". After that, in the "redisConfiguration" portion of "servers", I added "idp1.example.org:6379" which is the server I installed redis-server. 6379 is the default port redis-server listens and you can add as many servers as you want her, they just need to be comma separated
 
 - We also must make sure that all LDAP servers are utilized for authorization by modifying the "oxIDPAuthentication" attribute.
 
 ![alt text](https://raw.githubusercontent.com/GluuFederation/cluster-mgr/master/manual_install/images/ManualCache_auth.png)
 
-- Here all I did was changed the servers from localhost:1636 to the FQDN's of my servers.
+- Here all I did was changed the servers from localhost:1636 to the FQDNs of my servers
 
 ```
 
@@ -356,11 +354,11 @@ Use JXplorer (or a similar LDAP browser) to modify some of the JSON entries in L
 
 ```
 
-- Now click `Submit` on the bottom after all your changes. 
+- Click `Submit` on the bottom after all your changes 
 
-### 6. Transfer certificates
+### 6. Transfer Certificates
 
-Now you need to transfer certificates from the first server to the other servers.
+You need to transfer certificates from the first server to the other servers.
 
 - It's necessary to copy certificates from the primary server we installed Gluu on and replace the certificates in `/etc/certs/` on the other servers.       
 
@@ -368,13 +366,13 @@ Now you need to transfer certificates from the first server to the other servers
 
 ```
 
-scp /opt/gluu-server-3.1.2/etc/certs/* root@idp2.example.org:/opt/gluu-server-3.1.2/etc/certs/
+scp /opt/gluu-server-3.1.3/etc/certs/* root@idp2.example.org:/opt/gluu-server-3.1.3/etc/certs/
 
 ```
 
-- We must give ownership of the certs to gluu, with the exception of `oxauth-keys.j*` which need to be owned by jetty
+- We must give ownership of the certs to Gluu, with the exception of `oxauth-keys.j*` which need to be owned by jetty
 
-- On the server the certificates were just transferred to:
+- On the server, the certificates were just transferred to:
 
 ```
 
@@ -384,9 +382,9 @@ Gluu.Root # chown jetty.jetty oxauth-keys.j*
 
 ```
 
-- Next we need to update the keystores in all of our Gluu instances, including the primary server. 
+- Next we need to update the keystores in all of our Gluu instances, including the primary server 
 
-- Download this script to **every** server, which automatically removes and adds the necessary certificates to the keystore.
+- Download this script to **every** server, which automatically removes and adds the necessary certificates to the keystore
 
 ```
 
@@ -394,7 +392,7 @@ Gluu.Root # wget https://raw.githubusercontent.com/GluuFederation/cluster-mgr/ma
 
 ```
 
-- Modify the `hostname` to your NGINX/Load-balancer's FQDN.
+- Modify the `hostname` to your NGINX/Load-balancer's FQDN
 
 ```
 import os.path
@@ -418,17 +416,17 @@ This error is fine, if OpenLDAP is not installed, and vice versa for OpenDJ.
 keytool error: java.io.FileNotFoundException: /etc/certs/openldap.crt (No such file or directory)
 ```
 
-- Restart Identity and oxAuth on all servers, then restart all your Gluu servers.
+- Restart Identity and oxAuth on all servers, then restart all your Gluu servers
 
 ```
 
 Gluu.Root # service identity stop && service oxauth restart && service identity start
 Gluu.Root # logout
-service gluu-server-3.1.2 restart
+service gluu-server-3.1.3 restart
 
 ```
 
-- Now your administrator web UI and oxAuth has some failover redundancy. There are obviously more configurations necessary on the network layer of your topology for true HA failover, but that is outside of the scope for this documentation.          
+- Now your administrator web UI and oxAuth has some failover redundancy. There are obviously more configurations necessary on the network layer of your topology for true HA failover, but that is outside of the scope for this documentation          
 
 ## Support
 If you have any questions or run into any issues, please open a ticket on [Gluu Support](https://support.gluu.org).
