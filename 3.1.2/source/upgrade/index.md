@@ -189,15 +189,10 @@ Review the [installation docs](../installation-guide/install.md) to install the 
 
 ```
 # cp -r /opt/gluu-server-3.0.x/root/backup_3031/ /opt/gluu-server-3.1.2/root/
-
 # service gluu-server-3.1.2 start
-
 # service gluu-server-3.1.2 login
-
 # cp backup_3031/setup.properties /install/community-edition-setup/
-
 # cd /install/community-edition-setup/
-
 # ./setup.py
 ```
 
@@ -208,6 +203,7 @@ Enter the required information to complete the installation.
 Navigate to where you have the `backup_3031` folder (if the above commands were followed, it is in `/root/`) and execute the following commands to get the necessary scripts.
 
 ```
+# cd
 # wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/import3031.py
 # wget -c https://raw.githubusercontent.com/GluuFederation/cluster-mgr/master/testing/ldifschema_utils.py
 ```
@@ -303,9 +299,7 @@ Install the `json-merge` Python package and run the import script.
 
 ```
 # pip install jsonmerge
-
 # chmod +x export2431.py
-
 # python export2431.py
 ```
 
@@ -322,15 +316,10 @@ Stop the current version of the gluu-server.
 Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.1.2`, then follow next steps to prepare :
 
 1. `# cp -r /opt/gluu-server-2.4.x/root/backup_2431/ /opt/gluu-server-3.1.2/root/`
-
 2. `# service gluu-server-3.1.2 start`
-
 3. `# service gluu-server-3.1.2 login`
-
 4. `# cp backup_2431/setup.properties /install/community-edition-setup/`
-
 5. `# cd /install/community-edition-setup/`
-
 6. `# ./setup.py`
 
 Enter the required information to complete the installation.
@@ -340,6 +329,7 @@ Enter the required information to complete the installation.
 Navigate to where you have the `backup_2431` folder (if the above commands were followed, it is in `/root/`) and execute the following commands to get the necessary scripts.
 
 ```
+# cd
 # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/import2431.py
 # wget -c https://raw.githubusercontent.com/GluuFederation/cluster-mgr/master/testing/ldifschema_utils.py
 ```
@@ -368,9 +358,7 @@ Install the `json-merge` Python package and run the import script.
 
 ```
 # pip install jsonmerge
-
 # chmod +x import2431.py
-
 # ./import2431.py backup_2431
 ```
 
