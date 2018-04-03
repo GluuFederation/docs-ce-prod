@@ -231,15 +231,6 @@ Navigate to where you have the `backup_3031` folder (if the above commands were 
 Install the `python-pip` package using your package manager.
 
 ```
-# apt-get update
-# apt-get install python-pip
-
-or
-
-# yum -y install python-pip
-
-or, for CentOS/RHEL 7x series
-
 # curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
 # python get-pip.py
 ```
