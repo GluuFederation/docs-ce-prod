@@ -156,7 +156,7 @@ Gluu provides the necessary [scripts](https://github.com/GluuFederation/communit
 
 ```
 # service gluu-server-3.0.x login
-
+# cd
 # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/export3031.py
 # wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/ldif.py
 ```
@@ -171,9 +171,7 @@ Install the `json-merge` Python package and run the import script.
 
 ```
 # pip install jsonmerge
-
 # chmod +x export3031.py
-
 # ./export3031.py
 ```
 
@@ -211,7 +209,6 @@ Navigate to where you have the `backup_3031` folder (if the above commands were 
 
 ```
 # wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/import3031.py
-
 # wget -c https://raw.githubusercontent.com/GluuFederation/cluster-mgr/master/testing/ldifschema_utils.py
 ```
 
@@ -291,6 +288,7 @@ After migration is done you should be able to log in as the temporary admin user
 
 ```
 # service gluu-server-2.x.x login
+# cd
 # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/export2431.py
 # wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/ldif.py
 ```
