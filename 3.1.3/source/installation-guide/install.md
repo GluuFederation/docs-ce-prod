@@ -4,9 +4,9 @@ There are Gluu Server Linux packages for Ubuntu, CentOS, RHEL and Debian operati
 installation procedure is similar across all the distributions: 
 
 1. [Install the Linux package](#1-install-gluu-server-package)
-2. [Start the Gluu Server and login to the container](#2-start-the-gluu-server-and-login)
+2. [Start the Gluu Server and log into the container](#2-start-the-gluu-server-and-log-in)
 3. [Run `setup.py`](#3-run-setuppy)
-4. [Login via a browser](#4-login-via-browser)
+4. [Log in via a browser](#4-log-in-via-browser)
 5. [Disable Gluu repositories](#5-disable-gluu-repositories)
 
 !!! Note
@@ -17,6 +17,7 @@ installation procedure is similar across all the distributions:
 - The Gluu Server needs to be installed on a VM or physical server with at least 4GB of RAM and 2CPU units.  
 - Gluu must be deployed on a fully qualified domain name (FQDN). Localhost is not supported. 
 - Make sure your server or VM meets the [minimum requirements](../installation-guide/index.md) to deploy the Gluu Server.
+- If using CentOS, selinux must be set to permissive in /etc/selinux/config
 
 !!! Warning
     Docker containers are **not** supported.     
@@ -37,7 +38,7 @@ remain the same as the host.
 | Add Gluu Repository     | `# echo "deb https://repo.gluu.org/ubuntu/ trusty main" > /etc/apt/sources.list.d/gluu-repo.list` |
 | Add Gluu GPG Key        | `# curl https://repo.gluu.org/ubuntu/gluu-apt.key | apt-key add -` |
 | Update/Clean Repo       | `# apt-get update`                         |
-| Install Gluu Server     | `# apt-get install gluu-server-3.1.2`      |
+| Install Gluu Server     | `# apt-get install gluu-server-3.1.3`      |
     
 #### Ubuntu Server 16.04.x
 
@@ -46,7 +47,7 @@ remain the same as the host.
 | Add Gluu Repository     | `# echo "deb https://repo.gluu.org/ubuntu/ xenial main" > /etc/apt/sources.list.d/gluu-repo.list` |
 | Add Gluu GPG Key        | `# curl https://repo.gluu.org/ubuntu/gluu-apt.key | apt-key add -` |
 | Update/Clean Repo       | `# apt-get update`                         |
-| Install Gluu Server     | `# apt-get install gluu-server-3.1.2`      |
+| Install Gluu Server     | `# apt-get install gluu-server-3.1.3`      |
 
 #### CentOS 6.x
 
@@ -56,7 +57,7 @@ remain the same as the host.
 | Add Gluu GPG Key        | `# wget https://repo.gluu.org/centos/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU`|
 | Import GPG Key          | `# rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU`|
 | Update/Clean Repo       | `# yum clean all`                          |
-| Install Gluu Server     | `# yum install gluu-server-3.1.2`          |
+| Install Gluu Server     | `# yum install gluu-server-3.1.3`          |
 
 #### CentOS 7.x
 
@@ -66,7 +67,7 @@ remain the same as the host.
 | Add Gluu GPG Key        | `# wget https://repo.gluu.org/centos/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU`|
 | Import GPG Key          | `# rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU` |
 | Update/Clean Repo       | `# yum clean all`                          |
-| Install Gluu Server     | `# yum install gluu-server-3.1.2`          |
+| Install Gluu Server     | `# yum install gluu-server-3.1.3`          |
 
 #### RHEL 6.x
 
@@ -76,7 +77,7 @@ remain the same as the host.
 | Add Gluu GPG Key        | `# wget https://repo.gluu.org/centos/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU`|
 | Import GPG Key          | `# rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU` |
 | Update/Clean Repo       | `# yum clean all`                          |
-| Install Gluu Server     | `# yum install gluu-server-3.1.2`          |
+| Install Gluu Server     | `# yum install gluu-server-3.1.3`          |
 
 #### RHEL 7.x
 
@@ -86,7 +87,7 @@ remain the same as the host.
 | Add Gluu GPG Key        | `# wget https://repo.gluu.org/rhel/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU`|
 | Import GPG Key          | `# rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU` |
 | Update/Clean Repo       | `# yum clean all`                          |
-| Install Gluu Server     | `# yum install gluu-server-3.1.2`          |
+| Install Gluu Server     | `# yum install gluu-server-3.1.3`          |
 
 #### Debian 8 (Jessie)
 
@@ -95,26 +96,26 @@ remain the same as the host.
 | Add Gluu Repository     | `# echo "deb https://repo.gluu.org/debian/ stable main" > /etc/apt/sources.list.d/gluu-repo.list`|
 | Add Gluu GPG Key        | `# curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -` |
 | Update/Clean Repo       | `# apt-get update`                         |
-| Install Gluu Server     | `# apt-get install gluu-server-3.1.2`      |
+| Install Gluu Server     | `# apt-get install gluu-server-3.1.3`      |
 
 
-### 2. Start the Gluu Server and login
+### 2. Start the Gluu Server and Log In
 
 The Gluu Server is a chroot container, which you must start to proceed. 
 
 For Centos 6.x, Red Hat 6.x, Ubuntu 14/16, and Debian 8, run the following commands:
 
 ```
-# service gluu-server-3.1.2 start
-# service gluu-server-3.1.2 login
+# service gluu-server-3.1.3 start
+# service gluu-server-3.1.3 login
 ```
 
 For Centos 7.x and Red Hat 7.x, run the following commands: 
 
 ```
-# /sbin/gluu-serverd-3.1.2 enable
-# /sbin/gluu-serverd-3.1.2 start
-# /sbin/gluu-serverd-3.1.2 login
+# /sbin/gluu-serverd-3.1.3 enable
+# /sbin/gluu-serverd-3.1.3 start
+# /sbin/gluu-serverd-3.1.3 login
 ```
 
 !!! Note
@@ -122,7 +123,7 @@ For Centos 7.x and Red Hat 7.x, run the following commands:
 
 ### 3. Run `setup.py`
 
-Configuration is completed by running the `setup.py` script. This generates certificates, salt values, and renders configuration files. 
+Configuration is completed by running the `setup.py` script. This generates certificates, salt values and renders configuration files. 
 
 ```
 # cd /install/community-edition-setup
@@ -162,7 +163,7 @@ Refer to the following table for details about the available setup options:
 !!! Warning
 	Changing the hostname after installation is not supported. 
 
-After answering these questions, `setup.py` will show you your selections and ask you if you want to continue. If everything looks good, select Y to finish installation. 
+After answering these questions, `setup.py` will show your selections and ask if you want to continue. If everything looks good, select Y to finish installation. 
 
 After 5-10 minutes you should see the following success message: 
 
@@ -173,15 +174,15 @@ After 5-10 minutes you should see the following success message:
         1. Enter IP Address: Do **not** use `localhost` for either the IP address or hostname.     
 	2. Enter hostname: Use a real hostname--you can always manage via host file entries even if you don't want to mess with DNS for testing. If you are deploying a cluster, use the hostname of the cluster--that is used by the clients connecting to the Gluu Server.    
 
-### 4. Login via browser
-Wait about 10 minutes in total for the server to restart and finalize its configuration. After that period you can log into your Gluu Server via a web browser. 
+### 4. Log In Via Browser
+Wait about 10 minutes in total for the server to restart and finalize its configuration. After that period, log into your Gluu Server via a web browser. 
 
 Your username will be `admin` and your password will be the `ldap_password` you provided during installation. 
 
 !!! Note
     If the Gluu Server login page is still not appearing after you've received the success message and waited about 10 minutes, check if port 443 is open in the VM. If it is not open, open port 443 and try to reach the host in your browser again. 
 
-### 5. Disable Gluu repositories
+### 5. Disable Gluu Repositories
 To prevent involuntary overwrites of the currently deployed instance (in case a newer version of the same package is found during regular OS updates), disable the previously added Gluu repositories after initial installation.
 
 For CentOS/RHEL: 
@@ -197,38 +198,38 @@ For Ubuntu/Debian:
 
 
 ## Backups
-Sometimes things go wrong! And it can be difficult to troubleshoot issues if the steps to reproduce the issue are not clearly documented. This is why we **always** recommend creating [backups of your Gluu Server](../operation/backup.md). 
+Sometimes things go wrong! It can be difficult to troubleshoot issues if the steps to reproduce the issue are not clearly documented. This is why we **always** recommend creating [backups of your Gluu Server](../operation/backup.md). 
 
 ## Uninstallation
 For Ubuntu 14/16, and Debian 8:
 
 ```
-# service gluu-server-3.1.2 stop
-# apt-get remove gluu-server-3.1.2
-# rm -rf /opt/gluu-server-3.1.2.save
+# service gluu-server-3.1.3 stop
+# apt-get remove gluu-server-3.1.3
+# rm -rf /opt/gluu-server-3.1.3.save
 ```
 
 For Centos 6.x, Red Hat 6.x: 
 
 ```
-# service gluu-server-3.1.2 stop
-# yum remove gluu-server-3.1.2
-# rm -rf /opt/gluu-server-3.1.2.save
+# service gluu-server-3.1.3 stop
+# yum remove gluu-server-3.1.3
+# rm -rf /opt/gluu-server-3.1.3.save
 ```
 
 For Centos 7.x and Red Hat 7.x:
 
 ```
-# /sbin/gluu-serverd-3.1.2 disable
-# /sbin/gluu-serverd-3.1.2 stop
-# yum remove gluu-server-3.1.2 
-# rm -rf /opt/gluu-server-3.1.2.save
+# /sbin/gluu-serverd-3.1.3 disable
+# /sbin/gluu-serverd-3.1.3 stop
+# yum remove gluu-server-3.1.3 
+# rm -rf /opt/gluu-server-3.1.3.save
 ```
 
 !!! Note
-    You can also use `apt-get purge gluu-server-3.1.2` or `apt-get remove --purge gluu-server-3.1.2` to uninstall and remove all the folders and services of Gluu server.
+    You can also use `apt-get purge gluu-server-3.1.3` or `apt-get remove --purge gluu-server-3.1.3` to uninstall and remove all the folders and services of Gluu server.
 
 ## Support
-If you run into issues please review the [Gluu support portal](https://support.gluu.org). If you can not find a similar existing public issue, register for an account and open a new ticket. 
+If you run into issues please review the [Gluu support portal](https://support.gluu.org). If you can't find a similar existing public issue, register for an account and open a new ticket. 
 
 If your organization needs guaranteed responses, SLAs, and priority access to the Gluu support and development team, consider purchasing one of our [VIP support contracts](https://gluu.org/pricing).  
