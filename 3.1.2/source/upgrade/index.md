@@ -159,22 +159,25 @@ Gluu provides the necessary [scripts](https://github.com/GluuFederation/communit
 
 # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/export3031.py
 
-# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/ldif.py
 
 ```
-
-Install the `python-pip` package using your package manager.
+Install the `python-ldap` package:
+  * on Ubuntu:
+```
+apt-get update
+apt-get install -y python-ldap
+```
+  * on CentOS/RHEL:
 
 ```
-# apt-get update
-# apt-get install python-pip
+# yum install epel-release
+# yum clean all
+# yum install python-ldap
+```
 
-or
+Install the `python-pip` package.
 
-# yum -y install python-pip
-
-or, for CentOS/RHEL 7x series
-
+```
 # curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
 # python get-pip.py
 ```
