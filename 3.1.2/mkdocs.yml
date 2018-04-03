@@ -90,7 +90,7 @@ pages:
             - 'oxLDAP Properties': 'reference/oxldap.md'
             - 'OpenLDAP Schema': 'reference/schema.md'
 - Operation Guide:
-        - 'Upgrades' : 'upgrade/index.md'
+        - 'Upgrades': 'upgrade/index.md'
         - 'Backups': 'operation/backup.md'
         - 'Find your Gluu Version': 'operation/find-gluu-version.md'
         - 'Ports': 'operation/ports.md'
