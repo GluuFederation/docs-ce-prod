@@ -107,6 +107,20 @@ Gluu.Root # ./setup.py
 
 - The rest of the configurations for the install should be automatically loaded and all you need to do here is press `Enter`
 
+On all your servers, inside the chroot, modify `/etc/gluu/conf/ox-ldap.properties` replacing:
+
+```
+servers: localhost:1636
+```
+
+With (obviously use your own FQDN's):
+
+```
+servers: idp1.example.org:1636,idp2.example.org:1636
+```
+
+Placing all servers in your cluster topology in this config portion.
+
 ### 2. Enable Replication
 
 On the first server (idp1.example.org, in our example), utilize these commands inside the Gluu chroot to initialize and enable replication. All `<password>`'s should be changed to the same password.
