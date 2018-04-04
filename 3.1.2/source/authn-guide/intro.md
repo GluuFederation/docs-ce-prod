@@ -71,7 +71,7 @@ In oxTrust, navigate to `Configuration` > `Manage Custom Scripts` > `Person Auth
 
 By default, users will get the default authentication mechanism as specified [above](#default-authentication-mechanism). However, using the OpenID Connect `acr_value`, web and mobile clients can request any *enabled* authentication mechanism. 
 
-Enabled scripts can be confirmed by checking oxTrust, or the Gluu OP configuration URL, `https://<hostname>/.well-known/openid-configuration`, and finding the `"acr_values_supported"`. 
+Enabled scripts can be confirmed by checking oxTrust or the Gluu OP configuration URL, `https://<hostname>/.well-known/openid-configuration`, and finding the `"acr_values_supported"`. 
 
 Learn more about `acr_values` in the [OpenID Connect core scpec](http://openid.net/specs/openid-connect-core-1_0.html#acrSemantics) and in the Gluu Server [OpenID Connect docs](../admin-guide/openid-connect.md/#authentication).
 
@@ -80,7 +80,7 @@ Learn more about `acr_values` in the [OpenID Connect core scpec](http://openid.n
 
 ## Account Lockout Policy
 
-The default Gluu Server distribution includes an interception script to implement a basic account lockout policy which will deactivate a users account after a set number of consecutive failed login attempts.
+The default Gluu Server distribution includes an interception script to implement a basic account lockout policy, which will deactivate a user's account after a set number of consecutive failed login attempts.
 
 Learn how to [configure account lockout](./lockout.md). 
 
@@ -88,6 +88,6 @@ Learn how to [configure account lockout](./lockout.md).
 
 Learn how to customize the look and feel of Gluu Server login pages in the [Design Customizations](../operation/custom-design.md) section of the Operations Guide.
 
-## Revert authentication 
+## Revert Authentication 
 
 New authentication flows and methods should **always** be tested in a different browser to reduce the chance of lockout. However, in case you find yourself locked out of the GUI, refer to the [revert authentication mechanism docs](../operation/faq.md#revert-an-authentication-method). 
