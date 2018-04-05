@@ -42,7 +42,7 @@ Further documentation is available at the Salesforce.com site.
      * _Assertion Decryption Certificate_: Assertion not encrypted.
      * _SAML Identity Type_: Assertion contains user's Salesforce.com username
      * _SAML Identity Location_: Identity is in an Attribute element
-     * _Attribute Name_: Provide 'SAML2 URI' of your attribute. For our test case we are using Gluu Server's Email attribute. How to check the information of your attribute is available [here](http://www.gluu.org/docs/admin-guide/configuration/#attributes).
+     * _Attribute Name_: Provide 'SAML2 URI' of your attribute. For our test case we are using Gluu Server's Email attribute. How to check the information of your attribute is available [here](../../admin-guide/attribute.md).
      * _NameID Format_: Leave this field empty.
      * _Identity Provider Login URL_: `https://test.gluu.org/idp/profile/SAML2/Redirect/SSO`
      * _Service Provider Initiated Request Binding_: HTTP-Redirect
