@@ -1,5 +1,7 @@
 # FAQ
 
+[test link](../../../../3.1.1/3.1.1/source/operation/faq.md)
+
 ## Logs
 When it comes to troubleshooting issues in the Gluu Server--from service hiccups to outages--your [server logs](./logs.md) are the best place to gather relevant information.
 
