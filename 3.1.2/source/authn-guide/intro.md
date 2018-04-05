@@ -73,7 +73,7 @@ By default, users will get the default authentication mechanism as specified [ab
 
 Enabled scripts can be confirmed by checking oxTrust or the Gluu OP configuration URL, `https://<hostname>/.well-known/openid-configuration`, and finding the `"acr_values_supported"`. 
 
-Learn more about `acr_values` in the [OpenID Connect core spec](http://openid.net/specs/openid-connect-core-1_0.html#acrSemantics) and in the Gluu Server [OpenID Connect docs](../admin-guide/openid-connect.md/#authentication).
+Learn more about `acr_values` in the [OpenID Connect core spec](http://openid.net/specs/openid-connect-core-1_0.html#acrSemantics) and in the Gluu Server [OpenID Connect docs](../admin-guide/openid-connect/#authentication).
 
 !!! Note
     All Gluu Server authentications are routed through oxAuth (the OP). You can take incoming SAML or CAS assertions from a 3rd party IDP, for example ADFS, and use that as the basis for an OpenID Connect session in Gluu. This enables seamless SSO across all your apps.
