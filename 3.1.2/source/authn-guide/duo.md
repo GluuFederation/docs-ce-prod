@@ -1,6 +1,6 @@
 # Duo Security
 ## Overview
-[Duo Security](https://duosecurity.com) is a SaaS authentication provider. This document will explain how to use Gluu's [Duo interception script](./DuoExternalAuthenticator.py) to configure the Gluu Server for a two-step authentication process with username and password as the first step, and Duo as the second step. 
+[Duo Security](https://duosecurity.com) is a SaaS authentication provider. This document will explain how to use Gluu's [Duo interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/duo/DuoExternalAuthenticator.py) to configure the Gluu Server for a two-step authentication process with username and password as the first step, and Duo as the second step. 
 
 In order to use this authentication mechanism your organization will need a Duo account and users will need to download the Duo mobile app. 
 
