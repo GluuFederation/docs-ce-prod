@@ -17,7 +17,7 @@ If you already have an account skip to the next section.
 ## Configuring G Suite
 
 
-- Login to your GSuite admin dashboard [here](admin.google.com).
+- Login to your GSuite admin dashboard [here](https://admin.google.com).
 
 ![Image](../../img/integration/admin_console_new.png)
 
