@@ -414,7 +414,7 @@ Please restart the HTTPD server for the changes to take effect
 ```
 
 Now you're ready to test. Open your web browser, and point it at
-https://www.mydomain.com/cgi-bin/printHeaders.cgi`
+https://www.mydomain.com/cgi-bin/printHeaders.cgi
 
 ## oxRay
 
@@ -459,7 +459,7 @@ installed on your system to build this plugin from source.
 your local LifeRay Tomcat bundle path. This is required for building the
 WAR file and deploying to the LifeRay Tomcat bundle.
 
-![configure_pom_xml](../img/integration/configure_pom_xml.jpg)
+![configure_pom_xml](../../img/integration/configure_pom_xml.jpg)
 
 3. Run the following command in the `gluu/6.2.x/maven/gluu-openid-connect-hook` 
 directory:
@@ -501,7 +501,7 @@ Copy this WAR file in your LifeRay bundle. Usually, this is located at
 Once the plugin is deployed as a WAR file either using Maven or Ant, you
 will see the following success message in your LifeRay Tomcat server:
 
-![deploy_success](../img/integration/deploy_success.jpg)
+![deploy_success](../../img/integration/deploy_success.jpg)
 
 ### Client Registration
 
@@ -532,12 +532,12 @@ machine with `localhost:8080` domain)
 9. All other options can be left as they are--please see the attached
 screenshot:
 
-![client_registration](../img/integration/dynamic_client_registration_screen1.jpg)
+![client_registration](../../img/integration/dynamic_client_registration_screen1.jpg)
 
 10. Click `Submit`, and both the following `Registration Request` and
 `Registration Response` will be displayed:
 
-![json-request-response](../img/integration/json-request-response.jpg)
+![json-request-response](../../img/integration/json-request-response.jpg)
 
 11. Save the Registration Response to your local system. The parameters
 `client_id` and `client_secret` are used in LifeRay when configuring
@@ -570,7 +570,7 @@ gluu.openidconnect.client.secret=65777eb7-87a8-4d60-9dbc-d31d43971f2b
 gluu.openidconnect.idp.domain=https://idp.gluu.org`
 ```
 
-* OAuth server auto discovery uri
+* OAuth server auto discovery URI
 
 ```
 gluu.openidconnect.url.discovery=https://idp.gluu.org/.well-known/openid-configuration
@@ -603,13 +603,13 @@ gluu.openidconnect.no.such.user.redirect.url=http://localhost:8080/no-such-user-
 Restart the LifeRay server after editing the file
 `portal-ext.properties`.
 
-### Login Using the LifeRay Front End
+### Log In Using the LifeRay Front End
 
 * Server Bootup
 	* Once the LifeRay server is restarted, open your browser and
-      navigate to the uri `http://localhost:8080`.
+      navigate to the URI `http://localhost:8080`.
 
-* Login uri
+* Login URI
 	* Once the LifeRay page successfully loaded navigate to the OpenID
       connect page at `http://localhost:8080/openidconnect/login`.
 
@@ -622,13 +622,13 @@ always redirect to the OAuth server for authentication.
       for user authentication. Internally, passing the oAuth client id 
       as the following screen:
 
-![oauth-login](../img/integration/oauth_login.jpg)
+![oauth-login](../../img/integration/oauth_login.jpg)
 
 * Request for permission
 	* This screen can be configured depending upon your OAuth Server
       implementation.
 
-![oauth_info_confirm](../img/integration/oauth_info_confirm.jpg)
+![oauth_info_confirm](../../img/integration/oauth_info_confirm.jpg)
 
 * OAuth callback (user auto-login to LifeRay)
 	* After a successful authentication with the OAuth server, IdP will
@@ -642,7 +642,7 @@ This will be intercepted by our oxAuth LifeRay plugin. Upon validation
 of the token with the Gluu IdP, it will result in a login of the user to
 the LifeRay. The user will be redirected to his respective start page.
 
-![liferay_success_login](../img/integration/liferay_success_login.jpg)
+![liferay_success_login](../../img/integration/liferay_success_login.jpg)
 
 [ant]: https://en.wikipedia.org/wiki/Apache_Ant "Apache Ant, Wikipedia"
 
@@ -675,7 +675,7 @@ This will tell you everything you need to know about this OpenID Connect
 provider, like what are the endpoints (URLs), what crypto is supported,
 and what user claims can you ask for.
 
-An [example](../integration/OpenIdConnectDiscoveryAction.java)
+An [example](../OpenIdConnectDiscoveryAction.java)
 of a Discovery Request, using the oxAuth RP library.
 
 ### Client Registration
