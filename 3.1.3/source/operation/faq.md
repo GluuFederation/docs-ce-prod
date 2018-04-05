@@ -154,7 +154,7 @@ Now you will want to update your IDP login page to display `Email Address` as th
     oxTrust is a tool for administrators and it must nto be used as a user facing application.
 
 ## Installing a patch
-Follow the documentation for [updating a .war file](../upgrade/update-war.md). 
+Follow the documentation for [updating a .war file](../upgrade/index.md#updating-war-and-schema-manually). 
 
 
 ## Adding admin users
