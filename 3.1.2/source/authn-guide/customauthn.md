@@ -53,7 +53,7 @@ Create the following files:
 
 ## Samples and Documentation
 
-There are many good examples of authentication interception scripts in Gluu's [oxAuth integrations folder](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations). The respective `XHTML` and `XML` files are checked into the [auth folder](https://github.com/GluuFederation/oxAuth/tree/master/Server/src/main/webapp/auth). The interfaces for authentication interception scripts can be found in the [Gluu Documentation](http://www.gluu.org/docs/reference/interception-scripts/#authentication).
+There are many good examples of authentication interception scripts in Gluu's [oxAuth integrations folder](https://github.com/GluuFederation/oxAuth/tree/master/Server/integrations). The respective `XHTML` and `XML` files are checked into the [auth folder](https://github.com/GluuFederation/oxAuth/tree/master/Server/src/main/webapp/auth). The interfaces for authentication interception scripts can be found in the [Gluu Documentation](../admin-guide/custom-script.md#authentication).
 
 We used the [Basic Script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/basic/BasicExternalAuthenticator.py) 
 as a template. The [Wikid forms](https://github.com/GluuFederation/oxAuth/tree/master/Server/src/main/webapp/auth/wikid) 
@@ -228,5 +228,5 @@ Further logs to debug and monitor the sequence can be done using `oxauth_script.
 
 It is not uncommon to get locked out of the Gluu Server while testing the authentication script.
 
-In such case, refer to [Reverting Authentication Method](../operation/faq.md/#revert-an-authentication-method) 
+In such case, refer to [Reverting Authentication Method](../operation/faq.md#revert-an-authentication-method) 
 to revert back to the older authentication method:
