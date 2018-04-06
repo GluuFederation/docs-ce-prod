@@ -12,14 +12,14 @@ oxAuth contains the following resource bundles:
 - [oxauth_tr.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/oxauth_tr.properties)     
 
 These properties files store the translatable text of the messages to be displayed.
-The default properties file, which is called [messages_en.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_en.properties), contains the following lines:
+The default properties file, which is called [oxauth_en.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/oxauth_en.properties), contains the following lines:
 ```
 .......
 login.login=Login
 login.register=Register
 .......
 ```
-Now that the messages are in a properties file, they can be translated into various languages. No changes to the source code are required. For example to use the French version of the oxAuth the [messages_fr.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/messages_fr.properties) should contains these lines:
+Now that the messages are in a properties file, they can be translated into various languages. No changes to the source code are required. For example to use the French version of the oxAuth the [oxauth_fr.properties](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/resources/oxauth_fr.properties) should contains these lines:
 ```
 .......
 login.login=S'identifier
