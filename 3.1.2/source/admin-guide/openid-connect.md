@@ -37,8 +37,8 @@ Review the Gluu Server's OpenID Connect API endpoints in the [API Guide](../api-
 The Gluu Server supports all flows defined in the [OpenID Connect Core spec](http://openid.net/specs/openid-connect-core-1_0.html), including implicit, authorization code, and hybrid flows.
 
 ### Implicit Flow
-The implicit flow, where the token and id_token are returned from the authorization endpoint, should only
-be used for applications that run in the browser, like a Javascript client.
+The implicit flow, where the token and id_token are returned from the authorization endpoint, should **only
+be used for applications that run in the browser, like a Javascript client**.
 
 ### Authorization Code / Hybrid Flow
 The code flow or hybrid flow should be used for server side
