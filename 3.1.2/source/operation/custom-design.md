@@ -194,10 +194,8 @@ directory as well, and add some customizations to it:
 
     
         # cp /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/login.xhtml     /opt/gluu/jetty/oxauth/custom/pages/
-    
 
-    Don't forget to apply appropriate file system permissions if needed.
-    Restarting oxAuth's service inside container will display the changes: `# service oxauth stop && service oxauth start`
+   Don't forget to apply appropriate file system permissions if needed. Restarting oxAuth's service inside container will display the changes: `# service oxauth stop && service oxauth start`
 
     !!! Warning: 
         A customization bug has been reported in Gluu 3.1.2. [A work around can be found here](https://support.gluu.org/customization/5215/custom-login-pages-not-taking-place-in-312/).
