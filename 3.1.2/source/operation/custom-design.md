@@ -197,5 +197,5 @@ directory as well, and add some customizations to it:
 
    Don't forget to apply appropriate file system permissions if needed. Restarting oxAuth's service inside container will display the changes: `# service oxauth stop && service oxauth start`
 
-    !!! Warning: 
-        A customization bug has been reported in Gluu 3.1.2. [A work around can be found here](https://support.gluu.org/customization/5215/custom-login-pages-not-taking-place-in-312/).
+!!! Warning: 
+    A customization bug has been reported in Gluu 3.1.2. [A work around can be found here](https://support.gluu.org/customization/5215/custom-login-pages-not-taking-place-in-312/).
