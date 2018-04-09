@@ -173,31 +173,31 @@ at the bottom of oxAuth's login page. You can follow next steps to achieve this:
 
 1. Move into Gluu container: `# service gluu-server-3.1.2 login`
 
-2. Create a new directory structure under `custom/pages/` to accomodate new customized page: `# mkdir -p /opt/gluu/jetty/oxauth/custom/pages/WEB-INF/incl/layout/`
+1. Create a new directory structure under `custom/pages/` to accomodate new customized page: `# mkdir -p /opt/gluu/jetty/oxauth/custom/pages/WEB-INF/incl/layout/`
 
-3. Get a default template page from exploded WAR archive and put it at path under `custom/pages` directory which will allow it to override the original page (your path to exploded WAR will differ from the one used here): `# cp /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/WEB-INF/incl/layout/template.xhtml /opt/gluu/jetty/oxauth/custom/pages/WEB-INF/incl/layout/template.xhtml`
+1. Get a default template page from exploded WAR archive and put it at path under `custom/pages` directory which will allow it to override the original page (your path to exploded WAR will differ from the one used here): `# cp /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/WEB-INF/incl/layout/template.xhtml /opt/gluu/jetty/oxauth/custom/pages/WEB-INF/incl/layout/template.xhtml`
 
-4. Modify the new file by removing or editing next snippet in it:
+1. Modify the new file by removing or editing next snippet in it:
 
-```
-<s:fragment rendered="#{not isLogin}">
-    <div class="footer">
-        <p>Copyright <a href="http://www.gluu.org">Gluu</a> All rights reserved.</p>
-    </div>
-</s:fragment>
-```
+    ```
+    <s:fragment rendered="#{not isLogin}">
+        <div class="footer">
+            <p>Copyright <a href="http://www.gluu.org">Gluu</a> All rights reserved.</p>
+        </div>
+    </s:fragment>
+    ```
 
-5. Assign appropriate permissions to new directories and files: `# chown -R jetty:jetty /opt/gluu/jetty/oxauth/custom/pages/ && chmod -R a-x+rX /opt/gluu/jetty/oxauth/custom/pages/`
+1. Assign appropriate permissions to new directories and files: `# chown -R jetty:jetty /opt/gluu/jetty/oxauth/custom/pages/ && chmod -R a-x+rX /opt/gluu/jetty/oxauth/custom/pages/`
 
-You may opt to copying default oxAuth login page (`login.xhtml`) to the custom files 
+    You may opt to copying default oxAuth login page (`login.xhtml`) to the custom files 
 directory as well, and add some customizations to it:
 
-```
-# cp /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/login.xhtml /opt/gluu/jetty/oxauth/custom/pages/
-```
+    ```
+    # cp /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/login.xhtml     /opt/gluu/jetty/oxauth/custom/pages/
+    ```
 
-Don't forget to apply appropriate file system permissions if needed.
-Restarting oxAuth's service inside container will display the changes: `# service oxauth stop && service oxauth start`
+    Don't forget to apply appropriate file system permissions if needed.
+    Restarting oxAuth's service inside container will display the changes: `# service oxauth stop && service oxauth start`
 
-!!! Warning: 
-    A customization bug has been reported in Gluu 3.1.2. [A work around can be found here](https://support.gluu.org/customization/5215/custom-login-pages-not-taking-place-in-312/).
+    !!! Warning: 
+        A customization bug has been reported in Gluu 3.1.2. [A work around can be found here](https://support.gluu.org/customization/5215/custom-login-pages-not-taking-place-in-312/).
