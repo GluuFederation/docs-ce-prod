@@ -169,7 +169,6 @@ The necessary directories to replicate are as follows:
 /opt/shibboleth-idp/temp_metadata/
 /etc/gluu/conf/
 /etc/certs/
-/opt/symas/etc/openldap/schema
 ```
 
 ### 3. Install NGINX
