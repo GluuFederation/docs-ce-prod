@@ -18,7 +18,7 @@ The following guide will explain how to debug [custom interception scripts](../a
 
 ## Enable remote debug in custom script.
 
-  1. Add after import section:
+  1. After the import section, add:
       ```
       REMOTE_DEBUG = True
   
@@ -31,7 +31,7 @@ The following guide will explain how to debug [custom interception scripts](../a
               print "Failed to import pydevd: %s" % ex
               raise
       ```
-  1. Add the following lines to all places where breakpoints are needed:   
+  1. Add the following lines wherever breakpoints are needed:   
       ```
       if REMOTE_DEBUG:
           pydevd.settrace('DEV_IP', port=5678, stdoutToServer=True, stderrToServer=True)
