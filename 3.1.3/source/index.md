@@ -2,7 +2,7 @@
 ## Introduction
 The Gluu Server is a container distribution of free open source software for identity and access management (IAM). SaaS, custom, open source and commercial web and mobile applications can leverage a Gluu Server for a single source of identity information, authentication, and policy enforcement.
 
-The most common use cases for the Gluu Server include:
+Common use cases include:
 
 - Single sign-on (SSO)   
 - Mobile authentication    
@@ -11,7 +11,7 @@ The most common use cases for the Gluu Server include:
 - Customer identity and access management (CIAM)   
 - Identity federation      
 
-### Free Open Source Software
+### Free Open Source Software (FOSS)
 All software included in the Gluu Server distribution is free open source software that can be used in production for free. Available  components include:
 
 - **oxAuth***: fully compliant OpenID Connect Provider (OP) and UMA Authorization Server (AS) 
