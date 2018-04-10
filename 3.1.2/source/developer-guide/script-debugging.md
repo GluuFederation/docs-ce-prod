@@ -40,7 +40,7 @@ The following guide will explain how to debug [custom interception scripts](./ad
 ## Start flow to trigger breakpoint
   1. Enable script  
   1. Start authentication process 
-  1. Eclipse after executing line with `pydevd.settrace` should show dialog to selectt scritp source  
+  1. After executing line with `pydevd.settrace`, Eclipse should show dialog to select script source  
   1. After selecting script file it's possible to debug it  
 
 ## Additional sources
