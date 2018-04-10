@@ -102,4 +102,5 @@ pages:
 - Developer Guide:
         - 'Build oxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'
         - 'Localization': 'developer-guide/localization.md'
+        - 'Script Debugging': 'developer-guide/script-debugging.md'
 - FAQ & Troubleshooting: 'operation/faq.md'
