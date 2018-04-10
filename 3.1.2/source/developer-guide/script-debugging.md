@@ -3,7 +3,7 @@ The following guide will explain how to debug [custom interception scripts](./ad
 
 ## Prepare Eclipse.
 
-  1. Install PyDev Eclispe plugin from Eclipse Markeplace.
+  1. Install PyDev Eclispe plugin from Eclipse Markeplace
   1. Open Debug perspective.
   1. Start the remote debugger server. Menu: PyDev->Start Debug Server.
 
@@ -19,24 +19,23 @@ The following guide will explain how to debug [custom interception scripts](./ad
 ## Enable remote debug in custom script.
 
   1. Add ater import section:
-  ```
-  REMOTE_DEBUG = True
+      ```
+      REMOTE_DEBUG = True
   
-  if REMOTE_DEBUG:
-      try:
-          import sys
-          sys.path.append('/opt/pydevd')
-          import pydevd
-      except ImportError as ex:
-          print "Failed to import pydevd: %s" % ex
-          raise
-  ```
-
+      if REMOTE_DEBUG:
+          try:
+              import sys
+              sys.path.append('/opt/pydevd')
+              import pydevd
+          except ImportError as ex:
+              print "Failed to import pydevd: %s" % ex
+              raise
+      ```
   1. Add next lines to all place where you need to add breakpoints
-  ```
-  if REMOTE_DEBUG:
-      pydevd.settrace('DEV_IP', port=5678, stdoutToServer=True, stderrToServer=True)
-  ```
+      ```
+      if REMOTE_DEBUG:
+          pydevd.settrace('DEV_IP', port=5678, stdoutToServer=True, stderrToServer=True)
+      ```
 
 ## Start flow to trigger breakpoint
   1. Enable script  
