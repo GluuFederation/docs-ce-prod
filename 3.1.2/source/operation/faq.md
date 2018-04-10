@@ -172,7 +172,7 @@ Now you will want to update your IDP login page to display `Email Address` as th
 ![update-login](../img/admin-guide/faq/update-login.png)
 
 !!! Warning
-    oxTrust is a tool for administrators and it must nto be used as a user facing application.
+    oxTrust is a tool for administrators and it must not be used as a user facing application.
 
 ## Installing a patch
 Follow the documentation for [updating a .war file](../upgrade/index.md#updating-war-and-schema-manually). 
@@ -392,5 +392,24 @@ Log into the web interface and pick up where you left off :)
 
 ### SAML
 The SAML IDP sends an authorization request to oxAuth for user authentication.. In the request there is a JWT state parameter which contains a claim called `relyingPartyId`. You can use this `relyingPartyId` to render the proper form based on the SP... so `SP=relyingPartyId`. 
+
+## How to fix idp service startup issue on Gluu 3.1.2 when installed with OpenDJ
+
+## Description
+Gluu 3.1.2 when installed with OpenDj as Ldap implementation has an known issue.
+The idp service failed to start is the idp or Gluu server is restart after first installation: the error message is similar to this:
+```
+2018-04-10 16:14:42,395 - ERROR [org.springframework.web.context.ContextLoader:351] - Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'shibboleth.metrics.RegisterMetricSets$child#0' defined in URL [file:/opt/shibboleth-idp/conf/admin/metrics.xml]: Cannot resolve reference to bean 'shibboleth.metrics.AttributeResolverGaugeSet' while setting bean property 'arguments' with key [7]; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'shibboleth.metrics.AttributeResolverGaugeSet' defined in URL [file:/opt/shibboleth-idp/system/conf/general-admin-system.xml]: Invocation of init method failed; nested exception is net.shibboleth.utilities.java.support.component.ComponentInitializationException: Injected service was null or not an AttributeResolver
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:359)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'shibboleth.metrics.AttributeResolverGaugeSet' defined in URL [file:/opt/shibboleth-idp/system/conf/general-admin-system.xml]: Invocation of init method failed; nested exception is net.shibboleth.utilities.java.support.component.ComponentInitializationException: Injected service was null or not an AttributeResolver
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1578)
+Caused by: net.shibboleth.utilities.java.support.component.ComponentInitializationException: Injected service was null or not an AttributeResolver
+	at net.shibboleth.idp.attribute.resolver.impl.AttributeResolverServiceGaugeSet.doInitialize(AttributeResolverServiceGaugeSet.java:104)
+```
+## Solution
+ 1. Open the file `/opt/shibboleth-idp/conf/ldap.properties` with your favorite text editor
+ 1. Changes this line `idp.authn.LDAP.trustCertificates = /etc/certs/openldap.crt` to `idp.authn.LDAP.trustCertificates = /etc/certs/opendj.crt`
+ 1. Restart `identity` and `idp` service
 
 
