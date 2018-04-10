@@ -1,6 +1,6 @@
 # Interception Scripts
 
-## Overview
+## Introduction
 Interception scripts allow you to customize many aspects of your Gluu Server identity and access management service. 
 
 For example, if you want to use an external authentication service like Duo Security or Yubikey, you would use an interception script to define the authentication flow. Or, if you wanted to perform fraud detection during login, you could write an interception script that calls the API of your fraud detection service. 
@@ -66,6 +66,9 @@ the interception scripts or following the workflow of the script.
     A `print` statement may not work on some environments if the `PYTHON_HOME` environment variable is not set. Make sure it points to a valid python installation.
 
 More details about Logs can be found in the [Log Management](../operation/logs.md) portion of the docs.
+
+### Debugging
+Visit the [remote debugging](../developer-guide/script-debugging.md) document to learn how to debug custom interception scripts. 
 
 ## Person Authentication     
 An authentication script enables you to customize the user experience for authentication. For example, you can write a script that
