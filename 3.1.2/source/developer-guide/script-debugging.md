@@ -1,5 +1,5 @@
 # Remote custom script debugging
-The following guide will explain how to debug [custom interception scripts](./admin-guide/custom-script.md). 
+The following guide will explain how to debug [custom interception scripts](../admin-guide/custom-script.md). 
 
 ## Prepare Eclipse.
 
