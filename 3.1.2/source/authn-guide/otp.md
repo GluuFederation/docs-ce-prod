@@ -11,8 +11,8 @@ The OTP interception script uses the two-factor event/counter-based HOTP algorit
     To support SMS OTP, follow the [SMS OTP](./sms-otp.md) documentation.
 
 ## Prerequisites
-- A Gluu Server ([installation instructions](../installation-guide/index.md));
-- [HOTP / TOTP authentication script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/otp/OtpExternalAuthenticator.py) (included in the default Gluu Server distribution);
+- A Gluu Server ([installation instructions](../installation-guide/index.md))
+- [HOTP / TOTP authentication script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/otp/OtpExternalAuthenticator.py) (included in the default Gluu Server distribution)
 - A device with an OTP mobile app installed, like one of the apps [listed below](#recommended-otp-apps)
 
 ### Recommended OTP apps
@@ -35,12 +35,11 @@ The OTP authentication script has the following properties:
 ## Enable OTP
 Follow the steps below to enable Super Gluu authentication:
 
-1. In oxTrust, navigate to `Configuration` > `Manage Custom Scripts`.
+1. In oxTrust, navigate to `Configuration` > `Manage Custom Scripts`
 1. Click on the `Person Authentication` tab
 1. Find the OTP script
 1. Enable the script by checking the box 
 1. Scroll to the bottom of the page and click `Update`
-
 
 Now OTP is an available authentication mechanism for your Gluu Server. This means that, using OpenID Connect `acr_values`, applications can now request OTP authentication for users. 
 
@@ -48,15 +47,15 @@ Now OTP is an available authentication mechanism for your Gluu Server. This mean
 
 If OTP should be the default authentication mechanism, follow these instructions: 
 
-1. Navigate to `Configuration` > `Manage Authentication`. 
+1. Navigate to `Configuration` > `Manage Authentication` 
 
-1. Select the `Default Authentication Method` tab. 
+1. Select the `Default Authentication Method` tab
 
-1. In the Default Authentication Method window you will see two options: `Default acr` and `oxTrust acr`. 
+1. In the Default Authentication Method window you will see two options: `Default acr` and `oxTrust acr` 
 
- - `oxTrust acr` sets the authentication mechanism for accessing the oxTrust dashboard GUI (only managers should have acccess to oxTrust).    
+ - `oxTrust acr` sets the authentication mechanism for accessing the oxTrust dashboard GUI (only managers should have acccess to oxTrust)    
 
- - `Default acr` sets the default authentication mechanism for accessing all applications that leverage your Gluu Server for authentication (unless otherwise specified).    
+ - `Default acr` sets the default authentication mechanism for accessing all applications that leverage your Gluu Server for authentication (unless otherwise specified)   
 
 If OTP should be the default authentication mechanism for all access, change both fields to OTP.  
 
