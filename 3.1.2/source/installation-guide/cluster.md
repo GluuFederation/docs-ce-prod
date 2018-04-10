@@ -25,6 +25,7 @@ efforts may be needed to ensure they can be reached by incoming connections.
 |4444| OpenDJ Replication| Between Gluu Servers |
 |6379| Redis Server | From oxAuth to Redis |
 |8989| OpenDJ Replication|  Between Gluu Servers |
+|1636| OpenDJ Replication| Between Gluu Servers|
 |30865| Csync2 Default |  Between Gluu Servers |
 
 ### Software
