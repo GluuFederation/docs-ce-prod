@@ -50,27 +50,27 @@ Make sure you have deployed Passport.js during installation of your Gluu Server.
 Then follow the next steps:
 
 1. Navigate to `Configuration `> `Manage Custom Scripts`;
-2. In the `Person Authentication` tab, find and enable the `passport_saml` script;
-![enable-passport](../img/user-authn/passport/enable_passport_01.png)
+1. In the `Person Authentication` tab, find and enable the `passport_saml` script;
+      ![enable-passport](../img/user-authn/passport/enable_passport_01.png)
 
 !!! Note
     This script is updated from time to time. We recommend checking the [SAML Passport Authenticator script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/saml-passport/SamlPassportAuthenticator.py) and confirming it matches the script included in your distribution of Gluu.
 
-3. Click the "Update" at the bottom of the page.
+1. Click the "Update" at the bottom of the page.
 ![](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/passport/update_passport_02.png)   
 
-4. Navigate to `Configuration `>` Manage Authentication` > `Passport Authentication Method`   
+1. Navigate to `Configuration `>` Manage Authentication` > `Passport Authentication Method`   
 
-5. Select "Enabled" from `Passport Support` drop-down list and click "Update"
+1. Select "Enabled" from `Passport Support` drop-down list and click "Update"
 ![](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/passport/passport_auth_method_03.png)    
 
-6. Once initial configuration is completed, restart the `passport` service by following the below instructions:   
+1. Once initial configuration is completed, restart the `passport` service by following the below instructions:   
 
-    6.1. Login to chroot container
+      1. Login to chroot container
 
-    6.2. Stop the service: `service passport stop`
+      1. Stop the service: `service passport stop`
 
-    6.3. Start the service: `service passport start`
+      1. Start the service: `service passport start`
 
 !!! Note 
     In case if Passport is not available as a service, you can also restart the Gluu Server's main service itself.
