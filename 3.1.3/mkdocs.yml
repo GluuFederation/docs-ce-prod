@@ -102,9 +102,9 @@ pages:
         - 'Logout': 'operation/logout.md'
         - 'Log Management' : 'operation/logs.md'
         - 'Customize Public Pages': 'operation/custom-design.md'
-        - 'FAQ & Troubleshooting': 'operation/faq.md'
         - 'Change IP Address': 'operation/changeip.md'
         #       - 'Fine Tuning Gluu Server' : 'admin-guide/fine-tuning.md'
 - Developer Guide:
         - 'Build oxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'
         - 'Localization': 'developer-guide/localization.md'
+- FAQ & Troubleshooting: 'operation/faq.md'
