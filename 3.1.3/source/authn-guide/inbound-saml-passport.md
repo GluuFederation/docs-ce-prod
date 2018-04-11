@@ -53,16 +53,16 @@ Then follow the next steps:
 1. In the `Person Authentication` tab, find and enable the `passport_saml` script;
       ![enable-passport](../img/user-authn/passport/enable_passport_01.png)
 
-!!! Note
-    This script is updated from time to time. We recommend checking the [SAML Passport Authenticator script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/saml-passport/SamlPassportAuthenticator.py) and confirming it matches the script included in your distribution of Gluu.
+   !!! Note
+      This script is updated from time to time. We recommend checking the [SAML Passport Authenticator script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/saml-passport/SamlPassportAuthenticator.py) and confirming it matches the script included in your distribution of Gluu.
 
 1. Click the "Update" at the bottom of the page.
-![](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/passport/update_passport_02.png)   
+   ![](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/passport/update_passport_02.png)   
 
 1. Navigate to `Configuration `>` Manage Authentication` > `Passport Authentication Method`   
 
 1. Select "Enabled" from `Passport Support` drop-down list and click "Update"
-![](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/passport/passport_auth_method_03.png)    
+   ![](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/passport/passport_auth_method_03.png)    
 
 1. Once initial configuration is completed, restart the `passport` service by following the below instructions:   
 
