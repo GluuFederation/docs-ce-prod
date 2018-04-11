@@ -72,8 +72,8 @@ Then follow the next steps:
 
       1. Start the service: `service passport start`
 
-!!! Note 
-    In case if Passport is not available as a service, you can also restart the Gluu Server's main service itself.
+    !!! Note 
+        In case if Passport is not available as a service, you can also restart the Gluu Server's main service itself.
 
 ## Configure Trust
  
