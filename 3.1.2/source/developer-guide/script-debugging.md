@@ -1,7 +1,7 @@
-# Remote custom script debugging
+# Remote Custom Script Debugging
 The following guide will explain how to debug [custom interception scripts](../admin-guide/custom-script.md). 
 
-## Prepare Eclipse.
+## Prepare Eclipse
 
   1. Install the PyDev Eclispe plugin from the Eclipse Markeplace
   1. Open Debug perspective
@@ -16,7 +16,7 @@ The following guide will explain how to debug [custom interception scripts](../a
   1. `rm -rf pydevd-1.1.1.tar.gz` 
   1. `ln -sf /opt/pydevd-1.1.1 /opt/pydevd` 
 
-## Enable remote debug in custom script.
+## Enable Remote Debug in Custom Script
 
   1. After the import section, add:
       ```
@@ -37,12 +37,12 @@ The following guide will explain how to debug [custom interception scripts](../a
           pydevd.settrace('DEV_IP', port=5678, stdoutToServer=True, stderrToServer=True)
       ```
 
-## Start flow to trigger breakpoint
+## Start Flow to Trigger Breakpoint
   1. Enable script  
   1. Start authentication process 
   1. After executing line with `pydevd.settrace`, Eclipse should show a dialog to select script source  
   1. Select the appropriate script file and debug  
 
-## Additional resources
+## Additional Resources
 1. [Remote debugger](http://www.pydev.org/manual_adv_remote_debugger.html)
 
