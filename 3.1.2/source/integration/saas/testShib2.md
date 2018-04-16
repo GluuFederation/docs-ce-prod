@@ -30,7 +30,7 @@ installed the `Shibboleth IDP` in while running the `setup.py` script.
      - Metadata Location: File
      - SP metadata file: upload `testshib-providers.xml` metadata
      - Configure Relying Party(add `SAML 2 SSO Profile`)
-     - Released attributes: `transcientId` and `Username`
+     - Released attributes: `transientId` and `Username`
      - `Add`
      - Wait for validation success for this trust relationship. 
      
