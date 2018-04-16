@@ -109,6 +109,29 @@ $ cd oxTrust
 $ git checkout version_3.1.2
 ```
 
+## Find your Gluu Server version
+
+The Gluu Server version can be found in the oxTrust dashboard. Alternatively:
+
+1. SSH into VM
+2. Log into Gluu-Server container. 
+
+    a. Use the below command
+    
+     `# service gluu-server-3.1.2 login`
+     
+3. To find oxTrust version
+
+      `# cat /opt/jetty-9.3/temp/jetty-localhost-8082-identity.war-_identity-any-8734901518752897483.dir/webapp/META-INF/MANIFEST.MF`
+
+4. oxAuth version can be found using below command 
+
+    `# cat /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-6134601069165491713.dir/webapp/META-INF/MANIFEST.MF`
+
+Version numbers for included software like IDP, oxAuth-rp, etc.,
+can be viewed in the same directory. These apps can be 
+identified with the [port number](./ports.md) after the localhost.
+
 ## Connect an external LDAP browser
 
 Sooner or later you will probably want to peek at what is stored in the Gluu Server's local LDAP. This means connecting something like Apache Directory Studio to the `slapd` process running inside the chroot container.
