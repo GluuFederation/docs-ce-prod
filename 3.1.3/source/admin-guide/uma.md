@@ -318,7 +318,7 @@ The UMA 2 policy algorithm has two rules that must be followed:
 
 1. UMA policies protect resources based on scopes. If a scope is protected by a policy, then the policy script must reutrn `true` in order to authorize access during RPT authorization.
 
-2. Multiple policies can protect a single scope. In such a case, all the policies must retun `true` to authorize access or else aceess will be denied.
+2. Multiple policies can protect a single scope. In such a case, all the policies must retun `true` to authorize access or else access will be denied.
 
 ![policy-algorithm](../img/uma/policy-algorithm.jpg) 
 
