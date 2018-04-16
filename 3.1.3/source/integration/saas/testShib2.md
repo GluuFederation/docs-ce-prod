@@ -29,10 +29,12 @@ installed the `Shibboleth IDP` in while running the `setup.py` script.
      - Entity type: Single SP
      - Metadata Location: File
      - SP metadata file: upload `testshib-providers.xml` metadata
+     - Configure Relying Party(add `SAML 2 SSO Profile`)
+     - Released attributes: `transcientId` and `Username`
      - `Add`
      - Wait for validation success for this trust relationship. 
      
-![Image](../../img/integration/GluuServerTestShibFederation.png)
+![Image](../../img/integration/TestShib2_idp_federation_registration.png)
 
  - Create Trust Relationship with TestShib SP: 
    - Now we need to create a `Federated trust relationship`
@@ -42,11 +44,11 @@ installed the `Shibboleth IDP` in while running the `setup.py` script.
      - Metadata Location: Select `Federation` from drop down menu
      - Federation Name: `TestShib Federation`
      - Entity ID: click on this link, select `https://sp.testshib.org/shibboleth-sp`
-     - Configure Relying Party: not required
-     - Released: `Username`
+     - Configure Relying Party(add `SAML 2 SSO Profile`)
+     - Released attributes: `transientId` and `Username`
      - `Add`
      
-![Image](../../img/integration/TestShibSPTrust.png)
+![Image](../../img/integration/FederatedSPForTestShib2.png)
 
 
 ## TestShib2 configuration: part 2
