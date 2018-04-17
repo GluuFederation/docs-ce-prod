@@ -1,12 +1,12 @@
 # SCIM API
 
 Gluu Server Community Edition supports the System for Cross-domain Identity Management (SCIM) version 2.0. 
-<!--
+
 ## Configuration Endpoint
 The SCIM configuration endpoint can be found at:
 
 `https://<idp_hostname>/.well-known/scim-configuration`
--->
+
 ## Enable SCIM
 To enable SCIM open the oxTrust administration interface and navigate to `Organization Configuration` > `System Configuration`, find `SCIM Support` and select `Enabled`.
 
