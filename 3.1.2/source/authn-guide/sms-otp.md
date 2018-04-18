@@ -10,12 +10,11 @@ This document explains how to configure the Gluu Server for two-step, two-factor
     
 ## Prerequisites 
 
-- A Gluu Server (installation instructions [here](../installation-guide/index.md));    
-- The [Twilio SMS OTP script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/twilio_sms/twilio2FA.py) (included in the default Gluu Server distribution);   
+- A Gluu Server (installation instructions [here](../installation-guide/index.md))    
+- The [Twilio SMS OTP script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/twilio_sms/twilio2FA.py) (included in the default Gluu Server distribution)   
 - A [Twilio account](https://www.twilio.com/).     
 - The twilio [jar library](http://search.maven.org/remotecontent?filepath=com/twilio/sdk/twilio/7.17.6/twilio-7.17.6.jar) added to oxAuth
 - A mobile device and phone number that can receive SMS text messages
-    
 
 ## Twilio Configuration
 
@@ -56,7 +55,9 @@ Follow the steps below to enable U2F authentication:
 
    -  `twilio_sid`: Paste the *"Account SID"* of your recently created Twilio account. You can find this value in your account dashboard.   
    - `twilio_token`: Similar to your SID, you were also given a token upon registration.     
-   - `from_number`: Use the Twilio number that was provided when you created your account (not your personal number).      
+   - `from_number`: Use the Twilio number that was provided when you created your account (not your personal number).     
+
+1. Update Twilio SMS OPT script: Existing Twilio SMS OPT script that ship with Gluu server should be replace by the up to dated version downloadable [here](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/twilio_sms/twilio2FA.py).
 
 1. Enable the script by checking the box 
 
@@ -70,6 +71,7 @@ Now SMS OTP is an available authentication mechanism for your Gluu Server. This 
     Find `"acr_values_supported":` and you should see `"twilio_sms"`. 
 
 ## Make SMS OTP the Default
+
 If SMS OTP should be the default authentication mechanism, follow these instructions: 
 
 1. Navigate to `Configuration` > `Manage Authentication`. 
@@ -78,14 +80,24 @@ If SMS OTP should be the default authentication mechanism, follow these instruct
 
 1. In the Default Authentication Method window you will see two options: `Default acr` and `oxTrust acr`. 
 
-![u2f](../img/admin-guide/multi-factor/u2f.png)
+![u2f](../img/admin-guide/multi-factor/twilioAsDefaultAuthMethod.png)
 
  - `oxTrust acr` sets the authentication mechanism for accessing the oxTrust dashboard GUI (only managers should have acccess to oxTrust).    
 
  - `Default acr` sets the default authentication mechanism for accessing all applications that leverage your Gluu Server for authentication (unless otherwise specified).    
 
 If SMS OTP should be the default authentication mechanism for all access, change both fields to twilio_sms.  
-    
+
+## Setup a test user account in Gluu server
+
+A test user with valid settings is require to test the whole setup.
+ 1. Login into Gluu oxTrust Admin UI
+ 1. Navigate to `Users` > `Add person`
+ 1. Fill the form with the below requirements: 
+    - The atrribute **Phone number verified** should be set to `True`
+    - At least one of the following attribute shoulb be set: `Employee Number` or `Home Telephone Number` or `Mobile Telephone Number`
+ 1. Save 
+
 ## SMS OTP Login Pages
 
 The Gluu Server includes <!--two default login pages --> one page for SMS OTP:
@@ -105,7 +117,7 @@ The designs are being rendered from the [Twilio SMS xhtml page](https://github.c
 
 ### Phone Number Enrollment
 
-The script assumes the user phone number is already stored in his corresponding LDAP entry (attribute `phoneNumberVerified`). You can change the attribute by altering the script directly (see authenticate routine).
+The script assumes the user phone number is already stored in his corresponding LDAP entry (attribute `Employee Number` or `Home Telephone Number` or `Mobile Telephone`) and the attribute `phoneNumberVerified` is set to `True`. You can change the attribute by altering the script directly (see authenticate routine).
 
 ### Subsequent Logins
 All <!--subsequent--> authentications will trigger an SMS with an OTP to the registered phone number. Enter the OTP to pass authentication. 
