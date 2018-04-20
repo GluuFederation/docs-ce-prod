@@ -7,7 +7,7 @@ This document explains how to configure the Gluu Server for two-factor authentic
 A User Guide and Developer Guide can be found on the [Super Gluu docs site](https://gluu.org/docs/supergluu). 
 
 ### U2F Security
-Super Gluu uses the Gluu Server's FIDO U2F endpoints to enroll a public key. When authentication happens, there is a challenge response to ensure that the device has the corresponding private key. 
+Super Gluu uses public/private key encryption as specified in the FIDO U2F authentication standard. Super Gluu enrolls its public key against the Gluu Server's U2F endpoints, and when authentication happens, there is a challenge response to ensure that the device has the corresponding private key. 
 
 Learn more about FIDO U2F in the [spec](https://fidoalliance.org/specifications/overview/).
 
