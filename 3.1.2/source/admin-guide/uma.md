@@ -18,15 +18,15 @@ and enables attribute-based ("claims" in OAuth2) authorization (with group-based
  
 ## Terminology
 
-UMA 2 introduces new terms and enhancements of OAuth term definitions. A few important terms include:
+UMA 2 introduces new terms and enhancements to OAuth term definitions. A few important terms include:
 
 Resource Owner (RO): An entity capable of granting access to a protected resource--the "user" in User-Managed Access. This is typically an end-user, but it can also be non-human entity that is treated as a person for limited legal purposes, such as a corporation.
 
-Resource Server (RS): A server that hosts resources on a resource owner's behalf, registers resources for protection at an authorization server, and is capable of accepting and responding to requests for protected resources.
+Resource Server (RS): A server that hosts resources on a resource owner's behalf, registers resources for protection at an authorization server, and is capable of accepting and responding to requests for access to protected resources.
 
-Authorization Server (AS)_*_: A server that protects, on a resource owner's behalf, resources managed at a resource server.
+Authorization Server (AS)_*_: A server that protects resources managed at a resource server, on behalf of the resource owner.
 
-_*_ _Gluu acts as an UMA AS_.
+_*_ _Gluu Server is an UMA AS_.
 
 Learn more in the UMA 2 [Federated Authorization](https://docs.kantarainitiative.org/uma/ed/oauth-uma-federated-authz-2.0-07.html) and [Grant](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-06.html) specifications.
 
@@ -41,7 +41,7 @@ The scopes are described in JSON and have the following properties:
 - name
 - icon\_uri
 
-An example of the scope JSON is given below:
+An example of the scope JSON:
 
 ```
 {
@@ -53,7 +53,7 @@ An example of the scope JSON is given below:
 !!! Note
     The scope JSON may contain custom properties.
 
-The following is an example what an UMA 2 Scope URL may look like:
+The following is an example of an UMA 2 Scope URL:
 
 ```
 https://<hostname>/uma/scopes/view
@@ -75,36 +75,33 @@ oxId: View
 oxIconUrl: http://<hostname>/uma/icons/view_scope.png
 ```
 
-### List UMA Scopes
-List of UMA scope can be found in Gluu server oxTrust Admin UI under `UMA` > `Scopes` section.
+### List of UMA Scopes
+A list of UMA scopes can be found in Gluu Server oxTrust Admin UI under `UMA` > `Scopes` section.
 
 ![uma-scopes](../img/uma/uma_scopes.png)
 
 ### Add UMA Scope
-A new UMA scope can be added by navigating to `UMA` > `Scopes` and then click **Add Scope** button.
+A new UMA scope can be added by navigating to `UMA` > `Scopes` and then click the **Add Scope** button.
 
 ![uma-scopes](../img/uma/uma_scope_add.png)
 
-Additionally there is an option to add authorization policy with the new scope.
-
+Additionally there is an option to add one or more authorization policies to the new scope.
 
 ## Resource Management
 
-As stated in the [spec](https://docs.kantarainitiative.org/uma/wg/rec-oauth-uma-federated-authz-2.0.html), the Authorization server(AS) should exposes an protected API that Resource Server(RS) should use to manage resources intented for protection.
-Gluu server as a RS respect this specification and ship with a protect API that the Resource Server(RS) can use to :
+As stated in the [Federated Authorization spec](https://docs.kantarainitiative.org/uma/wg/rec-oauth-uma-federated-authz-2.0.html), the AS exposes a protected API that the RS can use to manage resources intended for protection. Gluu Server, as an AS, implements this specification and ships with a protected API that the RS can use to:
 
-1. Create resource
-1. Update resource
-1. Delete ressource
-1. List protected resources
+1. Create resource   
+1. Update resource   
+1. Delete ressource   
+1. List protected resources    
+ 
+For more information about the resources protection API check [the UMA API doc](https://gluu.org/docs/ce/api-guide/uma-api/#uma-2-resource-registration-api).
 
-For more information about the resources protection API check [this link](https://gluu.org/docs/ce/api-guide/uma-api/#uma-2-resource-registration-api).
-
-
-By default, Gluu Server is shipped with SCIM resources protected by UMA. Learn more in the [SCIM protected by UMA documentation](../user-management/scim2#scim-protected-by-UMA). 
+Out-of-the-box the Gluu Server uses UMA to protect SCIM resources. Learn more in the [SCIM protected by UMA documentation](../user-management/scim2#scim-protected-by-UMA). 
 
 ## UMA RPT Authorization Policies
-UMA RPT Authorization policy's are associated with UMA scopes. An authorization request has a resource_id and scope(s). Each scope can point to one or more policies. If all policies associated with all scopes return `true`, then access is granted. 
+UMA RPT Authorization Policies are associated with UMA scopes. An authorization request has a resource_id and scope(s). Each scope can point to one or more policies. If all policies associated with all scopes return `true`, then access is granted. 
 
 For example, let's say we have the following resource, `GET /photo`. In order to access it the Resource Server (RS) requires the `read` scope to be present. If we have a policy that always return `true`, then any authorization request to `/photo` that includes the `read` scope will result in access granted. 
 
@@ -113,14 +110,15 @@ If we wish to have more sophisticated logic, for example to grant access only to
 There are three (3) main properties of a policy:
 
 1. scopes: policy protects resources by scopes; 
-2. authorization script: script that is evaluated in order to grant/deny access; 
-3. name: a human readable name to the UMA policy.
+2. authorization script: script that is evaluated in order to grant/deny access;  
+3. name: a human readable name to the UMA policy.   
 
-The following section outlines how to define UMA RPT Authorization policies from the Custom Script menu. The Custom Script page is accessed by navigating to `Configuration` > `Custom Scripts` > `UMA RPT Policies`.
+The following section outlines how to define UMA RPT Authorization Policies from the Custom Script menu. The Custom Script page is accessed by navigating to `Configuration` > `Custom Scripts` > `UMA RPT Policies`.
 
 ![auth-policy](../img/uma/auth-policy.png)
 
-Sample script
+### Sample RPT Authorization Policy script
+
 ```
 # Call sequence
 # 1. First is call constructor of the Script __init__
@@ -197,11 +195,12 @@ class UmaRptPolicy(UmaRptPolicyType):
 
 ### UMA 2 Claims-Gathering
 
-Sometimes RPT Authorization Policy may require additional claims that has to be provided by the user. In this case Claims-Gathering Flow can be used to gather such information. The logic is coded as custom script and can be added by navigating to `Configuration` > `Custom Scripts` > `UMA Claims-Gathering`.
+Sometimes an RPT Authorization Policy may require additional claims to be provided by the user. In this case the Claims-Gathering Flow can be used to gather such information. The logic is coded as a custom script and can be added by navigating to `Configuration` > `Custom Scripts` > `UMA Claims-Gathering`.
 
 ![uma-claims-gathering-policy](../img/uma/uma-claims-gathering-policy.png)
 
-Sample script
+### Sample Claims-Gathering script
+
 ```
 from org.xdi.model.custom.script.type.uma import UmaClaimsGatheringType
 
@@ -294,19 +293,19 @@ class UmaClaimsGathering(UmaClaimsGatheringType):
 ### UMA 2 RPT Authorization Policy Algorithm
 The UMA 2 policy algorithm has two rules that must be followed:
 
-1. UMA policies protect resources based on scopes. If a scope is protected by a policy, then the policy script must reutrn `true` in order to authorize access during RPT authorization.
+1. UMA policies protect resources based on scopes. If a scope is protected by a policy, then the policy script must reutrn `true` in order to authorize access during RPT authorization. 
 
-2. Multiple policies can protect a single scope. In such a case, all the policies must retun `true` to authorize access or else aceess will be denied.
+2. Multiple policies can protect a single scope. In such a case, all the policies must retun `true` to authorize access or else access will be denied.
 
 ![policy-algorithm](../img/uma/policy-algorithm.jpg) 
 
 ### UMA 2 Client Authentication
 
-UMA 2 is regular OAuth 2 Token Endpoint. Therefore it support all client authentications then in regular OAuth2/OpenID Connect.
+UMA 2 is a regular OAuth 2 Token Endpoint. Therefore it supports the same client authentications as standard OAuth2/OpenID Connect.
 
-However there is one special client authentication method which is using `access_token` obtained by user to authenticated the client. Means client that was used during user authentication is used for client authentication. Of course `access_token` must be valid.
+There is one special client authentication method which uses the `access_token` obtained by the user to authenticate the client. This means the client that was used during user authentication is used for client authentication. Of course the `access_token` must be valid.
 
-Non-normative example
+Non-normative example: 
 
 ```json
 POST /token HTTP/1.1
@@ -319,8 +318,8 @@ Authorization: AccessToken czZCaGRSa3F0MzpnWDFmQmF0M2JW
 
 ## Scopes Expressions
 
-UMA 2 Scope expressions is Gluu invented extension of UMA 2 which gives flexible way to 
-combine scopes and thus propose more robust way to grant access.
+UMA 2 Scope expressions is a Gluu-specific extension of UMA 2 which offers a flexible way to 
+combine scopes and thus support more robust ways to grant access.
 
 ### Register resource with scope_expression
 
@@ -360,7 +359,7 @@ RS registers resource
 
 ### Ticket registration
 
-RS registers tickets with all scopes mentioned in "data" (we need all scopes in order to evaluate expression, all or nothing principle)
+RS registers tickets with all scopes mentioned in "data" (we need all scopes in order to evaluate expression--all or nothing principle)
 
 ```json
 
@@ -376,16 +375,17 @@ RS registers tickets with all scopes mentioned in "data" (we need all scopes in 
 
 ### Evaluation
 
-UMA Engine iterates over each scope and fetch ALL policies for each scope. Evaluates all policies.
-a) not enough claims - return need_info error
-b) enough claims - evaluate results from ALL policies with "AND" rule for ONE given scope.
-   b1) `http://photoz.example.com/dev/actions/all` -  `policyA AND policyB` => false
-   b2) `http://photoz.example.com/dev/actions/add` -  `policyA AND policyD` => true
-   b3) `http://photoz.example.com/dev/actions/internalClient` - `policyD AND policyE and policyK` => true
+UMA Engine iterates over each scope and fetches and evaluates ALL policies for each scope:
+
+1. not enough claims - return need_info error
+1. enough claims - evaluate results from ALL policies with "AND" rule for ONE given scope.
+   1. `http://photoz.example.com/dev/actions/all` -  `policyA AND policyB` => false
+   1. `http://photoz.example.com/dev/actions/add` -  `policyA AND policyD` => true
+   1. `http://photoz.example.com/dev/actions/internalClient` - `policyD AND policyE and policyK` => true
 
 Results in expression : `(false OR true) AND true` => `true`
 
-Below is example of including all scopes except `http://photoz.example.com/dev/actions/all` scope (because for this part of expression `false` is returned). 
+Below is an example of including all scopes except `http://photoz.example.com/dev/actions/all` scope (because for this part of expression `false` is returned). 
 
 ```json
 {  
@@ -407,14 +407,14 @@ Below is example of including all scopes except `http://photoz.example.com/dev/a
 
 
 ## UMA RS Implementation
-If you need to secure apps with OpenID Connect RP and UMA 2 RS code, you might want to take a look at our [oxd client software](http://oxd.gluu.org).
+To secure apps with OpenID Connect RP and UMA 2 RS code we recommend taking a look at our [oxd client software](http://oxd.gluu.org).
 
 ## UMA API
 
-As Authorisation Server(AS), Gluu server ship with two UMA APIs:
+Gluu server ship with two UMA Authorization Server APIs:
 
-1. The client API documented [here](https://gluu.org/docs/ce/api-guide/uma-api/#uma-2-token-endpoint-api): used by clients to obtains RPT. 
-2. The Protection API documented [here](https://gluu.org/docs/ce/api-guide/uma-api/#uma-2-resource-registration-api): used by Resource Server to request resources protection on behalf of the Ressource Owner(RO) 
+1. The client API documented [here](https://gluu.org/docs/ce/api-guide/uma-api/#uma-2-token-endpoint-api): used by clients to obtains RPT.    
+1. The Protection API documented [here](https://gluu.org/docs/ce/api-guide/uma-api/#uma-2-resource-registration-api): used by Resource Server to request resources protection on behalf of the Ressource Owner(RO)   
 
 
 
