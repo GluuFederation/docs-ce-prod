@@ -37,7 +37,7 @@ pages:
             - 'SMS OTP': 'authn-guide/sms-otp.md'
             - 'Passport OAuth2': 'authn-guide/passport.md'
             - 'Duo Security': 'authn-guide/duo.md'
-            - 'Passport SAML': 'authn-guide/inbound-saml-passport.md'
+            - 'Passport Inbound SAML': 'authn-guide/inbound-saml-passport.md'
             - 'Certificate Authentication': 'authn-guide/cert-auth.md'
             - 'Google+ OAuth 2.0': 'authn-guide/google.md'
             - 'Account Lockout': 'authn-guide/lockout.md'
