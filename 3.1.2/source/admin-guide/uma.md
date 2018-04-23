@@ -75,53 +75,31 @@ oxId: View
 oxIconUrl: http://<hostname>/uma/icons/view_scope.png
 ```
 
-### Add Scopes
-This section describes the process of adding UMA scopes in the Gluu Server GUI. Scopes are accessed by navigating to the `UMA` > `Scopes` in the right hand menu.
+### List UMA Scopes
+List of UMA scope can be found in Gluu server oxTrust Admin UI under `UMA` > `Scopes` section.
 
-![uma-scopes](../img/uma/uma-scopes.png)
+![uma-scopes](../img/uma/uma_scopes.png)
 
-The search bar can be used to find existing available scopes. New scopes can be added by clicking on the `Add Scope Description` button which will bring up the interface shown below:
+### Add UMA Scope
+A new UMA scope can be added by navigating to `UMA` > `Scopes` and then click **Add Scope** button.
 
-![uma-scopes](../img/uma/scopes-add.png)
+![uma-scopes](../img/uma/uma_scope_add.png)
 
 Additionally there is an option to add authorization policy with the new scope.
 
 
-## Resource Registration
-Resources protected by UMA 2 must be registered in oxTrust by navigating to `UMA` > `Resources`. 
+## Resource Management
 
-![uma-resources](../img/uma/uma-resources.png)
+As stated in the [spec](https://docs.kantarainitiative.org/uma/wg/rec-oauth-uma-federated-authz-2.0.html), the Authorization server(AS) should exposes an protected API that Resource Server(RS) should use to manage resources intented for protection.
+Gluu server as a RS respect this specification and ship with a protect API that the Resource Server(RS) can use to :
 
-### Add Resource
+1. Create resource
+1. Update resource
+1. Delete ressource
+1. List protected resources
 
-Click the `Add Resource Set` button to add a new UMA 2 resource. 
+For more information about the resources protection API check [this link](https://gluu.org/docs/ce/api-guide/uma-api/#uma-2-resource-registration-api).
 
-![add-resource-set](../img/uma/add-resource-set.png)
-
-The following propterties describe a resource:
-
-- name
-- scopes
-- type
-- icon\_uri
-
-The resource type can be a string, URI or any other value type supported by the Gluu Server. The properties shown above are not concrete, and it is possible that a resource may contain custom properties. 
-
-An example of the resource JSON is given beow:
-
-```
-{
-"name":"scim_access",
-"icon_uri":"https:\/\/<hostname>\/identity\/uma\/scope\/file\/scim_access"
-}
-```
-
-!!! Note
-    The resource JSON may contain custom properties.
-
-There is an additional button, `Add Scope` that allows the administrator to add specific scopes to the resource. 
-
-![add-scope](../img/uma/add-scope.png)
 
 By default, Gluu Server is shipped with SCIM resources protected by UMA. Learn more in the [SCIM protected by UMA documentation](../user-management/scim2#scim-protected-by-UMA). 
 
@@ -432,7 +410,11 @@ Below is example of including all scopes except `http://photoz.example.com/dev/a
 If you need to secure apps with OpenID Connect RP and UMA 2 RS code, you might want to take a look at our [oxd client software](http://oxd.gluu.org).
 
 ## UMA API
-Learn more about the Gluu Server's [UMA-API](../api-guide/uma-api.md). 
+
+As Authorisation Server(AS), Gluu server ship with two UMA APIs:
+
+1. The client API documented [here](https://gluu.org/docs/ce/api-guide/uma-api/#uma-2-token-endpoint-api): used by clients to obtains RPT. 
+2. The Protection API documented [here](https://gluu.org/docs/ce/api-guide/uma-api/#uma-2-resource-registration-api): used by Resource Server to request resources protection on behalf of the Ressource Owner(RO) 
 
 
 
