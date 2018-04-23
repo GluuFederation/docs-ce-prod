@@ -1,14 +1,14 @@
-# New features and enhancements
+## New features and enhancements
 
 SCIM server implementation was updated for version 3.1.3 in order to adhere more closely to SCIM standard and include features we had been missing. The following summarizes the most important enhancements:
 
-## Stricter validations
+### Stricter validations
 
 Validations applied upon input data are more demanding now. We have added and fine-tuned checks to verify that data which is supposed to represent things like countries, languages, locales, timezones, e-mails, URLs, dates, etc. are syntactically valid and follow the standard recommendations.
 
 Also we have added business logic to correctly apply the processing rules when it comes to handling read-only and immutable attributes.
 
-## Improved searching behaviour
+### Improved searching behaviour
 
 We have added searching capabilities so that it's possible to make general searches now, that is, you can have in your search results a mix of different resource types (Users, groups, etc.).
 
@@ -18,17 +18,17 @@ The processing of filter expressions used in searches adheres more closely to sp
 
 Additionally if errors are found when parsing expressions, the descriptions returned are helpful to spot where the problem is.
 
-## Safer modifications of resources via PATCHes
+### Safer modifications of resources via PATCHes
 
 After studying how resource updates work according to the spec, it's easy to notice that PUT may lead to surprising results. Despite our PUT implementation is "relaxed" in a way that it's difficult to get into problematic scenarios, we have added PATCH support which enables developers to be concise about the changes they want to apply on SCIM resources. Now it's possible to define with precision what will be updated, removed, or added from a resource all in a single operation.
 
 To learn more about PATCH see section 3.5.2 of RFC 7644. For users of SCIM-Client there is a bunch of [test cases](src/test/java/gluu/scim2/client/patch) as well.
 
-## More control on responses content
+### More control on responses content
 
 Now **all operations** (except for bulk and delete) allow developers to specify the attributes that will be returned for every resource (User, group, etc.) included in a response by means of `attributes` and `excludedAttributes` query params. See section 3.9 of RFC 7644.
 
-## More precise error messages
+### More precise error messages
 
 When an anomaly is presented as a result of processing a service request (e.g. a malformed input, attribute mutability conflicts, non-existing resources, etc.), the trace of messages appearing in the log is more expressive so it's easier to be on the errors trail. The error responses returned by the server are accurate about the cause of errors so ideally instead of checking logs, developers just need to inspect the contents of the reponse.
 
@@ -36,24 +36,24 @@ To learn more about how error handling is standardized in SCIM, please read sect
 
 [This section](#how-do-i-add-custom-error-handling) explains how to do error handling for SCIM-Client users.
 
-## New chances for post-processing
+### New chances for post-processing
 
 Formerly, developers might execute custom code via Python interception scripts just before changes were being saved to LDAP whether for creation, update, or removal of users and groups. Now, in addition to pre-persistence events, there is also room for post-persistence processing. This way developers can trigger execution of custom code that is applicable only after changes are actually saved.
 
-## Server output is compliant
+### Server output is compliant
 We have striven after standard compliance and fixed subtle mistakes and deviations from the spec that were detected in serialization routines. 
 
-## Better javadocs
+### Better javadocs
 Java users can benefit from comprehensive api docs in maven projects such as `scim-client2` and `oxtrust-scim`.
 
 
-# Important updates for developers
+## Important updates for developers
 
-## Behavior changes
+### Behavior changes
 
 In previous implementations we detected a few practices that did not stick appropriately to the standard. Now they are fixed but you may need to adjust your applications or workflows accordingly.
 
-### No group assignments at /Users endpoint
+#### No group assignments at /Users endpoint
 
 According to spec (see section 4.1.2 of RFC 7643) the multi-valued attribute "groups" in User resource "... has a mutability of *readOnly*, and group membership changes MUST be applied via the Group Resource". Mistakenly, our previous implementations allowed developers to do group assignments via POST or PUT in the /Users endpoint.
 
@@ -61,7 +61,7 @@ Please adjust your code so that memberships are only manipulated via /Groups . T
 
 The implementation takes care of updating group and user entries in LDAP accordingly and consistently after every modification. You can use PUT to replace (overwrite) all members of a Group at once, or PATCH to add or remove specific users to the existing members list.
 
-### Adjustments in how attributes are returned
+#### Adjustments in how attributes are returned
 
 Two aspects have changed with regards to multi-valued attributes:
 
@@ -80,7 +80,7 @@ For single-valued attributes that are not assigned (no data), the same rule appl
 
 In current version, the attribute/value pair is not present.
 
-### Bulks not returning resource contents
+#### Bulks not returning resource contents
 
 As section 3.7 of RFC 7644 mentions, when a bulk operation is successful the server may elect to omit the response body. We have chosen to do so in contrast to previous implementation that included the complete resource contents back to the client. This allows us to reduce the overhead of Bulk operations.
 
