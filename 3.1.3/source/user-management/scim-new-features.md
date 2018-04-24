@@ -86,6 +86,38 @@ As section 3.7 of RFC 7644 mentions, when a bulk operation is successful the ser
 
 When the status of an operation is not in the 200-series response, the body of the error is actually included.
 
+#### No LDAP attribute names for filter/sort clauses
+
+A not very elegant practice sometimes used by developers acquainted with Gluu LDAP schema was employing LDAP attribute names to issue searches. As an example the following would convey searching for a match with a particular creation date: 
+
+```
+{
+  "schemas": ["urn:ietf:params:scim:api:messages:2.0:SearchRequest"]
+  "filter": "oxCreationTimestamp eq \""2011-05-13T04:42:34Z"\"",
+  ...
+}
+```
+
+The correct way to issue a query is by employing SCIM schema attributes only. A working translation of the previous example would be:
+```
+{
+  "schemas": ["urn:ietf:params:scim:api:messages:2.0:SearchRequest"]
+  "filter": "meta.created eq \""2011-05-13T04:42:34Z"\"",
+  ...
+}
+```
+
+To know the "right" names available to use, just inspect the server schema ([/Schemas](../api-guide/scim-api.md#identityrestv1scimv2schemas)) endpoint, or take a look at RFC 7643, and locate your resource of interest (User, FidoDevice, etc.).
+
+The analog applies when `sortBy` attributes are specified.
+
+#### Pairwise identifiers 
+
+Handling of public pairwise identifiers (PPIDs) changed slightly. This multivalued attribute is modeled as one with returnability "request", meaning that to make it part of responses in searches or queries, developers need to explicitly request it, in other words, supply it in the `attributes` query param. Take into account that using LDAP attribute name `oxPPID` will not work. See the immediately previous section.
+
+This special attribute cannot be modified (its mutability being "readOnly"), however it can be removed. For this particular operation developers have to use PATCH.
+
+For examples on pairwise identifiers usage, you may like to check this Java [test case](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.3/scim-client2/src/test/java/gluu/scim2/client/corner/PairwiseIdentifiersTest.java#L22-L21).
 
 ### About SCIM-Client
 
