@@ -30,7 +30,8 @@ The following guide will explain how to debug [custom interception scripts](../a
           except ImportError as ex:
               print "Failed to import pydevd: %s" % ex
               raise
-      ```
+      ```     
+      
   1. Add the following lines wherever breakpoints are needed:   
       ```
       if REMOTE_DEBUG:
