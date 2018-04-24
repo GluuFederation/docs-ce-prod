@@ -16,11 +16,11 @@ Snaphots should be taken for all Gluu environemnts (e.g. Prod, Dev, QA, etc.) an
 ## Tarball Method
 Tarball the entire Gluu Server CE `chroot` folder using the `tar` command: 
 
-1. Stop the server: `# service gluu-server-3.1.2 stop`
+1. Stop the server: `# service gluu-server-3.1.3 stop`
 	
-1. Use `tar` to take a backup: `# tar cvf gluu301-backup.tar /opt/gluu-server-3.1.2/`
+1. Use `tar` to take a backup: `# tar cvf gluu301-backup.tar /opt/gluu-server-3.1.3/`
 	
-1. Start the server again: `# service gluu-server-3.1.2 start`
+1. Start the server again: `# service gluu-server-3.1.3 start`
 	
 
 ## LDIF Data Backup
@@ -43,7 +43,7 @@ At runtime (if you don't want to stop the LDAP server), you can always use the `
 ## Script Method
 
 1. Login to Gluu chroot
-	a. # service gluu-server-3.1.2 login
+	a. # service gluu-server-3.1.3 login
 2. Fetch export script from Gluu 
 	b. wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/export24.py
 3. Change permission of the script
