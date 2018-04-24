@@ -7,7 +7,7 @@ The Gluu Server can be configured to delegate user authentication to one or more
 After authentication at an external IDP, if there is no existing user record in Gluu, one will be created dynamically. Once personal data has been obtained and added to Gluu's local LDAP directory service, it can be used to offer SSO to all applications leveraging Gluu for authentication. 
 
 ## Prerequisites
-- Gluu Server CE 3.1.2 with Passport.js   
+- Gluu Server CE 3.1.3 with Passport.js   
 
 ## Sequence Diagram
 ![passport-saml-sequence-diagram](../img/user-authn/passport/passport-sequence-diagram.png)
@@ -57,12 +57,12 @@ Then follow the next steps:
         This script is updated from time to time. We recommend checking the [SAML Passport Authenticator script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/saml-passport/SamlPassportAuthenticator.py) and confirming it matches the script included in your distribution of Gluu.
 
 1. Click the "Update" at the bottom of the page.
-   ![](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/passport/update_passport_02.png)   
+   ![](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.3/3.1.3/source/img/user-authn/passport/update_passport_02.png)   
 
 1. Navigate to `Configuration `>` Manage Authentication` > `Passport Authentication Method`   
 
 1. Select "Enabled" from `Passport Support` drop-down list and click "Update"
-   ![](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/user-authn/passport/passport_auth_method_03.png)    
+   ![](https://github.com/GluuFederation/docs-ce-prod/blob/3.1.3/3.1.3/source/img/user-authn/passport/passport_auth_method_03.png)    
 
 1. Once initial configuration is completed, restart the `passport` service by following the below instructions:   
 
@@ -161,7 +161,7 @@ Passport will generate SAML SP metadata for every IDP listed in the `passport-sa
 
 The metadata is published as URLs similar to this format: `https://<hostname>/passport/auth/meta/idp/<IDP-id-from-passport-saml-config>`. It can also be found under `/opt/gluu/node/passport/server/idp-metadata` directory within Gluu's chroot container, copied to your local machine, then uploaded to remote external IDPs.
 
-The actual process of creating trust will differ across IDP implementations. For example, for cases when the remote IDP is another Gluu Server CE instance, the relevant [documentation page](https://gluu.org/docs/ce/3.1.2/admin-guide/saml/#create-a-trust-relationship) should be followed. In case of other SAML IDP implementations, consult the corresponding documentation.
+The actual process of creating trust will differ across IDP implementations. For example, for cases when the remote IDP is another Gluu Server CE instance, the relevant [documentation page](https://gluu.org/docs/ce/3.1.3/admin-guide/saml/#create-a-trust-relationship) should be followed. In case of other SAML IDP implementations, consult the corresponding documentation.
 
 !!! Note 
     When registering the Passport SP at each remote IDP, at least `username` and `email` attributes will be required for each user.
@@ -195,7 +195,7 @@ Follow the guidelines below to install the Demo app at your Gluu Server host. Co
 #### Console configuration steps
 
 1. Connect to the Gluu Server via SSH    
-2. Login to the chroot container: `# service gluu-server-3.1.2 login`       
+2. Login to the chroot container: `# service gluu-server-3.1.3 login`       
 3. Ensure incoming connections to TCP port 3000 are allowed to reach applications running on this machine     
 4. Download the [project files](https://github.com/GluuFederation/Inbound-SAML-Demo) manually and upload them to this machine, or clone the project using `git`: `# git clone https://github.com/GluuFederation/Inbound-SAML-Demo`     
 5. Move the downloaded files into "node" user home directory: `# cp -R ./Inbound-SAML-Demo /home/node/`       
