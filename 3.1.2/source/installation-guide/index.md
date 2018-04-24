@@ -14,8 +14,11 @@ The Gluu Server needs to be deployed on a server or VM with the following **mini
 
 If you plan on installing more than the default components (i.e. oxAuth, oxTrust, and LDAP), we recommend using a machine with at least 8GB of RAM. 
 
-!!! warning
+!!! Warning
     Docker deployments are not currently supported! 
+    
+!!! Warning
+    Gluu must be deployed on a server or VM with a static IP Address. 
 
 ## Supported Operating Systems
 Deploy Gluu on a server or VM with one of the following supported operating systems:
