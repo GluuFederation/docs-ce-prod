@@ -73,7 +73,7 @@ Let's start by configuring a very basic CAS setup which only returns user's id t
 
 1. Move into the Gluu CE container: 
 
-    `# service gluu-server-3.1.2 login`
+    `# service gluu-server-3.1.3 login`
     
 2. Edit `/opt/gluu/jetty/identity/conf/shibboleth3/idp/cas-protocol.xml.vm` template file by 
 putting a `ServiceDefinition` bean inside pre-existing `reloadableServiceRegistry`
@@ -126,7 +126,7 @@ containing at least your user id (which is taken from `uid` attribute by default
 
 Shibboleth IdP requires you to define all atributes it will work with 
 when serving SAML and CAS requests in `/opt/shibboleth-idp/conf/attribute-resolver.xml` file. 
-Though Gluu CE 3.1.2 doesn't offer complete CAS support in admin web UI, 
+Though Gluu CE 3.1.3 doesn't offer complete CAS support in admin web UI, 
 there is a neat hack which can make this step easier for you. 
 As all attributes added to list of released attributes of any SAML TR in 
 web UI are automatically placed in the `attribute-resolver.xml`, 
@@ -173,7 +173,7 @@ to service registry in the beginning:
 
 1. Move into the Gluu CE container: 
 
-    `# service gluu-server-3.1.2 login`
+    `# service gluu-server-3.1.3 login`
     
 2. Edit `/opt/gluu/jetty/identity/conf/shibboleth3/idp/attribute-filter.xml.vm` 
 template file by putting an `AttributeFilterPolicy` bean provided below right 

@@ -17,6 +17,10 @@ If you plan on installing more than the default components (i.e. oxAuth, oxTrust
 
 !!! warning
     Docker deployments are not currently supported! 
+    
+!!! Warning
+    Gluu must be deployed on a server or VM with a static IP Address. The static IP address should resolve to a computer hostname which can be achieved by adding an entry to the DNS server or in `/etc/hosts`.     
+    
 
 ## Supported Operating Systems
 Deply Gluu on a server or VM with one of the following supported operating systems:

@@ -6,8 +6,8 @@ When it comes to troubleshooting issues in the Gluu Server--from service hiccups
 See what's going on by tailing the `identity` and `oxauth` logs:
 
 ```
-$ tail -f /opt/gluu-server-3.1.2/opt/gluu/jetty/identity/logs/* \
-          /opt/gluu-server-3.1.2/opt/gluu/jetty/oxauth/logs/*
+$ tail -f /opt/gluu-server-3.1.3/opt/gluu/jetty/identity/logs/* \
+          /opt/gluu-server-3.1.3/opt/gluu/jetty/oxauth/logs/*
 ```       
 
 Logs can be lengthy and difficult to search. As needed, all logs inside the container can be cleared by using the clear-log feature explained in [clear-logs](./logs.md#clearing-logs).
@@ -17,9 +17,9 @@ Logs can be lengthy and difficult to search. As needed, all logs inside the cont
 Run the following commands if you find your instance running out of disk space:
 
 ```
-# /etc/init.d/gluu-server-3.1.2 stop
-# rm -rf /opt/gluu-server-3.1.2/opt/jetty-9.3/temp/*
-# /etc/init.d/gluu-server-3.1.2 start
+# /etc/init.d/gluu-server-3.1.3 stop
+# rm -rf /opt/gluu-server-3.1.3/opt/jetty-9.3/temp/*
+# /etc/init.d/gluu-server-3.1.3 start
 ```
 
 ## Connect a remote debugger
@@ -30,7 +30,7 @@ Connecting your local debugger up to Gluu can help with troubleshooting.
 Change the configuration of the `init.d` scripts for the `identity` and `oxauth` processes:
 
 ```
-# /etc/init.d/gluu-server-3.1.2 login
+# /etc/init.d/gluu-server-3.1.3 login
 # vim /etc/default/identity
 ```
 
@@ -98,7 +98,7 @@ For `oxAuth`:
 ```
 $ git clone https://github.com/GluuFederation/oxAuth.git
 $ cd oxAuth
-$ git checkout version_3.1.2
+$ git checkout version_3.1.3
 ```
 
 For `identity`:
@@ -106,7 +106,7 @@ For `identity`:
 ```
 $ git clone https://github.com/GluuFederation/oxTrust.git
 $ cd oxTrust
-$ git checkout version_3.1.2
+$ git checkout version_3.1.3
 ```
 
 ## Find your Gluu Server version
@@ -118,7 +118,7 @@ The Gluu Server version can be found in the oxTrust dashboard. Alternatively:
 
     a. Use the below command
     
-     `# service gluu-server-3.1.2 login`
+     `# service gluu-server-3.1.3 login`
      
 3. To find oxTrust version
 
@@ -136,7 +136,7 @@ identified with the [port number](./ports.md) after the localhost.
 
 Sooner or later you will probably want to peek at what is stored in the Gluu Server's local LDAP. This means connecting something like Apache Directory Studio to the `slapd` process running inside the chroot container.
 
-You can find the configuration you need in `/opt/gluu-server-3.1.2/etc/gluu/conf/ox-ldap.properties`, e.g.:
+You can find the configuration you need in `/opt/gluu-server-3.1.3/etc/gluu/conf/ox-ldap.properties`, e.g.:
 
 ```
 bindDN: cn=directory manager,o=gluu
