@@ -51,6 +51,24 @@ documentation and administrative guide.
 
 - [#785](https://github.com/GluuFederation/oxAuth/issues/785) Add support for CacheProvider/Redis authentication
 
+- [#780](https://github.com/GluuFederation/oxAuth/issues/780) Use of SHA-1 in JweEncrypterImpl.java and JweDecrypterImpl.java
+
+- [#779](https://github.com/GluuFederation/oxAuth/issues/779) OpenID configuration: frontchannel_logout_supportedreturns value as string, not boolean
+
+- [#777](https://github.com/GluuFederation/oxAuth/issues/777) Misnomers in passport icons prevents usage of certain social strategies of passport
+
+- [#772](https://github.com/GluuFederation/oxAuth/issues/772) UMA Introspection endpoint throw NPE when access sub claim
+
+- [#770](https://github.com/GluuFederation/oxAuth/issues/770) Fields don't match in userinfo and entrospection endpoints' responses
+
+- [#768](https://github.com/GluuFederation/oxAuth/issues/768) oxAuth showing error when trying to SSO using SAML SP
+
+- [#763](https://github.com/GluuFederation/oxAuth/issues/763) Allow to provide list of possible claims bound to a specific dynamic scope in corresponding OP's metadata elements
+
+- [#762](https://github.com/GluuFederation/oxAuth/issues/762) Multi LDAP basic authenticaton script should update authentication metrics
+
+- [#758](https://github.com/GluuFederation/oxAuth/issues/758) FIDO U2F application id should be either IP/DNS
+
 - [#755](https://github.com/GluuFederation/oxAuth/issues/755) Add creation and expiration dates to UMA resource entry
 
 - [#754](https://github.com/GluuFederation/oxAuth/issues/754) Add description and oxdID to client metadata
@@ -168,6 +186,8 @@ documentation and administrative guide.
 - [#417](https://github.com/GluuFederation/community-edition-setup/issues/417) Create tmpfile.d conf for jetty configuration
 
 ### [GluuFederation/oxcore](https://github.com/GluuFederation/oxcore/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.3+)
+
+- [#76](https://github.com/GluuFederation/oxCore/issues/76) Update java libs to latest versions. Upgrade 3rd party components
 
 - [#75](https://github.com/GluuFederation/oxCore/issues/75) Fix redirect to app_script.log file after update Jython to 2.7.1
 
