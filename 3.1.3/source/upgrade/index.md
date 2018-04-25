@@ -180,7 +180,7 @@ Install the `json-merge` Python package and run the import script.
 # python export3031.py
 ```
 
-!!! Note Choose OpenLDAP if your current LDAP Server is OpenLDAP when you asked to choose target LDAP Server.
+!!! Note If your current gluu server version is < 3.1.2 choose OpenLDAP if your current LDAP Server is OpenLDAP when you asked to choose target LDAP Server.
 
 The export script will generate a directory called `backup_3031` which will have all the data from the current installation. Check the log file generated in the directory for any errors.
 
