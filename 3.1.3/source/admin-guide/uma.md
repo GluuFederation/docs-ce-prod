@@ -92,39 +92,6 @@ Resources protected by UMA 2 must be registered in oxTrust by navigating to `UMA
 
 ![uma-resources](../img/uma/uma-resources.png)
 
-### Add Resource
-
-Click the `Add Resource Set` button to add a new UMA 2 resource. 
-
-![add-resource-set](../img/uma/add-resource-set.png)
-
-The following propterties describe a resource:
-
-- name
-- scopes
-- type
-- icon\_uri
-
-The resource type can be a string, URI or any other value type supported by the Gluu Server. The properties shown above are not concrete, and it is possible that a resource may contain custom properties. 
-
-An example of the resource JSON is given beow:
-
-```
-{
-"name":"scim_access",
-"icon_uri":"https:\/\/<hostname>\/identity\/uma\/scope\/file\/scim_access"
-}
-```
-
-!!! Note
-    The resource JSON may contain custom properties.
-
-There is an additional button, `Add Scope` that allows the administrator to add specific scopes to the resource. 
-
-![add-scope](../img/uma/add-scope.png)
-
-By default, Gluu Server is shipped with SCIM resources protected by UMA. Learn more in the [SCIM protected by UMA documentation](../user-management/scim2#scim-protected-by-UMA). 
-
 ## UMA RPT Authorization Policies
 UMA RPT Authorization policy's are associated with UMA scopes. An authorization request has a resource_id and scope(s). Each scope can point to one or more policies. If all policies associated with all scopes return `true`, then access is granted. 
 
