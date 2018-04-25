@@ -164,7 +164,7 @@ Gluu provides the necessary [scripts](https://github.com/GluuFederation/communit
 # wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/ldif.py
 ```
 
-Install the `python-pip` package using your package manager.
+Install the `python-pip` package.
 
 ```
 # curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
