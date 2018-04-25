@@ -264,9 +264,7 @@ Now run import script:
 ```
 
 !!! Note
-    
     Import script will enable default admin user and will disable all custom authentcation scrpts. You should manually enable if you had configured one.
-    
     After completion of import, stop/start gluu-server container one final time
 
 Any errors or warnings will be displayed in the terminal and can be reviewed in the import log. Now you should be able to log into the oxTrust web UI using the old admin credentials and you should see all previous data in place. 
@@ -400,9 +398,7 @@ You'll be asked whether or not you want to import your LDAP server settings from
 
 
 !!! Note
-
     Import script will enable default admin user and will disable all custom authentcation scrpts. You should manually enable if you had configured one.
-    
     After completion of import, stop/start gluu-server container one final time.
 
 Any errors or warnings will be displayed in the terminal and can be reviewed in the import log. 
