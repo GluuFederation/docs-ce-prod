@@ -157,25 +157,18 @@ Gluu provides the necessary [scripts](https://github.com/GluuFederation/communit
 ```
 # service gluu-server-3.0.x login
 
+# cd
+
 # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/export3031.py
 
 # wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/ldif.py
-
 ```
 
 Install the `python-pip` package using your package manager.
 
 ```
-# apt-get update
-# apt-get install python-pip
-
-or
-
-# yum -y install python-pip
-
-or, for CentOS/RHEL 7x series
-
 # curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+
 # python get-pip.py
 ```
 
@@ -208,6 +201,8 @@ Review the [installation docs](../installation-guide/install.md) to install the 
 
 # service gluu-server-3.1.3 login
 
+# cd
+
 # cp backup_3031/setup.properties /install/community-edition-setup/
 
 # cd /install/community-edition-setup/
@@ -222,25 +217,18 @@ Enter the required information to complete the installation.
 Navigate to where you have the `backup_3031` folder (if the above commands were followed, it is in `/root/`) and execute the following commands to get the necessary scripts.
 
 ```
+# cd
 
 # wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/import3031.py
 
-# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/ldif.py
+# wget https://raw.githubusercontent.com/GluuFederation/cluster-mgr/master/testing/ldifschema_utils.py
 ```
 
 Install the `python-pip` package using your package manager.
 
 ```
-# apt-get update
-# apt-get install python-pip
-
-or
-
-# yum -y install python-pip
-
-or, for CentOS/RHEL 7x series
-
 # curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+
 # python get-pip.py
 ```
 
@@ -250,11 +238,35 @@ Install the `json-merge` Python package and run the import script.
 # pip install jsonmerge
 
 # chmod +x import3031.py
+```
 
+Install python-ldap package. 
+For Debian and Ubuntu:
+
+```
+# apt-get update
+
+# apt-get install python-ldap
+
+```
+
+For CentOS and RHEL:
+
+```
+# yum install python-ldap
+
+```
+
+Now run import script:
+
+```
 # ./import3031.py backup_3031
 ```
 
 !!! Note
+    
+    Import script will enable default admin user and will disable all custom authentcation scrpts. You should manually enable if you had configured one.
+    
     After completion of import, stop/start gluu-server container one final time
 
 Any errors or warnings will be displayed in the terminal and can be reviewed in the import log. Now you should be able to log into the oxTrust web UI using the old admin credentials and you should see all previous data in place. 
@@ -301,25 +313,19 @@ After migration is done you should be able to log in as the temporary admin user
 ```
 # service gluu-server-2.x.x login
 
+# cd
+
 # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/export2431.py
 
 # wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/ldif.py
 
 ```
 
-Install the `python-pip` package using your package manager.
+Install the `python-pip` package.
 
 ```
-# apt-get update
-# apt-get install python-pip
-
-or
-
-# yum -y install python-pip
-
-or, for CentOS/RHEL 7x series
-
 # curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+
 # python get-pip.py
 ```
 
@@ -345,28 +351,21 @@ Stop the current version of the Gluu Server.
 
 Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.1.3`, then follow next steps to prepare :
 
-1. `# cp -r /opt/gluu-server-2.4.x/root/backup_2431/ /opt/gluu-server-3.1.3/root/`
+```
+# cp -r /opt/gluu-server-2.4.x/root/backup_2431/ /opt/gluu-server-3.1.3/root/
 
-2. `# service gluu-server-3.1.3 start`
+# service gluu-server-3.1.3 start
 
-3. `# service gluu-server-3.1.3 login`
+# service gluu-server-3.1.3 login
 
-4. For 3.1.3 packages which use OpenDJ, `setup.properties` needs to be modified before feeded to `./setup.py`.
+# cd
 
-    4.1. Open it for editing: `# vi backup_2431/setup.properties`
+# cp backup_2431/setup.properties /install/community-edition-setup/
 
-    4.2. Find the "ldap_type=openldap" line and change it to "ldap_type=opendj"
-  
-    4.3. Add the "opendj_version=3.0" line at the end of the file
-  
-    4.4. Save your changes and exit the editor.
+# cd /install/community-edition-setup/
 
-5. `# cp backup_2431/setup.properties /install/community-edition-setup/`
-
-6. `# cd /install/community-edition-setup/`
-
-7. `# ./setup.py`
-
+# ./setup.py
+```
 Enter the required information to complete the installation.
 
 ### Import your Old Data
@@ -374,25 +373,18 @@ Enter the required information to complete the installation.
 Navigate to where you have the `backup_2431` folder (if the above commands were followed, it is in `/root/`) and execute the following commands to get the necessary scripts.
 
 ```
+# cd
 
-# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/ae419a5bc9abf17875f23e6d1c224461aad924d1/static/scripts/import2431.py
+# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/export2431.py
 
-# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/ldif.py
+# wget https://raw.githubusercontent.com/GluuFederation/cluster-mgr/master/testing/ldifschema_utils.py
 ```
 
-Install the `python-pip` package using your package manager.
+Install the `python-pip` package.
 
 ```
-# apt-get update
-# apt-get install python-pip
-
-or
-
-# yum -y install python-pip
-
-or, for CentOS/RHEL 7x series
-
 # curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+
 # python get-pip.py
 ```
 
@@ -401,15 +393,16 @@ Install the `json-merge` Python package and run the import script.
 ```
 # pip install jsonmerge
 
-# chmod +x import2431.py
-
-# ./import2431.py backup_2431
+# python import2431.py backup_2431
 ```
 
 You'll be asked whether or not you want to import your LDAP server settings from the old instance (the ones specified on "Manage Authentication" > "Manage LDAP Authentication" page/tab). If authentication against some remote backend LDAP server was used in the old instance and you expect to be able to log in with your old credentials after import is done, choose `[1]("yes")`. Choosing `[2]("no")` will keep default settings of the new instance (will verify user's credentials against Gluu's internal LDAP server).
 
 
 !!! Note
+
+    Import script will enable default admin user and will disable all custom authentcation scrpts. You should manually enable if you had configured one.
+    
     After completion of import, stop/start gluu-server container one final time.
 
 Any errors or warnings will be displayed in the terminal and can be reviewed in the import log. 
