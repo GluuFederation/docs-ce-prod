@@ -177,9 +177,7 @@ Install the `json-merge` Python package and run the import script.
 ```
 # pip install jsonmerge
 
-# chmod +x export3031.py
-
-# ./export3031.py
+# python export3031.py
 ```
 
 The export script will generate a directory called `backup_3031` which will have all the data from the current installation. Check the log file generated in the directory for any errors.
@@ -236,8 +234,6 @@ Install the `json-merge` Python package and run the import script.
 
 ```
 # pip install jsonmerge
-
-# chmod +x import3031.py
 ```
 
 Install python-ldap package. 
@@ -247,20 +243,18 @@ For Debian and Ubuntu:
 # apt-get update
 
 # apt-get install python-ldap
-
 ```
 
 For CentOS and RHEL:
 
 ```
 # yum install python-ldap
-
 ```
 
 Now run import script:
 
 ```
-# ./import3031.py backup_3031
+# python backup_3031
 ```
 
 !!! Note
@@ -331,8 +325,6 @@ Install the `json-merge` Python package and run the import script.
 
 ```
 # pip install jsonmerge
-
-# chmod +x export2431.py
 
 # python export2431.py
 ```
