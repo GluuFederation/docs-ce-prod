@@ -254,7 +254,7 @@ For CentOS and RHEL:
 Now run import script:
 
 ```
-# python backup_3031
+# python import3031.py backup_3031
 ```
 
 !!! Note
