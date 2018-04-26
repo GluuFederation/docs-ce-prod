@@ -183,3 +183,6 @@ GRUB_SERIAL_COMMAND="serial --speed=19200 --unit=0 --word=8 --parity=no --stop=1
 # update-grub
 # reboot
 ```
+
+## Support
+If you run into issues please review the [Gluu support portal](https://support.gluu.org). If you can't find a similar existing public issue, register for an account and open a new ticket. 
