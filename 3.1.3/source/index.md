@@ -52,7 +52,7 @@ If existing identities are stored in Active Directory or a backend LDAP V3 serve
 ## Identity Management
 Identity and object data such as user profiles, configuration data, tokens and credentials can be managed via the "oxTrust" admin interface or using an LDAP browser, as specified in the [user management guide](./user-management/local-user-management.md). 
 
-The Gluu Server also supports the [SCIM protocol](./user-management/scim2.md) in order to standardize communication between identity data stores and make it fast, cheap, and easy to move users in to, out of, and around the cloud.. 
+The Gluu Server also supports the [SCIM protocol](./user-management/scim2.md) in order to standardize communication between identity data stores and make it fast, cheap, and easy to move users in to, out of, and around the cloud.
 
 !!! Note
     The Gluu Server does **not** include features for delegated administration, role definition, approvals and workflows, etc. In enterprise workflows, Gluu is a consumer of information from identity management and governance systems. 
