@@ -156,15 +156,15 @@ The Authorization Endpoint performs Authentication of the end-user. This is done
 	    <td>string</td>
 	</tr> 
         <tr>
-            <th>codeChallange</th>
+            <th>codeChallenge</th>
             <td>false</td>
-            <td>This parameter allows the code to be challanced using PKCE.</td>
+            <td>This parameter allows the code to be challenged using PKCE.</td>
             <td>string</td>
         </tr>
         <tr>
-            <th>codeChallangeMethod</th>
+            <th>codeChallengeMethod</th>
             <td>false</td>
-            <td>This parameter allows the use of PKCE to challange code.</td>
+            <td>This parameter allows the use of PKCE to challenge code.</td>
             <td>string</td>
 	</tr>
        <tr>
@@ -733,15 +733,15 @@ The Authorization Endpoint performs Authentication of the end-user.
             <td>string</td>
         </tr>
 	<tr>
-	    <th>code_challange</th>
+	    <th>code_challenge</th>
 	    <td>false</td>
-	    <td>PKCE Code challange</td>
+	    <td>PKCE Code challenge</td>
 	    <td>string</td>
 	</tr>
 	<tr>
-	    <th>code_challange_method</td>
+	    <th>code_challenge_method</td>
 	    <td>false</td>
-	    <td>PKCE code challange method</td>
+	    <td>PKCE code challenge method</td>
 	    <td>string</td>
 	</tr>
 </table>
