@@ -1,6 +1,6 @@
 # Gluu Server Community Edition (CE) 3.1.3 Documentation
 ## Introduction
-The Gluu Server is a container distribution of free open source software for identity and access management (IAM). SaaS, custom, open source and commercial web and mobile applications can leverage a Gluu Server for a single source of identity information, authentication, and policy enforcement.
+The Gluu Server is a container distribution of free open source software for identity and access management (IAM). SaaS, custom, open source and commercial web and mobile applications can leverage a Gluu Server for a single source of user identity information, authentication, and policy enforcement.
 
 Common use cases include:
 
