@@ -136,7 +136,10 @@ Configuration is completed by running the `setup.py` script. This generates cert
 !!! Warning
     Only run setup.py **one time**. Running the above command twice will break the instance.
 
-You will be prompted to answer some questions about your deployment. Hit `Enter` to accept the default values.
+!!! Note
+    If you plan to cluster your Gluu Server, we recommend using our fork of OpenDJ when prompted for LDAP installation. 
+
+You will be prompted to answer some questions about your deployment. Hit `Enter` to accept the default values. 
 
 Refer to the following table for details about the available setup options:
 
@@ -152,7 +155,7 @@ Refer to the following table for details about the available setup options:
 | Optional: enter password for oxTrust and LDAP superuser | Used as the LDAP directory manager password, and for the default admin user for oxTrust. |
 | Install oxAuth OAuth2 Authorization Server | Required. Includes Gluu's OpenID Connect provider (OP) and UMA authorization server (AS) implementations.|
 | Install oxTrust Admin UI | Required. This is the Gluu server admin dashboard. |
-| Install LDAP Server | Required. LDAP is used to store user info and configuration data. |
+| Install LDAP Server | Required. LDAP is used to store user info and configuration data. We recommend using the Gluu OpenDJ fork.|
 | Install Passport |  Install if you want to support external IDP, for instance to offer users social login. |
 | Install Apache HTTPD Server | Required |
 | Install Shibboleth SAML IDP | Optional: only install if you need to a SAML identity provider. |
