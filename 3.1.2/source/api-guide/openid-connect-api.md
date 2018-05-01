@@ -158,7 +158,7 @@ The Authorization Endpoint performs Authentication of the end-user. This is done
         <tr>
             <th>codeChallenge</th>
             <td>false</td>
-            <td>This parameter allows the code to be challanced using PKCE.</td>
+            <td>This parameter allows the code to be challenged using PKCE.</td>
             <td>string</td>
         </tr>
         <tr>
