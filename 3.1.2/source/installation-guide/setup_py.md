@@ -5,22 +5,22 @@ The prompt with example values is provided below.
 
 ```
 Enter IP Address [192.168.122.60] :
-Enter hostname [localhost] : idp.mydomain.info
-Enter your city or locality : Austin
-Enter your state or province two letter code : TX
-Enter two letter Country Code : US
+Enter hostname [localhost] : e.g. idp.mydomain.info
+Enter your city or locality : 
+Enter your state or province two letter code : 
+Enter two letter Country Code : 
 Enter Organization Name : MyOrg
-Enter email address for support at your organization : support@mydomain.com
+Enter email address for support at your organization : e.g. support@mydomain.com
 Enter maximum RAM for applications in MB [3072] :
 Optional: enter password for oxTrust and LDAP superuser [hlE3vzf0hMdD] :
 Install oxAuth OAuth2 Authorization Server? [Yes] : 
 Install oxTrust Admin UI? [Yes] : 
 Install LDAP Server? [Yes] : 
 Install Apache HTTPD Server [Yes] : 
-Install Shibboleth SAML IDP? [No] : Yes
-Install Asimba SAML Proxy? [No] : Yes
-Install oxAuth RP? [No] : Yes
-Install Passport? [No] : Yes
+Install Shibboleth SAML IDP? [No] : 
+Install Asimba SAML Proxy? [No] : 
+Install oxAuth RP? [No] : 
+Install Passport? [No] : 
 Install JCE 1.8? [Yes] : 
 You must accept the Oracle Binary Code License Agreement for the Java SE Platform Products to download this software. Accept License Agreement? [Yes] : 
 Do you acknowledge that use of the Gluu Server is under the MIT license? [N|y] : y
@@ -47,7 +47,6 @@ the interactive setup.
 The administrator can use the following command line options to include additional components:
 
 * __-a__ install Asimba
-* __-c__ install CAS
 * __-d__ specify the directory where community-edition-setup is located. Defaults to '.'
 * __-f__ specify `setup.properties` file
 * __-h__ invoke this help
