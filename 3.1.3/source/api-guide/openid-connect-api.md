@@ -1029,6 +1029,9 @@ The ClientInfo Endpoint is an OAuth 2.0 Protected Resource that returns Claims a
 Any OpenID Client needs to register with the OpenID Provider to utilize 
 OpenID Services, in this case register a user, and acquire a client ID and a shared secret.
 
+!!! Note
+    It's possible to specify additional parameters which can be sent in registration and registration management requests in addition to standard ones defined by corresponding specifications. It allows, for example, to set and modify Gluu's propietary client's properties otherwise inaccessible via this protocol. Additional parameters are added as items under "dynamicRegistrationCustomAttributes" section at "Configuration -> JSON Configuration -> oxAuth" page. Each item must contain name of the LDAP attribute storing corresponding property's value (which is usually different from the displayed name of the property). By default it allows setting only "oxAuthTrustedClient" attribute which corresponds to "Pre-Authorization" property.
+
 ### Path
 
 `/oxauth/restv1/register`
