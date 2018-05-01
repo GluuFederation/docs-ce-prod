@@ -146,7 +146,7 @@ The Authorization Endpoint performs Authentication of the end-user. This is done
         <tr>
             <th>accessToken</th>
             <td>false</td>
-            <td>This parameter is optinal and carries the access token for the request.</td>
+            <td>This parameter is optional and carries the access token for the request.</td>
             <td>string</td>
         </tr>
 	<tr>
