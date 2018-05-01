@@ -1,6 +1,6 @@
 # OpenId Connect API
 
-##OpenId Connect Authorization Grant
+## OpenId Connect Authorization Grant
 
 This page provides an interface for request authorization through REST web services.
 
