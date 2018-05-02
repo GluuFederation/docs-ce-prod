@@ -175,9 +175,9 @@ The authorization endpoint performs end-user authentication. This is done by sen
         </tr>
 </table>
 
-The parameter **response_type** determines the authorization processing flows, 
-including the parameters returned from the endpoints, and these values are codes and combination of 
-the values, and these combination can be as below `code`, `token`, and `id_token`.
+The **response_type** parameter determines the authorization processing flows, 
+including the parameters returned from the endpoints. These values can be code or a combination of 
+the values, and can be a combination of `code`, `token`, and/or `id_token`.
 
 <table border="1">
         <tr>
