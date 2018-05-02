@@ -20,25 +20,25 @@ The following guide will explain how to debug [custom interception scripts](../a
 
   1. After the import section, add:   
   
-      ```
-      REMOTE_DEBUG = True
+        ```
+        REMOTE_DEBUG = True
   
-      if REMOTE_DEBUG:
-          try:
-              import sys
-              sys.path.append('/opt/pydevd')
-              import pydevd
-          except ImportError as ex:
-              print "Failed to import pydevd: %s" % ex
-              raise
-      ```     
+        if REMOTE_DEBUG:
+            try:
+                import sys
+                sys.path.append('/opt/pydevd')
+                import pydevd
+            except ImportError as ex:
+                print "Failed to import pydevd: %s" % ex
+                raise
+        ```     
       
   1. Add the following lines wherever breakpoints are needed:   
   
-      ```
-      if REMOTE_DEBUG:
-          pydevd.settrace('DEV_IP', port=5678, stdoutToServer=True, stderrToServer=True)
-      ```
+        ```
+        if REMOTE_DEBUG:
+            pydevd.settrace('DEV_IP', port=5678, stdoutToServer=True, stderrToServer=True)
+        ```
 
 ## Start Flow to Trigger Breakpoint
   1. Enable script  
