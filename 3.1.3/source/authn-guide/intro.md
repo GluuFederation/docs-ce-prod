@@ -38,7 +38,7 @@ Gluu includes interception scripts for the following forms of 2FA:
 - [Duo Security](./duo.md)
 - [Certificate Authentication](./cert-auth.md)
 
-Follow each link to learn how to implement that specific type of 2FA with Gluu. 
+To a support an authentication mechanism not listed above, review the [custom authentication script tutorial](./customauthn.md) to learn how to write your own authentication scripts. 
 
 ### 2FA Credential Management	
 	
