@@ -7,6 +7,8 @@ The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You need
 
 Upgrading from 3.1.x to 3.1.3 involves the following steps:
 
+- Update Jetty from 9.3 to 9.4.9
+
 - Stop oxTrust and oxAuth services
 
 - Backup existing oxTrust and oxAuth .war files
@@ -26,44 +28,72 @@ To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as o
 1. Log into chroot container:  
 
     `# service gluu-server-3.1.x login`
-    
-#### Update Identity .war
 
-2. Stop the identity service:  
+### Update Jetty
 
-    `# service identity stop`
-        
-3. Navigate to the `/opt/gluu/jetty` directory and back up the current app in the root's home directory (just in case you need to restore it later): 
+1. Create all the necessary directories for the upgrade.
 
-    `# cd /opt/gluu/jetty/`
-    
-    `# tar -czf ~/identity.tar.gz identity`
-    
-4. Download and install the latest .war: 
+    ```
+    # mkdir -p /opt/jetty-9.4/
+    # mkdir -p /opt/jetty-9.4/temp
+    # chown jetty:jetty -R /opt/jetty-9.4/*
+    ```
 
-    `# cd /opt/gluu/jetty/identity/webapps/`
-    
-    `# rm identity.war`
-    
-    `# wget https://ox.gluu.org/maven/org/xdi/oxtrust-server/3.1.3.Final/oxtrust-server-3.1.3.Final.war -O identity.war`
 
-5. Start the identity service:  
-    
-    `# service identity start`
+1. Download and extract the Jetty .tgz from eclipse to /opt/jetty-9.4/:
  
+    ```
+    # wget http://central.maven.org/maven2/org/eclipse/jetty/jetty-distribution/9.4.9.v20180320/jetty-distribution-9.4.9.v20180320.tar.gz \
+    -O /opt/jetty-9.4/jetty-distribution-9.4.9.v20180320.tar.gz
+    # tar -xvf /opt/jetty-9.4/jetty-distribution-9.4.9.v20180320.tar.gz -C /opt/jetty-9.4/
+    # rm /opt/jetty-9.4/jetty-distribution-9.4.9.v20180320.tar.gz
+    ```
+1. Unlink the jetty-9.3 directory and link jetty-9.4 to jetty
+
+    ```
+    # unlink /opt/jetty
+    # ln -sf /opt/jetty-9.4/jetty-distribution-9.4.9.v20180320 /opt/jetty
+    # chown -h jetty:jetty /opt/jetty
+    ```
+
+1. Now change the `/etc/default/<service>` files `TMPDIR` from:
+
+    ```
+    TMPDIR=/opt/jetty-9.3/temp
+    ```
+
+    To:
+
+    ```
+    TMPDIR=/opt/jetty-9.4/temp
+    ```
+
+1. Last we need to make a minor adjustment to the initialization process in `/opt/gluu/jetty/<service>/start.ini`:
+
+    ```
+    # Module: logging
+    --module=logging
+    ```
+
+    Becomes:
+
+    ```
+    # Module: logging
+    --module=console-capture
+    ```
 #### Update oxAuth .war
 
-6. Stop oxAuth Service:
+1. Stop oxAuth Service:
 
     `# service oxauth stop`
     
-7. Navigate to the `/opt/gluu/jetty` directory and back up the current app in the root's home directory (just in case you need to restore it later): 
+1. Navigate to the `/opt/gluu/jetty` directory and back up the current app in the root's home directory (just in case you need to restore it later): 
 
     `# cd /opt/gluu/jetty/`
     
     `# tar -czf ~/oxauth.tar.gz oxauth`
     
-8. Download and install the latest WAR: 
+1. Download and install the latest WAR: 
 
     `# cd /opt/gluu/jetty/oxauth/webapps/`
     
@@ -71,31 +101,86 @@ To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as o
     
     `# wget https://ox.gluu.org/maven/org/xdi/oxauth-server/3.1.3.Final/oxauth-server-3.1.3.Final.war -O oxauth.war`
     
-9. Start the oxAuth service:
+1. Start the oxAuth service:
 
     `# service oxauth start`
+    
+#### Update Identity .war
+
+1. Stop the identity service:  
+
+    `# service identity stop`
+        
+1. Navigate to the `/opt/gluu/jetty` directory and back up the current app in the root's home directory (just in case you need to restore it later): 
+
+    `# cd /opt/gluu/jetty/`
+    
+    `# tar -czf ~/identity.tar.gz identity`
+    
+1. Download and install the latest .war: 
+
+    `# cd /opt/gluu/jetty/identity/webapps/`
+    
+    `# rm identity.war`
+    
+    `# wget https://ox.gluu.org/maven/org/xdi/oxtrust-server/3.1.3.Final/oxtrust-server-3.1.3.Final.war -O identity.war`
+
+1. Start the identity service:  
+    
+    `# service identity start`
 
 #### Update Gluu Schema Files
+
+##### OpenDJ
+
+  For the OpenLDAP to be able to accomodate new attributes added to some entries in 3.1.3, its schema files need to be updated. Following the next step will upgrade the schema:
+
+1. Navigate to the `/opt/opendj/config/schema/` directory
+
+   `# cd /opt/opendj/config/schema/`
+
+1. Stop LDAP service:
+
+    `# service opendj stop`
+
+1. Make a backup of the current schema files, which will be `gluu.schema`:
+
+    `# mv 101-ox.ldif 101-ox.ldif.old`
+
+1. Download the schema files to `/opt/opendj/config/schema/`:
+
+    ```
+    # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.3/static/opendj/101-ox.ldif -O 101-ox.ldif
     
+    # chown ldap:ldap 101-ox.ldif
+
+    ```
+
+1. Start LDAP service:
+     
+    `# service opendj start`
+
+##### OpenLDAP
+
   For the OpenLDAP to be able to accomodate new attributes added to some entries in 3.1.3, its schema files need to be updated. The latest schema files can be found [here](https://github.com/GluuFederation/community-edition-setup/tree/master/schema). Following the next step will upgrade the schema:
 
-10. Navigate to `/opt/gluu/schema/openldap` directory 
+1. Navigate to the `/opt/gluu/schema/openldap` directory 
 
     `# cd /opt/gluu/schema/openldap/`
 
-11. Stop LDAP service:
+1. Stop LDAP service:
 
     `# service solserver stop`
     
-12. Make a backup of the current schema files, which will be `gluu.schema`:
+1. Make a backup of the current schema files, which will be `gluu.schema`:
 
     `# mv gluu.schema gluu.schema.old`
     
-13. Download the schema files to `/opt/gluu/schema/openldap`:
+1. Download the schema files to `/opt/gluu/schema/openldap`:
 
     `# wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.3/static/openldap/gluu.schema -O gluu.schema`
 
-14. Start LDAP service:
+1. Start LDAP service:
      
     `# service solserver start`
 
