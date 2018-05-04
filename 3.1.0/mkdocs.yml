@@ -1,7 +1,7 @@
 site_name: Gluu Docs
 site_description: Documenation for Gluu Server
 site_favicon: 'favicon.ico'
-copyright: Copyright &copy; 2017, Gluu, Inc.
+copyright: Copyright &copy; 2018, Gluu, Inc.
 docs_dir: source
 repo_url: https://github.com/GluuFederation/docs-ce-prod/tree/3.1.0/3.1.0
 theme_dir: theme/material
