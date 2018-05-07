@@ -65,7 +65,7 @@ To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as o
   
     Becomes:
 
-    `# Module: logging  
+    `# Module: logging` 
     `--module=console-capture`
  
 #### Update oxAuth .war
