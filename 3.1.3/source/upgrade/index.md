@@ -33,40 +33,40 @@ To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as o
 
 1. Create all the necessary directories for the upgrade.
 
-    /#/ mkdir -p /opt/jetty-9.4/
-    /#/ mkdir -p /opt/jetty-9.4/temp
-    /#/ chown jetty:jetty -R /opt/jetty-9.4/*
+    `# mkdir -p /opt/jetty-9.4/`  
+    `# mkdir -p /opt/jetty-9.4/temp`  
+    `# chown jetty:jetty -R /opt/jetty-9.4/*`  
    
 1. Download and extract the Jetty .tgz from eclipse to /opt/jetty-9.4/:
  
-    /#/ wget http://central.maven.org/maven2/org/eclipse/jetty/jetty-distribution/9.4.9.v20180320/jetty-distribution-9.4.9.v20180320.tar.gz \
-    -O /opt/jetty-9.4/jetty-distribution-9.4.9.v20180320.tar.gz
-    /#/ tar -xvf /opt/jetty-9.4/jetty-distribution-9.4.9.v20180320.tar.gz -C /opt/jetty-9.4/
-    /#/ rm /opt/jetty-9.4/jetty-distribution-9.4.9.v20180320.tar.gz
+    `# wget http://central.maven.org/maven2/org/eclipse/jetty/jetty-distribution/9.4.9.v20180320/jetty-distribution-9.4.9.v20180320.tar.gz \`  
+    `-O /opt/jetty-9.4/jetty-distribution-9.4.9.v20180320.tar.gz`  
+    `# tar -xvf /opt/jetty-9.4/jetty-distribution-9.4.9.v20180320.tar.gz -C /opt/jetty-9.4/`  
+    `# rm /opt/jetty-9.4/jetty-distribution-9.4.9.v20180320.tar.gz`
    
 1. Unlink the jetty-9.3 directory and link jetty-9.4 to jetty
 
-    /#/ unlink /opt/jetty
-    /#/ ln -sf /opt/jetty-9.4/jetty-distribution-9.4.9.v20180320 /opt/jetty
-    /#/ chown -h jetty:jetty /opt/jetty
+    `# unlink /opt/jetty`
+    `# ln -sf /opt/jetty-9.4/jetty-distribution-9.4.9.v20180320 /opt/jetty`
+    `# chown -h jetty:jetty /opt/jetty`
 
 1. Now change the `/etc/default/<service>` files `TMPDIR` from:
 
-    TMPDIR=/opt/jetty-9.3/temp
+    `TMPDIR=/opt/jetty-9.3/temp`  
    
-    To:
+    To:  
 
-    TMPDIR=/opt/jetty-9.4/temp
+    `TMPDIR=/opt/jetty-9.4/temp`  
  
 1. Last we need to make a minor adjustment to the initialization process in `/opt/gluu/jetty/<service>/start.ini`:
 
-    /#/ Module: logging
-    --module=logging
+    `# Module: logging`  
+    `--module=logging`
   
     Becomes:
 
-    /#/ Module: logging
-    --module=console-capture
+    `# Module: logging  
+    `--module=console-capture`
  
 #### Update oxAuth .war
 
