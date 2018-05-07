@@ -136,12 +136,9 @@ To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as o
 
 1. Download the schema files to `/opt/opendj/config/schema/`:
 
-    ```
-    # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.3/static/opendj/101-ox.ldif -O 101-ox.ldif
+    `# wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.3/static/opendj/101-ox.ldif -O 101-ox.ldif`
     
-    # chown ldap:ldap 101-ox.ldif
-
-    ```
+    `# chown ldap:ldap 101-ox.ldif`
 
 1. Start LDAP service:
      
