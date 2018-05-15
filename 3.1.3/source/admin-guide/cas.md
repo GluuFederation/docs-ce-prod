@@ -94,23 +94,27 @@ Pattern like `".*"` may be used as a wildcard to create an "allow-all" definitio
           class="%{idp.cas.serviceRegistryClass:net.shibboleth.idp.cas.service.PatternServiceRegistry}">
         <property name="definitions">
             <list>
-                <!--
+#if ($casParams.enabled)
                 <bean class="net.shibboleth.idp.cas.service.ServiceDefinition"
-                      c:regex="https://([A-Za-z0-9_-]+\.)*example\.org(:\d+)?/.*"
+                      c:regex="$casParams.authorizedToProxyPattern"
                       p:group="proxying-services"
                       p:authorizedToProxy="true"
                       p:singleLogoutParticipant="true" />
                 <bean class="net.shibboleth.idp.cas.service.ServiceDefinition"
-                      c:regex="http://([A-Za-z0-9_-]+\.)*example\.org(:\d+)?/.*"
+                      c:regex="$casParams.unauthorizedToProxyPattern"
                       p:group="non-proxying-services"
-                      p:authorizedToProxy="false" /
-                -->
+                      p:authorizedToProxy="false" />
+                <bean class="net.shibboleth.idp.cas.service.ServiceDefinition"
+                      c:regex=".*"
+                      p:group="non-proxying-services"
+                      p:authorizedToProxy="false" />
 
+           <!-- Custom user's service definition beans -->
                 <bean class="net.shibboleth.idp.cas.service.ServiceDefinition"
                       c:regex="https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*"
                       p:group="institutional-services"
                       p:authorizedToProxy="false" />
-
+#end
             </list>
         </property>
     </bean>
