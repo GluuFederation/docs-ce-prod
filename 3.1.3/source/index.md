@@ -1,6 +1,6 @@
 # Gluu Server Community Edition (CE) 3.1.3 Documentation
 ## Introduction
-The Gluu Server is a container distribution of free open source software for identity and access management (IAM). SaaS, custom, open source and commercial web and mobile applications can leverage a Gluu Server for a single source of identity information, authentication, and policy enforcement.
+The Gluu Server is a container distribution of free open source software for identity and access management (IAM). SaaS, custom, open source and commercial web and mobile applications can leverage a Gluu Server for a single source of user identity information, authentication, and policy enforcement.
 
 Common use cases include:
 
@@ -12,16 +12,16 @@ Common use cases include:
 - Identity federation      
 
 ### Free Open Source Software 
-The Gluu Server distribution includes the following free open source software (FOSS):
+The Gluu Server distribution includes the following free open-source software (FOSS):
 
-- **oxAuth***: fully compliant OpenID Connect Provider (OP) and UMA Authorization Server (AS) 
-- **oxTrust***: admin management GUI
-- **Gluu OpenDJ/OpenLDAP***: directory server where all Gluu user data, session data, etc. is stored.
-- **Shibboleth**: robust SAML Identity Provider (IDP)
-- **Passport.JS**: authentication middleware to support inbound identity, for instance social login
-- **oxAuth RP**: simple one-page app that provides sample request and response for all OpenID Connect operations 
-- **Apache2 Web Server***: secure, efficient and extensible server that provides HTTP services in sync with current HTTP standards
-- **JCE 1.8***: Java cryptography extension 
+- oxAuth*: OAuth 2.0 Authorization Server (AS), OpenID Connect Provider (OP) and UMA Authorization Server (AS) 
+- oxTrust*: Admin GUI
+- Shibboleth IDP: SAML identity provider (IDP)
+- Passport.JS: Authentication middleware to support inbound identity, for instance social login
+- Gluu OpenDJ or OpenLDAP*: Directory server where all Gluu user data, session data, etc. is stored. For clustered deployments, we recommend using Gluu's fork of OpenDJ 
+- Apache2 Web Server*: HTTP services
+- JCE 1.8*: Java cryptography extension 
+- oxAuth RP: Simple one-page app that provides sample requests and responses for all OpenID Connect operations 
 
 _*_ _Required component._
 
@@ -52,7 +52,7 @@ If existing identities are stored in Active Directory or a backend LDAP V3 serve
 ## Identity Management
 Identity and object data such as user profiles, configuration data, tokens and credentials can be managed via the "oxTrust" admin interface or using an LDAP browser, as specified in the [user management guide](./user-management/local-user-management.md). 
 
-The Gluu Server also supports the [SCIM protocol](./user-management/scim2.md) in order to standardize communication between identity data stores and make it fast, cheap, and easy to move users in to, out of, and around the cloud.. 
+The Gluu Server also supports the [SCIM protocol](./user-management/scim2.md) in order to standardize communication between identity data stores and make it fast, cheap, and easy to move users in to, out of, and around the cloud.
 
 !!! Note
     The Gluu Server does **not** include features for delegated administration, role definition, approvals and workflows, etc. In enterprise workflows, Gluu is a consumer of information from identity management and governance systems. 

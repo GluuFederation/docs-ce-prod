@@ -2,7 +2,7 @@
 
 ## OpenID Connect Authorization Grant
 
-This page provides an interface for request authorization through REST web services.
+This page provides an interface to request authorization through REST web services.
 
 ## Authorization Endpoint
 
@@ -15,7 +15,7 @@ This page provides an interface for request authorization through REST web servi
 
 **GET** `/oxauth/restv1/authorize`
 
-The Authorization Endpoint performs Authentication of the end-user. This is done by sending the User Agent to the Authorization Server's Authorization Endpoint for Authentication and Authorization, using request parameters defined by OAuth 2.0 and additional parameters and parameter values defined by OpenID Connect.
+The authorization endpoint performs end-user authentication. This is done by sending the user agent to the authorization server using request parameters defined by OAuth 2.0 and additional parameters and parameter values defined by OpenID Connect.
 
 ### URL
 `http://<hostname of Gluu Server>/oxauth/restv1/authorize`
@@ -146,7 +146,7 @@ The Authorization Endpoint performs Authentication of the end-user. This is done
         <tr>
             <th>accessToken</th>
             <td>false</td>
-            <td>This parameter is optinal and carries the access token for the request.</td>
+            <td>This parameter is optional and carries the access token for the request.</td>
             <td>string</td>
         </tr>
 	<tr>
@@ -156,15 +156,15 @@ The Authorization Endpoint performs Authentication of the end-user. This is done
 	    <td>string</td>
 	</tr> 
         <tr>
-            <th>codeChallange</th>
+            <th>codeChallenge</th>
             <td>false</td>
-            <td>This parameter allows the code to be challanced using PKCE.</td>
+            <td>This parameter allows the code to be challenged using PKCE.</td>
             <td>string</td>
         </tr>
         <tr>
-            <th>codeChallangeMethod</th>
+            <th>codeChallengeMethod</th>
             <td>false</td>
-            <td>This parameter allows the use of PKCE to challange code.</td>
+            <td>This parameter allows the use of PKCE to challenge code.</td>
             <td>string</td>
 	</tr>
        <tr>
@@ -175,9 +175,9 @@ The Authorization Endpoint performs Authentication of the end-user. This is done
         </tr>
 </table>
 
-The parameter **response_type** determines the authorization processing flows, 
-including the parameters returned from the endpoints, and these values are codes and combination of 
-the values, and these combination can be as below `code`, `token`, and `id_token`.
+The **response_type** parameter determines the authorization processing flows, 
+including the parameters returned from the endpoints. These values can be code or a combination of 
+the values, and can be a combination of `code`, `token`, and/or `id_token`.
 
 <table border="1">
         <tr>
@@ -296,9 +296,9 @@ and in each mode authorization response is encoded in different way.
          
 </table>
 
-## Using JWTs for Passing Request Params
+## Using JWTs for Passing Request Parameters
 
-To enable authentication requests to be signed and optionally encrypted authorization requests params are used. Below are the parameters used as Authorization requests parameters. These request are passed as Request Objects by two ways, they are `by value` and `by reference`.
+To enable authentication requests to be signed and optionally encrypted, authorization request parameters are used, listed below. These requests are passed as Request Objects in two ways, `by value` and `by reference`.
 
 <table border="1">
     <tr>
@@ -319,13 +319,13 @@ To enable authentication requests to be signed and optionally encrypted authoriz
 </table>
 
 ## Request Object by Value
-The `request` Authorization Request parameter is used to enable OpenID Connect requests to pass single, self-contained parameter and optionally signed and/or encrypred. The requests is represented as a JWT whose claims are request parameters. This JWT is called a Request Object. The `request` parameter is **Optional**. When `request` parameter is used, the OpenID connect request parameter values contained in JWT supersede those passed using OAuth 2.0 request syntax.  However, parameters MAY also be passed using the OAuth 2.0 request syntax even when a Request Object is used; this would typically be done to enable a cached, pre-signed (and possibly pre-encrypted) Request Object value to be used containing the fixed request parameters, while parameters that can vary with each request, such as state and nonce, are passed as OAuth 2.0 parameters. 
+The `request` Authorization Request parameter is used to enable OpenID Connect requests to pass single, self-contained parameter and optionally signed and/or encrypred. The request is represented as a JWT whose claims are request parameters. This JWT is called a Request Object. The `request` parameter is **Optional**. When the `request` parameter is used, the OpenID connect request parameter values contained in JWT supersede those passed using OAuth 2.0 request syntax.  However, parameters MAY also be passed using the OAuth 2.0 request syntax even when a Request Object is used; this would typically be done to enable a cached, pre-signed (and possibly pre-encrypted) Request Object value to be used containing the fixed request parameters, while parameters that can vary with each request, such as state and nonce, are passed as OAuth 2.0 parameters. 
 
 The request to be valid in OAuth 2.0 Authorization Request, values for `response_type` and `client_id` parameters MUST be included using the OAuth 2.0 request syntax, since they are REQUIRED by OAuth 2.0. The values for these parameters MUST match those in the Request Object.
 
 `request` and `request_uri` parameters MUST NOT be included in Request Objects.
 	
-The following is a non-normative example of the Claims in a Request Object before base64url encoding and signing: 
+The following is a non-normative example of the claims in a Request Object before base64url encoding and signing: 
 	
 	
 	  {
@@ -422,7 +422,7 @@ The values for these parameters MUST match those in the Request Object
 The Client stores the Request Object resource either locally or remotely at a 
 URL the Server can access. This URL is the Request URI, `request_uri`. 
 
-If values for Claims are included in the Request Object , it MUST NOT be revealed 
+If values for Claims are included in the Request Object, it MUST NOT be revealed 
 to anybody but the Authorization Server. As such, the `request_uri` MUST have appropriate 
 entropy for its lifetime. It is RECOMMENDED that it be removed if it is known that 
 it will not be used again or after a reasonable timeout unless access control measures are taken. 
@@ -434,7 +434,7 @@ The following is a non-normative example of a Request URI value
 		https://client.example.org/request.jwt#GkurKxf5T0Y-mnPFCHqWOMiZi4VS138cQO_V7PZHAdM
 	
 
-### using the `request_uri` Request Parameter Request
+### Using the `request_uri` Request Parameter Request
 The Client sends the Authorization Request to the Authorization Endpoint. 
 
 The following is a non-normative example of an Authorization Request using the request_uri parameter (with line wraps within values for display purposes only): 
@@ -449,10 +449,10 @@ The following is a non-normative example of an Authorization Request using the r
 		&scope=openid
 	
 	
-For more details on Authorization request parameters using JWTs, refer [here](http://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)
+For more details on Authorization request parameters using JWTs, visit [here](http://openid.net/specs/openid-connect-core-1_0.html#JWTRequests).
 
 #### Response
-##### Successful Reponse
+##### Successful Response
  The authorization server issues an access token and optional refresh
    token, and constructs the response by adding the following parameters
    to the entity-body of the HTTP response with a 200 (OK) status code:
@@ -474,7 +474,7 @@ For more details on Authorization request parameters using JWTs, refer [here](ht
                    required to successfully utilize the access token to make a protected
                    resource request (along with type-specific attributes).  The client
                    MUST NOT use an access token if it does not understand the token
-                   type. Value is case insensitive.</td>
+                   type. Value is not case sensitive.</td>
             <td>Required</td
         </tr>
         <tr>
@@ -584,7 +584,7 @@ For more details on Authorization request parameters using JWTs, refer [here](ht
         </tr>
         <tr>
             <td>500</td>
-            <td>Either an internal server error occurred (e.g. opendj server is down), or the username and password 
+            <td>Either an internal server error occurred (e.g. the OpenDJ server is down), or the username and password 
                 do not match any known user.
             </td>
         </tr>
@@ -593,8 +593,7 @@ For more details on Authorization request parameters using JWTs, refer [here](ht
 ### requestAuthorizationPost
 **POST** `/oxauth/restv1/authorize`
 
-Performs authorization.
-The Authorization Endpoint performs Authentication of the end-user.
+The Authorization Endpoint performs end-user authentication.
 
 ### URL
 `http://<hostname of Gluu Server>/oxauth/restv1/authorize`
@@ -645,7 +644,7 @@ The Authorization Endpoint performs Authentication of the end-user.
         <tr>
             <th>nonce</th>
             <td>false</td>
-            <td>String value used to associate a Client session with an ID Token, and to mitigate replay attacks. The value is passed through unmodified from the Authorization Request to the ID Token. Sufficient entropy MUST be present in the nonce values used to prevent attackers from guessing values.</td>
+            <td>String value used to associate a Client session with an ID Token and to mitigate replay attacks. The value is passed through unmodified from the Authorization Request to the ID Token. Sufficient entropy MUST be present in the nonce values used to prevent attackers from guessing values.</td>
             <td>string</td>
         </tr>
         <tr>
@@ -669,7 +668,7 @@ The Authorization Endpoint performs Authentication of the end-user.
         <tr>
             <th>ui_locales</th>
             <td>false</td>
-            <td>end-user&#39;s preferred languages and scripts for the user interface, represented as a space-separated list of BCP47 [RFC5646] language tag values, ordered by preference. For instance, the value &quot;fr-CA fr en&quot; represents a preference for French as spoken in Canada, then French (without a region designation), followed by English (without a region designation). An error SHOULD NOT result if some or all of the requested locales are not supported by the OpenID Provider.</td>
+            <td>End-user&#39;s preferred languages and scripts for the user interface, represented as a space-separated list of BCP47 [RFC5646] language tag values, ordered by preference. For instance, the value &quot;fr-CA fr en&quot; represents a preference for French as spoken in Canada, then French (without a region designation), followed by English (without a region designation). An error SHOULD NOT result if some or all of the requested locales are not supported by the OpenID Provider.</td>
             <td>string</td>
         </tr>
         <tr>
@@ -733,21 +732,21 @@ The Authorization Endpoint performs Authentication of the end-user.
             <td>string</td>
         </tr>
 	<tr>
-	    <th>code_challange</th>
+	    <th>code_challenge</th>
 	    <td>false</td>
-	    <td>PKCE Code challange</td>
+	    <td>PKCE Code challenge</td>
 	    <td>string</td>
 	</tr>
 	<tr>
-	    <th>code_challange_method</td>
+	    <th>code_challenge_method</td>
 	    <td>false</td>
-	    <td>PKCE code challange method</td>
+	    <td>PKCE code challenge method</td>
 	    <td>string</td>
 	</tr>
 </table>
 
 #### Response
-[JSON[Response]](#successful-reponse)
+[JSON[Response]](#successful-response)
 
 #### Errors
 <table border="1">
@@ -905,8 +904,8 @@ For more details on [client Authentication](http://openid.net/specs/openid-conne
         <tr>
             <th>redirect_uri</th>
             <td>false</td>
-            <td>Redirection uri to which the response will be sent. This
-                uri MUST exactly match one of the redirection uri values for the client
+            <td>Redirection URI to which the response will be sent. This
+                URI MUST exactly match one of the redirection URI values for the client
                 pre-registered at the OpenID Provider.</td>
             <td>string</td>
         </tr>
@@ -961,7 +960,7 @@ For more details on [client Authentication](http://openid.net/specs/openid-conne
     </table>
 
 ###### Response
-[JSON[Response]](#successful-reponse)
+[JSON[Response]](#successful-response)
 
 
 ###### Errors
@@ -998,7 +997,7 @@ For more details on [client Authentication](http://openid.net/specs/openid-conne
 
 ## API for oxAuth Clientinfo 
 
-This document provides interface for Client Info REST web services.
+This document provides an interface for Client Info REST web services.
 
 ### Path
 
@@ -1029,6 +1028,9 @@ The ClientInfo Endpoint is an OAuth 2.0 Protected Resource that returns Claims a
 Any OpenID Client needs to register with the OpenID Provider to utilize 
 OpenID Services, in this case register a user, and acquire a client ID and a shared secret.
 
+!!! Note
+    It's possible to specify additional parameters, which can be sent in registration and registration management requests in addition to standard ones defined by corresponding specifications. It allows, for example, to set and modify Gluu's proprietary client properties that are otherwise inaccessible via this protocol. Additional parameters are added as items under the "dynamicRegistrationCustomAttributes" section at "Configuration -> JSON Configuration -> oxAuth" page. Each item must contain the name of the LDAP attribute storing the corresponding property's value (which is usually different from the displayed name of the property). By default it allows setting only the "oxAuthTrustedClient" attribute which corresponds to the "Pre-Authorization" property.
+
 ### Path
 
 `/oxauth/restv1/register`
@@ -1049,11 +1051,11 @@ Registers new dynamic client in oxAuth.
 |redirect_uris|Redirection URI values used by the Client. One of these registered Redirection URI values must exactly match the redirect_uri parameter value used in each Authorization Request|
 |response_types|A list of the OAuth 2.0 response_type values that the Client is declaring that it will restrict itself to using. If omitted, the default is that the Client will use only the code Response Type. Allowed values are code, token, id_token|
 |grant_types|A list of the OAuth 2.0 Grant Types that the Client is declaring that it will restrict itself to using. The Grant Type values used by OpenID Connect are:<ul><li>**authorization_code** The Authorization Code Grant Type</li><li>**implicit** The Implicit Grant Type</li><li>**refresh_token** The Refresh Token Grant Type</li></ul>The following table lists the correspondence between response_type values that the Client will use and grant_type values that MUST be included in the registered grant_types list:<ul><li>code: authorization_code</li><li>id_token: implicit</li><li>token id_token: implicit</li><li>code id_token: authorization_code, implicit</li><li>code token: authorization_code, implicit</li><li>code token id_token: authorization_code, implicit</li></ul>|
-|application_type|Kind of the application. The default, if omitted, is web. The defined values are native or web. Web Clients using the OAuth Implicit Grant Type must only register URLs using the https scheme as redirect_uris; they must not use localhost as the hostname. Native Clients must only register redirect_uris using custom URI schemes or URLs using the http: scheme with localhost as the hostname.|
+|application_type|Kind of the application. The default, if omitted, is web. The defined values are native or web. Web Clients using the OAuth Implicit Grant Type must only register URLs using the HTTPS scheme as redirect_uris; they must not use localhost as the hostname. Native Clients must only register redirect_uris using custom URI schemes or URLs using the http: scheme with localhost as the hostname.|
 |contacts|e-mail addresses of people responsible for this Client.|
 |client_name|Name of the Client to be presented to the End-User.|
-|logo_uri|URL that references a logo for the Client application. If present, the server displays this image to the End-User during approval. The value of this field must point to a valid image file.|
-|client_uri|URL of the home page of the Client. The value of this field must point to a valid Web page. If present, the server displays this URL to the End-User in a followable fashion.|
+|logo_uri|URL that references a logo for the Client application. If present, the server displays this image to the end user during approval. The value of this field must point to a valid image file.|
+|client_uri|URL of the home page of the Client. The value of this field must point to a valid Web page. If present, the server displays this URL to the end user in a followable fashion.|
 |policy_uri|URL that the Relying Party Client provides to the End-User to read about the how the profile data will be used. The value of this field must point to a valid web page. The OpenID Provider displays this URL to the End-User if it is given.|
 |tos_uri|URL that the Relying Party Client provides to the End-User to read about the Relying Party's terms of service. The value of this field must point to a valid web page. The OpenID Provider displays this URL to the End-User if it is given.|
 |jwks_uri|URL for the Client's JSON Web Key Set (JWK) document. If the Client signs requests to the Server, it contains the signing key(s) the Server uses to validate signatures from the Client. The JWK Set may also contain the Client's encryption keys(s), which are used by the Server to encrypt responses to the Client. When both signing and encryption keys are made available, a use (Key Use) parameter value is required for all keys in the referenced JWK Set to indicate each key's intended usage. Although some algorithms allow the same key to be used for both signatures and encryption, doing so is not recommended, as it is less secure. The JWK x5c parameter MAY be used to provide X.509 representations of keys provided. When used, the bare key values must still be present and must match those in the certificate.|
@@ -1129,7 +1131,7 @@ A successful response SHOULD use the HTTP 201 Created status code and return a J
         </tr>
         <tr>
             <td>client_secret_expires_at</td>
-            <td>if client_secret is issued. Time at which the client_secret will 
+            <td>If client_secret is issued. Time at which the client_secret will 
             expire or 0 if it will not expire. Its value is a JSON number representing the number of 
             seconds from 1970-01-01T0:0:0Z as measured in UTC until the date/time.</td>
             <td>Required</td>
@@ -1222,7 +1224,7 @@ The request is sent as an `HTTP POST` to the client registration endpoint as JSO
 
 |Parameter|Description|
 |---------|-----------|
-|client_id |Url query parameter containing id of the client which properties are being requested|
+|client_id |URL query parameter containing id of the client which properties are being requested|
 |Authorization header|Authorization header carrying "registration_access_token" issued before as a Bearer token|
  
 #### Response
@@ -1383,7 +1385,7 @@ sent as a Bearer Token.
     </table>
 
 ###### Response
-[JSON[Response]](#successful-reponse)
+[JSON[Response]](#successful-response)
 
 
 ###### Errors
@@ -1449,7 +1451,7 @@ The Access Token obtained from an OpenID Connect Authentication Request is sent 
     </table>
 
 ###### Response
-[JSON[Response]](#successful-reponse)
+[JSON[Response]](#successful-response)
 
 
 ###### Errors

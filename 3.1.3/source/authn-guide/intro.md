@@ -38,7 +38,7 @@ Gluu includes interception scripts for the following forms of 2FA:
 - [Duo Security](./duo.md)
 - [Certificate Authentication](./cert-auth.md)
 
-Follow each link to learn how to implement that specific type of 2FA with Gluu. 
+To a support an authentication mechanism not listed above, review the [custom authentication script tutorial](./customauthn.md) to learn how to write your own authentication scripts. 
 
 ### 2FA Credential Management	
 	
@@ -58,7 +58,7 @@ Learn how to [configure social login](./passport.md).
 ## Default Authentication Mechanism
 In oxTrust, navigate to `Configuration` > `Manage Authentication` > `Default Authentication` to specify the default authentication mechanism for two use cases: 
 
-1. Default acr: this is the default authentication mechanism exposed to all applications that sends users to your Gluu Server for sign-in. Unless an app specifically requests a different form of authentication using the OpenID Connect `acr_value` (as specified [below](#multiple-authentication-mechanisms)), users will receive the form of authentication specified in this field. 
+1. Default acr: this is the default authentication mechanism exposed to all applications that sends users to your Gluu Server for sign-in. Unless an app specifically requests a different form of authentication using the OpenID Connect `acr_values` parameter (as specified [below](#multiple-authentication-mechanisms)), users will receive the form of authentication specified in this field. 
 
 2. oxTrust acr: this form of authentication will be presented to anyone specifically trying to access the oxTrust admin GUI.
 
@@ -69,7 +69,9 @@ The Gluu Server can concurrently support multiple authentication mechanisms, ena
 
 In oxTrust, navigate to `Configuration` > `Manage Custom Scripts` > `Person Authentication` and check the `Enabled` box for each applicable authentication interception script. Click the `Update` button at the bottom of the page to save the changes. 
 
-By default, users will get the default authentication mechanism as specified [above](#default-authentication-mechanism). However, using the OpenID Connect `acr_value`, web and mobile clients can request any *enabled* authentication mechanism. 
+By default, users will get the default authentication mechanism as specified [above](#default-authentication-mechanism). However, using the OpenID Connect `acr_values` parameter, web and mobile clients can request any *enabled* authentication mechanism. 
+
+Each authentication mechanism has a "Level" rank assigned to it which describes how secure and strict it is. The higher the "Level", the more reliable mechanism represented by the script is. Though several mechanisms can be enabled at the same Gluu instance at the same time, for any specific user's session only one of them can be set as the current one (and will be returned as `acr` claim of `id_token` for them). If after initial session is created a new authorization request from a RP comes in specifying another authentication method, its "Level" will be compared to that of the method currently associated with this session. If requested method's "Level" is lower or equal to it, nothing is changed and the usual SSO behavior is observed. If it's higher (i.e. a more secure method is requested), it's not possible to serve such request using the existing session's context, and user must re-authenticate themselves to continue. If they succeed, a new session becomes associated with that requested mechanism instead.
 
 Enabled scripts can be confirmed by checking oxTrust or the Gluu OP configuration URL, `https://<hostname>/.well-known/openid-configuration`, and finding the `"acr_values_supported"`. 
 
