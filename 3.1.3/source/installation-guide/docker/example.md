@@ -4,9 +4,9 @@
 
 This an example of running Gluu Server Docker edition on a single VM.
 
-(Here)[https://github.com/GluuFederation/gluu-docker/tree/master/examples/single-host] are the instructions to deploy a stand-alone instance with a bash script.
+[Here](https://github.com/GluuFederation/gluu-docker/tree/master/examples/single-host) are the instructions to deploy a stand-alone instance with a bash script.
 
-What follows is a thorough explanation of the process we used to make launching a stand-alone instance repeatable, modular and consistent. Adjustments can be made on your part.
+What follows is a thorough explanation of the process we used to make launching a stand-alone instance repeatable, modular and consistent. Adjust the process as needed.
 
 #### run_all.sh
 
