@@ -48,25 +48,25 @@ For examples of these environment variables in practice, please refer to the [ex
 
         - generate: The generate command will generate all the initial configuration files for the Gluu Server components. The following are required to launch:
             
-            - --email: The email address of the administrator usually. Used for certificate creation.
-            - --domain: The domain name where the Gluu Server resides. Used for certificate creation.
-            - --country-code: The country where the organization is located. User for certificate creation.
-            - --state: The state where the organization is located. Used for certificate creation.
-            - --city: The city where the organization is located. Used for certificate creation.
-            - --org-name: The organization using the Gluu Server. Used for certificate creation.
-            - --kv-host: The IP address or hostname of the KV store (Consul). Default is localhost.
-            - --kv-port: The port used to access consul. Default is 8500.
-            - --admin-pw: The administrator password for oxTrust and LDAP
-            - --ldap-type: Either OpenDJ or OpenLDAP. If you're looking to use LDAP replication, we recommend OpenDJ.
+            - `--email`: The email address of the administrator usually. Used for certificate creation.
+            - `--domain`: The domain name where the Gluu Server resides. Used for certificate creation.
+            - `--country-code`: The country where the organization is located. User for certificate creation.
+            - `--state`: The state where the organization is located. Used for certificate creation.
+            - `--city`: The city where the organization is located. Used for certificate creation.
+            - `--org-name`: The organization using the Gluu Server. Used for certificate creation.
+            - `--kv-host`: The IP address or hostname of the KV store (Consul). Default is localhost.
+            - `--kv-port`: The port used to access consul. Default is 8500.
+            - `--admin-pw`: The administrator password for oxTrust and LDAP
+            - `--ldap-type`: Either OpenDJ or OpenLDAP. If you're looking to use LDAP replication, we recommend OpenDJ.
 
         - dump: The dump command will dump all the configuration from inside Consul's KV store into stdout as well as `/opt/config-init/db/config.json` inside the container. The following is required to launch:
 
-            - --kv-host: The IP address or hostname of the KV store (Consul). Default is localhost.
-            - --kv-port: The port used to access Consul. Default is 8500.
+            - `--kv-host`: The IP address or hostname of the KV store (Consul). Default is localhost.
+            - `--kv-port`: The port used to access Consul. Default is 8500.
 
             Optional:
 
-            - --path: Absolute path to JSON file inside the container. Default is `/opt/config-init/db/config.json`.
+            - `--path`: Absolute path to JSON file inside the container. Default is `/opt/config-init/db/config.json`.
 
                 - Please note that to access this file from the host, you'll either need to map a mounted volume to the `--path` directory or pipe the stdout to a file. For example:
 
@@ -92,12 +92,12 @@ For examples of these environment variables in practice, please refer to the [ex
 
         - load: The load command will load a `config.json` into the Consul KV store. The following are required to launch:
         
-            - --kv-host: The IP address or hostname of the KV store (Consul). Default is localhost.
-            - --kv-port: The port used to access Consul. Default is 8500.
+            - `--kv-host`: The IP address or hostname of the KV store (Consul). Default is localhost.
+            - `--kv-port`: The port used to access Consul. Default is 8500.
 
             Optional:
 
-            - --path: Absolute path to JSON file inside the container. Default is `/opt/config-init/db/config.json`
+            - `--path`: Absolute path to JSON file inside the container. Default is `/opt/config-init/db/config.json`
 
                 - Please note that to load this file from the host, you'll need to place your `config.json` in a mounted volume that links to the `--path` directory. [Example](https://github.com/GluuFederation/gluu-docker/blob/master/examples/single-host/run_all.sh#L81) or:
                     
@@ -113,38 +113,38 @@ For examples of these environment variables in practice, please refer to the [ex
 
 - oxAuth
 
-    - GLUU_LDAP_URL: The IP address or hostname of the LDAP database. Default is localhost:1636. Multiple URLs can be used using comma-separated values (i.e. 192.168.100.1:1636,192.168.100.2:1636).
-    - GLUU_KV_HOST: The IP address or hostname of the KV store (Consul). Default is localhost. 
-    - GLUU_KV_PORT: The port used to access Consul. Default is 8500.
-    - GLUU_MAX_RAM_FRACTION: Used in conjunction with Docker memory limitations (docker run -m <mem>) to identify the fraction of the maximum amount of heap memory you want the JVM to use.
-    - GLUU_CUSTOM_OXAUTH_URL: URL to downloadable custom oxAuth files packed using .tar.gz format. Please see the [Gluu documentation](https://www.gluu.org/docs/ce/operation/custom-design/) on how to configure this.
+    - `GLUU_LDAP_URL`: The IP address or hostname of the LDAP database. Default is localhost:1636. Multiple URLs can be used using comma-separated values (i.e. 192.168.100.1:1636,192.168.100.2:1636).
+    - `GLUU_KV_HOST`: The IP address or hostname of the KV store (Consul). Default is localhost. 
+    - `GLUU_KV_PORT`: The port used to access Consul. Default is 8500.
+    - `GLUU_MAX_RAM_FRACTION`: Used in conjunction with Docker memory limitations (docker run -m <mem>) to identify the fraction of the maximum amount of heap memory you want the JVM to use.
+    - `GLUU_CUSTOM_OXAUTH_URL`: URL to downloadable custom oxAuth files packed using .tar.gz format. Please see the [Gluu documentation](https://www.gluu.org/docs/ce/operation/custom-design/) on how to configure this.
 
 - oxTrust
 
-    - GLUU_LDAP_URL: The IP address or hostname of the LDAP database. Default is localhost:1636. Multiple URLs can be used using comma-separated values (i.e. 192.168.100.1:1636,192.168.100.2:1636).
-    - GLUU_KV_HOST: The IP address or hostname of the KV store (Consul). Default is localhost. 
-    - GLUU_KV_PORT: The port used to access Consul. Default is 8500.
-    - GLUU_MAX_RAM_FRACTION: Used in conjunction with Docker memory limitations (docker run -m <mem>) to identify the fraction of the maximum amount of heap memory you want the JVM to use.
-    - GLUU_CUSTOM_OXTRUST_URL: URL to downloadable custom oxTrust files packed using .tar.gz format. Please see the [Gluu documentation](https://gluu.org/docs/ce/operation/custom-design/) on how to configure this. Please be aware that you have to
+    - `GLUU_LDAP_URL`: The IP address or hostname of the LDAP database. Default is localhost:1636. Multiple URLs can be used using comma-separated values (i.e. 192.168.100.1:1636,192.168.100.2:1636).
+    - `GLUU_KV_HOST`: The IP address or hostname of the KV store (Consul). Default is localhost. 
+    - `GLUU_KV_PORT`: The port used to access Consul. Default is 8500.
+    - `GLUU_MAX_RAM_FRACTION`: Used in conjunction with Docker memory limitations (docker run -m <mem>) to identify the fraction of the maximum amount of heap memory you want the JVM to use.
+    - `GLUU_CUSTOM_OXTRUST_URL`: URL to downloadable custom oxTrust files packed using .tar.gz format. Please see the [Gluu documentation](https://gluu.org/docs/ce/operation/custom-design/) on how to configure this. Please be aware that you have to
 
 - oxPassport
 
-    - GLUU_KV_HOST: The IP address or hostname of the KV store (Consul). Default is localhost. 
-    - GLUU_KV_PORT: The port used to access Consul. Default is 8500.
-    - GLUU_LDAP_URL: The IP address or hostname of the LDAP database. Default is localhost:1636. Multiple URLs can be used using comma-separated values (i.e. 192.168.100.1:1636,192.168.100.2:1636).
+    - `GLUU_KV_HOST`: The IP address or hostname of the KV store (Consul). Default is localhost. 
+    - `GLUU_KV_PORT`: The port used to access Consul. Default is 8500.
+    - `GLUU_LDAP_URL`: The IP address or hostname of the LDAP database. Default is localhost:1636. Multiple URLs can be used using comma-separated values (i.e. 192.168.100.1:1636,192.168.100.2:1636).
 
 - oxShibboleth
 
-    - GLUU_KV_HOST: The IP address or hostname of the KV store (Consul). Default is localhost. 
-    - GLUU_KV_PORT: The port used to access Consul. Default is 8500.
-    - GLUU_MAX_RAM_FRACTION: Used in conjunction with Docker memory limitations (docker run -m <mem>) to identify the fraction of the maximum amount of heap memory you want the JVM to use.
-    - GLUU_LDAP_URL: The IP address or hostname of the LDAP database. Default is localhost:1636. Multiple URLs can be used using comma-separated values (i.e. 192.168.100.1:1636,192.168.100.2:1636).
+    - `GLUU_KV_HOST`: The IP address or hostname of the KV store (Consul). Default is localhost. 
+    - `GLUU_KV_PORT`: The port used to access Consul. Default is 8500.
+    - `GLUU_MAX_RAM_FRACTION`: Used in conjunction with Docker memory limitations (docker run -m <mem>) to identify the fraction of the maximum amount of heap memory you want the JVM to use.
+    - `GLUU_LDAP_URL`: The IP address or hostname of the LDAP database. Default is localhost:1636. Multiple URLs can be used using comma-separated values (i.e. 192.168.100.1:1636,192.168.100.2:1636).
 
 - NGINX
 
-    - GLUU_KV_HOST: The IP address or hostname of the KV store (Consul). Default is localhost. 
-    - GLUU_KV_PORT: The port used to access Consul. Default is 8500.
-    - GLUU_OXAUTH_BACKEND: Host and port of oxAuth backend, i.e. oxauth.domain.com:8081. Multiple backends are supported (separate each backend with comma character, i.e. oxauth1.domain.com:8081,oxauth2.domain.com:8081).
-    - GLUU_OXTRUST_BACKEND: Host and port of oxTrust backend, i.e. oxtrust.domain.com:8082. Multiple backends are supported (separate each backend with comma character, i.e. oxtrust1.domain.com:8082,oxtrust2.domain.com:8082).
-    - GLUU_OXSHIBBOLETH_BACKEND: Host and port of oxTrust backend, i.e. oxtrust.domain.com:8086.
-    - GLUU_OXPASSPORT_BACKEND: Host and port of oxTrust backend, i.e. oxtrust.domain.com:8090.
+    - `GLUU_KV_HOST`: The IP address or hostname of the KV store (Consul). Default is localhost. 
+    - `GLUU_KV_PORT`: The port used to access Consul. Default is 8500.
+    - `GLUU_OXAUTH_BACKEND`: Host and port of oxAuth backend, i.e. oxauth.domain.com:8081. Multiple backends are supported (separate each backend with comma character, i.e. oxauth1.domain.com:8081,oxauth2.domain.com:8081).
+    - `GLUU_OXTRUST_BACKEND`: Host and port of oxTrust backend, i.e. oxtrust.domain.com:8082. Multiple backends are supported (separate each backend with comma character, i.e. oxtrust1.domain.com:8082,oxtrust2.domain.com:8082).
+    - `GLUU_OXSHIBBOLETH_BACKEND`: Host and port of oxTrust backend, i.e. oxtrust.domain.com:8086.
+    - `GLUU_OXPASSPORT_BACKEND`: Host and port of oxTrust backend, i.e. oxtrust.domain.com:8090.
