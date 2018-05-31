@@ -4,29 +4,29 @@
 
 #### Operating System
 
-- Size was a major consideration in the base Docker image we used for our containers. Because of that, we use Alpine Linux which comes in at a whopping 5 MB by default. Based on comparisons between other base images, we've roughly saved 50-70% of space utilizing Alpine. The average size of all our containers is about 269 MB due to dependencies.
+- Size was a major consideration in the base Docker image we used for our containers. Because of that, we use Alpine Linux which comes in at a whopping 5 MB by default. Based on comparisons between other base images, we've roughly saved 50-70% of space utilizing Alpine. The average size of each of our containers is about 269 MB due to dependencies.
 
 #### Consul
 
-- The Gluu Server Docker containers were built to be centralized around a configuration KV store. The reasoning behind this decision was to allow the containers to be as modular as possible. Services can be replaced without concern for losing any of the default configuration. This isn't to say that there won't need to be persistence using volumes (see [here](https://github.com/GluuFederation/gluu-docker/blob/master/examples/single-host/docker-compose.yml#L42) and [here](https://github.com/GluuFederation/gluu-docker/blob/master/examples/single-host/docker-compose.yml#L55) for custom files and long standing data requirements. For our use case, we've used [Consul](https://www.consul.io/) as our KV store.
+- The Gluu Server Docker containers were built to be centralized around a configuration KV store. For our use case, we've used [Consul](https://www.consul.io/) as our KV store. The reasoning behind this decision was to allow the containers to be as modular as possible. Services can be replaced without concern for losing any of the default configuration. This isn't to say that there won't need to be persistence using volumes (see [here](https://github.com/GluuFederation/gluu-docker/blob/master/examples/single-host/docker-compose.yml#L42) and [here](https://github.com/GluuFederation/gluu-docker/blob/master/examples/single-host/docker-compose.yml#L55)) for custom files and long standing data requirements.
 
-- That being said, Consul stores all it's configuration in-memory. This is remedied by saving all configuration with a [dump command](/path/to/API/documentation/) to a JSON file titled `config.json` for ease of access and reinitializing.
+- That being said, Consul stores all it's configuration in-memory. This is remedied by saving all configuration with a `dump` which will write to a JSON file titled `config.json` for ease of access. You can then reinitialize the configuration in the event of the previous consul container failing by using the `load` command. Please see [the documentation](#variable-explanation) below on how to achieve this.
 
 #### Startup
 
 - Docker containers generally have entrypoint scripts to prepare templates, configure files, run services, etc. Anything you need to run to properly initialize a container and run the process. For our containers, this where we pull most of our files and certificates from Consul. 
 
-- Because there is a heirarchy of function to Gluu Server, wait-for-it scripts are designed to try and make sure the containers don't begin their launch processes until the services superior to the container are fully started. However, there is a time limit, so a container dependent upon another container could fail as the wait-for-it "health checks" aren't being met.
+- Because there is a heirarchy of function to Gluu Server, wait-for-it scripts were designed, thanks to contributions from Torstein Krause Johansen (@skybert), to try and make sure the containers don't begin their launch processes until the services superior to the container are fully started. However, there is a time limit, so a container dependent upon another container could fail as the wait-for-it "health checks" aren't being met.
 
 #### oxShibboleth
 
-- Mounting the volume from host to container, as seen in the `-v $PWD/shared-shibboleth-idp:/opt/shared-shibboleth-idp option`, is required to ensure oxShibboleth can load the configuration correctly.
+- Mounting the volume from host to container, as seen in the `-v $PWD/shared-shibboleth-idp:/opt/shared-shibboleth-idp` option, is required to ensure oxShibboleth can load the configuration correctly. This can [also be seen here](https://github.com/GluuFederation/gluu-docker/blob/master/examples/single-host/docker-compose.yml#L90) in the standalone docker-compose yaml file or [here](https://github.com/GluuFederation/gluu-docker/blob/master/examples/multi-hosts/web.yml#L88) in the multi-host docker-compose yaml file.
 
 - By design, each time a Trust Relationship entry is added/updated/deleted via the oxTrust GUI, some Shibboleth-related files will be generated/modified by oxTrust and saved to `/opt/shibboleth-idp` directory inside the oxTrust container. A background job in oxTrust container ensures those files are copied to `/opt/shared-shibboleth-idp` directory (also inside the oxTrust container, which must be mounted from container to host).
 
 - After those Shibboleth-related files are copied to `/opt/shared-shibboleth`, a background job in oxShibboleth copies them to the `/opt/shibboleth-idp` directory inside oxShibboleth container. To ensure files are synchronized between oxTrust and oxShibboleth, both containers must use a same mounted volume `/opt/shared-shibboleth-idp`.
 
-- The `/opt/shibboleth-idp` directory is not mounted directly into the container, as there are two known issues with this approach. First, oxShibboleth container has its own default `/opt/shibboleth-idp` directory required to start the app itself. By mounting `/opt/shibboleth-idp` directly from the host, the directory will be replaced and the oxShibboleth app won't run correctly. Secondly, oxTrust renames the metadata file, which unfortunately didn't work as expected in the mounted volume.
+- The `/opt/shibboleth-idp` directory is not mounted directly into the container, as there are two known issues with this approach. First, oxShibboleth container has its own default `/opt/shibboleth-idp` directory requirements to start the app itself. By mounting `/opt/shibboleth-idp` directly from the host, the directory will be replaced and the oxShibboleth app won't run correctly. Secondly, oxTrust renames the metadata file, which unfortunately didn't work as expected in the mounted volume.
 
 #### oxPassport
 
@@ -34,13 +34,13 @@
     
 ### Networking Considerations
 
-- By default, the Gluu Server Java applications deploy inside the container on port 8080. You'll need to be mask them appropriately to 8081 (oxauth), 8082(oxtrust), 8086(oxshibboleth).
+- By default, the Gluu Server Java applications deploy inside their containers on port 8080. You'll need to be mask them appropriately to 8081 (oxauth), 8082(oxtrust), 8086(oxshibboleth) if you are using the host network. If you're using a docker virtual network, this mapping isn't required.
 
-- The oxTrust container is dependent upon oxAuth's `/.well-known/openid-configuration`, which is only accessible if NGINX is started. So if the oxTrust container cannot navigate to `https://<hostname>/.well-known/openid-configuration`, it will fail.
+- oxTrust is an OpenID Connect client so its container is dependent upon oxAuth's `/.well-known/openid-configuration` endpoint, which is only accessible if NGINX is started. So if the oxTrust container cannot navigate to `https://<hostname>/.well-known/openid-configuration`, it will fail to finish initialization. The container will most likely not exit.
 
 ### Variable Explanation
 
-For examples of these environment variables in practice, please refer to the (examples documentation)[./examples.md]
+For examples of these environment variables in practice, please refer to the [examples documentation](./examples.md) for docker-compose files and scripts, or [the basic wiki](https://github.com/GluuFederation/gluu-docker/wiki/Simple-Docker-Deployment) for docker run commands.
 
 - config-init
 
@@ -99,7 +99,13 @@ For examples of these environment variables in practice, please refer to the (ex
 
             - --path: Absolute path to JSON file inside the container. Default is `/opt/config-init/db/config.json`
 
-                - Please note that to load this file from the host, you'll need to place your `config.json` in a mounted volume that links to the `--path` directory. [Example](https://github.com/GluuFederation/gluu-docker/blob/master/examples/single-host/run_all.sh#L81)
+                - Please note that to load this file from the host, you'll need to place your `config.json` in a mounted volume that links to the `--path` directory. [Example](https://github.com/GluuFederation/gluu-docker/blob/master/examples/single-host/run_all.sh#L81) or:
+                    
+                        docker run --rm \
+                        -v /path/to/config/:/opt/config-init/db/ \
+                        gluufederation/config-init:3.1.2_dev \
+                        load \
+                        --kv-host <consul address>
 
 - OpenDJ
 
