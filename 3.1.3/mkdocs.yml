@@ -89,7 +89,7 @@ pages:
             - 'oxAuth JSON Properties': 'reference/JSON-oxauth-prop.md'
         - 'Gluu LDAP Schema':
             - 'oxLDAP Properties': 'reference/oxldap.md'
-            - 'OpenLDAP Schema': 'reference/schema.md'
+            - 'LDAP Schema': 'reference/schema.md'
 - Operation Guide:
         - 'Upgrades': 'upgrade/index.md'
         - 'Backups': 'operation/backup.md'
