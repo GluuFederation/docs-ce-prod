@@ -115,6 +115,31 @@ To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as o
 1. Start the identity service:  
     
     `# service identity start`
+    
+#### Update Passport.js installation.
+
+1. Create a temporary directory inside container and move into it: `# mkdir ~/passport_update; cd ~/passport_update`
+
+2. Download the recent Passport package: `# wget https://ox.gluu.org/npm/passport/passport-3.1.3.tgz`
+
+3. Backup current Passport's files: `# tar -cvpzf ./passport-package-v312-backup.tar.gz --one-file-system /opt/gluu/node/passport/`
+
+4. Stop the service: `# service passport stop`
+
+5. 
+
+xxx. [Optional but recommended] Patch known vulnerability in the code:
+
+  - Add new properties to the `passport_social` authentication script on "Custom scripts -> Person authentication" page (no quotes):
+    - "key_store_file" = "/etc/certs/passport-rp.jks"
+    - "key_store_password" = "secret"
+  - Update the source code of the script iself with the one found [here](https://github.com/GluuFederation/oxAuth/blob/version_3.1.4/Server/integrations/passport/PassportExternalAuthenticator.py)
+  - Edit `/etc/gluu/conf/passport-config.json` by changing "applicationEndpoint" property to "https://<host-name>/oxauth/postlogin"
+  - Acquire patched `index.js` file from [here](https://github.com/GluuFederation/gluu-passport/blob/version_3.1.4/server/routes/index.js) and overwrite `/opt/gluu/node/passport/server/routes/index.js` with it. Make sure its ownership is still set as "node:node": `# chown node:node /opt/gluu/node/passport/server/routes/index.js`
+
+xx. Start the service: `# service passport start`
+
+x. Clean the temporary files: `# cd ~/; rm -rf ~/passport_update`
 
 #### Update Gluu Schema Files
 
