@@ -120,13 +120,17 @@ To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as o
 
 1. Create a temporary directory inside container and move into it: `# mkdir ~/passport_update; cd ~/passport_update`
 
-2. Download the recent Passport package: `# wget https://ox.gluu.org/npm/passport/passport-3.1.3.tgz`
+2. Download and extract the recent Passport package: `# wget https://ox.gluu.org/npm/passport/passport-3.1.3.tgz; tar -xzvf passport-3.1.3.tgz`
 
 3. Backup current Passport's files: `# tar -cvpzf ./passport-package-v312-backup.tar.gz --one-file-system /opt/gluu/node/passport/`
 
 4. Stop the service: `# service passport stop`
 
-5. 
+5. Remove the previous package and deploy the new one: `# cd /opt/gluu/node/passport; rm -rf ./*; cp -R ~/passport_update/package/* ./`
+
+6. Restore proper permissions on the files: `# chown -R node:node /opt/gluu/node/passport`
+
+7. 
 
 xxx. [Optional but recommended] Patch known vulnerability in the code:
 
