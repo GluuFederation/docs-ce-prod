@@ -110,6 +110,7 @@ For examples of these environment variables in practice, please refer to the [ex
 - `GLUU_KV_HOST`: The IP address or hostname of the KV store (Consul). Default is `localhost`.
 - `GLUU_KV_PORT`: The port used to access Consul. Default is `8500`.
 - `GLUU_MAX_RAM_FRACTION`: Used in conjunction with Docker memory limitations (`docker run -m <mem>`) to identify the fraction of the maximum amount of heap memory you want the JVM to use.
+- `GLUU_DEBUG_PORT`: port of remote debugging (if omitted, remote debugging will be disabled).
 
 #### [oxTrust](https://github.com/GluuFederation/docker-oxtrust/tree/3.1.3)
 
