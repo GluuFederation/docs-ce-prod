@@ -118,9 +118,9 @@ To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as o
 
 #### Update Gluu Schema Files
 
-##### OpenDJ
+You will need to upgrade schema files to accommodate for new attributes added to some entries in Gluu 3.1.3. Follow the instructions below for OpenDJ or OpenLDAP, depending on which LDAP server you have installed with your Gluu Server. If upgrading from 2.x, follow the OpenDJ instructions below. 
 
-  For the OpenLDAP to be able to accomodate new attributes added to some entries in 3.1.3, its schema files need to be updated. Following the next step will upgrade the schema:
+##### OpenDJ
 
 1. Navigate to the `/opt/opendj/config/schema/` directory
 
@@ -146,7 +146,7 @@ To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as o
 
 ##### OpenLDAP
 
-  For the OpenLDAP to be able to accomodate new attributes added to some entries in 3.1.3, its schema files need to be updated. The latest schema files can be found [here](https://github.com/GluuFederation/community-edition-setup/tree/master/schema). Following the next step will upgrade the schema:
+The latest schema files can be found [here](https://github.com/GluuFederation/community-edition-setup/tree/master/schema). Following the next step will upgrade the schema:
 
 1. Navigate to the `/opt/gluu/schema/openldap` directory 
 
