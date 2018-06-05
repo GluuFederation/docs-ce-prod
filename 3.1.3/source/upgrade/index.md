@@ -130,9 +130,14 @@ To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as o
 
 6. Restore proper permissions on the files: `# chown -R node:node /opt/gluu/node/passport`
 
-7. 
-
-xxx. [Optional but recommended] Patch known vulnerability in the code:
+7. Initialize Passport framework:
+  - `# su - node`
+  - `$ cd /opt/gluu/node/passport`
+  - `$ mkdir logs`
+  - Before proceeding, ensure the host has internet connection, then run `$ npm install -P`
+  - `$ exit`
+  
+8. [Optional but recommended] Patch known vulnerability in the code:
 
   - Add new properties to the `passport_social` authentication script on "Custom scripts -> Person authentication" page (no quotes):
     - "key_store_file" = "/etc/certs/passport-rp.jks"
@@ -141,9 +146,9 @@ xxx. [Optional but recommended] Patch known vulnerability in the code:
   - Edit `/etc/gluu/conf/passport-config.json` by changing "applicationEndpoint" property to "https://<host-name>/oxauth/postlogin"
   - Acquire patched `index.js` file from [here](https://github.com/GluuFederation/gluu-passport/blob/version_3.1.4/server/routes/index.js) and overwrite `/opt/gluu/node/passport/server/routes/index.js` with it. Make sure its ownership is still set as "node:node": `# chown node:node /opt/gluu/node/passport/server/routes/index.js`
 
-xx. Start the service: `# service passport start`
+9. Start the service: `# service passport start`
 
-x. Clean the temporary files: `# cd ~/; rm -rf ~/passport_update`
+10. Clean the temporary files: `# cd ~/; rm -rf ~/passport_update`
 
 #### Update Gluu Schema Files
 
