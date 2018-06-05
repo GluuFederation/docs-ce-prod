@@ -134,6 +134,7 @@ To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as o
   - `# su - node`
   - `$ cd /opt/gluu/node/passport`
   - `$ mkdir logs`
+  - `$ export PATH=$PATH:/opt/node/bin`
   - Before proceeding, ensure the host has internet connection, then run `$ npm install -P`
   - `$ exit`
   
