@@ -30,9 +30,11 @@ added 4 packages in 1.234s
 
 ## Update required UI files
 
-Create a logo image in png format for this provider. Copy the file to `/opt/gluu/jetty/oxauth/custom/static/img`. You may have to create the `img` folder. The file name should be the same as the provider name, eg. `mypartner.png` in this case.
+Create a logo image in png format for this provider. Copy the file to `/opt/gluu/jetty/oxauth/custom/static/img`. You may have to create the `img` folder. 
 
-Download the file [passportlogin.xhtml] and do these edits:
+The file name should be the same as the provider name, eg. `mypartner.png` in this case.
+
+Download the file [passportlogin.xhtml](https://github.com/GluuFederation/oxAuth/raw/version_3.1.3/Server/src/main/webapp/auth/passport/passportlogin.xhtml) and do these edits:
 
 - After line 333 add logic to properly read the new image. The following will work:
 
@@ -51,13 +53,13 @@ if (provider.match("mypartner")) {
 ```
 
 `cd` to `/opt/gluu/jetty/oxauth/custom/pages` and create a directory named `auth` and then one named `passport` inside it. 
-Finally copy the edited file to `/opt/gluu/jetty/oxauth/custom/pages/auth/passport`
+Finally copy the edited file to `/opt/gluu/jetty/oxauth/custom/pages/auth/passport`.
 
-Restart oxauth (eg `service oxauth restart`), then navigate to `https://<host-name>/oxauth/ext/resources/img/mypartner.png` in a browser. You should be able to see your image.
+Restart oxauth (eg `service oxauth restart`), and then navigate to `https://<host-name>/oxauth/ext/resources/img/mypartner.png` in a browser. You should be able to see your image now.
 
 ## Create an OIDC client to interact with your external OP
 
-In this example we assume you are creating a client in a Gluu Server installation (which is OIDC compliant). For this purpose the oxTrust admin UI can be used. 
+In this example we assume you are creating a client in a **separate** Gluu Server installation. For this purpose the oxTrust admin UI can be used. 
 
 Login with admin credentials to `https://<host-name>/identity` and go to "OpenId" > "Clients" > "Add". Provide the following settings:
 
