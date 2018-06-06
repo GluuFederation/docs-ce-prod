@@ -33,13 +33,13 @@ authentication and provisioning.
 During installation of the Gluu Server select `yes` to install Passport.js when prompted.
 
 1. Navigate to `Configuration` > `Manage Custom Scripts`.
-2. Enable passport script in `Person Authentication` Tab.![Enable passport1](../img/user-authn/passport/enable-passport.png)
+2. Enable the passport_social script in `Person Authentication` Tab.![Enable passport1](../img/user-authn/passport/enable-passport.png)
 3. Click on `update` at the end of the page.![update](../img/user-authn/passport/auth-update.png)
-4. Enable UMA authorization policy in `UMA authorization policy` tab.![uma-enable](../img/user-authn/passport/uma-enable.png)
+4. Enable the `uma_rpt_policy` in `UMA RPT Policies` tab.![uma-enable](../img/user-authn/passport/uma-enable.png)
 5. Click on `update`.
 6. To set the strategies navigate to `Configuration` > `Manage Authentication` > `Default Authenticaion`
-7. Change the Default Authentication mode to `passport`
-8. Click on `Passport Authentication Method` tab and `Passport Support` to enabled.![enable-authentication](../img/user-authn/passport/enable-authentication3.0.0.png)
+7. Change the Default Authentication mode to `passport_social`
+8. Click on `Passport Authentication Method` tab and `Passport Support` to enabled.![enable-authentication](../img/user-authn/passport/enable-authentication.png)
 9. Add your desired strategies. The `Add Strategy` field values for common providers are:
 	- `google` for GPlus Authentication
 	- `twitter` for Twitter Authentication
@@ -51,7 +51,7 @@ During installation of the Gluu Server select `yes` to install Passport.js when 
 11. Once the configuration and settings have been entered, restart the 
 passport service or Gluu Server by following the below instructions:
     
-    a. Login to chroot.
+    a. Log into chroot.
     
     b. Enter the following command to stop: `service passport stop`
     
