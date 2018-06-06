@@ -91,6 +91,7 @@ The Gluu Server includes two default login pages for Super Gluu:
 The designs are being rendered from the [Super Gluu xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/super-gluu/login.xhtml). To customize the look and feel of the pages, follow the [customization guide](../operation/custom-design.md). 
  
 ## Using Super Gluu
+The below instructions provide basic information about using Super Gluu. Review the [Super Gluu User Guide](https://gluu.org/docs/supergluu/user-guide/) for full user documentation. 
 
 ### Device Enrollment
 
@@ -98,8 +99,6 @@ Super Gluu device enrollment happens during the first authentication attempt. Th
 
 ### Subsequent Logins
 If you use the default Super Gluu interception script, all subsequent authentications will trigger a push notification to the enrolled device, which can be approved or denied as needed. 
-
-For more information about using Super Gluu, visit the [Super Gluu User Guide](https://gluu.org/docs/supergluu/user-guide/).
 
 ### Credential Management
 

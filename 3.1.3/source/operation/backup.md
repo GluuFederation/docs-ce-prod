@@ -34,10 +34,13 @@ In Gluu OpenLDAP, you would do the following:
 
 `/opt/symas/bin/slapcat -b "o=gluu" ` 
 
-At runtime (if you don't want to stop the LDAP server), you can always use the `ldapsearch` command: 
+At runtime (if you don't want to stop the LDAP server), here is how you can dump data: 
 
-`$ /opt/opendj/bin/export-ldif -n userRoot -l backup.ldif`
+`$ /opt/opendj/bin/export-ldif  --port 4444  --hostname localhost  --bindDN "cn=Directory Manager" --bindPassword [password_of_ldap_admin] --includeBranch o=gluu --backendID userRoot --ldifFile /tmp/backup_o_gluu_data.ldif  --trustAll`
 
+Data can be imported with command like below: 
+
+`$ /opt/opendj/bin/import-ldif --port 4444 --hostname localhost --bindDN "cn=Directory Manager" --bindPasswordFile /home/ldap/.pw --includeBranch o=gluu --backendID userRoot --ldifFile /tmp/backup_o_gluu_data.ldif --trustAll --clearBackend --rejectFile /tmp/rejected_data_why.ldif` 
 
 <!--
 ## Script Method
