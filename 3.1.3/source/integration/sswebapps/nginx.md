@@ -1,9 +1,9 @@
 # Using the lua-resty-openidc Nginx Library as a Relying Party With Gluu Server
 
-As a brief explanation, we will have two servers. One is the Identity Provider(IDP), the Gluu Server; the other is the Relying Party(RP), Nginx with the lua-resty-openidc. This tutorial will have the Relying Party acquire authorization to gather user information from the IDP and upon being recognized as an authorized client, forward the user to a redirect URI.
+As a brief explanation, we will have two servers. One is the Identity Provider(IDP), the Gluu Server; the other is the Relying Party(RP), Nginx with the lua-resty-openidc library. This tutorial will have the Relying Party acquire authorization to gather user information from the IDP and upon being recognized as an authorized client, forward the user to a redirect URI.
 
 Requirements:
-- Gluu Server 3.1.3 ([Installation Instructions](https://gluu.org/docs/ce/3.1.3/installation-guide/install/#1-install-gluu-server-package))
+- Gluu Server ([Installation Instructions](https://gluu.org/docs/ce/3.1.3/installation-guide/install/#1-install-gluu-server-package))
 - OpenResty 1.11.2.5
 - gcc
 - libpcre3 libpcre3-dev
@@ -15,7 +15,7 @@ Requirements:
 
 ## Installing OpenResty
 
-First, you'll need to install a few dependencies for lua-resty-openidc. The [dependencies list](https://github.com/zmartzone/lua-resty-openidc#dependencies) is, for the most part, covered by `OpenResty`. As of writing this (5 June 2018) there is an API conflict with OpenResty's `OpenSSL 1.1.0` implementation and `lua-resty-jwt` which used `OpenSSL 1.0.2`. So, we must build OpenResty 1.11.2.5, as this includes `OpenSSL 1.0.2`.
+First, you'll need to install a few dependencies for lua-resty-openidc. The [dependencies list](https://github.com/zmartzone/lua-resty-openidc#dependencies) is, for the most part, covered by `OpenResty`. As of writing this (5 June 2018) there is an API conflict with OpenResty 1.13.6's `OpenSSL 1.1.0` implementation  and `lua-resty-jwt` which used `OpenSSL 1.0.2`. So, we must build OpenResty 1.11.2.5, as this includes `OpenSSL 1.0.2`.
 
 ```
 apt update
@@ -51,26 +51,27 @@ Navigate to your Gluu Server, and click `OpenID Connect` -> `Clients`.
 
 Here, we want to click the `Add Client` button on the top.
 
-Now, name the client anything you want. I chose lua-resty-openidc for convenience, but this is only for human recognition. The `Client Description` can be more thorough to describe the purpose of the client. `Client Secret` can be anything you want it to be. You can increase the entropy and difficulty by running this in a terminal:
+Now, name the client anything you want. I chose lua-resty-openidc for convenience, but this is only for human recognition. The `Client Description` can be more thorough to describe the purpose of the client. `Client Secret` can be anything you want it to be. You can increase the entropy and difficulty of your secret by running this in a terminal:
 
 ```
 gpg --gen-random --armor 1 30
 ```
 
-And using it as your secret. Make sure to store this somewhere, as it won't be saved in Identity.
+And using it as your secret. Make sure to store this somewhere, as it won't be retrievable in the Identity UI.
 
 Moving forward, we can skip a lot of configuration examples for the sake of simplicity in this tutorial and jump down to the bottom, where we will `Add Login Redirect URI`, `Add Scope`, `Add Response Type` and `Add Grant Type`. For our example, our `Redirect Login URI` will be:
 
 ```
 https://$HOSTNAME/welcome
 ```
+
 Now, click `Add Scope` and `Search` to display all scope options. Check `email`, `openid` and `profile`.
 
 Next, click `Add Response Type` and check `code` and `id_token`.
 
 Click `Add Grant Type` and check `authorization_code`.
 
-For our simple example, this is enough, and we can click the `Add` button at the bottom of the page. Once we've done this, we can gather our inum from the `OpenID Connect/Clients` dashboard next to our Display Name. We will need this later for the lua-resty-openidc Nginx configuration.
+For our simple example, this is enough, and we can click the `Add` button at the bottom of the page. Once we've done this, we can gather our inum from the `OpenID Connect/Clients` dashboard next to the Display Name of the client we created. We will need this later for the lua-resty-openidc Nginx configuration's `client_id`.
 
 ## Configuring OpenResty's Nginx
 
@@ -145,7 +146,7 @@ http {
 }
 ```
 
-After we've saved this configuration file, let's just run the `openresty` command we added to our path.
+After we've saved this configuration file, let's run the `openresty` command we added to our path.
 
 Now navigate to the RP, which will redirect you to your IDP, where you can log in, authorize the RP to gather information and be directed back to the OpenResty default `index.html`, which is located at `/usr/local/openresty/nginx/html/index.html`.
 
