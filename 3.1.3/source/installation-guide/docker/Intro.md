@@ -4,7 +4,7 @@
 
 The Gluu Server now supports installation via containers. 
 
-This documentation is primarily focused about utilizing Docker, but it's entirely possible to use these containers with other container engines, like rkt.
+This documentation is primarily focused on utilizing Docker, but it's entirely possible to use these containers with other container engines, like rkt.
 
 ## Features
 - Consistency
