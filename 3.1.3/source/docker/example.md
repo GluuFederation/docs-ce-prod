@@ -43,7 +43,7 @@ What follows is a thorough explanation of the process we used to make launching 
 
 This an example of running Gluu Server Docker edition on multiple VMs using Docker Swarm Mode.
 
-[Here](https://github.com/GluuFederation/gluu-docker/tree/3.1.3/examples/multi-hosts) are the instructions to deploy a clustered instances of Gluu Server Docker containers.
+[Here](https://github.com/GluuFederation/gluu-docker/tree/3.1.3/examples/multi-hosts) are the instructions to deploy clustered instances of Gluu Server Docker containers.
 This example consists of several shell scripts, and config files (including docker-compose files).
 
 What follows is an explanation of the process we used to deploy clustered Gluu Server Docker containers.
@@ -51,23 +51,23 @@ What follows is an explanation of the process we used to deploy clustered Gluu S
 #### Node
 
 As this example uses Docker Swarm Mode, the node refers to a Docker Swarm node (either `manager` or `worker`), basically a host/server.
-For simplicity, the clustered Gluu Server is distributed into 3 nodes (called `manager`, `worker-1`, and `worker-2`), with each node has full stack of containers (Consul, Registrator, Redis, Twemproxy, OpenDJ, oxAuth, oxTrust, oxPassport, oxShibboleth, and NGINX).
-Given this topology, the Gluu Server still able to serve the request even when one of the nodes is down.
-Another interesting case is by using 3 nodes, the possibility of having [issue](https://github.com/GluuFederation/gluu-docker/issues/34) with Consul is minimized.
+For simplicity, the clustered Gluu Server is distributed into 3 nodes (called `manager`, `worker-1`, and `worker-2`), with each node having a full stack of containers (Consul, Registrator, Redis, Twemproxy, OpenDJ, oxAuth, oxTrust, oxPassport, oxShibboleth, and NGINX).
+Given this topology, the Gluu Server is still able to serve the request even when one of the nodes is down.
+Another interesting case is by using 3 nodes, the possibility of having an [issue](https://github.com/GluuFederation/gluu-docker/issues/34) with Consul is minimized.
 
 #### Networking
 
 The cluster operates over native Docker Swarm networking called `overlay`.
-To allow container that is running using plain `docker run` command to connect to the network, a custom network called `gluu` is created (based on `overlay` with `--attachable` option).
+To allow a container that is running using the plain `docker run` command to connect to the network, a custom network called `gluu` is created (based on `overlay` with `--attachable` option).
 
 By having this custom network, we can address our concerns:
 
-- any container that doesn't execute long-running process (e.g. `config-init`) able to access Consul container inside the network
+- any container that doesn't execute long-running process (e.g. `config-init`) is able to access Consul container inside the network
 - deploy container that requires fixed IP address/hostname (for example: LDAP replication), but can be reached by other containers inside the network
 
 #### Shared Volume Between Nodes
 
-oxTrust and oxShibboleth rely on mounted volume to share oxShibboleth configuration files. Given there are 3 nodes that need to share same copy of oxShibboleth files, [csync2](http://oss.linbit.com/csync2/) is used. Note, `csync2` is installed as node's OS package, not a container version. The `csync2` setup is executed when running `nodes.sh` script (see section below).
+oxTrust and oxShibboleth rely on a mounted volume to share oxShibboleth configuration files. Given there are 3 nodes that need to share the same copy of oxShibboleth files, [csync2](http://oss.linbit.com/csync2/) is used. Note, `csync2` is installed as node's OS package, not a container version. The `csync2` setup is executed when running `nodes.sh` script (see section below).
 
 #### Scripts
 
@@ -87,5 +87,5 @@ oxTrust and oxShibboleth rely on mounted volume to share oxShibboleth configurat
 
 #### Load Balancer
 
-Given 3 nodes that run clustered Gluu Server, it's recommended to deploy external loadbalancer, for example: NGINX or [DigitalOcean loadbalancer](https://www.digitalocean.com/products/load-balancer/).
+Given 3 nodes that run clustered Gluu Server, it's recommended to deploy an external loadbalancer, for example: NGINX or [DigitalOcean loadbalancer](https://www.digitalocean.com/products/load-balancer/).
 Note, the process of deploying an external loadbalancer is out of the scope of this document.
