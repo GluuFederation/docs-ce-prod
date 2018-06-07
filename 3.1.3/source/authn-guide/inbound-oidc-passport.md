@@ -87,7 +87,7 @@ Login with admin credentials to `https://<host-name>/identity` and go to "OpenId
 
 - response types: code
 
-- redirect login uri: https://<host-name>/passport/auth/mypartner/callback
+- redirect login uri: `https://<host-name>/passport/auth/mypartner/callback` 
 
 
 It's important to note that `passport-openidconnect` **only** supports the code flow. Additionally, comunication with the token endpoint is carried out via POST.
