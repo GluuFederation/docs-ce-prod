@@ -1,6 +1,8 @@
 # FAQ
 
-1)  What network is Gluu Server Docker Edition running on?
+We'll continue to add FAQs as they arise. Feel free to help us by forking these docs and submitting a merge request! 
+
+## On which network is Gluu Server DE running?
 
     For the single-host example, `run_all.sh` script executes the `docker-compose up -d` command, where docker-compose creates a custom bridge network based on the name of your current directory. So, for example, the network would be named `dockergluuserver_bridge`. You can assign a custom network in the `docker-compose.yaml`. Please see [the Docker-compose official documentation](https://docs.docker.com/compose/networking/#specify-custom-networks) for further information.
 
