@@ -1,10 +1,13 @@
 # Single Sign-On (SSO) Integration Guide
-The SSO integration guide offers a list of supported SAML and OpenID Conenct "client" (SP/RP) software projects that can be used to secure and integrate web and mobile applications with the Gluu Server IDP. 
+There are two technical entities in any standard SSO transaction: 
 
-Unless otherwise noted, all software in the integration guide is free open source software (FOSS).
+1. The application (a.k.a "client" or "RP" / "SP"), and;
+1. The identity provider (a.k.a IDP or OP) 
+
+The SSO integration guide below offers a list of pre-existing client software projects application developers can use to implement OAuth 2.0 and SAML to secure and integrate applications with an identity provider, like the Gluu Server. 
 
 !!! Note
-    Due to a wide range of variability in implementation quality, Gluu (the organization) only provides support for the following SAML, OpenID Connect, and OAuth client software projects.  
+    Due to a wide range of variability in implementation quality, Gluu (the organization) only provides support for the following client software projects.  
     
 ## Server Side Web Apps
 Many applications are "server-side", meaning the web page displays content but most of the dynamic business logic resides on the web server. Two design patterns have emerged for integrating server-side web applications with an IDP like Gluu: 
