@@ -2,7 +2,7 @@
 
 ### Single Host using Docker
 
-This an example of running Gluu Server Docker edition on a single VM.
+This an example of running Gluu Server Docker Edition (DE) on a single VM.
 
 [Here](https://github.com/GluuFederation/gluu-docker/tree/3.1.3/examples/single-host) are the instructions to deploy a stand-alone instance with a bash script named `run_all.sh`.
 The core concept of this script is to intake some necessary information from the user on initial startup and deploy the containers.
@@ -13,7 +13,7 @@ What follows is a thorough explanation of the process we used to make launching 
 
 - `CONFIG_DIR=$PWD/volumes/config-init/db`: used to identify the location of the persistence volumes you would like to store the `config.json` file. This location can be changed before first creating your configuration, but if changed after, the script won't be able to load up the previous configuration.
 
-- `HOST_IP=$(ip route get 1 | awk '{print $NF;exit}')`: This variable automatically pulls the current host IP address. This variable, along with `DOMAIN` variable, are used to populate the `/etc/hosts` file of the oxTrust container. This is necessary due to the fact that oxTrust must be able to discover oxAuth's `/.well-known/openid-configuration` to be properly configured. For that reason, NGINX, which is bound on the host network's `eth0` interface in this example, will route oxTrust to the proper location `https://$DOMAIN/.well-known/openid-configuration`.
+- `HOST_IP=$(ip route get 1 | awk '{print $NF;exit}')`: This variable automatically pulls the current host IP address. This variable, along with `DOMAIN` variable, are used to populate the `/etc/hosts` file of the oxTrust container. This is necessary due to the fact that oxTrust must be able to discover oxAuth's `/.well-known/openid-configuration` to be properly configured. For that reason, NGINX, which is bound on the host network's `eth0` interface in this example, will route oxTrust to the proper location, `https://$DOMAIN/.well-known/openid-configuration`.
 
 - `GLUU_VERSION=<version>`: In the script, this is used to identify which version of `config-init` to run. This must match the version of Gluu Server you're trying to deploy.
 
@@ -33,7 +33,7 @@ What follows is a thorough explanation of the process we used to make launching 
 
 - `load_services`: deploys all the services in the docker-compose file. Note that `config-init` is run as a separate command.
 
-- `prepare_config`: checks config in Consul KV. If it can't find the required config, this function will load configuration from existing `config.json` (see `load_config` function below), otherwise users will be prompted to enter required configuration (see `generate_config` below).
+- `prepare_config`: checks config in Consul KV. If it can't find the required config, this function will load configuration from an existing `config.json` (see `load_config` function below), otherwise users will be prompted to enter the required configuration (see `generate_config` below).
 
 - `load_config`: loads config from a JSON file (`config.json`) stored under `CONFIG_DIR` directory.
 
@@ -88,4 +88,4 @@ oxTrust and oxShibboleth rely on mounted volume to share oxShibboleth configurat
 #### Load Balancer
 
 Given 3 nodes that run clustered Gluu Server, it's recommended to deploy external loadbalancer, for example: NGINX or [DigitalOcean loadbalancer](https://www.digitalocean.com/products/load-balancer/).
-Note, the process of deploying an external loadbalancer is out of scope.
+Note, the process of deploying an external loadbalancer is out of the scope of this document.
