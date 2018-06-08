@@ -15,7 +15,7 @@ This documentation is primarily focused on utilizing Docker, but it's entirely p
 - Ease of Operations
 
 ## Get Started
-- [Technical Documentation](./Technical.md)
+- [Technical Documentation](./technical.md)
 - [Example Implementations](./example.md)
 - [FAQ](./faq.md)
 
