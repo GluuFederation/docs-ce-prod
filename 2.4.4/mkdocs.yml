@@ -32,7 +32,7 @@ pages:
             - 'Requirements: csync2 Installation': 'cluster/csync-installation.md'
             - 'Clustering with CE': 'cluster/index.md'
 - Administration Guide:
-        - 'oxTrust admin UI' : 'admin-guide/OxTrust-ui.md'
+        - 'oxTrust admin UI' : 'admin-guide/oxtrust-ui.md'
         - 'Interception Scripts': 'admin-guide/custom-script.md'
         - User Authentication Guide:
             - 'User Authentication Introduction': 'admin-guide/user-authentications.md'
