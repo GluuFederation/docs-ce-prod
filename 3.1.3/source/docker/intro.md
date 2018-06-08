@@ -1,6 +1,6 @@
 # Gluu Server Docker Edition Documentation
 
-Note:
+!!! Note:  
     Gluu Server Docker Edition is currently in Beta. If you have any feedback or concerns, please direct them to our [Support Portal](https://support.gluu.org/).
 
 ## Overview
