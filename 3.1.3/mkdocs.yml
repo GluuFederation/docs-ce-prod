@@ -21,7 +21,7 @@ pages:
         - 'Install Gluu Server': 'installation-guide/install.md'
         - 'Setup Script Options': 'installation-guide/setup_py.md'
         - 'Clustering': 'installation-guide/cluster.md'
-        - Docker Edition Installation:
+        - Docker Edition:
             - 'Introduction': 'docker/intro.md'
             - 'Technical Documentation': 'docker/technical.md'
             - 'Examples': 'docker/example.md'
