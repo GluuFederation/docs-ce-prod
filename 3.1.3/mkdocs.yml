@@ -22,8 +22,8 @@ pages:
         - 'Setup Script Options': 'installation-guide/setup_py.md'
         - 'Clustering': 'installation-guide/cluster.md'
         - Docker Installation:
-            - 'Introduction': 'docker/Intro.md'
-            - 'Technical Documentation': 'docker/Technical.md'
+            - 'Introduction': 'docker/intro.md'
+            - 'Technical Documentation': 'docker/technical.md'
             - 'Examples': 'docker/example.md'
             - 'FAQ': 'docker/faq.md'
 - Administration Guide:
