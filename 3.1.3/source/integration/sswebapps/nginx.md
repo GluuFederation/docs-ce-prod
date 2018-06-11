@@ -123,8 +123,8 @@ http {
           local opts = {
              redirect_uri_path = "/welcome",
              discovery = "https://${GLUU_SERVER}/.well-known/openid-configuration",
-             client_id = "@!AFDF.4014.90DC.1A2D!0001!41DB.9430!0008!3C50.E448.9C41.C83B",
-             client_secret = "secret",
+             client_id = "$INUM",
+             client_secret = "$SECRET",
              ssl_verify = "no",
              scope = "openid email profile",
              redirect_uri_scheme = "https",
