@@ -8,9 +8,9 @@ There are some minor file changes that you'll need to apply in your passport app
 
 ```
 service gluu-server-3.1.3 login
-cd ~ 
-mkdir temp
-cp -R /opt/gluu/node/passport/ temp
+#cd ~ 
+#mkdir temp
+#cp -R /opt/gluu/node/passport/ temp
 ``` 
 
 ## Install passport-openidconnect
@@ -18,8 +18,9 @@ cp -R /opt/gluu/node/passport/ temp
 Ensure your VM has internet access. The following will add the [passport-openidconnect](https://github.com/jaredhanson/passport-openidconnect) strategy to the modules used by the application.
 
 ```
-cd /opt/gluu/node/passport/
-npm install passport-openidconnect --save
+#cd /opt/gluu/node/passport/
+#export PATH=$PATH:/opt/node/bin
+#npm install passport-openidconnect --save
 ```
 
 Output should look like this:
@@ -34,7 +35,7 @@ Create a logo image in png format for this provider. Copy the file to `/opt/gluu
 
 The file name should be the same as the provider name, eg. `mypartner.png` in this case.
 
-Download the file [passportlogin.xhtml](https://github.com/GluuFederation/oxAuth/raw/version_3.1.3/Server/src/main/webapp/auth/passport/passportlogin.xhtml) and do these edits:
+Download the file [passportlogin.xhtml]() and do these edits:
 
 - After line 333 add logic to properly read the new image. The following will work:
 
@@ -55,7 +56,7 @@ if (provider.match("mypartner")) {
 `cd` to `/opt/gluu/jetty/oxauth/custom/pages` and create a directory named `auth` and then one named `passport` inside it. 
 Finally copy the edited file to `/opt/gluu/jetty/oxauth/custom/pages/auth/passport`.
 
-Restart oxauth (eg `service oxauth restart`), and then navigate to `https://<host-name>/oxauth/ext/resources/img/mypartner.png` in a browser. You should be able to see your image now.
+Restart oxauth (eg `#service oxauth restart`), and then navigate to `https://<host-name>/oxauth/ext/resources/img/mypartner.png` in a browser. You should be able to see your image now.
 
 ## Create an OIDC client to interact with your external OP
 
@@ -92,7 +93,7 @@ Login with admin credentials to `https://<host-name>/identity` and go to "OpenId
 
 It's important to note that `passport-openidconnect` **only** supports the code flow. Additionally, comunication with the token endpoint is carried out via POST.
 
-## Supply client details in passport side
+## Create strategy
 
 In oxTrust of the Gluu server where passport resides, go to "Configuration" >  "Manage Authentication" > "Passport authentication method". Click on "add strategy". As name use `mypartner`. Click "add new property" and use `clientID` with the respective value (looks like `@!E051.5609.8133.5BC7!0001!0884.4792!0008!2FA2.683F`)
 
@@ -102,15 +103,18 @@ Add another property for `clientSecret` and fill appropriately.
 !!! Note:
     In this example "mypartner" was used to name the strategy. If you want a different one, recall to appropriately replace occurrences throughout all files modified or added.
     
-## Create strategy
+## Supply client details in passport side
 
-Create a file named `mypartner.js` in folder `/opt/gluu/node/passport/server/auth`, with the following contents:
+We have to add and edit some files to make passport aware of our new openId connect client.
 
-```
-var passport = require('passport');
-var MyPartnerOIDCStrategy = require('passport-openidconnect').Strategy;
+### Create `mypartner.js` file:
+  1. `# cd /opt/gluu/node/passport/server/auth`
+  1. Paste the following content inside that file:
 
-var setCredentials = function(credentials) {
+   ```
+    var passport = require('passport');
+    var MyPartnerOIDCStrategy = require('passport-openidconnect').Strategy;
+    var setCredentials = function(credentials) {
     var callbackURL = global.applicationHost.concat("/passport/auth/mypartner/callback");
     passport.use(new MyPartnerOIDCStrategy({
 			issuer: 'https://server.example.com/',
@@ -145,12 +149,20 @@ module.exports = {
 };
 
 ```
+Note!!!
+    **Provide suitable values for OP's endpoints (lines 7-10).**
 
-Provide suitable values for OP's endpoints (lines 7-10).
+### Edit file `index.js`:
+ - `#cd /opt/gluu/node/passport/server/routes`
+ - Edit the index.js file:`#vi index.js`
+ - Add this line somewhere at the beginning of this file: 
 
-Add a new route in file `/opt/gluu/node/passport/server/routes/index.js`:
+    ```
+    var passportOIDCPartner = require('../auth/mypartner').passport;
+    ```
+ - Add a new route in that file:
 
-```
+ ```
 //=== my openid partner ===
 router.get('/auth/mypartner/callback',
     passportOIDCPartner.authenticate('openidconnect', {
@@ -163,15 +175,24 @@ router.get('/auth/mypartner/:token',
     passportOIDCPartner.authenticate('openidconnect'));
 ```
 
-Finally, at `/opt/gluu/node/passport/server/configureStrategies.js` add a block in the outer if this way:
+### Edit `configureStrategies.js`:
 
-```
-	//PartnerStrategy
-        if (data.passportStrategies.mypartner) {
+- `#cd /opt/gluu/node/passport/server/auth`
+- Edit the file `#vi configureStrategies.js`
+- Add this line at the beginning:
+   ```
+   var MyPartnerOIDCStrategy = require('./mypartner');
+
+   ```
+- Add the below block in after others if blocks:
+  
+    ```
+      //PartnerStrategy
+      if (data.passportStrategies.mypartner) {
             logger.log('info', 'MyPartner Strategy details received');
             PartnerStrategy.setCredentials(data.passportStrategies.mypartner);
-        }
-```        
+	    }
+   ```        
 
 ## Test
 
