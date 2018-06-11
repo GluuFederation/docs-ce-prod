@@ -384,7 +384,7 @@ The SAML IDP sends an authorization request to oxAuth for user authentication.. 
 
 ## How to fix image/files upload issue in Gluu 3.1.3
  
- There is a know issue in Gluu 3.1.3 that affects file upload feature like **Person Import**, **Organization logo upload**.
+ There is a known issue in Gluu 3.1.3 that affects file upload feature like **Person Import**, **Organization logo upload**.
  
  Below are steps to fix that issue by patching the oxtrust war file.
  
