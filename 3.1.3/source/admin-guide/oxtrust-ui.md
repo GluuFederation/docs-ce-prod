@@ -237,6 +237,9 @@ local LDAP server.
 * _Test LDAP Connection:_ Use this button to check whether the provided
   information is sufficient to connect to the authentication server. The
   scan is done in real time
+  
+!!! Note:
+    The Local Primary Key is used in searches against Gluu Server’s internal LDAP directory to verify that a local user entry for this user exists and is active. Primary Key is used in search and bind operations against the LDAP directory that is configured in the “Manage Authentication” tab, which actually verifies the credentials supplied by the user at the login page. Although the latter defaults to using Gluu Server’s internal LDAP for this purpose as well, any LDAP server already existing in your network can be used, allowing you to seamlessly integrate Gluu server into your corporate environment.
 
 ### Default Authentication Method
 
