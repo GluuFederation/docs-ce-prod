@@ -211,10 +211,9 @@ local LDAP server.
   of simultaneous connections allowed for reading local LDAP/remote Active
   Directory/remote LDAP
   
-* _Primary Key:_ This field contains the primary key to connect to the
-  authentication server (i.e. SAMAccountName/uid/mail etc.) 
+* _Primary Key:_ This field is used in search and bind operations against the LDAP directory that is configured in the “Manage Authentication” tab, which actually verifies the credentials supplied by the user at the login page. By default, it uses Gluu Server’s internal LDAP, but any LDAP server already set up in the network can be used, allowing the Gluu server to be integrated seamlessly into any corporate environment. The key could be *SAMAccountName*, *uid*, *mail*, etc
 
-* _Local Primary Key:_ This field contains the Gluu Server's internal LDAP primary key. Generally the key is either *uid* or *mail*. 
+* _Local Primary Key:_ This field is used in searches against Gluu Server’s internal LDAP directory to verify that a local user entry for this user exists and is active. Generally the key is either *uid* or *mail* 
 
 * _Server:_ The unique name of the authentication server and port number
   (e.g. auth.company.org:636) goes here
@@ -238,9 +237,6 @@ local LDAP server.
   information is sufficient to connect to the authentication server. The
   scan is done in real time
   
-!!! Note:
-    The Local Primary Key is used in searches against Gluu Server’s internal LDAP directory to verify that a local user entry for this user exists and is active. Primary Key is used in search and bind operations against the LDAP directory that is configured in the “Manage Authentication” tab, which actually verifies the credentials supplied by the user at the login page. Although the latter defaults to using Gluu Server’s internal LDAP for this purpose as well, any LDAP server already existing in your network can be used, allowing you to seamlessly integrate Gluu server into your corporate environment.
-
 ### Default Authentication Method
 
 This page allows the Gluu Server administrator to select the default
