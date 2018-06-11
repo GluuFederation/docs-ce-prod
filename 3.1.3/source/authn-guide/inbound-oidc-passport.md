@@ -93,7 +93,7 @@ Login with admin credentials to `https://<host-name>/identity` and go to "OpenId
 
 It's important to note that `passport-openidconnect` **only** supports the code flow. Additionally, comunication with the token endpoint is carried out via POST.
 
-## Create strategy
+## Supply client details in passport side
 
 In oxTrust of the Gluu server where passport resides, go to "Configuration" >  "Manage Authentication" > "Passport authentication method". Click on "add strategy". As name use `mypartner`. Click "add new property" and use `clientID` with the respective value (looks like `@!E051.5609.8133.5BC7!0001!0884.4792!0008!2FA2.683F`)
 
@@ -103,11 +103,12 @@ Add another property for `clientSecret` and fill appropriately.
 !!! Note:
     In this example "mypartner" was used to name the strategy. If you want a different one, recall to appropriately replace occurrences throughout all files modified or added.
     
-## Supply client details in passport side
+## Create strategy
 
 We have to add and edit some files to make passport aware of our new openId connect client.
 
 ### Create `mypartner.js` file:
+
   1. `# cd /opt/gluu/node/passport/server/auth`
   1. Paste the following content inside that file:
 
@@ -116,39 +117,39 @@ We have to add and edit some files to make passport aware of our new openId conn
     var MyPartnerOIDCStrategy = require('passport-openidconnect').Strategy;
     var setCredentials = function(credentials) {
     var callbackURL = global.applicationHost.concat("/passport/auth/mypartner/callback");
-    passport.use(new MyPartnerOIDCStrategy({
-			issuer: 'https://server.example.com/',
-			authorizationURL: 'https://server.example.com/authorize',
-			tokenURL: 'https://server.example.com/token',
-			userInfoURL: 'https://server.example.com/userinfo',
-			clientID: credentials.clientID,
-			clientSecret: credentials.clientSecret,
-			callbackURL: callbackURL,
-			scope: 'profile user_name email'
-        },
-        function(iss, sub, profile, accessToken, refreshToken, done) {
-			console.log("profile" + JSON.stringify(profile))
-            var userProfile = {
-                id: profile.id,
-                name: profile.displayName,
-                username: profile._json.user_name || profile.id,
-                email: profile._json.email || "",
-                givenName: profile.name.givenName || "",
-                familyName: profile.name.familyName || "",
-                provider: "mypartner",
-                accessToken: accessToken
-            };
-            return done(null, userProfile);
-        }
-    ));
-};
+        passport.use(new MyPartnerOIDCStrategy({
+    			issuer: 'https://server.example.com/',
+    			authorizationURL: 'https://server.example.com/authorize',
+    			tokenURL: 'https://server.example.com/token',
+    			userInfoURL: 'https://server.example.com/userinfo',
+    			clientID: credentials.clientID,
+    			clientSecret: credentials.clientSecret,
+    			callbackURL: callbackURL,
+    			scope: 'profile user_name email'
+            },
+            function(iss, sub, profile, accessToken, refreshToken, done) {
+                var userProfile = {
+                    id: profile.id,
+                    name: profile.displayName,
+                    username: profile._json.user_name || profile.id,
+                    email: profile._json.email || "",
+                    givenName: profile.name.givenName || "",
+                    familyName: profile.name.familyName || "",
+                    provider: "mypartner",
+                    accessToken: accessToken
+                };
+                return done(null, userProfile);
+            }
+        ));
+    };
 
-module.exports = {
-    passport: passport,
-    setCredentials: setCredentials
-};
+    module.exports = {
+        passport: passport,
+        setCredentials: setCredentials
+    };
 
-```
+   ```
+
 Note!!!
     **Provide suitable values for OP's endpoints (lines 7-10).**
 
@@ -191,7 +192,7 @@ router.get('/auth/mypartner/:token',
       if (data.passportStrategies.mypartner) {
             logger.log('info', 'MyPartner Strategy details received');
             PartnerStrategy.setCredentials(data.passportStrategies.mypartner);
-	    }
+      }
    ```        
 
 ## Test
