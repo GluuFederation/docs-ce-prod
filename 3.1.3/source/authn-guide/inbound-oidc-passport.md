@@ -2,6 +2,13 @@
 
 Out of the box, passport supports integration with several well-known social sites for inbound authentication. In this page we demonstrate how to add an additional authentication provider, namely an OpenID Connect provider (OP).
 
+## Requirements
+
+- Gluu Server 3.1.3 with Passport.js 
+
+!!! Note
+    If Passport was not included during initial installation, it can be installed post installation following [these instructions](../operation/faq.md#adding-passportjs-andor-shibboleth-idp-post-installation)
+
 ## Backup your passport application
 
 There are some minor file changes that you'll need to apply in your passport app. It's good idea to have a copy at hand in case of problem. Login to chroot and backup passport:
