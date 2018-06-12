@@ -1,6 +1,6 @@
 # Using the lua-resty-openidc Nginx Library as a Relying Party With Gluu Server
 
-As a brief explanation, we will have two servers. One is the Identity Provider(IDP), the Gluu Server; the other is the Relying Party(RP), Nginx with the lua-resty-openidc library. This tutorial will have the Relying Party acquire authorization to gather user information from the IDP and upon being recognized as an authorized client, forward the user to a redirect URI.
+As a brief explanation, we will have two servers. One is the Identity Provider(IDP), the Gluu Server; the other is the Relying Party(RP), the Nginx OpenResty server with the lua-resty-openidc library. The lua-resty-openidc Nginx library uses the OpenID Connect [Authorization Code Flow](http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowSteps). Upon the user giving consent, the RP will gather user information from the IDP and if the user is authorized, forward the user to a redirect URI.
 
 Requirements:
 - Gluu Server ([Installation Instructions](https://gluu.org/docs/ce/3.1.3/installation-guide/install/#1-install-gluu-server-package))
