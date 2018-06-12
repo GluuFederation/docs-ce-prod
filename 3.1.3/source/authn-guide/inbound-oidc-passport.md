@@ -112,35 +112,35 @@ We have to add and edit some files to make passport aware of our new openId conn
   1. `# cd /opt/gluu/node/passport/server/auth`
   1. Paste the following content inside that file:
  
-    var passport = require('passport');  
-    var MyPartnerOIDCStrategy = require('passport-openidconnect').Strategy;  
-    var setCredentials = function(credentials) {  
-    var callbackURL = global.applicationHost.concat("/passport/auth/mypartner/callback");  
-        passport.use(new MyPartnerOIDCStrategy({  
-    	issuer: 'https://server.example.com/',  
-    	authorizationURL: 'https://server.example.com/authorize',  
-    	tokenURL: 'https://server.example.com/token',  
-    	userInfoURL: 'https://server.example.com/userinfo',  
-    	clientID: credentials.clientID,  
-    	clientSecret: credentials.clientSecret,  
-      	callbackURL: callbackURL,  
-        scope: 'profile user_name email'  
-            },  
-            function(iss, sub, profile, accessToken, refreshToken, done) {  
-                var userProfile = {  
-        id: profile.id,  
-        name: profile.displayName,  
-        username: profile._json.user_name || profile.id,  
-        email: profile._json.email || "",  
-        givenName: profile.name.givenName || "",  
-        familyName: profile.name.familyName || "",  
-        provider: "mypartner",  
-        accessToken: accessToken  
-                };  
-                return done(null, userProfile);  
-            }  
-        ));  
-    };  
+    `var passport = require('passport');`  
+    `var MyPartnerOIDCStrategy = require('passport-openidconnect').Strategy;`  
+    `var setCredentials = function(credentials) {`  
+    `var callbackURL = global.applicationHost.concat("/passport/auth/mypartner/callback");`  
+        `passport.use(new MyPartnerOIDCStrategy({`  
+        `issuer: 'https://server.example.com/',`  
+        `authorizationURL: 'https://server.example.com/authorize',`  
+    	`tokenURL: 'https://server.example.com/token',`  
+    	`userInfoURL: 'https://server.example.com/userinfo',`  
+    	`clientID: credentials.clientID,`  
+    	`clientSecret: credentials.clientSecret,`  
+      	`callbackURL: callbackURL,`  
+        `scope: 'profile user_name email'`  
+           ` },`  
+            `function(iss, sub, profile, accessToken, refreshToken, done) {`  
+                `var userProfile = {`  
+        `id: profile.id,`  
+        `name: profile.displayName,`  
+        `username: profile._json.user_name || profile.id,`  
+        `email: profile._json.email || "",`  
+        `givenName: profile.name.givenName || "",`  
+        `familyName: profile.name.familyName || "",`  
+        `provider: "mypartner",`  
+        `accessToken: accessToken`  
+               ` };`  
+                `return done(null, userProfile);`  
+            `}`  
+        `));`  
+    `};`  
   
         module.exports = {  
             passport: passport,  
