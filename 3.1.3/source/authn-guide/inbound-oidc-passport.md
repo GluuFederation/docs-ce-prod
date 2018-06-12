@@ -123,7 +123,7 @@ We have to add and edit some files to make passport aware of our new openId conn
     `var MyPartnerOIDCStrategy = require('passport-openidconnect').Strategy;`  
     `var setCredentials = function(credentials) {`  
     `var callbackURL = global.applicationHost.concat("/passport/auth/mypartner/callback");`  
-        `passport.use(new MyPartnerOIDCStrategy({`  
+    `    passport.use(new MyPartnerOIDCStrategy({`  
         `issuer: 'https://server.example.com/',`  
         `authorizationURL: 'https://server.example.com/authorize',`  
     	`tokenURL: 'https://server.example.com/token',`  
