@@ -21,7 +21,7 @@ With that file you can create an IDP in your AWS account using the following ste
  - Provider Type: `SAML`
  - Provider Name: `Shibboleth`
  
- ![Image](../../img/integration/AWS_configure_provider.png)
+ ![Image](../../img/integration/aws_configure_provider.png)
  
  - Metadata Documentation: Upload the XML metadata file you just downloaded. 
  - Verify Provider Information
