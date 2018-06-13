@@ -186,14 +186,14 @@ We have to add and edit some files to make passport aware of our new openId conn
 - Edit the file `#vi configureStrategies.js`  
 - Add this line at the beginning:  
 
-    `var MyPartnerOIDCStrategy = require('./mypartner');`  
+    `var PartnerOIDCStrategy = require('./mypartner');`  
    
 - Add the below block after other if blocks:  
   
    ` //PartnerStrategy`  
    ` if (data.passportStrategies.mypartner) {`  
    `     logger.log('info', 'MyPartner Strategy details received');`  
-   `     PartnerStrategy.setCredentials(data.passportStrategies.mypartner);`  
+   `     PartnerOIDCStrategy.setCredentials(data.passportStrategies.mypartner);`  
    `     }        `  
 
 ## Test
