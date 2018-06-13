@@ -42,7 +42,7 @@ Create a logo image in png format for this provider. Copy the file to `/opt/gluu
 
 The file name should be the same as the provider name, eg. `mypartner.png` in this case.
 
-Download the file [passportlogin.xhtml]() and do these edits:
+Download the file [passportlogin.xhtml](https://github.com/GluuFederation/oxAuth/blob/version_3.1.3/Server/src/main/webapp/auth/passport/passportlogin.xhtml) and do these edits:
 
 - After line 333 add logic to properly read the new image. The following will work:
 
