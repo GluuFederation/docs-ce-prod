@@ -57,7 +57,7 @@ as for example 'gluu-updater-2.4.4' will pull SP3 ( Service Pack 3 ).
 
 > ```
 > # yum update
-> # service gluu-server-2.4.4 stop
+> # /sbin/gluu-serverd-2.4.4 stop
 > # yum install gluu-updater-2.4.4
 > 
 > ```
