@@ -64,28 +64,14 @@ button. The flow is _Add Member --> Search the name/email of the user
 ![Add Member](../img/admin-guide/user/admin_users_addmember.png)
 
 ## Import People in oxTrust
-Gluu Server allows the administrator to import users from a file. 
-This can be accessed by navigating to `Users` > `Import People`.
 
-![image](../img/admin-guide/user/import-people_add.png)
+Gluu Server allows the administrator to import users from an excel file. 
 
-* Click on the `Add` button to select the file from which the users will be imported. 
-This feature has been tested with a `xls` file.
 
-![image](../img/admin-guide/user/import-people_validate.png)
+### People Import file structure
 
-* The file needs to be validated before it can be imported. Click on the `Validate` button.
-
-* Click on the `Import` button to complete the import of users.
-
-Note!!!
-     There is a [known issue](https://github.com/GluuFederation/oxTrust/issues/1007) in Gluu 3.1.3 that affects file upload feature like **Person Import**, **Organization logo upload**.
-     The solution for that issue is documented [here](https://gluu.org/docs/ce/operation/faq/#how-to-fix-imagefiles-upload-issue-in-gluu-313).
-
-### File Structure
-
-The file needs to contain the following fields from which the user data will be pulled. 
-Please remember to use the exact spelling as shown here.
+The excel file needs to contain the following fields from which the user data will be pulled. 
+Please remember to use the exact spelling as shown here. 
 
 * Username
 
@@ -94,6 +80,32 @@ Please remember to use the exact spelling as shown here.
 * Last Name
 
 * Email
+
+The fields listed above are the default require fields, Gluu server  allows administrators to defined additionals fields.
+You can achieve that by navigating at: 
+   * Log into Gluu Admin UI
+   * Navigate to `Organization Configuration` > `JSON Configuration`
+   * Select `oxTrust Import Configuration` tab
+### People import template file
+
+The default template file is provide [here](../user-management/SampleUsersImport.xlsx) for your reference and it should will on default gluu installation.
+
+### Importing people
+This can be accessed by navigating to `Users` > `Import People`.
+
+![image](../img/admin-guide/user/import-people_add.png)
+
+* Click on the `Add` button to select the file from which the users will be imported. 
+The supported excel formats are `xls` and `xlsx`.
+
+![image](../img/admin-guide/user/import-people_validate.png)
+
+* The file needs to be validated before it can be imported. Click on the `Validate` button.
+
+* Click on the `Import` button to complete the import of users.
+
+
+
  
    
 ## User Registration 
