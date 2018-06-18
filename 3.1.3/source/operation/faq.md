@@ -166,7 +166,8 @@ Forward the `1636` the same way as you did with the debug ports above. You can t
 
 
 ## Changing hostnames/IP addresses/listening ports
-It is not recommended to change the hostname or IP address or the listening port of any installed Gluu Server instance. The hostname and the IP address is used in many settings stored in LDAP configuration entries, Apache/Jetty configuration and into the custom authentication script. It is strongly recommended to use a fresh install in a new VM. 
+
+To change the hostname of a Gluu Server, please use the following script and README. [Changing Gluu Server hostname](https://github.com/GluuFederation/community-edition-setup/tree/master/static/scripts/change_hostname)
 
 !!! Note
     Please use static IP address with reverse proxy or load balancer or simple port forwarding.
