@@ -258,8 +258,6 @@ Gluu provides the necessary [scripts](https://github.com/GluuFederation/communit
 ```
 # service gluu-server-3.0.x login
 
-# cd
-
 # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/export3031.py
 
 # wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/ldif.py
@@ -303,8 +301,6 @@ Review the [installation docs](../installation-guide/install.md) to install the 
 
 # service gluu-server-3.1.3 login
 
-# cd
-
 # cp backup_3031/setup.properties /install/community-edition-setup/
 
 # cd /install/community-edition-setup/
@@ -319,7 +315,6 @@ Enter the required information to complete the installation.
 Navigate to where you have the `backup_3031` folder (if the above commands were followed, it is in `/root/`) and execute the following commands to get the necessary scripts:
 
 ```
-# cd
 
 # wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/import3031.py
 
@@ -410,8 +405,6 @@ After migration is done you should be able to log in as the temporary admin user
 ```
 # service gluu-server-2.x.x login
 
-# cd
-
 # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/export2431.py
 
 # wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/ldif.py
@@ -453,8 +446,6 @@ Review the [installation docs](../installation-guide/install.md) to install the 
 
 # service gluu-server-3.1.3 login
 
-# cd
-
 # cp backup_2431/setup.properties /install/community-edition-setup/
 
 # cd /install/community-edition-setup/
@@ -468,8 +459,6 @@ Enter the required information to complete the installation.
 Navigate to where you have the `backup_2431` folder (if the above commands were followed, it is in `/root/`) and execute the following commands to get the necessary scripts.
 
 ```
-# cd
-
 # wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/import2431.py
 
 # wget https://raw.githubusercontent.com/GluuFederation/cluster-mgr/master/testing/ldifschema_utils.py
