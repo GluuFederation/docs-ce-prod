@@ -19,9 +19,6 @@ installation procedure is similar across all the distributions:
 - Make sure your server or VM meets the [minimum requirements](../installation-guide/index.md) to deploy the Gluu Server.
 - If using CentOS, selinux must be set to permissive in /etc/selinux/config
 
-!!! Warning
-    Docker containers are **not** supported.     
-
 ## Instructions
 
 ### 1. Install Gluu Server package
