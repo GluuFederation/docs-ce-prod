@@ -120,6 +120,7 @@ We have to add and edit some files to make passport aware of our new openId conn
   1. Paste the following content inside that file:
  
     var passport = require('passport');  
+    var passport=new passport.Passport();
     var MyPartnerOIDCStrategy = require('passport-openidconnect').Strategy;  
     var setCredentials = function(credentials) {  
     var callbackURL = global.applicationHost.concat("/passport/auth/mypartner/callback");  
