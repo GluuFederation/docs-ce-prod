@@ -76,7 +76,15 @@ Then follow the next steps:
         In case if Passport is not available as a service, you can also restart the Gluu Server's main service itself.
 
 ## Configure Trust
+
+### SSO between target app and Gluu
+The target application needs to have an SSO relationship with your Gluu Server. 
+
+- If its a SAML app, follow the instructions in the admin guide for configuring your [Gluu SAML IDP](../admin-guide/saml.md).
  
+- If its an OpenID Connect app, follow the instructions in the admin guide for configuring your [Gluu OP](../admin-guide/openid-connect.md).
+
+
 ### Register external IDPs with home IDP
 
 Some basic information is required to make Passport aware of the supported external IDPs. By default Passport expects to find this configuration in the `/etc/gluu/conf/passport-saml-config.json` file. Each supported external IDP should be added as a JSON object. 
