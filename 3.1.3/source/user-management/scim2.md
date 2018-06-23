@@ -773,15 +773,15 @@ public class TestScimClient {
 
     private void simpleSearch() throws Exception {
 
-        ClientSideService client=ScimClientFactory.getClient(domain, umaAatClientId, umaAatClientJksPath, umaAatClientJksPassword, umaAatClientKeyId);
+        ClientSideService client = ScimClientFactory.getClient(domain, umaAatClientId, umaAatClientJksPath, umaAatClientJksPassword, umaAatClientKeyId);
         String filter = "userName eq \"admin\"";
 
         Response response = client.searchUsers(filter, 1, 1, null, null, null, null);
-        List<BaseScimResource> resources=response.readEntity(ListResponse.class).getResources();
+        List<BaseScimResource> resources = response.readEntity(ListResponse.class).getResources();
 
         logger.info("Length of results list is: {}", resources.size());
-        UserResource admin=(UserResource) resources.get(0);
-        logger.info("First user in the list is: {}" + admin.getDisplayName());
+        UserResource admin = (UserResource) resources.get(0);
+        logger.info("First user in the list is: {}", admin.getDisplayName());
         
         client.close();
 
@@ -911,6 +911,12 @@ To delete a user, only his ID (the `inum` LDAP attribute) is needed. You can see
 Response response=client.deleteUser("id");
 assertEquals(Response.Status.NO_CONTENT.getStatusCode(), response.getStatus());
 ```
+
+#### Replacing expired keys
+
+To properly implement the UMA 2.0 workflow, your Gluu server requires a number of configurations. These are all applied at installation time. Particularly, Java Keystore files generated have an expiration time of one year. After this period of time you will have to update those files and a couple of configurations. To learn more about this topic, visit this [page](replace-expired-jks-scim.md).
+
+The protection of the service with UMA 
 
 ### Using a Different Programming Language 
 
