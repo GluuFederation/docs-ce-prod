@@ -1,8 +1,6 @@
 # Preparing VM for Gluu Server Installation
 ## Overview
-Thank you for your interest in the Gluu Server! This document will provide instructions for preparing your VM for a standard Gluu Server deployment. Once the server is ready, move on to the [installation instructions](../installation-guide/install.md). 
-
-Good luck and welcome to the community!
+Thank you for your interest in the Gluu Server! Below are instructions for preparing your VM for a standard Gluu Server deployment. Once your server is ready, move on to the [installation instructions](../installation-guide/install.md). 
 
 ## System Requirements
 
@@ -31,7 +29,7 @@ Deply Gluu on a server or VM with one of the following supported operating syste
 
 ## Ports
 
-The following ports are open to the Internet by default.
+The following ports need to be open to the Internet by default.
 
 |       Port Number     |       Protocol        |   Notes          |
 |-----------------------|-----------------------|------------------|
