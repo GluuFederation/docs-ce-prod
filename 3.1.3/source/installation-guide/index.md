@@ -12,12 +12,11 @@ The Gluu Server needs to be deployed on a server or VM with the following **mini
 
 If you plan on installing more than the default components (i.e. oxAuth, oxTrust, and LDAP), we recommend using a machine with at least 8GB of RAM. 
 
+Gluu requires a static IP Address that resolves to a computer hostname, which can be achieved by adding an entry to the DNS server, or in `/etc/hosts`.   
+
 !!! Note
     Want to try our newly released "Docker Edition"? Head over to the [docker edition docs](../docker/intro.md)
-    
-!!! Warning
-    Gluu must be deployed on a server or VM with a static IP Address. The static IP address should resolve to a computer hostname which can be achieved by adding an entry to the DNS server or in `/etc/hosts`.     
-    
+     
 
 ## Supported Operating Systems
 Deply Gluu on a server or VM with one of the following supported operating systems:
