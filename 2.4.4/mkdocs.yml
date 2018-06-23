@@ -7,7 +7,7 @@ repo_url: https://github.com/GluuFederation/docs-ce-prod/tree/2.4.4/2.4.4
 theme_dir: theme/material
 extra:
     version: '2.4.4'
-    logo: 'gluu.jpg'
+    logo: 'gluu.png'
 markdown_extensions:
 - admonition
 - toc:
