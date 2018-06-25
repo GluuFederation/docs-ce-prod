@@ -4,14 +4,14 @@ This section describes the adminisration of UMA in Gluu Server CE. The UMA admin
 ![menu](../img/uma/menu.png)
 
 ## Resource Registration
-The resources protected by UMA must be registered in oxTrust. The following propterties describe a resource:
+The resources protected by UMA must be registered in oxTrust. The following properties describe a resource:
 
 - name
 - scopes
 - type
 - icon\_uri
 
-The resource type can be a string, URI or any other supported value type supported by Gluu Server CE. The properties shown above are not concrete, and it is possible that a resource may contain custom properties. An example of the resource JSON is given beow:
+The resource type can be a string, URI or any other value type supported by Gluu Server CE. The properties shown above are not concrete, and it is possible that a resource may contain custom properties. An example of the resource JSON is given beow:
 
 ```
 {
@@ -25,23 +25,23 @@ The resource type can be a string, URI or any other supported value type support
 
 ![uma-resources](../img/uma/uma-resources.png)
 
-The search bar can be used to search for any existing resource within Gluu Server. New resoruces can be added by clicking on the `Add Resource Set` button. The following screenshot shows the page that will appear up on clicking the add resource button.
+The search bar can be used to search for any existing resource within Gluu Server. New resources can be added by clicking on the `Add Resource Set` button. The following screenshot shows the page that will appear upon clicking the add resource button:
 
 ![add-resource-set](../img/uma/add-resource-set.png)
 
-The properties of a resource is visible in this page. There are two additional buttons that allows the administrator to add specific resource or scope as well. By default, Gluu Server is shipped with SCIM resources protected by UMA.
+The properties of a resource are visible on this page. There are two additional buttons that allow the administrator to add specific resources or scopes as well. By default, Gluu Server is shipped with SCIM resources protected by UMA.
 
 ![add-resource](../img/uma/add-resource.png)
 
 ![add-scope](../img/uma/add-scope.png)
 
 ## Scopes
-The scopes in UMA are bount to resource sets and used by policies to check whether the specified user has access to the resource. The scopes are described in JSON and has the following properties:
+The scopes in UMA are bound to resource sets and used by policies to check whether the specified user has access to the resource. The scopes are described in JSON and have the following properties:
 
 - name
 - icon\_uri
 
-An example  of the scope JSON is given below:
+An example of a scope JSON is given below:
 
 ```
 {
@@ -74,7 +74,7 @@ https://gluu.org/uma/scopes/view
 !!! Note
     The scope endpoint has to be present in UMA configuration to make it discoverable.
 
-The `ldif` for both external and internal scope is given below:
+The `ldif` for both external and internal scopes is given below:
 
 **External sample ldif**
 ```
@@ -100,7 +100,7 @@ oxIconUrl: http://seed.gluu.org/uma/icons/view_scope.png
 ```
 
 ### Add Scope
-This section defines the process of defining UMA scopes from oxTrust. The scopes are accessed from the `Scopes` page under `UMA` from the oxTrust menu.
+This section describes the process of defining UMA scopes from oxTrust. The scopes are accessed from the `Scopes` page under `UMA` from the oxTrust menu.
 
 ![uma-scopes](../img/uma/uma-scopes.png)
 
@@ -108,7 +108,7 @@ The search bar can be used to look for available scopes. New scopes are added by
 
 ![uma-scopes](../img/uma/scopes-add.png)
 
-Additionally there is an option to add authorization policy with the new scope.
+Additionally, there is an option to add an authorization policy with the new scope.
 
 ## UMA Policies
 UMA policies protect UMA Resources via scopes. Gluu Server evaluates all policies, identified by scopes, to grant access to resources. There are three (3) main properties of a policy:
@@ -123,10 +123,10 @@ The following section outlines how to define UMA policies from the Custom Script
 ![auth-policy](../img/uma/auth-policy.png)
 
 ### UMA Policy Algorithm
-The UMA Policy alrorithm has two rules that are followed. These rules must be followed while writing UMA policy using the custom script feature of Gluu Server.
+The UMA Policy alrorithm has two rules that are followed. These rules must be followed while writing an UMA policy using the custom script feature of Gluu Server.
 
 - UMA Policy protects resources based on scopes. If a scope is protected by a policy, then the policy script must reutrn `true` in order to authorize access during RPT authorization.
 
-- Multiple policies can protect a single scope. In such a case, all the policies must retun `true` to authorize access else aceess will be denied.
+- Multiple policies can protect a single scope. In such a case, all the policies must retun `true` to authorize access. Otherwise, access will be denied.
 
 ![policy-algorithm](../img/uma/policy-algorithm.jpg) 
