@@ -914,7 +914,7 @@ assertEquals(Response.Status.NO_CONTENT.getStatusCode(), response.getStatus());
 
 #### Replacing expired keys
 
-To properly implement the UMA 2.0 workflow, your Gluu server requires a number of configurations. These are all applied at installation time. Particularly, Java Keystore files generated have an expiration time of one year. After this period of time you will have to update those files and a couple of configurations. To learn more about this topic, visit this [page](./replace-expired-jks-scim.md).
+To properly implement the UMA 2.0 workflow, your Gluu server requires a number of configurations. These are all applied at installation time. Particularly, Java Keystore files generated have an expiration time of one year. After this period of time you will have to update those files and a couple of configurations. To learn more about this topic, visit this [page](../user-management/replace-expired-jks-scim.md).
 
 ### Using a Different Programming Language 
 
