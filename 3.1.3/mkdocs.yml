@@ -34,6 +34,7 @@ pages:
             - 'AD/LDAP Synchronization': 'user-management/ldap-sync.md'
             - 'SCIM 2.0 User Management': 'user-management/scim2.md'
             - 'SCIM new features': 'user-management/scim-new-features.md'
+            #- 'Replacing Expired JKS files': 'user-management/replace-expired-jks-scim.md'
         - User Authentication:
             - 'Introduction': 'authn-guide/intro.md'
             - 'Basic Authentication': 'authn-guide/basic.md'
