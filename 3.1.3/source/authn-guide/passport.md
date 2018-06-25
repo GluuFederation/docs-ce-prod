@@ -26,7 +26,7 @@ authentication and provisioning.
 4. Node-Passport server will redirect user to social media authentication provider.
 5. After successful authentication of user, social network will callback Node-Passport server along with user details and access token.
 6. Node-Passport server will redirect user back to Gluu server with user details and access token.
-7. Gluu server’s interception script will check if the user exists in LDAP server. If the user exists then the user will be logged into the system. If not, the interception script will create a new user with the required details and log the user into the system.
+7. Gluu server's interception script will check if the user exists in LDAP server. If the user exists then the user will be logged into the system. If not, the interception script will create a new user with the required details and log the user into the system.
 
 ## Setup Passport.js with Gluu
 
@@ -35,7 +35,7 @@ During installation of the Gluu Server select `yes` to install Passport.js when 
 1. Navigate to `Configuration` > `Manage Custom Scripts`.
 2. Enable the passport_social script in `Person Authentication` Tab.![Enable passport1](../img/user-authn/passport/enable-passport.png)
 3. Click on `update` at the end of the page.![update](../img/user-authn/passport/auth-update.png)
-4. Enable the `uma_rpt_policy` in `UMA RPT Policies` tab.![uma-enable](../img/user-authn/passport/uma-enable.png)
+4. Enable the `uma_client_authz_rpt_policy` in `UMA RPT Policies` tab.![uma-enable](../img/user-authn/passport/uma-rpt-enable.png)
 5. Click on `update`.
 6. To set the strategies navigate to `Configuration` > `Manage Authentication` > `Default Authenticaion`
 7. Change the Default Authentication mode to `passport_social`
