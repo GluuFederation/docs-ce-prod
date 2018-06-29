@@ -149,7 +149,7 @@ _If you keeps client_id blank it will Automatically initialize "**Dynamic client
 
 - Make sure there is a user registered in the Gluu Server that you can use to test the application through the oxTrust GUI.
 - Launch the app from Android Studio:
-  You will see this screen:
+  You will see this screen:  
   ![android demo](../../img/app-auth/start_authorization.png)
 
 - Click the `START AUTHORIZATION` button. That will redirect you to your Gluu instance login page. You'll receive a notification that your certificate is not trusted.
