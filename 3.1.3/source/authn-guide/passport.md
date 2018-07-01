@@ -21,41 +21,39 @@ authentication and provisioning.
 ![Sequence Diagram](../img/user-authn/passport/sequence_diagram.png "Title")
 
 1. Gluu server calls Node-Passport server for JWT token.
-2. Node-Passport server generates a JWT token and provides it in response to Gluu server.
-3. Gluu server requests Node-Passport server with JWT token to authenticate user for a social network provider.
-4. Node-Passport server will redirect user to social media authentication provider.
-5. After successful authentication of user, social network will callback Node-Passport server along with user details and access token.
-6. Node-Passport server will redirect user back to Gluu server with user details and access token.
-7. Gluu server's interception script will check if the user exists in LDAP server. If the user exists then the user will be logged into the system. If not, the interception script will create a new user with the required details and log the user into the system.
+1. Node-Passport server generates a JWT token and provides it in response to Gluu server.
+1. Gluu server requests Node-Passport server with JWT token to authenticate user for a social network provider.
+1. Node-Passport server will redirect user to social media authentication provider.
+1. After successful authentication of user, social network will callback Node-Passport server along with user details and access token.
+1. Node-Passport server will redirect user back to Gluu server with user details and access token.
+1. Gluu server's interception script will check if the user exists in LDAP server. If the user exists then the user will be logged into the system. If not, the interception script will create a new user with the required details and log the user into the system.
 
 ## Setup Passport.js with Gluu
 
 During installation of the Gluu Server select `yes` to install Passport.js when prompted.
 
 1. Navigate to `Configuration` > `Manage Custom Scripts`.
-2. Enable the passport_social script in `Person Authentication` Tab.![Enable passport1](../img/user-authn/passport/enable-passport.png)
-3. Click on `update` at the end of the page.![update](../img/user-authn/passport/auth-update.png)
-4. Enable the `uma_client_authz_rpt_policy` in `UMA RPT Policies` tab.![uma-enable](../img/user-authn/passport/uma-rpt-enable.png)
-5. Click on `update`.
-6. To set the strategies navigate to `Configuration` > `Manage Authentication` > `Default Authenticaion`
-7. Change the Default Authentication mode to `passport_social`
-8. Click on `Passport Authentication Method` tab and `Passport Support` to enabled.![enable-authentication](../img/user-authn/passport/enable-authentication.png)
-9. Add your desired strategies. The `Add Strategy` field values for common providers are:
+1. Enable the passport_social script in `Person Authentication` Tab.![Enable passport1](../img/user-authn/passport/enable-passport.png)
+1. Click on `update` at the end of the page.![update](../img/user-authn/passport/auth-update.png)
+1. Enable the `uma_client_authz_rpt_policy` in `UMA RPT Policies` tab.![uma-enable](../img/user-authn/passport/uma-rpt-enable.png)
+1. Click on `update`.
+1. Click on `Passport Authentication Method` tab and `Passport Support` to enabled.![enable-authentication](../img/user-authn/passport/enable-authentication.png)
+1. Add your desired strategies. The `Add Strategy` field values for common providers are:
 	- `google` for GPlus Authentication
 	- `twitter` for Twitter Authentication
 	- `linkedin` for LinkedIn Authentication
 	- `github` for Github Authentication
 	- `facebook` for Facebook Authentication
-10. Add the strategy details like clientID and clientSecret 
+1. Add the strategy details like clientID and clientSecret 
 (obtained from the provider, after the app is created in the provider form). ![setting-strategies](../img/user-authn/passport/setting-strategies.png)
-11. Once the configuration and settings have been entered, restart the 
-passport service or Gluu Server by following the below instructions:
+1. To set the strategies, navigate to `Configuration` > `Manage Authentication` > `Default Authenticaion`, and set the Default Authentication mode to `passport_social`
+1. Now your server configurations are prepared. Restart the 
+passport service or Gluu Server to enable the changes:     
+    1. Log into chroot.
     
-    a. Log into chroot.
+    1. Enter the following command to stop: `service passport stop`
     
-    b. Enter the following command to stop: `service passport stop`
-    
-    c. Enter the following command to start: `service passport start`
+    1. Enter the following command to start: `service passport start`
 
 !!! Warning
 	Strategies names and field names are case sensitive.
