@@ -47,8 +47,7 @@ During installation of the Gluu Server select `yes` to install Passport.js when 
 1. Add the strategy details like clientID and clientSecret 
 (obtained from the provider, after the app is created in the provider form). ![setting-strategies](../img/user-authn/passport/setting-strategies.png)
 1. To set the strategies, navigate to `Configuration` > `Manage Authentication` > `Default Authenticaion`, and set the Default Authentication mode to `passport_social`
-1. Now your server configurations are prepared. Restart the 
-passport service or Gluu Server to enable the changes:     
+1. Now your server configurations are prepared. Restart the passport service (or Gluu Server) to enable the changes:     
     1. Log into chroot.
     
     1. Enter the following command to stop: `service passport stop`
@@ -64,10 +63,10 @@ Every provider has different protocols and ways to create the app. We
 will look at one of the most common providers "facebook" and create a new app.
 
 1. Login to https://developers.facebook.com
-2. Click on Add a new App from My Apps dropdown
-3. Fill the required details and click the create Create App ID button to create the app.
-4. Click on the dashboard menu and get the clientID and clientSecret which can be used with the passport.
-5. Click on settings menu and put the domain of your gluu server in the site url field.
+1. Click on Add a new App from My Apps dropdown
+1. Fill the required details and click the create Create App ID button to create the app.
+1. Click on the dashboard menu and get the clientID and clientSecret which can be used with the passport.
+1. Click on settings menu and put the domain of your gluu server in the site url field.
 
 ![fburl](../img/user-authn/passport/fb-addurl.png)
 
@@ -76,26 +75,27 @@ strategy's callback. For example, if your gluu server points to `https://example
  
 ## How Passport is used in Gluu
 
-Before starting the development it is recommended to switch to node user,
- you can switch to node user by following command.
+Before starting the development it is recommended to switch to node user by using the following command
+
 ```sh 
 su - node
 ```
-To use node js and npm execute following command.
+To use node js and npm execute following command
+
 ```sh
 export PATH=$PATH:/opt/node/bin
 ```
 
-** All the paths in the following guide is relative to path: `/opt/gluu/node/passport/` ***
+** All paths in the following guide is relative to path: `/opt/gluu/node/passport/` ***
 
 The best way to add new strategies to Passport is to find an applicable npm module for your desired strategy. Let's start with an example. In this example we will consider adding facebook strategy.
 
-1. If you want to add facebook strategy, search for passport-facebook npm module where you can select the npm module and then add the module to passport server.
-2. Let's say we found this module "passport-facebook" and want to use this module for facebook authentication. Install the module in passport by executing the following command: `npm install passport-facebook --save`.
-3. Configure the strategy.
-4. Configure routes for the strategy.
-5. Call method to configure the strategy
-6. Add button for the configured strategy in passport authentication UI.
+1. To add facebook, search for the passport-facebook npm module and then add the module to your passport server.
+1. Let's say we found this module "passport-facebook" and want to use this module for facebook authentication. Install the module in passport by executing the following command: `npm install passport-facebook --save`.
+1. Configure the strategy.
+1. Configure routes for the strategy.
+1. Call method to configure the strategy
+1. Add button for the configured strategy in passport authentication UI.
 
 ### Configure the strategy using setup script
 
