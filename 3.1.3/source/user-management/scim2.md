@@ -1136,7 +1136,7 @@ Here, you have some useful tips before you start:
 
 1. You will have to check your LDAP contents very often as you develop and run tests. You may have to delete attributes or whole entries as your application evolves. Thus, use a suitable tool for LDAP manipulation: Use oxTrust to manipulate your users' attributes or setup a LDAP GUI client to have more control.
 
-1. Always check your logs. In (test mode)[#working-in-test-mode] section above you can find some guidelines in this regard.
+1. Always check your logs. In [test mode](#working-in-test-mode) section above you can find some guidelines in this regard.
 
 1. In this user management guide with SCIM, we have already touched upon the fundamentals of SCIM in Gluu Server and shown a good amount of sample requests for manipulation of user information. However, keep in mind the SCIM spec documents are definitely the key reference to build working request messages, specially [RFC 7643](https://tools.ietf.org/html/rfc7643), and [RFC 7644](https://tools.ietf.org/html/rfc7644).
 
