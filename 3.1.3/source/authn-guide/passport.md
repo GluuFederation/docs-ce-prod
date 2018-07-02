@@ -5,7 +5,7 @@
 The Gluu Server uses [Passport.js](http://passportjs.org/) to enable social login. With over 300 existing
 "strategies", Passport provides a crowd-sourced approach to offering users social login at popular consumer IDPs. Passport not only normalizes authentication, it also provides a standard mapping for user claims. 
 
-After authentication at the external IDP, if there is no existing user record in Gluu, one will be created dynamically. Once personal data has been obtained and added to Gluu's local LDAP directory service, it can be used to offer SSO to all applications leveraging Gluu for authentication.
+After authentication at the external IDP, if there is no existing user record in Gluu, one will be created dynamically. Once personal data has been obtained and added to Gluu's local LDAP directory service, it can be used to offer SSO to all applications that leverage that Gluu Server for authentication.
 
 Passport is an MIT licensed, Express-based web application which Gluu has modified to call oxTrust APIs for its non-static configuration.
 
@@ -20,32 +20,32 @@ authentication and provisioning.
 
 ![Sequence Diagram](../img/user-authn/passport/sequence_diagram.png "Title")
 
-1. Gluu server calls Node-Passport server for JWT token.
-1. Node-Passport server generates a JWT token and provides it in response to Gluu server.
-1. Gluu server requests Node-Passport server with JWT token to authenticate user for a social network provider.
-1. Node-Passport server will redirect user to social media authentication provider.
-1. After successful authentication of user, social network will callback Node-Passport server along with user details and access token.
-1. Node-Passport server will redirect user back to Gluu server with user details and access token.
-1. Gluu server's interception script will check if the user exists in LDAP server. If the user exists then the user will be logged into the system. If not, the interception script will create a new user with the required details and log the user into the system.
+1. The Gluu Server calls the Node-Passport server to request a JWT token
+1. The Node-Passport server generates a JWT token and sends it back in response
+1. The Gluu Server then uses the JWT token to request the Node-Passport server authenticate the user with a social network provider
+1. The Node-Passport server redirects the user to a social media authentication provider
+1. After successful user authentication, the social network calls the Node-Passport server back an access token and details about the user
+1. The Node-Passport server passes that information back to the Gluu Server
+1. The Gluu Server's interception script checks if the user exists in the internal LDAP server. If so, the user will be logged into the system. If not, the interception script will first create a new user with the required details, then log the user into the system
 
-## Setup Passport.js with Gluu
+## Set up Passport.js with Gluu
 
-During installation of the Gluu Server select `yes` to install Passport.js when prompted.
+To install Passport.js as part of the Gluu Server installation process, select `yes` when prompted. To finish configuring it, follow these steps:
 
 1. Navigate to `Configuration` > `Manage Custom Scripts`.
-1. Enable the passport_social script in `Person Authentication` Tab.![Enable passport1](../img/user-authn/passport/enable-passport.png)
-1. Click on `update` at the end of the page.![update](../img/user-authn/passport/auth-update.png)
-1. Enable the `uma_client_authz_rpt_policy` in `UMA RPT Policies` tab.![uma-enable](../img/user-authn/passport/uma-rpt-enable.png)
+1. Enable the passport_social script in the `Person Authentication` Tab.![Enable passport1](../img/user-authn/passport/enable-passport.png)
+1. Click on `update` at the end of the page. ![update](../img/user-authn/passport/auth-update.png)
+1. Enable the `uma_client_authz_rpt_policy` in the `UMA RPT Policies` tab.![uma-enable](../img/user-authn/passport/uma-rpt-enable.png)
 1. Click on `update`.
-1. Click on `Passport Authentication Method` tab and `Passport Support` to enabled.![enable-authentication](../img/user-authn/passport/enable-authentication.png)
+1. Click on the `Passport Authentication Method` tab and enable `Passport Support`.![enable-authentication](../img/user-authn/passport/enable-authentication.png)
 1. Add your desired strategies. The `Add Strategy` field values for common providers are:
 	- `google` for GPlus Authentication
 	- `twitter` for Twitter Authentication
 	- `linkedin` for LinkedIn Authentication
 	- `github` for Github Authentication
 	- `facebook` for Facebook Authentication
-1. Add the strategy details like clientID and clientSecret 
-(obtained from the provider, after the app is created in the provider form). ![setting-strategies](../img/user-authn/passport/setting-strategies.png)
+1. Add strategy details like clientID and clientSecret 
+(obtained from the provider after the app is created in the provider form). ![setting-strategies](../img/user-authn/passport/setting-strategies.png)
 1. To set the strategies, navigate to `Configuration` > `Manage Authentication` > `Default Authenticaion`, and set the Default Authentication mode to `passport_social`
 1. Now your server configurations are prepared. Restart the passport service (or Gluu Server) to enable the changes:     
     1. Log into chroot.
@@ -55,53 +55,54 @@ During installation of the Gluu Server select `yes` to install Passport.js when 
     1. Enter the following command to start: `service passport start`
 
 !!! Warning
-	Strategies names and field names are case sensitive.
+	Strategy names and field names are case sensitive.
 	
 ## How to make a new app to use Passport
 
-Every provider has different protocols and ways to create the app. We 
-will look at one of the most common providers "facebook" and create a new app.
+Every provider has different protocols and ways to create the app. We will look at one of the most common providers, Facebook, and create a new app.
 
-1. Login to https://developers.facebook.com
-1. Click on Add a new App from My Apps dropdown
-1. Fill the required details and click the create Create App ID button to create the app.
-1. Click on the dashboard menu and get the clientID and clientSecret which can be used with the passport.
-1. Click on settings menu and put the domain of your gluu server in the site url field.
+1. Log into https://developers.facebook.com
+1. Click on `Add a new App` from My Apps dropdown
+1. Fill in the required details and click the `Create App ID` button to create the app
+1. Click on the dashboard menu and get the clientID and clientSecret which can be used with Passport
+1. Click on settings menu and put the domain of your Gluu Server in the site URL field
 
 ![fburl](../img/user-authn/passport/fb-addurl.png)
 
-Note: If there is a field for Authorized redirect URIs, make sure your apps list of Authorized redirect URIs contains the passport 
-strategy's callback. For example, if your gluu server points to `https://example.gluu.org` and the strategy is `facebook`, the list of Authorized redirect URIs should contain `https://example.gluu.org/passport/auth/facebook/callback.` 
+!!! Note:
+    If there is a field for authorized redirect URIs, make sure your apps list of authorized redirect URIs contains the Passport strategy's callback. For example, if your Gluu Server points to `https://example.gluu.org` and the strategy is `facebook`, the list of authorized redirect URIs should contain `https://example.gluu.org/passport/auth/facebook/callback.` 
  
 ## How Passport is used in Gluu
 
-Before starting the development it is recommended to switch to node user by using the following command
+Before starting the development, switch to the node user by using the following command:
 
 ```sh 
 su - node
 ```
-To use node js and npm execute following command
+
+To use node with js and npm, execute the following command:
 
 ```sh
 export PATH=$PATH:/opt/node/bin
 ```
 
-** All paths in the following guide is relative to path: `/opt/gluu/node/passport/` ***
+** All paths in the following guide are relative to `/opt/gluu/node/passport/` **
 
-The best way to add new strategies to Passport is to find an applicable npm module for your desired strategy. Let's start with an example. In this example we will consider adding facebook strategy.
+The best way to add new strategies to Passport is to find an applicable npm module for your desired strategy. As an example, we will consider adding the Facebook strategy.
 
-1. To add facebook, search for the passport-facebook npm module and then add the module to your passport server.
-1. Let's say we found this module "passport-facebook" and want to use this module for facebook authentication. Install the module in passport by executing the following command: `npm install passport-facebook --save`.
-1. Configure the strategy.
-1. Configure routes for the strategy.
-1. Call method to configure the strategy
-1. Add button for the configured strategy in passport authentication UI.
+1. To add Facebook, search for the `passport-facebook` npm module and then add the module to your Passport server
+1. Let's say we found a module called `passport-facebook` and want to use it for Facebook authentication. Install the module in passport by executing the following command: `npm install passport-facebook --save`
+1. Configure the strategy
+1. Configure routes for the strategy
+1. Call the method to configure the strategy
+1. Add a button for the configured strategy in the Passport authentication UI
 
-### Configure the strategy using setup script
+### Configure the strategy using a setup script
 
-All strategies are configured in the folder `server/auth/*.js.` Next we need to create a file for the new strategy. Our strategy is facebook so we can create new file named `facebook.js` and configure the strategy. 
+All strategies are configured in the folder `server/auth/*.js.` Next we need to create a file for the new strategy. Our strategy is Facebook so we can create new file named `facebook.js` and configure the strategy. 
+
 !!!Note:
-	**All these configuration are performed during execution of setup script at the time of configuring Gluu. These steps are not required to be followed, these content are for your reference**
+	This configuration is performed during the execution of a setup script at the time of Gluu's installation. These steps are not required to be followed manually, they are for your reference.
 
 ```javascript
 var passport = require('passport');
@@ -138,34 +139,33 @@ module.exports = {
 };
 ```
 
-Here is an example of the facebook strategy configured. For facebook 
+Here is an example of the Facebook strategy configured. For Facebook, 
 the required parameters are `clientID`, `clientSecret` and `callbackURL`. You 
-can search for more configurations depending on the requirements and 
+can search for more configuration options depending on your requirements and 
 configure accordingly.
 
-The function `setCredentials` is used to configure credentials of a strategy. 
-Each strategy has a setCredentials method to configure the strategy. 
-The parameter credentials holds the values that are stored in the oxTrust.
+The `setCredentials` function is used to configure credentials for a strategy. 
+Each strategy has its own setCredentials method. 
+The parameter credentials hold the values that are stored in oxTrust.
 
-The parameter callbackURL should point to the callback route that we 
-will configure in step 4. As we are configuring facebook strategy, the 
+The callbackURL parameter should point to the callback route that we 
+will configure in the next section. As we are configuring the Facebook strategy, the 
 `callbackURL` can be set to `"/passport/auth/facebook/callback"` 
-according the the convention of the app. You can customise the 
+according to the convention of the app. You can customise the 
 `callbackURL` but it is recommended not to change the convention.
 
-The callback function of passport strategy has different number of parameters and the data in 
-those parameters which are required to be mapped to the userProfile 
-keys which are `id, name, username, email, givenName, familyName, provider, accessToken`. 
-Here id and provider params are must. Provider param holds the value of 
-the provider, i.e for facebook the provider value will be facebook etc. 
-In most cases the value of provider is received in the user claims itself.
+The Passport strategy's callback function has a number of parameters that are required to be mapped to the userProfile 
+keys, which are `id, name, username, email, givenName, familyName, provider, accessToken`. 
+Here, `id` and `provider` parameters are a must. The `provider` parameter holds the value of 
+the social network provider, i.e for Facebook, the `provider` value will be `facebook`. 
+In most cases, the `provider` parameter is received in the user claims itself.
 
-Then export the strategy that we configured and also the `setCredentials` 
-method which will be used to set the details of the strategy.
+Then, export the strategy that we configured and also the `setCredentials` 
+method that will be used to set the details of the strategy.
 
 ### Configure routes for the strategy
 
-We are going to set the routes for the strategy that we are going to configure.
+Now, we'll set the routes for the strategy that we are going to configure.
 The following changes are to be made in server/routes/index.js. 
 First require the strategy that we configured in the previous step.
 
@@ -173,19 +173,19 @@ First require the strategy that we configured in the previous step.
 var passportFacebook = require('../auth/facebook').passport;
 ```
 
-Here ```require('../auth/facebook').passport``` will include the passport 
+Here, `require('../auth/facebook').passport` will include the passport 
 strategy that we have configured.
 
-Then add the routes for the strategy. First we are going to register the 
+Then, add the routes for the strategy. First, register the 
 callback route and then the authenticate route.
 
-The authenticate route first validates the jwt token that is been sent by
-Gluu Server to passport server. If the JWT is valid then the user is 
-redirected to the strategy and user can be authenticated there and the 
-response of the user authentication is redirected to callback route.
+The authenticate route first validates the JWT token that has been sent from the
+Gluu Server to the Passport server. If the JWT is valid, then the user is 
+redirected to the strategy and the user can be authenticated there. The 
+user authentication response is redirected to the callback route.
 
-If the callback routes receives the user data then user is been 
-redirected to Gluu.
+If the callback routes receive the user data, then the user has been 
+redirected to the Gluu Server.
 
 ```javascript
 //==================== facebook ================
@@ -202,15 +202,15 @@ router.get('/auth/facebook/:token',
     }));
 ```
 
-scope value can be set from the strategy itself if the strategy supports that 
+The scope value can be set from the strategy itself if the strategy supports that, 
 or you can set the scope value here too.
 
-The callbackResponse method return the control to Gluu server and 
-user is been enrolled in the system.
+The callbackResponse method returns the control to the Gluu Server, and the 
+user has been enrolled in the system.
 
 ###  Call method to configure the strategy
 
-In this step we are going to call the setCredentials method of the 
+In this step, we are going to call the setCredentials method of the 
 strategy that we have created.
 
 Go to the file server/auth/configureStrategies.js and require the strategy that we have created.
@@ -219,7 +219,7 @@ Go to the file server/auth/configureStrategies.js and require the strategy that 
 var FacebookStrategy = require('./facebook');
 ```
 
-And then in setConfiguratins function, call the setCredentials 
+Then in the `setConfigurations` function, call the setCredentials 
 method if the strategy data is received.
 
 ```javascript
@@ -232,12 +232,12 @@ if (data.passportStrategies.facebook) {
 ```
 
 This will configure the passport strategy if the details of the 
-strategy are received from passport API.
+strategy are received from the Passport API.
 
 ###  Add button for the configured strategy in passport authentication UI.
 
-So far the passport server is ready with the new strategy that we have 
-created, but to call the strategy we need to add a button which calls 
+So far, the Passport server is ready with the new strategy that we have 
+created, but to call the strategy we need to add a button to call 
 the new strategy.
 
 ```xhtml
@@ -246,9 +246,9 @@ the new strategy.
 </a>
 ```
 
-Here the data-p and class="provider" are required to call the strategy. 
-The data-p attribute should hold the value of the route that we created 
-in routes.
+Here, the `data-p` and `class="provider"` are required to call the strategy. 
+The `data-p` attribute should hold the value of the route that we created 
+in the previous step.
 
 
 ```javascript
@@ -267,4 +267,4 @@ router.get('/auth/facebook/:token',
 ```
 
 In order to call the Strategy, the request URL to call the API must 
-match the route that we configured.
+match the route that we previously configured.
