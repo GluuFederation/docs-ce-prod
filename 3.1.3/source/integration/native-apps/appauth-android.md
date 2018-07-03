@@ -1,9 +1,4 @@
 # AppAuth Android
-
-## Prerequisite
- 
-   1. A Gluu Server up and running(installation doc is available [here](https://gluu.org/docs/ce/installation-guide/install/))
-   1. AndroidStudio with a virtual/real device(downloadable [here](https://developer.android.com/studio/index.html))
  
 ## Overview
 
@@ -22,7 +17,13 @@ This guide will follow these steps:
 1. Clone and customize the AppAuth Android demo
 1. Demonstration
 
-## Register an openId Client on the Gluu Server 
+## Prerequisite
+ 
+1. A Gluu Server up and running(installation doc is available [here](https://gluu.org/docs/ce/installation-guide/install/))
+1. AndroidStudio with a virtual/real device(downloadable [here](https://developer.android.com/studio/index.html))
+   
+
+## Register an OpenID Client on the Gluu Server 
 
 You can follow [this](https://gluu.org/docs/ce/admin-guide/openid-connect/#client-registration-configuration) documentation to add an OpenID client on the Gluu Server. The following are the required fields and their respective values:
    - Client Name: We use `AppAuthAndroidApp`, you can use whatever name you want here.
