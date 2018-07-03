@@ -32,7 +32,7 @@ You can follow [this](https://gluu.org/docs/ce/admin-guide/openid-connect/#clien
    - Pre-Authorization: `False`
    - Persist client Authorizations: `True`
    - Authentication method for the Token Endpoint: `none`
-   - Redirect Login URIs: make sure the value provide here is an hierarchical and absolute uri. We use `appscheme://client.example.com` for our testing purpose
+   - Redirect Login URIs: make sure the value provide here is an hierarchical and absolute URI. We use `appscheme://client.example.com` for our testing purpose
    - Scopes: `openid`,`profile`,`email`
    - Grant types: `authorization_code`
    - Response Types: `code`
@@ -52,7 +52,7 @@ you can check the official documentation by [AppAuth](https://github.com/openid/
  
    Else you can download the demo app from [this](https://github.com/openid/AppAuth-Android) link.
 
-    <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/DownloadDemoApp.png" width="98%" height="400">
+   ![](../../img/app-auth/DownloadDemoApp.png)
  
 ### Configure the AppAuth Android Demo
 
@@ -62,9 +62,9 @@ You have to import the project in AndroidStudio before configuration
 
  The below screenshot showcases how that process works.
  
-  <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/ProjectImport1.png" width="98%" height="400">
+  ![](../../img/app-auth/ProjectImport1.png)
 
-   <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/ProjectImport2.png" width="98%" height="400">
+  ![](../../img/app-auth/ProjectImport2.png)
    
 #### Configuration
 
@@ -85,7 +85,7 @@ Here you have to configure some settings like the Gluu Server client id, discove
   "https_required": true
   }
   ```
-  <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/AuthConfig.png" width="98%" height="400">
+  ![](../../img/app-auth/AuthConfig.png)
 
 - Change this line in  `build.gradle` file of the app module:
 
@@ -94,15 +94,15 @@ Here you have to configure some settings like the Gluu Server client id, discove
                 'appAuthRedirectScheme': 'appscheme://client.example.com'
         ]
 ```
-<img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/AppBuildGradle.png" width="98%" height="400">
+ ![](../../img/app-auth/AppBuildGradle.png)
 
 - Change this lines in `AndroidManifest.xml` for the app module:
 
- <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/AppManifest.png" width="98%" height="400">
+ ![](../../img/app-auth/AppManifest.png)
  
 ### Build the project
 
-A clik on the **build** button present in AndroidStudio user interface will triger the build process.
+A click on the **build** button present in AndroidStudio user interface will triger the build process.
  
 #### Some tips
 
@@ -122,17 +122,17 @@ Use Oxtrust Gui to do that.
 - Launch the app from Android Studio:
   You will see this screen:
 
-   <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591210.png" width="50%" height="400">
+   ![](../../img/app-auth/Screenshot_1520591210.png)
 
 - Click the `START AUTHORIZATION` button:
   That will redirect you to your gluu instance login page
 
- <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591219.png" width="33%" height="400">
- <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591224.png" width="33%" height="400">
- <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591231.png" width="33%" height="400">
+   ![](../../img/app-auth/Screenshot_1520591219.png)
+   ![](../../img/app-auth/Screenshot_1520591224.png)
+   ![](../../img/app-auth/Screenshot_1520591231.png)
 
 - Provide the user credentials and hit the `login` button
   The result is something like this:
-<img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591248.png" width="47%" height="400">
-<img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591256.png" width="47%" height="400">
+![](../../img/app-auth/Screenshot_1520591248.png)
+![](../../img/app-auth/Screenshot_1520591256.png)
  
