@@ -422,6 +422,49 @@ The SAML IDP sends an authorization request to oxAuth for user authentication.. 
  1. Move back the war file: `#cp identity.war /opt/gluu/jetty/identity/webapps/identity.war`
  1. Restart identity service: `#service identity restart`
  
+ ## How to add new index in Symas OpenLDAP
+ ### Introduction
+ 
+There are several types of index supported by openldap:
+
+ 1. pres: presence, this is use for search like `attribut=*`
+ 1. eq: equality, this is use for search like  `employeenumber=Z099312` or `sn=smith`
+ 1. sub: substring, this is use for search with wildcard `sn=smi*`
+ 1. approx : approximation, use for search like `sn~=smith`
+ 
+ ### Adding new index
+  
+ Below are the steps to follow:
+ * Choose which attributes and which index types to define on them
+ * Log into Gluu container
+ * Shutdown the solserver service `#service solserver stop`
+ * Add new indexes as needed:   
+     The configuration where indexes should be added is `/opt/symas/etc/openldap/slapd.conf`.
+     
+     The example below defines presence and equality indexes for attributes cn, sn and uid:
+     ```
+     index cn pres,eq
+     index sn pres,eq
+     index iud pres,eq
+     ```
+ * Run the  slapindex command: `#/opt/symas/bin/slapindex`
+ * Start the solserver service `#service solserver stop`
+    
+## How to configure OpenLDAP Memory limit
+
+The memory usage for openLDAP can be define in the configuration located at `/opt/symas/etc/openldap/symas-openldap.conf`
+
+The steps are:
+ * Log into Gluu container
+ * Shutdown the solserver service `#service solserver stop`
+ * Edit the configuration file `/opt/symas/etc/openldap/symas-openldap.conf`
+ * Add the line below at the end of the file to define 1000000 kb as the maximum amount of virtual memory for sldap:
+ ```
+ ulimit -v 1000000
+ ```
+ * Start the solserver service `#service solserver stop`
+
+ 
  
 
 
