@@ -45,7 +45,7 @@ withour requiring the building of new war file. The files are in the
 `xhtml` format and it is recommended to take backups so that no 
 important element is deleted from the pages.
 
-The availbale pages are inside the two directories `/opt/tomcat/webapps/identity` and
+The available pages are inside the two directories `/opt/tomcat/webapps/identity` and
 `/opt/tomcat/webapps/oxauth`.
 
 oxAuth Pages:
