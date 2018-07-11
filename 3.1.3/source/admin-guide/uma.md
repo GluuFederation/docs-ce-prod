@@ -15,7 +15,7 @@ or procedural code as warranted by conditions.
 UMA 2 inherits authentication agnosticism from OAuth. It concentrates on authorization, not authentication. 
 It has been profiled to work with OpenID Connect to gather identity claims from whoever is attempting access, 
 and enables attribute-based ("claims" in OAuth2) authorization (with group-based or role-based policies a natural subset).
- 
+
 ## Terminology
 
 UMA 2 introduces new terms and enhancements of OAuth term definitions. A few important terms include:
@@ -29,6 +29,9 @@ Authorization Server (AS)_*_: A server that protects, on a resource owner's beha
 _*_ _Gluu acts as an UMA AS_.
 
 Learn more in the UMA 2 [Core](https://docs.kantarainitiative.org/uma/wg/uma-core-2.0-20.html), [Federated Authorization](https://docs.kantarainitiative.org/uma/ed/oauth-uma-federated-authz-2.0-07.html) and [Grant](https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-06.html) specifications.
+
+## Discovery
+Your Gluu Server's UMA endpoints can be found at: `https://<hostname>/.well-known/uma2-configuration`. 
 
 ## Scopes
 
