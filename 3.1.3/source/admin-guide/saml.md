@@ -123,7 +123,59 @@ The "Configure Relying Party" checkbox is accessible on the TR creation page and
 Setting the checkbox will result in a link which, if clicked, will summon a list of profiles currently available for customization. Each entry in the list has a brief description of its purpose and a selection of settings for which custom values may be chosen, as can be seen on image below.     
 
 ![tr-relying-party](../img/saml/tr-relying-party.png)     
-    
+  
+  
+## Modifying Shib Templates
+Gluu Server loads most of its Shibboleth-related configuration from Gluu-generated templates. Sometimes a Gluu Server administrator might need to configure those templates to achieve a specific result. The location of those templates for both examples is: `[inside_container]/opt/gluu/jetty/identity/conf/shibboleth3/idp`
+
+Here are two use cases where you might need to play with the Shib templates:
+
+### Manually-created custom NameID
+If a Gluu Server administrator prefers to manually create a custom nameID, then the following procedure can be followed: 
+
+ - Create a custom attribute by following the "Creating Custom Attribute" document: https://gluu.org/docs/ce/3.1.3/admin-guide/attribute/#custom-attributes
+ - Go to the template location (as mentioned above)
+ - Open 'attribute-resolver.xml.vm' 
+   - Add this attribute definition: `#if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('persistentId') or $attribute.name.equals('customAttribute') ) )`
+   - Declare it: 
+   ```
+   <resolver:AttributeDefinition id="customAttribute" xsi:type="Simple"
+                              xmlns="urn:mace:shibboleth:2.0:resolver:ad"
+                              sourceAttributeID="source_attribute_which_will_use_to_generate">
+                              <resolver:Dependency ref="siteLDAP"/>
+                <resolver:AttributeEncoder xsi:type="SAML2StringNameID"
+                xmlns="urn:mace:shibboleth:2.0:attribute:encoder"
+                nameFormat="urn:oasis:names:tc:SAML:2.0:nameid-format:TYPE_OF_NAMEID" />
+   </resolver:AttributeDefinition>
+   
+   ```
+   - Save the file
+   - Go to `/opt/shibboleth-idp/conf/`
+   - Modify `saml-nameid.xml`:
+   ```
+          <bean parent="shibboleth.SAML2AttributeSourcedGenerator"
+            p:format="urn:oasis:names:tc:SAML:2.0:nameid-format:TYPE_OF_NAMEID"
+            p:attributeSourceIds="#{ { 'customAttribute' } }" />
+   ```
+   - Save this file
+   - After that, restart the `identity` and `idp` services. 
+   
+### Add / modify the domain scope in IDP metadata
+
+There might be a situation where an organization needs to modify the automatically generated `shibmd:Scope` in the IDP's metadata. By default, it's the hostname of the Gluu Server, but the organization might need it to be different (i.e. only the domain or to add more domains.) To achieve this: 
+
+ - Go to the template location (as mentioned above)
+ - Open the `idp-metadata.xml.vm` template
+ - Modify / add the domain(s), as in the below snippet: 
+ ```
+         <Extensions>
+            <shibmd:Scope regexp="false">gluu.org</shibmd:Scope>
+            <shibmd:Scope regexp="false">gluu.com</shibmd:Scope>
+        </Extensions>
+ ```
+ - Save the file
+ - Restart the `identity` and `idp` services
+
 ## Federation Configuration     
 If the SP is part of an identity federation such as [InCommon](https://www.incommon.org/participants/), the Gluu administrator has option to establish a Trust Relationship with it based on the federation's metadata. To achieve this he must add TR for the federation in the Gluu Server first. This will enable the administrator to more easily create TRs with SPs in the federation. 
 
