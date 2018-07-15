@@ -318,7 +318,7 @@ Authorization: AccessToken czZCaGRSa3F0MzpnWDFmQmF0M2JW
 ## Scopes Expressions
 
 UMA 2 Scope expressions is Gluu invented extension of UMA 2 which gives flexible way to 
-combine scopes and thus propose more robust way to grant access.
+combine scopes and thus propose more robust way to grant access. Scope expression is based on [Json Logic](http://jsonlogic.com/). 
 
 ### Register resource with scope_expression
 
