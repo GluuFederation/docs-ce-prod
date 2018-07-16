@@ -72,7 +72,7 @@ Replace `domain.com` with your own domain name(the one used when creating Gsuite
 ```
 <EntityDescriptor entityID="google.com/a/domain.com" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
     <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
-       <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</NameIDFormat>
+       <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:email</NameIDFormat>
             <AssertionConsumerService index="1" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
             Location="https://www.google.com/a/domain.com/acs" >
             </AssertionConsumerService>
@@ -210,6 +210,12 @@ objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
 ##### Create custom attribute with oxTrust
 
 'Register' this 'googlenmid' in your Gluu Server by following [this](https://gluu.org/docs/ce/3.1.2/admin-guide/attribute/#add-the-attribute-to-oxtrust) doc. 
+
+##### Create custom NameID configuration
+- Create a NameId configuration "googlenmid" with NameId Type as "emailAddress" and source attribute as "email". Click on "Enabled" checkbox before saving it.
+
+![Image](../../img/integration/custom_nameid.png)
+
 
 ### Create a SAML Trust Relationship
 - Create Trust Relationship for Google Apps: 
