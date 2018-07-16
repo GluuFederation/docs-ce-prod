@@ -74,7 +74,7 @@ This feature has been tested with a `xls` file.
 
 * Click on the `Import` button to complete the import of users.
 
-Note!!!
+!!! Note
      There is a [known issue](https://github.com/GluuFederation/oxTrust/issues/1007) in Gluu 3.1.3 that affects file upload feature like **Person Import**, **Organization logo upload**.
      The solution for that issue is documented [here](https://gluu.org/docs/ce/operation/faq/#how-to-fix-imagefiles-upload-issue-in-gluu-313).
 
@@ -90,8 +90,7 @@ Please remember to use the exact spelling as shown here.
 * Last Name
 
 * Email
- 
-   
+    
 ## User Registration 
 The Gluu Server is shipped with a user registration script that implements a very basic user registration process. 
 
