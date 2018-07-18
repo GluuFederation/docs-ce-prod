@@ -36,7 +36,7 @@ Create two JKS files using these commands:
     
 /opt/jdk1.8.0_162/bin/keytool -delete -alias dummy -keystore fresher-scim-rs.jks \
 -storepass secret -keypass secret -dname 'CN=oxAuth CA Certificates'  
- ```  
+```  
     
 This will create two files: `fresher-scim-rp.jks` and `fresher-scim-rs.jks`. You may prefer to change the names and provide a password other than "secret". The files can have different passwords.
     
