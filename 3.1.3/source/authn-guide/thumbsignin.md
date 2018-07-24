@@ -2,14 +2,14 @@
 
 ThumbSignIn can be integrated with Gluu Server to achieve strong authentication for enterprise applications. The administrator of an organization can deploy the ThumbSignIn Java SDK, UI components and custom Jython script in the Gluu server.  
 
-Here, ThumbSignIn is integrated with Gluu server as a primary authenticator to achieve passwordless login. The user will be able to login to the Gluu server with just his/her biometrics and there is no need for the password.  
+Here, ThumbSignIn is integrated with Gluu server as a primary authenticator to achieve passwordless login. The user will be able to log into the Gluu server with just his/her biometrics.  
 
-For the first time user, the user can log in with his/her LDAP credentials and then can register through ThumbSignIn mobile app. For the subsequent logins, the user can directly login to Gluu server with his/her biometric.  
+The first time user can log in with his/her LDAP credentials and then can register through the ThumbSignIn mobile app. For the subsequent logins, the user can directly login to Gluu server with his/her biometric.  
 
 ## Prerequisites
 
  - A Gluu Server ([installation instructions](../installation-guide/index.md))
- - A ThumbSignIn interception script (included in the Gluu Server)
+ - A ThumbSignIn interception script (found [here](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/ThumbSignIn/ThumbSignInExternalAuthenticator.py))
  - An account with [ThumbSignIn](https://thumbsignin.com)
 
 ## Integrate ThumbSignIn with the Gluu Server
@@ -23,7 +23,7 @@ For the first time user, the user can log in with his/her LDAP credentials and t
 ### Enable custom scripts for ThumbSignIn
   
   1. Log into the Gluu admin dashboard -> Manage Custom Scripts -> Click "Add Custom Script Configuration" button
-  1. Add the attached ThumbSignIn custom script and select the "Enabled" option
+  1. Add the custom ThumbSignIn interception script and select the "Enabled" option
   1. Add the following custom parameters and save the custom script configuration:
   
     
