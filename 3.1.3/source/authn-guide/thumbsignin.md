@@ -16,9 +16,9 @@ For the first time user, the user can log in with his/her LDAP credentials and t
 
 ### Download ThumbSignIn UI components and Jython Script
 
-  1. The UI components can be downloaded from [here](https://github.com/Thumbsignin/ThumbSignIn_WebPackage) and added in the source code under `oxAuth/Server/src/main/webapp/auth/`
-  1. The Jython custom scripts can be downloaded from [here](https://github.com/Thumbsignin/ThumbSignIn_JythonScript) and added in the source code under `oxAuth/Server/integrations/`
-  1. Download the ThumbSignIn java sdk jar file from [here](https://thumbsignin.com/download/thumbsigninJavaSdk) and added into the Gluu Server's `opt/gluu/jetty/oxauth/lib/ext` folder
+  1. Download the UI components from [here](https://github.com/Thumbsignin/ThumbSignIn_WebPackage) and add them into the source code under `oxAuth/Server/src/main/webapp/auth/`
+  1. Download the Jython custom scripts from [here](https://github.com/Thumbsignin/ThumbSignIn_JythonScript) and add them into the source code under `oxAuth/Server/integrations/`
+  1. Download the ThumbSignIn java sdk jar file from [here](https://thumbsignin.com/download/thumbsigninJavaSdk) and add it into the Gluu Server's `opt/gluu/jetty/oxauth/lib/ext` folder
   
 ### Enable custom scripts for ThumbSignIn
   
