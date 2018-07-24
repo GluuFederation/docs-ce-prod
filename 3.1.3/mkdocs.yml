@@ -46,6 +46,7 @@ pages:
             - 'Passport Inbound SAML': 'authn-guide/inbound-saml-passport.md'
             - 'Passport Inbound OpenID Connect': 'authn-guide/inbound-oidc-passport.md'
             - 'Duo Security': 'authn-guide/duo.md'
+            - 'ThumbSignIn': 'authn-guide/thumbsignin.md'
             - 'Certificate Authentication': 'authn-guide/cert-auth.md'
             #- 'Google+ OAuth 2.0': 'authn-guide/google.md'
             - 'Account Lockout': 'authn-guide/lockout.md'
