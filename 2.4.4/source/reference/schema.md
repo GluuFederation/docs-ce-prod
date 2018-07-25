@@ -62,7 +62,7 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 * __picture (or) photo1__:  Profile picture URL of the person
 * __website__:  Web page or blog URL of the person
 * __emailVerified__:  True if the e-mail address of the person has been verified; otherwise false
-* __gender__:  Gender of the person either female or male
+* __gender__:  Gender of the person, either female or male
 * __birthdate__:  Birthday of the person, represented as an ISO 8601:2004 [ISO8601‑2004] YYYY-MM-DD format
 * __zoneinfo (or) timezone__:  Time zone database representing the End-Users time zone. For example, Europe/Paris or America/Los_Angeles
 * __locale (or) oxTrustLocale__:  Locale of the person, represented as a BCP47 [RFC5646] language tag
@@ -84,7 +84,7 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 * __l__
 * __oxCountInvalidLogin__:  Invalid login attempts count
 * __oxEnrollmentCode__:  oxEnrollmentCode
-* __gluuIMAPData__:  This data has information about your imap connection
+* __gluuIMAPData__:  This data has information about your IMAP connection
 * __oxPPID__:  Persistent Pairwise ID for OpenID Connect
 
 ## gluuGroup
@@ -111,22 +111,22 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 * __deployedAppliances__:  Track which appliances are deployed at an organization.
 * __description__
 * __displayName__
-* __gluuAddPersonCapability__:  Organizational attribute to control whether new users can be added  via the oxTrust GUI.
-* __gluuAdditionalUsers__:  TODO : use unclear
+* __gluuAddPersonCapability__:  Organizational attribute to control whether new users can be added via the oxTrust GUI.
+* __gluuAdditionalUsers__:  
 * __gluuApplianceUpdateRequestList (or) gluuApplianceUpdateReuestList__:  Used by the Gluu Server to request an update
 * __gluuCustomMessage__:  oxTrust custom welcome message
-* __gluuFaviconImage__:  TODO - Stores URL of favicon
+* __gluuFaviconImage__:  Stores URL of Favicon
 * __gluuFederationHostingEnabled__:  oxTrust flag for the federation feature. Values enabled or disabled.
-* __gluuInvoiceNo__:  TODO - in use?
+* __gluuInvoiceNo__:  
 * __gluuLogoImage__:  Logo used by oxTrust for default look and feel.
-* __gluuManageIdentityPermission__:  TODO - in use?
+* __gluuManageIdentityPermission__:  
 * __gluuManager__:  Used to specify if a person has the manager role
-* __gluuManagerGroup__:  Used in organizatoin entry to specifies the dn of the group that  has admin priviledges in oxTrust.
+* __gluuManagerGroup__:  Used in organization entry to specifies the DN of the group that has admin priviledges in oxTrust.
 * __gluuOrgProfileMgt__:  enable or disable profile management feature in oxTrust
 * __gluuOrgShortName__:  Short description, as few letters as possible, no spaces.
-* __gluuPaidUntil__:  TODO - in use?
-* __gluuPaymentProcessorTimestamp__:  TODO - in use?
-* __gluuProStoresUser__:  TODO - remove
+* __gluuPaidUntil__:  
+* __gluuPaymentProcessorTimestamp__:  
+* __gluuProStoresUser__:  
 * __gluuStatus__:  Status of the entry, used by many objectclasses
 * __gluuTempFaviconImage__:  Store location for upload of Favicon
 * __gluuThemeColor__:  oxTrust login page configuration
@@ -136,11 +136,11 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 * __l__
 * __mail__
 * __memberOf__
-* __nonProfit__:  TODO - in use?
+* __nonProfit__:  
 * __o__
 * __oxCreationTimestamp__:  Registration time
 * __oxLinkLinktrack__:  Linktrack link
-* __oxLinktrackEnabled__:  Is Linktrack API configured
+* __oxLinktrackEnabled__:  Is Linktrack API configured?
 * __oxLinktrackLogin__:  Linktrack API login
 * __oxLinktrackPassword__:  Linktrack API password
 * __oxRegistrationConfiguration__:  Registration Configuration
@@ -148,8 +148,8 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 * __proStoresToken__
 * __prostoresTimestamp__
 * __scimAuthMode__:  SCIM Authorization mode
-* __scimGroup__:  scim Group
-* __scimStatus__:  scim status
+* __scimGroup__:  SCIM Group
+* __scimStatus__:  SCIM status
 * __st__
 * __street__
 * __telephoneNumber__
@@ -163,8 +163,8 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 * __description__
 * __displayName__
 * __gluuAdditionalBandwidth__:  Track bandwidth requirements for the Gluu Server instance
-* __gluuAdditionalMemory__:  Track additional memory requirements for the Gluu Server instance.
-* __gluuApplianceDnsServer__:  Persist the DNS server that should be used for the Gluu Server instance.
+* __gluuAdditionalMemory__:  Track additional memory requirements for the Gluu Server instance
+* __gluuApplianceDnsServer__:  Persist the DNS server that should be used for the Gluu Server instance
 * __gluuAppliancePollingInterval__:  Set the frequency of the health status update of the Gluu Server
 * __gluuBandwidthRX__:  Track data received by the Gluu Server
 * __gluuBandwidthTX__:  Track data sent by the Gluu Server
@@ -173,25 +173,25 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 * __gluuFreeDiskSpace__:  Monitor free disk space on the Gluu Server instance
 * __gluuFreeMemory__:  Monitor free memory on the Gluu Server instance
 * __gluuFreeSwap__:  Monitor swap space on the Gluu Server instance
-* __gluuGroupCount__:  Monitor the number of groups. TODO - Remove?
+* __gluuGroupCount__:  Monitor the number of groups 
 * __gluuHTTPstatus__:  Monitor HTTP availability of the Gluu Server instance
 * __gluuHostname__:  The hostname of the Gluu Server instance
-* __gluuInvoiceNo__:  TODO - in use?
+* __gluuInvoiceNo__:  
 * __gluuIpAddress__:  IP address of the Gluu Server instance
-* __gluuLastUpdate__:  Monitors last time the server was able to connect to  the monitoring system.
-* __gluuLifeRay (or) TODO-remove__
-* __gluuLoadAvg__:  Montior the average CPU load for a Gluu Server instance.
-* __gluuManageIdentityPermission__:  TODO - in use?
+* __gluuLastUpdate__:  Monitors last time the server was able to connect to  the monitoring system
+* __gluuLifeRay:
+* __gluuLoadAvg__:  Monitor the average CPU load for a Gluu Server instance
+* __gluuManageIdentityPermission__:  
 * __gluuManager__:  Used to specify if a person has the manager role
 * __gluuMaxLogSize__:  Maximum Log File Size
 * __gluuOrgProfileMgt__:  enable or disable profile management feature in oxTrust
-* __gluuPaidUntil__:  TODO - in use?
-* __gluuPaymentProcessorTimestamp__:  TODO - in use?
+* __gluuPaidUntil__:  
+* __gluuPaymentProcessorTimestamp__:  
 * __gluuPersonCount__:  Monitor the number of people in the LDAP severs for a Gluu Server instance
-* __gluuPrivate__:  TODO - in use?
+* __gluuPrivate__:  
 * __gluuPublishIdpMetadata__:  Gluu Server flag to publish the IDP metadata via the web server
-* __gluuResizeInitiated__:  TODO - in use?
-* __gluuSPTR__:  TODO - in use?
+* __gluuResizeInitiated__:  
+* __gluuSPTR__:  
 * __gluuScimEnabled__:  oxTrust SCIM feature - enabled or disabled
 * __gluuShibAssertionsIssued__:  Monitors activity of Gluu Server Shibboleth IDP
 * __gluuShibFailedAuth__:  Monitors failed login attempts on Gluu Server Shibboleth IDP
@@ -243,14 +243,14 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 * __gluuAttributeEditType__:  Specify in oxTrust who can update an attribute, admin or user
 * __gluuAttributeName__:  Specify an identifier for an attribute. May be multi-value  where an attribute has two names, like givenName and first-name.
 * __gluuAttributeOrigin__:  Specify the person objectclass associated with the attribute,  used for display purposes in oxTrust.
-* __gluuAttributeSystemEditType__:  TODO - still required?
+* __gluuAttributeSystemEditType__:  
 * __gluuAttributeType__:  Data type of attribute. Values can be string, photo, numeric, date
 * __oxAuthClaimName__:  Used by oxAuth in conjunction with gluuttributeName to map claims to attributes in LDAP.
-* __gluuAttributeUsageType__:  TODO - Usage? Value can be OpenID
+* __gluuAttributeUsageType__:  
 * __gluuAttributeViewType__:  Specify in oxTrust who can view an attribute, admin or user
-* __gluuCategory__:  TODO - in use? Used to group attributes together.
-* __gluuSAML1URI__:  SAML 1 uri of attribute
-* __gluuSAML2URI__:  SAML 2 uri of attribute
+* __gluuCategory__:  Used to group attributes together.
+* __gluuSAML1URI__:  SAML 1 URI of attribute
+* __gluuSAML2URI__:  SAML 2 URI of attribute
 * __gluuStatus__:  Status of the entry, used by many objectclasses
 * __iname__
 * __inum__:  XRI i-number
@@ -274,7 +274,7 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 * __gluuIsFederation__:  Used in oxTrust to specify if a SAML Trust Relationship is a federation.  It could also be a website
 * __gluuProfileConfiguration__:  SAML Trust Relationship attribute
 * __gluuReleasedAttribute__:  oxTrust reference for the dn of the released attribute
-* __gluuRulesAccepted__:  TODO - use unknown for Gluu SAML config
+* __gluuRulesAccepted__:  
 * __gluuSAMLMetaDataFilter__:  Metadata filter in SAML trust relationship
 * __gluuSAMLTrustEngine__:  SAML trust relationship configuration
 * __gluuSAMLmaxRefreshDelay__:  SAML trust relationship refresh time
@@ -284,7 +284,7 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 * __gluuSpecificRelyingPartyConfig__:  SAML Trust Relationship configuration
 * __gluuStatus__:  Status of the entry, used by many objectclasses
 * __gluuTrustContact__:  oxTrust login page configuration
-* __gluuTrustDeconstruction__:  TODO - in use?
+* __gluuTrustDeconstruction__:  
 * __gluuValidationLog__
 * __gluuValidationStatus__
 * __iname__
@@ -306,13 +306,13 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 * __tertiaryKeyValue__:  Tertiary Key Value
 
 ## gluuInvoice
-* __gluuInvoiceAmount__:  TODO - in use?
-* __gluuInvoiceDate__:  TODO - in use?
-* __gluuInvoiceLineItemName__:  TODO - in use?
-* __gluuInvoiceNumber__:  TODO - in use?
-* __gluuInvoiceProductNumber__:  TODO - in use?
-* __gluuInvoiceQuantity__:  TODO - in use?
-* __gluuInvoiceStatus__:  TODO - in use?
+* __gluuInvoiceAmount__:  
+* __gluuInvoiceDate__:  
+* __gluuInvoiceLineItemName__:  
+* __gluuInvoiceNumber__:  
+* __gluuInvoiceProductNumber__: 
+* __gluuInvoiceQuantity__:  
+* __gluuInvoiceStatus__:  
 * __inum__:  XRI i-number
 
 ## gluuPasswordResetRequest
@@ -354,7 +354,7 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 * __xri__:  OX XRI address
 
 ## oxAuthClient
-* __associatedPerson__:  Reference the dn of a person.
+* __associatedPerson__:  Reference the DN of a person.
 * __displayName__
 * __inum__:  XRI i-number
 * __oxAuthAppType__:  oxAuth App Type
@@ -374,7 +374,7 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 * __oxAuthJwks__:  oxAuth JWKs
 * __oxAuthLogoURI__:  oxAuth Logo URI
 * __oxAuthPolicyURI__:  oxAuth Policy URI
-* __oxAuthPostLogoutRedirectURI__:  oxAuth Post Logout Redirect URI
+* __oxAuthPostLogoutRedirectURI__:  oxAuth Post-Logout Redirect URI
 * __oxAuthRedirectURI__:  oxAuth Redirect URI
 * __oxAuthRegistrationAccessToken__:  oxAuth Registration Access Token
 * __oxAuthRequestObjectSigningAlg__:  oxAuth Request Object Signing Alg
@@ -420,7 +420,7 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 * __oxState__:  oxState
 * __oxAuthSessionAttribute__:  oxAuthSessionAttribute
 * __oxAsJwt__:  Boolean field to indicate whether object is used as JWT
-* __oxJwt__:  JWT representation of the object or otherwise jwt associated with the object
+* __oxJwt__:  JWT representation of the object or otherwise JWT associated with the object
 * __oxInvolvedClients__:  Involved clients
 
 ## oxAuthConfiguration
@@ -455,7 +455,7 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 * __oxResource__:  Host path
 * __oxRevision__:  Revision
 * __oxType__:  ox type
-* __oxUrl__:  ox url
+* __oxUrl__:  ox URL
 
 ## oxAuthUmaScopeDescription
 * __displayName__
@@ -476,7 +476,7 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 * __oxAuthUmaScope__:  URI reference of scope descriptor
 * __oxConfigurationCode__:  ox configuration code
 * __oxHost__:  ox host
-* __oxResourceSetId__:  ox resource set id
+* __oxResourceSetId__:  ox resource set ID
 * __oxTicket__:  ox ticket
 
 ## oxAuthGrant
@@ -488,15 +488,15 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 * __oxAuthAuthorizationCode__:  oxAuth authorization code
 * __oxAuthCreation__:  oxAuth Creation
 * __oxAuthExpiration__:  oxAuth Expiration
-* __oxAuthGrantId__:  oxAuth grant id
+* __oxAuthGrantId__:  oxAuth grant ID
 * __oxAuthGrantType__:  oxAuth Grant Type
 * __oxAuthJwtRequest__:  oxAuth JWT Request
 * __oxAuthNonce__:  oxAuth nonce
 * __oxAuthScope__:  oxAuth Attribute Scope
 * __oxAuthTokenCode__:  oxAuth Token Code
 * __oxAuthTokenType__:  oxAuth Token Type
-* __oxAuthUserId__:  oxAuth user id
-* __oxAuthClientId__:  oxAuth Client id
+* __oxAuthUserId__:  oxAuth user ID
+* __oxAuthClientId__:  oxAuth Client ID
 * __oxAuthenticationMode__
 * __uniqueIdentifier__
 * __oxCodeChallenge__:  OX PKCE code challenge
@@ -510,19 +510,19 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 * __oxAuthCreation__:  oxAuth Creation
 * __oxAuthExpiration__:  oxAuth Expiration
 * __oxAuthTokenCode__:  oxAuth Token Code
-* __oxAuthUserId__:  oxAuth user id
-* __oxUmaPermission__:  ox uma permission
+* __oxAuthUserId__:  oxAuth user ID
+* __oxUmaPermission__:  ox UMA permission
 * __uniqueIdentifier__
 
 ## oxLiteralNode
-* __literalBinaryValue__:  OX literalValue
-* __literalValue__:  OX literalValue
-* __organizationalOwner__:  OX organizationalOwner
+* __literalBinaryValue__:  ox literalValue
+* __literalValue__:  ox literalValue
+* __organizationalOwner__:  ox organizationalOwner
 * __owner__
-* __targetRelationalXdiStatement__:  OX TargetRelationalXdiStatement
-* __x__:  OX XRI Component
-* __xdiStatement__:  OX xdiStatement
-* __xri__:  OX XRI address
+* __targetRelationalXdiStatement__:  ox TargetRelationalXdiStatement
+* __x__:  ox XRI Component
+* __xdiStatement__:  ox xdiStatement
+* __xri__:  ox XRI address
 
 ## oxProxConfiguration
 * __ou__
