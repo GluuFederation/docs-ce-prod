@@ -201,9 +201,9 @@ The latest schema files can be found [here](https://github.com/GluuFederation/co
   - Add new properties to the `passport_social` authentication script on "Custom scripts -> Person authentication" page (no quotes):
     - "key_store_file" = "/etc/certs/passport-rp.jks"
     - "key_store_password" = "secret"
-  - Update the source code of the script iself with the one found [here](https://github.com/GluuFederation/oxAuth/blob/version_3.1.4/Server/integrations/passport/PassportExternalAuthenticator.py)
+  - Update the source code of the script itself with the one found [here](https://github.com/GluuFederation/oxAuth/blob/f557a0fabeb0702b7e8be801129dd33ce50924e0/Server/integrations/passport/PassportExternalAuthenticator.py)
   - Edit `/etc/gluu/conf/passport-config.json` by changing "applicationEndpoint" property to "`https://<host-name>/oxauth/postlogin`"
-  - Acquire patched `index.js` file from [here](https://github.com/GluuFederation/gluu-passport/blob/version_3.1.4/server/routes/index.js) and overwrite `/opt/gluu/node/passport/server/routes/index.js` with it. Make sure its ownership is still set as "node:node": `# chown node:node /opt/gluu/node/passport/server/routes/index.js`
+  - Acquire patched `index.js` file from [here](https://github.com/GluuFederation/gluu-passport/blob/3043ecfad4ef7d65537282402c0ea7d97930ba47/server/routes/index.js) and overwrite `/opt/gluu/node/passport/server/routes/index.js` with it. Make sure its ownership is still set as "node:node": `# chown node:node /opt/gluu/node/passport/server/routes/index.js`
 
 9. Start the service: `# service passport start`
 
