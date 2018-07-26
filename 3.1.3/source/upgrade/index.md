@@ -195,8 +195,10 @@ The latest schema files can be found [here](https://github.com/GluuFederation/co
   - `$ export PATH=$PATH:/opt/node/bin`
   - Before proceeding, ensure the host has internet connection, then run `$ npm install -P`
   - `$ exit`
-  
-8. [Optional but recommended] Patch known vulnerability in the code:
+
+8. Update the corresponding custom script: Login to oxTrust and locate the interception script labelled `passport_social`. Replace the contents with those of the file found [here](https://raw.githubusercontent.com/GluuFederation/oxAuth/version_3.1.3/Server/integrations/passport/PassportExternalAuthenticator.py).
+
+9. [Optional but recommended] Patch known vulnerability in the code:
 
   - Add new properties to the `passport_social` authentication script on "Custom scripts -> Person authentication" page (no quotes):
     - "key_store_file" = "/etc/certs/passport-rp.jks"
@@ -205,9 +207,9 @@ The latest schema files can be found [here](https://github.com/GluuFederation/co
   - Edit `/etc/gluu/conf/passport-config.json` by changing "applicationEndpoint" property to "`https://<host-name>/oxauth/postlogin`"
   - Acquire patched `index.js` file from [here](https://github.com/GluuFederation/gluu-passport/blob/3043ecfad4ef7d65537282402c0ea7d97930ba47/server/routes/index.js) and overwrite `/opt/gluu/node/passport/server/routes/index.js` with it. Make sure its ownership is still set as "node:node": `# chown node:node /opt/gluu/node/passport/server/routes/index.js`
 
-9. Start the service: `# service passport start`
+10. Start the service: `# service passport start`
 
-10. Clean the temporary files: `# cd ~/; rm -rf ~/passport_update`
+11. Clean the temporary files: `# cd ~/; rm -rf ~/passport_update`
 
 ### Latest .war Files
 
