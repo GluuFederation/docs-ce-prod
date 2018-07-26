@@ -176,6 +176,8 @@ The latest schema files can be found [here](https://github.com/GluuFederation/co
 
 ### Update Passport.js installation.
 
+1. Ensure you have updated the [war files and schema](#updating-war-and-schema-manually) before proceeding.
+
 1. Have the Client ID and Client Secrets of your already registered strategies at hand. Due to an standardization process performed on how configuration properties are stored, you may need to re-enter those again via oxTrust.
 
 1. Create a temporary directory inside container and move into it: `# mkdir ~/passport_update; cd ~/passport_update`
