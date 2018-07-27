@@ -49,20 +49,20 @@ To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as o
     - `# ln -sf /opt/jetty-9.4/jetty-distribution-9.4.9.v20180320 /opt/jetty`
     - `# chown -h jetty:jetty /opt/jetty`
 
-1. Now change the `/etc/default/<service>` files `TMPDIR` from:
+1. Update startup defaults for services `oxauth`, `identity`, `idp` and `asimba` stored in correspondingly named files under `/etc/default/`; change `TMPDIR` property from
 
     `TMPDIR=/opt/jetty-9.3/temp`  
    
-    To:  
+    ..to:  
 
     `TMPDIR=/opt/jetty-9.4/temp`  
  
-1. Last we need to make a minor adjustment to the initialization process in `/opt/gluu/jetty/<service>/start.ini`:
+1. Update initialization settings for modules `oxauth`, `identity`, `idp` and `asimba` stored in `start.ini` files in correspondingly named directories (example: `/opt/gluu/jetty/oxauth/start.ini`)
 
     `# Module: logging`  
     `--module=logging`
   
-    Becomes:
+    ..becomes:
 
     `# Module: logging`  
     `--module=console-capture`
