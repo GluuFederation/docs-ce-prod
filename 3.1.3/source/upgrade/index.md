@@ -183,7 +183,7 @@ The latest schema files can be found [here](https://github.com/GluuFederation/co
 
 1. Download and extract the recent Passport package: `# wget https://ox.gluu.org/npm/passport/passport-3.1.3.tgz; tar -xzvf passport-3.1.3.tgz`
 
-1. Backup current Passport's files: `# tar -cvpzf ./passport-package-v312-backup.tar.gz --one-file-system /opt/gluu/node/passport/`
+1. Backup current Passport's files: `# tar -cvpzf ./passport-package-v312-backup.tar.gz /opt/gluu/node/passport/`
 
 1. Stop the service: `# service passport stop`
 
