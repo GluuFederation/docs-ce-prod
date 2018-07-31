@@ -175,9 +175,9 @@ The latest schema files can be found [here](https://github.com/GluuFederation/co
 
 ### Update Passport.js installation.
 
-1. Ensure you have updated the [war files and schema](#updating-war-and-schema-manually) before proceeding.
-
 1. Have the Client ID and Client Secrets of your already registered strategies at hand. Due to an standardization process performed on how configuration properties are stored, you may need to re-enter those again via oxTrust.
+
+1. Ensure you have updated the [war files and schema](#updating-war-and-schema-manually) before proceeding.
 
 1. Create a temporary directory inside container and move into it: `# mkdir ~/passport_update; cd ~/passport_update`
 
@@ -210,9 +210,23 @@ The latest schema files can be found [here](https://github.com/GluuFederation/co
     - Edit `/etc/gluu/conf/passport-config.json` by changing "applicationEndpoint" property to "`https://<host-name>/oxauth/postlogin`"
     - Acquire patched `index.js` file from [here](https://github.com/GluuFederation/gluu-passport/blob/3043ecfad4ef7d65537282402c0ea7d97930ba47/server/routes/index.js) and overwrite `/opt/gluu/node/passport/server/routes/index.js` with it. Make sure its ownership is still set as "node:node": `# chown node:node /opt/gluu/node/passport/server/routes/index.js`
 
+!!! Note:
+    If you are upgrading from 3.1.1 or 3.1.0, please account for the following 3 additional steps:
+    
+1. Download [passport-saml-config.json](https://github.com/GluuFederation/community-edition-setup/raw/version_3.1.3/templates/passport-saml-config.json) and place it in directory `/etc/gluu/conf/`.
+
+1. Add this line `NODE_LOGS=$NODE_BASE/logs` to file `/etc/default/passport`
+
+1. Run this [script](mod_ldap.py) inside chroot container. This requires installing `python-ldap` beforehand:
+
+    - For CentOS/RHEL/Fedora run: `yum install python-ldap`, for Ubunutu/Debian do: `apt-get install python-ldap`
+    - Run `# python mod_ldap.py`
+
+To finish please do:
+
 1. In the oxTrust admin console, go to `Configuration` > `Manage authentication` > `Passport authn method`, double check your strategies are listed and the client ID/secrets are properly shown, otherwise make any adjustment before proceeding.
 
-1. Start the service: `# service passport start`
+1. Start passport service: `# service passport start`
 
 1. Clean the temporary files: `# cd ~/; rm -rf ~/passport_update`
 
