@@ -74,6 +74,26 @@ class GluuUpdater:
         
 
     def updatePassport(self):
+
+        if not os.path.exists('/etc/certs/passport-sp.key'):
+            print "Creating passport certificates"
+            os.system('/usr/bin/openssl genrsa -des3 -out /etc/certs/passport-sp.key.orig -passout pass:secret 2048')
+            os.system('/usr/bin/openssl rsa -in /etc/certs/passport-sp.key.orig -passin pass:secret -out /etc/certs/passport-sp.key')
+            os.system('/usr/bin/openssl req -new -key /etc/certs/passport-sp.key -out /etc/certs/passport-sp.csr -subj /C={0}/ST={1}/L={2}/O={3}/CN={4}/emailAddress={5}'.format(
+                            self.setup_properties['countryCode'],
+                            self.setup_properties['state'],
+                            self.setup_properties['city'],
+                            self.setup_properties['orgName'],
+                            self.setup_properties['orgName'],
+                            self.setup_properties['admin_email']
+                        ))
+            os.system('/usr/bin/openssl x509 -req -days 365 -in /etc/certs/passport-sp.csr -signkey /etc/certs/passport-sp.key -out /etc/certs/passport-sp.crt')
+            os.system('chown root:gluu /etc/certs/passport-sp.key.orig')
+            os.system('chmod 440 /etc/certs/passport-sp.key.orig')
+            os.system('chown root:gluu /etc/certs/passport-sp.key')
+            os.system('chown node:node /etc/certs/passport-sp.key')
+        
+        
         print "Converting Passport Strategies to new style"
         #convert passport strategies to new style
         result = self.conn.search_s('o=gluu',ldap.SCOPE_SUBTREE,'(objectClass=oxPassportConfiguration)')
