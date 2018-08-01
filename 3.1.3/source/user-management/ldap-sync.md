@@ -114,7 +114,8 @@ Directory/LDAP server of the organization.
   connections that are allowed to read the backend Active Directory/LDAP
   server. By default it is set to 0, which actually means *zero*--not unlimited! We recommended setting the value to 2 or 3.
 
-*_Level:_ TBA
+*_Level:_ TBA     
+   
 * _Server:_ This contains the backend Active Directory/LDAP server
   hostname with port i.e. backend.organization.com:389. If organization
   has a failover server, click **Add Server** and add more hostnames with
