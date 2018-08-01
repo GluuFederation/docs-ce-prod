@@ -324,9 +324,9 @@ Review the [installation docs](../installation-guide/install.md) to install the 
 # service gluu-server-3.1.3 start
 
 # service gluu-server-3.1.3 login
+```
 
-<a name="opendjmigration">
-If you are migrating from OpenLDAP to OpenDJ downloaded patched version:</a>
+If you are migrating from OpenLDAP to OpenDJ downloaded patched version:
 
 ```
 # wget http://ox.gluu.org/maven/org/forgerock/opendj/opendj-server-legacy/3.0.1.gluu/opendj-server-legacy-3.0.1.gluu.zip -O /opt/dist/app/opendj-server-3.0.0.1.zip
