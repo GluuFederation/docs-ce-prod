@@ -148,21 +148,17 @@ administrator, you do not need to insert anything here in this section
 as new Gluu Server versions automatically populates this for you (unless
 you try to manually configure it anyway).
 
-* _Refresh Method:_ The Gluu Server allows the Server Administrator to
-  apply two types of Cache Refresh mechanism--(i) VDS Method and (ii) Copy
-  Method.
+* _Refresh Method:_ Gluu Server supports two methods for Cache Refresh:     
 
-  1. _VDS Method:_ Any organization with a database like *mysql* can use
+    1. _VDS Method:_ Any organization with a database like *mysql* can use
   the VDS method. This option can be enabled via the drop-down menu in
-  Refresh Method option.
+  Refresh Method option.     
+    ![Refresh VDS](../img/admin-guide/user/admin_cache_refresh_vds.png)
 
-![Refresh VDS](../img/admin-guide/user/admin_cache_refresh_vds.png)
-
-  2. _Copy Method:_ If the organization has any kind of Active
+    1. _Copy Method:_ If the organization has any kind of Active
   Directory/LDAP server, they are strongly recommended to use the *Copy
-  Method* from the drop-down menu.
-
-![Refresh Copy](../img/admin-guide/user/admin_cache_refresh_copy.png)
+  Method* from the drop-down menu.     
+    ![Refresh Copy](../img/admin-guide/user/admin_cache_refresh_copy.png)
 
 ### Attributes Mapping
 
