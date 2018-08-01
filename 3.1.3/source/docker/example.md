@@ -58,7 +58,7 @@ Another interesting case is by using 3 nodes, the possibility of having an [issu
 #### Networking
 
 The cluster operates over native Docker Swarm networking called `overlay`.
-To allow a container that is running using the plain `docker run` command to connect to the network, a custom network called `gluu` is created (based on `overlay` with `--attachable` option).
+To allow a container that is running using the plain `docker run` command to connect to the network, a custom network called `gluu` is created (based on `overlay`).
 
 By having this custom network, we can address our concerns:
 
@@ -73,19 +73,25 @@ oxTrust and oxShibboleth rely on a mounted volume to share oxShibboleth configur
 
 - `nodes.sh`: provision Swarm nodes and setup `csync2` replication
 - `config.sh`: generate, dump, or load configuration required by the cluster
-- `cache.sh`: deploy Redis and Twemproxy as cache storage
-- `ldap-manager.sh`: deploy OpenDJ including creating initial data
-- `ldap-worker-1.sh`: deploy OpenDJ that replicate the data from another OpenDJ container
-- `ldap-worker-2.sh`: deploy OpenDJ that replicate the data from another OpenDJ container
 
 #### Docker Compose Files
 
-- `cache.yml`: contains Docker Swarm service definition for Twemproxy container
+- `redis.yml`: contains Docker Swarm service definition for Redis container
 - `registrator.yml`: contains Docker Swarm service definition for Registrator container
 - `consul.yml`: contains Docker Swarm service definition for Consul container
 - `web.yml`: contains Docker Swarm service definition for oxAuth, oxTrust, oxShibboleth, oxPassport, and NGINX container
+- `ldap-manager.yml`: contains Docker Swarm service definition for OpenDJ container which generate initial data
+- `ldap-worker-1.yml`: contains Docker Swarm service definition for OpenDJ container where data is replicated from another OpenDJ container
+- `ldap-worker-2.yml`: contains Docker Swarm service definition for OpenDJ container where data is replicated from another OpenDJ container
 
 #### Load Balancer
 
 Given 3 nodes that run clustered Gluu Server, it's recommended to deploy an external loadbalancer, for example: NGINX or [DigitalOcean loadbalancer](https://www.digitalocean.com/products/load-balancer/).
 Note, the process of deploying an external loadbalancer is out of the scope of this document.
+
+### Multi Host using Google Kubernetes Engine
+
+This an example of running Gluu Server Docker edition on multiple VMs using Google Kubernetes Engine.
+
+[Here](https://github.com/GluuFederation/gluu-docker/tree/3.1.3/examples/kubernetes/gke) are the instructions to deploy clustered instances of Gluu Server Docker containers.
+This example consists of several shell scripts and config files.

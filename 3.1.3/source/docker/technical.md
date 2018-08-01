@@ -32,7 +32,7 @@ That being said, Consul stores all of its configuration on the disk. Using our `
 
 #### Registrator
 
-__Note:__ for Kubernetes user, this container can be omitted.
+__Note:__ for Kubernetes user or non-Consul based deployment, this container can be omitted.
 
 Due to the design of Docker networking where container IP gets recycled dynamically, [Registrator](http://gliderlabs.github.io/registrator/latest/) container is used for registering and deregistering oxAuth, oxTrust, oxShibboleth, and oxPassport container's IP. With the help of Registrator, the NGINX container will route the traffic to available oxAuth/oxTrust/oxShibboleth/oxPassport backend.
 
@@ -83,7 +83,7 @@ The following commands are supported by the container:
             -e GLUU_CONFIG_ADAPTER=consul \
             -e GLUU_CONSUL_HOST=consul \
             -v /path/to/host/volume:/opt/config-init/db \
-            gluufederation/config-init:$GLUU_VERSION \
+            gluufederation/config-init:latest \
             dump
 
 - [load](https://github.com/GluuFederation/docker-config-init/tree/3.1.3#load-command): The load command will load a `config.json` into the KV store. The following parameters and/or environment variables are required to launch unless otherwise marked:
@@ -105,7 +105,7 @@ The following commands are supported by the container:
             -e GLUU_CONFIG_ADAPTER=consul \
             -e GLUU_CONSUL_HOST=consul \
             -v /path/to/host/volume:/opt/config-init/db \
-            gluufederation/config-init:$GLUU_VERSION \
+            gluufederation/config-init:latest \
             load
 
 #### OpenDJ
@@ -129,19 +129,23 @@ The following variables are used by the container:
 
 #### OpenLDAP
 
-Note: this container only support Consul to get the configuration.
-
 An alternative of OpenDJ image. To use this container, make sure to choose `openldap` when running `config-init` container.
 For example:
 
     docker run \
         --rm \
-        gluufederation/config-init:3.1.3_dev generate --ldap-type=openldap
+        -e GLUU_CONFIG_ADAPTER=consul \
+        -e GLUU_CONSUL_HOST=consul \
+        gluufederation/config-init:latest generate --ldap-type=openldap
 
 The following variables are used by the container:
 
-- `GLUU_KV_HOST`: Consul's hostname or IP address
-- `GLUU_KV_PORT`: Consul's port number
+- `GLUU_CONFIG_ADAPTER`: The config backend adapter, can be `consul` (default) or `kubernetes`.
+- `GLUU_CONSUL_HOST`: hostname or IP of Consul (default to `localhost`).
+- `GLUU_CONSUL_PORT`: port of Consul (default to `8500`).
+- `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `stale` mode.
+- `GLUU_KUBERNETES_NAMESPACE`: Kubernetes namespace (default to `default`).
+- `GLUU_KUBERNETES_CONFIGMAP`: Kubernetes configmap name (default to `gluu`).
 - `GLUU_LDAP_INIT`: whether to import initial LDAP entries (possible values are true or false)
 - `GLUU_LDAP_INIT_HOST`: LDAP hostname for initial configuration (only usable when `GLUU_LDAP_INIT` set to true)
 - `GLUU_LDAP_INIT_PORT`: LDAP port number for initial configuration (only usable when `GLUU_LDAP_INIT` set to true)
@@ -180,6 +184,7 @@ The following variables are used by the container:
 - `GLUU_OXAUTH_BACKEND`: the oxAuth backend address, default is `localhost:8081` (used in `wait-for-it` script)
 - `GLUU_SHIB_SOURCE_DIR`: absolute path to directory to copy Shibboleth config from (default is `/opt/shibboleth-idp`)
 - `GLUU_SHIB_TARGET_DIR`: absolute path to directory to copy Shibboleth config to (default is `/opt/shared-shibboleth-idp`)
+- `GLUU_DEBUG_PORT`: port of remote debugging (if omitted, remote debugging will be disabled).
 
 #### oxPassport
 
