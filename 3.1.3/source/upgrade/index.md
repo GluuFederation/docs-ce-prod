@@ -303,7 +303,8 @@ Install the `json-merge` Python package and run the import script.
 ```
 
 !!! Note
-    Choose OpenLDAP if your current LDAP Server is OpenLDAP when you are asked to choose a target LDAP Server.
+    If your current LDAP Server is OpenLDAP and you choose OpenDJ for target LDAP Server, please be careful about downloading
+    pathced version of OpenDJ as explained [here](#opendjmigration).
 
 The export script will generate a directory called `backup_3031` which will have all the data from the current installation. Check the log file generated in the directory for any errors.
 
@@ -324,6 +325,18 @@ Review the [installation docs](../installation-guide/install.md) to install the 
 
 # service gluu-server-3.1.3 login
 
+</a>
+<a name="opendjmigration">
+If you are migrating from OpenLDAP to OpenDJ downloaded patched version:
+
+```
+# wget http://ox.gluu.org/maven/org/forgerock/opendj/opendj-server-legacy/3.0.1.gluu/opendj-server-legacy-3.0.1.gluu.zip -O /opt/dist/app/opendj-server-3.0.0.1.zip
+```
+</a>
+
+Now, you can run `setup.py`:
+
+```
 # cp backup_3031/setup.properties /install/community-edition-setup/
 
 # cd /install/community-edition-setup/
