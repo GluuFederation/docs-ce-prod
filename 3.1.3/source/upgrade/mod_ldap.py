@@ -90,8 +90,8 @@ class GluuUpdater:
             os.system('/usr/bin/openssl x509 -req -days 365 -in /etc/certs/passport-sp.csr -signkey /etc/certs/passport-sp.key -out /etc/certs/passport-sp.crt')
             os.system('chown root:gluu /etc/certs/passport-sp.key.orig')
             os.system('chmod 440 /etc/certs/passport-sp.key.orig')
-            os.system('chown root:gluu /etc/certs/passport-sp.key')
             os.system('chown node:node /etc/certs/passport-sp.key')
+            os.system('chown node:node /etc/certs/passport-sp.crt')
         
         
         print "Converting Passport Strategies to new style"
