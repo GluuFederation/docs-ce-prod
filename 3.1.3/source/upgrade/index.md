@@ -194,7 +194,7 @@ The latest schema files can be found [here](https://github.com/GluuFederation/co
 1. Initialize Passport framework:
     - `# su - node`
     - `$ cd /opt/gluu/node/passport`
-    - `$ mkdir logs`
+    - `$ mkdir server/logs`
     - `$ export PATH=$PATH:/opt/node/bin`
     - Before proceeding, ensure the host has internet connection, then run `$ npm install -P`
     - `$ exit`
