@@ -112,7 +112,7 @@ Directory/LDAP server of the organization.
 
 * _Max Connections:_ This value defines the maximum number of
   connections that are allowed to read the backend Active Directory/LDAP
-  server. It is recommended to keep the value of 2 or 3.
+  server. By default it is set to 0, which actually means *zero*--not unlimited! We recommended setting the value to 2 or 3.
 
 *_Level:_ TBA
 * _Server:_ This contains the backend Active Directory/LDAP server
