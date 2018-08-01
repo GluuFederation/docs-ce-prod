@@ -201,6 +201,8 @@ The latest schema files can be found [here](https://github.com/GluuFederation/co
 
 1. Update the corresponding custom script: Login to oxTrust and locate the interception script labelled `passport_social`. Replace the contents with those of the file found [here](https://raw.githubusercontent.com/GluuFederation/oxAuth/version_3.1.3/Server/integrations/passport/PassportExternalAuthenticator.py).
 
+1. If you are integrating SAML IDPs, update the `passport_saml` script with the updated [version](https://raw.githubusercontent.com/GluuFederation/oxAuth/version_3.1.3/Server/integrations/passport/SamlPassportAuthenticator.py)
+
 1. [Optional but recommended] Patch known vulnerability in the code:
 
     - Add new properties to the `passport_social` authentication script on "Custom scripts -> Person authentication" page (no quotes):
@@ -211,7 +213,7 @@ The latest schema files can be found [here](https://github.com/GluuFederation/co
     - Acquire patched `index.js` file from [here](https://github.com/GluuFederation/gluu-passport/blob/3043ecfad4ef7d65537282402c0ea7d97930ba47/server/routes/index.js) and overwrite `/opt/gluu/node/passport/server/routes/index.js` with it. Make sure its ownership is still set as "node:node": `# chown node:node /opt/gluu/node/passport/server/routes/index.js`
 
 !!! Note:
-    If you are upgrading from 3.1.1 or 3.1.0, please account for the following 3 additional steps:
+    If you are upgrading from 3.1.0 or 3.1.1, please account for the following 3 additional steps:
     
 1. Download [passport-saml-config.json](https://github.com/GluuFederation/community-edition-setup/raw/version_3.1.3/templates/passport-saml-config.json) and place it in directory `/etc/gluu/conf/`.
 
