@@ -87,7 +87,7 @@ To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as o
     
     - `# wget https://ox.gluu.org/maven/org/xdi/oxauth-server/3.1.3.Final/oxauth-server-3.1.3.Final.war -O oxauth.war`
     
-1. Start the oxAuth service:
+1. Start the "oxauth" service:
 
     - `# service oxauth start`
     
@@ -111,10 +111,35 @@ To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as o
     
     - `# wget https://ox.gluu.org/maven/org/xdi/oxtrust-server/3.1.3.Final/oxtrust-server-3.1.3.Final.war -O identity.war`
 
-1. Start the identity service:  
+1. Start the "identity" service:  
     
     - `# service identity start`
     
+#### Update Shibboleth IDP .war
+
+1. Stop the identity service:  
+
+    - `# service idp stop`
+        
+1. Navigate to the `/opt/gluu/jetty` directory and back up the current app in the root's home directory (just in case you need to restore it later): 
+
+    - `# cd /opt/gluu/jetty/`
+    
+    - `# tar -czf ~/idp.tar.gz idp`
+    
+1. Download and install the latest .war: 
+
+    - `# cd /opt/gluu/jetty/idp/webapps/`
+    
+    - `# rm idp.war`
+    
+    - `# wget https://ox.gluu.org/maven/org/xdi/oxshibbolethIdp/3.1.3.FinaloxshibbolethIdp-3.1.3.Final.war -O idp.war`
+
+1. Start the "idp" service:  
+    
+    - `# service idp start`
+
+  
 #### Update Gluu Schema Files
 
 You will need to upgrade schema files to accommodate for new attributes added to some entries in Gluu 3.1.3. Follow the instructions below for OpenDJ or OpenLDAP, depending on which LDAP server you have installed with your Gluu Server. If upgrading from 2.x, follow the OpenDJ instructions below. 
@@ -201,11 +226,11 @@ The latest schema files can be found [here](https://github.com/GluuFederation/co
 
 1. Update the corresponding custom script: Login to oxTrust and locate the interception script labelled `passport_social`. Replace the contents with those of the file found [here](https://raw.githubusercontent.com/GluuFederation/oxAuth/version_3.1.3/Server/integrations/passport/PassportExternalAuthenticator.py).
 
-1. If you are integrating SAML IDPs, update the `passport_saml` script with the updated [version](https://raw.githubusercontent.com/GluuFederation/oxAuth/version_3.1.3/Server/integrations/passport/SamlPassportAuthenticator.py)
+1. If you are employing Passport - Inbound SAML flow, substitute the `passport_saml` script with the updated [version](https://raw.githubusercontent.com/GluuFederation/oxAuth/version_3.1.3/Server/integrations/passport/SamlPassportAuthenticator.py) on "Manage custom scripts -> Person authentication" page
 
-1. [Optional but recommended] Patch known vulnerability in the code:
+1. Patch known vulnerability in the code:
 
-    - Add new properties to the `passport_social` authentication script on "Custom scripts -> Person authentication" page (no quotes):
+    - Using web UI, add new properties to the `passport_social` authentication script on "Custom scripts -> Person authentication" page (no quotes):
        - "key_store_file" = "/etc/certs/passport-rp.jks"
        - "key_store_password" = "secret"
     - Update the source code of the script itself with the one found [here](https://github.com/GluuFederation/oxAuth/blob/f557a0fabeb0702b7e8be801129dd33ce50924e0/Server/integrations/passport/PassportExternalAuthenticator.py)
