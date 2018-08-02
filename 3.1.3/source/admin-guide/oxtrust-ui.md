@@ -209,7 +209,7 @@ local LDAP server.
 
 * _Max Connections:_ This option can be used to define the total number
   of simultaneous connections allowed for reading local LDAP/remote Active
-  Directory/remote LDAP
+  Directory/remote LDAP. By default it is set to 0, which actually means *zero*--not unlimited! We recommend setting the value to 3. 
   
 * _Primary Key:_ This field is used in search and bind operations against the LDAP directory that is configured in the “Manage Authentication” tab, which actually verifies the credentials supplied by the user at the login page. By default, it uses Gluu Server’s internal LDAP, but any LDAP server already set up in the network can be used, allowing the Gluu server to be integrated seamlessly into any corporate environment. The key could be *SAMAccountName*, *uid*, *mail*, etc
 
