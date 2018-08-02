@@ -253,6 +253,8 @@ To finish please do:
 
 1. In the oxTrust admin console, go to `Configuration` > `Manage authentication` > `Passport authn method`, double check your strategies are listed and the client ID/secrets are properly shown, otherwise make any adjustment before proceeding.
 
+1. Move to the "Configuration -> Manage Custom scripts -> UMA RPT Policies" page and make sure "uma_client_authz_rpt_policy" script is enabled there.
+
 1. Start passport service: `# service passport start`
 
 1. Clean the temporary files: `# cd ~/; rm -rf ~/passport_update`
