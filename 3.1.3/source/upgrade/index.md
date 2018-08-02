@@ -226,7 +226,7 @@ The latest schema files can be found [here](https://github.com/GluuFederation/co
 
 1. Update the corresponding custom script: Login to oxTrust and locate the interception script labelled `passport_social`. Replace the contents with those of the file found [here](https://raw.githubusercontent.com/GluuFederation/oxAuth/version_3.1.3/Server/integrations/passport/PassportExternalAuthenticator.py).
 
-1. If you are employing Passport - Inbound SAML flow, substitute the `passport_saml` script with the updated [version](https://raw.githubusercontent.com/GluuFederation/oxAuth/version_3.1.3/Server/integrations/passport/SamlPassportAuthenticator.py) on "Manage custom scripts -> Person authentication" page
+1. If you are employing Passport - Inbound SAML flow, substitute the `passport_saml` script with the updated [version](https://raw.githubusercontent.com/GluuFederation/oxAuth/version_3.1.3/Server/integrations/saml-passport/SamlPassportAuthenticator.py) on "Manage custom scripts -> Person authentication" page
 
 1. Patch known vulnerability in the code:
 
