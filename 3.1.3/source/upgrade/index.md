@@ -224,18 +224,23 @@ The latest schema files can be found [here](https://github.com/GluuFederation/co
     - Before proceeding, ensure the host has internet connection, then run `$ npm install -P`
     - `$ exit`
 
-1. Update the corresponding custom script: Login to oxTrust and locate the interception script labelled `passport_social`. Replace the contents with those of the file found [here](https://raw.githubusercontent.com/GluuFederation/oxAuth/version_3.1.3/Server/integrations/passport/PassportExternalAuthenticator.py).
-
-1. If you are employing Passport - Inbound SAML flow, substitute the `passport_saml` script with the updated [version](https://raw.githubusercontent.com/GluuFederation/oxAuth/version_3.1.3/Server/integrations/saml-passport/SamlPassportAuthenticator.py) on "Manage custom scripts -> Person authentication" page
-
 1. Patch known vulnerability in the code:
 
-    - Using web UI, add new properties to the `passport_social` authentication script on "Custom scripts -> Person authentication" page (no quotes):
+    - Update the corresponding custom script: Login to oxTrust and locate the interception script labelled `passport_social` (on "Manage custom scripts -> Person authentication"). Replace the contents with those of the file found [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/version_3.1.3_securitypatch_issue30/scripts/PassportExternalAuthenticator.py).
+
+    - Add new properties to the `passport_social` authentication script (do not use quotes):
+
        - "key_store_file" = "/etc/certs/passport-rp.jks"
+
        - "key_store_password" = "secret"
-    - Update the source code of the script itself with the one found [here](https://github.com/GluuFederation/oxAuth/blob/f557a0fabeb0702b7e8be801129dd33ce50924e0/Server/integrations/passport/PassportExternalAuthenticator.py)
+
+    - If you are employing Passport - Inbound SAML flow, substitute the `passport_saml` script as well. [Here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/version_3.1.3_securitypatch_issue30/scripts/SamlPassportAuthenticator.py) is the updated version.
+    
+    - Add the same two properties you just added to `passport_social` to Inbound SAML script (`passport_saml`)
+    
     - Edit `/etc/gluu/conf/passport-config.json` by changing "applicationEndpoint" property to "`https://<host-name>/oxauth/postlogin`"
-    - Acquire patched `index.js` file from [here](https://github.com/GluuFederation/gluu-passport/blob/3043ecfad4ef7d65537282402c0ea7d97930ba47/server/routes/index.js) and overwrite `/opt/gluu/node/passport/server/routes/index.js` with it. Make sure its ownership is still set as "node:node": `# chown node:node /opt/gluu/node/passport/server/routes/index.js`
+
+    - Acquire patched `index.js` file from [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/version_3.1.3_securitypatch_issue30/server/routes/index.js) and overwrite `/opt/gluu/node/passport/server/routes/index.js` with it. Make sure its ownership is still set as "node:node": `# chown node:node /opt/gluu/node/passport/server/routes/index.js`
 
 !!! Note:
     If you are upgrading from 3.1.0 or 3.1.1, please account for the following 3 additional steps:
