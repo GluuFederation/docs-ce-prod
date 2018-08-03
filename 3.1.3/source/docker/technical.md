@@ -54,6 +54,9 @@ The following commands are supported by the container:
     - `--org-name`: The organization using the Gluu Server. Used for certificate creation.
     - `--admin-pw`: The administrator password for oxTrust and LDAP
     - `--ldap-type`: Either OpenDJ or OpenLDAP. If you're looking to use LDAP replication, we recommend OpenDJ.
+    - `--base-inum`: (optional) Base inum. If omitted, the value will be auto-generated.
+    - `--inum-org`: (optional) Organization inum. If omitted, the value will be auto-generated.
+    - `--inum-appliance`: (optional) Appliance inum. If omitted, the value will be auto-generated.
 
     Environment variables:
 
