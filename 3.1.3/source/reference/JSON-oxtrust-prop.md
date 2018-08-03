@@ -25,16 +25,17 @@ This class holds the relation between the person entry and it's relative object 
 | ------------------|-------------|
 | item 1 | inetOrgPerson |
 | item 2 | gluuPerson |
-| personCustomObjectClass| |
+| item 3 | eduPerson |
+| personCustomObjectClass| gluuCustomPerson |
 
 ## personObjectClassDisplayNames
-This class holds the relation betwee the display name of the person and the relative object class.
+This class holds the relation between the display name of the person and the relative object class.
 
 | Fields/Attributes | Description |
 | ------------------|-------------|
 | item 1 | inetOrgPerson |
 | item 2 | gluuPerson |
-| schemaAddAttributeDefenition | | 
+| item 3 | eduPerson |
 
 ## contactObjectClassDisplayNames 
 
