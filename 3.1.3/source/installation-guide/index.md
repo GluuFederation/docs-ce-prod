@@ -19,7 +19,7 @@ Gluu requires a static IP Address that resolves to a computer hostname, which ca
      
 
 ## Supported Operating Systems
-Deply Gluu on a server or VM with one of the following supported operating systems:
+Deploy Gluu on a server or VM with one of the following supported operating systems:
 
 - Ubuntu 14.04, 16.04
 - CentOS 6.x, 7.x
