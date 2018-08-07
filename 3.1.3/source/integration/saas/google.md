@@ -241,7 +241,7 @@ objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
   
  - Create an user in Gluu Server representing the Gsuite account you want to log into ( 2nd user other than G-Suite admin account ).       
  - Make sure the user created in step one has mail attribute available whose value is equals to what is given there in G-Suite account (example `user@yourdomain`). 
- - Initiate SSO with `http://www.google.com/gmail/hosted/[hostname_configured]`. 
+ - Initiate SSO with `gmail.google.com/a/[hostname_configured]` where you can replace `gmail` with the app of your choice that's integrated with G Suite. 
  - Enjoy!   
     
 
