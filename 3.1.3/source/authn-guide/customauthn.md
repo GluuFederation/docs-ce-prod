@@ -224,6 +224,8 @@ Also, remember that putting all the code in a `try / catch` is a good practice t
 
 Further logs to debug and monitor the sequence can be done using `oxauth_script.log` and `oxauth.log` under `/opt/gluu/jetty/identity/logs/` which is within the chroot.
 
+You can also use a remote debugger with Eclipse. See [this guide](../developer-guide/script-debugging.md) to learn how.
+
 ## Reverting Authentication Method
 
 It is not uncommon to get locked out of the Gluu Server while testing the authentication script.
