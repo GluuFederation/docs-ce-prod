@@ -3,7 +3,7 @@ The following guide will explain how to debug [custom interception scripts](../a
 
 ## Prepare Eclipse
 
-  1. Install the PyDev Eclispe plugin from the Eclipse Markeplace
+  1. Install the PyDev Eclipse plugin from the Eclipse Markeplace
   1. Open Debug perspective
   1. Start the remote debugger server by navigating to `Menu` > `PyDev` > `Start Debug Server`
 
