@@ -44,7 +44,7 @@ Now Certificate authentication is an available mechanism for your Gluu Server. T
 !!! Note 
     To make sure Certificate authentication has been enabled successfully, you can check your Gluu Server's OpenID Connect configuration by navigating to the following URL: `https://<hostname>/.well-known/openid-configuration`. Find `"acr_values_supported":` and you should see `"cert"`. 
 
-## Make Certificat Authentication the Default Authentication Mechanism
+## Make Certificate Authentication the Default Authentication Mechanism
 
 Now applications can request Cert authentication, but what if you want to make Cert authentication your default mechanism? You can follow these instructions: 
 
