@@ -105,7 +105,7 @@ The following variables are used by the container:
 - `GLUU_LDAP_INIT`: whether to import initial LDAP entries (possible values are true or false)
 - `GLUU_LDAP_INIT_HOST`: LDAP hostname for initial configuration (only usable when `GLUU_LDAP_INIT` set to true)
 - `GLUU_LDAP_INIT_PORT`: LDAP port for initial configuration (only usable when `GLUU_LDAP_INIT` set to true)
-- `GLUU_CACHE_TYPE`: supported values are `IN_MEMORY` and `REDIS`, default is `IN_MEMORY`
+- `GLUU_CACHE_TYPE`: supported values are `IN_MEMORY`, `MEMCACHED`, `REDIS` and `NATIVE_PERSISTENCE`, default is `IN_MEMORY`
 - `GLUU_REDIS_URL`: URL of redis service, format is host:port (optional)
 - `GLUU_REDIS_TYPE`: redis service type, either `STANDALONE` or `CLUSTER` (optional)
 - `GLUU_LDAP_ADDR_INTERFACE`: interface name where the IP will be guessed and registered as OpenDJ host, e.g. `eth0` (will be ignored if `GLUU_LDAP_ADVERTISE_ADDR` is used)
@@ -127,7 +127,7 @@ The following variables are used by the container:
 - `GLUU_LDAP_INIT`: whether to import initial LDAP entries (possible values are true or false)
 - `GLUU_LDAP_INIT_HOST`: LDAP hostname for initial configuration (only usable when `GLUU_LDAP_INIT` set to true)
 - `GLUU_LDAP_INIT_PORT`: LDAP port number for initial configuration (only usable when `GLUU_LDAP_INIT` set to true)
-- `GLUU_CACHE_TYPE`: supported values are `IN_MEMORY` and `REDIS`, default is `IN_MEMORY`
+- `GLUU_CACHE_TYPE`: supported values are `IN_MEMORY`, `MEMCACHED`, `REDIS` and `NATIVE_PERSISTENCE`, default is `IN_MEMORY`
 - `GLUU_REDIS_URL`: URL of redis service, format is `host:port` (optional)
 - `GLUU_REDIS_TYPE`: redis service type, either `STANDALONE` or `CLUSTER` (optional)
 - `GLUU_LDAP_ADDR_INTERFACE`: interface name where the IP will be guessed and registered as OpenLDAP host, e.g. `eth0`

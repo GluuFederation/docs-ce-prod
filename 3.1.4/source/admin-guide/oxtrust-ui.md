@@ -156,6 +156,7 @@ The following cache providers are now supported and can be selected via the `cac
 * [In Memory](#in-memory-cache-configuration) - recommended for small deployments only
 * [Memcached](#memcached-cache-configuration ) - recommended for single cache server deployment
 * [Redis](#redis-cache-configuration) - recommended for cluster deployments
+* [NativePersistence](#native-persistence-cache-configuration) - recommended to avoid additional components installation. All cache entries are saved in persistence layers.
 
 #### In Memory Cache Configuration
 
@@ -175,6 +176,10 @@ The following cache providers are now supported and can be selected via the `cac
 * defaultPutExpiration - default expiration time for the object put into cache
 
 ![URI](../img/admin-guide/cacheProvider.png)
+
+#### Native Persistence Cache Configuration
+
+* defaultPutExpiration - default expiration time for the object put into cache
 
 ### oxTrust Import Configuration
 The oxTrust Import Person Configuration page contains the configuration for 
