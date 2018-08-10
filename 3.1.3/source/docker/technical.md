@@ -121,14 +121,15 @@ The following variables are used by the container:
 - `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `stale` mode.
 - `GLUU_KUBERNETES_NAMESPACE`: Kubernetes namespace (default to `default`).
 - `GLUU_KUBERNETES_CONFIGMAP`: Kubernetes configmap name (default to `gluu`).
-- `GLUU_LDAP_INIT`: whether to import initial LDAP entries (possible values are true or false)
-- `GLUU_LDAP_INIT_HOST`: LDAP hostname for initial configuration (only usable when `GLUU_LDAP_INIT` set to true)
-- `GLUU_LDAP_INIT_PORT`: LDAP port for initial configuration (only usable when `GLUU_LDAP_INIT` set to true)
-- `GLUU_CACHE_TYPE`: supported values are `IN_MEMORY` and `REDIS`, default is `IN_MEMORY`
-- `GLUU_REDIS_URL`: URL of redis service, format is host:port (optional)
-- `GLUU_REDIS_TYPE`: redis service type, either `STANDALONE` or `CLUSTER` (optional)
-- `GLUU_LDAP_ADDR_INTERFACE`: interface name where the IP will be guessed and registered as OpenDJ host, e.g. `eth0` (will be ignored if `GLUU_LDAP_ADVERTISE_ADDR` is used)
-- `GLUU_LDAP_ADVERTISE_ADDR`: the hostname/IP address used as the host of OpenDJ server
+- `GLUU_LDAP_INIT`: whether to import initial LDAP entries (possible values are true or false).
+- `GLUU_LDAP_INIT_HOST`: LDAP hostname for initial configuration (only usable when `GLUU_LDAP_INIT` set to true).
+- `GLUU_LDAP_INIT_PORT`: LDAP port for initial configuration (only usable when `GLUU_LDAP_INIT` set to true).
+- `GLUU_CACHE_TYPE`: supported values are `IN_MEMORY` and `REDIS`, default is `IN_MEMORY`.
+- `GLUU_REDIS_URL`: URL of redis service, format is host:port (optional).
+- `GLUU_REDIS_TYPE`: redis service type, either `STANDALONE` or `CLUSTER` (optional).
+- `GLUU_LDAP_ADDR_INTERFACE`: interface name where the IP will be guessed and registered as OpenDJ host, e.g. `eth0` (will be ignored if `GLUU_LDAP_ADVERTISE_ADDR` is used).
+- `GLUU_LDAP_ADVERTISE_ADDR`: the hostname/IP address used as the host of OpenDJ server.
+- `GLUU_CERT_ALT_NAME`: an additional DNS name set as Subject Alt Name in cert. If the value is not an empty string and doesn't match existing Subject Alt Name (or doesn't exist) in existing cert, then new cert will be regenerated and overwrite the one that saved in config backend. This environment variable is __required only if__ oxShibboleth is deployed, to address issue with mismatched `CN` and destination hostname while trying to connect to OpenDJ. Note, any existing containers that connect to OpenDJ must be re-deployed to download new cert.
 
 #### OpenLDAP
 
@@ -156,7 +157,7 @@ The following variables are used by the container:
 - `GLUU_REDIS_URL`: URL of redis service, format is `host:port` (optional)
 - `GLUU_REDIS_TYPE`: redis service type, either `STANDALONE` or `CLUSTER` (optional)
 - `GLUU_LDAP_ADDR_INTERFACE`: interface name where the IP will be guessed and registered as OpenLDAP host, e.g. `eth0`
-
+- `GLUU_CERT_ALT_NAME`: an additional DNS name set as Subject Alt Name in cert. If the value is not an empty string and doesn't match existing Subject Alt Name (or doesn't exist) in existing cert, then new cert will be regenerated and overwrite the one that saved in config backend. This environment variable is __required only if__ oxShibboleth is deployed, to address issue with mismatched `CN` and destination hostname while trying to connect to OpenLDAP. Note, any existing containers that connect to OpenLDAP must be re-deployed to download new cert.
 
 #### oxAuth
 
@@ -213,7 +214,7 @@ By design, each time a Trust Relationship entry is added/updated/deleted via the
 
 After those Shibboleth-related files are copied to `/opt/shared-shibboleth`, a background job in oxShibboleth copies them to the `/opt/shibboleth-idp` directory inside oxShibboleth container. To ensure files are synchronized between oxTrust and oxShibboleth, both containers must use the same mounted volume, `/opt/shared-shibboleth-idp`.
 
-The `/opt/shibboleth-idp` directory is not mounted directly into the container, as there are two known issues with this approach. First, the oxShibboleth container has its own default `/opt/shibboleth-idp` directory requirements to start the app itself. By mounting `/opt/shibboleth-idp` directly from the host, the directory will be replaced and the oxShibboleth app won't run correctly. Secondly, oxTrust renames the metadata file, which unfortunately didn't work as expected in the mounted volume.
+The `/opt/shibboleth-idp` directory is not mounted directly into the container, as there are two known issues with this approach. First, the oxShibboleth container has its own default `/opt/shibboleth-idp` directory requirements to start the app itself. By mounting `/opt/shibboleth-idp` directly from the host, the directory will be replaced and the oxShibboleth app won't run correctly. Secondly, oxTrust renames the metadata file, which unfortunately didn')t work as expected in the mounted volume.
 
 The following variables are used by the container:
 
