@@ -665,10 +665,7 @@ The [SCIM protected by UMA section](#scim-protected-by-UMA) contains examples fo
 
 ### Under the Hood
 
-When running the code, in LDAP you will see one or more new entries under the clients branch (`ou=clients`). Those are new OpenID clients created by the Java client and they are employed to request short-lived tokens to access the service.
-In oxTrust, you can see them easily too: navigate to `OpenId Connect` > `Clients` and notice the column `Display Name`; they are named as "SCIM-Client". 
-
-These clients won't clutter your LDAP, they are also short-lived (one day) so they are cleaned up automatically for you.
+When running your code, some new OpenID clients are created (they are employed to request short-lived tokens to access the service). In oxTrust, you can see those by navigating to `OpenId Connect` > `Clients`; they are named as "SCIM-Client". These clients won't clutter your LDAP, they are also short-lived (one day) so they are cleaned up automatically.
 
 ## SCIM Protected by UMA
 

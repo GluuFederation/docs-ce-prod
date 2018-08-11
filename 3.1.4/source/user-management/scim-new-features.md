@@ -1,5 +1,8 @@
 ## New features and enhancements
 
+!!! Note:
+    This page describes new features and enhancements included in the 3.1.3 release. Features added for 3.1.4 are marked as "new in 3.1.4".
+    
 SCIM server implementation was updated for version 3.1.3 in order to adhere more closely to SCIM standard and include features we had been missing. The following summarizes the most important enhancements:
 
 ### Stricter validations
@@ -117,11 +120,11 @@ Handling of public pairwise identifiers (PPIDs) changed slightly. This multivalu
 
 This special attribute cannot be modified (its mutability being "readOnly"), however it can be removed. For this particular operation developers have to use PATCH.
 
-For examples on pairwise identifiers usage, you may like to check this Java [test case](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.3/scim-client2/src/test/java/gluu/scim2/client/corner/PairwiseIdentifiersTest.java#L22-L21).
+For examples on pairwise identifiers usage, you may like to check this Java [test case](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.4/scim-client2/src/test/java/gluu/scim2/client/corner/PairwiseIdentifiersTest.java#L26).
 
 ### About SCIM-Client
 
-As previously mentioned, current SCIM server implementation is revamped with new features. This is also the case for the Java-based "SCIM-Client" project. The following highlights the most prominent changes and improvements:
+As previously mentioned, current SCIM server implementation was revamped with new features for 3.1.3. This was also the case for the Java-based "SCIM-Client" project. The following highlights the most prominent changes and improvements:
 
 * **Client now mirrors more closely the SCIM protocol**: We have adjusted the (client) API used to interact with the service: Java methods that developers must call to send requests to the service are now quite similar to the operations the SCIM standard itself contains. This is a big advantage: developers familiar with the SCIM spec can start working immediately, while those who are not can start learning about SCIM protocol and schema as they are coding.
 
@@ -136,7 +139,25 @@ As previously mentioned, current SCIM server implementation is revamped with new
 * **Requires Java SE 8**. 
 <!-- This update not only allowed us to stay current but to write test cases in a more concise and straightforward way -->
 
-These **enhancements may come at a cost** for you. We will analyze the implications of this in the following section.
+* **Multithread support** (new in 3.1.4)
+
+    !!! Note:
+        You need to explicitly enable this feature, otherwise, behavior will be standard (single execution thread per client instance). You will have to supply proper parameters to better suit your production environment needs.
+
+    `scim-client2` project uses the JAX-RS 2.0 Client API and RestEasy framework. Under the hood network communication between client and server is handled by HttpClient from the Apache HttpComponents project. By default HttpClient makes use of `org.apache.http.impl.conn.SingleClientConnManager`, which manages a single socket at any given time and supports the use case in which one or more invocations are made serially from a single thread.
+
+    To circumvent this problem, the thread safe connection manager `org.apache.http.impl.conn.PoolingHttpClientConnectionManager` was added. However, the client will still use the single threaded approach by default unless you pass a java parameter that switches to multithreaded support. The following summarizes the steps:
+
+    - Set a Java variable of name `httpclient.multithreaded` with any value. This will make the `scim-client2` use the `PoolingHttpClientConnectionManager`.
+
+    - To override the default maximum number of total connections the manager uses, supply variable `httpclient.multithreaded.maxtotal` with the value of your choosing.
+
+    - To override the default maximum number of connections per route, supply variable `httpclient.multithreaded.maxperroute`.
+
+    - **IMPORTANT**: Enable RPT connection pooling in oxTrust. Login to oxTrust and go to "Configuration" > "JSON Configuration". Scroll down to "rptConnectionPoolUseConnectionPooling" and set the flag to true. To finish press "Save configuration" at the bottom of the page.
+
+
+All enhancements listed above **may come at a cost** for you. We will analyze the implications of this in the following section.
 
 ### Is my existing code affected by new features?
 
@@ -151,10 +172,10 @@ If you have been using SCIM-Client in your projects, and want to take advantage 
 
 If you definitely do not want to alter your existing code base you can still use the old style `scim-client` artifact and work as you used to (a few [special cases apply](#are-there-any-special-cases-to-account-if-still-using-older-client)). 
 
-In summary, version 3.1.3 of the project includes two modules:
+In summary, version 3.1.3 and 3.1.4 of the project includes two modules:
 
 * scim-client: Equivalent to 3.1.2 (a few test cases were updated to conform to newer service implementation)
-* scim-client2: The newer client. For 3.2 onwards, this will be the only module delivered in this project. This version has more complete java-docs.
+* scim-client2: The newer client. For 4.0 onwards, this will be the only module delivered in this project. This version has more complete java-docs.
 
 Choose one of the following pom fragments for your projects:
 
@@ -163,7 +184,7 @@ Choose one of the following pom fragments for your projects:
 <dependency>
   <groupId>gluu.scim.client</groupId>
   <artifactId>scim-client2</artifactId>
-  <version>3.1.3.Final</version>
+  <version>3.1.4.Final</version>
 </dependency>
 ```
 
@@ -172,7 +193,7 @@ Choose one of the following pom fragments for your projects:
 <dependency>
   <groupId>gluu.scim.client</groupId>
   <artifactId>scim-client</artifactId>
-  <version>3.1.3.Final</version>
+  <version>3.1.4.Final</version>
 </dependency>
 ```
 
@@ -317,9 +338,9 @@ If you still need to return a list of all users in LDAP you can:
 * Provide a suitable value for the `attrsList` parameter. This the same well-known `attributes` query param the spec refers to. This way you can reduce the amount of attributes retrieved per user. 
 
 For examples, see the following test cases:
-* [QueryParamCreateUpdateTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.3/scim-client2/src/test/java/gluu/scim2/client/singleresource/QueryParamCreateUpdateTest.java)
-* [QueryParamRetrievalTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.3/scim-client2/src/test/java/gluu/scim2/client/singleresource/QueryParamRetrievalTest.java)
-* [ComplexSearchUserTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.3/scim-client2/src/test/java/gluu/scim2/client/search/ComplexSearchUserTest.java)
+* [QueryParamCreateUpdateTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.4/scim-client2/src/test/java/gluu/scim2/client/singleresource/QueryParamCreateUpdateTest.java)
+* [QueryParamRetrievalTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.4/scim-client2/src/test/java/gluu/scim2/client/singleresource/QueryParamRetrievalTest.java)
+* [ComplexSearchUserTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.4/scim-client2/src/test/java/gluu/scim2/client/search/ComplexSearchUserTest.java)
 
 ###### Extended attributes
 
