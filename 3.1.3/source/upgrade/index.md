@@ -308,24 +308,11 @@ Gluu provides the necessary [scripts](https://github.com/GluuFederation/communit
 
 # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/export3031.py
 
-# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/ldif.py
-```
-
-Install the `python-pip` package.
-
-```
-# curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
-
-# python get-pip.py
-```
-
-Install the `json-merge` Python package and run the import script.
-
-```
-# pip install jsonmerge
-
 # python export3031.py
+
 ```
+
+`export3031.py` will install all required packages (ldif.py, pip, and jsonmerge)
 
 !!! Note
     If your current LDAP Server is OpenLDAP and you choose OpenDJ for target LDAP Server, please be careful about downloading
@@ -377,43 +364,11 @@ Navigate to where you have the `backup_3031` folder (if the above commands were 
 
 # wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/import3031.py
 
-# wget https://raw.githubusercontent.com/GluuFederation/cluster-mgr/master/testing/ldifschema_utils.py
-```
-
-Install the `python-pip` package using your package manager.
-
-```
-# curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
-
-# python get-pip.py
-```
-
-Install the `json-merge` Python package and run the import script.
-
-```
-# pip install jsonmerge
-```
-
-Install the python-ldap package. 
-For Debian and Ubuntu:
-
-```
-# apt-get update
-
-# apt-get install python-ldap
-```
-
-For CentOS and RHEL:
-
-```
-# yum install python-ldap
-```
-
-Now run the import script:
-
-```
 # python import3031.py backup_3031
+
 ```
+
+`import3031.py` will install all required packages (ldifschema_utils.py, pip, jsonmerge, and python-ldap)
 
 !!! Note
     The import script will enable the default admin user and will disable all custom authentication scripts. You should manually enable them if any were configured.
