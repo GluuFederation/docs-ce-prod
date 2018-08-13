@@ -39,7 +39,7 @@ The `LDAP` option in the `Script Location Type` can be used to store the script 
 |Level    | Authentication Level for the authentication, which determines the security level|
 |Location Type    |The script can be stored in a "File" or in "LDAP"|
 |Usage Type       |The script can be written for Web, Native or Both types of applications|
-|Custome Property |Determines the key and value of the custom property, which can be added to the authentication to pass values between steps|
+|Custom Property |Determines the key and value of the custom property, which can be added to the authentication to pass values between steps|
 |Script Box |Script Box will displayed if Location Type is selected as "File", to enter the path of the script|
 |Script     |Script Box will be displayed when Location Type is selected as "LDAP"|
 
@@ -104,7 +104,7 @@ Below are a few Methods and Libraries used to Save the Value to LDAP and retriev
 Example: `random.randit(10000,99999)`
 
 **context.set()**     
-This particular method is obtained from jboss to pass the session attribute value to LDAP by creating a temporary attribute which has a limited lifetime and can be retrieved within the life span, otherwise it expires and the session becomes invalid. Save the value of the code obtained through the code generator method. `context.set("Name of the temp attribute", <key>)` where `<key>` is the value that needs to be stored temporarily in ldap.
+This particular method is obtained from JBoss to pass the session attribute value to LDAP by creating a temporary attribute which has a limited lifetime and can be retrieved within the life span, otherwise it expires and the session becomes invalid. Save the value of the code obtained through the code generator method. `context.set("Name of the temp attribute", <key>)` where `<key>` is the value that needs to be stored temporarily in LDAP.
 
 Example: `context.set("code",code)`       
 
@@ -140,7 +140,7 @@ Another method usually needed to implement is `getCountAuthenticationSteps`. Thi
 
 **getExtraParametersForStep():**     
 If required to save session variables between steps, use the `getExtraParametersForStep` method. The Gluu Server persists
-these variables in LDAP in able to support stateless, clustered two-step authentications.      
+these variables in LDAP to support stateless, clustered two-step authentications.      
 
 **getPageForStep():**       
 If required to display a special Web page for an interactive login, or even a custom first page, you'll need to implement the
@@ -168,14 +168,14 @@ some cleaning tasks there, or end user's session there too
 (if those services don't support mechanisms like "[Frontchannel logout](http://openid.net/specs/openid-connect-frontchannel-1_0.html)" etc)
 
 We also must mention that we have a similar feature supported for our 
-Authentication custom scripts. Each of those script may implement logout function like below:
+Authentication custom scripts. Each of those scripts may implement logout function like below:
 	
 ```
     def logout(self, configurationAttributes, requestParameters):
     return True
 ```
 
-Its purpose mostly the same, beside the fact that each auth script's 
+Its purpose mostly the same, except each auth script's 
 function will only be called for users whose authentication during 
 login attempt was handled by corresponding script, but scripts of "Application session" 
 type will be called every time during logout of each user, regardless of what method of 
@@ -231,4 +231,4 @@ You can also use a remote debugger with Eclipse. See [this guide](../developer-g
 It is not uncommon to get locked out of the Gluu Server while testing the authentication script.
 
 In such case, refer to [Reverting Authentication Method](../operation/faq.md#revert-an-authentication-method) 
-to revert back to the older authentication method:
+to revert back to the older authentication method.
