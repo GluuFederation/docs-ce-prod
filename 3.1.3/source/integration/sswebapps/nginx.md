@@ -38,7 +38,6 @@ After that, we can download the lua-resty dependencies with OPM (OpenResty Packa
 
 ```
 opm install bungle/lua-resty-session 
-opm install SkyLothar/lua-resty-jwt 
 opm install pintsized/lua-resty-http 
 opm install zmartzone/lua-resty-openidc
 ```
