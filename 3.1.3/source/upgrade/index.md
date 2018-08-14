@@ -133,7 +133,7 @@ To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as o
     
     - `# rm idp.war`
     
-    - `# wget https://ox.gluu.org/maven/org/xdi/oxshibbolethIdp/3.1.3.FinaloxshibbolethIdp-3.1.3.Final.war -O idp.war`
+    - `# wget https://ox.gluu.org/maven/org/xdi/oxshibbolethIdp/3.1.3.Final/oxshibbolethIdp-3.1.3.Final.war -O idp.war`
 
 1. Start the "idp" service:  
     
