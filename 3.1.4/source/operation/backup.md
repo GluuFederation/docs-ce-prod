@@ -10,7 +10,7 @@ In the event of a production outage, a proper snapshot of the last working condi
 
 Most platform virtualization software and cloud vendors have snapshot backup features. For instance, Digital Ocean has Live Snapshot and Droplet Snapshot; VMWare has Snapshot Manager, etc. 
 
-Snaphots should be taken for all Gluu environemnts (e.g. Prod, Dev, QA, etc.) and tested periodically to confirm consistency and integrity. 
+Snaphots should be taken for all Gluu environments (e.g. Prod, Dev, QA, etc.) and tested periodically to confirm consistency and integrity. 
  
 
 ## Tarball Method
