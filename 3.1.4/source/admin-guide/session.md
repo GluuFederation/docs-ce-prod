@@ -16,12 +16,17 @@ Session Timeout can be configured under
 
 These properties are
 
-- SessionUnusedLifeTime
-- sessionIdUnauthenticatedUnusedLifetime
+- sessionIdLifetime - sets session_id lifetime. If 0 or -1 then expiration is not set. Cookie expires when browser session ends.
+- sessionIdUnusedLifetime - unused session_id lifetime. If session is not used for given amount of time then session is removed. 
+- sessionIdUnauthenticatedUnusedLifetime - lifetime of unauthenticated session_id.
 
-## SessionUnusedLifeTime
+## sessionIdLifetime
 
-The `SessionUnusedLifeTime` property is set to a day by default. Session timeout works in a way such that if a user logs out of an application the `SessionUnusedLifeTime` gets expired. If a specific session timeout is set in an application, it will be overrided by the `SessionUnusedLifeTime` from Gluu.
+Specified session_id lifetime. If it is not set or 0 or -1 value is provided then expiration is not set. Cookie expires when browser session ends.
+
+## sessionIdUnusedLifeTime
+
+The `sessionIdUnusedLifeTime` property is set to a day by default. Session timeout works in a way such that if a user logs out of an application the `SessionUnusedLifeTime` gets expired. If a specific session timeout is set in an application, it will be overrided by the `SessionUnusedLifeTime` from Gluu.
 
 If an application's Session time is less than the session time out configured in Gluu, the application's session would be reauthorized and 
 set to a future time for timeout, where the applicatin's session timeout will get overrided by Gluu's Session timeout property.
