@@ -179,6 +179,11 @@
             "format": "url",
             "minLength": 1
         },
+        "introspectionAccessTokenMustHaveUmaProtectionScope": {
+            "id": "introspectionAccessTokenMustHaveUmaProtectionScope",
+            "description":"Reject introspection requests if access_token in Authorization header does not have uma_protection scope.",
+            "type": "boolean"
+        },
         "openidSubAttribute": {
             "id": "openidSubAttribute",
             "description": "LDAP attribute used for the sub claim.",
