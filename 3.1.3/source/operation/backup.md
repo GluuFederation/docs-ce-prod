@@ -10,7 +10,7 @@ In the event of a production outage, a proper snapshot of the last working condi
 
 Most platform virtualization software and cloud vendors have snapshot backup features. For instance, Digital Ocean has Live Snapshot and Droplet Snapshot; VMWare has Snapshot Manager, etc. 
 
-Snaphots should be taken for all Gluu environemnts (e.g. Prod, Dev, QA, etc.) and tested periodically to confirm consistency and integrity. 
+Snaphots should be taken for all Gluu environments (e.g. Prod, Dev, QA, etc.) and tested periodically to confirm consistency and integrity. 
  
 
 ## Tarball Method
@@ -38,7 +38,7 @@ At runtime (if you don't want to stop the LDAP server), here is how you can dump
 
 `$ /opt/opendj/bin/export-ldif  --port 4444  --hostname localhost  --bindDN "cn=Directory Manager" --bindPassword [password_of_ldap_admin] --includeBranch o=gluu --backendID userRoot --ldifFile /tmp/backup_o_gluu_data.ldif  --trustAll`
 
-Data can be imported with command like below: 
+Data can be imported with a command, like below: 
 
 `$ /opt/opendj/bin/import-ldif --port 4444 --hostname localhost --bindDN "cn=Directory Manager" --bindPasswordFile /home/ldap/.pw --includeBranch o=gluu --backendID userRoot --ldifFile /tmp/backup_o_gluu_data.ldif --trustAll --clearBackend --rejectFile /tmp/rejected_data_why.ldif` 
 
