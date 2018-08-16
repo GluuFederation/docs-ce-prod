@@ -10,3 +10,32 @@ This vulnerability is basically a bypass of CVE-2015-0279. CVE-2015-0279 hardens
 The general flow looks like this, the application derializes the "do" parameter (the 'source') at `org.richfaces.resource.ResourceUtils#decodeBytesData`, passes the object through some other calls and eventually calls a MethodExpression.invoke on a field in the object (the 'sink') at org.richfaces.resource.MediaOutputResource#encode. There is however a protection in place restricting deserialization to [certain classes](https://github.com/richfaces/richfaces/blob/4.5.17.Final/core/src/main/java/org/richfaces/util/LookAheadObjectInputStream.java#L133), but as the VariableMapperImpl class is also whitelisted there, we then have full control over the varMapper field in the MethodExpressionImpl instance, which essentially means arbitrary EL injection.
 
 As oxTrust/Identity utilizes Jboss Richfaces, this allows an unauthorized user to perform unauthorized Remote Code Execution. Knowing this, we've created a richfaces updater script that removes the affected class from the `identity.war` file, negating the impact of this vulnerability. That being said, oxTrust should never be internet facing
+
+#### Steps to Fix
+1. Login to the Gluu Server chroot
+1. Download the security patch from https://repo.gluu.org/upd/richfaces_updater.sh
+1. Grant `richfaces_updater.sh` executable privileges
+1. Run `richfaces_updater.sh`
+
+        [root@example ~]# service gluu-server-x.x.x Login
+        Welcome to the Gluu Server!
+        [root@localhost ~]# chmod +x richfaces_updater.sh 
+        [root@localhost ~]# ./richfaces_updater.sh 
+        Creating directory /opt/upd
+        Verifying archive integrity...  100%   MD5 checksums are OK. All good.
+        Uncompressing Gluu Richfaces Updater  100%  
+
+        Backing up /opt/gluu/jetty/identity/webapps/identity.war to /opt/upd/Thu_Aug_16_20:21:50_2018
+        Updating /opt/gluu/jetty/identity/webapps/identity.war
+        Deleting old richfaces from identity.war
+        deleting: WEB-INF/lib/richfaces-4.5.17.Final.jar
+        deleting: WEB-INF/lib/richfaces-core-4.5.17.Final.jar
+        deleting: WEB-INF/lib/richfaces-a4j-4.5.17.Final.jar
+        Adding latest richfaces to identity.war
+        adding: WEB-INF/lib/richfaces-4.5.17-gluu.Final.jar (deflated 20%)
+        adding: WEB-INF/lib/richfaces-a4j-4.5.17-gluu.Final.jar (deflated 10%)
+        adding: WEB-INF/lib/richfaces-core-4.5.17-gluu.Final.jar (deflated 9%)
+
+1. Restart oxTrust/identity
+
+        [root@localhost ~]# service identity restart
