@@ -16,6 +16,10 @@ The general flow looks like this: the application deserializes the "do" paramete
 As oxTrust/Identity utilizes Jboss Richfaces, this allows an unauthorized user to perform unauthorized Remote Code Execution. Knowing this, we have created a richfaces updater script that removes the affected class from the `identity.war` file, negating the impact of this vulnerability. That being said, we strongly recommend that **oxTrust should not be internet facing.**
 
 ### Steps to Fix
+
+!!! Note
+    We recommend taking a snapshop of your environment before proceeding. 
+    
 1. Login to the Gluu Server chroot
 1. Download the security patch from https://repo.gluu.org/upd/richfaces_updater.sh
 1. Grant `richfaces_updater.sh` executable privileges
