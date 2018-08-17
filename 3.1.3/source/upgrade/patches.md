@@ -41,3 +41,7 @@ As oxTrust/Identity utilizes Jboss Richfaces, this allows an unauthorized user t
 1. Restart oxTrust/identity
 
         [root@localhost ~]# service identity restart
+
+#### Explanation of Script
+
+The above script replaces the old richfaces library with a custom fixed version for the Gluu Server. The fix is accomplished by removing the affected (and unused) classes from the vulnerable library, negating the impact of the vulnerabiity.
