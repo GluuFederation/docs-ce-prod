@@ -4,7 +4,7 @@
 ### August 16, 2018
 
 ### Affected versions
-- ALL GLUU VERSIONS (1.x, 2.x, 3.x)
+- All Gluu versions
 
 ### Description
 We have discovered a critical vulnerability in the Jboss Richfaces library. All versions of the component Richfaces (including the latest v4.5.17.Final) are affected by the vulnerability, which is an EL injection leading to Remote Code Execution. The CVE assignment to MITRE for it is CVE-2018-12532. The CVE can be seen on the [MITRE](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-12532) site as well as [NIST](https://nvd.nist.gov/vuln/detail/CVE-2018-12532). 
@@ -47,3 +47,5 @@ As oxTrust/Identity utilizes Jboss Richfaces, this allows an unauthorized user t
 ### Explanation of Fix
 
 By following the above instructions, you will replace the old richfaces library in `identity.war` with a custom fixed version for the Gluu Server. The fix is accomplished by removing the affected (and unused) classes from the vulnerable library, negating the impact of the vulnerabiity.
+
+A backup of your `identity.war`, before changes, is in the `/opt/update/$TIME_STAMP` directory in case you need it.
