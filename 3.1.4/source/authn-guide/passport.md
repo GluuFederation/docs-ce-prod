@@ -4,7 +4,7 @@
 
 Passport is a MIT licensed Node.js web application that allows developers and administrators to delegate user authentication to one or more external identity providers, such as popular social sites. Passport normalizes the process of supporting external authentication and also provides a standard mapping for user claims to enable dynamic registration in your Gluu Server IDP. 
 
-Passport is an Express-based application that leverages [Passport.js](http://www.passportjs.org/docs) for social login. Passport.js is a flexible and modular authentication middleware for Node.js with support for hundreds of "strategies". Popular strategies are OpenID connect, Facebook, Twitter, etc. Passport.js has turned into a successful crowd-sourced approach to offering users social login at popular consumer IDPs.
+Passport is an Express-based application that leverages [Passport.js](http://www.passportjs.org/docs) for social login. Passport.js is a flexible and modular authentication middleware for Node.js with support for hundreds of "strategies". Popular strategies are Facebook, Twitter, Github, etc.
 
 !!! Note:
     In Gluu Server, passport is included as an optional component for [installation](https://gluu.org/docs/ce/installation-guide/).
@@ -84,20 +84,23 @@ Enable passport support:
 
 - Still in oxTrust go to "Configuration" > "Organization configuration" > "System configuration" 
 - In "Passport support" choose "Enabled"
+- Click on "Update"
+
+![enable passport](../img/user-authn/passport/enable_passport.png) 
 
 ### Register for a developer account in social sites
 
-Every social site has its own procedure so you can join as a developer. Check on the internet how to proceed. The aim here is being able to get to a page that allows creation of applications. For the sake of simplicity, we suggest adding at most two external providers to start.
+Every social site has its own procedure so you can join as a developer. Check on the internet how to proceed. The aim is being able to get to a page that allows creation of applications. For the sake of simplicity, we suggest adding at most two external providers to start.
 
 ### Create applications
 
-If you already have a github account, this is very straightforward, just visit [https://github.com/settings/applications/new]https://github.com/settings/applications/new. For the case of Twitter, go to [https://apps.twitter.com](https://apps.twitter.com).
+If you already have a github account, this is very straightforward, just visit [https://github.com/settings/applications/new](https://github.com/settings/applications/new). For the case of Twitter, go to [https://apps.twitter.com](https://apps.twitter.com).
 
 For Facebook visit https://developers.facebook.com and click on "Add a new App" from "My Apps" dropdown. Fill the required details and click the "Create App ID" button.
 
 To create an application you will be requested to fill data like an application name or ID, domain name of your application and authorization callback URLs.
 
-For our example, you can use the domain name of your Gluu Server (e.g. `https://my.host.com`). For callback URL follow this convention:
+For our example, you can use the domain name of your Gluu Server (e.g. `https://my.host.com`). For callback URL please follow the convention:
 
 ```
 https://<domain-name>/passport/auth/<strategy>/callback
@@ -105,50 +108,54 @@ https://<domain-name>/passport/auth/<strategy>/callback
 
 Where `<stragegy>` is the name of the Passport.js strategy you are integrating. For this particular case, the strategy is the identity provider name (e.g. twitter, facebook, google, linkedin, etc). More exactly, the portion after the domain name must match that found in the corresponding `js` file you can see in chroot folder `/opt/gluu/node/passport/server/auth` (search for `callbackURL`). This directory contains all providers supported out of the box.
 
-In this example, callback URLs would be `https://<domain-name>/passport/auth/twitter/callback` (Twitter) and `https://<domain-name>/passport/auth/github/callback` (Github).
+In this example, callback URLs would be `https://<domain-name>/passport/auth/twitter/callback` for Twitter and `https://<domain-name>/passport/auth/github/callback` for Github.
 
-Once the application is created you will be given two pieces of data: client ID and client secret. Terminology varies depending on provider, sometimes they are called consumer key and consumer secret, or app ID and app secret, etc. [Here](../img/user-authn/passport/fb-addurl.png) is how it looks in Facebook.
+Once the application is created you will be given two pieces of data: client ID and client secret. Terminology varies depending on provider, sometimes they are called consumer key and consumer secret, or app ID and app secret, etc. For instance, [here](../img/user-authn/passport/fb-addurl.png) is how it looks in Facebook.
 
 ### Fill strategy details
 
 In oxTrust go to "Configuration" > "Manage Authentication" > "Passport Authentication Method". For every strategy to support do the following:
 
 - Press the "Add Strategy" button
-- Fill "strategy" field with the name of provider (e.g. "github"). Note this is a case sensitive field.
+- Fill "strategy" field with the name of provider (e.g. "github"). Note this is a case sensitive field
 - Paste the client ID and client secret details obtained in the previous step for the corresponding provider
 
 ![setting-strategies](../img/user-authn/passport/setting-strategies.png)
 
-Additional parameters can be supplied in the form. [Later](#altering-flow-behaviour) we will get into this.
+Additional parameters can be supplied in the form. We will get into this [later](#altering-flow-behaviour).
 
 ### Protect oxTrust with passport
 
 Navigate to "Configuration" > "Manage Authentication" > "Default Authentication". In the field labelled "oxTrust acr" choose "passport_social". This will force oxTrust use the Passport authentication flow instead of another already in use, like the standard user + password authentication. Finally, press the "Update button".
 
-### About passport logs
-
-The location of passport logs is `/opt/gluu/node/passport/logs`. By default severity of messages logged is `INFO`. You can tweak this by altering Passport's configuration file. For more information see [Passport configuration file](#passport-configuration-file).
-
-In addition to passport node logs, the log statements of the custom script are key. You can find them in file `/opt/gluu/jetty/oxauth/logs/oxauth_script.log`.
-
 ### Test
+
+#### About passport logs
+
+The location of passport logs is `/opt/gluu/node/passport/logs`. By default severity of messages logged is `INFO`. You can tweak this by altering Passport's configuration file. For more information see [Log level](#log-level).
+
+In addition to passport node logs, the log statements of the custom script are key. You can find those in file `/opt/gluu/jetty/oxauth/logs/oxauth_script.log`.
+
+#### Provider selection page
 
 Wait for 1 minute for passport to pick configuration changes. Open a separate browsing session (e.g incognito) and try accessing oxTrust: `https://<domain-name>/identity`. You will be presented a form like the one shown below:
 
-![Selection provider form](../img/user-authn/passport/provider_selection.png)
+![provider selection form](../img/user-authn/passport/provider_selection.png)
 
 On the right, a list of external identity providers will be populated. To start, simply check the user + password authentication is working (use the fields provided on the left only), then log out.
 
-Proceed to click on the icons for social login, if your setup was correct, you'll be able to login after getting past the login form in the social site.
+Proceed to click on the icons for social login, if your setup was correct, you'll be able to login after getting past the login form at the social site.
 
 !!! Note:
     Once you have supplied login credentials at social site, you won't be requested for them more unless your session expires or you explicitly log out.
     
-If you get an error page, for example, one like below, double check your configuration and your Internet access.
+If you get an error page, for example, one like below, double check your configuration and check your Internet access.
 
 ![Error](../img/user-authn/passport/general_error.png)
 
 If you still have trouble, feel free to open a [support ticket](https://support.gluu.org) for further assistance.
+
+#### Check user profile
 
 Once oxTrust login is successful, check user data: Go to "Personal" > "Profile". Alternatively you can use the browsing session you initially opened with the administrator privileges and go to "Users" > "Manage people" to inspect the recently created entry.
 
@@ -158,7 +165,7 @@ If you modify some aspect of your profile in the social site and attempt to relo
 
 ## Making other applications use Passport authentication flow
 
-For convenience, in previous section we experimented an authentication flow to access oxTrust. To make an application leverage your existing Gluu Passport configuration, adjust your code so the authorization request is sending as `acr_value` the string `passport_social`, that is, the name of the custom interception script you enabled initially.
+For convenience, in previous section we experimented an authentication flow to access oxTrust. To make an application leverage your existing Gluu Passport configuration, adjust your code so the authorization request sends as `acr_value` the string `passport_social`, that is, the name of the custom interception script you enabled initially.
 
 For more information on `acr_value` manipulation, check this [page](../admin-guide/openid-connect/index.md#authentication).
 
@@ -168,19 +175,19 @@ Additionally, you can bypass the provider selection page and force explicit usag
 
 For debugging purposes, you can print the contents of profile data you are receiving from the external provider. Follow these steps:
 
-1. Locate the `js` file of the identity provider you are interested in. See folder `/opt/gluu/node/passport/server/auth` inside Gluu chroot
+1. Locate the `js` file of the identity provider you are interested in. See folder `/opt/gluu/node/passport/server/auth` inside Gluu chroot.
 
-1. If missing, add a line of code like this `var logger = require('../utils/logger')` at the very top of the file
+1. If missing, add a line of code like this `var logger = require('../utils/logger')` at the very top of the file.
 
-1. Find the line of code starting with `var userProfile...` and just **before** it, add this: `logger.log2('info', 'Profile data received was %s:', JSON.stringify(profile))`
+1. Find the line of code starting with `var userProfile...` and just **before** it, add this: `logger.log2('info', 'Profile data received was %s:', JSON.stringify(profile))`.
 
-1. Find the line of code starting with `return done...` and just **before** it, add: `logger.log2('info', 'Profile data sent is: %s', JSON.stringify(userProfile))`
+1. Find the line of code starting with `return done...` and just **before** it, add: `logger.log2('info', 'Profile data sent is: %s', JSON.stringify(userProfile))`.
 
-1. Save the file
+1. Save the file.
 
 1. Restart passport: issue `service passport restart` from within chroot command line.
 
-The couple of log statements added print in JSON format, all profile data received from the external provider, and the portion of that profile actually processed by Gluu, respectively.
+The couple of log statements added print all profile data received from the external provider in JSON format, and the portion of that profile actually processed by Gluu, respectively.
 
 Do a login attempt by choosing the external provider of your interest, then check the contents of [passport node logs](#about-passport-logs).
 
@@ -243,10 +250,13 @@ Please follow these steps:
 This way you can append a new query parameter to the request you issue to start the authorization process in your application:
 
 ```
-https://<domain-name>/oxauth/authorize?response_type=code+...&client_id=...scope=openid+...&redirect_uri=...&state=...&acr_values=passport_social&preselectedExternalProvider=<base64-url-encoded-provider-object>
+https://<domain-name>/oxauth/authorize?response_type=code+...&client_id=...scope=openid+...
+   &redirect_uri=...&state=...
+   &acr_values=passport_social
+   &preselectedExternalProvider=<base64-url-encoded-provider-object>
 ```
 
-Where <base64-url-encoded-provider-object> is the Base64-encoded representation of a small JSON content that must look like this:
+Where `<base64-url-encoded-provider-object>` is the Base64-encoded representation of a small JSON content that must look like this:
 
 ```
 {
@@ -254,7 +264,9 @@ Where <base64-url-encoded-provider-object> is the Base64-encoded representation 
 }
 ```
 
-In this case `<strategy-name>` is the name of an already registered strategy. Note this piece of data is case sensitive. The names of valid strategies are those defined at "Configuration" > "Manage Authentication" > "Passport authentication method" in oxTrust. When using SAML flavor of custom script, valid providers are those defined in file `/etc/gluu/conf/passport-saml-config.json`.
+In this case `<strategy-name>` is the name of an already registered strategy. Note this piece of data is case sensitive. 
+
+The names of valid strategies are those defined at "Configuration" > "Manage Authentication" > "Passport authentication method" in oxTrust. When using SAML flavor of custom script, valid providers are those defined in file `/etc/gluu/conf/passport-saml-config.json`.
 
 ## Additional configuration details
 
@@ -269,7 +281,7 @@ As mentioned [earlier](#about-passport-logs), there are two relevant logs: `oxau
 1. `cd` to `/etc/gluu/conf`
 
 1. Edit file `passport-config.json` so that property *logLevel* value is any of *error*, *warn*, *info*, *verbose*, *debug*. Some notes:
-    - If your file does not contain *logLevel*, add a line like this `"logLevel": "info",` after the line starting with `"applicationEndpoint"...
+    - If your file does not contain *logLevel*, add a line like this `"logLevel": "info",` after the line starting with `"applicationEndpoint"...`
     - Ensure the file produced has valid JSON syntax
     
 1. Save the file and preferably flush the contents of `/opt/gluu/node/passport/logs`
@@ -370,7 +382,7 @@ Here we provide specific steps on how to configure your OIDC strategy when using
 
 1. Follow the steps at the [beginning of this section](#openid-connect-providers). Particularly for step 3 provide:
 
-   - "clientID" and "clientSecret": The details of client just created. Go to "OpenID Connect" > "Clients" and use for "clientID" the one appear in the column "Inum" of the table.
+   - "clientID" and "clientSecret": The details of client just created. Go to "OpenID Connect" > "Clients" and use for "clientID" the one appearing in the column "Inum" of the table.
 
    - "issuer": `https://<remote-gluu-server>`
    
@@ -389,13 +401,13 @@ Here we provide specific steps on how to configure your OIDC strategy when using
 This section describes the steps needed to add a new authentication provider to your Gluu Passport installation. 
 
 !!! Note:
-    Here we will use *reddit* integration as example, apply your changes accordingly.
+    Here we will use *reddit* integration as example, apply your changes according to the strategy you have choosen.
 
 Passport.js - the authentication middleware Gluu leverages - supports hundreds of strategies. Onboarding a new one requires finding a proper `npm` package, creating a file, and editing some already existing.
 
 ### Install the strategy module
 
-You can use [Passport.js search engine](http://www.passportjs.org/packages/) to locate the proper node package. In most cases you will get redirected to the github page of the project where you'll find installation instructions for the strategy. Normally a command like `npm install <strategy-id>`. Do not execute this command directly, but in the following manner:
+You can use Passport.js [search feature](http://www.passportjs.org/packages/) to locate the proper node package. In most cases you will get redirected to the github page of the project where you'll find installation instructions for the strategy. Normally a command like `npm install <strategy-id>`. Do not execute this command directly, but in the following manner:
 
 1. Login to Gluu Server chroot.
 
@@ -506,3 +518,7 @@ To finish, check you already have:
 - [Registered for a developer account](#register-for-a-developer-account)
 - [Created an application](#create-applications)
 - [Filled strategy configurations in oxTrust](#fill-strategy-details), including a logo image as described [here](#providers-logo-image)
+
+### Test the new strategy
+
+You can follow the same instructions given in section ["Setting up social login for an app with Passport"](#test).
