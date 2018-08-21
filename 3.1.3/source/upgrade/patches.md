@@ -52,4 +52,4 @@ As oxTrust/Identity utilizes Jboss Richfaces, this allows an unauthorized user t
 
 By following the above instructions, you will replace the old richfaces library in `identity.war` with a custom fixed version for the Gluu Server. The fix is accomplished by removing the affected (and unused) classes from the vulnerable library, negating the impact of the vulnerabiity.
 
-A backup of your `identity.war`, before changes, is in the `/opt/update/$TIME_STAMP` directory in case you need it.
+A backup of your `identity.war`, before changes, is in the `/opt/upd/backup_$TIME_STAMP` directory in case you need it.
