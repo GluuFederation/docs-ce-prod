@@ -23,6 +23,10 @@ As oxTrust/Identity utilizes Jboss Richfaces, this allows an unauthorized user t
 1. Login to the Gluu Server chroot
 1. Download the security patch from [https://repo.gluu.org/upd/richfaces_updater.sh](https://repo.gluu.org/upd/richfaces_updater.sh)
 1. Grant `richfaces_updater.sh` executable privileges
+1. Stop "tomcat"/"identity" services:
+
+        Gluu Server 3.x: [root@localhost ~]# service identity stop
+        Gluu Server 2.x: [root@localhost ~]# service tomcat stop
 1. Run `richfaces_updater.sh`
 
         [root@example ~]# service gluu-server-x.x.x Login
@@ -44,9 +48,10 @@ As oxTrust/Identity utilizes Jboss Richfaces, this allows an unauthorized user t
         adding: WEB-INF/lib/richfaces-a4j-4.5.17-gluu.Final.jar (deflated 10%)
         adding: WEB-INF/lib/richfaces-core-4.5.17-gluu.Final.jar (deflated 9%)
 
-1. Restart oxTrust/identity
+1. Start "tomcat"/"identity" services:
 
-        [root@localhost ~]# service identity restart
+        Gluu Server 3.x: [root@localhost ~]# service identity start
+        Gluu Server 2.x: [root@localhost ~]# service tomcat start
 
 ### Explanation of Fix
 
