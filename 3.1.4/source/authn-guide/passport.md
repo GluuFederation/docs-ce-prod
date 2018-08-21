@@ -58,7 +58,7 @@ The following summarizes the steps needed:
 
 ### Add Passport to Gluu Server installation
 
-You can skip this step if you chose Passport when you installed Gluu Server. To add Passport to an existing Gluu Server installation do the following:
+You can skip this step if you chose Passport when you installed Gluu Server. To add Passport to an existing Gluu Server installation do the following (needs Internet access):
 
 1. Login to Gluu Server chroot
 
@@ -70,6 +70,7 @@ You can skip this step if you chose Passport when you installed Gluu Server. To 
 
 1. Run `./post-setup-add-components.py -addpassport`
 
+1. Run `runuser -l node -c "cd /opt/gluu/node/passport/&&PATH=$PATH:/opt/node/bin npm install -P"`
 
 ### Enable passport
 
