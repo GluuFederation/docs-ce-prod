@@ -83,6 +83,7 @@ pages:
         - 'Gluu LDAP Schema':
             - 'OpenLDAP Schema': 'reference/schema.md'
 - Operation Guide:
+        - 'Patches': 'upgrade/patches.md'
         - 'Backups': 'operation/backup.md'
         - 'Find your Gluu Version': 'operation/find-gluu-server-version.md'
         - 'Ports': 'operation/ports.md'
