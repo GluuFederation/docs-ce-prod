@@ -97,7 +97,7 @@ You can configure passport with either the setup script (beta) or manually.
 
 ### Setup script configuration
 
-1) Download or clone the [Github repo](https://github.com/GluuFederation/Inbound-SAML-Demo);   
+1) Download project [zip file](https://github.com/GluuFederation/Inbound-SAML-Demo/archive/version_3.1.1.zip);   
 
 2) Copy setup-script directory/folder in side gluu server's chroot (the command will be like:  `cp -a <path to downloaded repo>/setup-script /opt/gluu-server-3.1.1/root/`);   
 
@@ -342,7 +342,7 @@ Proxy-client is the demo node.js application to test Passport Inbound SSO. The p
 
 ### Steps
 
-1. Clone the [project](https://github.com/GluuFederation/Inbound-SAML-Demo) using git clone;     
+1. Download project [zip file](https://github.com/GluuFederation/Inbound-SAML-Demo/archive/version_3.1.1.zip);   
 2. Register a new OIDC client in your gluu server with redirect uri `http://localhost:3000/profile` and copy `clientID` and `secret` ;   
 3. Open `client-config.json` and add details like `ClientID`, `clientSecret`, and `hostname`;    
 4. Copy the `passport-saml-config.json` which you used in setting up Passport Inbound SSO](#onboarding-new-idps) 
