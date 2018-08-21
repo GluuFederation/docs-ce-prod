@@ -1,5 +1,5 @@
 site_name: Gluu Docs
-site_description: Documenation for Gluu Server
+site_description: Documentation for Gluu Server
 site_favicon: 'favicon.ico'
 copyright: Copyright &copy; 2017, Gluu, Inc.
 docs_dir: source
