@@ -21,7 +21,7 @@ As oxTrust/Identity utilizes Jboss Richfaces, this allows an unauthorized user t
     We **strongly** recommend backing up your environment before proceeding. 
     
 1. Login to the Gluu Server chroot
-1. Download the security patch from https://repo.gluu.org/upd/richfaces_updater.sh
+1. Download the security patch from [https://repo.gluu.org/upd/richfaces_updater.sh](https://repo.gluu.org/upd/richfaces_updater.sh)
 1. Grant `richfaces_updater.sh` executable privileges
 1. Run `richfaces_updater.sh`
 
