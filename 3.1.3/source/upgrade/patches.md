@@ -1,7 +1,7 @@
 # Gluu Server Patches
 
 ## Code White Patch
-### August 16, 2018
+### August 21, 2018
 
 ### Affected versions
 - All Gluu versions (2.x, 3.x)
