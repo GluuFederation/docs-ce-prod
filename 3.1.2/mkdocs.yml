@@ -91,6 +91,7 @@ pages:
             - 'OpenLDAP Schema': 'reference/schema.md'
 - Operation Guide:
         - 'Upgrades': 'upgrade/index.md'
+        - 'Patches': 'upgrade/patches.md'
         - 'Backups': 'operation/backup.md'   
         - 'Ports': 'operation/ports.md'
         - 'Logout': 'operation/logout.md'
