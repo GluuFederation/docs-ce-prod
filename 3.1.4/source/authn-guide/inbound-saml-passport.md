@@ -197,7 +197,7 @@ Follow the guidelines below to install the Demo app at your Gluu Server host. Co
 1. Connect to the Gluu Server via SSH    
 2. Login to the chroot container: `# service gluu-server-3.1.3 login`       
 3. Ensure incoming connections to TCP port 3000 are allowed to reach applications running on this machine     
-4. Download the [project files](https://github.com/GluuFederation/Inbound-SAML-Demo) manually and upload them to this machine, or clone the project using `git`: `# git clone https://github.com/GluuFederation/Inbound-SAML-Demo`     
+4. Download the [project files](https://github.com/GluuFederation/Inbound-SAML-Demo/archive/master.zip) manually and upload them to this machine   
 5. Move the downloaded files into "node" user home directory: `# cp -R ./Inbound-SAML-Demo /home/node/`       
 6. Ensure correct permissions are set for the directory: `# chown -R node:node /home/node/Inbound-SAML-Demo/`    
 7. Switch to "node" user: `# su - node`
@@ -297,7 +297,7 @@ Optionally, instead of composing the authorization URL manually, the following J
 
 A final authorization url may look like:
 
-`https://example.myco.org/oxauth/authorize?response_type=code+id_token&client_id=%40%215C0B.B148.7E63.326C%210001%21562E.F01E%210008%21664D.7760.0EC3.762D&scope=openid+profile&redirect_uri=https:%2F%2Flocalhost:8080&state=eyJwcm92aWRlciI6ImlkcDEifQ%3D%3D&nonce=S3M3R4nd0M&acr_values=passport`
+`https://example.myco.org/oxauth/authorize?response_type=code+id_token&client_id=%40%215C0B.B148.7E63.326C%210001%21562E.F01E%210008%21664D.7760.0EC3.762D&scope=openid+profile&redirect_uri=https:%2F%2Flocalhost:8080&state=eyJwcm92aWRlciI6ImlkcDEifQ%3D%3D&nonce=S3M3R4nd0M&acr_values=passport_saml`
 
 ## Implement IDP discovery (“WAYF”)
 
