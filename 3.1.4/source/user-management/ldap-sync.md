@@ -207,9 +207,9 @@ below.
 
 The Gluu Server 3.x introduced two upgraded sections here.
 
-  * _Server IP Address:_ Include the IP of your Gluu Server here. This
-    feature helps to run Cache Refresh mechanism perfectly in a clustered
-    environment.
+  * _Server IP Address:_ Put the IP of the machine running `oxTrust`
+    here. This ensures that the Cache Refresh mechanism runs perfectly
+    in a clustered environment.
 
   * _Removed Script File Name location:_ New version of the Gluu Server
     allows the administrator to manage your custom scripts with more
