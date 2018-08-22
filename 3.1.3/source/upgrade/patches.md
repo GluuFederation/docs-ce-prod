@@ -19,6 +19,9 @@ As oxTrust/Identity utilizes Jboss Richfaces, this allows an unauthorized user t
 
 !!! Note
     We **strongly** recommend backing up your environment before proceeding. 
+
+!!! Note
+    The script will suggest to restart container after the patching is done. This step may be omitted if steps below were followed to the letter, as stoping and starting particular service ("tomcat" for 2.x and "identity" for 3.x) is enough
     
 1. Login to the Gluu Server chroot
 1. Download the security patch from [https://repo.gluu.org/upd/richfaces_updater.sh](https://repo.gluu.org/upd/richfaces_updater.sh)
@@ -27,6 +30,7 @@ As oxTrust/Identity utilizes Jboss Richfaces, this allows an unauthorized user t
 
         Gluu Server 3.x: [root@localhost ~]# service identity stop
         Gluu Server 2.x: [root@localhost ~]# service tomcat stop
+
 1. Run `richfaces_updater.sh`
 
         [root@example ~]# service gluu-server-x.x.x Login
