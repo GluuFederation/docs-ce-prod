@@ -343,7 +343,7 @@ Besides common social sites support, OpenID Connect providers are also supported
 
 1. Save the configuration and wait for about 1 minute
 
-Integration of OIDC providers is achieved via `passport-openidconnect` Passport.js strategy which **only** supports the code flow (not hybrid or implicit). Additionally, comunication with the token endpoint is carried out via POST only.
+Integration of OIDC providers is achieved via `passport-openidconnect` Passport.js strategy which **only** supports the code flow (not hybrid or implicit). Additionally, comunication with the token endpoint is carried out via POST only. No support for secretless clients (just confidential oauth clients).
 
 If you need to support a second OIDC provider, you have to duplicate the `openidconnect` strategy and proceed similarly as when [adding a new provider](#supporting-a-new-strategy).
 
