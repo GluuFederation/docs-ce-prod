@@ -18,7 +18,7 @@ As oxTrust/Identity utilizes Jboss Richfaces, this allows an unauthorized user t
 ### Steps to Fix
 
 !!! Note
-    We **strongly** recommend backing up your environment before proceeding. 
+    We **strongly** recommend [backing up your environment](../operation/backup.md) before proceeding. 
 
 !!! Note
     The script will suggest you to restart container after the patching is done. This step can be omitted if steps below were followed to the letter, as stopping and starting particular service ("tomcat" for 2.x and "identity" for 3.x) is enough to apply the changes.
