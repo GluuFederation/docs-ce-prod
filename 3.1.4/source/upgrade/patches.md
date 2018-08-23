@@ -4,7 +4,7 @@
 ### August 21, 2018
 
 ### Affected versions
-- All Gluu versions (2.x, 3.x)
+- Gluu versions (2.4.4, 3.1.3 and below). 3.1.4 is not affected by this vulnerability.
 
 ### Description
 We have discovered a critical vulnerability in the Jboss Richfaces library. All versions of the component Richfaces (including the latest v4.5.17.Final) are affected by the vulnerability, which is an EL injection leading to Remote Code Execution. The CVE assignment to MITRE for it is CVE-2018-12532. The CVE can be seen on the [MITRE](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-12532) site as well as [NIST](https://nvd.nist.gov/vuln/detail/CVE-2018-12532). 
@@ -24,7 +24,8 @@ As oxTrust/Identity utilizes Jboss Richfaces, this allows an unauthorized user t
     The script will suggest you to restart container after the patching is done. This step can be omitted if steps below were followed to the letter, as stopping and starting particular service ("tomcat" for 2.x and "identity" for 3.x) is enough to apply the changes.
     
 1. Login to the Gluu Server chroot
-1. Download the security patch from [https://repo.gluu.org/upd/richfaces_updater.sh](https://repo.gluu.org/upd/richfaces_updater.sh)
+1. Download the security patch `richfaces_updater.sh` from [https://repo.gluu.org/upd/](https://repo.gluu.org/upd/)
+1. You can verify the integrity of the file by running `sha256sum richfaces_updater.sh` and verifying it against the sha256 checksum `richfaces_updater.sh.sha256` in [https://repo.gluu.org/upd/](https://repo.gluu.org/upd/)
 1. Grant `richfaces_updater.sh` executable privileges
 1. Stop "tomcat"/"identity" services:
 
@@ -61,4 +62,25 @@ As oxTrust/Identity utilizes Jboss Richfaces, this allows an unauthorized user t
 
 By following the above instructions, you will replace the old richfaces library in `identity.war` with a custom fixed version for the Gluu Server. The fix is accomplished by removing the affected (and unused) classes from the vulnerable library, negating the impact of the vulnerabiity.
 
-A backup of your `identity.war`, before changes, is in the `/opt/upd/backup_$TIME_STAMP` directory in case you need it.
+A backup of your `identity.war`, before changes, is in the `/opt/upd/backup_$TIME_STAMP` directory in case you need it.\
+
+## Patching image/files uploading for Gluu 3.1.3
+ 
+ There is a [known issue](https://github.com/GluuFederation/oxTrust/issues/1007) in Gluu 3.1.3 that affects file upload feature like **Person Import**, **Organization logo upload**.
+ 
+ Below are steps to fix that issue by patching the oxtrust war file.
+ 
+ 1. Login into Gluu container
+ 1. Save a copy of you actual `/opt/gluu/jetty/identity/webapps/identity.war`
+ 1. Move to home directory: `#cd` 
+ 1. Copy identity.war in the current directory: `#cp /opt/gluu/jetty/identity/webapps/identity.war .`
+ 1. Run : ``` #zip -d identity.war WEB-INF/lib/jsf-api-2.2.17.jar```
+ 1. Run : ``` #zip -d identity.war WEB-INF/lib/jsf-impl-2.2.17.jar```
+ 1. Make directory: `#mkdir -p WEB-INF/lib`
+ 1. Change directory: `#cd WEB-INF/lib`
+ 1. Run: `#wget http://repository.jboss.org/nexus/content/groups/public-jboss/com/sun/faces/jsf-api/2.2.16/jsf-api-2.2.16.jar`
+ 1. Run: `#wget http://repository.jboss.org/nexus/content/groups/public-jboss/com/sun/faces/jsf-impl/2.2.16/jsf-impl-2.2.16.jar`
+ 1. Run: `#jar -uf identity.war WEB-INF/lib/jsf-api-2.2.16.jar`
+ 1. Run: `#jar -uf identity.war WEB-INF/lib/jsf-impl-2.2.16.jar`
+ 1. Move back the war file: `#cp identity.war /opt/gluu/jetty/identity/webapps/identity.war`
+ 1. Restart identity service: `#service identity restart`
