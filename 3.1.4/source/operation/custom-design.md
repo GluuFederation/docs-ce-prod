@@ -174,7 +174,7 @@ The oxAuth and oxTrust services need to be restarted for customizations to be ap
 For a good practical example let's consider a task of removing Gluu copyright 
 at the bottom of oxAuth's login page. You can follow next steps to achieve this:
 
-1. Move into Gluu container: `# service gluu-server-3.1.3 login`
+1. Move into Gluu container: `# service gluu-server-3.1.4 login`
 
 2. Create a new directory structure under `custom/pages/` to accomodate new customized page: `# mkdir -p /opt/gluu/jetty/oxauth/custom/pages/WEB-INF/incl/layout/`
 
