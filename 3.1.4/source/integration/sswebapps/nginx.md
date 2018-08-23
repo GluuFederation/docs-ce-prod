@@ -3,7 +3,7 @@
 As a brief explanation, we will have two servers. One is the Identity Provider(IDP), the Gluu Server; the other is the Relying Party(RP), the Nginx OpenResty server with the lua-resty-openidc library. The lua-resty-openidc Nginx library uses the OpenID Connect [Authorization Code Flow](http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowSteps). Upon the user giving consent, the RP will gather user information from the IDP and if the user is authorized, forward the user to a redirect URI.
 
 Requirements:  
-- Gluu Server ([Installation Instructions](https://gluu.org/docs/ce/3.1.3/installation-guide/install/#1-install-gluu-server-package))  
+- Gluu Server ([Installation Instructions](https://gluu.org/docs/ce/installation-guide/install/#1-install-gluu-server-package))  
 - OpenResty 1.11.2.5  
 - gcc  
 - libpcre3 libpcre3-dev  
@@ -150,4 +150,4 @@ After we've saved this configuration file, let's run the `openresty` command we 
 
 Now navigate to the RP, which will redirect you to your IDP, where you can log in, authorize the RP to gather information and be directed back to the OpenResty default `index.html`, which is located at `/usr/local/openresty/nginx/html/index.html`.
 
-Of course, this is a limited and simplified proof of concept. Further customization and optionality can be added. Please refer to the [official documentation](https://github.com/zmartzone/lua-resty-openidc) for the `lua-resty-openidc` library to add more extensibility for your use case. There are a multitude of examples on the main README.md. Also, check out the [Gluu Server OpenID Connect API](https://gluu.org/docs/ce/3.1.3/api-guide/openid-connect-api/) documentation for help with ~1:1 configuration settings that need to be set to match the libary.
+Of course, this is a limited and simplified proof of concept. Further customization and optionality can be added. Please refer to the [official documentation](https://github.com/zmartzone/lua-resty-openidc) for the `lua-resty-openidc` library to add more extensibility for your use case. There are a multitude of examples on the main README.md. Also, check out the [Gluu Server OpenID Connect API](https://gluu.org/docs/ce/api-guide/openid-connect-api/) documentation for help with ~1:1 configuration settings that need to be set to match the libary.
