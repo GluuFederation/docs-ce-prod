@@ -34,7 +34,7 @@ Here is how to configure NameID in oxTrust:
 ![name_id](../img/saml/name_id.png)
    - 'Enable' `Create NameID`
    - 'Attribute Base': Attribute value to calculate name Identifier. 
-   - 'Attribute Name': Custom attribute name which we created [earlier here.](https://gluu.org/docs/ce/3.1.2/admin-guide/attribute/#custom-attributes)
+   - 'Attribute Name': Custom attribute name which we created [earlier here.](https://gluu.org/docs/ce/admin-guide/attribute/#custom-attributes)
    - 'Attribute Type': Type of name identifier. 
  - Restart `identity` and `idp` services by: 
    - `service identity stop/start`
@@ -43,7 +43,7 @@ Here is how to configure NameID in oxTrust:
 ### Manual Configuration
 It's also possible to configure `NameID` through configuration file / velocity templates. The template file for `NameID` definitions are located in the `attribute-resolver.xml.vm` file under `/opt/gluu/jetty/identity/conf/shibboleth3/idp/`.
 
-The example below adds `customTest`, which we [created earlier here](https://gluu.org/docs/ce/3.1.2/admin-guide/attribute/#custom-attributes), as `NameID` based on UID attribute. The following are put into the `attribute-resolver.xml.vm` file.
+The example below adds `customTest`, which we [created earlier here](https://gluu.org/docs/ce/admin-guide/attribute/#custom-attributes), as `NameID` based on UID attribute. The following are put into the `attribute-resolver.xml.vm` file.
 
   * Add declaration for the new attribute
   ```
