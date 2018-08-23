@@ -49,11 +49,11 @@ Credential Manager is a simple, user-facing applications people can use to manag
 
 ## Social Login
 
-During deployment of the Gluu Server you are presented with an option to include Passport.js in your installation. If you want to support social login, include Passport.js in your Gluu Server deployment. 
+If you want to support social login or inbound SAML, include Passport in your installation of Gluu Server.
 
-Passport.js provides a crowd-sourced approach to supporting social login at many popular consumer IDPs, including Facebook, LinkedIn, and GitHub. In addition to normalizing social login, Passport.js provides a standard mapping for user claims, allowing you to dynamically enroll new users into your Gluu Server that have authenticated elsewhere.
+Passport provides a crowd-sourced approach to supporting social login at many popular consumer IDPs, such as Facebook, LinkedIn, GitHub, etc. In addition to normalizing social login, it provides a standard mapping for user claims, allowing you to dynamically enroll new users into your Gluu Server that have authenticated elsewhere.
 
-Learn how to [configure social login](./passport.md). 
+Learn how to [configure social login](./passport.md) or [inbound SAML providers](./inbound-saml-passport.md). 
 
 ## Default Authentication Mechanism
 In oxTrust, navigate to `Configuration` > `Manage Authentication` > `Default Authentication` to specify the default authentication mechanism for two use cases: 

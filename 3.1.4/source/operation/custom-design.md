@@ -35,10 +35,10 @@ The new directory structure can be illustrated as follows (only directories rela
 ```
 /opt/gluu/jetty/oxauth/
 |-- custom
+|   |-- i18n
+|   |-- libs
 |   |-- pages
 |   `-- static
-|-- lib
-|   `-- ext
 ```
 
 ### oxTrust
@@ -46,14 +46,21 @@ The new directory structure can be illustrated as follows (only directories rela
 ```
 /opt/gluu/jetty/identity/
 |-- custom
+|   |-- i18n
+|   |-- libs
 |   |-- pages
 |   `-- static
-|-- lib
-|   `-- ext
 ```
 
 ### Subdirectories 
-Sub-directories `custom/pages` have a special purpose. They are mapped to the corresponding root directory of the unpacked WAR archive. The path conforms to following scheme:
+Customized `i18n` should be placed in the following directories:
+```
+/opt/gluu/jetty/identity/custom/i18n
+/opt/gluu/jetty/oxauth/custom/i18n
+```
+Resources from this folder will be loaded at next service restart.
+
+Sub-directories `custom/pages` have a special purpose. They allow to override exploded `xhtml` pages from the unpacked WAR archive. The path to exploded war conforms to following scheme:
 
 ```
 /opt/jetty-<VERSION>/temp/jetty-localhost-<PORT_NUMBER>-<COMPONENT_NAME>.war-_<COMPONENT_NAME>-any-<RANDOM_TAG>.dir/webapp/
@@ -79,8 +86,8 @@ as a base for your own customized files.
 
 Customized `libs` for oxAuth to use should be placed in the following directories:
 ```
-/opt/gluu/jetty/identity/lib/ext
-/opt/gluu/jetty/oxauth/lib/ext
+/opt/gluu/jetty/identity/custom/libs
+/opt/gluu/jetty/oxauth/custom/libs
 ```
 
 Custom CSS or images should be placed under `custom/static` directory. To avoid 
