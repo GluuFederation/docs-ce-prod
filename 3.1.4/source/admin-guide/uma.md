@@ -88,9 +88,11 @@ Additionally there is an option to add authorization policy with the new scope.
 
 
 ## Resource Registration
-Resources protected by UMA 2 must be registered in oxTrust by navigating to `UMA` > `Resources`. 
+Resources protected by UMA 2 must be registered in oxTrust by navigating to `UMA` > `Resources` or via [UMA-API](../api-guide/uma-api.md). . 
 
 ![uma-resources](../img/uma/uma-resources.png)
+
+Resource access can be restricted by associated client with `umaRestrictResourceToAssociatedClient` oxauth configuration property. Associated client is array that is automatically populated with `clientDn` that creates it.  
 
 ## UMA RPT Authorization Policies
 UMA RPT Authorization policy's are associated with UMA scopes. An authorization request has a resource_id and scope(s). Each scope can point to one or more policies. If all policies associated with all scopes return `true`, then access is granted. 
