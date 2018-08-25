@@ -44,21 +44,21 @@ If you want to integrate a provider not found in the list, follow the instructio
 
 ## Setting up social login for an app with Passport
 
-This section describes the steps required to materialize the [sample workflow](#sample-authentication-flow) of above. In this particular case we will offer a couple of authentication choices. The application to protect will be oxTrust (the one used for Gluu administration!).
+This section describes the steps required to materialize the [sample workflow](#sample-authentication-flow) described above. In this particular case we will offer a couple of authentication choices. In our example setup, the protected application will be oxTrust (the app used for Gluu administration!). 
 
-The following summarizes the steps needed:
+The following summarizes the steps:
 
 1. Add Passport to your Gluu Server (if you didn't include it upon installation)
 1. Enable Passport
 1. Register for a (developer) account at social sites
 1. Create applications (clients) in social sites
 1. Fill strategy details
-1. Make oxTrust be protected with Passport
-1. Test
+1. Set oxTrust authentication to Passport
+1. Test (in a different browser)
 
 ### Add Passport to Gluu Server installation
 
-You can skip this step if you chose Passport when you installed Gluu Server. To add Passport to an existing Gluu Server installation do the following (needs Internet access):
+You can skip this step if Passport was deployed during initial Gluu Server installation. To add Passport to an existing Gluu Server installation, do the following (requires Internet access):
 
 1. Login to Gluu Server chroot
 
@@ -76,7 +76,7 @@ You can skip this step if you chose Passport when you installed Gluu Server. To 
 
 Enable the required custom scripts:
 
-- Login to oxTrust and go to "Configuration" > "Custom scripts"
+- Login to oxTrust and navigate to "Configuration" > "Custom scripts"
 - In "Person Authentication" tab, collapse the script labelled "passport_social" and check "enabled". ![Enable passport_social](../img/user-authn/passport/enable-passport.png) 
 - In "UMA RPT Policies" tab, collapse the "uma_client_authz_rpt_policy" and check "enabled"
 - Press "Update" at the bottom of the page
