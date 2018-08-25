@@ -202,8 +202,8 @@ You have to place this [jar](https://ox.gluu.org/maven/org/xdi/oxauth-client/3.1
 The string produced looks like:
 
 ```
-https://<gluu_host>/oxauth/authorize?response_type=code+...&client_id=...scope=openid+...
-   &redirect_uri=...&state=...&nonce=
+https://<gluu_host>/oxauth/authorize?response_type=code+...&client_id=...
+   &scope=openid+...&redirect_uri=...&state=...&nonce=
    &acr_values=passport_saml
 ```
 
@@ -287,7 +287,7 @@ See the Demo in action in this [video](https://www.youtube.com/watch?v=ubhDgGU8C
 
 ## Altering flow behaviour
 
-Similarly as in the case of [social login with passport](#altering-flow-behaviour), it's possible to slightly alter the flow: you can require [email to be present](./passport.md#requiring-email-in-profile) for enrollment, apply [email account linking](./passport.md#email-account-linking), or do [provider preselection](./passport.md#preselecting-an-external-provider) (so that the page listing IDPs is skipped).
+Similarly as in ["social login with passport"](#altering-flow-behaviour), it's possible to slightly alter the flow: you can require [email to be present](./passport.md#requiring-email-in-profile) for enrollment, apply [email account linking](./passport.md#email-account-linking), or do [provider preselection](./passport.md#preselecting-an-external-provider) (so that the page listing IDPs is skipped).
 
 In **all cases**, instead of adding a property via oxTrust, you have to manually add it for the proper provider in config file `/etc/gluu/conf/passport-saml-config.json`. Equivalently, if you need to alter properties of a custom script, apply those in the `passport_saml` script. Wait for about 1 minute for changes to take effect (no restarts needed).
 

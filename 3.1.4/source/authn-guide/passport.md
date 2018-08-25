@@ -50,7 +50,7 @@ The following summarizes the steps needed:
 
 1. Add Passport to your Gluu Server (if you didn't include it upon installation)
 1. Enable Passport
-1. Register for a (developer) account in social sites
+1. Register for a (developer) account at social sites
 1. Create applications (clients) in social sites
 1. Fill strategy details
 1. Make oxTrust be protected with Passport
@@ -89,7 +89,7 @@ Enable passport support:
 
 ![enable passport](../img/user-authn/passport/enable_passport.png) 
 
-### Register for a developer account in social sites
+### Register for a developer account at social sites
 
 Every social site has its own procedure so you can join as a developer. Check on the internet how to proceed. The aim is being able to get to a page that allows creation of applications. For the sake of simplicity, we suggest adding at most two external providers to start.
 
@@ -97,7 +97,7 @@ Every social site has its own procedure so you can join as a developer. Check on
 
 If you already have a github account, this is very straightforward, just visit [https://github.com/settings/applications/new](https://github.com/settings/applications/new). For the case of Twitter, go to [https://apps.twitter.com](https://apps.twitter.com).
 
-For Facebook visit https://developers.facebook.com and click on "Add a new App" from "My Apps" dropdown. Fill the required details and click the "Create App ID" button.
+For Facebook visit [https://developers.facebook.com](https://developers.facebook.com) and click on "Add a new App" from "My Apps" dropdown. Fill the required details and click the "Create App ID" button.
 
 To create an application you will be requested to fill data like an application name or ID, domain name of your application and authorization callback URLs.
 
@@ -133,7 +133,7 @@ Navigate to "Configuration" > "Manage Authentication" > "Default Authentication"
 
 #### About passport logs
 
-The location of passport logs is `/opt/gluu/node/passport/logs`. By default severity of messages logged is `INFO`. You can tweak this by altering Passport's configuration file. For more information see [Log level](#log-level).
+The location of passport logs is `/opt/gluu/node/passport/logs`. By default, severity of messages logged is `INFO`. You can tweak this by altering Passport's configuration file. For more information see [Log level](#log-level).
 
 In addition to passport node logs, the log statements of the custom script are key. You can find those in file `/opt/gluu/jetty/oxauth/logs/oxauth_script.log`.
 
@@ -158,7 +158,7 @@ If you still have trouble, feel free to open a [support ticket](https://support.
 
 #### Check user profile
 
-Once oxTrust login is successful, check user data: Go to "Personal" > "Profile". Alternatively you can use the browsing session you initially opened with the administrator privileges and go to "Users" > "Manage people" to inspect the recently created entry.
+Once oxTrust login is successful, check user data: Go to "Personal" > "Profile". Alternatively you can use the browsing session you initially opened with administrator privileges and go to "Users" > "Manage people" to inspect the recently created entry.
 
 To check the actual profile data received in Passport side, check this [section](#inspecting-profile-data).
 
@@ -251,8 +251,8 @@ Please follow these steps:
 This way you can append a new query parameter to the request you issue to start the authorization process in your application:
 
 ```
-https://<domain-name>/oxauth/authorize?response_type=code+...&client_id=...scope=openid+...
-   &redirect_uri=...&state=...
+https://<domain-name>/oxauth/authorize?response_type=code+...&client_id=...
+   &scope=openid+...&redirect_uri=...&state=...
    &acr_values=passport_social
    &preselectedExternalProvider=<base64-url-encoded-provider-object>
 ```
@@ -516,7 +516,7 @@ if (data.passportStrategies.reddit) {
 To finish, check you already have:
 
 - [Enabled passport](#enable-passport)
-- [Registered for a developer account](#register-for-a-developer-account)
+- [Registered for a developer account](#register-for-a-developer-account-at-social-sites)
 - [Created an application](#create-applications)
 - [Filled strategy configurations in oxTrust](#fill-strategy-details), including a logo image as described [here](#providers-logo-image)
 
