@@ -48,7 +48,7 @@ During installation of the Gluu Server select `yes` to install Passport.js when 
 9. Add the strategy details like clientID and clientSecret 
 (obtained from the provider, after the app is created in the provider form). ![setting-strategies](../img/user-authn/passport/setting-strategies.png)
 10. To set the strategies navigate to `Configuration` > `Manage Authentication` > `Default Authenticaion`
-11. Change the Default Authentication mode to `passport`
+11. Change the Default Authentication mode to `passport_social`
 
 12. Once the configuration and settings have been entered, restart the 
 passport service or Gluu Server by following the below instructions:
