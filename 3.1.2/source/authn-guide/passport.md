@@ -68,15 +68,14 @@ Every provider has different protocols and ways to create the app. We
 will look at one of the most common providers "facebook" and create a new app.
 
 1. Login to https://developers.facebook.com
-2. Click on Add a new App from My Apps dropdown
-3. Fill the required details and click the create Create App ID button to create the app.
-4. Click on the dashboard menu and get the clientID and clientSecret which can be used with the passport.
-5. Click on settings menu and put the domain of your gluu server in the site url field.
-
-![fburl](../img/user-authn/passport/fb-addurl.png)
-
-Note: If there is a field for Authorized redirect URIs, make sure your apps list of Authorized redirect URIs contains the passport 
-strategy's callback. For example, if your gluu server points to `https://example.gluu.org` and the strategy is `facebook`, the list of Authorized redirect URIs should contain `https://example.gluu.org/passport/auth/facebook/callback.` 
+2. Hit 'Add new app'
+3. From Dashboard, go to 'Basic' setting
+4. Click on 'Add Platform', select 'Website'
+5. Site URL: URL of your Gluu Server
+6. Go to 'Products' > 'Facebook Login' > Settings. 
+7. Valid OAuth Redirect URI: `https://[hostname]/passport/auth/facebook/callback`
+8. Save the setup
+9. Collect AppID and AppSecret from Dashboard. 
  
 ## How Passport is used in Gluu
 
