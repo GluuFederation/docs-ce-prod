@@ -307,13 +307,17 @@ The following describes the configuration properties of the passport script. We 
 
 Strategies supported out of the box are already bundled with its corresponding logo images and they properly load in the provider selection list. If you want to change the image shown for an existing strategy simply do this:
 
-1. Copy the image to chroot directory `/opt/gluu/jetty/oxauth/custom/static`.
+1. Create images directory under `/opt/gluu/jetty/oxauth/custom/static`:`mkdir /opt/gluu/jetty/oxauth/custom/static/img`.
+
+1. Create passport directory under `/opt/gluu/jetty/oxauth/custom/static/img`:`mkdir /opt/gluu/jetty/oxauth/custom/static/img/passport`.
+
+1. Copy the image to chroot directory `/opt/gluu/jetty/oxauth/custom/static/img/passport`.
 
 1. In oxTrust go to "Configuration" > "Manage Authentication" > "Passport Authentication Method".
 
 1. Press the "Add new property" button for the strategy you want to change.
 
-1. Fill "logo_img" on the left, on the right enter `../../ext/resources/<image-name>` where `<image-name>` is the name of the file you copied on the first step. 
+1. Fill "logo_img" on the left, on the right enter `../../ext/resources/img/passport/<image-name>` where `<image-name>` is the name of the file you copied on the first step. 
 
 1. Wait 1 minute, then verify the image appears correctly by acessing your application in a browser.
 
