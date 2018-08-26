@@ -32,23 +32,25 @@ authentication and provisioning.
 
 During installation of the Gluu Server select `yes` to install Passport.js when prompted.
 
-1. Navigate to `Configuration` > `Manage Custom Scripts`.
-2. Enable passport script in `Person Authentication` Tab.![Enable passport1](../img/user-authn/passport/enable-passport1.png)
-3. Click on `update` at the end of the page.![update](../img/user-authn/passport/auth-update1.png)
-4. Enable UMA authorization policy in `UMA authorization policy` tab.![uma-enable](../img/user-authn/passport/uma-enable1.png)
-5. Click on `update`.
-6. To set the strategies navigate to `Configuration` > `Manage Authentication` > `Default Authenticaion`
-7. Change the Default Authentication mode to `passport`
-8. Click on `Passport Authentication Method` tab and `Passport Support` to enabled.![enable-authentication](../img/user-authn/passport/enable-authentication3.0.0.png)
-9. Add your desired strategies. The `Add Strategy` field values for common providers are:
+1. Make sure 'passport' service is running with `service passport status`
+2. Navigate to `Configuration` > `Manage Custom Scripts`.
+3. Enable passport script from `Person Authentication` Tab; scroll down to 'Passport_social' script. ![Enable passport1](../img/user-authn/passport/enable-passport1.png)
+4. Click on `update` at the end of the page.![update](../img/user-authn/passport/auth-update1.png)
+5. Enable UMA authorization policy from 'UMA RPT Policies' tab. Open `uma_client_authz_rpt_policy` script.![uma-enable](../img/user-authn/passport/uma-enable1.png)
+6. Click on `update`.
+7. Click on `Passport Authentication Method` tab from `Manage Authentication` section and `Passport Support` to enable it.![enable-authentication](../img/user-authn/passport/enable-authentication3.0.0.png)
+8. Add your desired strategies. The `Add Strategy` field values for common providers are:
 	- `google` for GPlus Authentication
 	- `twitter` for Twitter Authentication
 	- `linkedin` for LinkedIn Authentication
 	- `github` for Github Authentication
 	- `facebook` for Facebook Authentication
-10. Add the strategy details like clientID and clientSecret 
+9. Add the strategy details like clientID and clientSecret 
 (obtained from the provider, after the app is created in the provider form). ![setting-strategies](../img/user-authn/passport/setting-strategies.png)
-11. Once the configuration and settings have been entered, restart the 
+10. To set the strategies navigate to `Configuration` > `Manage Authentication` > `Default Authenticaion`
+11. Change the Default Authentication mode to `passport`
+
+12. Once the configuration and settings have been entered, restart the 
 passport service or Gluu Server by following the below instructions:
     
     a. Login to chroot.
