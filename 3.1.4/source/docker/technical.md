@@ -49,11 +49,11 @@ Due to the design of Docker networking where container IP gets recycled dynamica
 
 #### config-init
 
-[config-init](https://github.com/GluuFederation/docker-config-init/tree/3.1.3) is a special container that is not daemonized nor executing a long-running process. The purpose of this container is to generate the initial configuration, dump the existing configuration (for backup), or even load (restore) the configuration.
+[config-init](https://github.com/GluuFederation/docker-config-init/tree/3.1.4) is a special container that is not daemonized nor executing a long-running process. The purpose of this container is to generate the initial configuration, dump the existing configuration (for backup), or even load (restore) the configuration.
 
 The following commands are supported by the container:
 
-- [generate](https://github.com/GluuFederation/docker-config-init/tree/3.1.3#generate-command): The generate command will generate all the initial configuration files for the Gluu Server components. The following are required to launch unless otherwise marked:
+- [generate](https://github.com/GluuFederation/docker-config-init/tree/3.1.4#generate-command): The generate command will generate all the initial configuration files for the Gluu Server components. The following are required to launch unless otherwise marked:
 
     - `--email`: The email address of the administrator usually. Used for certificate creation.
     - `--domain`: The domain name where the Gluu Server resides. Used for certificate creation.
@@ -66,7 +66,7 @@ The following commands are supported by the container:
     - `--admin-pw`: The administrator password for oxTrust and LDAP
     - `--ldap-type`: Either OpenDJ or OpenLDAP. If you're looking to use LDAP replication, we recommend OpenDJ.
 
-- [dump](https://github.com/GluuFederation/docker-config-init/tree/3.1.3#dump-command): The dump command will dump all configuration from inside Consul's KV store into the `/opt/config-init/db/config.json` file inside the container. The following is required to launch unless otherwise marked:
+- [dump](https://github.com/GluuFederation/docker-config-init/tree/3.1.4#dump-command): The dump command will dump all configuration from inside Consul's KV store into the `/opt/config-init/db/config.json` file inside the container. The following is required to launch unless otherwise marked:
 
     - `--kv-host`: The IP address or hostname of the KV store (Consul). Default is `localhost`.
     - (optional) `--kv-port`: The port used to access Consul. Default is `8500`.
@@ -81,7 +81,7 @@ The following commands are supported by the container:
             dump \
             --kv-host <consul address>
 
-- [load](https://github.com/GluuFederation/docker-config-init/tree/3.1.3#load-command): The load command will load a `config.json` into the Consul KV store. The following are required to launch unless otherwise marked:
+- [load](https://github.com/GluuFederation/docker-config-init/tree/3.1.4#load-command): The load command will load a `config.json` into the Consul KV store. The following are required to launch unless otherwise marked:
 
     - `--kv-host`: The IP address or hostname of the KV store (Consul). Default is `localhost`.
     - (optional) `--kv-port`: The port used to access Consul. Default is `8500`.
@@ -118,7 +118,7 @@ For example:
 
     docker run \
         --rm \
-        gluufederation/config-init:3.1.3_dev generate --ldap-type=openldap
+        gluufederation/config-init:3.1.4_dev generate --ldap-type=openldap
 
 The following variables are used by the container:
 
