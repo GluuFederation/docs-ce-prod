@@ -32,15 +32,15 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
       
 ```
 45.55.232.15    loadbalancer.example.org (NGINX server)
-159.203.126.10  idp1.example.org (Gluu Server 3.1.3 on Ubuntu 14)
-138.197.65.243  idp2.example.org (Gluu Server 3.1.3 on Ubuntu 14)
+159.203.126.10  idp1.example.org (Gluu Server 3.1.4 on Ubuntu 14)
+138.197.65.243  idp2.example.org (Gluu Server 3.1.4 on Ubuntu 14)
 ```
      
 - To create the following instructions we used Ubuntu 14 Trusty     
 
 - To create the following instructions we used an Nginx load balancer/proxy, however if you have your own load balancer, like F5 or Cisco, you should use that instead and disregard the instructions about configuring NGINX   
 
-- Gluu Server version 3.1.3 using OpenDJ   
+- Gluu Server version 3.1.4 using OpenDJ   
 
 - Redis-server for caching short-lived tokens   
 
@@ -50,7 +50,7 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 ### 1. Install Gluu
 
-- First you need to [Install Gluu](https://gluu.org/docs/ce/3.1.3/installation-guide/install/) on one of the servers. It will be referred to as the "primary" for the sake of simplification. Once everything is configured, there will be no primary in the multi-master configuration
+- First you need to [Install Gluu](https://gluu.org/docs/ce/installation-guide/install/) on one of the servers. It will be referred to as the "primary" for the sake of simplification. Once everything is configured, there will be no primary in the multi-master configuration
 
 !!! Warning
     Make sure to use a separate NGINX/Load-balancing server FQDN as hostname.   
@@ -58,13 +58,13 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 - A separate NGINX server is necessary because replicating a Gluu server to a different hostname breaks the functionality of the Gluu web page when using a hostname other than what is in the certificates. For example, if I use idp1.example.com as my host and copy that to a second server (e.g. idp2.example.com), the process of accessing the site on idp2.example.com, even with replication, will fail authentication due to a hostname conflict. So if idp1 fails, you won't be able to use Gluu Server effectively
 
-- Now for the rest of the servers in the cluster, [download the Gluu packages](https://gluu.org/docs/ce/3.1.3/installation-guide/install/) but **don't run `setup.py` yet**   
+- Now for the rest of the servers in the cluster, [download the Gluu packages](https://gluu.org/docs/ce/installation-guide/install/) but **don't run `setup.py` yet**   
 
 - We want to copy the `/install/community-edition-setu/setup.properties.last` file from the first install to the other servers as `setup.properties` so we have the exact same configurations. (Here I have SSH access to my other server outisde the Gluu chroot)
 
 ```
 
-scp /opt/gluu-server-3.1.3/install/community-edition-setup/setup.properties.last root@idp2.example.org:/opt/gluu-server-3.1.3/install/community-edition-setup/setup.properties
+scp /opt/gluu-server-3.1.4/install/community-edition-setup/setup.properties.last root@idp2.example.org:/opt/gluu-server-3.1.4/install/community-edition-setup/setup.properties
 
 ```
 
@@ -182,8 +182,8 @@ mkdir /etc/nginx/ssl/
 
 ```
 
-scp /opt/gluu-server-3.1.3/etc/certs/httpd.key root@loadbalancer.example.org:/etc/nginx/ssl/
-scp /opt/gluu-server-3.1.3/etc/certs/httpd.crt root@loadbalancer.example.org:/etc/nginx/ssl/
+scp /opt/gluu-server-3.1.4/etc/certs/httpd.key root@loadbalancer.example.org:/etc/nginx/ssl/
+scp /opt/gluu-server-3.1.4/etc/certs/httpd.crt root@loadbalancer.example.org:/etc/nginx/ssl/
 
 ```
 
@@ -366,7 +366,7 @@ You need to transfer certificates from the first server to the other servers.
 
 ```
 
-scp /opt/gluu-server-3.1.3/etc/certs/* root@idp2.example.org:/opt/gluu-server-3.1.3/etc/certs/
+scp /opt/gluu-server-3.1.4/etc/certs/* root@idp2.example.org:/opt/gluu-server-3.1.4/etc/certs/
 
 ```
 
@@ -422,7 +422,7 @@ keytool error: java.io.FileNotFoundException: /etc/certs/openldap.crt (No such f
 
 Gluu.Root # service identity stop && service oxauth restart && service identity start
 Gluu.Root # logout
-service gluu-server-3.1.3 restart
+service gluu-server-3.1.4 restart
 
 ```
 
