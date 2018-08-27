@@ -139,7 +139,7 @@ Placeholder URLs like `https://idp.example.com` must be replaced with the URLs o
 
 * `skipRequestCompression`: If set to "true", the SAML request to this service provider will not be compressed.
 
-* `logo_img`: Absolute or relative URL pointing to the IDP's logo used by the Gluu's Passport login page.
+* `logo_img`: Absolute or relative URL pointing to the IDPs logo used by the Gluu's Passport login page.
 
 * `enable`: If set to "true", this IDP is allowed to be used by users that try to authenticate.
 
@@ -160,7 +160,7 @@ Passport automatically generates SAML SP metadata for every IDP listed in `passp
 
 The metadata can be accessed at URLs like: `https://<hostname>/passport/auth/meta/idp/<IDP-id-from-passport-saml-config>`. In the filesystem, contents can also be found under `/opt/gluu/node/passport/server/idp-metadata` directory of Gluu chroot. You can copy this data your local machine and then upload to remote external IDPs.
 
-The actual process of creating trust will differ across IDP implementations. For example, for cases when the remote IDP is another Gluu Server CE instance, the relevant [documentation page](https://gluu.org/docs/ce/3.1.3/admin-guide/saml/#create-a-trust-relationship) should be followed. In case of other SAML IDP implementations, consult the corresponding documentation.
+The actual process of creating trust will differ across IDP implementations. For example, for cases when the remote IDP is another Gluu Server CE instance, the relevant [documentation page](https://gluu.org/docs/ce/admin-guide/saml/#create-a-trust-relationship) should be followed. In case of other SAML IDP implementations, consult the corresponding documentation.
 
 !!! Note 
     When registering the Passport SP at each remote IDP, at least `username` will be required for each user.
