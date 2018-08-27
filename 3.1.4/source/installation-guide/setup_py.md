@@ -26,16 +26,16 @@ You must accept the Oracle Binary Code License Agreement for the Java SE Platfor
 Do you acknowledge that use of the Gluu Server is under the MIT license? [N|y] : y
 ```
 !!! Login
-    Please log in using the username `admin` and the password from the setup script promtpt e.g `hlE3vzf0hMdD` or the password entered
+    Please log in using the username `admin` and the password from the setup script prompt e.g `hlE3vzf0hMdD` or the password entered
 
-If a resolvable DNS host is not used, then it must be added to the hostname of the Operating System  hosts file on the server running the browser.
+If a resolvable DNS host is not used, then it must be added to the hostname of the Operating System hosts file on the server running the browser.
 
 !!! warning
     Please remove or encrypt the setup.properties.last file as it contains the clear text passwords for *LDAP, admin user, keystores, and 3DES salt*.
 
 The errors can be found the the `setup_errors.log` file and a detailed step by step installation is found in the `setup.log` file under the `/install/community-edition-setup` folder.
 
-!!! warning
+!!! Warning
     Use a FQDN (fully qualified domain name) as hostname and refrain from using 127.0.0.1 as IP address or usage of private IP is not supported and not recommended.
 
 ### Script Command Line Options
