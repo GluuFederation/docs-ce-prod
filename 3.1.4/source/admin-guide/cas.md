@@ -45,10 +45,10 @@ to leverage your existing infrastracture and broadens your authentication option
 From a technical standpoint it's just another 
 [custom authentication script](../authn-guide/customauthn/) which is already 
 pre-packaged in your instance. You can find out more about how to configure 
-it on [corresponding Github page](https://github.com/GluuFederation/oxAuth/tree/version_3.0.1/Server/integrations/cas2).
+it on [corresponding Github page](https://github.com/GluuFederation/oxAuth/tree/version_3.1.4/Server/integrations/cas2).
 
 ### Outbound CAS
-In Gluu CE 3.0 outbound CAS configuration is split into two different parts. First, CAS support must be enabled in web UI.
+In Gluu CE 3.x outbound CAS configuration is split into two different parts. First, CAS support must be enabled in web UI.
 Then applications which should be allowed to use this CAS server must be added to service registry - this part is done from Linux console (inside the container). After those mandatory steps are completed, you also may want to define a list of attributes which should be released in addition to user id which is sent by default (also done via Linux console).
 
 CAS client's configuration is beyond the scope of this article and will differ greatly depending on chosen software.
