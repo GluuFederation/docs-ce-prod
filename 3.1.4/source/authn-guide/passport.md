@@ -64,7 +64,7 @@ You can skip this step if Passport was deployed during initial Gluu Server insta
 
 1. cd to `/install/community-edition-setup`
 
-1. wget `https://github.com/GluuFederation/community-edition-setup/blob/master/post-setup-add-components.py`
+1. wget `https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/post-setup-add-components.py`
 
 1. `chmod +x post-setup-add-components.py` 
 
