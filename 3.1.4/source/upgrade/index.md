@@ -176,38 +176,93 @@ The latest schema files can be found [here](https://github.com/GluuFederation/co
 
 ### Update Passport.js installation.
 
+#### Upgrading from 3.1.3 to 3.1.4
+
+1. Ensure you have updated the [war files and schema](#updating-war-and-schema-manually) before proceeding.
+
 1. Create a temporary directory inside container and move into it: `# mkdir ~/passport_update; cd ~/passport_update`
 
-2. Download and extract the recent Passport package: `# wget https://ox.gluu.org/npm/passport/passport-3.1.4.tgz; tar -xzvf passport-3.1.4.tgz`
+1. Download and extract the recent Passport package: `# wget https://ox.gluu.org/npm/passport/passport-3.1.4.tgz; tar -xzvf passport-3.1.4.tgz`
 
-3. Backup current Passport's files: `# tar -cvpzf ./passport-package-v312-backup.tar.gz --one-file-system /opt/gluu/node/passport/`
+1. Backup current Passport's files: `# tar -cvpzf ./passport-package-v313-backup.tar.gz /opt/gluu/node/passport/`
 
-4. Stop the service: `# service passport stop`
+1. Stop the service: `# service passport stop`
 
-5. Remove the previous package and deploy the new one: `# cd /opt/gluu/node/passport; rm -rf ./*; cp -R ~/passport_update/package/* ./`
+1. Remove the previous package and deploy the new one: `# cd /opt/gluu/node/passport; rm -rf ./*; cp -R ~/passport_update/package/* ./`
 
-6. Restore proper permissions on the files: `# chown -R node:node /opt/gluu/node/passport`
+1. Restore proper permissions on the files: `# chown -R node:node /opt/gluu/node/passport`
 
-7. Initialize Passport framework:
-  - `# su - node`
-  - `$ cd /opt/gluu/node/passport`
-  - `$ mkdir logs`
-  - `$ export PATH=$PATH:/opt/node/bin`
-  - Before proceeding, ensure the host has internet connection, then run `$ npm install -P`
-  - `$ exit`
-  
-8. [Optional but recommended] Patch known vulnerability in the code:
+1. Update the custom script: 
+    - Login to oxTrust and locate the interception script labelled `passport_social` (on "Manage custom scripts -> Person authentication").
+    - Replace the contents with those of the file found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_3.1.4/static/extension/person_authentication/PassportExternalAuthenticator.py).
+    - Add new property to script `behaviour` with value `social`
+    - If you are employing Passport - Inbound SAML flow, substitute the `passport_saml` script as well. [Here](https://github.com/GluuFederation/community-edition-setup/blob/version_3.1.4/static/extension/person_authentication/SamlPassportAuthenticator.py) is the updated version.
+    - Add the same `behaviour` property to your `passport_saml` script
 
-  - Add new properties to the `passport_social` authentication script on "Custom scripts -> Person authentication" page (no quotes):
-    - "key_store_file" = "/etc/certs/passport-rp.jks"
-    - "key_store_password" = "secret"
-  - Update the source code of the script iself with the one found [here](https://github.com/GluuFederation/oxAuth/blob/version_3.1.4/Server/integrations/passport/PassportExternalAuthenticator.py)
-  - Edit `/etc/gluu/conf/passport-config.json` by changing "applicationEndpoint" property to "`https://<host-name>/oxauth/postlogin`"
-  - Acquire patched `index.js` file from [here](https://github.com/GluuFederation/gluu-passport/blob/version_3.1.4/server/routes/index.js) and overwrite `/opt/gluu/node/passport/server/routes/index.js` with it. Make sure its ownership is still set as "node:node": `# chown node:node /opt/gluu/node/passport/server/routes/index.js`
+1. (Optional) In /etc/gluu/conf/passport-config.json add a property "logLevel", example: `"logLevel": "info",`
 
-9. Start the service: `# service passport start`
+1. Restart passport: `# service passport start`
 
-10. Clean the temporary files: `# cd ~/; rm -rf ~/passport_update`
+1. Clean the temporary files: `# cd ~/; rm -rf ~/passport_update`
+
+#### Upgrading to 3.1.3
+
+1. Have the Client ID and Client Secrets of your already registered strategies at hand. Due to an standardization process performed on how configuration properties are stored, you may need to re-enter those again via oxTrust.
+
+1. Ensure you have updated the [war files and schema](#updating-war-and-schema-manually) before proceeding.
+
+1. Create a temporary directory inside container and move into it: `# mkdir ~/passport_update; cd ~/passport_update`
+
+1. Download and extract the recent Passport package: `# wget https://ox.gluu.org/npm/passport/passport-3.1.3.tgz; tar -xzvf passport-3.1.3.tgz`
+
+1. Backup current Passport's files: `# tar -cvpzf ./passport-package-v312-backup.tar.gz /opt/gluu/node/passport/`
+
+1. Stop the service: `# service passport stop`
+
+1. Remove the previous package and deploy the new one: `# cd /opt/gluu/node/passport; rm -rf ./*; cp -R ~/passport_update/package/* ./`
+
+1. Restore proper permissions on the files: `# chown -R node:node /opt/gluu/node/passport`
+
+1. Initialize Passport framework:
+    - `# su - node`
+    - `$ cd /opt/gluu/node/passport`
+    - `$ mkdir server/logs`
+    - `$ export PATH=$PATH:/opt/node/bin`
+    - Before proceeding, ensure the host has internet connection, then run `$ npm install -P`
+    - `$ exit`
+
+1. Patch known vulnerability in the code:
+
+    - Update the corresponding custom script: Login to oxTrust and locate the interception script labelled `passport_social` (on "Manage custom scripts -> Person authentication"). Replace the contents with those of the file found [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/version_3.1.3_securitypatch_issue30/scripts/PassportExternalAuthenticator.py).
+    - Add new properties to the `passport_social` authentication script (do not use quotes):
+        - "key_store_file" = "/etc/certs/passport-rp.jks"
+        - "key_store_password" = "secret"
+    - If you are employing Passport - Inbound SAML flow, substitute the `passport_saml` script as well. [Here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/version_3.1.3_securitypatch_issue30/scripts/SamlPassportAuthenticator.py) is the updated version.
+    - Add the same two properties you just added to `passport_social` to Inbound SAML script (`passport_saml`)
+    - Edit `/etc/gluu/conf/passport-config.json` by changing "applicationEndpoint" property to "`https://<host-name>/oxauth/postlogin`"
+    - Acquire patched `index.js` file from [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/version_3.1.3_securitypatch_issue30/server/routes/index.js) and overwrite `/opt/gluu/node/passport/server/routes/index.js` with it. Make sure its ownership is still set as "node:node": `# chown node:node /opt/gluu/node/passport/server/routes/index.js`
+
+!!! Note:
+    If you are upgrading from 3.1.0 or 3.1.1, please account for the following 3 additional steps:
+    
+1. Download [passport-saml-config.json](https://github.com/GluuFederation/community-edition-setup/raw/version_3.1.3/templates/passport-saml-config.json) and place it in directory `/etc/gluu/conf/`.
+
+1. Add this line `NODE_LOGS=$NODE_BASE/logs` to file `/etc/default/passport`
+
+1. Run this [script](mod_ldap.py) inside chroot container. This requires installing `python-ldap` beforehand:
+
+    - For CentOS/RHEL/Fedora run: `yum install python-ldap`, for Ubunutu/Debian do: `apt-get install python-ldap`
+    - Run `# python mod_ldap.py`
+
+To finish please do:
+
+1. In the oxTrust admin console, go to `Configuration` > `Manage authentication` > `Passport authn method`, double check your strategies are listed and the client ID/secrets are properly shown, otherwise make any adjustment before proceeding.
+
+1. Move to the "Configuration -> Manage Custom scripts -> UMA RPT Policies" page and make sure "uma_client_authz_rpt_policy" script is enabled there.
+
+1. Start passport service: `# service passport start`
+
+1. Clean the temporary files: `# cd ~/; rm -rf ~/passport_update`
 
 ### Latest .war Files
 
