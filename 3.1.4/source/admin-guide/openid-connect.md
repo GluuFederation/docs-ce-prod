@@ -273,4 +273,19 @@ The Gluu Server ships with an optional OpenID Connect RP web application called 
 Using the oxAuth RP you can exercise all of the OpenID Connect API's, including discovery, client registration, authorization, token,
 userinfo, and end_session.
 
+### Access Token
 
+Access token usually is random string. However it is possible to return access token as JWT. It can be controlled per client.
+There are two client properties :
+ - `access_token_as_jwt` - whether to return `access_token` as JWT. It is false by default.
+ - `access_token_signing_alg` - signing algorithm that has to be used during JWT signing. If not specified then default OP signing algorithm will be used (specified via `defaultSignatureAlgorithm` oxauth configuration property).
+ 
+ JWT will contain following claims:
+ - `scope` - string containing a space-separated list of scopes associated with this token
+ - `client_id` - Client identifier for the OAuth 2.0 client that requested this token.
+ - `token_type` - Type of the token as defined in Section 5.1 of OAuth 2.0 [RFC6749].
+ - `exp` - Integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token will expire, as defined in JWT [RFC7519].
+ - `iat` - Integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token was originally issued, as defined in JWT [RFC7519].
+ - `sub` - Subject of the token, as defined in JWT [RFC7519]. Usually a machine-readable identifier of the resource owner who authorized this token.
+ - `aud` - Service-specific string identifier or list of string identifiers representing the intended audience for this token, as defined in JWT [RFC7519].
+ - `iss` - String representing the issuer of this token, as defined in JWT [RFC7519].
