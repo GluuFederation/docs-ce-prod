@@ -114,12 +114,6 @@ The authorization endpoint performs end-user authentication. This is done by sen
             <td>string</td>
         </tr>
         <tr>
-            <th>amr_values</th>
-            <td>false</td>
-            <td>AMR Values</td>
-            <td>string</td>
-        </tr>
-        <tr>
             <th>request</th>
             <td>false</td>
             <td>This parameter enables OpenID Connect requests to be passed in a single, self-contained parameter and to be optionally signed and/or encrypted. The parameter value is a Request Object value, as specified in Section 6.1. It represents the request as a JWT whose Claims are the request parameters.</td>
