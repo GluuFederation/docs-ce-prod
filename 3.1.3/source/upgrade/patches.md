@@ -116,9 +116,9 @@ jar -cf ../identity.war *
 
 - exit container, stop and start gluu server
 
-### Explanation of Fix
+### Explanation of fix
 
-By following the above instructions, you will replace the old richfaces library in `identity.war` with a custom fixed version for the Gluu Server. The fix is accomplished by removing the affected (and unused) classes from the vulnerable library, negating the impact of the vulnerabiity.
+By following the above instructions, you will replace the old richfaces library in `identity.war` with a custom fixed version for the Gluu Server. The fix is accomplished by removing the affected (and unused) classes from the vulnerable library, negating the impact of the vulnerabiity. In 2.4.3 and below, the patched library needs to update jsf for functionality.
 
 A backup of your `identity.war`, before changes, is in the `/opt/upd/backup_$TIME_STAMP` directory in case you need it.\
 
