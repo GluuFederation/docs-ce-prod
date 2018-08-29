@@ -15,7 +15,7 @@ The general flow looks like this: the application deserializes the "do" paramete
 
 As oxTrust/Identity utilizes Jboss Richfaces, this allows an unauthorized user to perform unauthorized Remote Code Execution. Knowing this, we have created a richfaces updater script that removes the affected class from the `identity.war` file, negating the impact of this vulnerability. That being said, we strongly recommend that **oxTrust should not be internet facing.**
 
-### Steps to Fix
+### Steps to fix using a script for 2.4.4 and newer
 
 !!! Note
     We **strongly** recommend [backing up your environment](../operation/backup.md) before proceeding. 
@@ -57,6 +57,64 @@ As oxTrust/Identity utilizes Jboss Richfaces, this allows an unauthorized user t
 
         Gluu Server 3.x: [root@localhost ~]# service identity start
         Gluu Server 2.x: [root@localhost ~]# service tomcat start
+        
+### Patching 2.4.3 and below:
+
+- Download jar files
+
+```
+wget https://ox.gluu.org/maven/com/sun/faces/jsf-api/2.1.28/jsf-api-2.1.28.jar
+wget https://ox.gluu.org/maven/com/sun/faces/jsf-impl/2.1.28-jbossorg-1/jsf-impl-2.1.28-jbossorg-1.jar
+wget https://ox.gluu.org/maven/org/jboss/spec/javax/faces/jboss-jsf-api_2.1_spec/2.1.28.Final/jboss-jsf-api_2.1_spec-2.1.28.Final.jar
+wget https://ox.gluu.org/maven/org/richfaces/richfaces/4.5.17-gluu.Final/richfaces-4.5.17-gluu.Final.jar
+wget https://ox.gluu.org/maven/org/richfaces/richfaces-a4j/4.5.17-gluu.Final/richfaces-a4j-4.5.17-gluu.Final.jar
+wget https://ox.gluu.org/maven/org/richfaces/richfaces-core/4.5.17-gluu.Final/richfaces-core-4.5.17-gluu.Final.ja
+```
+
+- Make backup
+
+```
+mkdir -p /opt/upd/backup
+cp -r /opt/tomcat/webapps/identity/ /opt/upd/backup
+cp -r /opt/tomcat/webapps/identity.war /opt/upd/backup
+```
+
+- Stop tomcat
+
+```
+/opt/tomcat/bin/shutdown.sh
+```
+
+- Delete current files
+
+```
+rm /opt/tomcat/webapps/identity.war
+rm /opt/tomcat/webapps/identity/WEB-INF/lib/jsf-api-2.1.0.jar
+rm /opt/tomcat/webapps/identity/WEB-INF/lib/jsf-impl-2.1.7.jar
+rm /opt/tomcat/webapps/identity/WEB-INF/lib/jboss-jsf-api_2.1_spec-2.0.9.Final.jar
+rm /opt/tomcat/webapps/identity/WEB-INF/lib/richfaces*
+ 
+```
+
+- Copy jar files
+
+```
+cp jsf-api-2.1.28.jar /opt/tomcat/webapps/identity/WEB-INF/lib/
+cp jsf-impl-2.1.28-jbossorg-1.jar /opt/tomcat/webapps/identity/WEB-INF/lib/
+cp jboss-jsf-api_2.1_spec-2.1.28.Final.jar /opt/tomcat/webapps/identity/WEB-INF/lib/
+cp richfaces-core-4.5.17-gluu.Final.jar /opt/tomcat/webapps/identity/WEB-INF/lib/
+cp richfaces-a4j-4.5.17-gluu.Final.jar  /opt/tomcat/webapps/identity/WEB-INF/lib/
+cp richfaces-4.5.17-gluu.Final.jar  /opt/tomcat/webapps/identity/WEB-INF/lib/
+```
+
+- create war file
+
+```
+cd /opt/tomcat/webapps/identity/
+jar -cf ../identity.war *
+```
+
+- exit container, stop and start gluu server
 
 ### Explanation of Fix
 
