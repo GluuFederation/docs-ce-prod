@@ -5,7 +5,7 @@ impact on deployment. Normally these involve updates to the java code,
 effected replacing the `war` file. These are installed using 
 `yum` or `apt-get` command.
 
-##Check version of installed Gluu CE server.
+## Check version of installed Gluu CE server.
 - Version of the server can be found from the name of the installed home Gluu directory
 - Below is an alternate method to determine the version of the installed CE server.
  
@@ -18,7 +18,7 @@ effected replacing the `war` file. These are installed using
 ## Backup
 
 It is highly recommended to stop the Gluu Server, and `tar` 
-folder `/opt/gluu-server-2.4.4` to ensure speedy recovery from any 
+folder `/opt/gluu-server-3.1.3.1` to ensure speedy recovery from any 
 unexpected hiccup. If the organization has any other contingency plans,
 that is ok too.
 
@@ -30,8 +30,8 @@ Use the following commands to tar the Gluu Server folder from the host
 OS:
 
 ```
-# service gluu-server-2.4.4 stop
-# tar cvf gluu244-backup.tar /opt/gluu-server-2.4.4/
+# service gluu-server-3.1.3.1 stop
+# tar cvf gluu244-backup.tar /opt/gluu-server-3.1.3.1/
 ```
 
 ## Install Update Package
@@ -44,8 +44,8 @@ update package.
 
 ```
 # yum update
-# service gluu-server-2.4.4 stop
-# yum install gluu-updater-2.4.4
+# service gluu-server-3.1.3.1 stop
+# yum install gluu-updater-3.1.3.1
 
 ```
 
@@ -53,8 +53,8 @@ update package.
 
 ```
 # apt-get update
-# service gluu-server-2.4.4 stop
-# apt-get install gluu-updater-2.4.4
+# service gluu-server-3.1.3.1 stop
+# apt-get install gluu-updater-3.1.3.1
 
 ```
 
@@ -62,9 +62,9 @@ After the update package is installed, use the following commands to
 finalize the installation by running the update script. 
 
 ```
-# service gluu-server-2.4.4 start
-# service gluu-server-2.4.4 login
-# cd /opt/upd/2.4.4.sp2/bin
+# service gluu-server-3.1.3.1 start
+# service gluu-server-3.1.3.1 login
+# cd /opt/upd/3.1.3.1.sp2/bin
 # ./update_war.sh
 ```
 
