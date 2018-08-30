@@ -196,8 +196,12 @@ The latest schema files can be found [here](https://github.com/GluuFederation/co
     - Login to oxTrust and locate the interception script labelled `passport_social` (on "Manage custom scripts -> Person authentication").
     - Replace the contents with those of the file found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_3.1.4/static/extension/person_authentication/PassportExternalAuthenticator.py).
     - Add new property to script `behaviour` with value `social`
+    - Add this couple of properties too: `key_store_file=/etc/certs/passport-rp.jks`, `key_store_password=secret`
     - If you are employing Passport - Inbound SAML flow, substitute the `passport_saml` script as well. [Here](https://github.com/GluuFederation/community-edition-setup/blob/version_3.1.4/static/extension/person_authentication/SamlPassportAuthenticator.py) is the updated version.
-    - Add the same `behaviour` property to your `passport_saml` script
+    - Add the `behaviour` property to your `passport_saml` script with value `saml`
+    - Add `key_store_file` and `key_store_password` as in social script
+
+1. Edit `/etc/gluu/conf/passport-config.json` by changing "applicationEndpoint" property to "`https://<host-name>/oxauth/postlogin`"
 
 1. (Optional) In /etc/gluu/conf/passport-config.json add a property "logLevel", example: `"logLevel": "info",`
 
