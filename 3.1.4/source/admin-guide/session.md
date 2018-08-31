@@ -20,7 +20,7 @@ There are following properties related to session:
 - sessionIdUnusedLifetime - unused session_id lifetime (default 1 day). If session is not used for given amount of time then session is removed. 
 - sessionIdUnauthenticatedUnusedLifetime - lifetime of unauthenticated session_id. 
 - sessionIdEnabled - specifies whether it is allowed to authenticate user by session automatically (without end-user interaction).
-- sessionIdPersistOnPromptNone - specifies whether persist/update session object with data if `prompt=none`
+- sessionIdPersistOnPromptNone - specifies whether persist/update session object with data if `prompt=none`. Default value is `true`, so session is persisted by default.
 
 Session has two states `authenticated` and `unauthenticated`. While state is `unauthentiected` (user not logged in yet) `sessionIdUnauthenticatedUnusedLifetime` is used. After authentication `sessionIdUnusedLifetime` is used by OP.
 
