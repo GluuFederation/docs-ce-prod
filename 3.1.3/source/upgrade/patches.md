@@ -68,7 +68,7 @@ wget https://ox.gluu.org/maven/com/sun/faces/jsf-impl/2.1.28-jbossorg-1/jsf-impl
 wget https://ox.gluu.org/maven/org/jboss/spec/javax/faces/jboss-jsf-api_2.1_spec/2.1.28.Final/jboss-jsf-api_2.1_spec-2.1.28.Final.jar
 wget https://ox.gluu.org/maven/org/richfaces/richfaces/4.5.17-gluu.Final/richfaces-4.5.17-gluu.Final.jar
 wget https://ox.gluu.org/maven/org/richfaces/richfaces-a4j/4.5.17-gluu.Final/richfaces-a4j-4.5.17-gluu.Final.jar
-wget https://ox.gluu.org/maven/org/richfaces/richfaces-core/4.5.17-gluu.Final/richfaces-core-4.5.17-gluu.Final.ja
+wget https://ox.gluu.org/maven/org/richfaces/richfaces-core/4.5.17-gluu.Final/richfaces-core-4.5.17-gluu.Final.jar
 ```
 
 - Make backup
