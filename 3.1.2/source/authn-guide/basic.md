@@ -34,7 +34,7 @@ The script has the following properties:
 
 Basic authentication should be enabled out-of-the-box. In case it needs to be re-enabled, follow these steps: 
 
- 1. Navitage to `Configuration` > `Manage Custom Scripts`
+ 1. Navigate to `Configuration` > `Manage Custom Scripts`
  1. Expand `basic` 
  1. Check the box to `Enabled` the script
    - You can tail `oxauth_script.log` to check successful initialization of this script
@@ -59,7 +59,7 @@ By default, basic authentication is the default authentication method for the Gl
  
 ## Using Basic Authentication
 
-Open up a new browser or incognito window, try to login into your Gluu Server or perform SSOn with an SP or RP. 
+Open up a new browser or incognito window, try to login into your Gluu Server or perform SSO with an SP or RP. 
 
 ### Password reset in local Gluu LDAP
 
