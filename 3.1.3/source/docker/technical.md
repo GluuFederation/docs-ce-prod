@@ -18,6 +18,11 @@ The mandatory ports need to be published to the host server are port 80 and 443 
 
 oxTrust is an OpenID Connect client, so its container is dependent upon oxAuth's `/.well-known/openid-configuration` endpoint, which is only accessible if NGINX is started. So if the oxTrust container cannot navigate to `https://<hostname>/.well-known/openid-configuration`, it will fail to finish initialization. The container will most likely not exit.
 
+### Tini as Init for Container
+
+Almost all of the Gluu Server Docker images use [Tini](https://github.com/krallin/tini) to handle signal forwarding and to reap processes.
+We decided to include `tini` as not all of container scheduler/orchestrator has easy way to configure signal forwarding and process reaping.
+
 ### Images/Containers
 
 The Gluu Server Docker containers consist of in-house and 3rd-party containers.
