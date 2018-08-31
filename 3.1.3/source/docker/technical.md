@@ -246,3 +246,17 @@ The following variables are used by the container:
 - `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `stale` mode.
 - `GLUU_KUBERNETES_NAMESPACE`: Kubernetes namespace (default to `default`).
 - `GLUU_KUBERNETES_CONFIGMAP`: Kubernetes configmap name (default to `gluu`).
+
+#### key-rotation
+
+The following variables are used by the container:
+
+- `GLUU_CONFIG_ADAPTER`: The config backend adapter, can be `consul` (default) or `kubernetes`.
+- `GLUU_CONSUL_HOST`: hostname or IP of Consul (default to `localhost`).
+- `GLUU_CONSUL_PORT`: port of Consul (default to `8500`).
+- `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `stale` mode.
+- `GLUU_KUBERNETES_NAMESPACE`: Kubernetes namespace (default to `default`).
+- `GLUU_KUBERNETES_CONFIGMAP`: Kubernetes configmap name (default to `gluu`).
+- `GLUU_LDAP_URL`: The LDAP database's IP address or hostname. Default is `localhost:1636`. Multiple URLs can be used using comma-separated values (i.e. `192.168.100.1:1636,192.168.100.2:1636`).
+- `GLUU_KEY_ROTATION_INTERVAL`: how long the key should be expired (default to 48 hours).
+- `GLUU_KEY_ROTATION_CHECK`: delay between rotation check (default to 3600 seconds).
