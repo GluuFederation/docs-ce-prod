@@ -106,6 +106,20 @@ cp richfaces-core-4.5.17-gluu.Final.jar /opt/tomcat/webapps/identity/WEB-INF/lib
 cp richfaces-a4j-4.5.17-gluu.Final.jar  /opt/tomcat/webapps/identity/WEB-INF/lib/
 cp richfaces-4.5.17-gluu.Final.jar  /opt/tomcat/webapps/identity/WEB-INF/lib/
 ```
+- Fix customScriptListForm.xhtml
+
+Edit this file `/opt/tomcat/webapps/identity/WEB-INF/incl/script/customScriptListForm.xhtml` and add followings after
+`.removeConfig` directive:
+
+```
+    .rf-tab-hdr-tabline-vis.rf-tab-hdr-tabline-top {
+            height: 9% !important;
+            background: none !important;
+            background-color: transparent !important;
+            border: none !important;
+            overflow-x: auto  !important;            
+   }
+```
 
 - create war file
 
