@@ -6,8 +6,8 @@ When it comes to troubleshooting issues in the Gluu Server--from service hiccups
 See what's going on by tailing the `identity` and `oxauth` logs:
 
 ```
-$ tail -f /opt/gluu-server-3.1.3/opt/gluu/jetty/identity/logs/* \
-          /opt/gluu-server-3.1.3/opt/gluu/jetty/oxauth/logs/*
+$ tail -f /opt/gluu-server-3.1.3.1/opt/gluu/jetty/identity/logs/* \
+          /opt/gluu-server-3.1.3.1/opt/gluu/jetty/oxauth/logs/*
 ```       
 
 Logs can be lengthy and difficult to search. As needed, all logs inside the container can be cleared by using the clear-log feature explained in [clear-logs](./logs.md#clearing-logs).
@@ -17,9 +17,9 @@ Logs can be lengthy and difficult to search. As needed, all logs inside the cont
 Run the following commands if you find your instance running out of disk space:
 
 ```
-# /etc/init.d/gluu-server-3.1.3 stop
-# rm -rf /opt/gluu-server-3.1.3/opt/jetty-9.3/temp/*
-# /etc/init.d/gluu-server-3.1.3 start
+# /etc/init.d/gluu-server-3.1.3.1 stop
+# rm -rf /opt/gluu-server-3.1.3.1/opt/jetty-9.3/temp/*
+# /etc/init.d/gluu-server-3.1.3.1 start
 ```
 
 ## Adding Passport.js and/or Shibboleth IDP post installation
@@ -48,7 +48,7 @@ Connecting your local debugger up to Gluu can help with troubleshooting.
 Change the configuration of the `init.d` scripts for the `identity` and `oxauth` processes:
 
 ```
-# /etc/init.d/gluu-server-3.1.3 login
+# /etc/init.d/gluu-server-3.1.3.1 login
 # vim /etc/default/identity
 ```
 
@@ -116,7 +116,7 @@ For `oxAuth`:
 ```
 $ git clone https://github.com/GluuFederation/oxAuth.git
 $ cd oxAuth
-$ git checkout version_3.1.3
+$ git checkout version_3.1.3.1
 ```
 
 For `identity`:
@@ -124,7 +124,7 @@ For `identity`:
 ```
 $ git clone https://github.com/GluuFederation/oxTrust.git
 $ cd oxTrust
-$ git checkout version_3.1.3
+$ git checkout version_3.1.3.1
 ```
 
 ## Find your Gluu Server version
@@ -136,7 +136,7 @@ The Gluu Server version can be found in the oxTrust dashboard. Alternatively:
 
     a. Use the below command
     
-     `# service gluu-server-3.1.3 login`
+     `# service gluu-server-3.1.3.1 login`
      
 3. To find oxTrust version
 
@@ -154,7 +154,7 @@ identified with the [port number](./ports.md) after the localhost.
 
 Sooner or later you will probably want to peek at what is stored in the Gluu Server's local LDAP. This means connecting something like Apache Directory Studio to the `slapd` process running inside the chroot container.
 
-You can find the configuration you need in `/opt/gluu-server-3.1.3/etc/gluu/conf/ox-ldap.properties`, e.g.:
+You can find the configuration you need in `/opt/gluu-server-3.1.3.1/etc/gluu/conf/ox-ldap.properties`, e.g.:
 
 ```
 bindDN: cn=directory manager,o=gluu
@@ -307,7 +307,7 @@ In such a situation, you can use the following methods to revert back to the pre
 
 1. Manual Method: 
 
-This method rely on ldif file to change the authentication mode in LDAP server directly.
+This method relies on LDIF file to change the authentication mode in LDAP server directly.
 
 - Run the following command to collect the `inum` for the Gluu Server installation:   
     
@@ -379,7 +379,7 @@ echo 'add: member' >> $ldiffile
 echo "member: $(/opt/opendj/bin/ldapsearch -h localhost -p 1636 -D "cn=directory manager,o=gluu" -j ~/.pw -Z -X -b "o=gluu" "uid=$newgluuadmin" uid givenName sn cn |grep -A1 dn |cut -d ' ' -f 2- | sed 'N;s/\n//')" >> $ldiffile
 ```
 
-The resulting ldif will look like this:
+The resulting LDIF will look like this:
 
 ```bash
 dn: inum=@!134D.3C3D.796E.FECE!0001!E022.CC3C!0003!60B7,ou=groups,o=@!134D.3C3D.796E.FECE!0001!E022.CC3C,o=gluu
@@ -388,7 +388,7 @@ add: member
 member: inum=@!134D.3C3D.796E.FECE!0001!E022.CC3C!0000!A8F2.DE1E.D7FB,ou=people,o=@!134D.3C3D.796E.FECE!0001!E022.CC3C,o=gluu
 ```
 
-Once the ldif looks right, run this to grant your account admin rights in Gluu:
+Once the LDIF looks right, run this to grant your account admin rights in Gluu:
 
 ```bash
 /opt/opendj/bin/ldapmodify -h localhost -p 1636 -D "cn=directory manager,o=gluu" -j ~/.pw -Z -X -f addManagers.ldif
