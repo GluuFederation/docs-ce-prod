@@ -2,7 +2,7 @@
 User and session data is stored in Gluu's local LDAP server, and can be managed in the oxTrust GUI and directly in the LDAP server. At the heart of any good identity system is *good* data, so we always recommend getting familiar with your data in the LDAP tree using an LDAP browser. 
 
 ## Manage users in Gluu LDAP
-Open an LDAP browser like [JXplorer](http://jxplorer.org/) and find your LDAP configuration in `/opt/gluu-server-3.1.3/etc/gluu/conf/ox-ldap.properties`, e.g.:
+Open an LDAP browser like [JXplorer](http://jxplorer.org/) and find your LDAP configuration in `/opt/gluu-server-3.1.3.1/etc/gluu/conf/ox-ldap.properties`, e.g.:
 
 ```
 bindDN: cn=directory manager,o=gluu
@@ -75,8 +75,8 @@ This feature has been tested with a `xls` file.
 * Click on the `Import` button to complete the import of users.
 
 !!! Note
-     There is a [known issue](https://github.com/GluuFederation/oxTrust/issues/1007) in Gluu 3.1.3 that affects file upload feature like **Person Import**, **Organization logo upload**.
-     The solution for that issue is documented [here](https://gluu.org/docs/ce/operation/faq/#how-to-fix-imagefiles-upload-issue-in-gluu-313).
+     There is a [known issue](https://github.com/GluuFederation/oxTrust/issues/1007) in Gluu 3.1.3.1 that affects file upload feature like **Person Import**, **Organization logo upload**.
+     The solution for that issue is documented [here](../upgrade/patches.md#patching-imagefiles-uploading-for-gluu-3131).
 
 ### File Structure
 
