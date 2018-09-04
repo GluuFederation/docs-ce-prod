@@ -93,8 +93,8 @@ Additionally there is an option to add authorization policy with the new scope.
 ## Resource Registration
 
 !!! Warning
-    The "Add resource" button is temporarily absent from web UI in 3.1.3 packages and will be
-    added back in 3.1.4 with some enhancements. The easiest way to register a resource in 3.1.3
+    The "Add resource" button is temporarily absent from web UI in 3.1.3.1 packages and will be
+    added back in 3.1.4 with some enhancements. The easiest way to register a resource in 3.1.3.1
     is to employ [corresponding command](https://gluu.org/docs/oxd/3.1.3.1/api/#uma-rs-protect-resources) of oxd server (for setups which use it)
 
 Resources protected by UMA 2 must be registered in oxTrust by navigating to `UMA` > `Resources`. 
