@@ -1,6 +1,6 @@
 ## New features and enhancements
 
-SCIM server implementation was updated for version 3.1.3 in order to adhere more closely to SCIM standard and include features we had been missing. The following summarizes the most important enhancements:
+SCIM server implementation was updated for version 3.1.3 and later in order to adhere more closely to SCIM standard and include features we had been missing. The following summarizes the most important enhancements:
 
 ### Stricter validations
 
