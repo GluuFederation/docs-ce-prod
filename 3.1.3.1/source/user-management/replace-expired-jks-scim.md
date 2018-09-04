@@ -4,7 +4,7 @@ When your SCIM service is protected with UMA, your client application uses the `
 
 The following steps are required to update the keystores so that your server and client behave properly after expiration:
 
-First, log into the Gluu Server chroot (e.g. `service gluu-server-3.1.3 login`).
+First, log into the Gluu Server chroot (e.g. `service gluu-server-3.1.3.1 login`).
 
 Create a temporary folder to copy some needed files (e.g. `mkdir tmp`) and `cd` to it.
 
@@ -15,12 +15,12 @@ Extract needed Java libraries: `jar -xf /opt/gluu/jetty/oxauth/webapps/oxauth.wa
 Set an environment variable, as follows: 
     
 ```  
-JARS=bcprov-jdk15on-1.54.jar:bcpkix-jdk15on-1.54.jar:commons-lang-2.6.jar:commons-codec-1.7.jar:commons-cli-1.3.1.jar:commons-io-2.4.jar:jackson-core-2.8.10.jar:jackson-core-asl-1.9.11.jar:jackson-mapper-asl-1.9.11.jar:jackson-xc-1.9.13.jar:jettison-1.3.2.jar:oxauth-model-3.1.3.Final.jar:oxauth-client-3.1.3.Final.jar:log4j-api-2.8.2.jar:log4j-1.2-api-2.8.2.jar:log4j-core-2.8.2.jar 
+JARS=bcprov-jdk15on-1.54.jar:bcpkix-jdk15on-1.54.jar:commons-lang-2.6.jar:commons-codec-1.7.jar:commons-cli-1.3.1.jar:commons-io-2.4.jar:jackson-core-2.8.10.jar:jackson-core-asl-1.9.11.jar:jackson-mapper-asl-1.9.11.jar:jackson-xc-1.9.13.jar:jettison-1.3.2.jar:oxauth-model-3.1.3.1.Final.jar:oxauth-client-3.1.3.1.Final.jar:log4j-api-2.8.2.jar:log4j-1.2-api-2.8.2.jar:log4j-core-2.8.2.jar 
 
   export JARS
 ```  
 
-This is a list of files which must exist already in the current directory. Ensure every file is found there. Pay special attention to specific version of files. Make sure that the version for `oxauth-model` and `oxauth-client` matches your version (3.1.3 here).
+This is a list of files which must exist already in the current directory. Ensure every file is found there. Pay special attention to specific version of files. Make sure that the version for `oxauth-model` and `oxauth-client` matches your version (3.1.3.1 here).
     
 Create two JKS files using these commands: 
 
