@@ -68,9 +68,9 @@ By following the above instructions, you will replace the old richfaces library 
 
 A backup of your `identity.war`, before changes, is in the `/opt/upd/backup_$TIME_STAMP` directory in case you need it.\
 
-## Patching image/files uploading for Gluu 3.1.3
+## Patching image/files uploading for Gluu 3.1.3.1
  
- There is a [known issue](https://github.com/GluuFederation/oxTrust/issues/1007) in Gluu 3.1.3 that affects file upload feature like **Person Import**, **Organization logo upload**.
+ There is a [known issue](https://github.com/GluuFederation/oxTrust/issues/1007) in Gluu 3.1.3.1 that affects file upload feature like **Person Import**, **Organization logo upload**.
  
  Below are steps to fix that issue by patching the oxtrust war file.
  
