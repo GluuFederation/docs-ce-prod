@@ -1,11 +1,11 @@
-# Upgrade to Gluu Server 3.1.3
+# Upgrade to Gluu Server 3.1.3.1
 
 ## Overview
-The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You need to explicitly install the new version and export/import your data. Find your existing version below for upgrade instructions to Gluu Server 3.1.3. 
+The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You need to explicitly install the new version and export/import your data. Find your existing version below for upgrade instructions to Gluu Server 3.1.3.1. 
 
-## Upgrade from 3.1.x to 3.1.3
+## Upgrade from 3.1.x to 3.1.3.1
 
-Upgrading from 3.1.x to 3.1.3 involves the following steps:
+Upgrading from 3.1.x to 3.1.3.1 involves the following steps:
 
 - Update Jetty from 9.3 to 9.4.9
 
@@ -13,7 +13,7 @@ Upgrading from 3.1.x to 3.1.3 involves the following steps:
 
 - Backup existing oxTrust and oxAuth .war files
 
-- Download 3.1.3 oxTrust and oxAuth from repo
+- Download 3.1.3.1 oxTrust and oxAuth from repo
 
 - Copy oxTrust and oxAuth .war in path
 
@@ -23,7 +23,7 @@ Upgrading from 3.1.x to 3.1.3 involves the following steps:
 
 ### Updating .war and Schema Manually
 
-To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as outlined below:
+To upgrade from 3.1.x to 3.1.3.1, you have to manually update your .war files as outlined below:
 
 1. Log into chroot container:  
 
@@ -85,7 +85,7 @@ To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as o
     
     - `# rm oxauth.war`
     
-    - `# wget https://ox.gluu.org/maven/org/xdi/oxauth-server/3.1.3.Final/oxauth-server-3.1.3.Final.war -O oxauth.war`
+    - `# wget https://ox.gluu.org/maven/org/xdi/oxauth-server/3.1.3.1.Final/oxauth-server-3.1.3.1.Final.war -O oxauth.war`
     
 1. Start the "oxauth" service:
 
@@ -109,7 +109,7 @@ To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as o
     
     - `# rm identity.war`
     
-    - `# wget https://ox.gluu.org/maven/org/xdi/oxtrust-server/3.1.3.Final/oxtrust-server-3.1.3.Final.war -O identity.war`
+    - `# wget https://ox.gluu.org/maven/org/xdi/oxtrust-server/3.1.3.1.Final/oxtrust-server-3.1.3.1.Final.war -O identity.war`
 
 1. Start the "identity" service:  
     
@@ -133,7 +133,7 @@ To upgrade from 3.1.x to 3.1.3, you have to manually update your .war files as o
     
     - `# rm idp.war`
     
-    - `# wget https://ox.gluu.org/maven/org/xdi/oxshibbolethIdp/3.1.3.Final/oxshibbolethIdp-3.1.3.Final.war -O idp.war`
+    - `# wget https://ox.gluu.org/maven/org/xdi/oxshibbolethIdp/3.1.3.1.Final/oxshibbolethIdp-3.1.3.1.Final.war -O idp.war`
 
 1. Start the "idp" service:  
     
@@ -160,7 +160,7 @@ You will need to upgrade schema files to accommodate for new attributes added to
 
 1. Download the schema files to `/opt/opendj/config/schema/`:
 
-    `# wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.3/static/opendj/101-ox.ldif -O 101-ox.ldif`
+    `# wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.3.1/static/opendj/101-ox.ldif -O 101-ox.ldif`
     
    - `# chown ldap:ldap 101-ox.ldif`
 
@@ -186,7 +186,7 @@ The latest schema files can be found [here](https://github.com/GluuFederation/co
     
 1. Download the schema files to `/opt/gluu/schema/openldap`:
 
-   - `# wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.3/static/openldap/gluu.schema -O gluu.schema`
+   - `# wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.3.1/static/openldap/gluu.schema -O gluu.schema`
 
 1. Start LDAP service:
      
@@ -196,7 +196,7 @@ The latest schema files can be found [here](https://github.com/GluuFederation/co
     If the schema of your old instance was customized, such as through the addition of custom attributes and/or object classes, you'll need to manually migrate your changes (if any) to the newest `gluu.schema` file.
 
 !!! Note
-    The above procedure can be utilized to update other components of Gluu CE server 3.1.3, mentioned below.
+    The above procedure can be utilized to update other components of Gluu CE server 3.1.3.1, mentioned below.
 
 ### Update Passport.js installation.
 
@@ -206,7 +206,7 @@ The latest schema files can be found [here](https://github.com/GluuFederation/co
 
 1. Create a temporary directory inside container and move into it: `# mkdir ~/passport_update; cd ~/passport_update`
 
-1. Download and extract the recent Passport package: `# wget https://ox.gluu.org/npm/passport/passport-3.1.3.tgz; tar -xzvf passport-3.1.3.tgz`
+1. Download and extract the recent Passport package: `# wget https://ox.gluu.org/npm/passport/passport-3.1.3.1.tgz; tar -xzvf passport-3.1.3.1.tgz`
 
 1. Backup current Passport's files: `# tar -cvpzf ./passport-package-v312-backup.tar.gz /opt/gluu/node/passport/`
 
@@ -226,19 +226,19 @@ The latest schema files can be found [here](https://github.com/GluuFederation/co
 
 1. Patch known vulnerability in the code:
 
-    - Update the corresponding custom script: Login to oxTrust and locate the interception script labelled `passport_social` (on "Manage custom scripts -> Person authentication"). Replace the contents with those of the file found [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/version_3.1.3_securitypatch_issue30/scripts/PassportExternalAuthenticator.py).
+    - Update the corresponding custom script: Login to oxTrust and locate the interception script labelled `passport_social` (on "Manage custom scripts -> Person authentication"). Replace the contents with those of the file found [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/version_3.1.3.1_securitypatch_issue30/scripts/PassportExternalAuthenticator.py).
     - Add new properties to the `passport_social` authentication script (do not use quotes):
         - "key_store_file" = "/etc/certs/passport-rp.jks"
         - "key_store_password" = "secret"
-    - If you are employing Passport - Inbound SAML flow, substitute the `passport_saml` script as well. [Here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/version_3.1.3_securitypatch_issue30/scripts/SamlPassportAuthenticator.py) is the updated version.
+    - If you are employing Passport - Inbound SAML flow, substitute the `passport_saml` script as well. [Here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/version_3.1.3.1_securitypatch_issue30/scripts/SamlPassportAuthenticator.py) is the updated version.
     - Add the same two properties you just added to `passport_social` to Inbound SAML script (`passport_saml`)
     - Edit `/etc/gluu/conf/passport-config.json` by changing "applicationEndpoint" property to "`https://<host-name>/oxauth/postlogin`"
-    - Acquire patched `index.js` file from [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/version_3.1.3_securitypatch_issue30/server/routes/index.js) and overwrite `/opt/gluu/node/passport/server/routes/index.js` with it. Make sure its ownership is still set as "node:node": `# chown node:node /opt/gluu/node/passport/server/routes/index.js`
+    - Acquire patched `index.js` file from [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/version_3.1.3.1_securitypatch_issue30/server/routes/index.js) and overwrite `/opt/gluu/node/passport/server/routes/index.js` with it. Make sure its ownership is still set as "node:node": `# chown node:node /opt/gluu/node/passport/server/routes/index.js`
 
 !!! Note:
     If you are upgrading from 3.1.0 or 3.1.1, please account for the following 3 additional steps:
     
-1. Download [passport-saml-config.json](https://github.com/GluuFederation/community-edition-setup/raw/version_3.1.3/templates/passport-saml-config.json) and place it in directory `/etc/gluu/conf/`.
+1. Download [passport-saml-config.json](https://github.com/GluuFederation/community-edition-setup/raw/version_3.1.3.1/templates/passport-saml-config.json) and place it in directory `/etc/gluu/conf/`.
 
 1. Add this line `NODE_LOGS=$NODE_BASE/logs` to file `/etc/default/passport`
 
@@ -259,8 +259,7 @@ To finish please do:
 
 ### Latest .war Files
 
-The latest release of .war files can be downloaded from the locations provided below. Select the subdirectory corresponding to 
-your package version.
+The latest release of .war files can be downloaded from the locations provided below. Select the subdirectory corresponding to your package version.
 
 !!! Note
     Subdirectories marked as "-SNAPSHOT" are not safe for general public's use and should be avoided unless you were specifically instructed by Gluu staff to use one.
@@ -271,7 +270,7 @@ your package version.
 - [Asimba SAML proxy](https://ox.gluu.org/maven/org/asimba/asimba-wa/)
 - [oxAuth RP](https://ox.gluu.org/maven/org/xdi/oxauth-rp/)
 
-### Location of Gluu 3.1.3 Components
+### Location of Gluu 3.1.3.1 Components
 
 Gluu 3.1.x components that can be updated in this way inside the container can be found at the following locations:
 
@@ -282,7 +281,7 @@ Gluu 3.1.x components that can be updated in this way inside the container can b
 - oxAuth RP: `/opt/gluu/jetty/oxauth-rp/webapps/oxauth-rp.war`
 
 
-## Upgrade from 3.0.x to 3.1.3
+## Upgrade from 3.0.x to 3.1.3.1
 
 !!! Warning
     Before upgrading, make sure to [back up](../operation/backup.md) the Gluu container or LDAP LDIF. 
@@ -328,14 +327,14 @@ Stop the current version of the Gluu Server.
 # service gluu-server-3.0.x stop
 ```
 
-Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.1.3`, execute the following commands:
+Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.1.3.1`, execute the following commands:
 
 ```
-# cp -r /opt/gluu-server-3.0.x/root/backup_3031/ /opt/gluu-server-3.1.3/root/
+# cp -r /opt/gluu-server-3.0.x/root/backup_3031/ /opt/gluu-server-3.1.3.1/root/
 
-# service gluu-server-3.1.3 start
+# service gluu-server-3.1.3.1 start
 
-# service gluu-server-3.1.3 login
+# service gluu-server-3.1.3.1 login
 ```
 
 <a id="opendjmigration"></a>If you are migrating from OpenLDAP to OpenDJ download patched version:
@@ -377,7 +376,7 @@ Navigate to where you have the `backup_3031` folder (if the above commands were 
 
 Any errors or warnings will be displayed in the terminal and can be reviewed in the import log. Now you should be able to log into the oxTrust web UI using the old admin credentials and you should see all previous data in place. 
 
-## Upgrade from 2.x.x to 3.1.3
+## Upgrade from 2.x.x to 3.1.3.1
 
 !!! Warning
     Before proceeding with an upgrade, make sure to [back up](../operation/backup.md) the Gluu container or LDAP LDIF before proceeding with the upgrade. 
@@ -451,14 +450,14 @@ Stop the current version of the Gluu Server.
 # service gluu-server-2.4.x stop
 ```
 
-Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.1.3`, then follow the next steps to prepare :
+Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.1.3.1`, then follow the next steps to prepare :
 
 ```
-# cp -r /opt/gluu-server-2.4.x/root/backup_2431/ /opt/gluu-server-3.1.3/root/
+# cp -r /opt/gluu-server-2.4.x/root/backup_2431/ /opt/gluu-server-3.1.3.1/root/
 
-# service gluu-server-3.1.3 start
+# service gluu-server-3.1.3.1 start
 
-# service gluu-server-3.1.3 login
+# service gluu-server-3.1.3.1 login
 
 # cp backup_2431/setup.properties /install/community-edition-setup/
 
