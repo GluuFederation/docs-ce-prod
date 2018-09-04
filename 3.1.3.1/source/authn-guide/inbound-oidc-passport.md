@@ -4,7 +4,7 @@ Out of the box, passport supports integration with several well-known social sit
 
 ## Requirements
 
-- Gluu Server 3.1.3 with Passport.js 
+- Gluu Server 3.1.3.1 with Passport.js 
 
 !!! Note
     If Passport was not included during initial installation, it can be installed post installation following [these instructions](../operation/faq.md#adding-passportjs-andor-shibboleth-idp-post-installation)
@@ -14,7 +14,7 @@ Out of the box, passport supports integration with several well-known social sit
 There are some minor file changes that you'll need to apply in your passport app. It's good idea to have a copy at hand in case of problem. Login to chroot and backup passport:
 
 ```
-service gluu-server-3.1.3 login
+service gluu-server-3.1.3.1 login
 #cd ~ 
 #mkdir temp
 #cp -R /opt/gluu/node/passport/ temp
@@ -42,7 +42,7 @@ Create a logo image in png format for this provider. Copy the file to `/opt/gluu
 
 The file name should be the same as the provider name, eg. `mypartner.png` in this case.
 
-Download the file [passportlogin.xhtml](https://github.com/GluuFederation/oxAuth/blob/version_3.1.3/Server/src/main/webapp/auth/passport/passportlogin.xhtml) and do these edits:
+Download the file [passportlogin.xhtml](https://github.com/GluuFederation/oxAuth/blob/version_3.1.3.1/Server/src/main/webapp/auth/passport/passportlogin.xhtml) and do these edits:
 
 - After line 333 add logic to properly read the new image. The following will work:
 
@@ -154,8 +154,7 @@ We have to add and edit some files to make passport aware of our new openId conn
             passport: passport,  
             setCredentials: setCredentials  
         };  
-     
-    
+         
 
 !!! Note
     Provide suitable values for OP's endpoints (lines 7-10)
