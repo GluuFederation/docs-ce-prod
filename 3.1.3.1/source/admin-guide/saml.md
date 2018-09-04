@@ -133,7 +133,7 @@ Here are two use cases where you might need to play with the Shib templates:
 ### Manually-created custom NameID
 If a Gluu Server administrator prefers to manually create a custom nameID, then the following procedure can be followed: 
 
- - Create a custom attribute by following the "Creating Custom Attribute" document: https://gluu.org/docs/ce/3.1.3/admin-guide/attribute/#custom-attributes
+ - Create a custom attribute by following the "Creating Custom Attribute" document: https://gluu.org/docs/ce/admin-guide/attribute/#custom-attributes
  - Go to the template location (as mentioned above)
  - Open 'attribute-resolver.xml.vm' 
    - Add this attribute definition: `#if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('persistentId') or $attribute.name.equals('customAttribute') ) )`
