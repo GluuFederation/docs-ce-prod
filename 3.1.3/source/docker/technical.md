@@ -47,7 +47,9 @@ Due to the design of Docker networking where container IP gets recycled dynamica
 
 The following commands are supported by the container:
 
-- [generate](https://github.com/GluuFederation/docker-config-init/tree/3.1.3#generate-command): The generate command will generate all the initial configuration files for the Gluu Server components. The following parameters and/or environment variables are required to launch unless otherwise marked.
+-   [generate](https://github.com/GluuFederation/docker-config-init/tree/3.1.3#generate-command): The generate command will generate all the initial configuration files for the Gluu Server components. All existing config will be ignored unless forced by passing environment variable `GLUU_OVERWRITE_ALL`.
+
+    The following parameters and/or environment variables are required to launch unless otherwise marked.
 
     Parameters:
 
@@ -68,9 +70,10 @@ The following commands are supported by the container:
     - `GLUU_CONFIG_ADAPTER`: The config backend adapter, can be `consul` (default) or `kubernetes`.
     - `GLUU_CONSUL_HOST`: hostname or IP of Consul (default to `localhost`).
     - `GLUU_CONSUL_PORT`: port of Consul (default to `8500`).
-    - `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `stale` mode.
+    - `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `default` mode.
     - `GLUU_KUBERNETES_NAMESPACE`: Kubernetes namespace (default to `default`).
     - `GLUU_KUBERNETES_CONFIGMAP`: Kubernetes configmap name (default to `gluu`).
+    - `GLUU_OVERWRITE_ALL`: Overwrite all config (default to `false`).
 
 - [dump](https://github.com/GluuFederation/docker-config-init/tree/3.1.3#dump-command): The dump command will dump all configuration from inside KV store into the `/opt/config-init/db/config.json` file inside the container. The following parameters and/or environment variables are required to launch unless otherwise marked.
 
@@ -79,7 +82,7 @@ The following commands are supported by the container:
     - `GLUU_CONFIG_ADAPTER`: The config backend adapter, can be `consul` (default) or `kubernetes`.
     - `GLUU_CONSUL_HOST`: hostname or IP of Consul (default to `localhost`).
     - `GLUU_CONSUL_PORT`: port of Consul (default to `8500`).
-    - `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `stale` mode.
+    - `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `default` mode.
     - `GLUU_KUBERNETES_NAMESPACE`: Kubernetes namespace (default to `default`).
     - `GLUU_KUBERNETES_CONFIGMAP`: Kubernetes configmap name (default to `gluu`).
 
@@ -94,16 +97,19 @@ The following commands are supported by the container:
             gluufederation/config-init:latest \
             dump
 
-- [load](https://github.com/GluuFederation/docker-config-init/tree/3.1.3#load-command): The load command will load a `config.json` into the KV store. The following parameters and/or environment variables are required to launch unless otherwise marked:
+-   [load](https://github.com/GluuFederation/docker-config-init/tree/3.1.3#load-command): The load command will load a `config.json` into the KV store. All existing config will be ignored unless forced by passing environment variable `GLUU_OVERWRITE_ALL`.
+
+    The following parameters and/or environment variables are required to launch unless otherwise marked:
 
     Environment variables:
 
     - `GLUU_CONFIG_ADAPTER`: The config backend adapter, can be `consul` (default) or `kubernetes`.
     - `GLUU_CONSUL_HOST`: hostname or IP of Consul (default to `localhost`).
     - `GLUU_CONSUL_PORT`: port of Consul (default to `8500`).
-    - `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `stale` mode.
+    - `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `default` mode.
     - `GLUU_KUBERNETES_NAMESPACE`: Kubernetes namespace (default to `default`).
     - `GLUU_KUBERNETES_CONFIGMAP`: Kubernetes configmap name (default to `gluu`).
+    - `GLUU_OVERWRITE_ALL`: Overwrite all config (default to `false`).
 
     Please note that to load this file from the host, you'll need to map a mounted volume to the `/opt/config-init/db` directory. For example on how to load the config from `/path/to/host/volume/config.json` file:
 
