@@ -78,7 +78,7 @@ Enable the required custom scripts:
 
 - Login to oxTrust and navigate to "Configuration" > "Custom scripts"
 - In "Person Authentication" tab, collapse the script labelled "passport_social" and check "enabled". ![Enable passport_social](../img/user-authn/passport/enable-passport.png) 
-- In "UMA RPT Policies" tab, collapse the "uma_client_authz_rpt_policy" and check "enabled"
+- In "UMA RPT Policies" tab, collapse "scim_access_policy" and check "enabled"
 - Press "Update" at the bottom of the page
 
 Enable passport support:

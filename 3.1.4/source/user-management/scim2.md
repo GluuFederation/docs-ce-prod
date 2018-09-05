@@ -26,7 +26,7 @@ By default, the API is not active, so the first step is just to enable it:
 
 Then, enable UMA protection mode:
 
-- Activate the UMA SCIM custom script in oxTrust admin GUI: Go to `Configuration` > `Manage Custom Scripts`, and in the tab for `UMA RPT policies` check "Enabled" for the script labeled "Sample client authz UMA RPT Policy". Finally press the "Update" button
+- Activate the UMA SCIM custom script in oxTrust admin GUI: Go to `Configuration` > `Manage Custom Scripts`, and in the tab for `UMA RPT policies` check "Enabled" for the script labeled "scim_access_policy". Finally press the "Update" button
 
 ![enable uma](../img/scim/enable_uma.png)
 
