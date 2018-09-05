@@ -400,7 +400,7 @@ Log into the web interface and pick up where you left off :)
 
 **SAML:** The SAML IDP sends an authorization request to oxAuth for user authentication.. In the request there is a JWT state parameter which contains a claim called `relyingPartyId`. You can use this `relyingPartyId` to render the proper form based on the SP... so `SP=relyingPartyId`.     
 
-**OpeniD Connect:** In OpenID Connect, clients (RPs) can use `acr_values` to request a certain authentication flow. In the Gluu Server `acr_values` correspond to authentication interception scripts. A basic example might be having a specific `acr_value` for `app1`. When App 1 sends users to your IDP for login, it can specify `"acr_values": ["app1"]` to notify your Gluu Server to present the desired login flow for that app. Learn more about acr's and authentication scripts in the [Authentication Guide](../authn-guide/intro.md).     
+**OpenID Connect:** In OpenID Connect, clients (RPs) can use `acr_values` to request a certain authentication flow. In the Gluu Server `acr_values` correspond to authentication interception scripts. A basic example might be having a specific `acr_value` for `app1`. When App 1 sends users to your IDP for login, it can specify `"acr_values": ["app1"]` to notify your Gluu Server to present the desired login flow for that app. Learn more about acr's and authentication scripts in the [Authentication Guide](../authn-guide/intro.md).     
  
  ## How to add new index in Symas OpenLDAP
  ### Introduction
@@ -446,7 +446,7 @@ The steps are:
 
  
 ## How to redirect your Gluu hostname to a URL other than /identity
-By default, when you hit your Gluu Server hostname it will redirect to `<hostname>/identity` and you will login to your oxTrust GUI. As oxTrust is primary an admin tool, you might want to change this default behavior so that user's are not able to access oxTrust without specifically requesting the `<hostname>/identity` URL. Follow the below steps to adjust your web server configuration:
+By default, when you hit your Gluu Server hostname it will redirect to `<hostname>/identity` and you will login to your oxTrust GUI. As oxTrust is primarily an admin tool, you might want to change this default behavior so that users are not able to access oxTrust without specifically requesting the `<hostname>/identity` URL. Follow the below steps to adjust your web server configuration:
 
 **Ubuntu / Debian:** 
 
