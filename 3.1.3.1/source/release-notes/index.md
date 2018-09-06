@@ -46,3 +46,7 @@ documentation and administrative guide.
 
 ### Code White Patch
 In August 2018, a critical vulnerability was discovered in the Jboss Richfaces library, and our team immediately released a patch. Version 3.1.3.1 comes with that patch pre-implemented, but is otherwise identical to 3.1.3.
+
+## New Features
+
+No new features in this release. See release notes from [Gluu Server 3.1.3](https://gluu.org/docs/ce/3.1.3/release-notes/) for new features included in 3.1.3.x
