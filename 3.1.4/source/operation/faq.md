@@ -421,6 +421,22 @@ The SAML IDP sends an authorization request to oxAuth for user authentication.. 
  1. Move back the war file: `#cp identity.war /opt/gluu/jetty/identity/identity.war`
  1. Restart identity service: `#service identity restart`
  
+## How to redirect your Gluu hostname to a URL other than /identity
+By default, when you hit your Gluu Server hostname it will redirect to `<hostname>/identity` and you will login to your oxTrust GUI. As oxTrust is primarily an admin tool, you might want to change this default behavior so that users are not able to access oxTrust without specifically requesting the `<hostname>/identity` URL. Follow the below steps to adjust your web server configuration:
+
+**Ubuntu / Debian:** 
+ 
+1. Open: `/etc/apache2/sites-enabled/https_gluu.conf`
+1. Search for: `RedirectMatch ^(/)$ /identity/`
+1. Change `/identity/` to a different URL
+1. Run the command: `service apache2 reload`
+
+**CentOS / RHEL:** 
+
+1. Open: `/etc/httpd/conf.d/https_gluu.conf`
+1. Search for: `RedirectMatch ^(/)$ /identity/`
+1. Change `/identity/` to a different URL
+1. Run the command: `service httpd reload`
  
 
 
