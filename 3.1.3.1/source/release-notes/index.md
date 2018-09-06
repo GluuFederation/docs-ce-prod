@@ -28,7 +28,7 @@ Please visit the [Gluu Documentation Page](http://www.gluu.org/docs/ce) for the 
 documentation and administrative guide. 
 
 ## Available components in Gluu Server 3.1.3.1
-- oxAuth, oxTrust, oxCore v3.1.3
+- oxAuth, oxTrust, oxCore v3.1.3.1
 - Gluu OpenLDAP v2.4.44-5
 - Gluu OpenDJ v3.0
 - Shibboleth v3.2.1
