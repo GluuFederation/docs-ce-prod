@@ -450,12 +450,12 @@ By default, when you hit your Gluu Server hostname it will redirect to `<hostnam
  
 1. Open: `/etc/apache2/sites-enabled/https_gluu.conf`
 1. Search for: `RedirectMatch ^(/)$ /identity/`
-1. Change identity to a different URL.
+1. Change `/identity/` to a different URL.
 1. Run the command: `service apache2 reload`
 
 **CentOS / RHEL:** 
 
 1. Open: `/etc/httpd/conf.d/https_gluu.conf`
 1. Search for: `RedirectMatch ^(/)$ /identity/`
-1. Change identity to a different URL.
+1. Change `/identity/` to a different URL.
 1. Run the command: `service httpd reload`
