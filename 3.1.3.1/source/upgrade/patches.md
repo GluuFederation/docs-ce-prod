@@ -3,7 +3,7 @@
 ## Code White Patch
 
 !!! Note
-   Version 3.1.3.1 comes with the Code White patch already implemented.
+    Version 3.1.3.1 comes with the Code White patch already implemented.
    
 ### August 21, 2018
 
