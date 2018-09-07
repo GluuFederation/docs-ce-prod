@@ -192,6 +192,15 @@ The couple of log statements added print all profile data received from the exte
 
 Do a login attempt by choosing the external provider of your interest, then check the contents of [passport node logs](#about-passport-logs).
 
+## How user onboarding works
+
+As stated in the [sample flow](#sample-authentication-flow), after a user has logged in at an external provider a new record is added in local LDAP - or updated in case the user is known -. To determine if a user was already added, a string composed by the provider name as well as his ID is used. As an example, if user "MrBrown" has logged in at Twitter, the string would look like `passport-twitter:mrbrown`. An LDAP search is performed for a match in the people branch for an entry where attribute `oxExternalUid` equals to `passport-twitter:mrbrown`.
+
+If there are no matches, a new user entry is added with the values [received](#inspecting-profile-data) from the external provider as well as the computed value for `oxExternalUid`. The user profile can contain single or multivalued attributes, however it is required specifically that `id` and `provider` be single-valued.
+
+Probably you already noticed there is no `id` LDAP attribute. Actually, there is an intermediate step which does mapping of attributes from the remote source (external provider) to the local destination (Gluu LDAP). This is controlled by the [configuration properties](#custom-script-parameters) found in Passport's interception script.
+
+Also note that you can apply some transformation of incoming attribute values before they are sent to the custom script by tweaking the correponding `js` file of the strategy of your interest.
 
 ## Altering flow behaviour
 
