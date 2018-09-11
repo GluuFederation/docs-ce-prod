@@ -41,6 +41,8 @@ __Note:__ for Kubernetes user or non-Consul based deployment, this container can
 
 Due to the design of Docker networking where container IP gets recycled dynamically, [Registrator](http://gliderlabs.github.io/registrator/latest/) container is used for registering and deregistering oxAuth, oxTrust, oxShibboleth, and oxPassport container's IP. With the help of Registrator, the NGINX container will route the traffic to available oxAuth/oxTrust/oxShibboleth/oxPassport backend.
 
+To connect to Consul container that deployed using HTTPS scheme, please use `gluufederation/registrator:dev` image instead.
+
 #### config-init
 
 [config-init](https://github.com/GluuFederation/docker-config-init/tree/3.1.3) is a special container that is not daemonized nor executing a long-running process. The purpose of this container is to generate the initial configuration, dump the existing configuration (for backup), or even load (restore) the configuration in KV store (Consul or Kubernetes configmap).
@@ -71,6 +73,12 @@ The following commands are supported by the container:
     - `GLUU_CONSUL_HOST`: hostname or IP of Consul (default to `localhost`).
     - `GLUU_CONSUL_PORT`: port of Consul (default to `8500`).
     - `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `default` mode.
+    - `GLUU_CONSUL_SCHEME`: supported Consul scheme (`http` or `https`).
+    - `GLUU_CONSUL_VERIFY`: whether to verify cert or not (default to `false`).
+    - `GLUU_CONSUL_CACERT_FILE`: path to Consul CA cert file (default to `/etc/certs/consul_ca.crt`). This file will be used if it exists and `GLUU_CONSUL_VERIFY` set to `true`.
+    - `GLUU_CONSUL_CERT_FILE`: path to Consul cert file (default to `/etc/certs/consul_client.crt`).
+    - `GLUU_CONSUL_KEY_FILE`: path to Consul key file (default to `/etc/certs/consul_client.key`).
+    - `GLUU_CONSUL_TOKEN_FILE`: path to file contains ACL token (default to `/etc/certs/consul_token`).
     - `GLUU_KUBERNETES_NAMESPACE`: Kubernetes namespace (default to `default`).
     - `GLUU_KUBERNETES_CONFIGMAP`: Kubernetes configmap name (default to `gluu`).
     - `GLUU_OVERWRITE_ALL`: Overwrite all config (default to `false`).
@@ -83,6 +91,12 @@ The following commands are supported by the container:
     - `GLUU_CONSUL_HOST`: hostname or IP of Consul (default to `localhost`).
     - `GLUU_CONSUL_PORT`: port of Consul (default to `8500`).
     - `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `default` mode.
+    - `GLUU_CONSUL_SCHEME`: supported Consul scheme (`http` or `https`).
+    - `GLUU_CONSUL_VERIFY`: whether to verify cert or not (default to `false`).
+    - `GLUU_CONSUL_CACERT_FILE`: path to Consul CA cert file (default to `/etc/certs/consul_ca.crt`). This file will be used if it exists and `GLUU_CONSUL_VERIFY` set to `true`.
+    - `GLUU_CONSUL_CERT_FILE`: path to Consul cert file (default to `/etc/certs/consul_client.crt`).
+    - `GLUU_CONSUL_KEY_FILE`: path to Consul key file (default to `/etc/certs/consul_client.key`).
+    - `GLUU_CONSUL_TOKEN_FILE`: path to file contains ACL token (default to `/etc/certs/consul_token`).
     - `GLUU_KUBERNETES_NAMESPACE`: Kubernetes namespace (default to `default`).
     - `GLUU_KUBERNETES_CONFIGMAP`: Kubernetes configmap name (default to `gluu`).
 
@@ -107,6 +121,12 @@ The following commands are supported by the container:
     - `GLUU_CONSUL_HOST`: hostname or IP of Consul (default to `localhost`).
     - `GLUU_CONSUL_PORT`: port of Consul (default to `8500`).
     - `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `default` mode.
+    - `GLUU_CONSUL_SCHEME`: supported Consul scheme (`http` or `https`).
+    - `GLUU_CONSUL_VERIFY`: whether to verify cert or not (default to `false`).
+    - `GLUU_CONSUL_CACERT_FILE`: path to Consul CA cert file (default to `/etc/certs/consul_ca.crt`). This file will be used if it exists and `GLUU_CONSUL_VERIFY` set to `true`.
+    - `GLUU_CONSUL_CERT_FILE`: path to Consul cert file (default to `/etc/certs/consul_client.crt`).
+    - `GLUU_CONSUL_KEY_FILE`: path to Consul key file (default to `/etc/certs/consul_client.key`).
+    - `GLUU_CONSUL_TOKEN_FILE`: path to file contains ACL token (default to `/etc/certs/consul_token`).
     - `GLUU_KUBERNETES_NAMESPACE`: Kubernetes namespace (default to `default`).
     - `GLUU_KUBERNETES_CONFIGMAP`: Kubernetes configmap name (default to `gluu`).
     - `GLUU_OVERWRITE_ALL`: Overwrite all config (default to `false`).
@@ -130,6 +150,12 @@ The following variables are used by the container:
 - `GLUU_CONSUL_HOST`: hostname or IP of Consul (default to `localhost`).
 - `GLUU_CONSUL_PORT`: port of Consul (default to `8500`).
 - `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `stale` mode.
+- `GLUU_CONSUL_SCHEME`: supported Consul scheme (`http` or `https`).
+- `GLUU_CONSUL_VERIFY`: whether to verify cert or not (default to `false`).
+- `GLUU_CONSUL_CACERT_FILE`: path to Consul CA cert file (default to `/etc/certs/consul_ca.crt`). This file will be used if it exists and `GLUU_CONSUL_VERIFY` set to `true`.
+- `GLUU_CONSUL_CERT_FILE`: path to Consul cert file (default to `/etc/certs/consul_client.crt`).
+- `GLUU_CONSUL_KEY_FILE`: path to Consul key file (default to `/etc/certs/consul_client.key`).
+- `GLUU_CONSUL_TOKEN_FILE`: path to file contains ACL token (default to `/etc/certs/consul_token`).
 - `GLUU_KUBERNETES_NAMESPACE`: Kubernetes namespace (default to `default`).
 - `GLUU_KUBERNETES_CONFIGMAP`: Kubernetes configmap name (default to `gluu`).
 - `GLUU_LDAP_INIT`: whether to import initial LDAP entries (possible values are true or false).
@@ -159,6 +185,12 @@ The following variables are used by the container:
 - `GLUU_CONSUL_HOST`: hostname or IP of Consul (default to `localhost`).
 - `GLUU_CONSUL_PORT`: port of Consul (default to `8500`).
 - `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `stale` mode.
+- `GLUU_CONSUL_SCHEME`: supported Consul scheme (`http` or `https`).
+- `GLUU_CONSUL_VERIFY`: whether to verify cert or not (default to `false`).
+- `GLUU_CONSUL_CACERT_FILE`: path to Consul CA cert file (default to `/etc/certs/consul_ca.crt`). This file will be used if it exists and `GLUU_CONSUL_VERIFY` set to `true`.
+- `GLUU_CONSUL_CERT_FILE`: path to Consul cert file (default to `/etc/certs/consul_client.crt`).
+- `GLUU_CONSUL_KEY_FILE`: path to Consul key file (default to `/etc/certs/consul_client.key`).
+- `GLUU_CONSUL_TOKEN_FILE`: path to file contains ACL token (default to `/etc/certs/consul_token`).
 - `GLUU_KUBERNETES_NAMESPACE`: Kubernetes namespace (default to `default`).
 - `GLUU_KUBERNETES_CONFIGMAP`: Kubernetes configmap name (default to `gluu`).
 - `GLUU_LDAP_INIT`: whether to import initial LDAP entries (possible values are true or false)
@@ -178,6 +210,12 @@ Variables used by the container:
 - `GLUU_CONSUL_HOST`: hostname or IP of Consul (default to `localhost`).
 - `GLUU_CONSUL_PORT`: port of Consul (default to `8500`).
 - `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `stale` mode.
+- `GLUU_CONSUL_SCHEME`: supported Consul scheme (`http` or `https`).
+- `GLUU_CONSUL_VERIFY`: whether to verify cert or not (default to `false`).
+- `GLUU_CONSUL_CACERT_FILE`: path to Consul CA cert file (default to `/etc/certs/consul_ca.crt`). This file will be used if it exists and `GLUU_CONSUL_VERIFY` set to `true`.
+- `GLUU_CONSUL_CERT_FILE`: path to Consul cert file (default to `/etc/certs/consul_client.crt`).
+- `GLUU_CONSUL_KEY_FILE`: path to Consul key file (default to `/etc/certs/consul_client.key`).
+- `GLUU_CONSUL_TOKEN_FILE`: path to file contains ACL token (default to `/etc/certs/consul_token`).
 - `GLUU_KUBERNETES_NAMESPACE`: Kubernetes namespace (default to `default`).
 - `GLUU_KUBERNETES_CONFIGMAP`: Kubernetes configmap name (default to `gluu`).
 - `GLUU_LDAP_URL`: The LDAP database's IP address or hostname. Default is `localhost:1636`. Multiple URLs can be used using comma-separated values (i.e. `192.168.100.1:1636,192.168.100.2:1636`).
@@ -192,6 +230,12 @@ The following variables are used by the container:
 - `GLUU_CONSUL_HOST`: hostname or IP of Consul (default to `localhost`).
 - `GLUU_CONSUL_PORT`: port of Consul (default to `8500`).
 - `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `stale` mode.
+- `GLUU_CONSUL_SCHEME`: supported Consul scheme (`http` or `https`).
+- `GLUU_CONSUL_VERIFY`: whether to verify cert or not (default to `false`).
+- `GLUU_CONSUL_CACERT_FILE`: path to Consul CA cert file (default to `/etc/certs/consul_ca.crt`). This file will be used if it exists and `GLUU_CONSUL_VERIFY` set to `true`.
+- `GLUU_CONSUL_CERT_FILE`: path to Consul cert file (default to `/etc/certs/consul_client.crt`).
+- `GLUU_CONSUL_KEY_FILE`: path to Consul key file (default to `/etc/certs/consul_client.key`).
+- `GLUU_CONSUL_TOKEN_FILE`: path to file contains ACL token (default to `/etc/certs/consul_token`).
 - `GLUU_KUBERNETES_NAMESPACE`: Kubernetes namespace (default to `default`).
 - `GLUU_KUBERNETES_CONFIGMAP`: Kubernetes configmap name (default to `gluu`).
 - `GLUU_LDAP_URL`: The LDAP database's IP address or hostname. Default is `localhost:1636`. Multiple URLs can be used using comma-separated values (i.e. `192.168.100.1:1636,192.168.100.2:1636`).
@@ -211,6 +255,12 @@ The following variables are used by the container:
 - `GLUU_CONSUL_HOST`: hostname or IP of Consul (default to `localhost`).
 - `GLUU_CONSUL_PORT`: port of Consul (default to `8500`).
 - `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `stale` mode.
+- `GLUU_CONSUL_SCHEME`: supported Consul scheme (`http` or `https`).
+- `GLUU_CONSUL_VERIFY`: whether to verify cert or not (default to `false`).
+- `GLUU_CONSUL_CACERT_FILE`: path to Consul CA cert file (default to `/etc/certs/consul_ca.crt`). This file will be used if it exists and `GLUU_CONSUL_VERIFY` set to `true`.
+- `GLUU_CONSUL_CERT_FILE`: path to Consul cert file (default to `/etc/certs/consul_client.crt`).
+- `GLUU_CONSUL_KEY_FILE`: path to Consul key file (default to `/etc/certs/consul_client.key`).
+- `GLUU_CONSUL_TOKEN_FILE`: path to file contains ACL token (default to `/etc/certs/consul_token`).
 - `GLUU_KUBERNETES_NAMESPACE`: Kubernetes namespace (default to `default`).
 - `GLUU_KUBERNETES_CONFIGMAP`: Kubernetes configmap name (default to `gluu`).
 - `GLUU_LDAP_URL`: The IP address or hostname of the LDAP database. Default is `localhost:1636`. Multiple URLs can be used using comma-separated values (i.e. `192.168.100.1:1636,192.168.100.2:1636`).
@@ -233,6 +283,12 @@ The following variables are used by the container:
 - `GLUU_CONSUL_HOST`: hostname or IP of Consul (default to `localhost`).
 - `GLUU_CONSUL_PORT`: port of Consul (default to `8500`).
 - `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `stale` mode.
+- `GLUU_CONSUL_SCHEME`: supported Consul scheme (`http` or `https`).
+- `GLUU_CONSUL_VERIFY`: whether to verify cert or not (default to `false`).
+- `GLUU_CONSUL_CACERT_FILE`: path to Consul CA cert file (default to `/etc/certs/consul_ca.crt`). This file will be used if it exists and `GLUU_CONSUL_VERIFY` set to `true`.
+- `GLUU_CONSUL_CERT_FILE`: path to Consul cert file (default to `/etc/certs/consul_client.crt`).
+- `GLUU_CONSUL_KEY_FILE`: path to Consul key file (default to `/etc/certs/consul_client.key`).
+- `GLUU_CONSUL_TOKEN_FILE`: path to file contains ACL token (default to `/etc/certs/consul_token`).
 - `GLUU_KUBERNETES_NAMESPACE`: Kubernetes namespace (default to `default`).
 - `GLUU_KUBERNETES_CONFIGMAP`: Kubernetes configmap name (default to `gluu`).
 - `GLUU_MAX_RAM_FRACTION`: Used in conjunction with Docker memory limitations (`docker run -m <mem>`) to identify the fraction of the maximum amount of heap memory you want the JVM to use.
@@ -255,6 +311,12 @@ The following variables are used by the container:
 - `GLUU_CONSUL_HOST`: hostname or IP of Consul (default to `localhost`).
 - `GLUU_CONSUL_PORT`: port of Consul (default to `8500`).
 - `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `stale` mode.
+- `GLUU_CONSUL_SCHEME`: supported Consul scheme (`http` or `https`).
+- `GLUU_CONSUL_VERIFY`: whether to verify cert or not (default to `false`).
+- `GLUU_CONSUL_CACERT_FILE`: path to Consul CA cert file (default to `/etc/certs/consul_ca.crt`). This file will be used if it exists and `GLUU_CONSUL_VERIFY` set to `true`.
+- `GLUU_CONSUL_CERT_FILE`: path to Consul cert file (default to `/etc/certs/consul_client.crt`).
+- `GLUU_CONSUL_KEY_FILE`: path to Consul key file (default to `/etc/certs/consul_client.key`).
+- `GLUU_CONSUL_TOKEN_FILE`: path to file contains ACL token (default to `/etc/certs/consul_token`).
 - `GLUU_KUBERNETES_NAMESPACE`: Kubernetes namespace (default to `default`).
 - `GLUU_KUBERNETES_CONFIGMAP`: Kubernetes configmap name (default to `gluu`).
 
@@ -266,6 +328,12 @@ The following variables are used by the container:
 - `GLUU_CONSUL_HOST`: hostname or IP of Consul (default to `localhost`).
 - `GLUU_CONSUL_PORT`: port of Consul (default to `8500`).
 - `GLUU_CONSUL_CONSISTENCY`: Consul consistency mode (choose one of `default`, `consistent`, or `stale`). Default to `stale` mode.
+- `GLUU_CONSUL_SCHEME`: supported Consul scheme (`http` or `https`).
+- `GLUU_CONSUL_VERIFY`: whether to verify cert or not (default to `false`).
+- `GLUU_CONSUL_CACERT_FILE`: path to Consul CA cert file (default to `/etc/certs/consul_ca.crt`). This file will be used if it exists and `GLUU_CONSUL_VERIFY` set to `true`.
+- `GLUU_CONSUL_CERT_FILE`: path to Consul cert file (default to `/etc/certs/consul_client.crt`).
+- `GLUU_CONSUL_KEY_FILE`: path to Consul key file (default to `/etc/certs/consul_client.key`).
+- `GLUU_CONSUL_TOKEN_FILE`: path to file contains ACL token (default to `/etc/certs/consul_token`).
 - `GLUU_KUBERNETES_NAMESPACE`: Kubernetes namespace (default to `default`).
 - `GLUU_KUBERNETES_CONFIGMAP`: Kubernetes configmap name (default to `gluu`).
 - `GLUU_LDAP_URL`: The LDAP database's IP address or hostname. Default is `localhost:1636`. Multiple URLs can be used using comma-separated values (i.e. `192.168.100.1:1636,192.168.100.2:1636`).
