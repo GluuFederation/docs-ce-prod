@@ -205,7 +205,7 @@ Follow the guidelines below to install the Demo app at your Gluu Server host. Co
 1. Connect to the Gluu Server via SSH    
 2. Login to the chroot container: `# service gluu-server-3.1.3.1 login`       
 3. Ensure incoming connections to TCP port 3000 are allowed to reach applications running on this machine     
-4. Download the [project files](https://github.com/GluuFederation/Inbound-SAML-Demo/archive/version_3.1.3.1.zip) manually and upload them to this machine
+4. Download the [project files](https://github.com/GluuFederation/Inbound-SAML-Demo/archive/version_3.1.3.zip) manually and upload them to this machine
 5. Move the downloaded files into "node" user home directory: `# cp -R ./Inbound-SAML-Demo /home/node/`       
 6. Ensure correct permissions are set for the directory: `# chown -R node:node /home/node/Inbound-SAML-Demo/`    
 7. Switch to "node" user: `# su - node`
