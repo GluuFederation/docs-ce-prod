@@ -22,14 +22,14 @@ There are following properties related to session:
 - sessionIdEnabled - specifies whether it is allowed to authenticate user by session automatically (without end-user interaction).
 - sessionIdPersistOnPromptNone - specifies whether persist/update session object with data if `prompt=none`. Default value is `true`, so session is persisted by default.
 
-Session has two states `authenticated` and `unauthenticated`. While state is `unauthentiected` (user not logged in yet) `sessionIdUnauthenticatedUnusedLifetime` is used. After authentication `sessionIdUnusedLifetime` is used by OP.
+Session has two states `authenticated` and `unauthenticated`. While state is `unauthentcated` (user not logged in yet) `sessionIdUnauthenticatedUnusedLifetime` is used. After authentication `sessionIdUnusedLifetime` is used by OP.
 
 ## sessionIdUnusedLifeTime
 
-The `sessionIdUnusedLifeTime` property is set to a day by default. Session timeout works in a way such that if a user logs out of an application the `SessionUnusedLifeTime` gets expired. If a specific session timeout is set in an application, it will be overrided by the `SessionUnusedLifeTime` from Gluu.
+The `sessionIdUnusedLifeTime` property is set to a day by default. Session timeout works in a way such that if a user logs out of an application the `sessionIdUnusedLifeTime` gets expired. If a specific session timeout is set in an application, it will be overrided by the `sessionIdUnusedLifeTime` from Gluu.
 
-If an application's Session time is less than the session time out configured in Gluu, the application's session would be reauthorized and 
-set to a future time for timeout, where the applicatin's session timeout will get overrided by Gluu's Session timeout property.
+If an application's session time is less than the session time out configured in Gluu, the application's session would be reauthorized and 
+set to a future time for timeout, where the application's session timeout will get overrided by Gluu's Session timeout property.
 
 List of OxAuth Properties for reference can be found in 
 [OxAuth JSON Properties](../reference/JSON-oxauth-prop.md)
