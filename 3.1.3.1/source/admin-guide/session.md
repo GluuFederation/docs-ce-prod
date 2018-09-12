@@ -19,7 +19,7 @@ These properties are
 - SessionIdUnusedLifeTime
 - sessionIdUnauthenticatedUnusedLifetime
 
-## SessionUnusedLifeTime
+## SessionIdUnusedLifeTime
 
 The `SessionIdUnusedLifeTime` property is set to a day by default. Session timeout works in a way such that if a user logs out of an application the `SessionIdUnusedLifeTime` gets expired. If a specific session timeout is set in an application, it will be overrided by the `SessionIdUnusedLifeTime` from Gluu.
 
