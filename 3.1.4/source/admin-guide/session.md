@@ -3,6 +3,7 @@
 Gluu Server (OP) sessions are stored in OP cache (it can be in-memory, redis, memcached or ldap depending on `cacheProviderType` configuration property). 
 
 OP session can have two states:
+
 - unauthenticated - when end-user hits OP and is not authenticated, session object is created and put in cache with `unauthenticated` state
 - authenticated - when user successfully authenticated 
 
@@ -34,10 +35,12 @@ There are following properties related to OP session:
 Since OP session has two states `authenticated` and `unauthenticated`, the `sessionIdUnauthenticatedUnusedLifetime` is used when OP session is `unauthenticated` and `sessionIdUnusedLifetime` is used when OP session is `authenticated`.
 
 Both `unused` properties specify period of time in seconds. OP calculates this period as `currentUnusedPeriod = now - session.lastUsedAt`. So for OP session with states:
+
 - `unauthenticated` - if `currentUnusedPeriod` >= `sessionIdUnauthenticatedUnusedLifetime` then OP session is removed.
 - `authenticated` - if `currentUnusedPeriod` >= `sessionIdUnusedLifetime` then OP session is removed.
 
 OP updates `lastUsedAt` property of OP session object:
+
 - initially it is set during creation
 - it is updated during each authentication attempt (successful or not successful)
 
