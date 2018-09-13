@@ -4,8 +4,8 @@ Gluu Server (OP) sessions are stored in OP cache (it can be in-memory, redis, me
 
 OP session can have two states:
 
-- unauthenticated - when end-user hits OP and is not authenticated, session object is created and put in cache with `unauthenticated` state
-- authenticated - when user successfully authenticated 
+- `unauthenticated` - when end-user hits OP and is not authenticated, session object is created and put in cache with `unauthenticated` state
+- `authenticated` - when user is successfully authenticated 
 
 In browser OP session is referenced via `session_id` cookie.
  
