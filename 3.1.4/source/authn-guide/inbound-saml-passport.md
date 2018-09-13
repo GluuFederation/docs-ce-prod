@@ -194,7 +194,7 @@ authorizationRequest.setAcrValues(Collections.singletonList("passport_saml"));
 authorizationRequest.setScopes(Arrays.asList("openid", "profile", "email"));
 authorizationRequest.setState(state);
 
-return String.format("https://%s/oxauth/authorize?%s", host, authorizationRequest.getQueryString());
+return String.format("https://%s/oxauth/authorize.htm?%s", host, authorizationRequest.getQueryString());
 ```
 
 You have to place this [jar](https://ox.gluu.org/maven/org/xdi/oxauth-client/3.1.4.Final/oxauth-client-3.1.4.Final.jar) file in your classpath to be able to compile and run the code above.
@@ -202,7 +202,7 @@ You have to place this [jar](https://ox.gluu.org/maven/org/xdi/oxauth-client/3.1
 The string produced looks like:
 
 ```
-https://<gluu_host>/oxauth/authorize?response_type=code+...&client_id=...
+https://<gluu_host>/oxauth/authorize.htm?response_type=code+...&client_id=...
    &scope=openid+...&redirect_uri=...&state=...&nonce=
    &acr_values=passport_saml
 ```
