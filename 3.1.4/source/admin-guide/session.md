@@ -57,4 +57,4 @@ OP doesn't know anything about end-user activity on RP. Therefore RP has to trac
 
 ### How can we force user to log out if the browser is closed?
 
-Set `sessionIdLifetime` to `-1` value sets `session_id` cookie value to `expires=session` and OP session object without expiration. Most of the browsers clears cookie with `expires=session` when browser is closed. 
+Set `sessionIdLifetime` to `-1` value sets `session_id` cookie value to `expires=session` and OP session object without expiration. Most of the browsers clears cookie with `expires=session` when browser is closed. It is available in `3.1.4` version (it is not available in 3.1.3 version or earlier except 2.4.4). 
