@@ -64,15 +64,11 @@ documentation and administrative guide.
  
 - [#807](https://github.com/GluuFederation/oxAuth/issues/807) OTP 2FA / enrollment page + login page
  
-- [#804](https://github.com/GluuFederation/oxAuth/issues/804) pre-fix value for access token
- 
 - [#803](https://github.com/GluuFederation/oxAuth/issues/803) "acr_values" contains "null" in introspection endpoint's response
  
 - [#802](https://github.com/GluuFederation/oxAuth/issues/802) NPE during end_session if client is expired and does not exist in LDAP anymore
  
 - [#801](https://github.com/GluuFederation/oxAuth/issues/801) Getting NullPointerException whlie authorizing user
- 
-- [#800](https://github.com/GluuFederation/oxAuth/issues/800) Userinfo can't be contacted with access_token issued during resource owner creds grant flow if redirect_uri is not specified for the client
  
 - [#799](https://github.com/GluuFederation/oxAuth/issues/799) If custom script getPageForStep throws error Authenticator shoudl redirect to error page
  
@@ -83,16 +79,10 @@ documentation and administrative guide.
 - [#796](https://github.com/GluuFederation/oxAuth/issues/796) User should be redirect to error page instead of login when an exception occurs during external authentication
  
 - [#791](https://github.com/GluuFederation/oxAuth/issues/791) Dynamic Registration: Minor request - add new info logger
- 
-- [#789](https://github.com/GluuFederation/oxAuth/issues/789) Add support for id token upon token refresh
 
 - [#764](https://github.com/GluuFederation/oxAuth/issues/764) Create oxAuth JSON property to disable fido u2f endpoints
  
 - [#753](https://github.com/GluuFederation/oxAuth/issues/753) Create Authorization Script to check BCrypt Hash
- 
-- [#750](https://github.com/GluuFederation/oxAuth/issues/750) Add CIBA support to oxAuth
- 
-- [#704](https://github.com/GluuFederation/oxAuth/issues/704) Add support for Client metadata: software_id, software_version, software_statement
  
 - [#638](https://github.com/GluuFederation/oxAuth/issues/638) Allow configuration of JWT for access token on a per client basis
  
@@ -118,25 +108,15 @@ documentation and administrative guide.
  
 - [#952](https://github.com/GluuFederation/oxTrust/issues/952) log statements of level lower than INFO not shown after start
  
-- [#843](https://github.com/GluuFederation/oxTrust/issues/843) Use decorator for input elements
- 
-- [#769](https://github.com/GluuFederation/oxTrust/issues/769) Try to use JSF2 as mail templates
- 
-- [#768](https://github.com/GluuFederation/oxTrust/issues/768) Replace Richfaces with JSF2 and other JSF frameworks
- 
 - [#703](https://github.com/GluuFederation/oxTrust/issues/703) Update OpenID Client page to support JWT access tokens
  
 - [#557](https://github.com/GluuFederation/oxTrust/issues/557) Improve Passport.js user experience
- 
-- [#531](https://github.com/GluuFederation/oxTrust/issues/531) Translate resource bundles
 
 ### [GluuFederation/oxShibboleth](https://github.com/GluuFederation/oxShibboleth/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.4+)
 
 - [#44](https://github.com/GluuFederation/oxShibboleth/issues/44) Update Idp to V3.3.3
 
 - [#43](https://github.com/GluuFederation/oxShibboleth/issues/43) eduPerson schema update
-
-- [#41](https://github.com/GluuFederation/oxShibboleth/issues/41) Some SAML flows will fail when several tabs of the same browser window initiate them in a quick succession/simultaneously
 
 ### [GluuFederation/gluu-passport](https://github.com/GluuFederation/gluu-passport/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.4+)
 
@@ -150,20 +130,6 @@ documentation and administrative guide.
 - [#32](https://github.com/GluuFederation/gluu-passport/issues/32) Make logging level a parameter in config file
 
 - [#31](https://github.com/GluuFederation/gluu-passport/issues/31) NPE upon start when no strategies are defined
-
-- [#29](https://github.com/GluuFederation/gluu-passport/issues/29) IDP-inited flow for inbound identity - write custom script
-
-- [#28](https://github.com/GluuFederation/gluu-passport/issues/28) IDP-inited flow for inbound identity - AuthZ request + signed user profile
-
-- [#27](https://github.com/GluuFederation/gluu-passport/issues/27) IDP-inited flow for inbound identity - SP to OIDC client
-
-- [#26](https://github.com/GluuFederation/gluu-passport/issues/26) IDP-inited flow for inbound identity - Add enpoint to trigger flow
-
-- [#24](https://github.com/GluuFederation/gluu-passport/issues/24) Passport-Saml: IDP initiated flow fail
-
-- [#20](https://github.com/GluuFederation/gluu-passport/issues/20) Communication betwen passport and auth script should be protected by token
-
-- [#19](https://github.com/GluuFederation/gluu-passport/issues/19) Passport should support dynamic mapping
 
 - [#18](https://github.com/GluuFederation/gluu-passport/issues/18) Passport should POST user data to /oxauth/postlogin
 
@@ -184,22 +150,14 @@ documentation and administrative guide.
 - [#437](https://github.com/GluuFederation/community-edition-setup/issues/437) Remove '99-user.ldif' schema related calling
 
 - [#436](https://github.com/GluuFederation/community-edition-setup/issues/436) 3.0.x to 3.1.x upgrade: metadata-provider template broken
-
-- [#431](https://github.com/GluuFederation/community-edition-setup/issues/431) Authentication scripts' levels need to be updated
  
 - [#427](https://github.com/GluuFederation/community-edition-setup/issues/427) Asimba should be available in 3.1.4 as deprecated commmonent only
-
-- [#426](https://github.com/GluuFederation/community-edition-setup/issues/426) Merge node and passport script
 
 - [#425](https://github.com/GluuFederation/community-edition-setup/issues/425) Setup should prepare CE to work with dynamic IP correctly
 
 - [#420](https://github.com/GluuFederation/community-edition-setup/issues/420) Update node passport init.d script
 
 - [#100](https://github.com/GluuFederation/community-edition-setup/issues/100) Ensure 'hostname' is not 'localhost' by default
-
-### [GluuFederation/oxcore](https://github.com/GluuFederation/oxcore/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.4+)
-
-- [#60](https://github.com/GluuFederation/oxCore/issues/60) Update to Weld 3.0.2.Final in all projects 
 
 ### [GluuFederation/SCIM-Client](https://github.com/GluuFederation/SCIM-Client/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.4+)
 
