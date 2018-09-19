@@ -4,6 +4,17 @@ User and session data is stored in Gluu's local LDAP server, and can be managed 
 ## Manage users in Gluu LDAP
 Open an LDAP browser like [JXplorer](http://jxplorer.org/) and find your LDAP configuration in `/opt/gluu-server-3.1.3.1/etc/gluu/conf/ox-ldap.properties`, e.g.:
 
+For OpenDJ: 
+
+```
+bindDN: cn=directory manager
+bindPassword: foobar
+servers: localhost:1636
+```
+
+
+For OpenLDAP: 
+
 ```
 bindDN: cn=directory manager,o=gluu
 bindPassword: foobar
