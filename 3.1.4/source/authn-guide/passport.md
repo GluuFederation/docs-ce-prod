@@ -320,7 +320,7 @@ Strategies supported out of the box are already bundled with its corresponding l
 
 1. Create passport directory under `/opt/gluu/jetty/oxauth/custom/static/img`:`mkdir /opt/gluu/jetty/oxauth/custom/static/img/passport`.
 
-1. Copy the image to chroot directory `/opt/gluu/jetty/oxauth/custom/static/img/passport`.
+1. Copy the image to passport directory(`/opt/gluu/jetty/oxauth/custom/static/img/passport`).
 
 1. In oxTrust go to "Configuration" > "Manage Authentication" > "Passport Authentication Method".
 
