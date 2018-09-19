@@ -5,7 +5,7 @@
 The Gluu Server uses OpenID Connect to end sessions for logout. Usually a logout link is provided to the connected SP and the session 
 is killed inside the IDP. 
 
-When using OpenID Connect Logout, it is recommeneded to use Front-Channel Logout. In Front-Channel Logout the browser receives a page with a list of application logout urls within an iframe. This prompts the browser to call each applicaiton logout individually and the OpenID Connect end-session endpoint via Javascript. 
+When using OpenID Connect Logout, it is recommeneded to use Front-Channel Logout. In Front-Channel Logout the browser receives a page with a list of application logout urls within an iframe. This prompts the browser to call each application logout individually and the OpenID Connect end-session endpoint via Javascript. 
 
 The workflow for single logout for two applications using OpenID Connect Front-Channel Logout would be the following:
 
