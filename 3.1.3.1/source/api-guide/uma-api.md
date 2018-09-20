@@ -123,18 +123,18 @@ No parameters
 
 ### PATH
 
-`/token`
+`/oxauth/restv1/token`
 
 ### requestRpt
 
 **POST** 
 
-`/token`
+`/oxauth/restv1/token`
 
 Client Requests RPT.
 
 ###### URL
-    http://sample.com/token
+    http://sample.com/oxauth/restv1/token
 
 ###### Parameters
 
@@ -150,7 +150,7 @@ Client Requests RPT.
 
 Sample response:
 ```
-POST /token HTTP/1.1
+POST /oxauth/restv1/token HTTP/1.1
 Host: as.example.com
 Authorization: Basic jwfLG53^sad$#f
 ...
@@ -188,7 +188,7 @@ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Auma-ticket
 
 ## UMA 2 Resource Registration API 
 
-**/host/rsrc/resource_set**
+**/oxauth/restv1/host/rsrc/resource_set**
 
 ### Overview
 Resource is defined by the resource server, which is required
@@ -212,18 +212,18 @@ codes in the response. Discussed detail in [unsupported methods](#unsupportedHea
   found. The authorization server MUST respond with HTTP 404 (Not Found) status code.
 
 ### PATH
- `/host/rsrc/resource_set/{rsid}`
+ `/oxauth/restv1/host/rsrc/resource_set{rsid}`
 
 #### deleteResource
 
-**DELETE** `/host/rsrc/resource_set/{rsid}`
+**DELETE** `/oxauth/restv1/host/rsrc/resource_set{rsid}`
 
 Deletes a previously registered resource description using the
 DELETE method, thereby removing it from the authorization server's
 protection regime.
 
 ###### URL
-    http://sample.com/host/rsrc/resource_set/{rsid}
+    http://sample.com/oxauth/restv1/host/rsrc/resource_set{rsid}
         
 
 ###### Parameters
@@ -232,7 +232,7 @@ protection regime.
 
 Sample request
 ```
-DELETE /host/rsrc/resource_set/22
+DELETE /oxauth/restv1/host/rsrc/resource_set/22
 Authorization: Bearer 204c69636b6c69
 ```
 
@@ -262,7 +262,7 @@ HTTP/1.1 204 No content
 
 **GET** 
 
-`/host/rsrc/resource_set/{rsid}`
+`/oxauth/restv1/host/rsrc/resource_set{rsid}`
 
 Reads a previously registered resource description using the GET
 method. If the request is successful, the authorization server MUST
@@ -270,7 +270,7 @@ respond with a status message that includes a body containing the
 referenced resource description, along with an "_id" property.
 
 ###### URL
-    http://sample.com/host/rsrc/resource_set/{rsid}
+    http://sample.com/oxauth/restv1/host/rsrc/resource_set{rsid}
 
 ###### Parameters
 
@@ -278,7 +278,7 @@ referenced resource description, along with an "_id" property.
 
 Sample request
 ```
-GET /host/rsrc/resource_set/22 HTTP/1.1
+GET /oxauth/restv1/host/rsrc/resource_set22 HTTP/1.1
 Authorization: Bearer MHg3OUZEQkZBMjcx
 ```
 
@@ -320,18 +320,18 @@ Content-Type: application/json
 - - -
 ##### updateResource
 
-**PUT** `/host/rsrc/resource_set/{rsid}`
+**PUT** `/oxauth/restv1/host/rsrc/resource_set{rsid}`
 
 Updates a previously registered resource description using the PUT
 method. If the request is successful, the authorization server MUST
 respond with a status message that includes an "_id" property.
 
 ###### URL
-    http://sample.com/host/rsrc/resource_set/{rsid}
+    http://sample.com/oxauth/restv1/host/rsrc/resource_set{rsid}
 
 Sample request
 ```
-PUT /host/rsrc/resource_set/22 HTTP/1.1
+PUT /oxauth/restv1/host/rsrc/resource_set/22 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer 204c69636b6c69
 ...
@@ -376,11 +376,11 @@ HTTP/1.1 200 OK
 
 #### Path
 
-**`/host/rsrc/resource_set`**
+**`/oxauth/restv1/host/rsrc/resource_set`**
 
 **GET** 
 
-`/host/rsrc/resource_set`
+`/oxauth/restv1/host/rsrc/resource_set`
 
 Lists all previously registered resource identifiers for this user using the GET method. 
 The authorization server MUST return the list in the form of a JSON array of {rsid} string values.
@@ -389,13 +389,13 @@ The resource server uses this method as a first step in checking whether its und
 the authorization server's understanding.
 
 ###### URL
-    http://sample.com/host/rsrc/resource_set
+    http://sample.com/oxauth/restv1/host/rsrc/resource_set
 
 ###### Parameters
 
 Sample request
 ```
-GET http://sample.com/host/rsrc/resource_set HTTP/1.1
+GET http://sample.com/oxauth/restv1/host/rsrc/resource_set HTTP/1.1
 Authorization: Bearer 204c69636b6c69
 ```
 
@@ -425,14 +425,14 @@ HTTP/1.1 200 OK
 
 - - -
 ##### createResource
-**POST** `/host/rsrc/resource`
+**POST** `/oxauth/restv1/host/rsrc/resource_set`
 
 Adds a new resource description using the POST method. If the
 request is successful, the authorization server MUST respond with a
 status message that includes an _id property.
 
 ###### URL
-    http://sample.com/host/rsrc/resource_set
+    http://sample.com/oxauth/restv1/host/rsrc/resource_set
 
 ###### Parameters
 
@@ -463,7 +463,7 @@ Sample successful response
 ```
 HTTP/1.1 201 Created
 Content-Type: application/json
-Location: /host/rsrc/resource_set/22
+Location: /oxauth/restv1/host/rsrc/resource_set/22
 ...
 {  
    "_id":"KX3A-39WE",
@@ -485,7 +485,7 @@ Location: /host/rsrc/resource_set/22
 
 - - -
 ### unsupportedHeadMethod
-**HEAD** `/host/rsrc/resource_not`
+**HEAD** `/oxauth/restv1/host/rsrc/resource_not`
 
 Not allowed
 
@@ -494,7 +494,7 @@ Not allowed
 ### unsupportedOptionsMethod
 **OPTIONS** 
 
-`/host/rsrc/resource_set`
+`/oxauth/restv1/host/rsrc/resource_set`
 
 Not allowed
 
@@ -511,19 +511,19 @@ Not allowed
 
 ## UMA Permission Registration API 
 
-** /host/rsrc_pr**
+** /oxauth/restv1/host/rsrc_pr**
 
 ### Overview
 
 ###  PATH
 
-`/host/rsrc_pr`
+`/oxauth/restv1/host/rsrc_pr`
 
 #### registerResourcePermission
 
 **POST** 
 
-`/host/rsrc_pr`
+`/oxauth/restv1/host/rsrc/resource_set`
 
 Registers permission using the POST method.
 The resource server uses the POST method at the endpoint. The body of
@@ -533,7 +533,7 @@ specified in [OAuth-resource-reg], as follows. The object has the
 following properties:
 
 ###### URL
-    http://sample.com/host/rsrc_pr
+    http://sample.com/oxauth/restv1/host/rsrc/resource_set
 
 ###### Parameters
 
@@ -544,7 +544,7 @@ following properties:
 Sample request
 
 ```json
-POST /host/rsrc_pr HTTP/1.1
+POST /oxauth/restv1/host/rsrc/resource_set HTTP/1.1
 Content-Type: application/json
 Host: as.example.com
 Authorization: Bearer 204c69636b6c69
@@ -617,15 +617,15 @@ Authorization: Bearer 204c69636b6c69
 
 ## Token Introspection
 
-** /rpt/status **
+** /oxauth/restv1/rpt/status **
 
 ### Overview
 
 ### PATH 
-`/rpt/status`
+`/oxauth/restv1/rpt/status`
 
 ###### URL
-    http://sample.com/rpt/status
+    http://sample.com/oxauth/restv1/rpt/status
 
 ###### Parameters
 
