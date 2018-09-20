@@ -183,7 +183,7 @@ backend Active Directory/LDAP server, but there are some essential
 values for both types of cache refresh method. The values are given
 below.
 
-  * _Pooling Interval (Minutes):_ This is the interval value for running
+  * _Polling Interval (Minutes):_ This is the interval value for running
     the Cache Refresh mechanism in the Gluu Server. It is recommended to 
     be kept higher than 15 minutes.
 
