@@ -13,7 +13,7 @@ well as the server version, free memory, and disk space. In the top
 right, there is a user icon which can be used to log out of oxTrust. 
 The left-hand menu is used to navigate the admin interface.
 
-![welcome-page.png](../img/admin-guide/oxtrust/welcome-page312.png "Welcome to Gluu Server")
+![welcome-page.png](../img/admin-guide/oxtrust/welcome-page.png "Welcome to Gluu Server")
 
 ## Localization of oxTrust UI
 
@@ -51,7 +51,7 @@ To add a translation for not yet supported languages, just create new properties
 
 oxTrust UI can be used to change the language once oxtrust_[language_code].properties are added in the `identity.war`, and select the preferred language from the dropdown as shown below.
 
-![localization](../img/admin-guide/oxtrust/localization312.png)
+![localization](../img/admin-guide/oxtrust/localization.png)
 
 ## Configuration   
 From the configuration tab, the Gluu Server administrator can manage 
@@ -68,7 +68,7 @@ There are four tabs in the organization configuration page:
 
 #### System Configuration
 
-![system-config-options](../img/admin-guide/oxtrust/system-config-options312.png)
+![system-config-options](../img/admin-guide/oxtrust/system-config-options.png)
 
 - Self-service password reset: Allow users to trigger the password reset sequence by following a URL like `https://your.idp.host/identity/person/passwordReminder.htm`. A new password will be sent to the email box provided in "Email" attribute of their user entry (if any). In order for this feature to work, the admin will also need to perform [SMTP Server Configuration](#smtp-server-configuration)      
 
@@ -86,7 +86,7 @@ There are four tabs in the organization configuration page:
 
 #### SMTP Server Configuration     
 
-![smtp-config](../img/admin-guide/oxtrust/smtp-config312.png "SMTP Configuration")
+![smtp-config](../img/admin-guide/oxtrust/smtp-config.png "SMTP Configuration")
 
 The Gluu Server needs a mail server in order to send notifications. All fields in this form are mandatory and the configuration can be tested before confirmation.
 
@@ -104,7 +104,7 @@ The Gluu Server needs a mail server in order to send notifications. All fields i
 #### oxTrust Settings  
 
 
-![oxtrust-settings](../img/admin-guide/oxtrust/oxtrust-settings312.png "OxTrust Settings")
+![oxtrust-settings](../img/admin-guide/oxtrust/oxtrust-settings.png "OxTrust Settings")
 
 From the oxTrust Settings page, the administrator can find the oxTrust build date and number, and manage the organization name, logo, and favicon. 
 This page also contains the name of the Gluu Server administrator group. 
@@ -114,7 +114,7 @@ Users added to this group will have administrator access to the Gluu Server.
 
 oxAuth Settings allow you to designate the oxAuth server IP.
 
-![oxauth-settings](../img/admin-guide/oxtrust/oxauth-settings312.png)
+![oxauth-settings](../img/admin-guide/oxtrust/oxauth-settings.png)
 
 ## JSON Configuration      
 The following tabs are included in the `JSON Configuration` menu:
@@ -124,7 +124,7 @@ The following tabs are included in the `JSON Configuration` menu:
 * [Cache Provider Configuration](#cache-provider-configuration)
 * [oxTrust Import Configuration](#oxtrust-import-configuration)
 
-![json-config-head](../img/admin-guide/oxtrust/json-config-head312.png "JSON Configuration Headers")
+![json-config-head](../img/admin-guide/oxtrust/json-config-head.png "JSON Configuration Headers")
 
 ### oxTrust Configuration
 From this tab, you can access and edit the oxTrust JSON configuration file. 
@@ -205,7 +205,7 @@ of the data source that you are trying to connect with Gluu Server. For
 example, the data source can be your back-end Active Directory, or your
 local LDAP server.
 
-![Manage LDAP Authentication](../img/admin-guide/oxtrust/admin_manage_ldap312.PNG)
+![Manage LDAP Authentication](../img/admin-guide/oxtrust/admin_manage_ldap.PNG)
 
 * _Name:_ This field contains the name of the authentication server
 
@@ -258,7 +258,7 @@ Gluu Server relies on its core component, called oxAuth, when authenticating use
 its services. User authentication is a mandatory step that precedes 
 any interactions defined by a variety of supported SSO protocols (such as OpenID Connect, SAML, CAS)
 
-![default](../img/admin-guide/auth-management/default311.png)
+![default](../img/admin-guide/auth-management/default.png)
 
 * Default acr: This control defines method used for general authentication in oxAuth by default. It will also be applied to users accessing the oxTrust administrator interface, unless overriden by "oxTrust authentication mode". Remote applications may also specify desired authentication method explicitly by including "acr_values=" url query parameter during initial authorization request of OpenID Connect flows
 * oxTrust acr: This control defines authentication method used when user is accessing the oxTrust administrator interface. By setting "oxTrust authentication mode" to some other (possibly stricter, like Duo auth) method you may ensure administrator's tools are properly protected against malicious users
@@ -294,7 +294,7 @@ This tab allows you to enabled or disable the Passport Authentication method to 
 
 * Passport Support: This control enables Passport component, an authentication middleware offering an easy access to a variety of third-party authentication mechanisms, like ones offered by Google+, Twitter, Facebook, allowing them to easily be used for users' authenticattion in Gluu Server
 
-![passport](../img/admin-guide/auth-management/passport311.png)   
+![passport](../img/admin-guide/auth-management/passport.png)   
 
 ## Manage Custom Scripts
 The Gluu Server exposes interception scripts in places where it is common 
@@ -304,7 +304,7 @@ for authentication, authorization, and identity synchronization. Each
 type of script has its own interface--in other words, what methods are
 available. For more information, see the reference page detailing each type of [interception script](./custom-script.md).
 
-![Manage Custom Scripts](../img/admin-guide/auth-management/managecustomscripts312.png)
+![Manage Custom Scripts](../img/admin-guide/auth-management/managecustomscripts.png)
 
 ## Manage Registration
 The Gluu Server is shipped with a very basic user registration feature. The registration page can be found at `https://<hostname>/identity/register`. For custom enrollment requirements we recommend that you write a registration page and use SCIM to add the user record to the Gluu Server. In some cases, oxTrust is not Internet-facing, which makes it a bad option for user registration. Only use the net-net feature for basic requirements. See [user registration](../user-management/local-user-management#user-registration) for more. 
@@ -315,12 +315,12 @@ The tab has two options:
 2. `Configure Registration Form Attributes`      
 
 **Disable Captcha for registration form**     
-![registration](../img/admin-guide/manage_registration311.png)
+![registration](../img/admin-guide/manage_registration.png)
 
 This option adds a required CAPTCHA to the registration form.     
 
 **Configure Registration Form Attributes**      
-![attr_filter](../img/admin-guide/config_registration311.png)
+![attr_filter](../img/admin-guide/config_registration.png)
 
 This section allows you to manage the list of attributes displayed in the registration form. Search, select, add, and order desired attributes here.
 
