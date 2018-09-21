@@ -164,7 +164,7 @@ A description of the fields in the add scope page:
 ### Customizing scopes
 Similar to client registration, scopes can be customized using interception scripts. The interface can be found in oxTrust by navigating to `Configuration` > `Custom Scripts` > `Dynamic Scopes`. 
 
-The sample dyanmic scope script is [available here](./sample-dynamic-script.py).
+The sample dynamic scope script is [available here](./sample-dynamic-script.py).
 
 
 ## Subject Identifier Types
