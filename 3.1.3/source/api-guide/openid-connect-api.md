@@ -114,6 +114,12 @@ The authorization endpoint performs end-user authentication. This is done by sen
             <td>string</td>
         </tr>
         <tr>
+            <th>amr_values</th>
+            <td>false</td>
+            <td>AMR Values</td>
+            <td>string</td>
+        </tr>
+        <tr>
             <th>request</th>
             <td>false</td>
             <td>This parameter enables OpenID Connect requests to be passed in a single, self-contained parameter and to be optionally signed and/or encrypted. The parameter value is a Request Object value, as specified in Section 6.1. It represents the request as a JWT whose Claims are the request parameters.</td>
@@ -796,11 +802,11 @@ The Authorization Endpoint performs end-user authentication.
 
 #### Path
 
-`/oxauth/restv1/authorize`**
+`/oxauth/restv1/token`**
 
 #### requestAccessToken
 
-**POST** `/oxauth/restv1/authorize`
+**POST** `/oxauth/restv1/token`
 
 To obtain an Access Token, an ID Token, and optionally a Refresh Token,
 the RP (Client) sends a Token Request to the Token Endpoint to obtain a
@@ -872,7 +878,7 @@ The JWT MUST contain the following REQUIRED Claim Values and MAY contain the fol
 For more details on [client Authentication](http://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication) 
 
 ###### URL
-    http://gluu.org/oxauth/restv1/authorize
+    http://gluu.org/oxauth/restv1/token
 
 ###### Parameters
 <table border="1">
