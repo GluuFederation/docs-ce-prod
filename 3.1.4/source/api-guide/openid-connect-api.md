@@ -802,11 +802,11 @@ The Authorization Endpoint performs end-user authentication.
 
 #### Path
 
-`/oxauth/restv1/authorize`**
+`/oxauth/restv1/token`**
 
 #### requestAccessToken
 
-**POST** `/oxauth/restv1/authorize`
+**POST** `/oxauth/restv1/token`
 
 To obtain an Access Token, an ID Token, and optionally a Refresh Token,
 the RP (Client) sends a Token Request to the Token Endpoint to obtain a
@@ -878,7 +878,7 @@ The JWT MUST contain the following REQUIRED Claim Values and MAY contain the fol
 For more details on [client Authentication](http://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication) 
 
 ###### URL
-    http://gluu.org/oxauth/restv1/authorize
+    http://gluu.org/oxauth/restv1/token
 
 ###### Parameters
 <table border="1">
@@ -1062,8 +1062,6 @@ Registers new dynamic client in oxAuth.
 |jwks|Client's JSON Web Key Set (JWK) document, passed by value. The semantics of the jwks parameter are the same as the jwks_uri parameter, other than that the JWK Set is passed by value, rather than by reference. This parameter is intended only to be used by Clients that, for some reason, are unable to use the jwks_uri parameter, for instance, by native applications that might not have a location to host the contents of the JWK Set. If a Client can use jwks_uri, it must not use jwks. One significant downside of jwks is that it does not enable key rotation (which jwks_uri does). The jwks_uri and jwks parameters must not be used together.|
 |sector_identifier_uri|URL using the https scheme to be used in calculating Pseudonymous Identifiers by the OP. The URL references a file with a single JSON array of redirect_uri values. Providers that use pairwise sub (subject) values utilizes the sector_identifier_uri value provided in the Subject Identifier calculation for pairwise identifiers.|
 |subject_type|subject_type requested for responses to this Client. The subject_types_supported Discovery parameter contains a list of the supported subject_type values for this server. Valid types include pairwise and public.|
-|access_token_as_jwt| whether to return `access_token` as JWT. It is false by default.|
-|access_token_signing_alg| signing algorithm that has to be used during JWT signing. If not specified then default OP signing algorithm will be used (specified via `defaultSignatureAlgorithm` oxauth configuration property).|
 |id_token_signed_response_alg|JWS alg algorithm (JWA) required for signing the ID Token issued to this Client. The value none must not be used as the ID Token alg value unless the Client uses only Response Types that return no ID Token from the Authorization Endpoint (such as when only using the Authorization Code Flow). The default, if omitted, is RS256. The public key for validating the signature is provided by retrieving the JWK Set referenced by the jwks_uri element from OpenID Connect Discovery.|
 |id_token_encrypted_response_alg|JWE alg algorithm (JWA) required for encrypting the ID Token issued to this Client. If this is requested, the response will be signed then encrypted, with the result being a Nested JWT. The default, if omitted, is that no encryption is performed.|
 |id_token_encrypted_response_enc|JWE enc algorithm (JWA) required for encrypting the ID Token issued to this Client. If id_token_encrypted_response_alg is specified, the default for this value is A128CBC-HS256. When id_token_encrypted_response_enc is included, id_token_encrypted_response_alg must also be provided.|
