@@ -1,60 +1,60 @@
 # Session Management
 
-Gluu Server (OP) sessions are stored in OP cache (it can be in-memory, redis, memcached or ldap depending on `cacheProviderType` configuration property). 
+Gluu Server, as an OpenID Connect Provider (OP), stores sessions in the its cache, whether that is in-memory, redis, memcached or LDAP, depending on the `cacheProviderType` configuration property. 
 
-OP session can have two states:
+The OP session can have one of two states:
 
-- `unauthenticated` - when end-user hits OP and is not authenticated, session object is created and put in cache with `unauthenticated` state
-- `authenticated` - when user is successfully authenticated 
+- `unauthenticated` - when the end-user reaches the OP but has not yet authenticated, a session object is created and put in the cache with the `unauthenticated` state.  
+- `authenticated` - when the user has successfully authenticated at the OP. 
 
-In browser OP session is referenced via `session_id` cookie.
+In the browser, the OP session is referenced via a `session_id` cookie.
  
-Lets say user hits RP1 which redirects to OP for authentication. Once user is authenticated OP creates `session_id` cookie and set state to `authenticated` (in OP cache). If user hits RP2, it will redirect user for authentication to OP but since session is already authenticated OP authenticates user automatically against RP2 (without authentication prompt).  
+Lets say that the user hits Relying Party (RP) 1, which redirects to the OP for authentication. Once the user is authenticated, the OP creates a `session_id` cookie, sets the state to `authenticated` and places it in the OP's cache. If the user hits RP2, it will redirect the user to the OP for authentication. Since the session is already authenticated, the OP authenticates the user automatically against RP2 (without authentication prompt).  
  
-Remember that the application may have it's own RP session. The hard part is that on logout, all RPs and OP has to be notified, so both OP and RP sessions are cleared/ended. 
+Remember that an application may have its own RP session. 
 
-The best way to handle this currently is "Front channel logout". This is described in the [OpenID Connect specification](http://openid.net/specs/openid-connect-frontchannel-1_0.html). 
+The most complicated part is that on logout, all RPs and the OP have to be notified so both OP and RP sessions can be cleared/ended. The best way to handle this currently is through "front-channel logout". This is described in the [OpenID Connect specification](http://openid.net/specs/openid-connect-frontchannel-1_0.html). 
 
-Basically, the Gluu Server OpenID `end_session` endpoint returns an html page, which contains an iFrame for each application to which the user has authenticated. The iFrame contains a link to each application's respective logout url. This special html page should be loaded in the background (not displayed to the user). The iFrame urls should be loaded by the browser. This provides a way to "trick" the user into calling the logout page of each application, so the application's cookies can be cleared.
+Basically, the Gluu Server OpenID `end_session` endpoint returns an HTML page, which contains an iFrame for each application to which the user has authenticated. The iFrame contains a link to each application's respective logout URL. This special HTML page should be loaded in the background and not displayed to the user. The iFrame URLs should be loaded by the browser. This provides a way to "trick" the user into calling the logout page of each application, so the application's cookies can be cleared.  
 
-Learn more about the flow for logout across many applications in the [logout document](../operation/logout.md)
+Learn more about the flow for logout across many applications in the [logout docs](../operation/logout.md).  
 
-## Session Timeouts
+## Session Timeouts  
 
 Session Timeout can be configured under 
 `JSON Configuration` > `oxAuth Properties`.
 
-There are following properties related to OP session:
+The following properties related to OP session:
 
-- `sessionIdLifetime` - lifetime of the OP session in seconds. It sets both `session_id` cookie expires property as well as OP session object expiration in cache. So it is global property for OP session objects. Since `3.1.4` it is possible to set value to 0 or -1 which means that expiration is not set (not available in `3.1.3` or earlier except `2.4.4`). In this case `session_id` cookie expire value is set to `session` value which means it is valid until browser session ends.
-- `sessionIdUnusedLifetime` - unused OP session lifetime (default 1 day). If OP session is not used for given amount of time then OP session is removed. 
-- `sessionIdUnauthenticatedUnusedLifetime` - lifetime of `unauthenticated` OP session. 
+- `sessionIdLifetime` - lifetime of the OP session in seconds. It sets both the `session_id` cookie expiration property as well as the OP session object expiration in the cache. It's a global property for OP session objects. Starting in version `3.1.4`, it is possible to set value to 0 or -1, which means that expiration is not set (not available in `3.1.3` or earlier except `2.4.4`). In this case, the `session_id` cookie expiration value is set to the `session` value, which means it's valid until the browser session ends.
+- `sessionIdUnusedLifetime` - unused OP session lifetime (set by default to 1 day). If an OP session is not used for a given amount of time, the OP session is removed. 
+- `sessionIdUnauthenticatedUnusedLifetime` - lifetime of `unauthenticated` OP session. This determines how long the user can be on the login page while unauthenticated. 
 - `sessionIdEnabled` - specifies whether it is allowed to authenticate user by session automatically (without end-user interaction).  
-- `sessionIdPersistOnPromptNone` - specifies whether persist/update session object with data if `prompt=none`. Default value is `true`, so session is persisted by default.
+- `sessionIdPersistOnPromptNone` - specifies whether to persist or update the session object with data if `prompt=none`. Default value is `true`, so session is persisted by default.
 
-Since OP session has two states `authenticated` and `unauthenticated`, the `sessionIdUnauthenticatedUnusedLifetime` is used when OP session is `unauthenticated` and `sessionIdUnusedLifetime` is used when OP session is `authenticated`.
+Since the OP session has two states, `authenticated` and `unauthenticated`, the `sessionIdUnauthenticatedUnusedLifetime` is used when the OP session is `unauthenticated` and `sessionIdUnusedLifetime` is used when the OP session is `authenticated`.
 
-Both `unused` properties specify period of time in seconds. OP calculates this period as `currentUnusedPeriod = now - session.lastUsedAt`. So for OP session with states:
+Both `unused` properties specify a period of time in seconds. The OP calculates this period as `currentUnusedPeriod = now - session.lastUsedAt`. So for OP session with states:
 
-- `unauthenticated` - if `currentUnusedPeriod` >= `sessionIdUnauthenticatedUnusedLifetime` then OP session is removed.
-- `authenticated` - if `currentUnusedPeriod` >= `sessionIdUnusedLifetime` then OP session is removed.
+- `unauthenticated` - if `currentUnusedPeriod` >= `sessionIdUnauthenticatedUnusedLifetime`, then the OP session object is removed.
+- `authenticated` - if `currentUnusedPeriod` >= `sessionIdUnusedLifetime`, then the OP session object is removed.
 
-OP updates `lastUsedAt` property of OP session object:
+The OP updates `lastUsedAt` property of the OP session object:
 
-- initially it is set during creation
-- it is updated during each authentication attempt (successful or not successful)
+- initially, it is set during creation
+- it is updated during each authentication attempt (whether successful or not successful)
 
-It is important to note that OP session `lastUsedAt` property is not updated during RP usage.
+It is important to note that the OP session `lastUsedAt` property is not updated during RP usage.
 
-List of OxAuth Properties for reference can be found in 
+A list of oxAuth Properties for reference can be found in 
 [OxAuth JSON Properties](../reference/JSON-oxauth-prop.md)
 
 ## FAQ
 
-### How can we force user to log out if user is in idle state on RP during 4 hours?
+### How can we force the user to log out if the user is idle on the RP for 4 hours?
 
-OP doesn't know anything about end-user activity on RP. Therefore RP has to track activity internally and when inactivity period is reached (4 hours) RP has to perform front-channel logout.
+The OP doesn't know anything about end-user activity on the RP. Therefore, the RP has to track activity internally, and when the inactivity period is reached (in this case, 4 hours) the RP has to perform front-channel logout.
 
-### How can we force user to log out if the browser is closed?
+### How can we force the user to log out if the browser is closed?
 
-Set `sessionIdLifetime` to `-1` value sets `session_id` cookie value to `expires=session` and OP session object without expiration. Most of the browsers clears cookie with `expires=session` when browser is closed. It is available in `3.1.4` version (it is not available in 3.1.3 version or earlier except 2.4.4). 
+Setting `sessionIdLifetime` to `-1` value sets the `session_id` cookie value to `expires=session`, and sets the OP session object to not have an expiration time. Most browsers clear cookies with `expires=session` when the browser is closed, removing the session object at that time. This feature is available in `3.1.4` version (it is not available in 3.1.3 version or earlier except 2.4.4). 
