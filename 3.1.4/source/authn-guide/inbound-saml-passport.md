@@ -327,7 +327,7 @@ Email-based discovery, or "identifier-first" login, relies on an email address t
 
 ### Landing page discovery
 
-If you do not mind exposing the list of your external IDP partners, you can allow users to choose which IDP better suites their needs by displaying all IDPs you've established trust with. This is the standard behavior in Gluu Server with Passport.
+If you do not mind exposing the list of your external IDP partners, you can allow users to choose which IDP better suits their needs by displaying all IDPs you've established trust with. This is the standard behavior in Gluu Server with Passport.
 
 ###  Discovery based on sub-domain or sub-directory
 
