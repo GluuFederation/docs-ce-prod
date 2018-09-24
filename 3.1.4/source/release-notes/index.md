@@ -70,7 +70,7 @@ documentation and administrative guide.
  
 - [#801](https://github.com/GluuFederation/oxAuth/issues/801) Getting NullPointerException whlie authorizing user
  
-- [#799](https://github.com/GluuFederation/oxAuth/issues/799) If custom script getPageForStep throws error Authenticator shoudl redirect to error page
+- [#799](https://github.com/GluuFederation/oxAuth/issues/799) If custom script getPageForStep throws error Authenticator should redirect to error page
  
 - [#798](https://github.com/GluuFederation/oxAuth/issues/798) Relax log level when claims gathering script name is blank
  
