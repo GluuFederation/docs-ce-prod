@@ -120,8 +120,8 @@ All images should be placed under:
 
 `/opt/gluu/jetty/oxauth/custom/static/img`
 
-!!! Note
-   You can change the logo on every public-facing page here. Place your image in `/static/img` and name it `logo.png`.
+!!! Note:
+    You can change the logo on every public-facing page here. Place your image in `/static/img` and name it `logo.png`.
 
 And all CSS are inside:
 
