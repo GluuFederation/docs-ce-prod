@@ -20,7 +20,7 @@ installation procedure is similar across all the distributions:
 - If using CentOS, selinux must be set to permissive in /etc/selinux/config
 
 !!! Warning
-    Docker containers are **not** supported.     
+    Docker containers are not supported by this guide. See [this page](../docker/intro.md) for Docker instructions.     
 
 ## Instructions
 
