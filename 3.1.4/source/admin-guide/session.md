@@ -9,7 +9,7 @@ The OP session can have one of two states:
 
 In the browser, the OP session is referenced via a `session_id` cookie.
  
-Lets say that the user hits Relying Party (RP) 1, which redirects to the OP for authentication. Once the user is authenticated, the OP creates a `session_id` cookie, sets the state to `authenticated`, and places it in the cache. If the user hits RP2, it will redirect the user to the OP for authentication and since the session is already authenticated, the OP authenticates the user automatically for RP2 (without an authentication prompt).  
+Lets say the user hits Relying Party (RP) 1, which redirects to the OP for authentication. Once the user is authenticated, the OP creates a `session_id` cookie, sets the state to `authenticated`, and places it in the cache. If the user hits RP2, it will redirect the user to the OP for authentication and since the session is already authenticated, the OP authenticates the user automatically for RP2 (without an authentication prompt).  
  
 An application may also store its *own* session for the user. Upon logout from the OP, all RPs need to be notified so local sessions can also be cleared/ended. The best way to handle this currently is through "front-channel logout", as described in the [OpenID Connect Front Channel Logout specification](http://openid.net/specs/openid-connect-frontchannel-1_0.html). 
 
