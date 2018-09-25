@@ -1,6 +1,6 @@
 # Session Management
 
-Gluu Server, as an OpenID Connect Provider (OP), stores sessions in the its cache, whether that is in-memory, redis, memcached or LDAP, depending on the `cacheProviderType` configuration property. 
+The Gluu Server OP stores user session data in its cache, whether it's in-memory, redis, memcached, or LDAP, depending on the `cacheProviderType` configuration property. 
 
 The OP session can have one of two states:
 
@@ -9,20 +9,23 @@ The OP session can have one of two states:
 
 In the browser, the OP session is referenced via a `session_id` cookie.
  
-Lets say that the user hits Relying Party (RP) 1, which redirects to the OP for authentication. Once the user is authenticated, the OP creates a `session_id` cookie, sets the state to `authenticated` and places it in the OP's cache. If the user hits RP2, it will redirect the user to the OP for authentication. Since the session is already authenticated, the OP authenticates the user automatically against RP2 (without authentication prompt).  
+Lets say that the user hits Relying Party (RP) 1, which redirects to the OP for authentication. Once the user is authenticated, the OP creates a `session_id` cookie, sets the state to `authenticated`, and places it in the cache. If the user hits RP2, it will redirect the user to the OP for authentication and since the session is already authenticated, the OP authenticates the user automatically for RP2 (without an authentication prompt).  
  
-Remember that an application may have its own RP session. 
+An application may also store its *own* session for the user. Upon logout from the OP, all RPs need to be notified so local sessions can also be cleared/ended. The best way to handle this currently is through "front-channel logout", as described in the [OpenID Connect Front Channel Logout specification](http://openid.net/specs/openid-connect-frontchannel-1_0.html). 
 
-The most complicated part is that on logout, all RPs and the OP have to be notified so both OP and RP sessions can be cleared/ended. The best way to handle this currently is through "front-channel logout". This is described in the [OpenID Connect specification](http://openid.net/specs/openid-connect-frontchannel-1_0.html). 
+In practice, here's how it works:
 
-Basically, the Gluu Server OpenID `end_session` endpoint returns an HTML page, which contains an iFrame for each application to which the user has authenticated. The iFrame contains a link to each application's respective logout URL. This special HTML page should be loaded in the background and not displayed to the user. The iFrame URLs should be loaded by the browser. This provides a way to "trick" the user into calling the logout page of each application, so the application's cookies can be cleared.  
+ - The Gluu Server OpenID `end_session` endpoint returns an HTML page, which contains an iFrame for each application to which the user has authenticated. 
+ - The iFrame contains a link to each application's respective logout URL. 
+ - The special HTML page should be loaded in the background and not displayed to the user. 
+ - The iFrame URLs should be loaded by the browser. 
+ - Now, upon logout, the user is calling the logout page of each application and the local cookies are cleared.  
 
 Learn more about the flow for logout across many applications in the [logout docs](../operation/logout.md).  
 
 ## Session Timeouts  
 
-Session Timeout can be configured under 
-`JSON Configuration` > `oxAuth Properties`.
+Session Timeout can be configured under `JSON Configuration` > `oxAuth Properties`.
 
 The following properties related to OP session:
 
