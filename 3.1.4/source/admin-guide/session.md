@@ -19,7 +19,7 @@ In practice, here's how it works:
  - The iFrame contains a link to each application's respective logout URL. 
  - The special HTML page should be loaded in the background and not displayed to the user. 
  - The iFrame URLs should be loaded by the browser. 
- - Now, upon logout, the user is calling the logout page of each application and the local cookies are cleared.  
+ - Now, upon logout, the user is calling the logout page of each application, the local cookies are cleared, and the user is signed out of all applications.  
 
 Learn more about the flow for logout across many applications in the [logout docs](../operation/logout.md).  
 
