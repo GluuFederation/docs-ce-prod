@@ -76,7 +76,7 @@ The Gluu Server also supports [WebFinger](http://en.wikipedia.org/wiki/WebFinger
 
 ## Client Registration / Configuration
 
-OAuth clients need a `client_id` and `login_redirect_uri` to indicate to the Authorization Server where users should be redirected post
+OAuth clients need a `client_id` and `redirect_uris` to indicate to the Authorization Server where users should be redirected post
 authorization.
 
 Clients can be dynamically registered or created manually in oxTrust.
