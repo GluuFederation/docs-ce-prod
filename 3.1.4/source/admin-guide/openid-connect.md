@@ -275,10 +275,10 @@ userinfo, and end_session.
 
 ### Access Token
 
-Access token usually is random string. However it is possible to return access token as JWT. It can be controlled per client.
+Access token usually is random string, but it's possible to return the access token as a JWT. It can be controlled per client.
 There are two client properties :
- - `access_token_as_jwt` - whether to return `access_token` as JWT. It is false by default.
- - `access_token_signing_alg` - signing algorithm that has to be used during JWT signing. If not specified then default OP signing algorithm will be used (specified via `defaultSignatureAlgorithm` oxauth configuration property).
+ - `access_token_as_jwt` - Boolean controlling whether to return the `access_token` as a JWT. It is false by default.
+ - `access_token_signing_alg` - signing algorithm that has to be used during JWT signing. If it's not specified, then the default OP signing algorithm will be used (specified via `defaultSignatureAlgorithm` oxAuth configuration property).
  
  JWT will contain following claims:
  - `scope` - string containing a space-separated list of scopes associated with this token
