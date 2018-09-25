@@ -46,10 +46,11 @@ To upgrade from 3.1.x to 3.1.4, you have to manually update your .war files as o
    
 1. Unlink the jetty-9.3 directory and link jetty-9.4 to jetty
 
-    `# unlink /opt/jetty`
-    `# ln -sf /opt/jetty-9.4/jetty-distribution-9.4.9.v20180320 /opt/jetty`
-    `# chown -h jetty:jetty /opt/jetty`
-
+    ```
+    # unlink /opt/jetty
+    # ln -sf /opt/jetty-9.4/jetty-distribution-9.4.9.v20180320 /opt/jetty
+    # chown -h jetty:jetty /opt/jetty
+    ```
 1. Now change the `/etc/default/<service>` files `TMPDIR` from:
 
     `TMPDIR=/opt/jetty-9.3/temp`  
