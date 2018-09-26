@@ -194,6 +194,15 @@ users that have been synced into the Gluu Server, number of failures, and total 
         2016-07-16 17:18:17,739 INFO  [gluu.oxtrust.ldap.cache.service.CacheRefreshTimer] (pool-1-thread-9) Removed '0' persons from target server
         2016-07-16 17:18:17,739 INFO  [gluu.oxtrust.ldap.cache.service.CacheRefreshTimer] (pool-1-thread-9) There are '2,002' entries before updating inum list
         2016-07-16 17:18:17,740 INFO  [gluu.oxtrust.ldap.cache.service.CacheRefreshTimer] (pool-1-thread-9) There are '2,002' entries after removal '0' entries 
+        
+4. `oxtrust_audit.log` under `/opt/gluu/jetty/identity/logs`
+New to version 3.1.4, this log provides basic auditing for oxTrust identity. It gathers information about who did what, when, and from where in the following format:
+
+Date - Object changed - Who applied the change - from which IP
+
+For example:
+
+    2018-09-26 09:07:55,938 INFO  [qtp804611486-16]- OPENID CLIENT @!2D59.8992.A7F7.CD81!0001!6290.A960!0008!ACA6.3181.A647.456C **MyOwnClient** ADDED  BY USER Default Admin User FROM IP ADDRESS 192.168.1.6
 
 #### client_id and/or client_name logging
 oxTrust configured to generate and view client_id and/or client_name logs. 
