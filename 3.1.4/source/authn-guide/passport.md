@@ -529,12 +529,11 @@ if (data.passportStrategies.reddit) {
 
 ### Review your configuration
 
-To finish, check you already have:
+To finish, make sure you have:
 
 - [Enabled passport](#enable-passport)
-- [Registered for a developer account](#register-for-a-developer-account-at-social-sites)
-- [Created an application](#create-applications)
-- [Filled strategy configurations in oxTrust](#fill-strategy-details), including a logo image as described [here](#providers-logo-image)
+- [Ontained client credentials and created an application](#obtain-client-credentials)
+- [Added configurations in oxTrust](#add-strategy-details), including a logo image as described [here](#providers-logo-image)
 
 ### Test the new strategy
 
