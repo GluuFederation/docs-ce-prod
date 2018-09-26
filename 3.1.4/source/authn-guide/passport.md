@@ -85,9 +85,7 @@ The following summarizes the steps (and assumes Passport is already included in 
 
 ### Obtain client credentials
 
-Every social site has its own procedure for obtaining client credentials (ClientID and Client Secret). Check the docs of the specific app for more information. The aim is to get to a page that allows creation of applications. 
-
-Here are links for a few common social providers:   
+Every provider has its own procedure for issuing client credentials (i.e. client ID and client secret). Check the docs of the specific app for more information. The aim is to get to a page that allows creation of applications. Here are links for a few popular providers: 
 
 - [GitHub](https://github.com/settings/applications/new)   
 - [Twitter](https://apps.twitter.com)   
@@ -95,7 +93,7 @@ Here are links for a few common social providers:
 
 To create an application you will need to provide information like an application name or ID, domain name of your application, and authorization callback URLs.
 
-For our example, you can use the domain name of your Gluu Server (e.g. `https://myidp.domain.com`). For callback URL please use the following the convention:
+For our example, you can use the domain name of your Gluu Server (e.g. `https://myidp.domain.com`). For callback URL use the following the convention:
 
 ```
 https://<idp-hostname>/passport/auth/<strategy>/callback
@@ -103,17 +101,18 @@ https://<idp-hostname>/passport/auth/<strategy>/callback
 
 Where `<stragegy>` is the name of the Passport.js strategy you are integrating, for example `../auth/facebook/callback`. 
 
-The portion after the domain name must match that found in the corresponding `js` file in chroot folder `/opt/gluu/node/passport/server/auth` (search for `callbackURL`). This directory contains all providers supported out-of-the-box.
+The portion after the domain name must match that found in the corresponding `js` file in the chroot folder `/opt/gluu/node/passport/server/auth` (search for `callbackURL`). This directory contains all providers supported out-of-the-box.
 
 Once the application is created you will be given two pieces of data: client ID and client secret. 
 
-Terminology varies depending on provider; sometimes they are called consumer key and consumer secret, or app ID and app secret, etc. For instance, [here](../img/user-authn/passport/fb-addurl.png) is how it looks in Facebook.
+!!! Note
+    Terminology varies depending on provider; sometimes it is called consumer key and consumer secret, or app ID and app secret, etc. For instance, [this is how it looks on Facebook](../img/user-authn/passport/fb-addurl.png).    
 
 ### Add strategy details
 
 In oxTrust navigate to `Configuration` > `Manage Authentication` > `Passport Authentication Method`. 
 
-Do the following for each supported strategy:
+Do the following for each provider you wish to support:
 
 - Click `Add Strategy`             
 - Add the name of the provider in the `strategy` field (e.g. `github`) **Note: this field is case sensitive**  
@@ -125,28 +124,28 @@ Additional parameters can be supplied in the form. We will cover this [later](#a
 
 ### Protect oxTrust with passport
 
-Navigate to `Configuration` > `Manage Authentication` > `Default Authentication` and set the `oxTrust acr` field to `passport_social`. This will force oxTrust to use the Passport authentication flow. Press `Update`.
+Navigate to `Configuration` > `Manage Authentication` > `Default Authentication` and set the `oxTrust acr` field to `passport_social` and click `Update`. This will force oxTrust to use the Passport authentication flow. 
 
 ### Testing
 
-#### About passport logs
+#### Passport logs
 
 Passport logs can be found in `/opt/gluu/node/passport/logs`. By default, severity of messages logged is `INFO`. You can tweak this by altering Passport's configuration file. For more information see [Log level](#log-level).
 
 In addition to passport logs, the log statements of the custom script are key. You can find those in `/opt/gluu/jetty/oxauth/logs/oxauth_script.log`.
 
-#### Provider selection page
+#### Login flows
 
-Wait for 1 minute for passport to pickup configuration changes. Open a separate browsing session (e.g incognito) and try accessing oxTrust: `https://<idp-hostname>/identity`. You should be presented with a form like the one shown below:
+Wait for 1 minute for passport to pickup configuration changes. Open a separate browsing session (e.g incognito) and try accessing oxTrust: `https://<idp-hostname>/identity`. You should be presented with a form like the one shown below with your external identity providers populated:
 
 ![provider selection form](../img/user-authn/passport/provider_selection.png)
 
-On the right, your external identity providers will be populated. To start, simply confirm the username + password authentication flow is working (use the fields provided on the left only), then log out.
+To start testing, simply confirm the username + password authentication flow is working as expected. Sign in and out to confirm.
 
-Next, attempt to use one of the social login options you've configured. If your setup was correct, you'll be prompted for authentication at the external provider, then redirected back to oxTrust as an authenticated user.
+Next, attempt to use one of the social login options you've configured. If your setup is correct, you'll be prompted for authentication at the external provider and, after successfully authenticating, will be redirected back to oxTrust as an authenticated user.
 
 !!! Note:
-    Once you have supplied login credentials at an external provider, you won't be prompted for them again until your session expires or you explicitly log out of the external provider.
+    Once you have supplied login credentials at an external provider, you won't be prompted for authentication again until your session expires or you explicitly log out of the external provider.
     
 If you get an error page like the one below, for example, double check your configuration and Internet access.
 
@@ -154,13 +153,13 @@ If you get an error page like the one below, for example, double check your conf
 
 If you are stuck and need additional assistance, open a ticket on [Gluu support](https://support.gluu.org).  
 
-#### Check user profile
+#### User data
 
 Once oxTrust login is successful, check user data by navigating in oxTrust to `Personal` > `Profile`. Alternatively you can use the admin user and navigate to `Users` > `Manage people` to inspect the recently created user entry.
 
-To check the actual profile data received during the authentication transaction, check this [section](#inspecting-profile-data).
+To check the actual profile data received during the authentication transaction, review this [section](#inspecting-profile-data).
 
-If you modify some aspect of your profile on the social site and attempt to re-login, the attribute updates will also be applied in your local Gluu LDAP.
+If you modify some aspect of your profile at the external provider and attempt to re-login, the user attributes will also be updated in your local Gluu LDAP.
 
 ## Making other applications use inbound identity
 
@@ -172,13 +171,11 @@ In the previous section we experimented with an authentication flow to access ox
 
 For more information on `acr_value` manipulation, check this [page](../admin-guide/openid-connect/index.md#authentication).
 
-Additionally, you can bypass the provider selection page and force explicit usage of a configured provider by supplying a [custom authorization parameter](#preselecting-an-external-provider) with your authorization request.
+Additionally, you can bypass the provider selection page and force usage of a specific provider by supplying a [custom authorization parameter](#preselecting-an-external-provider) with your authorization request.
 
 ## Inspecting profile data
 
-For debugging purposes, you can print the contents of profile data received from the external provider. 
-
-Follow these steps:
+For debugging purposes, you can print the contents of profile data received from the external provider by following these steps:
 
 1. Locate the `js` file of the target identity provider. Inside the Gluu chroot, check `/opt/gluu/node/passport/server/auth`     
 
@@ -194,74 +191,76 @@ Follow these steps:
 
 The two log statements added will print all profile data received from the external provider in JSON format, and the portion of that profile actually processed by Gluu, respectively.
 
-Do a login attempt by choosing the external provider of your interest, then check the contents of [passport node logs](#about-passport-logs).
+Perform a login attempt by choosing an external provider, then check the contents of the [passport node logs](#passport-logs).
 
 ## How user onboarding works
 
-As stated in the [sample flow](#sample-authentication-flow), after a user has logged in at an external provider a new record is added in local LDAP - or updated in case the user is known -. To determine if a user was already added, a string composed by the provider name as well as his ID is used. As an example, if user "MrBrown" has logged in at Twitter, the string would look like `passport-twitter:mrbrown`. An LDAP search is performed for a match in the people branch for an entry where attribute `oxExternalUid` equals to `passport-twitter:mrbrown`.
+As stated in the [sample flow](#sample-authentication-flow), after a user has logged in at an external provider a new record is added in local LDAP - or updated in case the user is known. 
 
-If there are no matches, a new user entry is added with the values [received](#inspecting-profile-data) from the external provider as well as the computed value for `oxExternalUid`. The user profile can contain single or multivalued attributes, however it is required specifically that `id` and `provider` be single-valued.
+To determine if a user was already added, a string is composed with the provider name and the user ID. For example, if user "MrBrown" has logged in at Twitter, the string would look like `passport-twitter:mrbrown`. An LDAP search is performed for a match in the people branch for an entry where attribute `oxExternalUid` equals `passport-twitter:mrbrown`.
 
-Probably you already noticed there is no `id` LDAP attribute. Actually, there is an intermediate step which does mapping of attributes from the remote source (external provider) to the local destination (Gluu LDAP). This is controlled by the [configuration properties](#custom-script-parameters) found in Passport's interception script.
+If there are no matches, a new user entry is added with the values [received](#inspecting-profile-data) from the external provider, as well as the computed value for `oxExternalUid`. The user profile can contain single or multivalued attributes, however `id` and `provider` **must** be single-valued.
+
+You may have noticed there is no `id` LDAP attribute. There is an intermediate step which does mapping of attributes from the remote source (external provider) to the local destination (Gluu LDAP). This is controlled by the [configuration properties](#custom-script-parameters) found in Passport's interception script.
 
 Also note that you can apply some transformation of incoming attribute values before they are sent to the custom script by tweaking the correponding `js` file of the strategy of your interest.
 
 ## Altering flow behaviour
 
-There a couple of ways to modify the behavior of the authentication flow. These are slight flow changes though. If you want a tailored workflow to achieve needs not covered in this section, we suggest to open a [support ticket](https://support.gluu.org) to receive further assistance. Customization may demand programming skills in languages such as python, Java, and Node.js from your side.
+There a couple of ways to modify the behavior of the authentication flow. These are slight flow changes though. To achieve needs not covered in this section, you may want to open a [support ticket](https://support.gluu.org) for further assistance. Customization may require programming skills in languages such as python, Java, and Node.js.
 
-For all modifications below you have to wait at least 1 minute before testing it. This is the time the server takes to pick your configuration changes.
+Wait at least 1 minute before testing all modications to give the server time to pickup configuration changes.
 
 ### Requiring email in profile
 
-Default implementation does not impose constraints around attributes requiredness with exception of `username`. If you want to flag `email` as required, you can add a property to the strategy this way:
+Default implementation does not impose constraints around attributes requiredness with exception of `username`. If you want to flag `email` as required, you can add the following property to the strategy:
 
-- In oxTrust, go to "Configuration" > "Manage Authentication" > "Passport Authentication Method"
-- Press the "Add new property" button for the strategy you want to manage
-- Enter "requestForEmail" in the left field and "true" on the right
-- Save your settings
+- In oxTrust, navigate to `Configuration` > `Manage Authentication` > `Passport Authentication Method`
+- Click `Add new property` for the appropriate strategy    
+- Enter `requestForEmail` in the left field and `true` in the right field
+- Save your settings   
 
-With this setup, just after authentication at external site, a newcomer will be shown a page to enter his email (this won't be needed for subsequent logins) to complete the flow. The value entered is stored in LDAP `mail` attribute. However, if an existing user has such email assigned already authentication will fail.
+With this configuration added, to complete the login flow, a newcomer will be shown a page to enter their email after authentication at the external provider (this won't be needed for subsequent logins). The value entered is stored in LDAP `mail` attribute. However, if an existing user has such email assigned already authentication will fail.  
 
-Most social providers offer means for users to select which attributes can be exposed to external applications that read their profile data, so depending on user settings the value can be present or not. This means that even if *requestForEmail* is set to *true*, there might be cases in which users are not prompted.
+Most social providers prompt users to authorize the release of personal attributes to external providers, so depending on user settings the value may be present or not. This means that even if `requestForEmail` is set to `true`, there may be cases where users are not prompted.
 
 ### Email account linking
 
 There are cases in which an external provider is trusted so you can change the default behavior of adding a new user entry locally, but binding an existing user to the one that is logging in. This linking can be done via email attribute.
 
-As an example, suppose you have 3 users in your Gluu local LDAP: Larry (larry@acme.com), Moe (moe@acme.com), and Curly (curly@acme.com). When you enable email account linking for provider "XYZ" and certain user logs in through XYZ to access your application, he will be logged as Moe as long as his email is "moe@acme.com" at XYZ.
+For example, suppose you have 3 users in your Gluu local LDAP: Larry (`larry@acme.com`), Moe (`moe@acme.com`), and Curly (`curly@acme.com`). When you enable email account linking for provider "XYZ" and certain user logs in through XYZ to access your application, he will be logged as Moe as long as his email is "moe@acme.com" at XYZ.
 
-To do account linking proceed this way:
+To enable account linking, follow these steps:
 
-- In oxTrust, go to "Configuration" > "Manage Authentication" > "Passport Authentication Method"
-- Press the "Add new property" button for the strategy you want to manage
-- Enter "emailLinkingSafe" in the left field and "true" on the right
-- Save your settings
+- In oxTrust, navigate to `Configuration` > `Manage Authentication` > `Passport Authentication Method`    
+- Click `Add new property` for the appropriate strategy    
+- Enter `emailLinkingSafe` in the left field and `true` in the right field   
+- Save your settings     
 
 !!! Note:
-    Only enable this feature for trusted providers and do not set *requestForEmail* to *true* in this case since this opens a big security hole.
+    Only enable this feature for trusted providers and do not set `requestForEmail` to `true` in this case since this opens a big security hole.
 
 ### Preselecting an external provider
 
-In some cases you don't want to show the identity providers selection form, but have means to determine programatically where you would like to send users to. In this case, you need to customize the authorization request being sent to Gluu Server in order to pass the desired provider. For this purpose you just have to create a custom parameter for authorization requests and parameterize the passport script accordingly.
+In some cases you might not want to show external identity providers, instead simply directing a user to a specific external provider. In this case, you need to customize the authorization request being sent to Gluu in order to pass the desired provider. For this purpose you need to create a custom parameter for authorization requests and parameterize the passport script accordingly.
 
 Please follow these steps:
 
-1. Create a custom parameter for authorization request
+1. Create a custom parameter for authorization request     
     
-    - Login to oxTrust and go to "Configuration" > "JSON configuration" > "oxAuth configuration"
-    - Scroll down to "authorizationRequestCustomAllowedParameters" and click on the plus icon
-    - Enter a name for the custom parameter you are adding, e.g. "preselectedExternalProvider"
-    - Press on "Save configuration" at the bottom
+    - Login to oxTrust and navigate to `Configuration` > `JSON configuration` > `oxAuth configuration`
+    - Scroll down to `authorizationRequestCustomAllowedParameters` and click the plus icon
+    - Enter a name for the custom parameter you are adding, e.g. `preselectedExternalProvider`
+    - Save the configuration     
     
 1. Parameterize the passport custom script to read the custom parameter
 
-    - Navigate to "Configuration" > "Custom scripts"
-    - In "Person Authentication" tab, collapse the script labelled "passport_social" (or "passport_saml" if you are using inbound SAML)
-    - Click on "Add new property" and enter "authz_req_param_provider" on the left
-    - On the right enter the name of the custom parameter (e.g. "preselectedExternalProvider")
+    - Navigate to `Configuration` > `Custom scripts`   
+    - In `Person Authentication` tab, expand the script labelled `passport_social` (or `passport_saml` if you are using inbound SAML)   
+    - Click `Add new property` and enter `authz_req_param_provider` in the left field      
+    - In the right field, enter the name of the custom parameter (e.g. `preselectedExternalProvider`)
 
-This way you can append a new query parameter to the request you issue to start the authorization process in your application:
+Now you can append a new query parameter to the request you issue to start the authorization process in your application, for example:
 
 ```
 https://<domain-name>/oxauth/authorize.htm?response_type=code+...&client_id=...
@@ -278,15 +277,15 @@ Where `<base64-url-encoded-provider-object>` is the Base64-encoded representatio
 }
 ```
 
-In this case `<strategy-name>` is the name of an already registered strategy. Note this piece of data is case sensitive. 
+In this case `<strategy-name>` is the name of an already configured strategy. Note this piece of data is case sensitive. 
 
-The names of valid strategies are those defined at "Configuration" > "Manage Authentication" > "Passport authentication method" in oxTrust. When using SAML flavor of custom script, valid providers are those defined in file `/etc/gluu/conf/passport-saml-config.json`.
+The names of valid strategies are those defined in oxTrust in `Configuration` > `Manage Authentication` > `Passport authentication method`. If using SAML, valid providers are those defined in `/etc/gluu/conf/passport-saml-config.json`.
 
 ## Additional configuration details
 
 ### Log level
 
-As mentioned [earlier](#about-passport-logs), there are two relevant logs: `oxauth_script.log` (where you will see statements about every step of the flow itself), and `passport-YYYYmmdd.log` which allows debugging certain aspects in the communication with external providers.
+As mentioned [earlier](#passport-logs), there are two relevant logs: `oxauth_script.log` (where you will see statements about every step of the flow itself), and `passport-YYYYmmdd.log` which allows debugging certain aspects in the communication with external providers.
 
 `oxauth_script.log` does not handle levels per se (all `print` statements of the custom script are sent to log) but passport logging level can be configured this way:
 
@@ -304,9 +303,9 @@ As mentioned [earlier](#about-passport-logs), there are two relevant logs: `oxau
 
 ### Custom script parameters
 
-The interception script is the core piece that implements the authentication flow. In general terms, it implements a provider agnostic inbound identity authentication flow. Actually, the script used for social login and inbound SAML is the same. They only differ in the way they are parameterized.
+The interception script is the core code that implements the authentication flow. In general, it implements a provider agnostic inbound identity authentication flow. Actually, the script used for social login and inbound SAML is the same. They only differ in the way they are parameterized.
 
-The following describes the configuration properties of the passport script. We advise to login to oxTrust and go to "Configuration" > "Custom scripts" > "Person Authentication" tab, and collapse the script (whether social or saml version).
+The following describes the configuration properties of the passport script. We advise to login to oxTrust and navigate to `Configuration` > `Custom scripts` > `Person Authentication` tab, and expand the script (whether social or saml version).
 
 - *behaviour*: It dictates whether the script is intended to integrate SAML providers or not. Valid values are "saml" or "social". In the case of SAML behaviour, a separate configuration file is needed, see [this page](inbound-saml-passport.md#register-external-idps-with-home-idp).
 
@@ -318,57 +317,57 @@ The following describes the configuration properties of the passport script. We 
 
 ### Provider's logo image
 
-Strategies supported out of the box are already bundled with its corresponding logo images and they properly load in the provider selection list. If you want to change the image shown for an existing strategy simply do this:
+Strategies supported out-of-the-box are already bundled with corresponding logo images. To change the image shown for an existing strategy follow the below instructions:
 
 1. Create images directory under `/opt/gluu/jetty/oxauth/custom/static`:`mkdir /opt/gluu/jetty/oxauth/custom/static/img`.
 
 1. Create passport directory under `/opt/gluu/jetty/oxauth/custom/static/img`:`mkdir /opt/gluu/jetty/oxauth/custom/static/img/passport`.
 
-1. Copy the image to passport directory(`/opt/gluu/jetty/oxauth/custom/static/img/passport`).
+1. Copy the image to passport directory (`/opt/gluu/jetty/oxauth/custom/static/img/passport`).
 
-1. In oxTrust go to "Configuration" > "Manage Authentication" > "Passport Authentication Method".
+1. In oxTrust navigate to `Configuration` > `Manage Authentication` > `Passport Authentication Method`.
 
-1. Press the "Add new property" button for the strategy you want to change.
+1. Click `Add new property` for the appropriate strategy.
 
-1. Fill "logo_img" on the left, on the right enter `../../ext/resources/img/passport/<image-name>` where `<image-name>` is the name of the file you copied on the first step. 
+1. Add `logo_img` in the left field, and in the right field add `../../ext/resources/img/passport/<image-name>` where `<image-name>` is the name of the file you copied during the first step. 
 
 1. Wait 1 minute, then verify the image appears correctly by acessing your application in a browser.
 
 Alternatively you can use an absolute URL for `logo_img` if the image is hosted elsewhere (e.g. `https://another.site.co/path/to/image`).
 
-### OpenID connect providers
+### External OpenID Connect Providers
 
-Besides common social sites support, OpenID Connect providers are also supported. More specifically, you can enable one OIDC provider and be up and running in a matter of minutes. 
+Besides common social providers, external OpenID Connect Providers can also be supported. More specifically, you can enable one OpenID Provider and be up and running in a matter of minutes. 
 
-1. In oxTrust go to "Configuration" > "Manage Authentication" > "Passport Authentication Method". 
+1. In oxTrust navigate to `Configuration` > `Manage Authentication` > `Passport Authentication Method`. 
 
-1. Press the "Add Strategy" button and fill "strategy" field with value "openidconnect".
+1. Click `Add Strategy` and fill the `strategy` field with the value `openidconnect`.
 
 1. Fill the following fields according to the configuration of the external OP:
    
-   - "clientID" and "clientSecret": The details of an OIDC client previously registered at the OP
+   - `clientID` and `clientSecret`: The details of an OIDC client previously registered at the OP
 
-   - "issuer": Location of the OP (e.g. "https://server.example.com")
+   - `issuer`: Location of the OP (e.g. `https://server.example.com`)
    
-   - "authorizationURL": The Authorization Endpoint (e.g "https://server.example.com/authorize")
+   - `authorizationURL`: The Authorization Endpoint (e.g `https://server.example.com/authorize`)
    
-   - "tokenURL": The endpoint used to obtain an access token, ID token, etc. (e.g. "https://server.example.com/token")
+   - `tokenURL`: The endpoint used to obtain an access token, ID token, etc. (e.g. `https://server.example.com/token`)
    
-   - "userInfoURL": The endpoint that returns Claims about the authenticated end-user (e.g. "https://server.example.com/userinfo")
+   - `userInfoURL`: The endpoint that returns Claims about the authenticated end-user (e.g. `https://server.example.com/userinfo`)
 
-   - "acr_values" (optional): Space-separated string that specifies the `acr` values the OP will be requested to use for processing authentication requests.
+   - `acr_values` (optional): Space-separated string that specifies the `acr` values the OP will be requested to use for processing authentication requests.
 
 1. Save the configuration and wait for about 1 minute
 
-Integration of OIDC providers is achieved via `passport-openidconnect` Passport.js strategy which **only** supports the code flow (not hybrid or implicit). Additionally, comunication with the token endpoint is carried out via POST only. No support for secretless clients (just confidential oauth clients).
+Integration of OIDC providers is achieved via `passport-openidconnect` Passport.js strategy which **only** supports the OpenID Connect code flow (not hybrid or implicit). Additionally, comunication with the token endpoint is carried out via POST only. No support for secretless clients (just confidential oauth clients).
 
 If you need to support a second OIDC provider, you have to duplicate the `openidconnect` strategy and proceed similarly as when [adding a new provider](#supporting-a-new-strategy).
 
 #### Using an external Gluu Server as OP
 
-Here we provide specific steps on how to configure your OIDC strategy when using a Gluu Server instance as external provider (here called "remote Gluu". Note this is **not** the same server in which Passport has been installed.
+Here we provide specific steps on how to configure your OpenID Connect strategy when using a Gluu Server instance as the external provider (here called "remote Gluu". Note this is **not** the same server in which Passport has been installed). 
 
-1. Create a client in your remote Gluu server. Login with admin credentials to `https://<remote-gluu-server>/identity` and go to "OpenId" > "Clients" > "Add". Provide the following settings:
+1. Create a client in your remote Gluu server. Login with admin credentials to `https://<remote-gluu-server>/identity` and navigate to `OpenID` > `Clients` > `Add`. Provide the following settings:
 
     - client name: *any of your choosing*
     
@@ -400,15 +399,15 @@ Here we provide specific steps on how to configure your OIDC strategy when using
 
 1. Follow the steps at the [beginning of this section](#openid-connect-providers). Particularly for step 3 provide:
 
-   - "clientID" and "clientSecret": The details of client just created. Go to "OpenID Connect" > "Clients" and use for "clientID" the one appearing in the column "Inum" of the table.
+   - `clientID` and `clientSecret`: The details of client just created. Go to "OpenID Connect" > "Clients" and use for "clientID" the one appearing in the column "Inum" of the table.
 
-   - "issuer": `https://<remote-gluu-server>`
+   - `issuer`: `https://<remote-gluu-server>`
    
-   - "authorizationURL": `https://<remote-gluu-server>/oxauth/restv1/authorize`
+   - `authorizationURL`: `https://<remote-gluu-server>/oxauth/restv1/authorize`
    
-   - "tokenURL": `https://<remote-gluu-server>/oxauth/restv1/token`
+   - `tokenURL`: `https://<remote-gluu-server>/oxauth/restv1/token`
    
-   - "userInfoURL": `https://<remote-gluu-server>/oxauth/restv1/userinfo`
+   - `userInfoURL`: `https://<remote-gluu-server>/oxauth/restv1/userinfo`
 
 <!--
 ## Customizing UI pages
@@ -439,7 +438,7 @@ You can use Passport.js [search feature](http://www.passportjs.org/packages/) to
 
 ### Add strategy setup code
 
-Now that you added *passport-reddit* strategy, next step is creating a file named `reddit.js` in `/opt/gluu/node/passport/server/auth` with contents like:
+Now that you added `passport-reddit` strategy, next step is creating a file named `reddit.js` in `/opt/gluu/node/passport/server/auth` with contents like:
 
 ```
 var passport = require('passport')
