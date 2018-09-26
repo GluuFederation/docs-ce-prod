@@ -141,12 +141,12 @@ The Gluu Server version can be found in the oxTrust dashboard. Alternatively:
 3. To find oxTrust version
 
     `cd /opt/gluu/jetty/identity/webapps/`  
-    `unzip -q -c identity.war META-INF/MANIFEST.MF'  
+    `unzip -q -c identity.war META-INF/MANIFEST.MF`  
 
 4. oxAuth version can be found using below command 
 
     `cd /opt/gluu/jetty/oxauth/webapps/`  
-    `unzip -q -c oxauth.war META-INF/MANIFEST.MF'  
+    `unzip -q -c oxauth.war META-INF/MANIFEST.MF`  
 
 Version numbers for included software like IDP, oxAuth-rp, etc.,
 can be viewed in the same directory. These apps can be 
