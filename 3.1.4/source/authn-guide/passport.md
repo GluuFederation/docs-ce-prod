@@ -95,8 +95,6 @@ To add Passport to an existing Gluu Server installation, perform the following a
 
 Every social site has its own procedure for obtaining client credentials (ClientID and Client Secret). Check the docs of the specific app for more information. The aim is to get to a page that allows creation of applications. For the sake of simplicity, we suggest adding at most two external providers to start.
 
-### Common apps
-
 Here are instructions for getting started with a few common social providers.
 
 - GitHub: Visit [https://github.com/settings/applications/new](https://github.com/settings/applications/new)   
