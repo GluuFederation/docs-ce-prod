@@ -40,7 +40,7 @@ The following is a high-level diagram depicting a simple inbound identity user a
 
 ## Supported social login providers 
 
-Gluu Server 3.1.4 ships with strategies to support social login at the following sites:
+Gluu Server 3.1.4 ships with strategies to support social login at the following providers:
 
 - Dropbox
 - Facebook
