@@ -99,7 +99,7 @@ For our example, you can use the domain name of your Gluu Server (e.g. `https://
 https://<idp-hostname>/passport/auth/<strategy>/callback
 ```
 
-Where `<stragegy>` is the name of the Passport.js strategy you are integrating, for example `../auth/facebook/callback`. 
+Where `<strategy>` is the name of the Passport.js strategy you are integrating, for example `../auth/facebook/callback`. 
 
 The portion after the domain name must match that found in the corresponding `js` file in the chroot folder `/opt/gluu/node/passport/server/auth` (search for `callbackURL`). This directory contains all providers supported out-of-the-box.
 
@@ -122,7 +122,7 @@ Do the following for each provider you wish to support:
 
 Additional parameters can be supplied in the form. We will cover this [later](#altering-flow-behaviour).
 
-### Protect oxTrust with passport
+### Protect oxTrust with Passport
 
 Navigate to `Configuration` > `Manage Authentication` > `Default Authentication` and set the `oxTrust acr` field to `passport_social` and click `Update`. This will force oxTrust to use the Passport authentication flow. 
 
@@ -132,7 +132,7 @@ Navigate to `Configuration` > `Manage Authentication` > `Default Authentication`
 
 Passport logs can be found in `/opt/gluu/node/passport/logs`. By default, severity of messages logged is `INFO`. You can tweak this by altering Passport's configuration file. For more information see [Log level](#log-level).
 
-In addition to passport logs, the log statements of the custom script are key. You can find those in `/opt/gluu/jetty/oxauth/logs/oxauth_script.log`.
+In addition to Passport logs, the log statements of the custom script are key. You can find those in `/opt/gluu/jetty/oxauth/logs/oxauth_script.log`.
 
 #### Login flows
 
@@ -207,9 +207,9 @@ Also note that you can apply some transformation of incoming attribute values be
 
 ## Altering flow behaviour
 
-There a couple of ways to modify the behavior of the authentication flow. These are slight flow changes though. To achieve needs not covered in this section, you may want to open a [support ticket](https://support.gluu.org) for further assistance. Customization may require programming skills in languages such as python, Java, and Node.js.
+There are a couple of ways to modify the behavior of the authentication flow. These are slight flow changes though. To achieve needs not covered in this section, you may want to open a [support ticket](https://support.gluu.org) for further assistance. Customization may require programming skills in languages such as Python, Java, and Node.js.
 
-Wait at least 1 minute before testing all modications to give the server time to pickup configuration changes.
+Wait at least 1 minute before testing all modications to give the server time to pick up configuration changes.
 
 ### Requiring email in profile
 
@@ -238,7 +238,7 @@ To enable account linking, follow these steps:
 - Save your settings     
 
 !!! Note:
-    Only enable this feature for trusted providers and do not set `requestForEmail` to `true` in this case since this opens a big security hole.
+    Only enable this feature for trusted providers and do not set `requestForEmail` to `true` in this case, since this opens a big security hole.
 
 ### Preselecting an external provider
 
@@ -248,12 +248,12 @@ Please follow these steps:
 
 1. Create a custom parameter for authorization request     
     
-    - Login to oxTrust and navigate to `Configuration` > `JSON configuration` > `oxAuth configuration`
+    - Log into oxTrust and navigate to `Configuration` > `JSON configuration` > `oxAuth configuration`
     - Scroll down to `authorizationRequestCustomAllowedParameters` and click the plus icon
     - Enter a name for the custom parameter you are adding, e.g. `preselectedExternalProvider`
     - Save the configuration     
     
-1. Parameterize the passport custom script to read the custom parameter
+1. Parameterize the Passport custom script to read the custom parameter
 
     - Navigate to `Configuration` > `Custom scripts`   
     - In `Person Authentication` tab, expand the script labelled `passport_social` (or `passport_saml` if you are using inbound SAML)   
@@ -321,9 +321,9 @@ Strategies supported out-of-the-box are already bundled with corresponding logo 
 
 1. Create images directory under `/opt/gluu/jetty/oxauth/custom/static`:`mkdir /opt/gluu/jetty/oxauth/custom/static/img`.
 
-1. Create passport directory under `/opt/gluu/jetty/oxauth/custom/static/img`:`mkdir /opt/gluu/jetty/oxauth/custom/static/img/passport`.
+1. Create Passport directory under `/opt/gluu/jetty/oxauth/custom/static/img`:`mkdir /opt/gluu/jetty/oxauth/custom/static/img/passport`.
 
-1. Copy the image to passport directory (`/opt/gluu/jetty/oxauth/custom/static/img/passport`).
+1. Copy the image to Passport directory (`/opt/gluu/jetty/oxauth/custom/static/img/passport`).
 
 1. In oxTrust navigate to `Configuration` > `Manage Authentication` > `Passport Authentication Method`.
 
@@ -472,7 +472,7 @@ module.exports = {
 }
 ```
 
-This resembles what most already existing `js` files in `/opt/gluu/node/passport/server/auth` have. Documentation of particular strategy will let you know if additional parameters can be supplied in the constructor call (`new RedditStrategy(...` in this case). For instance, certain strategies allow you to explicitly request the attributes needed from user profile. As an example:
+This resembles what most already existing `js` files in `/opt/gluu/node/passport/server/auth` have. Documentation for the particular strategy will let you know if additional parameters can be supplied in the constructor call (`new RedditStrategy(...` in this case). For instance, certain strategies allow you to explicitly request the attributes needed from user profile. As an example:
 
 ```
    profileFields: ['id', 'name', 'displayName', 'email']
