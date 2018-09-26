@@ -537,4 +537,4 @@ To finish, make sure you have:
 
 ### Test the new strategy
 
-You can follow the same instructions given in section ["Setting up social login for an app with Passport"](#test).
+You can follow the same instructions given in section ["Setting up social login for an app with Passport"](#testing).
