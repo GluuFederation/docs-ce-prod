@@ -1,25 +1,30 @@
 # Upgrade to Gluu Server 3.1.4
 
 ## Overview
-The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You need to explicitly install the new version and export/import your data. Find your existing version below for upgrade instructions to Gluu Server 3.1.4. 
+The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will need to either use our in-place upgrade script or explicitly install the new version and export/import your data. Find your existing version below for upgrade instructions to Gluu Server 3.1.4. 
+
+!!! Warning
+    Before upgrading, make sure to [back up](../operation/backup.md) the Gluu container or LDAP LDIF. 
 
 ## Upgrade from 3.1.x to 3.1.4
 
-Upgrading from 3.1.x to 3.1.4 involves the following steps:
+New to version 3.1.4, it is now possible to perform an in-place upgrade from 3.1.x to 3.1.4, rather than requiring manual configuration. To do so, follow these directions to download and run our new in-place upgrade script:
 
-- Update Jetty from 9.3 to 9.4.9
+1. Log into your server with `service gluu-server-3.1.x login`
 
-- Stop oxTrust and oxAuth services
+1. Download the upgrade script with `wget http://c1.gluu.org:8999/3-1-4-sp1.sh`
 
-- Backup existing oxTrust and oxAuth .war files
+1. Run the script with `sh 3-1-4-sp1.sh`
 
-- Download 3.1.4 oxTrust and oxAuth from repo
+1. When the script has finished, restart your server:
 
-- Copy oxTrust and oxAuth .war in path
+```
+logout
+service gluu-server-3.1.x restart
+```
 
-- Update Gluu schema files
-
-- Start oxTrust and oxAuth services
+!!! Note:
+    Scripts and directories outside the Chroot will still reflect the version from which you upgraded. For example, if you started with version 3.1.3, the directory will still be gluu-server-3.1.3 even after upgrading to 3.1.4.
 
 ### Updating .war and Schema Manually
 
@@ -296,8 +301,6 @@ Gluu 3.1.x components that can be updated in this way inside the container can b
 
 ## Upgrade from 3.0.x to 3.1.4
 
-!!! Warning
-    Before upgrading, make sure to [back up](../operation/backup.md) the Gluu container or LDAP LDIF. 
 
 Upgrading generally involves the following steps:
 
