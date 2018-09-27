@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Gluu Server bundles the Passport.js authentication middleware to enable social login and inbound SAML and OpenID Connect (all of which can be referred to as "inbound identity"). Passport normalizes the process of supporting user authentication at external providers and offers a standard mapping for user claims and user registration in your Gluu Server. 
+The Gluu Server bundles the Passport.js authentication middleware to enable social login and inbound SAML and OpenID Connect (all of which can be referred to as "inbound identity"). Passport normalizes the process of supporting user authentication at external identity providers and offers a standard mapping for user claims and user registration in your Gluu Server. 
 
 Passport is an MIT licensed, Node.js web app that supports hundreds of "authentication strategies" out-of-the-box, including strategies for popular consumer apps like Facebook, Twitter, Github, etc.    
 
