@@ -4,6 +4,9 @@ Thank you for your interest in the Gluu Server! This document will provide instr
 
 Good luck and welcome to the community!
 
+!!! Note
+    To learn more about software licenses, etc., visit the [docs homepage](../index.md)
+    
 ## System Requirements
 
 The Gluu Server needs to be deployed on a server or VM with the following **minimum** requirements. 
