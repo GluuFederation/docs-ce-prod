@@ -58,7 +58,7 @@ The following summarizes the steps (and assumes Passport is already included in 
 
 ### Enable passport
 
-Follow the steps in the [inbound OAuth and OpenID doc]](./passport.md#enable-passport). Instead of enabling the `passport_social` script, enable the `passport_saml` script.
+Follow the steps in the [inbound OAuth and OpenID doc](./passport.md#enable-passport). Instead of enabling the `passport_social` script, enable the `passport_saml` script.
 
 ### Configure Trust
 
