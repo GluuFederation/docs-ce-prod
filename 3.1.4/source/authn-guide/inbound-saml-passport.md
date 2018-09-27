@@ -85,7 +85,7 @@ A sample configuration containing entries for two external IDPs named "idp1" and
     "authnRequestBinding": "HTTP-POST",
     "additionalAuthorizeParams": "<Some additional params json>",
     "skipRequestCompression": "true",
-    "logo_img": "../../ext/resources/ipd1.png",
+    "logo_img": "../../ext/resources/idp1.png",
     "enable": "true",
     "cert": "MIIDbDCCAlQCCQCuwqx2PNP...........YsMw==",
     "reverseMapping": {
@@ -214,7 +214,7 @@ https://<gluu_host>/oxauth/authorize.htm?response_type=code+...&client_id=...
    &acr_values=passport_saml
 ```
 
-### Skipping the IPD selection page
+### Skipping the IDP selection page
 
 You can programmatically compose an authorization URL where you can pass as parameter the name of IDP to which you want to send your users directly. This requires adding a custom authorization parameter to your Gluu Server. Visit [this section](#altering-flow-behaviour) to learn more.
 
