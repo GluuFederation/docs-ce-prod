@@ -118,7 +118,51 @@ pairwiseCalculationSalt                            | Salt to calculate algorithm
 webKeysStorage                                     | Web Key Storage Type
 dnName                                             | DN of certificate issuer
 keyStoreFile                                       | The Key Store File (JKS)
+keyStoreSecret                                     | The Key Store password
+endSessionWithAccessToken                          | Choose whether to accept access tokens to call end_session endpoint
+clientWhiteList                                    | This list specifies which client redirection URIs are white-listed
+clientBlackList                                    | This list specified which client redirection URIs are black-listed
+legacyIdTokenClaims                                | Choose whether to include claims in ID tokens
+customHeadersWithAuthorizationResponse             | Choose whether to enable the custom response header parameter to return custom headers with the authorization response
+frontChannelLogoutSessionSupported                 | Choose whether to support front channel session logout
+useCacheForAllImplicitFlowObjects                  | Choose whether to persist all objects into the cache during implicit flow
+updateUserLastLogonTime                            | Choose if application should update oxLastLogonTime attribute upon user authentication
+updateClientAccessTime                             | Choose if application should update oxLastAccessTime/oxLastLogonTime attributes upon client authentication
+enableClientGrantTypeUpdate                        | Choose if client can update Grant Type values
+loggingLevel                                       | Specify the logging level for oxAuth loggers
+corsConfigurationFilters                           | This list specifies the CORS configuration filters
+logClientIdOnClientAuthentication                  | Choose if application should log the Client ID on client authentication
+logClientNameOnClientAuthentication                | Choose if application should log the Client Name on client authentication
+authorizationRequestCustomAllowedParameters        | This list details the allowed custom parameters for authorization requests
+legacyDynamicRegistrationScopeParam                | Choose whether to allow legacy dynamic registration JSON array parameters
+openidScopeBackwardCompatability                   | Set to false to only allow token endpoint request for openid scope with grant type equals to authorization_code, restrict access to userinfo to scope openid and only return id_token if scope contains openid
+skipAuthorizationForOpenIdScopeAndPairwiseId       | Choose whether to skip authorization if a client has an OpenId scope and a pairwise ID
+httpLoggingEnabled                                 | Enable/disable request/response logging filter
+httpLoggingExcludePaths                            | This list details the base URIs for which the request/response logging filter will not record activity
+externalLoggerConfiguration                        | The path to the external log4j2 logging configuration
+disableU2fEndpoint                                 | Choose whether to disable U2F endpoints
+disableJdkLogger                                   | Choose whether to disable JDK loggers
 
+### Brute Force Protection
 
+New to version 3.1.4, the following parameters are listed under the `authenticationProtectionConfiguration` header. These four parameters help protect against brute force attacks by periodically delaying login requests that occur too frequently in too short a period of time.
 
-[OxAuth Config JSON description](../reference/oxauth-config-json.json)
+Name                                  | Description
+--------------------------------------|------------
+attemptExpiration                     | How long, in minutes, to store a login attempt. 
+maximumAllowedAttemptsWithoutDelay    | How many attempts the application allows before delaying
+delayTime                             | How long, in seconds, to delay a login attempt that exceeds the maximum allowed
+bruteForceProtectionEnabled           | Choose whether to enable this feature
+
+All parameters except `bruteForceProtectionEnabled` require a server restart for changes to take effect.
+
+For example, the following parameters:
+
+```
+attemptExpiration: 15
+maximumAllowedAttemptsWithoutDelay: 4
+delayTime: 2
+bruteForceProtectionEnabled: true
+```
+
+... will insert a 2 second delay after every fourth login attempt within 15 minutes of each other.
