@@ -9,7 +9,7 @@ The following fields are available for edit in the menu.
 
 | Fields/Attributes | Description |
 | ------------------|-------------|
-| baseDN | The base doaim name of oxtrust. The default is `o=gluu` |
+| baseDN | The base distinguished name of oxtrust. The default is `o=gluu` |
 | orgIname | This can be left blank |
 | orgSupportEmail | The support email address of the Gluu Server installation |
 | applianceInum | The [INUM][inum] of the appliance |
@@ -19,7 +19,7 @@ The following fields are available for edit in the menu.
 | schemaAddObjectClassWithoutAttributeTypesDefinition | The schema to add various attribute types |
 
 ## personObjectClassTypes
-This class holds the relation between the person entry and it's relative object class.
+This class holds the relation between the person entry and its relative object class.
 
 | Fields/Attributes | Description |
 | ------------------|-------------|
@@ -28,7 +28,7 @@ This class holds the relation between the person entry and it's relative object 
 | personCustomObjectClass| |
 
 ## personObjectClassDisplayNames
-This class holds the relation betwee the display name of the person and the relative object class.
+This class holds the relation between the display name of the person and the relative object class.
 
 | Fields/Attributes | Description |
 | ------------------|-------------|
@@ -43,8 +43,8 @@ Items can be added under this class by clicking on the `+ item` button.
 | Fields/Attributes | Description |
 | ------------------|-------------|
 | photoRepositoryRootDir | Path to the root directory of photographs |
-| photoRepositoryThumbWidth | thumb with a photo |
-| photoRepositoryThumbheight | sets the thumb height of a photo |
+| photoRepositoryThumbWidth | thumb width of a photo |
+| photoRepositoryThumbHeight | sets the thumb height of a photo |
 | photoRepositoryCountLevels | count level per photo repository |
 | photoRepositoryCountFoldersPerLevel | number of folders per level |
 | authMode | set this tag to `basic` to use basic authentication or leave it blank to use oxAuth |
@@ -114,15 +114,51 @@ Items can be added here by clicking on the `+ item` button.
 | oxAuthIssuers | [URI][uri] of the issuer authorization server |
 | ignoreValidation | Control to check/ignore token validation. Use `true` to validate or `false` otherwise|
 | umaIssuer | [URI][uri] of the issuer authorization server |
-| umaClientId | Identification of the [UMA][uma] client |
-| umaClientKeyId | | 
-| umaResourceId | |
-| umaScope | Scopes available for this resource |
+| scimUmaClientId | Identification of the [UMA][uma] client |
+| scimUmaClientKeyId | | 
+| scimUmaResourceId | |
+| scimUmaScope | Scopes available for this resource |
+| scimUmaClientKeyStoreFile| |
+| scimUmaClientKeyStorePassword| |
+| passportUmaClientId| |
+| passportUmaClientKeyId| |
+| passportUmaResourceID | |
+| passportUmaScope| |
+| passportUmaClientKeyStoreFile | |
 | recaptchaSiteKey | |
 | recaptchaSecretKey | |
 | cssLocation | Path to the CSS files |
 | jsLocation | Path to the JS files |
-| repactchUrl | Type for the recaptcha [URI][uri] attribute |
+| metricReporterInterval | The interval for metric reporter in seconds |
+| metricReporterKeepDataDays| The number of days to keep metric reported data |
+| metricReporterEnabled | Boolean value specifying whether to enable Metric Reporter |
+| rptConnectionPoolUseConnectionPooling |
+| rptConnectionPoolMaxTotal | |
+| rptConnectionPoolDefaultMaxPerRoute | |
+| rptConnectionPoolValidateAfterInactivity | |
+| rptConnectionPoolCustomKeepAliveTimeout | |
+| scimTestMode | |
+| shibbolethVersion | |
+| shibboleth3ldpRootDir | |
+| shibboleth3SpConfDir | |
+| organizationName | |
+| idp3SigningCert | |
+| idp3EncryptionCert | |
+| disableJdkLogger | Boolean value specifying whether to disable JDK loggers |
+| passwordResetRequestExpirationTime | Expiration time in secionds for password reset requests |
+| cleanServiceInterval | Time interval for the Clean Service in seconds |
+
+### clientWhiteList
+
+This list details the whitelisted client redirection URIs
+
+### clientBlackList
+
+This list details the blacklisted client redirection URIs
+
+### Scim Properties
+
+
 
 [inum]: https://en.wikipedia.org/wiki/INum_Initiative "INUM definition in wikipedia"
 [uri]: https://en.wikipedia.org/wiki/Uniform_Resource_Identifier "Uniform Resource Identifier"
