@@ -294,7 +294,8 @@ There are two client properties:
 
 ### Token Binding
 
-Gluu now supports Token Binding, per the [specification](https://openid.net/specs/openid-connect-token-bound-authentication-1_0.html).     
+Gluu now supports Token Binding, per the [specification](https://openid.net/specs/openid-connect-token-bound-authentication-1_0.html).  
+
 This specification enables OpenID Connect implementations to apply Token Binding to the OpenID Connect ID Token. This cryptographically binds the ID Token to the TLS connections over which the authentication occurred. This use of Token Binding protects the authentication flow from man-in-the-middle (MITM) and token export and replay attacks.
 
 A new client property called `id_token_token_binding_cnf` is now available via Dynamic Registration or in the oxTrust OpenID Connect client form (`ID Token Binding Confirmation Method`), which is a string value specifying the JWT confirmation method member name (e.g. tbh) that the Relying Party expects when receiving ID Tokens with Token Binding. 
