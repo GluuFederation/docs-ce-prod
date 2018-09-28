@@ -14,11 +14,13 @@ The login counter will also be reset to zero if several unsuccessful login attem
 ## Configure Account Lockout
 To configure this feature navigate to `Configuration` > `Manage custom scripts` and find `basic_lock` script on the `Person Authentication` tab. 
 
-There are 2 configurable properties:
+There are 3 configurable properties:
 
 - `Invalid_login_count_attribute` sets the name of the attribute used to store the current amount of failed login attempts. It assumes your schema already allows such an attribute to appear in user entries. The default attribute is `oxCountInvalidLogin` and it’s already supported by Gluu’s LDAP schema.
 
 - `Maximum_invalid_login_attemps` sets the threshold for number of failed login attempts before the user gets locked out.
+
+- `lock_expiration_time` sets how long the user is locked out, in seconds. By default, it's set to 180 seconds.
  
 ![acct-update](../img/admin-guide/user/acct-lockout-config.png)   
   
