@@ -665,7 +665,29 @@ The [SCIM protected by UMA section](#scim-protected-by-UMA) contains examples fo
 
 ### Under the Hood
 
-When running your code, some new OpenID clients are created (they are employed to request short-lived tokens to access the service). In oxTrust, you can see those by navigating to `OpenId Connect` > `Clients`; they are named as "SCIM-Client". These clients won't clutter your LDAP, they are also short-lived (one day) so they are cleaned up automatically.
+#### OpenID clients
+
+When running your code in test mode, some new OpenID clients are created (they are employed to request short-lived tokens to access the service). In oxTrust, you can see those by navigating to `OpenId Connect` > `Clients`; they are named as "SCIM-Client". These clients won't clutter your LDAP, they are also short-lived (one day) so they are cleaned up automatically.
+
+#### HTTP connections and concurrent support
+
+`scim-client2` project uses the JAX-RS 2.0 Client API and RestEasy framework. Under the hood network communication between client and server is handled by HttpClient from the Apache HttpComponents project which by default makes use of `org.apache.http.impl.conn.SingleClientConnManager`. This connection manager manipulates a single socket at any given time and supports the use case in which one or more invocations are made serially from a single thread.
+
+The above means that by default, instances obtained via `ScimClientFactory` do not support concurrent calls in a safe manner. Starting with version 3.1.4, multithread support was added by employing the thread safe connection manager `org.apache.http.impl.conn.PoolingHttpClientConnectionManager`.
+
+    !!! Note:
+        You need to explicitly enable this feature, otherwise, behavior will be standard (single execution thread per client instance). You will have to supply proper parameters to better suit your production environment needs.
+
+The following lists the steps required to switch the java client to support access in a multithreaded environment:
+
+- Set a Java variable of name `httpclient.multithreaded` with any value. This will make the `scim-client2` use the `PoolingHttpClientConnectionManager`.
+
+- To override the default maximum number of total connections the manager uses, supply variable `httpclient.multithreaded.maxtotal` with the value of your choosing.
+
+- To override the default maximum number of connections per route, supply variable `httpclient.multithreaded.maxperroute`.
+
+- **IMPORTANT**: Check RPT connection pooling is enabled in oxTrust. Login to oxTrust and go to `Configuration` > `JSON Configuration`. Scroll down to `rptConnectionPoolUseConnectionPooling` and set the flag to true. To finish press `Save configuration` at the bottom of the page.
+
 
 ## SCIM Protected by UMA
 

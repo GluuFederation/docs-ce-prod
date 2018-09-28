@@ -139,23 +139,7 @@ As previously mentioned, current SCIM server implementation was revamped with ne
 * **Requires Java SE 8**. 
 <!-- This update not only allowed us to stay current but to write test cases in a more concise and straightforward way -->
 
-* **Multithread support** (new in 3.1.4)
-
-    !!! Note:
-        You need to explicitly enable this feature, otherwise, behavior will be standard (single execution thread per client instance). You will have to supply proper parameters to better suit your production environment needs.
-
-    `scim-client2` project uses the JAX-RS 2.0 Client API and RestEasy framework. Under the hood network communication between client and server is handled by HttpClient from the Apache HttpComponents project. By default HttpClient makes use of `org.apache.http.impl.conn.SingleClientConnManager`, which manages a single socket at any given time and supports the use case in which one or more invocations are made serially from a single thread.
-
-    To circumvent this problem, the thread safe connection manager `org.apache.http.impl.conn.PoolingHttpClientConnectionManager` was added. However, the client will still use the single threaded approach by default unless you pass a java parameter that switches to multithreaded support. The following summarizes the steps:
-
-    - Set a Java variable of name `httpclient.multithreaded` with any value. This will make the `scim-client2` use the `PoolingHttpClientConnectionManager`.
-
-    - To override the default maximum number of total connections the manager uses, supply variable `httpclient.multithreaded.maxtotal` with the value of your choosing.
-
-    - To override the default maximum number of connections per route, supply variable `httpclient.multithreaded.maxperroute`.
-
-    - **IMPORTANT**: Enable RPT connection pooling in oxTrust. Login to oxTrust and go to "Configuration" > "JSON Configuration". Scroll down to "rptConnectionPoolUseConnectionPooling" and set the flag to true. To finish press "Save configuration" at the bottom of the page.
-
+* **Multithread support** (new in 3.1.4): Visit the main [SCIM doc page](./scim2.md#http-connections-and-concurrent-support) to learn more about this feature.
 
 All enhancements listed above **may come at a cost** for you. We will analyze the implications of this in the following section.
 
