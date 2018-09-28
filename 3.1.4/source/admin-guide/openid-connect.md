@@ -276,21 +276,24 @@ userinfo, and end_session.
 ### Access Token
 
 Access token usually is random string, but it's possible to return the access token as a JWT. It can be controlled per client.
-There are two client properties :
- - `access_token_as_jwt` - Boolean controlling whether to return the `access_token` as a JWT. It is false by default.
- - `access_token_signing_alg` - signing algorithm that has to be used during JWT signing. If it's not specified, then the default OP signing algorithm will be used (specified via `defaultSignatureAlgorithm` oxAuth configuration property).
+There are two client properties:
+
+ - `access_token_as_jwt` - Boolean controlling whether to return the `access_token` as a JWT. It is false by default.     
+- `access_token_signing_alg` - signing algorithm that has to be used during JWT signing. If it's not specified, then the default OP signing algorithm will be used (specified via `defaultSignatureAlgorithm` oxAuth configuration property).          
  
  JWT will contain following claims:
- - `scope` - string containing a space-separated list of scopes associated with this token
- - `client_id` - Client identifier for the OAuth 2.0 client that requested this token.
- - `token_type` - Type of the token as defined in Section 5.1 of OAuth 2.0 [RFC6749].
- - `exp` - Integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token will expire, as defined in JWT [RFC7519].
- - `iat` - Integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token was originally issued, as defined in JWT [RFC7519].
- - `sub` - Subject of the token, as defined in JWT [RFC7519]. Usually a machine-readable identifier of the resource owner who authorized this token.
- - `aud` - Service-specific string identifier or list of string identifiers representing the intended audience for this token, as defined in JWT [RFC7519].
- - `iss` - String representing the issuer of this token, as defined in JWT [RFC7519].
+ 
+ - `scope` - string containing a space-separated list of scopes associated with this token     
+ - `client_id` - Client identifier for the OAuth 2.0 client that requested this token.     
+ - `token_type` - Type of the token as defined in Section 5.1 of OAuth 2.0 [RFC6749].     
+ - `exp` - Integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token will expire, as defined in JWT [RFC7519].     
+ - `iat` - Integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token was originally issued, as defined in JWT [RFC7519].     
+ - `sub` - Subject of the token, as defined in JWT [RFC7519]. Usually a machine-readable identifier of the resource owner who authorized this token.     
+ - `aud` - Service-specific string identifier or list of string identifiers representing the intended audience for this token, as defined in JWT [RFC7519].     
+ - `iss` - String representing the issuer of this token, as defined in JWT [RFC7519].     
 
 ### Token Binding
 
-Server has Token Binding support implemented based on [Token Binding](https://openid.net/specs/openid-connect-token-bound-authentication-1_0.html) specification.
+Server has Token Binding support implemented based on [Token Binding](https://openid.net/specs/openid-connect-token-bound-authentication-1_0.html) specification.     
+
 There is client property `id_token_token_binding_cnf` available via Dynamic Registration (or on oxTrust UI called `ID Token Binding Confirmation Method`) which is string value specifying the JWT Confirmation Method member name (e.g. tbh) that the Relying Party expects when receiving Token Bound ID Tokens. The presence of this parameter indicates that the Relying Party supports Token Binding of ID Tokens. If omitted, the default is that the Relying Party does not support Token Binding of ID Tokens.
