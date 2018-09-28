@@ -22,11 +22,11 @@ There are 2 configurable properties:
  
 ![acct-update](../img/admin-guide/user/acct-lockout-config.png)   
   
-2. After script is configured tick the `Enabled` checkbox 
-3. Click the `Update` button 
-4. Click on `Configuration` > `Manage Authentication` on the left menu and select `Default Authentication Method` tab. 
-5. Select `basic_lock` authentication method for oxAuth and/or oxTrust.
-6. Click the `Update` button there.
+1. After script is configured tick the `Enabled` checkbox 
+1. Click the `Update` button 
+1. Click on `Configuration` > `Manage Authentication` on the left menu and select `Default Authentication Method` tab. 
+1. Select `basic_lock` authentication method for oxAuth and/or oxTrust.
+1. Click the `Update` button there.
    
 ![acct-update](../img/admin-guide/user/acct-lockout-update.png)    
 
