@@ -301,3 +301,6 @@ This specification enables OpenID Connect implementations to apply Token Binding
 A new client property called `id_token_token_binding_cnf` is now available via Dynamic Registration or in the oxTrust OpenID Connect client form (`ID Token Binding Confirmation Method`), which is a string value specifying the JWT confirmation method member name (e.g. tbh) that the Relying Party expects when receiving ID Tokens with Token Binding. 
 
 The presence of this parameter indicates that the RP supports Token Binding. If omitted, the RP will not support Token Binding. 
+
+!!! Note
+    The [mod_auth_openidc apache module](https://github.com/zmartzone/mod_auth_openidc) supports Token Binding. 
