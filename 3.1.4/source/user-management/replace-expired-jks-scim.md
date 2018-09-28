@@ -6,35 +6,21 @@ The following steps are required to update the keystores so that your server and
 
 First, log into the Gluu Server chroot (e.g. `service gluu-server-3.1.3 login`).
 
-Create a temporary folder to copy some needed files (e.g. `mkdir tmp`) and `cd` to it.
-
-Extract needed Java libraries: `jar -xf /opt/gluu/jetty/oxauth/webapps/oxauth.war WEB-INF/lib`.
-
-`cd` to the lib directory (e.g. `cd WEB-INF/lib`).
-
-Set an environment variable, as follows: 
-    
-```  
-JARS=bcprov-jdk15on-1.54.jar:bcpkix-jdk15on-1.54.jar:commons-lang-2.6.jar:commons-codec-1.7.jar:commons-cli-1.3.1.jar:commons-io-2.4.jar:jackson-core-2.8.10.jar:jackson-core-asl-1.9.11.jar:jackson-mapper-asl-1.9.11.jar:jackson-xc-1.9.13.jar:jettison-1.3.2.jar:oxauth-model-3.1.3.Final.jar:oxauth-client-3.1.3.Final.jar:log4j-api-2.8.2.jar:log4j-1.2-api-2.8.2.jar:log4j-core-2.8.2.jar 
-
-  export JARS
-```  
-
-This is a list of files which must exist already in the current directory. Ensure every file is found there. Pay special attention to specific version of files. Make sure that the version for `oxauth-model` and `oxauth-client` matches your version (3.1.3 here).
-    
+Create a temporary folder (e.g. `mkdir tmp`) and `cd` to it.
+   
 Create two JKS files using these commands: 
 
 ```  
-/opt/jdk1.8.0_162/bin/keytool -genkey -alias dummy -keystore fresher-scim-rp.jks \
+keytool -genkey -alias dummy -keystore fresher-scim-rp.jks \
 -storepass secret -keypass secret -dname 'CN=oxAuth CA Certificates'  
     
-/opt/jdk1.8.0_162/bin/keytool -delete -alias dummy -keystore fresher-scim-rp.jks \
+keytool -delete -alias dummy -keystore fresher-scim-rp.jks \
 -storepass secret -keypass secret -dname 'CN=oxAuth CA Certificates' 
    
-/opt/jdk1.8.0_162/bin/keytool -genkey -alias dummy -keystore fresher-scim-rs.jks \
+keytool -genkey -alias dummy -keystore fresher-scim-rs.jks \
 -storepass secret -keypass secret -dname 'CN=oxAuth CA Certificates'  
     
-/opt/jdk1.8.0_162/bin/keytool -delete -alias dummy -keystore fresher-scim-rs.jks \
+keytool -delete -alias dummy -keystore fresher-scim-rs.jks \
 -storepass secret -keypass secret -dname 'CN=oxAuth CA Certificates'  
 ```  
     
@@ -43,14 +29,14 @@ This will create two files: `fresher-scim-rp.jks` and `fresher-scim-rs.jks`. You
 Add suitable keys and export two JSON files: 
   
 ```  
-/opt/jdk1.8.0_162/bin/java -cp $JARS org.xdi.oxauth.util.KeyGenerator \  
+java -cp '/home/jetty/lib/*' org.xdi.oxauth.util.KeyGenerator \  
 -keystore fresher-scim-rp.jks -keypasswd secret \  
 -sig_keys RS256 RS384 RS512 ES256 ES384 ES512 \  
 -enc_keys RS256 RS384 RS512 ES256 ES384 ES512 \  
 -dnname "CN=oxAuth CA Certificates" \  
 -expiration 365 > keys-rp.json  
   
-/opt/jdk1.8.0_162/bin/java -cp $JARS org.xdi.oxauth.util.KeyGenerator \  
+java -cp '/home/jetty/lib/*' org.xdi.oxauth.util.KeyGenerator \  
 -keystore fresher-scim-rs.jks -keypasswd secret \  
 -sig_keys RS256 RS384 RS512 ES256 ES384 ES512 \  
 -enc_keys RS256 RS384 RS512 ES256 ES384 ES512 \  
