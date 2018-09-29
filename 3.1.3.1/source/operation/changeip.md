@@ -16,7 +16,7 @@ Answer: No. Here is how you can apply new IP in Gluu Server 3.1.x
     `service httpd start`
     
 - Configuration in ldap: (open LDAP in LDAP editor/browser)
-    - Change 'gluuIpAddress'. It's under root ou=appliance DN
+    - Change 'gluuIpAddress'. It's under root ou=appliances DN
 - Change IP address in `/etc/hosts` file
 - Restart 'solserver'
 
