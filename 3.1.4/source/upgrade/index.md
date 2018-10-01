@@ -3,9 +3,10 @@
 ## Overview
 The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will need to either use our in-place upgrade script or explicitly install the new version and export/import your data. Find your existing version below for upgrade instructions to Gluu Server 3.1.4. 
 
-!!! Warning
-    Before upgrading, make sure to [back up](../operation/backup.md) the Gluu container or LDAP LDIF. In addition, upgrades should always be thoroughly scoped and tested on a development environment *first*.
+### Pre-requisites
 
+- Before upgrading, make sure to [back up](../operation/backup.md) the Gluu container or LDAP LDIF. 
+- Upgrades should always be thoroughly scoped and tested on a development environment *first*.
 
 ## Upgrade from 3.1.x to 3.1.4
 
