@@ -302,9 +302,10 @@ A new client property called `id_token_token_binding_cnf` is now available via D
 
 The presence of this parameter indicates that the client supports Token Binding (ID Token contains JWT confirmation method). If omitted, the client will not support Token Binding.
 
-![token_binding_overview](../img/openid/token_binding_overview.png.png) 
+![token_binding_overview](../img/openid/token_binding_overview.png) 
 
 Workflow:
+
 1. Perform request to RP over TLS (with `Sec-Token-Binding` header)
 2. Send redirect response to OP for authentication (with `Include-Referred-Token-Binding-ID` header)
 3. User Agent sends request to OP where `Sec-Token-Binding` token binding message contains two bindings:
