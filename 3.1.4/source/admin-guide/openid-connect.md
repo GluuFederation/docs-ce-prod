@@ -296,7 +296,10 @@ There are two client properties:
 
 Gluu now supports Token Binding, per the [specification](https://openid.net/specs/openid-connect-token-bound-authentication-1_0.html).  
 
-This specification enables OpenID Connect implementations to apply Token Binding to the OpenID Connect ID Token. This cryptographically binds the ID Token to the TLS connections between User Agent and Relying Party (RP) over which the authentication occurred. This use of Token Binding protects the authentication flow from man-in-the-middle (MITM) and token export and replay attacks.
+!!! Note
+    At this time, Token Binding is only supported in Ubuntu 18 **only**.
+
+This specification enables OpenID Connect implementations to apply Token Binding to the OpenID Connect ID Token. This cryptographically binds the ID Token to the TLS connections between the User Agent and Relying Party (RP) over which the authentication occurred. This use of Token Binding protects the authentication flow from man-in-the-middle (MITM) and token export and replay attacks.
 
 A new client property called `id_token_token_binding_cnf` is now available via Dynamic Registration or in the oxTrust OpenID Connect client form (`ID Token Binding Confirmation Method`), which is a string value specifying the JWT confirmation method member name (e.g. `tbh`, as shorthand from token binding hash) that the Relying Party expects when receiving ID Tokens with Token Binding. 
 
@@ -306,16 +309,15 @@ The presence of this parameter indicates that the client supports Token Binding 
 
 Workflow:
 
-1. Perform request to RP over TLS (with `Sec-Token-Binding` header)
-2. Send redirect response to OP for authentication (with `Include-Referred-Token-Binding-ID` header)
-3. User Agent sends request to OP where `Sec-Token-Binding` token binding message contains two bindings:
+1. The User Agent send a request to the RP over TLS (with `Sec-Token-Binding` header)  
+1. The RP sends a redirect response to the OP for authentication (with `Include-Referred-Token-Binding-ID` header)  
+1. The User Agent sends the request to the OP, with the `Sec-Token-Binding` token binding message containing two bindings:  
+    - binding between the User Agent and the OP  
+    - referred binding between the User Agent and the RP  
+1. After the user successfully authenticates, the OP puts the hash confirmation method (with claims named as defined by the  `id_token_token_binding_cnf` client property) into the ID Token, which binds the ID Token to the referred binding connection between the User Agent and the RP  
+1. Finally, the RP validates the ID Token, specifically by matching the `Sec-Token-Binding` Token Binding with the JWT confirmation method claim value  
 
-  - binding between User Agent and OP
-  - referred binding between User Agent and RP
-4. After user successfully authenticates OP put into ID Token hash confirmation method (claims named as defined by `id_token_token_binding_cnf` client property) which binds ID Token to the referred binding connection between User Agent and RP.
-5. Finally RP validates ID Token, specifically match `Sec-Token-Binding` Token Binding with JWT confirmation method claim value).
-
-Example of ID Token where client has `id_token_token_binding_cnf=tbh`
+The following is an example of ID Token where client has `id_token_token_binding_cnf=tbh`
 
 ```json
  {
@@ -330,8 +332,9 @@ Example of ID Token where client has `id_token_token_binding_cnf=tbh`
 ``` 
 
 !!! Note
-    User Agent (browser) has to support Token Binding. It is known that Chrome browser supports Token Binding as experimental feature which can be turn on/off if navigate to `chrome://flags/#enable-token-binding`. 
+    User Agent (browser) has to support Token Binding. It is known that Chrome browser supports Token Binding as experimental feature which can be turned on/off if you navigate to `chrome://flags/#enable-token-binding`. 
 
 https://www.chromestatus.com/feature/5097603234529280
+
 !!! Note
-    The [mod_auth_openidc apache module](https://github.com/zmartzone/mod_auth_openidc) supports Token Binding. 
+    The [mod_auth_openidc Apache module](https://github.com/zmartzone/mod_auth_openidc) supports Token Binding. 
