@@ -298,7 +298,7 @@ Gluu now supports Token Binding, per the [specification](https://openid.net/spec
 
 This specification enables OpenID Connect implementations to apply Token Binding to the OpenID Connect ID Token. This cryptographically binds the ID Token to the TLS connections between User Agent and Relying Party (RP) over which the authentication occurred. This use of Token Binding protects the authentication flow from man-in-the-middle (MITM) and token export and replay attacks.
 
-A new client property called `id_token_token_binding_cnf` is now available via Dynamic Registration or in the oxTrust OpenID Connect client form (`ID Token Binding Confirmation Method`), which is a string value specifying the JWT confirmation method member name (e.g. tbh) that the Relying Party expects when receiving ID Tokens with Token Binding. 
+A new client property called `id_token_token_binding_cnf` is now available via Dynamic Registration or in the oxTrust OpenID Connect client form (`ID Token Binding Confirmation Method`), which is a string value specifying the JWT confirmation method member name (e.g. `tbh`, as shorthand from token binding hash) that the Relying Party expects when receiving ID Tokens with Token Binding. 
 
 The presence of this parameter indicates that the client supports Token Binding (ID Token contains JWT confirmation method). If omitted, the client will not support Token Binding.
 
@@ -309,8 +309,9 @@ Workflow:
 1. Perform request to RP over TLS (with `Sec-Token-Binding` header)
 2. Send redirect response to OP for authentication (with `Include-Referred-Token-Binding-ID` header)
 3. User Agent sends request to OP where `Sec-Token-Binding` token binding message contains two bindings:
-  1. binding between User Agent and OP
-  2. referred binding between User Agent and RP
+
+  - binding between User Agent and OP
+  - referred binding between User Agent and RP
 4. After user successfully authenticates OP put into ID Token hash confirmation method (claims named as defined by `id_token_token_binding_cnf` client property) which binds ID Token to the referred binding connection between User Agent and RP.
 5. Finally RP validates ID Token, specifically match `Sec-Token-Binding` Token Binding with JWT confirmation method claim value).
 
