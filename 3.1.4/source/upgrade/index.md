@@ -14,7 +14,7 @@ New to version 3.1.4, it is now possible to perform an in-place upgrade from 3.1
 
 1. Download the upgrade script with `wget https://repo.gluu.org/upd/3.1.4-upg.sh`
 
-1. Run the script with `sh 3-1-4-sp1.sh`
+1. Run the script with `sh 3-1-4-upg.sh`
 
 1. When the script has finished, restart your server:
 
