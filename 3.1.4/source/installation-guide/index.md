@@ -5,7 +5,7 @@ Thank you for your interest in the Gluu Server! This document will provide instr
 Good luck and welcome to the community!
 
 !!! Note
-    To learn more about software licenses, etc., visit the [docs homepage](../index.md)
+    To learn more about software licenses, use cases, and more, visit the [docs homepage](../index.md)
     
 ## System Requirements
 
