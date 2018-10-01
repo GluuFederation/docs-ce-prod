@@ -30,12 +30,12 @@ You can follow [this](https://gluu.org/docs/ce/admin-guide/openid-connect/#clien
    - Pre-Authorization: `False`
    - Persist client Authorizations: `True`
    - Authentication method for the Token Endpoint: `none`
-   - Redirect Login URIs: make sure the value provide here is a hierarchical and absolute URI. For example, if you declare a custom scheme, `myscheme`, and host, `client.example.com`, then the redirect URL will look like: `myscheme://client.example.com`. We use `appscheme://client.example.com` for our testing purpose
+   - Redirect Login URIs: make sure the value provided here is a hierarchical and absolute URI. For example, if you declare a custom scheme, `myscheme`, and host, `client.example.com`, then the redirect URL will look like: `myscheme://client.example.com`. We use `appscheme://client.example.com` for our testing purpose
    - Scopes: `openid`,`profile`,`email`
    - Grant types: `authorization_code`
 
 !!! Note
-    Take note of the `client_id` value after registration. That value is required in the Android App Side and looks like this `@!ACCF.2BA5.0292.66A5!0001!6990.4C6C!0008!36B8.5CE5.24E2.91AD`.
+    Take note of the `client_id` value after the registration. That value is required in the Android App Side and looks like this `@!ACCF.2BA5.0292.66A5!0001!6990.4C6C!0008!36B8.5CE5.24E2.91AD`.
   
 If you still want to use a client secret in your app for  `Authentication method for the Token Endpoint`, 
 you can check the official documentation by [AppAuth](https://github.com/openid/AppAuth-Android/blob/master/README.md#utilizing-client-secrets-dangerous)  
@@ -45,15 +45,15 @@ you can check the official documentation by [AppAuth](https://github.com/openid/
 ### Build the Project
 
 Android Studio is an official IDE for Android.
-You can find Android Studio, its features, docs, user guide etc.
-from the [Official Android Website for developers](https://developer.android.com/studio/index.html).
+You can find Android Studio and its features, docs, user guide etc.
+on the [Official Android Website for developers](https://developer.android.com/studio/index.html).
  
-There are two ways to build an existing project, either download source code zip
-file or clone repository.
+There are two ways to build an existing project: either download the source code zip
+file or clone the repository.
  
 #### Import from the Download Source Code
 
-If you have downloaded the source code zip file, then follow the below steps to
+If you have downloaded the source code zip file, follow the below steps to
 import the project in Android Studio:
  
 1. Extract the source code zip file into your desired folder in your
@@ -71,8 +71,8 @@ the build.gradle file of the project.
  
 #### Clone the Project
 
-If you don't want to download the source code manually and want
-to clone the repository, then follow these steps:
+If you don't want to download the source code manually and decide
+to clone the repository, follow these steps:
  
 1. Open Android Studio, go to `File` -> `New` -> `Project from Version Control`
 -> `Git`.
@@ -95,7 +95,7 @@ com.android.support:customtabs:26.0.1.", be sure you have installed
 the Android Support Library from the Android SDK Manager. Follow the
 Android Studio prompts to resolve the dependencies automatically.
  
-Once the project build successfully, you can see that there are two
+Once the project builds successfully, you can see that there are two
 modules in the project.
  
 - App(Demo app which use AppAuth library)
@@ -106,7 +106,7 @@ modules in the project.
 #### Modify the `RedirectUriReceiverActivity` File
 
 After completing authorization in the custom tab, the above custom scheme
-will redirect back to the app.
+will redirect you back to the app.
 The library configures `RedirectUriReceiverActivity` to
 handle a custom scheme. Add the following in
 your `AndroidManifest.xml` file:
@@ -144,7 +144,7 @@ with the following content:
 ```
 <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/AuthConfig.png" width="98%" height="400">
  
-_If you keeps client_id blank it will Automatically initialize "**Dynamic client registration**" process mentioned above._
+_If you keep client_id blank, it will Automatically initialize the "**Dynamic client registration**" process mentioned above._
  
 ## Demonstration
 
@@ -161,7 +161,7 @@ _If you keeps client_id blank it will Automatically initialize "**Dynamic client
  <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591231.png" width="30%" height="400">
 
 - Provide the user credentials and hit the `login` button
-  The result is something like this:
+  The result is similar to this:
 <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591248.png" width="45%" height="400">
 <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591256.png" width="45%" height="400">
  
