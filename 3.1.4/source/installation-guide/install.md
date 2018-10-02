@@ -18,6 +18,7 @@ installation procedure is similar across all the distributions:
 - Gluu must be deployed on a fully qualified domain name (FQDN). Localhost is not supported. 
 - Make sure your server or VM meets the [minimum requirements](../installation-guide/index.md) to deploy the Gluu Server.
 - If using CentOS, selinux must be set to permissive in /etc/selinux/config
+- If using Debian 8, make sure you have already installed the `apt-transport-https` package in your system before you add the `gluu-repo.list`. Otherwise the installation might be hindered.
 
 !!! Warning
     Docker containers are not supported by this guide. See [this page](../docker/intro.md) for Docker instructions.     
