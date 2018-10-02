@@ -23,9 +23,9 @@ Follow the [custom authentication script tutorial](./customauthn.md) to better u
 ## Default Authentication Mechanism
 In oxTrust, navigate to `Configuration` > `Manage Authentication` > `Default Authentication` to specify the default authentication mechanism for two use cases: 
 
-1. Default acr: this is the default authentication mechanism exposed to *all* applications that send users to your Gluu Server for sign-in. Unless an app specifically requests a different form of authentication using the OpenID Connect `acr_values` parameter (as specified [below](#multiple-authentication-mechanisms)), users will receive the form of authentication specified in this field. 
+1. `default_acr`: this is the default authentication mechanism exposed to *all* applications that send users to your Gluu Server for sign-in. Unless an app specifically requests a different form of authentication using the OpenID Connect `acr_values` parameter (as specified [below](#multiple-authentication-mechanisms)), users will receive the form of authentication specified in this field. 
 
-2. oxTrust acr: this form of authentication will be presented to anyone specifically trying to access the oxTrust admin GUI.
+2. `oxTrust_acr`: this form of authentication will be presented to anyone specifically trying to access the oxTrust admin GUI.
 
 Depending on your requirements, you can set both fields to the same authentication mechanism, or choose a different mechanism for each use case. 
 
