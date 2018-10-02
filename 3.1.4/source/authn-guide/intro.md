@@ -33,7 +33,7 @@ In addition, specific apps can request specific forms of authentication using th
 
 ## Basic Authentication
 
-By default, usernames and passwords are stored and authenticated against the local Gluu LDAP. If [LDAP synchronization](../user-management/ldap-sync.md) has been configured, an existing backend LDAP server can be used for authentication.
+Gluu will default to Basic Authentcation, which is usernames and passwords that are stored and authenticated against the local Gluu LDAP. If [LDAP synchronization](../user-management/ldap-sync.md) has been configured, an existing backend LDAP server can be used for authentication.
 
 Learn how to [configure basic authentication](./basic.md).
 
