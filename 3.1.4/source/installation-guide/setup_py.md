@@ -4,6 +4,7 @@ certificate as well as the IP Address and the hostname for the Gluu Server.
 The prompt with example values is provided below.
 
 ```
+Do you acknowledge that use of the Gluu Server is under the MIT license? [N|y] : y
 Enter IP Address [192.168.122.60] :
 Enter hostname [localhost] : e.g. idp.mydomain.info
 Enter your city or locality : 
@@ -18,12 +19,10 @@ Install oxTrust Admin UI? [Yes] :
 Install LDAP Server? [Yes] : 
 Install Apache HTTPD Server [Yes] : 
 Install Shibboleth SAML IDP? [No] : 
-Install Asimba SAML Proxy? [No] : 
 Install oxAuth RP? [No] : 
 Install Passport? [No] : 
 Install JCE 1.8? [Yes] : 
 You must accept the Oracle Binary Code License Agreement for the Java SE Platform Products to download this software. Accept License Agreement? [Yes] : 
-Do you acknowledge that use of the Gluu Server is under the MIT license? [N|y] : y
 ```
 !!! Login
     Please log in using the username `admin` and the password from the setup script prompt e.g `hlE3vzf0hMdD` or the password entered
@@ -46,15 +45,19 @@ the interactive setup.
 
 The administrator can use the following command line options to include additional components:
 
-* __-a__ install Asimba
+* __-a__ Install Asimba
+* __-r__ Install oxAuth RP
+* __-p__ Install Passport
 * __-d__ specify the directory where community-edition-setup is located. Defaults to '.'
 * __-f__ specify `setup.properties` file
 * __-h__ invoke this help
-* __-l__ install LDAP
 * __-n__ no interactive prompt before install starts. Run with `-f`
 * __-N__ no Apache httpd server
 * __-s__ install the Shibboleth IDP
 * __-u__ update hosts file with IP address/hostname
 * __-w__ get the development head war files
+* __-e__ Download JCE 1.8 and install it
+* __--allow_deprecated_applications__ Give the option to install Asimba and OpenLDAP
+* __--import-ldif=custom-ldif-dir__ Render ldif templates from custom-ldif-dir and import them in LDAP
 
-Example Command: `# ./setup.py -cas` This command will install Gluu Server with CAS, Asimba and Shibboleth IDP.
+Example Command: `# ./setup.py -as` This command will install Gluu Server with Asimba and Shibboleth IDP.
