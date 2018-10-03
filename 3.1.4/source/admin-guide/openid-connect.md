@@ -297,7 +297,7 @@ There are two client properties:
 Gluu now supports Token Binding, per the [specification](https://openid.net/specs/openid-connect-token-bound-authentication-1_0.html).  
 
 !!! Note
-    At this time, Token Binding is only supported in Ubuntu 18 **only**.
+    At this time, Token Binding is **only** supported in Ubuntu 18.
 
 This specification enables OpenID Connect implementations to apply Token Binding to the OpenID Connect ID Token. This cryptographically binds the ID Token to the TLS connections between the User Agent and Relying Party (RP) over which the authentication occurred. This use of Token Binding protects the authentication flow from man-in-the-middle (MITM) and token export and replay attacks.
 
