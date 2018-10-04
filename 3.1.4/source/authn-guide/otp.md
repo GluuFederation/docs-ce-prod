@@ -28,7 +28,7 @@ The OTP authentication script has the following properties:
 |issuer	|Issuer of the OTP service|Gluu Inc|
 |label  |The name of the application | Gluu OTP| 
 |otp_conf_file   | Location of the OTP configuration file | `/etc/certs/otp_configuration.json`|
-|otp_type| Type of OTP in use | totp|
+|otp_type| Type of OTP in use |totp or hotp|
 |qr_options| Size of the QR code that is used for device enrollment|{ size: 400, mSize: 0.05 }|
 |registration_uri | Registration endpoint of the IDP| `https://idp.example.com/identity/register`| 
     
@@ -80,3 +80,9 @@ All subsequent authentications will require the user to retreive and enter an OT
 
 ### Credential Management
 A user's OTP device(s) can be removed by a Gluu administrator either via the oxTrust UI in `Users` > `Manage People`, or in LDAP under the user entry. In LDAP, navigate to appliances and search for an attribute `oxExternalUid`. Remove the values of this attribute. Upon the next OTP login attempt, the user will be prompted to enroll a new device. 
+
+## Notes on TOTP usage
+
+OTP custom script works in one of two modes: TOTP (time-based) or HOTP (even-based). When using time-based flavor of OTP, mobile applications generate codes based on the current time of the device, this code is validated by the server using its own time. As consequene, significant time lags can provoke authentication failures.
+
+It's out of admins control have users devices in a consistent time, but they can maintain server system time accurately. For this you can follow any of the different approaches for linux time synchronization over the network, the most common being **ntp**.
