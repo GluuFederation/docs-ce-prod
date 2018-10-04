@@ -32,7 +32,7 @@ The next step is to create a self-signed SSL Certificate.
 * Create a directory to put the generate the ssl certificate
 
 ``` text
-# mkdir /etc/apache2/ssl`
+# mkdir /etc/apache2/ssl
 # openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
 ```
 
@@ -54,7 +54,7 @@ use the SSL module
 1. Open the `default-ssl.conf` file
 
 ``` text
-# vim /etc/apache2/sites-available/default-ssl.conf`
+# vim /etc/apache2/sites-available/default-ssl.conf
 
 ```
 
@@ -79,13 +79,14 @@ You should see a list of current environment variables.
 
 ### Installation
 
-`mod_auth_openidc` module depends on the Ubuntu package `libjansson` and `libhiredis`: 
+`mod_auth_openidc` module depends on the Ubuntu packages `libjansson`, `libhiredis`, and `libcurl`: 
 
 
 For ubuntu 14.04
 
 ``` text
 # apt-get install libjansson4 libhiredis0.10
+# apt-get install libcurl3
 
 ```
 
@@ -93,6 +94,7 @@ For ubuntu 16.04
 
 ``` text
 # apt-get install libjansson4 libhiredis0.13
+# apt-get install libcurl3
 
 ```
 
@@ -106,9 +108,9 @@ For ubuntu 14.04
 
 ``` text
 # wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.0/libcjose0_0.5.1-1.trusty.1_amd64.deb
-# wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.3/libapache2-mod-auth-openidc_2.3.3-1.trusty.1_amd64.deb
+# wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.8/libapache2-mod-auth-openidc_2.3.8-1.trusty+1_amd64.deb
 # dpkg -i libcjose0_0.5.1-1.trusty.1_amd64.deb
-# dpkg -i libapache2-mod-auth-openidc_2.3.3-1.trusty.1_amd64.deb
+# dpkg -i libapache2-mod-auth-openidc_2.3.8-1.trusty+1_amd64.deb
 
 ```
 
@@ -116,9 +118,9 @@ For ubuntu 16.04
 
 ``` text
 # wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.0/libcjose0_0.5.1-1.xenial.1_amd64.deb
-# wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.3/libapache2-mod-auth-openidc_2.3.3-1.xenial.1_amd64.deb
+# wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.8/libapache2-mod-auth-openidc_2.3.8-1.xenial+1_amd64.deb
 # dpkg -i libcjose0_0.5.1-1.xenial.1_amd64.deb
-# dpkg -i libapache2-mod-auth-openidc_2.3.3-1.xenial.1_amd64.deb
+# dpkg -i libapache2-mod-auth-openidc_2.3.8-1.xenial+1_amd64.deb
 
 ```
 
@@ -326,7 +328,7 @@ The latest package for the apache module might have multiple dependencies which 
 Run the following command to install the `mod_auth_openidc` module:
 
 ```
-rpm -ivhhttps://github.com/zmartzone/mod_auth_openidc/releases/download/v1.8.2/mod_auth_openidc-1.8.2-1.el6.x86_64.rpm
+rpm -ivhhttps://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.8/mod_auth_openidc-2.3.8-1.el6.x86_64.rpm
 ```
 
 !!! Note
