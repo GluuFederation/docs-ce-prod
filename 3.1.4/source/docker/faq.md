@@ -1,6 +1,6 @@
 # FAQ
 
-We'll continue to add FAQs as they arise. Feel free to help us by forking these docs and submitting a merge request! 
+We'll continue to add FAQs as they arise. Feel free to help us by forking these docs and submitting a merge request!
 
 ## On which network is Gluu Server DE running?
 
@@ -11,9 +11,10 @@ As can be seen in the following `docker run` command, it connects to the same ne
 
     docker run --rm \
         --network container:consul \
-        gluufederation/config-init:3.1.3_dev \
+        -e GLUU_CONFIG_ADAPTER=consul \
+        -e GLUU_CONSUL_HOST=consul \
+        gluufederation/config-init:3.1.4_dev \
         generate \
-        --kv-host "${GLUU_KV_HOST}" \
         --ldap-type "${GLUU_LDAP_TYPE}" \
         --domain $domain \
         --admin-pw $adminPw \
