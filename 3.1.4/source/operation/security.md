@@ -29,7 +29,7 @@ Next controls found within Gluu Server's virtual host's definition in `/etc/http
 
 ## 2FA to oxTrust
 
-Consider enforcing 2FA for access to your oxTrust administrator interface of your instance. Gluu Server offers an assortment of 2FA methods out-of-the-box, including [Duo Security](https://gluu.org/docs/ce/3.1.3/authn-guide/duo/), [Super Gluu](https://gluu.org/docs/ce/3.1.3/authn-guide/supergluu/) or [FIDO U2F](https://gluu.org/docs/ce/3.1.3/authn-guide/U2F/).
+Consider enforcing 2FA for access to oxTrust administrator interface of your instance. Gluu Server offers an assortment of 2FA methods out-of-the-box, including [Duo Security](https://gluu.org/docs/ce/3.1.3/authn-guide/duo/), [Super Gluu](https://gluu.org/docs/ce/3.1.3/authn-guide/supergluu/) or [FIDO U2F](https://gluu.org/docs/ce/3.1.3/authn-guide/U2F/).
 
 ## Enabled extensions
 
@@ -39,7 +39,7 @@ Consider enforcing 2FA for access to your oxTrust administrator interface of you
 
 - "Passport Support" - enabling passport opens a full new world of authentication methods' options, together with assosiated additional possibilities of them being exploited by a malicious user
 
-- "Enabled" checkbox at `Configuration Manage` > `Authentication` > `CAS Protocol` - this control enables CAS protocol v2 implementation which comes pre-packaged with Shibboleth IDPv3 Gluu Server uses to offer support for SAML2 protocol. CAS is gradually phasing out nowdays and unless you must support some legacy services which still use it, you can rule out one potential attack vector by keeping it disabled.
+- "Enabled" checkbox at `Configuration Manage` > `Authentication` > `CAS Protocol` - this control enables CAS protocol v2 implementation which comes pre-packaged with Shibboleth IDPv3 Gluu Server uses to offer support for SAML2 protocol. CAS is gradually phasing out nowdays and unless you must support some legacy services which still use it, one potential attack vector can be ruled out by keeping it disabled.
 
 ## User registration
 
@@ -62,19 +62,19 @@ oxAuth is at heart of Gluu Server framework, handling authentication for the res
 
 ## Open ports 
 
-Make sure you don't have any services listening on external interfaces except for those that are absolutely required. In a basic standalone instance of Gluu Server 3.1.4, only Apache's listener at TCP port 443 is required to be open to the world. In previous versions of Gluu, OpenDJ listens on ports 4444 and 1636 for all interfaces. You can obtain a list of current listeners with `# netstat nlpt` (for TCP) and `# netstat -nlpu` (for UDP). In particular, make sure the internal LDAP server used by Gluu to store all its configuration data listens only at loopback interface.
+Make sure no services are listening on external interfaces except for those that are absolutely required. In a basic standalone instance of Gluu Server 3.1.4, only Apache's listener at TCP port 443 is required to be open to the world. In previous versions of Gluu, OpenDJ listens on ports 4444 and 1636 for all interfaces. A list of current listeners can be obtained with `# netstat nlpt` (for TCP) and `# netstat -nlpu` (for UDP). In particular, make sure the internal LDAP server used by Gluu to store all its configuration data listens only at loopback interface.
 
-In cases when listeners at external interfaces cannot be avoided (clustered setups be the most obvious example) we suggest to ensure that those ports will only be accessible from a very limited set of authorized peers by fine-tunining firewal rules and underlying network's topology
+In cases when listeners at external interfaces cannot be avoided (clustered setups be the most obvious example) we suggest to ensure that those ports will only be accessible from a very limited set of authorized peers by fine-tunining firewal rules and underlying network's topology.
 
 ## Dynamic Client Registration
 
-Consider whether you require support of [OpenID Connect Dynamic Client Registration](https://openid.net/specs/openid-connect-registration-1_0.html) in your setup and disable it otherwise by setting `dynamicRegistrationEnabled` to `False` at `Configuration` > `JSON Configuration` > `oxAuth` page.
+Consider whether support of [OpenID Connect Dynamic Client Registration](https://openid.net/specs/openid-connect-registration-1_0.html) extension is required in your setup and disable it otherwise by setting `dynamicRegistrationEnabled` to `False` at `Configuration` > `JSON Configuration` > `oxAuth` page.
 
-In case you need this feature enabled, next controls must be re-visited to minimize potential exposure of your sensitive data:
+In case this feature must be enabled, next controls must be re-visited to minimize potential exposure of sensitive personal data:
 
 - `trustedClientEnabled` and `dynamicRegistrationPersistClientAuthorizations` at `Configuration` > `JSON Configuration` > `oxAuth` - control whether clients are allowed to setup an entry for them in such way users won't be asked for consent on releasing their personal data while accessing corresponding RP
 
-- list of scopes at `OpenID Connect` > `Scopes`, column "Allow for dynamic registration" - allows to quickly assess which scopes clients can potentially add to their registration entry without consent of OP's administrator; set `Allow for dynamic registration` property to `False` for all scopes you want to assign in a controlled fashion; in addition, make sure none of sensitive scopes have their type set to `Default` if you have `dynamicRegistrationScopesParamEnabled` set to `True` (see below)
+- list of scopes at `OpenID Connect` > `Scopes`, column "Allow for dynamic registration" - allows to quickly assess which scopes clients can potentially add to their registration entry without consent of OP's administrator; set `Allow for dynamic registration` property to `False` for all scopes you want to assign in a controlled fashion; in addition, make sure none of sensitive scopes have their type set to `Default` if `dynamicRegistrationScopesParamEnabled` is set to `True` (see below)
 
 - `dynamicRegistrationScopesParamEnabled` at `Configuration` > `JSON Configuration` > `oxAuth` - controls whether default scopes are globally enabled at this instance; scopes defined as default will be automatically added to any dynamically registered client entry
 
@@ -90,11 +90,17 @@ Next controls allow you to fine-tune Gluu's UMA implementation's behaviour, resu
 
 ## Upgrades
 
-Needless to say, keeping your instance up to date is paramount for maintaining its security. List of the latest vulnerabilities in the Gluu Server suite itself and corresponding patches can be found [here](https://gluu.org/docs/ce/3.1.4/upgrade/patches/). In addition,  updates should be conducted for all system components both inside and outside of container on regular basis (please note you must disable Gluu's repository before trying to updated any packages outside of container as described [here](https://gluu.org/docs/ce/3.1.3/installation-guide/install/#5-disable-gluu-repositories)):
+Needless to say, keeping your instance up to date is paramount for maintaining its security. List of the latest vulnerabilities in the Gluu Server suite itself and corresponding patches can be found [here](https://gluu.org/docs/ce/3.1.4/upgrade/patches/). In addition,  updates should be conducted for all system components both inside and outside of container on regular basis.
+
+!!! Warning
+    Gluu's repository must be disabled before any attempt to update packages outside of container as described [here](https://gluu.org/docs/ce/3.1.3/installation-guide/install/#5-disable-gluu-repositories)):
 
   - For RHEL/CentOS distros, use `# yum update` inside and outside of container
   
-  - For Ubuntu/Debian distros, use `# apt-get upgrade` or `# apt-get dist-upgrade` outside of container and `# apt-get upgrade` inside of it  ("apt-get dist-upgrade" is not safe to run inside container!)
+  - For Ubuntu/Debian distros, use `# apt-get upgrade` or `# apt-get dist-upgrade` outside of container and `# apt-get upgrade` inside of it
+
+!!! Warning
+    `# apt-get dist-upgrade` command is not safe to run inside Ubuntu/Debian containers!
   
 ## General security best practices still apply
 
@@ -104,9 +110,9 @@ Regardless of how specialized application is, general considerations still apply
   
   - Minimize number of packages to minimize number of associated vulnerabilities (avoid installation of unnecessary packages and uninstall packages you don't need)
   
-  - Make sure you use only highly secure means when accessing the server for administration purposes; using the most recent SSH server package is a no-brainer, we also suggest to configure it to deny login as a root user and disable password authentication (use public key instead), and move its listener to a port different from the standart TCP 22
+  - Make sure that only highly secure means are used when accessing the server for administration purposes; using the most recent SSH server package is a no-brainer, we also suggest to configure it to deny login as a root user and disable password authentication (use public key instead), and move its listener to a port different from the standart TCP 22
   
-  - Back up your system on regular basis; frequency may depend on data velocity and volume, but keep in mind that in case of a compromised system restoring from a backed up copy predating the incident may become the only option to ensure its integrity without losing months (even years) of work, and often a lot of time may pass since intrusion before security alarms will be triggered; keep in mind that backups on itself is a high priority target for potential intruder, and thus must be properly secured (locked up and/or encrypted); that includes controls of the system conducting back up as well to prevent manipulations with the state of the protected resource (i.e. to prevent restoring system to pre-patched state with a known vulnerability)
+  - The system must be backed up on regular basis; frequency may depend on data velocity and volume, but keep in mind that in case of a compromised system restoring from a backed up copy predating the incident may become the only option to ensure its integrity without losing months (even years) of work, and often a lot of time may pass since intrusion before security alarms will be triggered; keep in mind that backups on itself is a high priority target for potential intruder, and thus must be properly secured (locked up and/or encrypted); that includes controls of the system conducting back up as well to prevent manipulations with the state of the protected resource (i.e. to prevent restoring system to pre-patched state with a known vulnerability)
 
 ## Ongoing Security Audits
 
