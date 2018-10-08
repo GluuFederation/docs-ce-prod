@@ -58,7 +58,7 @@ oxAuth is at heart of Gluu Server framework, handling authentication for the res
 
 - Review values chosen for `sessionIdUnusedLifetime` and `sessionIdLifetime` at `Configuration` > `JSON Configuration` > `oxAuth` page and make sure sessions won't last longer than an average user would need; longer living sessions present higher risks of session hijacking and unauthorized access from shared/public devices 
 
-- Review configuration of oxAuth's inbulit filter implementing [CORS protocol](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) located in section `corsConfigurationFilters` at `Configuration` > `JSON Configuration` > `oxAuth`. These controls dictate web services at which domains are expected to host on-page scripts which may generate requests to oxAuth API's endpoints - and thus should be allowed to access data send in responses to them. This is especially important if you as OP must support on-page OIDC clients employing implicit or hybrid flows. By default the filter will allow RPs at any domain the right to view the data.
+- Review configuration of oxAuth's built-in filter implementing [CORS protocol](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) located in section `corsConfigurationFilters` at `Configuration` > `JSON Configuration` > `oxAuth`. These controls dictate web services at which domains are expected to host on-page scripts which may generate requests to oxAuth API's endpoints - and thus should be allowed to access data send in responses to them. This is especially important if you as OP must support on-page OIDC clients employing implicit or hybrid flows. By default the filter will allow RPs at any domain the right to view the data.
 
 ## Open ports 
 
