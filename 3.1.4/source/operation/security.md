@@ -72,9 +72,9 @@ In case you need this feature enabled, next controls must be re-visited to minim
 
 - `trustedClientEnabled` and `dynamicRegistrationPersistClientAuthorizations` at `Configuration` > `JSON Configuration` > `oxAuth` - control whether clients are allowed to setup an entry for them in such way users won't be asked for consent on releasing their personal data while accessing corresponding RP
 
-- `dynamicRegistrationScopesParamEnabled` at `Configuration` > `JSON Configuration` > `oxAuth` - controls whether default scopes are globally enabled at this instance; scopes defined as default will be automatically added to any dynamically registered client entry
+- list of scopes at `OpenID Connect` > `Scopes`, column "Allow for dynamic registration" - allows to quickly assess which scopes clients can potentially add to their registration entry without consent of OP's administrator; set `Allow for dynamic registration` property to `False` for all scopes you want to assign in a controlled fashion; in addition, make sure none of sensitive scopes have their type set to `Default` if you have `dynamicRegistrationScopesParamEnabled` set to `True` (see below)
 
-- list of scopes at `OpenID Connect` > `Scopes`, column "Allow for dynamic registration" - allows to quickly assess which scopes clients can potentially add to their registration entry without consent of OP's administrator; set `Allow for dynamic registration` property to `False` for all scopes you want to assign in a controlled fashion; in addition, make sure none of sensitive scopes have their type set to `Default` if you have `dynamicRegistrationScopesParamEnabled` set to `True` (see above)
+- `dynamicRegistrationScopesParamEnabled` at `Configuration` > `JSON Configuration` > `oxAuth` - controls whether default scopes are globally enabled at this instance; scopes defined as default will be automatically added to any dynamically registered client entry
 
 ## UMA
 
