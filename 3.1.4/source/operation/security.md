@@ -1,24 +1,23 @@
 # Security recommendations
 
-To make initial deployment easier for adopters with different levels of expertise, Gluu Server package is shipped with security-related settings some users may find not strict enough for their intended use cases. This document tries to enumerate most important security controls and best practices worth keeping in mind when building solutions based on the framework.
+The Gluu Server package is designed to be easy to deploy. Its default security settings may not be strict enough for certain organizations or use cases. This document highlights important security controls and offers best practices for increasing security related to a Gluu Server infrastructure
 
 ## Storing setup.properties.last 
 
-The `setup.properties.last` file created under the `/install/community-edition-setup/` directory during `setup.py` phase of initial installation contains sensitive data like credentials and keystore passwords. Original file shold be removed from inside the container, while a copy of its contents should be stored securely for future reference as part of a process of documentating organization's environment. 
+The `setup.properties.last` file created under the `/install/community-edition-setup/` directory during `setup.py` phase of initial installation contains sensitive data like credentials and keystore passwords. The original file should be removed from inside the container and a copy of its contents should be stored securely for future reference.
 
 ## Apache config
 
-As Apache works as a frontend web server in default setup, its configuration items found under `/etc/httpd/` (CentOS/RHEL) and `/etc/apache2/` (Ubuntu/Debian) directories inside container will greatly impact security of the whole instance. 
+Apache is the frontend web server in a default Gluu Server setup. Its configuration will greatly impact security for the whole instance. Of particular interest are items found inside the container under `/etc/httpd/` (CentOS/RHEL) and `/etc/apache2/` (Ubuntu/Debian). 
 
-Next controls found within Gluu Server's virtual host's definition in `/etc/httpd/conf.d/https_gluu.conf` and `/etc/apache2/sites-enabled/https_gluu.conf` files are of particular interest:
+The following controls within the Gluu Server's virtual host files in `/etc/httpd/conf.d/https_gluu.conf` and `/etc/apache2/sites-enabled/https_gluu.conf` should be reviewed: 
 
   - Enabled SSL/TLS cipher suites; depending on project-specific requirements some of them may not be considered secure enough
   
   - "Content-Security-Policy" and "X-Frame-Options" clauses which are commented out by default; keep in mind those haven't been properly tested and default settings may need to be adjusted to be compatible with the current Gluu Server package
   
-  - We recommend blocking access to oxTrust web UI from public networks. This can be achieved, for example, by limiting access to a specific ip address/network range only, by updating corresponding "Location" directive in `/etc/httpd/conf.d/https_gluu.conf` 
-!!! Note
-    oxTrust is also the component which implements SCIM API; in case SCIM is a mandatory part in a setup, ip address of the SCIM client will need to be included to the rule below as well
+  - We recommend blocking access to oxTrust web UI from public networks. This can be achieved, for example, by limiting access to a specific IP address/network range only, by updating corresponding "Location" directive in `/etc/httpd/conf.d/https_gluu.conf` 
+
 
     ```
         <Location /identity>
@@ -27,48 +26,58 @@ Next controls found within Gluu Server's virtual host's definition in `/etc/http
         </Location>
     ```
 
+    !!! Note
+        oxTrust is responsible for publishing SCIM APIs. If SCIM is in use, the IP address of the SCIM client should be included to the rule above as well
+
+
 ## 2FA to oxTrust
 
-Consider enforcing 2FA for access to oxTrust administrator interface of your instance. Gluu Server offers an assortment of 2FA methods out-of-the-box, including [Duo Security](https://gluu.org/docs/ce/3.1.3/authn-guide/duo/), [Super Gluu](https://gluu.org/docs/ce/3.1.3/authn-guide/supergluu/) or [FIDO U2F](https://gluu.org/docs/ce/3.1.3/authn-guide/U2F/).
+Consider enforcing 2FA for access to oxTrust. Gluu supports an assortment of 2FA methods out-of-the-box, including [Duo Security](https://gluu.org/docs/ce/3.1.3/authn-guide/duo/), [Super Gluu](https://gluu.org/docs/ce/3.1.3/authn-guide/supergluu/) or [FIDO U2F](https://gluu.org/docs/ce/3.1.3/authn-guide/U2F/).
 
 ## Enabled extensions
 
-`Configuration` > `Organization configuration` page contains several controls which may impact security of the instance if left enabled. Consider disabling them unless you intend to employ this functionality.
+`Configuration` > `Organization configuration` page contains several controls which may impact security of the instance if left enabled. Consider disabling the following settings unless otherwise required:   
 
-- "SCIM Support" - enables [SCIM protocol](https://gluu.org/docs/ce/3.1.4/user-management/scim2/) implementation which allows remote clients to conduct reads and writes of user data stored locally at the instance. Being a powerful tool for conducting user management-related batch jobs it may become as much powerful tool of destruction in possession of a malicious mind
+- "SCIM Support" - enables [SCIM protocol](https://gluu.org/docs/ce/3.1.4/user-management/scim2/) implementation which allows remote clients to conduct reads and writes of user data stored locally at the instance. Being a powerful tool for conducting user management-related batch jobs, it could become a powerful tool for destruction in the wrong hands.
 
-- "Passport Support" - enabling passport opens a full new world of authentication methods' options, together with assosiated additional possibilities of them being exploited by a malicious user
+- "Passport Support" - Passport enables many new user authentication methods, like social login, but also increases the surface area for security issues. Any time a new authentication method is added, its security should be thoroughly tested for both positive and negative scenarios.  
 
-- "Enabled" checkbox at `Configuration Manage` > `Authentication` > `CAS Protocol` - this control enables CAS protocol v2 implementation which comes pre-packaged with Shibboleth IDPv3 Gluu Server uses to offer support for SAML2 protocol. CAS is gradually phasing out nowdays and unless you must support some legacy services which still use it, one potential attack vector can be ruled out by keeping it disabled.
+- "CAS Support" - CAS support comes pre-packaged with the Shibboleth IDPv3 used by the Gluu Server to support SAML2. CAS is a legacy protocol, and unless it is required, support should be disabled in order to reduce attack surface area. 
 
 ## User registration
 
-Gluu Server offers set of a basic user management features, which inlcude simplistic sign up feature. Generally, it's not recommended to employ those features in production unless there is no way around it at that moment. Otherwise, consider next:
+Gluu Server offers a few basic user management features, inlcuding user registration. Generally, it's not recommended to employ those features in production. If Gluu's user registration features must be used, consider the following:
 
-- Make sure no scripts are enabled at `Configuration` > `Manage Custom scripts` > `User Registration` page
-- Make sure that `Self-Service Password Reset` control at `Configuration` > `Organization configuration` page is set to `Disabled`
+- Make sure no scripts are enabled at `Configuration` > `Manage Custom scripts` > `User Registration` page    
+- Make sure that `Self-Service Password Reset` control at `Configuration` > `Organization configuration` page is set to `Disabled`    
 
 ## oxAuth / Authentication
 
-oxAuth is at heart of Gluu Server framework, handling authentication for the rest of components. Its secureness is paramount for the integrity of the whole instance.
+oxAuth is the core auth engine for the Gluu Server. Its security is paramount for the integrity of the whole instance. A few notes and considerations:  
 
-- Make sure only needed authentication scripts are enabled at `Configuration` > `Manage Custom scripts` > `Person Authentication`. It's extremely important to disable any authentication method you don't consider secure enough (or needed) there, as otherwise a malicious third party may try to manipulate an user into using a less secure authentication method by pre-selecting it explicitly through adding "acr_values=" parameter to OIDC authorization request
+- Make sure only needed authentication scripts are enabled at `Configuration` > `Manage Custom scripts` > `Person Authentication`. It's extremely important to disable any authentication not in use. 
 
-- Consider enabling brute-force attack protection by setting "authenticationProtectionConfiguration" to `True` at `Configuration` > `JSON Configuration` > `oxAuth` page
+- Consider enabling brute-force attack protection by setting `authenticationProtectionConfiguration` to `True` in `Configuration` > `JSON Configuration` > `oxAuth`
 
 - Review values chosen for `sessionIdUnusedLifetime` and `sessionIdLifetime` at `Configuration` > `JSON Configuration` > `oxAuth` page and make sure sessions won't last longer than an average user would need; longer living sessions present higher risks of session hijacking and unauthorized access from shared/public devices 
 
-- Review configuration of oxAuth's built-in filter implementing [CORS protocol](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) located in section `corsConfigurationFilters` at `Configuration` > `JSON Configuration` > `oxAuth`. These controls dictate web services at which domains are expected to host on-page scripts which may generate requests to oxAuth API's endpoints - and thus should be allowed to access data send in responses to them. This is especially important if you as OP must support on-page OIDC clients employing implicit or hybrid flows. By default the filter will allow RPs at any domain the right to view the data.
+- Review configuration of oxAuth's built-in filter implementing [CORS protocol](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) located in section `corsConfigurationFilters` at `Configuration` > `JSON Configuration` > `oxAuth`. These controls dictate web services at which domains are expected to host on-page scripts which may generate requests to oxAuth API's endpoints - and thus should be allowed to access data send in responses to them. This is especially important if the OP must support on-page OIDC clients employing implicit or hybrid flows. By default the filter will allow RPs at any domain the right to view the data.
 
 ## Open ports 
 
-Make sure no services are listening on external interfaces except for those that are absolutely required. In a basic standalone instance of Gluu Server 3.1.4, only Apache's listener at TCP port 443 is required to be open to the world. In previous versions of Gluu, OpenDJ listens on ports 4444 and 1636 for all interfaces. A list of current listeners can be obtained with `# netstat nlpt` (for TCP) and `# netstat -nlpu` (for UDP). In particular, make sure the internal LDAP server used by Gluu to store all its configuration data listens only at loopback interface.
+Make sure no services are listening on external interfaces except for those that are absolutely required. 
+
+In a standalone instance of Gluu Server 3.1.4, only Apache's listener at TCP port 443 is required to be open to the world. 
+
+In previous versions of Gluu, OpenDJ listens on ports 4444 and 1636 for all interfaces. 
+
+A list of current listeners can be obtained with `# netstat nlpt` (for TCP) and `# netstat -nlpu` (for UDP). In particular, make sure the internal LDAP server used by Gluu to store all its configuration data listens only at loopback interface.
 
 In cases when listeners at external interfaces cannot be avoided (clustered setups be the most obvious example) we suggest to ensure that those ports will only be accessible from a very limited set of authorized peers by fine-tunining firewal rules and underlying network's topology.
 
 ## Dynamic Client Registration
 
-Consider whether support of [OpenID Connect Dynamic Client Registration](https://openid.net/specs/openid-connect-registration-1_0.html) extension is required in your setup and disable it otherwise by setting `dynamicRegistrationEnabled` to `False` at `Configuration` > `JSON Configuration` > `oxAuth` page.
+Consider whether support of [OpenID Connect Dynamic Client Registration](https://openid.net/specs/openid-connect-registration-1_0.html) extension is required. If not, disable it by setting `dynamicRegistrationEnabled` to `False` at `Configuration` > `JSON Configuration` > `oxAuth` page.
 
 In case this feature must be enabled, next controls must be re-visited to minimize potential exposure of sensitive personal data:
 
