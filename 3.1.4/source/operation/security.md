@@ -1,10 +1,10 @@
 # Security recommendations
 
-To make initial deployment easier for adopters with different levels of expertise, Gluu Server package is shipped with security-related settings some users may find not strict enough for their intended use cases. This document tries to enumerate most important security controls and best practices you may want to keep in mind when developing your own solutions based on the framework.
+To make initial deployment easier for adopters with different levels of expertise, Gluu Server package is shipped with security-related settings some users may find not strict enough for their intended use cases. This document tries to enumerate most important security controls and best practices worth keeping in mind when building solutions based on the framework.
 
 ## Storing setup.properties.last 
 
-The `setup.properties.last` file created under the `/install/community-edition-setup/` directory during `setup.py` phase of initial installation contains sensitive data like credentials and keystore passwords. You should remove the original file from inside the container, and preserve a copy of the contents as part of your process for documentating your environment for future reference. 
+The `setup.properties.last` file created under the `/install/community-edition-setup/` directory during `setup.py` phase of initial installation contains sensitive data like credentials and keystore passwords. Original file shold be removed from inside the container, while a copy of its contents should be stored securely for future reference as part of a process of documentating organization's environment. 
 
 ## Apache config
 
@@ -12,7 +12,7 @@ As Apache works as a frontend web server in default setup, its configuration ite
 
 Next controls found within Gluu Server's virtual host's definition in `/etc/httpd/conf.d/https_gluu.conf` and `/etc/apache2/sites-enabled/https_gluu.conf` files are of particular interest:
 
-  - Enabled SSL/TLS cipher suites; depending on your requirements some of them may not be considered secure enough
+  - Enabled SSL/TLS cipher suites; depending on project-specific requirements some of them may not be considered secure enough
   
   - "Content-Security-Policy" and "X-Frame-Options" clauses which are commented out by default; keep in mind those haven't been properly tested and default settings may need to be adjusted to be compatible with the current Gluu Server package
   
