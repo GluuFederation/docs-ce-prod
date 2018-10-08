@@ -45,16 +45,16 @@ Consider enforcing 2FA for access to oxTrust administrator interface of your ins
 
 Gluu Server offers set of a basic user management features, which inlcude simplistic sign up feature. Generally, it's not recommended to employ those features in production unless there is no way around it at that moment. Otherwise, consider next:
 
-- Make sure no scripts are enabled at "Configuration -> Manage Custom scripts -> User Registration" page
-- Make sure that "Self-Service Password Reset" control at "Configuration -> Organization configuration" page is set to "Disabled"
+- Make sure no scripts are enabled at `Configuration` > `Manage Custom scripts` > `User Registration` page
+- Make sure that `Self-Service Password Reset` control at `Configuration` > `Organization configuration` page is set to `Disabled`
 
 ## oxAuth / Authentication
 
 oxAuth is at heart of Gluu Server framework, handling authentication for the rest of components. Its secureness is paramount for the integrity of the whole instance.
 
-- Make sure only needed authentication scripts are enabled at "Configuration -> Manage Custom scripts -> Person Authentication". It's extremely important to disable any authentication method you don't consider secure enough (or needed) there, as otherwise a malicious third party may try to manipulate an user into using a less secure authentication method by pre-selecting it explicitly through adding "acr_values=" parameter to OIDC authorization request
+- Make sure only needed authentication scripts are enabled at `Configuration` > `Manage Custom scripts` > `Person Authentication`. It's extremely important to disable any authentication method you don't consider secure enough (or needed) there, as otherwise a malicious third party may try to manipulate an user into using a less secure authentication method by pre-selecting it explicitly through adding "acr_values=" parameter to OIDC authorization request
 
-- Consider enabling brute-force attack protection by setting "authenticationProtectionConfiguration" to "True" at "Configuration -> JSON Configuration -> oxAuth" page
+- Consider enabling brute-force attack protection by setting "authenticationProtectionConfiguration" to `True` at `Configuration` > `JSON Configuration` > `oxAuth` page
 
 - Review values chosen for `sessionIdUnusedLifetime` and `sessionIdLifetime` at `Configuration` > `JSON Configuration` > `oxAuth` page and make sure sessions won't last longer than an average user would need; longer living sessions present higher risks of session hijacking and unauthorized access from shared/public devices 
 
@@ -84,7 +84,7 @@ In case this feature must be enabled, next controls must be re-visited to minimi
 
 Next controls allow you to fine-tune Gluu's UMA implementation's behaviour, resulting in more secure interactions:
 
-- `umaGrantAccessIfNoPolicies` at `Configuration` > `JSON Configuration` -> `oxAuth` page - allows access to a resource even if no policies are defined for the realted scopes; though it simplifies initial testing, we recommend disabling this feature in production setups
+- `umaGrantAccessIfNoPolicies` at `Configuration` > `JSON Configuration` > `oxAuth` page - allows access to a resource even if no policies are defined for the realted scopes; though it simplifies initial testing, we recommend disabling this feature in production setups
 
 - `umaRestrictResourceToAssociatedClient` at `Configuration` > `JSON Configuration` > `oxAuth` page - won't allow any other client except the one which registered the resource initially to acquire a RPT for it; it's recommended to have it enabled for production setups
 
