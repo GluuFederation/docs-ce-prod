@@ -16,8 +16,10 @@ Next controls found within Gluu Server's virtual host's definition in `/etc/http
   
   - "Content-Security-Policy" and "X-Frame-Options" clauses which are commented out by default; keep in mind those haven't been properly tested and default settings may need to be adjusted to be compatible with the current Gluu Server package
   
-  - We recommend blocking access to oxTrust web UI from public networks. This can be achieved, for example, by limiting access to a specific ip address/network range only, by updating corresponding "Location" directive in `/etc/httpd/conf.d/https_gluu.conf` (note that oxTrust also implements SCIM API thus you may need to include your SCIM-enabled apps there as well):
-  
+  - We recommend blocking access to oxTrust web UI from public networks. This can be achieved, for example, by limiting access to a specific ip address/network range only, by updating corresponding "Location" directive in `/etc/httpd/conf.d/https_gluu.conf` 
+!!! Note
+    oxTrust is also the component which implements SCIM API; in case SCIM is a mandatory part in a setup, ip address of the SCIM client will need to be included to the rule below as well
+
     ```
         <Location /identity>
                 ProxyPass http://localhost:8082/identity retry=5 connectiontimeout=5 timeout=15
