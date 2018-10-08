@@ -78,13 +78,13 @@ In case you need this feature enabled, next controls must be re-visited to minim
 
 ## UMA
 
-User Managed Access allows adopters to designate the task of making authorization decision to a dedicated 3rd party service capable of automatically handling requests to access a resource even without its owner being present online, following a set of rules defined for it. Needess to say such feature-rich framework can provide a lot of attack vectors for those seeking unauthorized access.
+[User Managed Access](https://gluu.org/docs/ce/3.1.4/admin-guide/uma/) allows adopters to designate the task of making access authorization decisions for an resource to a dedicated 3rd party service capable of automatically handling requests to access a resource even without its owner being present online, following a set of rules defined for it. Needless to say such feature-rich framework can provide a lot of attack vectors for those seeking unauthorized access.
 
-Next controls allow to fine-tune Gluu's UMA implementation's behaviour, allowing more secure interactions:
+Next controls allow you to fine-tune Gluu's UMA implementation's behaviour, resulting in more secure interactions:
 
-- `umaGrantAccessIfNoPolicies` at `Configuration` > `JSON Configuration` -> `oxAuth` - allows access to a resource even if no policies are defined for the realted scopes; though it simplifies initial testing, we recommend to disabling this feature in production setups
+- `umaGrantAccessIfNoPolicies` at `Configuration` > `JSON Configuration` -> `oxAuth` page - allows access to a resource even if no policies are defined for the realted scopes; though it simplifies initial testing, we recommend disabling this feature in production setups
 
-- `umaRestrictResourceToAssociatedClient` at `Configuration` > `JSON Configuration` > `oxAuth` - won't allow any other client except the one which registered the resource initially to acquire a RPT for it; it's recommended to have it enabled for production setups
+- `umaRestrictResourceToAssociatedClient` at `Configuration` > `JSON Configuration` > `oxAuth` page - won't allow any other client except the one which registered the resource initially to acquire a RPT for it; it's recommended to have it enabled for production setups
 
 ## Upgrades
 
