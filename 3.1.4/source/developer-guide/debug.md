@@ -125,6 +125,7 @@ Now we are ready to perform script developement and debugging. Here is a quick o
 1. Within one minute oxAuth should load the changed file. Check the following log file again to make sure there are no load errors: `/opt/gluu/jetty/oxauth/logs/oxauth_script.log`    
 1. To check if the script works, update the default authentication method to Basic Authentication. This can be performed in oxTrust by navigating to `Manage Authentication` > `Default Authentication Method`   
 1. Open another browser or session and try to login. 
+    
     !!! Warning
     Make sure to keep the first session open in order to disable basic authentication method in case the script doesn't work as expected.        
 1. After executing `pydevd.settrace` the script will transfer execution control to the PyDev server in Eclipse    
