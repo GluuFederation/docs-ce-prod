@@ -9,23 +9,10 @@ Common use cases include:
 - API access management  
 - Two-factor authentication (2FA)
 - Customer identity and access management (CIAM)   
-- Identity federation      
+- Identity federation     
 
 ### Free Open Source Software 
-The Gluu Server distribution includes the following free open-source software (FOSS):
-
-- oxAuth*: OAuth 2.0 Authorization Server (AS), OpenID Connect Provider (OP) and UMA Authorization Server (AS) 
-- oxTrust*: Admin GUI
-- Shibboleth IDP: SAML identity provider (IDP)
-- Passport.JS: Authentication middleware to support inbound identity, for instance social login
-- Gluu OpenDJ or OpenLDAP*: Directory server where all Gluu user data, session data, etc. is stored. For clustered deployments, we recommend using Gluu's fork of OpenDJ 
-- Apache2 Web Server*: HTTP services
-- JCE 1.8*: Java cryptography extension 
-- oxAuth RP: Simple one-page app that provides sample requests and responses for all OpenID Connect operations 
-
-_*_ _Required component._
-
-Learn more about the open source licenses in use [below](#license). 
+The Gluu Server distribution includes free open-source software (FOSS) for identity & access management. Learn more about licenses [below](#license). 
 
 ### Open Web Standards
 Gluu includes software that implements the following open web standards for authentication, authorization, federated identity, and identity management:
@@ -35,7 +22,7 @@ Gluu includes software that implements the following open web standards for auth
 - User Managed Access 2.0 (UMA)    
 - SAML 2.0   
 - System for Cross-domain Identity Management (SCIM)    
-- FIDO Universal 2nd Factor (U2F)    
+- FIDO U2F & UAF    
 - Lightweight Directory Access Protocol (LDAP)   
 
 ## Installation
