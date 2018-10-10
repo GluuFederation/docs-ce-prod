@@ -108,7 +108,7 @@ Now we are ready to perform script development and debugging. Here is a quick ov
     
     !!! Warning
     Make sure to keep the first session open in order to disable basic authentication method in case the script doesn't work as expected.        
-1. After executing `pydevd.settrace` the script will transfer execution control to the PyDev server in Eclipse    
+1. After executing `pydevd.settrace` the script will transfer execution control to the PyDev server in Eclipse. You can use any debug commands. For example: Step Over (F6), Resume (F8), etc.     
 1. After debugging is finished, resume script execution to transfer execution control back to oxAuth
 
 
