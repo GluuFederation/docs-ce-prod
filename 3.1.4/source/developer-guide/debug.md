@@ -70,6 +70,14 @@ Now we are ready to perform script development and debugging. Here is a quick ov
     ```
 
 1. Open the following file in Eclipse: `/root/eclipse-workspace/basic.py` 
+1. At first opening python file we need to instruct Eclipse to use specific interpreter. Here is few steps which we need to do:
+  
+  - Press "Manual Config" button in dialog whcih we get after opening python file.
+  - Open "PyDev->Interpreters->Jython Interpreters"
+  - Click "New..." button in the right panel. Enter name "Jython" and specify interpreter executable "/opt/jython/jython.jar"
+  - Click "OK", than confirm settings by clicking "OK" again and press "Apply and Close" at the end.
+  - Next dialog is the final one where we also should confirm settings by clicking "OK".
+
 1. Specify Jython type and set the location to: `/opt/jython`
 1. Open basic.py in a file editor, and after the import section add the following lines to load the pydev libraries:
 
