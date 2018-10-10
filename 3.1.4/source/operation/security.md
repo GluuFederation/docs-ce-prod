@@ -45,7 +45,7 @@ Consider enforcing 2FA for access to oxTrust. Gluu supports an assortment of 2FA
 
 ## User registration
 
-Gluu Server offers a few basic user management features, inlcuding user registration. Generally, it's not recommended to employ those features in production. If Gluu's user registration features must be used, consider the following:
+Gluu Server offers a few basic user management features, inlcuding user registration. Generally, it's not recommended to employ those features in production. Unless Gluu's user registration features must be used, consider the following:
 
 - Make sure no scripts are enabled at `Configuration` > `Manage Custom scripts` > `User Registration` page    
 - Make sure that `Self-Service Password Reset` control at `Configuration` > `Organization configuration` page is set to `Disabled`    
