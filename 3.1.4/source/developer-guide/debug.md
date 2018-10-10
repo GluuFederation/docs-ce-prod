@@ -78,7 +78,6 @@ Now we are ready to perform script development and debugging. Here is a quick ov
   - Click "OK", than confirm settings by clicking "OK" again and press "Apply and Close" at the end.
   - Next dialog is the final one where we also should confirm settings by clicking "OK".
 
-1. Specify Jython type and set the location to: `/opt/jython`
 1. Open basic.py in a file editor, and after the import section add the following lines to load the pydev libraries:
 
     ```
