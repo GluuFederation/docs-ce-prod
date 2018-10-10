@@ -28,7 +28,7 @@ Now we are ready to perform script development and debugging. Here is a quick ov
 
 ## Enable Remote Debug in Custom Script
 
-  1. After the import section, add:   
+1. After the import section, add:   
   
         ```
         REMOTE_DEBUG = True
@@ -43,7 +43,7 @@ Now we are ready to perform script development and debugging. Here is a quick ov
                 raise
         ```     
       
-  1. Add the following lines wherever breakpoints are needed:   
+1. Add the following lines wherever breakpoints are needed:   
   
         ```
         if REMOTE_DEBUG:
@@ -72,11 +72,11 @@ Now we are ready to perform script development and debugging. Here is a quick ov
 1. Open the following file in Eclipse: `/root/eclipse-workspace/basic.py` 
 1. At first opening python file we need to instruct Eclipse to use specific interpreter. Here is few steps which we need to do:
   
-  - Press "Manual Config" button in dialog whcih we get after opening python file.
-  - Open "PyDev->Interpreters->Jython Interpreters"
-  - Click "New..." button in the right panel. Enter name "Jython" and specify interpreter executable "/opt/jython/jython.jar"
-  - Click "OK", than confirm settings by clicking "OK" again and press "Apply and Close" at the end.
-  - Next dialog is the final one where we also should confirm settings by clicking "OK".
+    - Press "Manual Config" button in dialog whcih we get after opening python file.
+    - Open "PyDev->Interpreters->Jython Interpreters"
+    - Click "New..." button in the right panel. Enter name "Jython" and specify interpreter executable "/opt/jython/jython.jar"
+    - Click "OK", than confirm settings by clicking "OK" again and press "Apply and Close" at the end.
+    - Next dialog is the final one where we also should confirm settings by clicking "OK".
 
 1. Open basic.py in a file editor, and after the import section add the following lines to load the pydev libraries:
 
@@ -117,8 +117,9 @@ Now we are ready to perform script development and debugging. Here is a quick ov
 
 
 ## X Server troubleshooting
-The reason of running `/opt/gluu-server-3.1.4/opt/gluu/bin/prepare-dev-tools.py` is to allow eclipse access X server.
-It runs next commands:
+The reason for running `/opt/gluu-server-3.1.4/opt/gluu/bin/prepare-dev-tools.py` is to allow eclipse to access X server. 
+
+It runs the following commands:
 
 ```
 # Only this one key is needed to access from chroot 
@@ -134,7 +135,10 @@ cp -f /root/.Xauthority-gluu /opt/gluu-server-3.1.4/root/.Xauthority
 sudo su $(logname) -c "xhost +local:
 ```
 
-### If Eclispe is not able to access X11 you can run from host next command to check if it has permissisons to access it:
+### Unable to access x11
+
+If Eclispe is unable to access X11, run the following command from the host to check if it has the necessary permissisons:
+
 ```
 user@u144:~$ xhost +local:
 non-network local connections being added to access control list
@@ -144,4 +148,4 @@ LOCAL:
 SI:localuser:user
 ```
 
-### If user in host is not able to access X11 next tip can help: remove .Xauthority from user home and logout/login
+If the user is still unable to access X11, remove `.Xauthority` from user home and logout / login again.
