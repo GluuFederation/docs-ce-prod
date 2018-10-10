@@ -25,8 +25,8 @@ The following controls within the Gluu Server's virtual host files in `/etc/http
         </Location>
 ```
 
-    !!! Note
-        oxTrust is responsible for publishing SCIM APIs. If SCIM is in use, the IP address of the SCIM client should be included to the rule above as well
+!!! Note
+    oxTrust is responsible for publishing SCIM APIs. If SCIM is in use, the IP address of the SCIM client should be included to the rule above as well
 
 
 ## 2FA to oxTrust
