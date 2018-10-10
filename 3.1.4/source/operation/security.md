@@ -18,13 +18,12 @@ The following controls within the Gluu Server's virtual host files in `/etc/http
   
   - We recommend blocking access to oxTrust web UI from public networks. This can be achieved, for example, by limiting access to a specific IP address/network range only, by updating corresponding "Location" directive in `/etc/httpd/conf.d/https_gluu.conf` 
 
-
-    ```
+```
         <Location /identity>
                 ProxyPass http://localhost:8082/identity retry=5 connectiontimeout=5 timeout=15
                 Require ip 45.55.232.15
         </Location>
-    ```
+```
 
     !!! Note
         oxTrust is responsible for publishing SCIM APIs. If SCIM is in use, the IP address of the SCIM client should be included to the rule above as well
