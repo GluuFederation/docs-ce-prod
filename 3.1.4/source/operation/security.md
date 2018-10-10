@@ -16,12 +16,16 @@ The following controls within the Gluu Server's virtual host files in `/etc/http
   
   - "Content-Security-Policy" and "X-Frame-Options" clauses which are commented out by default; keep in mind those haven't been properly tested and default settings may need to be adjusted to be compatible with the current Gluu Server package
   
-  - We recommend blocking access to oxTrust web UI from public networks. This can be achieved, for example, by limiting access to a specific IP address/network range only, by updating corresponding "Location" directive in `/etc/httpd/conf.d/https_gluu.conf` 
+  - We recommend blocking access to oxTrust web UI from public networks. This can be achieved, for example, by limiting access to a specific IP address/network range only, by updating corresponding "Location" directive in `/etc/httpd/conf.d/https_gluu.conf` In example below access is only allowed from one specific private range ip address, three private network ip address ranges, and from localhost (what is useful if you prefer to access oxTrust by forwarding TCP port 443 of your remote Gluu Server instance to your local machine):
 
 ```
         <Location /identity>
                 ProxyPass http://localhost:8082/identity retry=5 connectiontimeout=5 timeout=15
-                Require ip 45.55.232.15
+                <RequireAny>
+                    Require ip 192.168.240.2
+                    Require ip 10 172.20 192.168.248
+                    Require ip 127.0.0.1
+                </RequireAny>
         </Location>
 ```
 
@@ -60,7 +64,7 @@ oxAuth is the core auth engine for the Gluu Server. Its security is paramount fo
 
 - Review values chosen for `sessionIdUnusedLifetime` and `sessionIdLifetime` at `Configuration` > `JSON Configuration` > `oxAuth` page and make sure sessions won't last longer than an average user would need; longer living sessions present higher risks of session hijacking and unauthorized access from shared/public devices 
 
-- Review configuration of oxAuth's built-in filter implementing [CORS protocol](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) located in section `corsConfigurationFilters` at `Configuration` > `JSON Configuration` > `oxAuth`. These controls dictate web services at which domains are expected to host on-page scripts which may generate requests to oxAuth API's endpoints - and thus should be allowed to access data send in responses to them. This is especially important if the OP must support on-page OIDC clients employing implicit or hybrid flows. By default the filter will allow RPs at any domain the right to view the data.
+- Review configuration of oxAuth's built-in filter implementing [CORS protocol](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) located in section `corsConfigurationFilters` at `Configuration` > `JSON Configuration` > `oxAuth`. These controls dictate web services at which domains are expected to host on-page scripts which may generate requests to oxAuth API's endpoints - and thus should be allowed to access data sent in responses to them. This is especially important if the OP must support on-page OIDC clients employing implicit or hybrid flows. By default the filter will allow RPs at any domain the right to view the data.
 
 ## Open ports 
 
@@ -120,7 +124,7 @@ Regardless of how specialized application is, general considerations still apply
   
   - Make sure that only highly secure means are used when accessing the server for administration purposes; using the most recent SSH server package is a no-brainer, we also suggest to configure it to deny login as a root user and disable password authentication (use public key instead), and move its listener to a port different from the standart TCP 22
   
-  - The system must be backed up on regular basis; frequency may depend on data velocity and volume, but keep in mind that in case of a compromised system restoring from a backed up copy predating the incident may become the only option to ensure its integrity without losing months (even years) of work, and often a lot of time may pass since intrusion before security alarms will be triggered; keep in mind that backups on itself is a high priority target for potential intruder, and thus must be properly secured (locked up and/or encrypted); that includes controls of the system conducting back up as well to prevent manipulations with the state of the protected resource (i.e. to prevent restoring system to pre-patched state with a known vulnerability)
+  - The system must be backed up on regular basis; frequency may depend on data velocity and volume, but keep in mind that in case of a compromised system restoring from a backed up copy predating the incident may become the only option to ensure its integrity without losing months (even years) of work, and often a lot of time may pass since intrusion before security alarms will be triggered; moreover, as backups on itself is a high priority target for potential intruder, they thus must be properly secured (locked up and/or encrypted); that includes controls of the system conducting back up as well to prevent manipulations with state of the protected resource (i.e. to prevent restoring system to a pre-patched state with a known vulnerability)
 
 ## Ongoing Security Audits
 
