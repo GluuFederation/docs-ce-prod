@@ -72,9 +72,9 @@ Make sure no services are listening on external interfaces except for those that
 
 In a standalone instance of Gluu Server 3.1.4, only Apache's listener at TCP port 443 is required to be open to the world. 
 
-In previous versions of Gluu Server OpenDJ can be seen listening on ports 4444 and 1636 for all interfaces, thus it's recommended to reconfigure it following the recommendation above (please refere to [corresponding documentation](https://backstage.forgerock.com/docs/opendj/3/admin-guide/#configure-ldap-port) for detailed steps).
-
 A list of current listeners can be obtained with `# netstat nlpt` (for TCP) and `# netstat -nlpu` (for UDP). In particular, make sure the internal LDAP server used by Gluu to store all its configuration data listens only at loopback interface.
+
+In previous versions of Gluu Server OpenDJ can be seen listening on ports 4444 and 1636 for all interfaces, thus it's recommended to reconfigure it following the recommendation above (please refer to [corresponding documentation](https://backstage.forgerock.com/docs/opendj/3/admin-guide/#configure-ldap-port) for detailed steps).
 
 In cases when listeners at external interfaces cannot be avoided (clustered setups be the most obvious example) we suggest to ensure that those ports will only be accessible from a very limited set of authorized peers by fine-tunining firewal rules and underlying network's topology.
 
