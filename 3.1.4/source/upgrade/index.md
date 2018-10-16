@@ -18,6 +18,9 @@ New to version 3.1.4, it is now possible to perform an in-place upgrade from 3.1
 
 1. Run the script with `sh 3-1-4-upg.sh`
 
+1. If SAML was installed, fix permission of file `saml-nameid.xml.vm`:
+  `chmod u=rw,g=r,o=r /opt/gluu/jetty/identity/conf/shibboleth3/idp/saml-nameid.xml.vm`
+
 1. When the script has finished, restart your server:
 
 ```
