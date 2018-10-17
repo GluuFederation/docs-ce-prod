@@ -299,15 +299,15 @@ Gluu now supports Token Binding, per the [specification](https://openid.net/spec
 !!! Note
     At this time, Token Binding is **only** supported in Ubuntu 18.
 
-This specification enables OpenID Connect implementations to apply Token Binding to the OpenID Connect ID Token. This cryptographically binds the ID Token to the TLS connections between the User Agent and Relying Party (RP) over which the authentication occurred. This use of Token Binding protects the authentication flow from man-in-the-middle (MITM) and token export and replay attacks.
+This specification enables OpenID Connect implementations to apply Token Binding to the OpenID Connect ID Token. This cryptographically binds the ID Token to the TLS connections between the User Agent and Relying Party (RP) over which the authentication occurred. Token Binding protects the authentication flow from man-in-the-middle (MITM) and token export and replay attacks.
 
-A new client property called `id_token_token_binding_cnf` is now available via Dynamic Registration or in the oxTrust OpenID Connect client form (`ID Token Binding Confirmation Method`), which is a string value specifying the JWT confirmation method member name (e.g. `tbh`, as shorthand from token binding hash) that the Relying Party expects when receiving ID Tokens with Token Binding. 
+A new client property called `id_token_token_binding_cnf` is now available via Dynamic Client Registration or in the oxTrust OpenID Connect client form (`ID Token Binding Confirmation Method`). It is a string value specifying the JWT confirmation method member name (e.g. `tbh`, as shorthand from token binding hash) that the Relying Party expects when receiving ID Tokens with Token Binding. 
 
 The presence of this parameter indicates that the client supports Token Binding (ID Token contains JWT confirmation method). If omitted, the client will not support Token Binding.
 
 ![token_binding_overview](../img/openid/token_binding_overview.png) 
 
-Workflow:
+#### Workflow
 
 1. The User Agent send a request to the RP over TLS (with `Sec-Token-Binding` header)  
 1. The RP sends a redirect response to the OP for authentication (with `Include-Referred-Token-Binding-ID` header)  
@@ -330,8 +330,9 @@ The following is an example of ID Token where client has `id_token_token_binding
   }
  }
 ``` 
+#### RP requirements 
 
-RP must do following to get Token Binding working:
+RP must do following for Token Binding to work:
 
 1. During redirect for authorization include `Include-Referred-Token-Binding-ID` header in 302 redirect (see example in [specification](https://openid.net/specs/openid-connect-token-bound-authentication-1_0.html#Examples))
 1. Register client with `id_token_token_binding_cnf=tbh` (on UI `ID Token Binding Confirmation Method`)
@@ -339,10 +340,13 @@ RP must do following to get Token Binding working:
 1. User has to use User Agent with Token Binding enabled (see note below)
 1. If all is configured correctly then `id_token` will contain `tbh` claim as shown above. To easily validate that claim is there you can use [this](https://github.com/GluuFederation/oxAuth/blob/06c9a1935211693aad20cae0d08b27ea06f0f182/Model/src/main/java/org/xdi/oxauth/model/jwt/Jwt.java#L54) Java code 
   
-!!! Note
-    User Agent (browser) has to support Token Binding. It is known that Chrome browser supports Token Binding as experimental feature which can be turned on/off if you navigate to `chrome://flags/#enable-token-binding`. 
-
-https://www.chromestatus.com/feature/5097603234529280
-
+  
 !!! Note
     The [mod_auth_openidc Apache module](https://github.com/zmartzone/mod_auth_openidc) supports Token Binding. 
+    
+    
+#### User Agent Requirements
+The User Agent (browser) **must** support Token Binding. Chrome supports Token Binding as an experimental feature which can be turned on/off by navigating to `chrome://flags/#enable-token-binding`. [More info is available here](https://www.chromestatus.com/feature/5097603234529280). 
+
+
+
