@@ -7,7 +7,7 @@ For example, if you want to use an external authentication service like [Duo Sec
 
 These are just a couple examples showing how interception scripts can be used to customize the behavior of the Gluu Server. Both examples focus on login, but the Gluu Server supports interception scripts for many aspects of the access management service including registration, user updates, authorization and more. 
 
-The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scritps`.
+The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scripts`.
 
 ### Jython
 Interception scripts are written in [Jython](http://www.jython.org/docs/tutorial/indexprogress.html). 
