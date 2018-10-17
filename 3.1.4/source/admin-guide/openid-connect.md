@@ -331,6 +331,14 @@ The following is an example of ID Token where client has `id_token_token_binding
  }
 ``` 
 
+RP must do following to get Token Binding working:
+
+1. During redirect for authorization include `Include-Referred-Token-Binding-ID` header in 302 redirect (see example in [specification](https://openid.net/specs/openid-connect-token-bound-authentication-1_0.html#Examples))
+1. Register client with `id_token_token_binding_cnf=tbh` (on UI `ID Token Binding Confirmation Method`)
+1. Request `id_token` during authorization flow, means have `response_type=code id_token` as shown in [core spec](https://openid.net/specs/openid-connect-core-1_0.html#Authentication) (client entry need to have `response_type` `code` and `id_token` enabled )
+1. User has to use User Agent with Token Binding enabled (see note below)
+1. If all is configured correctly then `id_token` will contain `tbh` claim as shown above. To easily validate that claim is there you can use [this](https://github.com/GluuFederation/oxAuth/blob/06c9a1935211693aad20cae0d08b27ea06f0f182/Model/src/main/java/org/xdi/oxauth/model/jwt/Jwt.java#L54) Java code 
+  
 !!! Note
     User Agent (browser) has to support Token Binding. It is known that Chrome browser supports Token Binding as experimental feature which can be turned on/off if you navigate to `chrome://flags/#enable-token-binding`. 
 
