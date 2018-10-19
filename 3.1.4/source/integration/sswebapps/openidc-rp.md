@@ -2,17 +2,13 @@
 
 ## Basic Web Server Installation
 
-Before you can install mod_auth_openidc, you need to have an Apache
-HTTPD server running with SSL enabled. 
+Before you can install mod_auth_openidc, you need to have an Apache httpd server running with SSL enabled. 
 
 ### Apache Web Server
 
-It is assumed that all the hostnames will be dns resolvable. If not, 
-then add the entries in `/etc/hosts` file on both the web server
-and Gluu Server. 
+It is assumed that all the hostnames will be DNS resolvable. If not, then add the entries in `/etc/hosts` file on both the web server and Gluu Server. 
 
-If you don't have the Apache HTTPD server installed, use apt-get
-to install the Ubuntu standard distribution:
+If you don't have the Apache HTTPD server installed, use apt-get to install the Ubuntu standard distribution:
 
 ``` text
 # apt-get install apache2
@@ -20,8 +16,7 @@ to install the Ubuntu standard distribution:
 ```
 
 ### SSL Configuration
-The SSL Module is necessary for the Apache OpenID Connect Module. Please 
-use the following commands to activate the `ssl module`.
+The SSL Module is necessary for the Apache OpenID Connect Module. Please use the following commands to activate the `ssl module`.
 
 ``` text
 # a2enmod ssl
@@ -48,8 +43,7 @@ The next step is to create a self-signed SSL Certificate.
 ```
 
 #### Configure Apache to use SSL
-This section will guide you through the steps to configure apache to 
-use the SSL module
+This section will guide you through the steps to configure Apache to use the SSL module
 
 1. Open the `default-ssl.conf` file
 
@@ -77,12 +71,12 @@ You should see a list of current environment variables.
 
 ## Configuration of mod_auth_openidc 
 
-### Installation
+### Ubuntu Installation
 
 `mod_auth_openidc` module depends on the Ubuntu packages `libjansson`, `libhiredis`, and `libcurl`: 
 
 
-For ubuntu 14.04
+For Ubuntu 14.04
 
 ``` text
 # apt-get install libjansson4 libhiredis0.10
@@ -90,7 +84,7 @@ For ubuntu 14.04
 
 ```
 
-For ubuntu 16.04
+For Ubuntu 16.04
 
 ``` text
 # apt-get install libjansson4 libhiredis0.13
@@ -101,10 +95,10 @@ For ubuntu 16.04
 You'll also need the mod_auth_openidc and libjose packages which can 
 be downloaded from the [Releases Page](https://github.com/zmartzone/mod_auth_openidc/releases).
 
-For example, at this time the current release for mod_auth_openidc is 2.3.3 and for libjose is 2.3.0, so the command would be:
+For example, at this time the current release for mod_auth_openidc is 2.3.8 and for libjose is 2.3.0, so the command would be:
 
 
-For ubuntu 14.04
+For Ubuntu 14.04
 
 ``` text
 # wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.0/libcjose0_0.5.1-1.trusty.1_amd64.deb
@@ -114,7 +108,7 @@ For ubuntu 14.04
 
 ```
 
-For ubuntu 16.04
+For Ubuntu 16.04
 
 ``` text
 # wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.0/libcjose0_0.5.1-1.xenial.1_amd64.deb
@@ -123,7 +117,6 @@ For ubuntu 16.04
 # dpkg -i libapache2-mod-auth-openidc_2.3.8-1.xenial+1_amd64.deb
 
 ```
-
 
 !!! Note
     Get the latest packages here: https://github.com/zmartzone/mod_auth_openidc/releases
@@ -166,7 +159,7 @@ also need the `client_id` for the next step.
 
 ### Install CGI script
 
-This cgi-script makes for a good test page! 
+This CGI script makes for a good test page! 
 
 ``` text
 # vi /usr/lib/cgi-bin/printHeaders.cgi
@@ -253,18 +246,18 @@ an html page with the `REMOTE_USER` variable populated. Also
 check out the `OIDC_id_token_payload` and all the claims for 
 `USERINFO_` 
 
-## Installation
+### CentOS Installation
 
-We assume that all the hostnames will be dns resolvable. If not, then
+We assume that all the hostnames will be DNS resolvable. If not, then
 add the according entries in `/etc/hosts`, please.
 
-### Add EPEL Repository
+#### Add EPEL Repository
 
 Run the following command to __Add EPEL Repo__.
 
 * `# rpm -ivh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm`
 
-### Apache Web Server
+#### Apache Web Server
 
 To setup __Apache2 SSL__, run the following commands:
 
@@ -276,7 +269,7 @@ To setup __Apache2 SSL__, run the following commands:
 # yum install curl hiredis jansson
 ```
 
-### Configure SSL Module
+#### Configure SSL Module
 This section will guide you to create SSL certificates.
 Use the following commands to crete a  directory and generate the certificates.
 
@@ -318,7 +311,7 @@ Restart Apache Server and you are done configuring the SSL Module. Use the comma
 # service httpd restart
 ```
 
-### Authentication Module (mod_auth_openidc)
+#### Authentication Module (mod_auth_openidc)
 !!! Note
     The latest version of the apache OpenID Connect module is available from [this page](https://github.com/zmartzone/mod_auth_openidc/releases)
 
@@ -344,8 +337,8 @@ Please make sure that the following shared-object file exists by running the fol
 ```
 ls -l /usr/lib64/httpd/modules/mod_auth_openidc.so
 ```
-## Install CGI Script
-The test page is made using the cgi-script. Please use the following command to create the script.
+#### Install CGI Script
+The test page is made using the CGI script. Please use the following command to create the script.
 
 ```
 # vi /var/www/cgi-bin/printHeaders.cgi
@@ -372,14 +365,14 @@ for item in k:
 
 ```
 
-The next step is to make the script executable by HTTPD
+The next step is to make the script executable by httpd
 
 ```text
 # chown apache:apache /var/www/cgi-bin/printHeaders.cgi
 # chmod ug+x /var/www/cgi-bin/printHeaders.cgi
 ```
 
-### Client Registration
+#### Client Registration
 
 There are two methods for client registration:
 
@@ -403,8 +396,9 @@ Response Types: code
 
 !!! Note
     The `client_secret` should be noted after creating the client in Gluu Server as it is used later.
-### Configure the Apache Virtualhost
-The apache module is confgured in the defautl ssl configuration file. Please use the command below to open the file
+    
+#### Configure the Apache Virtualhost
+The Apache module is confgured in the default SSL configuration file. Please use the command below to open the file
 
 ```text
 # vi /etc/httpd/conf.d/ssl.conf 
@@ -433,7 +427,7 @@ OIDCPassIDTokenAs payload
 !!! Warning
     Please remember to populate the `OIDCRedirectURI` with a value that is not used by the server. The apache-filter uses the redirect_uri to process the response from the OpenID Provider (Gluu Server).
 
-Please restart the HTTPD server for the changes to take effect
+Please restart the httpd server for the changes to take effect
 
 ```text
 # service httpd restart
