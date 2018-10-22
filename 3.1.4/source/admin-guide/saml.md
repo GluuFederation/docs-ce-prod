@@ -58,14 +58,14 @@ The example below adds `customTest`, which we [created earlier here](https://glu
         <resolver:Dependency ref="siteLDAP"/>
         <resolver:AttributeEncoder xsi:type="SAML2StringNameID"
                                 xmlns="urn:mace:shibboleth:2.0:attribute:encoder"
-                                nameFormat="urn:oasis:names:tc:SAML:2.0:nameid-format:email" />
+                                nameFormat="urn:oasis:names:tc:SAML:2.0:nameid-format:emailAddress" />
 </resolver:AttributeDefinition> 
 ```
 * Update `/opt/gluu/jetty/identity/conf/shibboleth3/idp/saml-nameid.xml.vm` to generate SAML 2 NameID content. As this will be a SAML 2.0 NameID so below configuration has to be inserted inside `shibboleth.SAML2NameIDGenerators` block. 
 
 ```
     <bean parent="shibboleth.SAML2AttributeSourcedGenerator" 
-          p:format="urn:oasis:names:tc:SAML:2.0:nameid-format:email"
+          p:format="urn:oasis:names:tc:SAML:2.0:nameid-format:emailAddress"
           p:attributeSourceIds="#{ {'customTest'} }"/>
 ```
 * Restart identity and idp services using below command
