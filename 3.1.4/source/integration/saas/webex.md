@@ -123,14 +123,7 @@ We need to modify attributeDefinition for these attributes. Configuration is app
         <bean parent="shibboleth.SAML2AttributeSourcedGenerator"
             p:format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
             p:attributeSourceIds="#{ {'webexnameid'} }" />
-       ```
-       - Add bean inside SAML1 NameID util:list
-       ```
-               <bean parent="shibboleth.SAML2AttributeSourcedGenerator"
-            p:format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
-            p:attributeSourceIds="#{ {'webexnameid'} }" />
-       ```
-       
+       ```       
      
   - Restart 'idp' and 'identity' services with: 
     - service idp restart
