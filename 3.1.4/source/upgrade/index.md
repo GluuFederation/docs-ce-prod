@@ -297,6 +297,21 @@ Navigate to where you have the `backup_2431` folder (if the above commands were 
 # wget https://raw.githubusercontent.com/GluuFederation/cluster-mgr/master/testing/ldifschema_utils.py
 ```
 
+Install the python-ldap package. 
+For Debian and Ubuntu:
+
+```
+# apt-get update
+
+# apt-get install python-ldap
+```
+
+For CentOS and RHEL:
+
+```
+# yum install python-ldap
+```
+
 Install the `python-pip` package.
 
 ```
