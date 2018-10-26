@@ -5,8 +5,8 @@ The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will
 
 ### Pre-requisites
 
-- Before upgrading, make sure to [back up](../operation/backup.md) the Gluu container or LDAP LDIF. 
-- Upgrades should always be thoroughly scoped and tested in a development environment.
+- Before upgrading, make sure to [back up](../operation/backup.md) the Gluu container or LDAP LDIF 
+- Upgrades should always be thoroughly scoped and tested in a development environment
 - Set the authentication method to `auth_ldap_server`and disable all custom scripts, including Cache Refresh, to ensure you aren't locked out of your server after upgrading
 
 ## Upgrade from 3.1.x to 3.1.4
