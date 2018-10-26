@@ -17,7 +17,7 @@ long-lived access token or refresh token.
 
 The flow is illustrated below:
 
-![flow](https://raw.githubusercontent.com/GluuFederation/docs/master/sources/img/openid_connect/client_credentials_grant.png)
+![flow](../img/openid/client_credentials_grant.png)
 
 The steps of the flow are:
 
@@ -80,7 +80,7 @@ Pragma: no-cache
 {"access_token":"c769d7ff-c476-42ab-b531-fe2f60b2f5cc","token_type":"bearer","expires_in":3600}
 ```
 
-# Resource Owner Password Credentials Grant
+## Resource Owner Password Credentials Grant
 
 The resource owner password credentials (i.e. username and password) can
 be used directly as an authorization grant to obtain an access token.
@@ -98,7 +98,7 @@ long-lived access token or refresh token.
 
 The flow is illustrated below:
 
-![flow](https://raw.githubusercontent.com/GluuFederation/docs/master/sources/img/openid_connect/resource_owner_password_credentials_flow.png)
+![flow](../img/openid/resource_owner_password_credentials_flow.png)
 
 The steps of the flow are:
 
@@ -188,4 +188,65 @@ Cache-Control: no-store, private
 Pragma: no-cache
 
 {"access_token":"26d55e4b-6c61-40ea-9763-3282f5db0f0e","token_type":"bearer","expires_in":3599,"refresh_token":"aba91bd9-aa10-4fca-952b-50a9a9afac28","scope":"openid","id_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc2VlZC5nbHV1Lm9yZyIsInVzZXJfaWQiOiJtaWtlIiwiYXVkIjoiQCExMTExITAwMDghRkY4MSEyRDM5IiwiZXhwIjoxMzM5MTk2ODgxMzAzLCJveEludW0iOiJAITExMTEhMDAwMCFENEU3Iiwib3hWYWxpZGF0aW9uVVJJIjoiaHR0cHM6XC9cL3NlZWQuZ2x1dS5vcmdcL294YXV0aFwvc2VhbVwvcmVzb3VyY2VcL3Jlc3R2MVwvb3hhdXRoXC9jaGVja19zZXNzaW9uIiwib3hPcGVuSURDb25uZWN0VmVyc2lvbiI6Im9wZW5pZGNvbm5lY3QtMS4wIn0.SzWfJsmlz62qTRw1lEJZ8PygY9eRupgmsbXLCQwPVDQ"}
+```
+## Gluu OAuth2 Access Management
+[GAT][Gluu Access Token] is used for Gluu OAuth2 Access Management.
+## Overview
+![image](https://ox.gluu.org/lib/exe/fetch.php?media=uma:gat.png)
+Centralized Access Management needs a profile enabling a client ot obtain a token from the AS by explicitly specifyting the 
+requested scopes.
+## Gluu Access Token
+### GAT as plain json
+```
+{
+    "exp": 1256953732,
+    "iat": 1256912345,
+    "scopes" : {
+       "view", "manage"
+    }
+}
+```
+
+The [GAT][Gluu Access Token] is issued at a new endpoint which is published at `<hostname>/.well-known/uma-configuration`
+
+**Important:** all requests/response to/from/between RP, RS, AS must contain "GAT" HTTP header with "true" value. In this way 
+AS differentiante calls from normal UMA.
+
+### AS Respnse for RP
+```
+POST /gat HTTP/1.1
+Host: as.example.com
+Authorization: Bearer jwfLG53^sad$#f
+GAT: true
+
+{
+ "scopes": ["view", "manage"]
+}
+```
+
+### AS Response for RP
+GAT is returned in the `rpt` key as value.
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+GAT: true
+
+{
+  "rpt": "sbjsbhs(/SSJHBSUSSJHVhjsgvhsgvshgsv"
+}
+```
+
+### RP Request Resource with GAT
+```
+GET /users/alice/album/photo.jpg HTTP/1.1
+Authorization: Bearer vF9dft4qmT
+Host: photoz.example.com
+GAT: true
+```
+
+## Discovery
+```
+   ...
+   "gat_endpoint":"https://<host>/<relative path>/gat",
+   ...
 ```

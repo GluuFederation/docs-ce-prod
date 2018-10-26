@@ -55,7 +55,7 @@ pages:
         - 'Attributes': 'admin-guide/attribute.md'
         #- 'SCIM protected by UMA': 'admin-guide/scim-uma.md'
         - 'SAML IDP': 'admin-guide/saml.md'
-        #        - 'OAuth2 Grants': 'admin-guide/oauth2.md'
+        - 'OAuth2 Grants': 'admin-guide/oauth2.md'
         - 'OpenID Connect Provider (OP)': 'admin-guide/openid-connect.md'
         - 'UMA Authorization Server (AS)': 'admin-guide/uma.md'
         - 'Central Authentication Service (CAS)': 'admin-guide/cas.md'
