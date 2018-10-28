@@ -137,7 +137,7 @@ And transfer them to the other nodes and run the following command:
 Note, if you want to check the status of OpenDJ replication run the following command:
 
 ```
-/opt/opendj/bin/dsreplication status -n -X -h idp1.example.org -p 4444 -D "cn=Directory Manager" -I admin -w <password>
+/opt/opendj/bin/dsreplication status -n -X -h idp1.example.org -p 4444 -I admin -w <password>
 ```
 
 Next we should (install csync2)[https://linuxaria.com/howto/csync2-a-filesystem-syncronization-tool-for-linux] for file system replication.
