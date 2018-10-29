@@ -1,4 +1,4 @@
-#OX LDAP Properties
+# OX LDAP Properties
 
 ## Overview
 
