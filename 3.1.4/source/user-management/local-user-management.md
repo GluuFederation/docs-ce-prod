@@ -1,5 +1,5 @@
 # Local User Management
-In this document we cover managing people in the Gluu Server's OpenLDAP Directory and graphical user interface "oxTrust".
+In this document we cover managing people in the Gluu Server's LDAP Directory and graphical user interface "oxTrust".
 
 We also briefly cover the Gluu Server's **very basic** out-of-the-box user registration feature. However, when it comes to user registration, we almost always recommend writing your own registration process, then using the [SCIM 2.0 APIs](./scim2.md) to register the users in your Gluu service. 
 

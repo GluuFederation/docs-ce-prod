@@ -61,10 +61,6 @@ We need to modify attributeDefinition for these attributes. Configuration is app
 ### Attribute Definition
 
   - Attribute 'uidwebex': 
-    - Add 'uidwebex' in 'if statement': 
-```
-#if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('persistentId') $attribute.name.equals('uidwebex') ) )
-```
     - Declaration of 'uidwebex': 
 
 ``` 
@@ -74,20 +70,15 @@ We need to modify attributeDefinition for these attributes. Configuration is app
 </resolver:AttributeDefinition>
 ```
   - Attribute 'emailwebex': 
-    - Append 'emailwebex' in 'if statement': 
-    
-```
-#if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('persistentId') or $attribute.name.equals('uidwebex') or $attribute.name.equals('emailwebex') ) )
-```
     - Declaration of 'emailwebex': 
 ```
 <resolver:AttributeDefinition xsi:type="ad:Simple" id="emailwebex" sourceAttributeID="emailwebex">
         <resolver:Dependency ref="siteLDAP" />
         <resolver:AttributeEncoder xsi:type="enc:SAML2String" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified" name="email" />
-    </resolver:AttributeDefinition>
+        <resolver:AttributeEncoder xsi:type="enc:SAML2StringNameID" nameFormat="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress" />
+    </resolver:AttributeDefinition
 ```
   - Attribute 'firstnamewebex': 
-     - Append 'firstnamewebex' in 'if statement' just like above attributes
      - Declaration of 'firstnamewebex': 
 ```
 <resolver:AttributeDefinition xsi:type="ad:Simple" id="firstnamewebex" sourceAttributeID="firstnamewebex">
@@ -96,7 +87,6 @@ We need to modify attributeDefinition for these attributes. Configuration is app
     </resolver:AttributeDefinition>
 ```
   - Attribute 'lastnamewebex': 
-     - Append 'lastnamewebex' in 'if statement'
      - Declaration of 'lastnamewebex': 
 ```
 <resolver:AttributeDefinition xsi:type="ad:Simple" id="lastnamewebex" sourceAttributeID="lastnamewebex">
@@ -107,6 +97,9 @@ We need to modify attributeDefinition for these attributes. Configuration is app
 
   - NameID 'webexnameid': 
      - Append 'webexnameid' in 'if statement'
+     ```
+     #if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('persistentId') or $attribute.name.equals('webexnameid') ) )
+     ```
      - Declaration of 'webexnameid': 
      
 ```    
@@ -123,16 +116,15 @@ We need to modify attributeDefinition for these attributes. Configuration is app
 ```
 
   - SAML2 NameID Generation: 
-       - File: saml-nameid.xml
-       - Location: /opt/shibboleth-idp/conf
+       - File: saml-nameid.xml.vm
+       - Location: /opt/gluu/jetty/identity/conf/shibboleth3/idp
        - Add bean inside SAML2 NameID util:list
-       
-```
-<bean parent="shibboleth.SAML2AttributeSourcedGenerator"
-    p:format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
-    p:attributeSourceIds="#{ {'webexnameid'} }" />
-```
-
+       ```
+        <bean parent="shibboleth.SAML2AttributeSourcedGenerator"
+            p:format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
+            p:attributeSourceIds="#{ {'webexnameid'} }" />
+       ```       
+     
   - Restart 'idp' and 'identity' services with: 
     - service idp restart
     - service identity restart
