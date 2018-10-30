@@ -64,7 +64,7 @@ pages:
 - Integration Guide:
         - 'Introduction': 'integration/index.md'
         - 'Server Side Web Apps':
-            - 'OAuth2 Grants for Server Side Apps': 'admin-guide/oauth2.md'
+            - 'OAuth2 Grants': 'admin-guide/oauth2.md'
             - 'oxd OAuth 2.0': 'integration/oxd-oauth2/index.md'
             - 'Nginx lua-resty-openidc': 'integration/sswebapps/nginx.md'
             - 'Apache mod_auth_openidc': 'integration/sswebapps/openidc-rp.md'
