@@ -55,16 +55,16 @@ pages:
         - 'Attributes': 'admin-guide/attribute.md'
         #- 'SCIM protected by UMA': 'admin-guide/scim-uma.md'
         - 'SAML IDP': 'admin-guide/saml.md'
-        - 'OAuth2 Grants': 'admin-guide/oauth2.md'
         - 'OpenID Connect Provider (OP)': 'admin-guide/openid-connect.md'
         - 'UMA Authorization Server (AS)': 'admin-guide/uma.md'
         - 'Central Authentication Service (CAS)': 'admin-guide/cas.md'
         - 'Session Management': 'admin-guide/session.md'
         - 'Certificate Management': 'admin-guide/certificate.md'
         - 'CORS Configuration': 'admin-guide/cors.md'
-- SSO Integration Guide:
+- Integration Guide:
         - 'Introduction': 'integration/index.md'
         - 'Server Side Web Apps':
+            - 'OAuth2 Grants for Server Side Apps': 'admin-guide/oauth2.md'
             - 'oxd OAuth 2.0': 'integration/oxd-oauth2/index.md'
             - 'Nginx lua-resty-openidc': 'integration/sswebapps/nginx.md'
             - 'Apache mod_auth_openidc': 'integration/sswebapps/openidc-rp.md'
