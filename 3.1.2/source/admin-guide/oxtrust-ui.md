@@ -202,7 +202,7 @@ local LDAP server.
 
 ![Manage LDAP Authentication](../img/admin-guide/oxtrust/admin_manage_ldap312.PNG)
 
-* _Name:_ This field contains the name of the authentication server
+* _Name:_ This field contains the name of the authentication server. Keep it 'auth_ldap_server', as is. 
 
 * _Bind DN:_ The _Username_ for the authentication server (local
   LDAP/remote LDAP/remote Active Directory) goes here
