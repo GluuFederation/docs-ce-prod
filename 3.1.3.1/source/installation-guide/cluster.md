@@ -58,7 +58,7 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 - A separate NGINX server is necessary because replicating a Gluu server to a different hostname breaks the functionality of the Gluu web page when using a hostname other than what is in the certificates. For example, if I use idp1.example.com as my host and copy that to a second server (e.g. idp2.example.com), the process of accessing the site on idp2.example.com, even with replication, will fail authentication due to a hostname conflict. So if idp1 fails, you won't be able to use Gluu Server effectively
 
-- On all of the non-primary Gluu Cluster members (not the NGINX server), [download the Gluu packages](https://gluu.org/docs/ce/installation-guide/install/) but **don't run `setup.py` yet**!   
+- On all of the non-primary Gluu Cluster members (not the NGINX server), [download the Gluu packages](https://gluu.org/docs/ce/3.1.3.1/installation-guide/install/) but **don't run `setup.py` yet**!   
 
 - On the primary Gluu Server, log in to the chroot and cd to `/install/community-edition-setup/`
 
