@@ -62,7 +62,7 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 - On the primary Gluu Server, log in to the chroot and cd to `/install/community-edition-setup/`
 
-- After setup was completed on the primary server a file named "setup.properties.last" was created in the same directory. We want to copy the `/install/community-edition-setup/setup.properties.last` file from the first install to the other servers as `setup.properties`. This will allow us to to maintain the same configuration across the nodes. (Here I have SSH access to my other server outisde the Gluu chroot)
+- After setup was completed on the primary server, a file named "setup.properties.last" was created in the same directory. We want to copy the `/install/community-edition-setup/setup.properties.last` file from the first install to the other servers as `setup.properties`. This will allow us to to maintain the same configuration across the nodes. (Here I have SSH access to my other server outside the Gluu chroot)
 
 ```
 
