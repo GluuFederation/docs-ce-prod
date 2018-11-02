@@ -78,24 +78,24 @@ Now we are ready to perform script development and debugging. Here is a quick ov
 
 1. Open basic.py in a file editor. After the import section, add the following lines to load the PyDev libraries:
 
-    ```
-    REMOTE_DEBUG = True
-
-    if REMOTE_DEBUG:
-        try:
-            import sys
-            sys.path.append('/opt/libs/pydevd')
-            import pydevd
-        except ImportError as ex:
-            print "Failed to import pydevd: %s" % ex
-            raise
-    ```
+    ```  
+    REMOTE_DEBUG = True  
+  
+    if REMOTE_DEBUG:  
+        try:  
+            import sys  
+            sys.path.append('/opt/libs/pydevd')  
+            import pydevd  
+        except ImportError as ex:  
+            print "Failed to import pydevd: %s" % ex  
+            raise  
+    ```    
 
 1. Add this break condition to the first line in the authenticate method:
 
-    ```
-    if REMOTE_DEBUG:
-        pydevd.settrace('localhost', port=5678, stdoutToServer=True, stderrToServer=True)
+    ```  
+    if REMOTE_DEBUG:   
+        pydevd.settrace('localhost', port=5678, stdoutToServer=True, stderrToServer=True)  
 
     ```
 
@@ -104,7 +104,7 @@ Now we are ready to perform script development and debugging. Here is a quick ov
 1. To check if the script works, update the default authentication method to Basic Authentication. This can be performed in oxTrust by navigating to `Manage Authentication` > `Default Authentication Method`   
 1. Open another browser or session and try to log in 
     
-    !!! Warning
+  !!! Warning
     Make sure to keep the first session open in order to disable the Basic Authentication method in case the script doesn't work as expected.        
     
 1. After executing `pydevd.settrace` the script will transfer execution control to the PyDev server in Eclipse. You can use any debug commands. For example: Step Over (F6), Resume (F8), etc     
