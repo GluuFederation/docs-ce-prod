@@ -40,6 +40,14 @@ The `post-setup-add-components.py` script enables you to install the Shibboleth 
           # python post-setup-add-components.py -addshib -addpassport
           ```
 
+## Prevent oxAuth from redirecting HTTPS requests to HTTP during authentication
+In Gluu Server versions prior to 3.1.4, the Gluu Server redirects HTTPS requests through HTTP during authentication. To prevent that redirect, pass the following two commands in an already-installed Gluu Server:
+
+```
+/opt/jre/bin/java -jar /opt/jetty/start.jar jetty.home=/opt/jetty jetty.base=/opt/gluu/jetty/oxauth --add-to-start=http-forwarded
+/opt/jre/bin/java -jar /opt/jetty/start.jar jetty.home=/opt/jetty jetty.base=/opt/gluu/jetty/identity --add-to-start=http-forwarded
+```
+
 ## Connect a remote debugger
 Connecting your local debugger up to Gluu can help with troubleshooting. 
 
