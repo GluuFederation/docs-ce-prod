@@ -104,8 +104,8 @@ Now we are ready to perform script development and debugging. Here is a quick ov
 1. To check if the script works, update the default authentication method to Basic Authentication. This can be performed in oxTrust by navigating to `Manage Authentication` > `Default Authentication Method`   
 1. Open another browser or session and try to log in 
     
-!!! Warning
-    Make sure to keep the first session open in order to disable the Basic Authentication method in case the script doesn't work as expected.        
+  !!! Warning
+      Make sure to keep the first session open in order to disable the Basic Authentication method in case the script doesn't work as expected.        
     
 1. After executing `pydevd.settrace` the script will transfer execution control to the PyDev server in Eclipse. You can use any debug commands. For example: Step Over (F6), Resume (F8), etc     
 1. After debugging is finished, resume script execution to transfer execution control back to oxAuth
