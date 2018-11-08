@@ -102,6 +102,7 @@ pages:
         - 'Upgrades': 'upgrade/index.md'
         - 'Patches': 'upgrade/patches.md'
         - 'Backups': 'operation/backup.md'
+        - 'Security tips': 'operation/security.md'
         - 'Ports': 'operation/ports.md'
         - 'Logout': 'operation/logout.md'
         - 'Log Management' : 'operation/logs.md'
