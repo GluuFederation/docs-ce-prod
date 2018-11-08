@@ -52,6 +52,7 @@ If the configuration is correct, then you will see a successful message like thi
 ## Set link expiration
 The password reset link has a default expiration of 600 seconds (10 minutes). This can be adjusted in oxTrust by navigating to `Configuration` > `JSON Configuration` > `oxTrust Configuration` and finding the field for `passwordResetRequestExpirationTime`. The desired expiration time value should be set in seconds, and then navigate to the bottom of the page and save your edits. 
 
+![link expiration time](../img/user-authn/expiration-time.png)
 
 ## Test
 
