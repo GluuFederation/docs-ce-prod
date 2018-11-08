@@ -7,7 +7,7 @@ This feature gives users the ability to reset their password.
 Below are the steps to configure that feature:
 
 1. Provide the SMTP Server configuration
-1. Enable password reset on OxTrust adminUI
+1. Enable password reset on oxTrust admin UI
 1. Test
 
 ## Prerequisites
@@ -20,7 +20,7 @@ The requirements are:
 ## Provide the SMTP Server Configuration
 
 The Gluu Server requires an SMTP server to be able to send password reset emails to the user's mailbox. 
-A suitable UI is provided to gather the SMTP server configuation on Gluu OxTrust AdminUI.
+A suitable UI is provided to gather the SMTP server configuation on Gluu oxTrust admin UI.
 
 1. Log into the Gluu Server as a user with admin privileges
 
