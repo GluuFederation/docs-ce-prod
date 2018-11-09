@@ -688,6 +688,22 @@ The following lists the steps required to switch the java client to support acce
 
 - **IMPORTANT**: Check RPT connection pooling is enabled in oxTrust. Login to oxTrust and go to `Configuration` > `JSON Configuration`. Scroll down to `rptConnectionPoolUseConnectionPooling` and set the flag to true. To finish press `Save configuration` at the bottom of the page.
 
+#### Supplying custom request headers
+
+!!! Note:
+    This feature is only available in artifact 3.1.4.1.Final
+
+You can make the client send extra header parameters upon every request by setting some Java system variables:
+
+- `scim.extraHeaders`: a comma separated list of headers you want to set
+- `scim.header.XYZ`: the value for header `XYZ` (already listed in the previous property)
+
+As an example, suppose you want to send 2 headers, `My-Custom-Header-1, My-Custom-Header-2`, with values `gamble` and `chaos-theory`, respectively.  You can do as follows:
+
+```
+mvn ... -Dscim.extraHeaders="My-Custom-Header-1, My-Custom-Header-2" -Dscim.header.My-Custom-Header-1=gamble 
+        -Dscim.header.My-Custom-Header-2="chaos-theory"
+```
 
 ## SCIM Protected by UMA
 
