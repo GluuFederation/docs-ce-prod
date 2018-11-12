@@ -128,4 +128,4 @@ Regardless of how specialized application is, general considerations still apply
 
 ## Ongoing Security Audits
 
-Even with all possible requirements met, regular security audits conducted by experienced security professionals are invaluable source of objective opinions on how secure your environment really is. Feel free to contact us at mailto:security@gluu.org with head-ups on any issues discovered during your internal investigations - we'll try our best to offer remediation instructions ASAP. We greatly appreciate your efforts in making Gluu products better and safer for everyone!
+Even with all possible requirements met, regular security audits conducted by experienced security professionals are invaluable source of objective opinions on how secure your environment really is. Feel free to contact us at [here](mailto:security@gluu.org) with head-ups on any issues discovered during your internal investigations - we'll try our best to offer remediation instructions ASAP. We greatly appreciate your efforts in making Gluu products better and safer for everyone!
