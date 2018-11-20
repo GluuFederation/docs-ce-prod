@@ -12,6 +12,7 @@ markdown_extensions:
 - admonition
 - toc:
      permalink: '#'
+- pymdownx.superfences
 pages:
 - Home: 'index.md'
 - Release Notes: 'release-notes/index.md'
