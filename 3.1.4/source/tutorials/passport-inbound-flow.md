@@ -38,15 +38,15 @@ Run these commands to install required packages:
 #### Configuration
 
 1. Issue a new self-signed certificate:
-  - `# mkdir /etc/httpd/ssl`
-  - Run this command to create a certificate;  and : `# openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/httpd/ssl/apache.key -out /etc/httpd/ssl/apache.crt`
-  - When asked for a "Common Name", provide `[sp_dns_name]`
+    - `# mkdir /etc/httpd/ssl`
+    - Run this command to create a certificate;  and : `# openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/httpd/ssl/apache.key -out /etc/httpd/ssl/apache.crt`
+    - When asked for a "Common Name", provide `[sp_dns_name]`
 1. Prepare the directory/files layout for the test VirtualHost:
-  - `# mkdir /var/www/html/test_shib_protected_site`
-  - `# mkdir /var/www/html/test_shib_protected_site/protected_dir`
-  - `# echo "Hello I'm a public page"'!' > /var/www/html/test_shib_protected_site/index.html`
-  - `# echo "Hi I'm a hidden page"'!' > /var/www/html/test_shib_protected_site/protected_dir/hidden.html`
-  - `# chown -R apache:apache /var/www/html/test_shib_protected_site/`
+    - `# mkdir /var/www/html/test_shib_protected_site`
+    - `# mkdir /var/www/html/test_shib_protected_site/protected_dir`
+    - `# echo "Hello I'm a public page"'!' > /var/www/html/test_shib_protected_site/index.html`
+    - `# echo "Hi I'm a hidden page"'!' > /var/www/html/test_shib_protected_site/protected_dir/hidden.html`
+    - `# chown -R apache:apache /var/www/html/test_shib_protected_site/`
 1. Find the default "VirtualHost" definition in `/etc/httpd/conf.d/ssl.conf` (if present), and enclose it in "IfDefine" clause to not meddle with our custom VHost, as shown below:
 
     ```
