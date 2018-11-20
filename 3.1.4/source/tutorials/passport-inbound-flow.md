@@ -49,40 +49,41 @@ Run these commands to install required packages:
   - `# chown -R apache:apache /var/www/html/test_shib_protected_site/`
 1. Find the default "VirtualHost" definition in `/etc/httpd/conf.d/ssl.conf` (if present), and enclose it in "IfDefine" clause to not meddle with our custom VHost, as shown below:
 
-```
-  <IfDefine DontIgnoreDefaultVHost>
-  <VirtualHost _default_:443>
+    ```
+      <IfDefine DontIgnoreDefaultVHost>
+      <VirtualHost _default_:443>
   
-    ...
+        ...
 
-  </VirtualHost>
-  </IfDefine>
-```
+      </VirtualHost>
+      </IfDefine>
+    ```
 
 1. Create `/etc/httpd/conf.d/test_site.conf` file with contents provided below:
-```
-<VirtualHost 0.0.0.0:443>
-    DocumentRoot /var/www/html/test_shib_protected_site/
-    ServerName [sp_dns_name]:443
 
-    SSLEngine on
-    SSLProtocol -ALL +TLSv1
-    SSLCipherSuite EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA+SHA384:EECDH:EDH+aRSA:HIGH:!MEDIUM
-    SSLCertificateFile /etc/httpd/ssl/apache.crt
-    SSLCertificateKeyFile /etc/httpd/ssl/apache.key
-    UseCanonicalName On
-    <Directory /var/www/html/test_shib_protected_site>
-    AllowOverride All
-    </Directory>
+    ```
+    <VirtualHost 0.0.0.0:443>
+        DocumentRoot /var/www/html/test_shib_protected_site/
+        ServerName [sp_dns_name]:443
+    
+        SSLEngine on
+         SSLProtocol -ALL +TLSv1
+        SSLCipherSuite EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA+SHA384:EECDH:EDH+aRSA:HIGH:!MEDIUM
+        SSLCertificateFile /etc/httpd/ssl/apache.crt
+        SSLCertificateKeyFile /etc/httpd/ssl/apache.key
+        UseCanonicalName On
+        <Directory /var/www/html/test_shib_protected_site>
+        AllowOverride All
+        </Directory>
 
-    <Location /protected_dir>
-      AuthType shibboleth
-      ShibRequestSetting requireSession 1
-#      require shib-session
-      require valid-user
-    </Location>
-</VirtualHost>
-```
+        <Location /protected_dir>
+          AuthType shibboleth
+          ShibRequestSetting requireSession 1
+    #      require shib-session
+          require valid-user
+        </Location>
+    </VirtualHost>
+    ```
 1. Restart the httpd service: `# service httpd restart`
 
 
@@ -111,12 +112,12 @@ Edit `/etc/shibboleth/shibboleth2.xml`:
   - In "ApplicationDefaults" element change "entityID" property to "https://[sp_dns_name]/shibboleth"
   - Within the "Sessions" element find "SSO" child element and change its "entityID" property to "https://[passport_dns_name]/idp/shibboleth"
   - Right after "Sessions" element find a section where "MetadataProvider" elements are grouped, and add element provided below:
-  ```
-          <MetadataProvider type="XML"
-              url="https://[passport_dns_name]/idp/shibboleth"
-              backingFilePath="[passport_dns_name].metadata.xml"
-              maxRefreshDelay="7200"/>
-  ```
+    ```
+            <MetadataProvider type="XML"
+                url="https://[passport_dns_name]/idp/shibboleth"
+                backingFilePath="[passport_dns_name].metadata.xml"
+                maxRefreshDelay="7200"/>
+    ```
   - Restart `shibd` service: `# service shibd restart`
   - Make sure it's started with no critical issues by checking `/var/log/shibboleth/shibd.log` and running `# service shibd status`
 
