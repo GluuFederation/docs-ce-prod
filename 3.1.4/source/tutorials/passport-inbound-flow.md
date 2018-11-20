@@ -208,12 +208,11 @@ Once configuration is successfully validated, Passport will automatically genera
 1. Move to `SAML` > `Trust Relationships` page
 1. Create a new trust relationship using the metadata you've just downloaded
 1. Check "Configure Relying Party", add the "SAML2SSO" profile to the list and configure it as follows:
-  
-   - signResponses: conditional
-   - signAssertions: never
-   - signRequests: conditional
-   - encryptAssertions: never
-   - encryptNameIds: never
+    - signResponses: conditional
+    - signAssertions: never
+    - signRequests: conditional
+    - encryptAssertions: never
+    - encryptNameIds: never
     
 1. Release the "transientID", "email" and "Username" attributes
 
@@ -226,17 +225,17 @@ Don't proceed further until this flow is fully functional.
 ## Configure `[remote_idp_dns_name]` host
 
 1. Create [Trust Relationship](https://gluu.org/docs/ce/admin-guide/saml/#create-a-trust-relationship) with Passport running at `[passport_dns_name]`:
-  - Download metadata of the SP Passport created for this remote IDP published at `https://[passport_dns_name]/passport/auth/meta/idp/idp1` and save it as 'gluu_passport_sp_metadata.xml'
-  - Log in to oxTrust at `[remote_idp_dns_name]`
-  - Move to `SAML` > `Trust Relationships` page
-  - Create a new trust relationship using the metadata you've just downloaded
-  - Check "Configure Relying Party", add "SAML2SSO" profile to the list and configure it as follows:
-    - signResponses: conditional
-    - signAssertions: never
-    - signRequests: conditional
-    - encryptAssertions: never
-    - encryptNameIds: never
-  - Release "transientID", "email" and "Username" attributes
+    - Download metadata of the SP Passport created for this remote IDP published at `https://[passport_dns_name]/passport/auth/meta/idp/idp1` and save it as 'gluu_passport_sp_metadata.xml'
+    - Log in to oxTrust at `[remote_idp_dns_name]`
+    - Move to `SAML` > `Trust Relationships` page
+    - Create a new trust relationship using the metadata you've just downloaded
+    - Check "Configure Relying Party", add "SAML2SSO" profile to the list and configure it as follows:
+        - signResponses: conditional
+        - signAssertions: never
+        - signRequests: conditional
+        - encryptAssertions: never
+        - encryptNameIds: never
+    - Release "transientID", "email" and "Username" attributes
 1. Move to `Users` > `Manage People` page, locate the user you intend to log in with during the test phase and make sure it has non-empty and unique values for "email" and "Username" attributes. Both of the values ideally must not match corresponding attributes for any user at the `[passport_dns_name]` (thus it's not recommended to use the default "admin" user as a test account)
 1. Log out of the web UI to prevent the "admin" session from providing user attributes in future tests
 
