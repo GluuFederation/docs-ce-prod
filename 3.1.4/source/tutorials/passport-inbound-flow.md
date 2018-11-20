@@ -2,7 +2,7 @@
 
 ## Overview
 
-This tutorial provides a bare-bone, step-by-step guide on how to set up a basic proof-of-concept environment showcasing end-to-end, Passport-driven Inbound SAML flow with Gluu Server and Shibboleth SP. Refer to general documentation describing each component for more details.
+This tutorial offers a step-by-step guide for setting up a basic proof-of-concept environment showcasing an Inbound SAML user authentication flow. Refer to general documentation describing each component for more details.
 
 ## Foreword
 
