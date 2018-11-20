@@ -1,4 +1,4 @@
-# Tutorial for Passport-driven Inbound SAML flow
+# Inbound SAML Tutorial
 
 ## Overview
 
