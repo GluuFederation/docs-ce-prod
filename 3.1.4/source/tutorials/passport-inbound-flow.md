@@ -84,6 +84,7 @@ Run these commands to install required packages:
           </Location>
       </VirtualHost>
     ```
+    
 1. Restart the httpd service: `# service httpd restart`
 
 
