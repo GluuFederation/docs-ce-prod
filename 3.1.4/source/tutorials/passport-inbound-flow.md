@@ -7,11 +7,18 @@ This tutorial offers a step-by-step guide for setting up a basic proof-of-concep
 ## Foreword
 
 For the sake of illustration we'll use the following three abstract servers:
+
  - `[passport_dns_name]` is the host where Gluu Server v3.1.4 with Shibboleth IDP and Passport components is installed
+ 
  - `[remote_idp_dns_name]` is another Gluu Server v3.1.4 instance with Shibboleth IDP installed which will serve as remote IDP in this example
+ 
  - `[sp_dns_name]` is the remote SP Gluu Server with the Shibboleth SP v2.6.1 installed
 
-Whenever you see any of the three placeholders in the text below, you'll have to substitute them with real DNS names used for corresponding machines in your environment. You also need to make sure those names can be resolved at all three server machines, plus the device that will be used as the user's machine during the test (the device where web browser used to access servers is running), either through enlisting them in DNS server's registry, or by adding them to `hosts` files at each of the machine. In case of Gluu Server machine(s), it needs to be done inside container, not outside of it.
+Whenever you see any of the three placeholders in the text below, you'll have to substitute them with real DNS names used for corresponding machines in your environment. 
+
+You also need to make sure those names can be resolved at all three server machines, plus the device that will be used as the user's machine during the test (the device where web browser used to access servers is running), either through enlisting them in DNS server's registry, or by adding them to `hosts` files at each of the machine. 
+
+In case of Gluu Server machine(s), it needs to be done inside container, not outside of it.
 
 !!! Warning  
     Ensure that clocks are perfectly synced between all participating machines so the flow works without issues. An NTP daemon running on each machine is the easiest solution to this problem.
