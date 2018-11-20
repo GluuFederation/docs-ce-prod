@@ -62,27 +62,27 @@ Run these commands to install required packages:
 1. Create `/etc/httpd/conf.d/test_site.conf` file with contents provided below:
 
     ```
-    <VirtualHost 0.0.0.0:443>
-        DocumentRoot /var/www/html/test_shib_protected_site/
-        ServerName [sp_dns_name]:443
-    
-        SSLEngine on
-         SSLProtocol -ALL +TLSv1
-        SSLCipherSuite EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA+SHA384:EECDH:EDH+aRSA:HIGH:!MEDIUM
-        SSLCertificateFile /etc/httpd/ssl/apache.crt
-        SSLCertificateKeyFile /etc/httpd/ssl/apache.key
-        UseCanonicalName On
-        <Directory /var/www/html/test_shib_protected_site>
-        AllowOverride All
-        </Directory>
+      <VirtualHost 0.0.0.0:443>
+          DocumentRoot /var/www/html/test_shib_protected_site/
+          ServerName [sp_dns_name]:443
+      
+          SSLEngine on
+          SSLProtocol -ALL +TLSv1
+          SSLCipherSuite EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA+SHA384:EECDH:EDH+aRSA:HIGH:!MEDIUM
+          SSLCertificateFile /etc/httpd/ssl/apache.crt
+          SSLCertificateKeyFile /etc/httpd/ssl/apache.key
+          UseCanonicalName On
+          <Directory /var/www/html/test_shib_protected_site>
+          AllowOverride All
+          </Directory>
 
-        <Location /protected_dir>
-          AuthType shibboleth
-          ShibRequestSetting requireSession 1
-    #      require shib-session
-          require valid-user
-        </Location>
-    </VirtualHost>
+          <Location /protected_dir>
+            AuthType shibboleth
+            ShibRequestSetting requireSession 1
+      #       require shib-session
+            require valid-user
+          </Location>
+      </VirtualHost>
     ```
 1. Restart the httpd service: `# service httpd restart`
 
