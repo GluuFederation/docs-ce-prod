@@ -4,6 +4,14 @@ Gluu Server components have cryptographic keys and X.509 certificates that are s
 `chroot`. The details of the certificates are given below according to each component. The certificates
 are available in the `/etc/certs` folder.
 
+|APACHE|SHIBBOLETH|LDAP|ASIMBA|
+|---------------|---------------|---------------|---------------|
+|httpd.crt|shibIDP.crt/idp-signing.crt/idp-encrytion.crt|opendj.crt/openldap.crt|asimba.crt|
+|httpd.csr|shibIDP.csr/idp-signing.csr/idp-encryption.csr|N/A|asimba.csr|
+|httpd.key|shibIDP.key/idp-signing.key/idp-encryption.key|N/A|asimba.key|
+|caerts|shibIDP.key.orig/idp-signing.key.orig/idp-encryption.key.orig|opendj.pkcs12|asimba.pkcs12|
+
+<!-----
 |ASIMBA		|Shibboleth	|APACHE		|OPENLDAP	|
 |---------------|---------------|---------------|---------------|
 |asimba.crt	|shibIDP.crt	|httpd.crt	|openldap.crt	|
@@ -12,6 +20,8 @@ are available in the `/etc/certs` folder.
 |asimba.key.orig|shibIDP.key	|httpd.key.orig	|openldap.key.orig|
 |asimba.pkcs12	|shibIDP.key.orig|		|openldap.pem	|
 |asimbaIDP.jks	|shibIDP.pkcs	|		|		|
+---->
+
 
 The certificates for `Passport` authenticaiton are `passport-rp.jks, passport-rp.pem, passport-rs.jks`. The SCIM certificate is named `scim-rs.jks` and the OTP certificate is named `otp_configuration.json`.
 
