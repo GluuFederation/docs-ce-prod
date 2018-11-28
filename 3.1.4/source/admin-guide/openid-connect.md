@@ -234,7 +234,7 @@ The default distribution of the Gluu Server includes custom authentication scrip
 |  super_gluu	| [Multi-factor authentication](../authn-guide/supergluu.md)|
 |  duo		| [Duo soft-token authentication](../authn-guide/duo.md)|
 |  cert	| [Smart card or web browser X509 personal certificates](../authn-guide/cert-auth.md)|
-|  cas	| [External CAS server](../authn-guide/cert-auth.md)|
+|  cas	| [External CAS server](../authn-guide/google.md)|
 |  gplus	| [Google+ authentication](../authn-guide/google.md)|
 |  OTP	| [OATH one time password](../authn-guide/otp.md) |
 |  asimba	| Use of the Asimba proxy for inbound SAML |
