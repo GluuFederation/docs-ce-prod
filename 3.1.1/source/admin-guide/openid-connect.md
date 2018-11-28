@@ -194,11 +194,11 @@ The default distribution of the Gluu Server includes custom authentication scrip
 |  OTP	| [OATH one time password](../authn-guide/otp.md) |
 |  asimba	| Use of the Asimba proxy for inbound SAML |
 |  twilio_sms	| Use of the Twilio Saas to send SMS one time passwords |
-|  passport	| Use of the [Passport component for social login](../ce/authn-guide/passport.md/) |
+|  passport	| Use of the [Passport component for social login](../ce/authn-guide/passport.md) |
 |  yubicloud	| Yubico cloud OTP verification service |
 |  uaf	| experimental support for the FIDO UAF protocol |
 |  basic_lock	| [Enables lockout after a certain number of failures](../authn-guide/intro.md/#configuring-account-lockout) |
-|  basic	| [Sample script using local LDAP authentication](../ce/authn-guide/basic.md/) |
+|  basic	| [Sample script using local LDAP authentication](../ce/authn-guide/basic.md) |
 
 Your client can request any authentication mechanism that is enabled in your Gluu Server. To enable an authentication script, login to your Gluu Server admin interface, navigate to Configuration > Manage Custom Scripts, find the desired script, check the `Enabled` box, scroll to the bottom of the page and click `Update`. 
 
