@@ -1,4 +1,4 @@
-# Localization of Gluu Server Admin UI
+# oxAuth Localization
 
 oxAuth contains the following resource bundles: 
 
