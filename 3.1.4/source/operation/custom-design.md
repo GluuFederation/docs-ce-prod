@@ -14,6 +14,7 @@ Public pages include:
     Customizations should only be made by people with a solid understanding of web development. Before changing any files, we recommend creating backups to easily revert your instance to its original state.
     
 <!--
+ This section has been removed, since an updated WAR is overwritten when the Gluu Server is upgraded, and a newer and more consistent method has been added below
 ## Overview
   
 The Gluu Server's public facing pages are `xhtml` files. Each Gluu Server component is deployed as a separate archive in WAR format. When any component's service is started, its archive is unpacked ("exploded") to Jetty's temporary file directory located under `/opt/jetty-<VERSION>/temp/` before it'll be able to start serving requests for associated functionality. 
