@@ -1,5 +1,8 @@
 # oxd
 
+!!! Attention
+    The official support end-of-life (EOL) date for Gluu Server 2.4.4 is December 31, 2018. Starting January 1, 2019, no further security updates or bug-fixes will be provided for Gluu Server 2.X. We strongly recommend [upgrading](https://gluu.org/docs/ce/upgrade/) to the newest version.
+
 ## Overview 
 [oxd](https://oxd.gluu.org) is a middleware service that makes it easy to securely implement login to your application using any standard OpenID Connect Provider (OP), like the Gluu Server. oxd is not a proxy--sometimes it makes API calls on behalf of an application, but other times it just forms the right URLs and returns them to the application.
 

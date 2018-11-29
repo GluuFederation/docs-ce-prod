@@ -1,5 +1,8 @@
 # Interception Scripts
 
+!!! Attention
+    The official support end-of-life (EOL) date for Gluu Server 2.4.4 is December 31, 2018. Starting January 1, 2019, no further security updates or bug-fixes will be provided for Gluu Server 2.X. We strongly recommend [upgrading](https://gluu.org/docs/ce/upgrade/) to the newest version.
+
 ## Overview
 Interception scripts allow the Gluu Server to support unique requirements for many aspects of a central authentication and authorization service. Interception scripts can be written in [Jython](http://www.jython.org/docs/tutorial/indexprogress.html). Jython was chosen because an interpreted language facilitates dynamic creation of business logic, and makes it easier to distribute this logic to a cluster of Gluu servers. Jython enables developers to use either Java or Python classes. Combined with the option of calling web services from Python or Java, this enables the Gluu Server to support any business-driven policy requirement.
 

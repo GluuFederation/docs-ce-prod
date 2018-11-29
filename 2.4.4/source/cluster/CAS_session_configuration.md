@@ -1,5 +1,8 @@
 # CAS session configuration in Gluu Server CE cluster
 
+!!! Attention
+    The official support end-of-life (EOL) date for Gluu Server 2.4.4 is December 31, 2018. Starting January 1, 2019, no further security updates or bug-fixes will be provided for Gluu Server 2.X. We strongly recommend [upgrading](https://gluu.org/docs/ce/upgrade/) to the newest version.
+
 'Session Management' is crucial in CAS cluster setup. CAS single server installation is easy with Gluu Server's out of the box pieces. 
 For CAS cluster in Gluu Server CE cluster environment we need to apply couple of changes; which are stated below. 
 This is the second part of CAS configuration in Gluu Server CE. We performed these operations in a 2-node Gluu CE cluster which are based

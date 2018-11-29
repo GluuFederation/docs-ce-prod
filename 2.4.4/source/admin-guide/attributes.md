@@ -1,4 +1,6 @@
 # Custom Attributes
+!!! Attention
+    The official support end-of-life (EOL) date for Gluu Server 2.4.4 is December 31, 2018. Starting January 1, 2019, no further security updates or bug-fixes will be provided for Gluu Server 2.X. We strongly recommend [upgrading](https://gluu.org/docs/ce/upgrade/) to the newest version.
 
 LDAP attributes, SAML attributes, OpenID Connect user claims--whatever you call them--many organizations have business-specific information about people that needs to be shared with applications. For simplicity, this article will refer to them as "attributes." Existing standard schemas like the LDAP [inetOrgPerson](https://www.ietf.org/rfc/rfc2798.txt) standard, or the [OpenID Connect user claims](http://openid.net/specs/openid-connect-core-1_0.html#StandardClaims) define attributes like first name, last name and email address. Where possible, we recommend you use standard attributes that are already defined in the Gluu Server. But what if there is an attribute that is just not in any standard schema? This article will explain what you need to do to configure the Gluu Server to
 support your new attributes, and give you some advice along the way with regard to best practices. We will use fictional Company Acme Inc., which has requirements for "acmeCustNumber" and "acmeStateLicenseNumber".

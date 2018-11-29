@@ -1,5 +1,8 @@
 # Custom Authentication Script Tutorial
 
+!!! Attention
+    The official support end-of-life (EOL) date for Gluu Server 2.4.4 is December 31, 2018. Starting January 1, 2019, no further security updates or bug-fixes will be provided for Gluu Server 2.X. We strongly recommend [upgrading](https://gluu.org/docs/ce/upgrade/) to the newest version.
+
 ## Overview
 
 Custom authentication scripts provide the ability to implement tailored authentication logic and methods to meet your organizations unique requirements. This tutorial explains how to write a script to implement OTP authentication using Twilio to send an SMS code for a two-step out-of-band authentication. 

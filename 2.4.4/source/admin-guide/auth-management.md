@@ -1,4 +1,8 @@
 # Authentication Management
+
+!!! Attention
+    The official support end-of-life (EOL) date for Gluu Server 2.4.4 is December 31, 2018. Starting January 1, 2019, no further security updates or bug-fixes will be provided for Gluu Server 2.X. We strongly recommend [upgrading](https://gluu.org/docs/ce/upgrade/) to the newest version.
+
 The Gluu Server includes a dedicated page where an adminstrator can define the backend LDAP/AD configuration for the organization. The `Manage Authentication` tab is accessible from the `Configuration` menu in the oxTrust GUI.
 
 ![config-menu](../img/admin-guide/auth-management/config-menu.png)

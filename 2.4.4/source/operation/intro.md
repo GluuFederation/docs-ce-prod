@@ -1,6 +1,9 @@
 # What's new in Version 3?
 
-We've made some big changes to Gluu Sever 3.0 to make it more modern, 
+!!! Attention
+    The official support end-of-life (EOL) date for Gluu Server 2.4.4 is December 31, 2018. Starting January 1, 2019, no further security updates or bug-fixes will be provided for Gluu Server 2.X. We strongly recommend [upgrading](https://gluu.org/docs/ce/upgrade/) to the newest version.
+
+We've made some big changes to Gluu Server 3.0 to make it more modern, 
 faster, and easier to manage. The following is an overview of changes.
 
 ## Jetty replaces Tomcat as servlet container

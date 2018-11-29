@@ -1,4 +1,8 @@
 # Cluster with Gluu CE
+
+!!! Attention
+    The official support end-of-life (EOL) date for Gluu Server 2.4.4 is December 31, 2018. Starting January 1, 2019, no further security updates or bug-fixes will be provided for Gluu Server 2.X. We strongly recommend [upgrading](https://gluu.org/docs/ce/upgrade/) to the newest version.
+
 It is possible to setup a cluster of servers with Gluu Server CE. This page outlines the setup process of a cluster with two (2) nodes. It is possible to add more nodes, but it is recommened to contact Gluu for higher level solutions.
 ##Design
 The following diagram outlines the design of the cluster.

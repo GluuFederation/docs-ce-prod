@@ -1,4 +1,8 @@
-# Default Configuration wihtin Gluu Server
+# Default Configuration within Gluu Server
+
+!!! Attention
+    The official support end-of-life (EOL) date for Gluu Server 2.4.4 is December 31, 2018. Starting January 1, 2019, no further security updates or bug-fixes will be provided for Gluu Server 2.X. We strongly recommend [upgrading](https://gluu.org/docs/ce/upgrade/) to the newest version.
+
 This page contains the default configurations for Gluu Server Community Edition. The defaults are not recommended and can be changed according to the internal policy of the organization. This page will also be helpful in understanding the defaults and changing them.
 
 ## OpenID Connect

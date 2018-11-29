@@ -1,5 +1,8 @@
 # oxTrust Administrative Graphical User Interface (GUI)
 
+!!! Attention
+    The official support end-of-life (EOL) date for Gluu Server 2.4.4 is December 31, 2018. Starting January 1, 2019, no further security updates or bug-fixes will be provided for Gluu Server 2.X. We strongly recommend [upgrading](https://gluu.org/docs/ce/upgrade/) to the newest version.
+
 ## Overview 
 This section of the docs covers various features associated with managing your federation service via the Gluu Server interface ("oxTrust"). For more complicated topics and features, this document will link to dedicated sections within the docs where additional operational details are provided.
 
