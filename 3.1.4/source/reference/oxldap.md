@@ -29,5 +29,5 @@ Gluu CE server to connect with LDAP.
 |pythonModulesDir|Path of the custom Python modules|
 |binaryAttributes|This property should be left to be default ObjectGUID|
 
-!!!Note:
+!!! Note
     In most cases, periodic health checks with `connection-pool.health-check.interval-millis` and `connection.max-age-time-millis` are sufficient. If there are severe network issues, setting `connection-pool.health-check.on-checkout.enabled=true` can help, but can result in the LDAP operation performance decreasing by 20-30%.
