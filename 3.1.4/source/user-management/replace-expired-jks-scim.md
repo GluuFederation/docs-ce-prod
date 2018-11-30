@@ -4,7 +4,7 @@ When your SCIM service is protected with UMA, your client application uses the `
 
 The following steps are required to update the keystores so that your server and client behave properly after expiration:
 
-First, log into the Gluu Server chroot (e.g. `service gluu-server-3.1.3 login`).
+First, log into the Gluu Server chroot (e.g. `service gluu-server-3.1.4 login`).
 
 Create a temporary folder (e.g. `mkdir tmp`) and `cd` to it.
    
