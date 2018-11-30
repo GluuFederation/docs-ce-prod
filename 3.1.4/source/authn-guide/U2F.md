@@ -3,9 +3,7 @@
 ## Overview
 FIDO Universal 2nd Factor (U2F) is an open authentication standard that strengthens and simplifies two-factor authentication using specialized USB or NFC devices. 
 
-This document explains how to use the Gluu Server's included 
-[U2F interception script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/u2f/U2fExternalAuthenticator.py) 
-to implement a two-step, two-factor authentication (2FA) process with username / password as the first step, and any U2F device as the second step. 
+This document explains how to use the Gluu Server's included [U2F interception script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/u2f/U2fExternalAuthenticator.py) to implement a two-step, two-factor authentication (2FA) process with username / password as the first step, and any U2F device as the second step. 
 
 !!! Note 
     For more background on U2F, including a discussion of its security advantages, visit the [Yubico blog](https://www.yubico.com/solutions/fido-u2f/). 
@@ -54,9 +52,7 @@ Follow the steps below to enable U2F authentication:
 Now U2F is an available authentication mechanism for your Gluu Server. This means that, using OpenID Connect `acr_values`, applications can now request U2F authentication for users. 
 
 !!! Note 
-    To make sure U2F has been enabled successfully, you can check your Gluu Server's OpenID Connect 
-    configuration by navigating to the following URL: `https://<hostname>/.well-known/openid-configuration`. 
-    Find `"acr_values_supported":` and you should see `"u2f"`. 
+    To make sure U2F has been enabled successfully, you can check your Gluu Server's OpenID Connect configuration by navigating to the following URL: `https://<hostname>/.well-known/openid-configuration`. Find `"acr_values_supported":` and you should see `"u2f"`. 
 
 ## Make U2F the Default
 
@@ -68,11 +64,11 @@ If U2F should be the default authentication mechanism, follow these instructions
 
 1. In the Default Authentication Method window you will see two options: `Default acr` and `oxTrust acr`. 
 
-![u2f](../img/admin-guide/multi-factor/u2f.png)
+    ![u2f](../img/admin-guide/multi-factor/u2f.png)
 
- - `oxTrust acr` sets the authentication mechanism for accessing the oxTrust dashboard GUI (only managers should have acccess to oxTrust).    
+    - `oxTrust acr` sets the authentication mechanism for accessing the oxTrust dashboard GUI (only managers should have acccess to oxTrust).    
 
- - `Default acr` sets the default authentication mechanism for accessing all applications that leverage your Gluu Server for authentication (unless otherwise specified).    
+    - `Default acr` sets the default authentication mechanism for accessing all applications that leverage your Gluu Server for authentication (unless otherwise specified).    
 
 If U2F should be the default authentication mechanism for all access, change both fields to U2F.  
 
@@ -107,7 +103,7 @@ For a discussion of how to manage FIDO devices using the SCIM protocol, see the 
 
 ## U2F Linux 
 
-From your terminal run below commands and reboot your computer. 
+From your terminal run the below commands and reboot your computer. 
 
   - `sudo curl https://hypersecu.com/downloads/files/configurations/70-u2f.rules > /etc/udev/rules.d/70-u2f.rules`
   - `chmod +x /etc/udev/rules.d/70-u2f.rules`
