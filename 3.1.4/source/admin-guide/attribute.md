@@ -22,29 +22,7 @@ status to active/inactive, by clicking on a specific attribute.
 In order to create SSO to certain applications you may need to add custom attributes to your Gluu Server. Custom attributes can be added by following the instructions below: 
 
 ### Add the attribute to LDAP
-#### OpenLDAP
 
- - In OpenLDAP, add custom attributes to `/opt/gluu/schema/openldap/custom.schema` 
- - In the below example, `customTest` is our custom attribute : 
-```
-attributetype ( oxAttribute:1001 NAME 'customTest'
-        SUBSTR caseIgnoreSubstringsMatch EQUALITY caseIgnoreMatch
-        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15        
-       X-ORIGIN 'Gluu - custom person attribute' )
-```
- - Add custom attribute to `gluuCustomPerson objectClass`
-   - Example: 
-```
-objectclass ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
-        SUP ( top )
-        AUXILIARY
-        MAY ( telephoneNumber $ mobile $ carLicense $ facsimileTelephoneNumber $ departmentNumber $ employeeType $ cn $ st $ manager $ street $ postOfficeBox $ employeeNumber $ preferredDeliveryMethod $ roomNumber $ secretary $ homePostalAddress $ l $ postalCode $ description $ title $ customTest )
-        X-ORIGIN 'Gluu - Custom persom objectclass' )
-```
- - Stop LDAP server with command `service solserver stop`
- - Test custom configuration with `/opt/symas/bin/slaptest -f /opt/symas/etc/openldap/slapd.conf`
- - Start LDAP server with command `service solserver start`
- 
 #### OpenDJ
 
  - In OpenDJ, add custom attributes to `/opt/opendj/config/schema/77-customAttributes.ldif`
@@ -75,6 +53,29 @@ objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
  
 This creates the attribute in the local LDAP server. 
 
+#### OpenLDAP
+
+ - In OpenLDAP, add custom attributes to `/opt/gluu/schema/openldap/custom.schema` 
+ - In the below example, `customTest` is our custom attribute : 
+```
+attributetype ( oxAttribute:1001 NAME 'customTest'
+        SUBSTR caseIgnoreSubstringsMatch EQUALITY caseIgnoreMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15        
+       X-ORIGIN 'Gluu - custom person attribute' )
+```
+ - Add custom attribute to `gluuCustomPerson objectClass`
+   - Example: 
+```
+objectclass ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
+        SUP ( top )
+        AUXILIARY
+        MAY ( telephoneNumber $ mobile $ carLicense $ facsimileTelephoneNumber $ departmentNumber $ employeeType $ cn $ st $ manager $ street $ postOfficeBox $ employeeNumber $ preferredDeliveryMethod $ roomNumber $ secretary $ homePostalAddress $ l $ postalCode $ description $ title $ customTest )
+        X-ORIGIN 'Gluu - Custom persom objectclass' )
+```
+ - Stop LDAP server with command `service solserver stop`
+ - Test custom configuration with `/opt/symas/bin/slaptest -f /opt/symas/etc/openldap/slapd.conf`
+ - Start LDAP server with command `service solserver start`
+ 
 ### Add the attribute to oxTrust
 Now you need to register the new attribute in the Gluu Server GUI by navigating to `Configuration` > `Attributes`  and then click the `Register Attribute` button. 
 
