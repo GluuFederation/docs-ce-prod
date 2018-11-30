@@ -54,9 +54,9 @@ Follow the steps below to enable U2F authentication:
 
 1. Populate the properties table with the details from your Twilio account:    
 
-   -  `twilio_sid`: Paste the *"Account SID"* of your recently created Twilio account. You can find this value in your account dashboard.   
-   - `twilio_token`: Similar to your SID, you were also given a token upon registration.     
-   - `from_number`: Use the Twilio number that was provided when you created your account (not your personal number).      
+    -  `twilio_sid`: Paste the *"Account SID"* of your recently created Twilio account. You can find this value in your account dashboard.   
+    - `twilio_token`: Similar to your SID, you were also given a token upon registration.     
+    - `from_number`: Use the Twilio number that was provided when you created your account (not your personal number).      
 
 1. Enable the script by checking the box 
 
