@@ -205,7 +205,7 @@ of the data source that you are trying to connect with Gluu Server. For
 example, the data source can be your back-end Active Directory, or your
 local LDAP server.
 
-![Manage LDAP Authentication](../img/admin-guide/oxtrust/admin_manage_ldap.PNG)
+![Manage LDAP Authentication](../img/admin-guide/oxtrust/admin_manage_ldap.png)
 
 * _Name:_ This field contains the name of the authentication server
 
