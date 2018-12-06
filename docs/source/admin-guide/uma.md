@@ -400,10 +400,13 @@ Below is example of including all scopes except `http://photoz.example.com/dev/a
 
 By default RPT is plain bearer token. It is possible to return RPT as signed JWT. It is configurable via `rpt_as_jwt` boolean client property. Signed RPT JWT contains:
 
-- pct_claims - list of PCT claims
-- permissions - list of permissions for given RPT
-- exp - expiration date in seconds
-- iat - creation date in seconds
+- `pct_claims` - list of PCT claims
+- `permissions` - list of permissions for given RPT
+- `exp` - expiration date in seconds
+- `iat` - creation date in seconds
+- `iss` - issuer
+- `aud` - audience
+- `client_id` - client id
 
 Please note that it is not possible to update existing RPT at Token Endpoint if `rpt_as_jwt=true` for client since JWT has to be re-generated to encode new permissions. Therefore RPT as JWT is generated if existing RPT is not provided (at `rpt` request parameter) during requesting RPT at Token Endpoint. 
 
