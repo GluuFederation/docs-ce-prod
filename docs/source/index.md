@@ -1,4 +1,4 @@
-# Gluu Server Community Edition (CE) 3.1.4 Documentation
+# Gluu Server Community Edition (CE) 3.1.5 Documentation
 ## Introduction
 The Gluu Server is a container distribution of free open source software for identity and access management (IAM). SaaS, custom, open source and commercial web and mobile applications can leverage a Gluu Server for user authentication, identity information, and policy enforcement.
 
@@ -80,15 +80,11 @@ Gluu offers free and VIP support! Anyone can browse or register and post questio
 Private support, guaranteed response times and consultative support are available with a paid support contract. For more information, see [our website](https://gluu.org/pricing).
 
 ## Contribute 
-We want to keep improving our docs. Please help us improve by submitting
-any improvements to our [Documentation Github](https://github.com/GluuFederation/docs-ce-prod).
-If you're a Github pro, submit a pull request. If not, just open an issue
-on any typos, bugs, or improvements you'd like to see addressed. We need your
-help... even if you're not a coder, you can contribute! 
+We want to keep improving our docs. Please help us improve by submitting any improvements to our [Documentation Github](https://github.com/GluuFederation/docs-ce-prod). If you're a Github pro, submit a pull request. If not, just open an issue
+on any typos, bugs, or improvements you'd like to see addressed. We need your help... even if you're not a coder, you can contribute! 
 
 ## License
-The Gluu Server is a container distribution composed of software written by Gluu and incorporated from other open source projects. Gluu
-projects are frequently prefixed with our open source handle: **ox** (e.g. oxAuth, oxTrust). Any code in the Gluu Server that we wrote is MIT license, and is available on [Github](https://github.com/GluuFederation/). The license for each software component is listed below.
+The Gluu Server is a container distribution composed of software written by Gluu and incorporated from other open source projects. Gluu projects are frequently prefixed with our open source handle: **ox** (e.g. oxAuth, oxTrust). Any code in the Gluu Server that we wrote is MIT license, and is available on [Github](https://github.com/GluuFederation/). The license for each software component is listed below.
 
 |	Component	|	License	            |
 |-----------------------|---------------|

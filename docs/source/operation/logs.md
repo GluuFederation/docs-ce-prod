@@ -132,6 +132,8 @@ environment are listed below.
 |_/opt/gluu/jetty/identity/logs_/**oxtrust.log**|Logs for oxTrust custom script execution|
 |_/opt/gluu/jetty/identity/logs_/**oxtrust_persistence.log**|Logs connection with LDAP|
 |_/opt/gluu/jetty/identity/logs_/**oxtrust_cache_refresh.log**| Logs events relating to cache refresh|
+|_/opt/gluu/jetty/identity/logs_/**oxtrust_velocity.log** | Log events related to the Apache Velocity template engine |
+| _/opt/gluu/jetty/identity/logs_/**oxtrust_cleaner.log** | Logs information about the oxTrust clean-up services |
 |_/var/log/openldap_/**ldap.log**|OpenLDAP Log, contains everything related to OpenLDAP|
 
 ### oxAuth logs

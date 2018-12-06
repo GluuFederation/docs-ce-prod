@@ -686,12 +686,11 @@ The following lists the steps required to switch the java client to support acce
 
 - To override the default maximum number of connections per route, supply variable `httpclient.multithreaded.maxperroute`.
 
+- To override the validate-after-inactivity period in milliseconds, supply variable `httpclient.multithreaded.validateafterinactivity`.
+
 - **IMPORTANT**: Check RPT connection pooling is enabled in oxTrust. Login to oxTrust and go to `Configuration` > `JSON Configuration`. Scroll down to `rptConnectionPoolUseConnectionPooling` and set the flag to true. To finish press `Save configuration` at the bottom of the page.
 
 #### Supplying custom request headers
-
-!!! Note:
-    This feature is only available in artifact 3.1.4.1.Final
 
 You can make the client send extra header parameters upon every request by setting some Java system variables:
 
