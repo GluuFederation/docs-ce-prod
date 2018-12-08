@@ -1,6 +1,6 @@
 ## New features and enhancements
 
-!!! Note:
+!!! Note
     This page describes new features and enhancements included in the 3.1.3 release. Features added for 3.1.4 are marked as "new in 3.1.4".
     
 SCIM server implementation was updated for version 3.1.3 in order to adhere more closely to SCIM standard and include features we had been missing. The following summarizes the most important enhancements:

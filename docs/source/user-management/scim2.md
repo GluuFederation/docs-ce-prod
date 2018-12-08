@@ -134,7 +134,7 @@ The more pleasant second alternative is using the Gluu server administration web
 
 ### Request an Access Token to the Token Endpoint
 
-!!!Note
+!!! Note
     This section requires basic knowledge of HTTP at programming or scripting (eg. bash) level.
 
 The **client_credentials** grant chosen allows us to obtain a token very easily: just make a POST to the token endpoint passing the recently-created client credentials. Do the following:
@@ -341,7 +341,7 @@ One of the simplest ways to test retrieval is querying all information about a s
 
 `curl -G -H 'Authorization: Bearer ...access token...' 'https://<host-name>/identity/seam/resource/restv1/scim/v2/Users/<user-inum>'`
 
-!!! Note:
+!!! Note
     In the Gluu Server, `inums` are long strings consisting of alphanumeric characters and typically start with @!, include these two characters as well. Note that the URL was surrounded with single quotes: bang characters might be misleading to your command line interpreter.
     
 As a response, you will get a JSON document with all of the attributes in the user schema and their corresponding values. Note that only non-null attributes are present in the output:
@@ -675,7 +675,7 @@ When running your code in test mode, some new OpenID clients are created (they a
 
 The above means that by default, instances obtained via `ScimClientFactory` do not support concurrent calls in a safe manner. Starting with version 3.1.4, multithread support was added by employing the thread safe connection manager `org.apache.http.impl.conn.PoolingHttpClientConnectionManager`.
 
-    !!! Note:
+    !!! Note
         You need to explicitly enable this feature, otherwise, behavior will be standard (single execution thread per client instance). You will have to supply proper parameters to better suit your production environment needs.
 
 The following lists the steps required to switch the java client to support access in a multithreaded environment:
