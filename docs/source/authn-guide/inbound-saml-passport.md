@@ -83,7 +83,7 @@ A sample configuration containing entries for two external IDPs named "idp1" and
     "issuer": "urn:test:example",
     "identifierFormat": "urn:oasis:names:tc:SAML:2.0:nameid-format:transient",
     "authnRequestBinding": "HTTP-POST",
-    "additionalAuthorizeParams": "<Some additional params json>",
+    "additionalAuthorizeParams": { ...Additional params in json format... },
     "skipRequestCompression": "true",
     "logo_img": "../../ext/resources/idp1.png",
     "enable": "true",
@@ -204,7 +204,7 @@ authorizationRequest.setState(state);
 return String.format("https://%s/oxauth/authorize.htm?%s", host, authorizationRequest.getQueryString());
 ```
 
-Place this [jar file](https://ox.gluu.org/maven/org/xdi/oxauth-client/3.1.4.Final/oxauth-client-3.1.4.Final.jar) in your classpath to compile and run the code above.
+Place this [jar file](https://ox.gluu.org/maven/org/xdi/oxauth-client/3.1.5.Final/oxauth-client-3.1.5.Final.jar) in your classpath to compile and run the code above.
 
 The string produced looks like:
 

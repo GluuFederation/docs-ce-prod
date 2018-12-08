@@ -40,7 +40,7 @@ The following is a high-level diagram depicting a simple inbound identity user a
 
 ## Supported social login providers 
 
-Gluu Server 3.1.4 ships with strategies to support social login at the following providers:
+Gluu Server 3.1.5 ships with strategies to support social login at the following providers:
 
 - Dropbox
 - Facebook
@@ -303,11 +303,9 @@ As mentioned [earlier](#passport-logs), there are two relevant logs: `oxauth_scr
 
 ### Custom script parameters
 
-The interception script is the core code that implements the authentication flow. In general, it implements a provider agnostic inbound identity authentication flow. Actually, the script used for social login and inbound SAML is the same. They only differ in the way they are parameterized.
+The interception script is the core code that implements the authentication flow. In general, it implements a provider agnostic inbound identity authentication flow. Actually, the script used for social login and inbound SAML are very similar.
 
 The following describes the configuration properties of the passport script. We advise to login to oxTrust and navigate to `Configuration` > `Custom scripts` > `Person Authentication` tab, and expand the script (whether social or saml version).
-
-- *behaviour*: It dictates whether the script is intended to integrate SAML providers or not. Valid values are "saml" or "social". In the case of SAML behaviour, a separate configuration file is needed, see [this page](inbound-saml-passport.md#register-external-idps-with-home-idp).
 
 - *generic_remote_attributes_list*: a comma-separated list of values in a one-to-one correlation with the values of the list *generic_local_attributes_list*. It contains the names of the attributes (of the remote profile) that will be mapped into local (Gluu) attributes when a user provisioned.
 
