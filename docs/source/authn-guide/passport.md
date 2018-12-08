@@ -35,8 +35,8 @@ The following is a high-level diagram depicting a simple inbound identity user a
 1. If the user does not exist already in local Gluu LDAP, it is created with the attributes found in profile (if already existing, the profile is updated)
 1. A session is created for the user at the authorization server. The user access the application.
 
-!!! Warning:
-    To deploy an authentication flow like the one above, some configuration steps are required. Important tasks include enabling passport endpoints, creating OAuth clients at social sites you want to support, and supply strategies parameters to determine behaviour.
+!!! Warning
+    To deploy an authentication flow like the one above, some configuration steps are required. Important tasks include enabling passport endpoints, creating OAuth clients at social sites you want to support, and supply strategies parameters to determine behaviour.  
 
 ## Supported social login providers 
 
@@ -144,8 +144,8 @@ To start testing, simply confirm the username + password authentication flow is 
 
 Next, attempt to use one of the social login options you've configured. If your setup is correct, you'll be prompted for authentication at the external provider and, after successfully authenticating, will be redirected back to oxTrust as an authenticated user.
 
-!!! Note:
-    Once you have supplied login credentials at an external provider, you won't be prompted for authentication again until your session expires or you explicitly log out of the external provider.
+!!! Note
+    Once you have supplied login credentials at an external provider, you won't be prompted for authentication again until your session expires or you explicitly log out of the external provider.  
     
 If you get an error page like the one below, for example, double check your configuration and Internet access.
 
@@ -237,8 +237,8 @@ To enable account linking, follow these steps:
 - Enter `emailLinkingSafe` in the left field and `true` in the right field   
 - Save your settings     
 
-!!! Note:
-    Only enable this feature for trusted providers and do not set `requestForEmail` to `true` in this case, since this opens a big security hole.
+!!! Note
+    Only enable this feature for trusted providers and do not set `requestForEmail` to `true` in this case, since this opens a big security hole.  
 
 ### Preselecting an external provider
 
@@ -415,8 +415,8 @@ Here we provide specific steps on how to configure your OpenID Connect strategy 
 
 This section describes the steps needed to add a new authentication provider to your Gluu Passport installation. 
 
-!!! Note:
-    Here we will use *reddit* integration as example, apply your changes according to the strategy you have choosen.
+!!! Note
+    Here we will use *reddit* integration as example, apply your changes according to the strategy you have choosen.  
 
 Passport.js - the authentication middleware Gluu leverages - supports hundreds of strategies. Onboarding a new one requires finding a proper `npm` package, creating a file, and editing some already existing.
 

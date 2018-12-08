@@ -123,8 +123,8 @@ A sample configuration containing entries for two external IDPs named "idp1" and
 }
 ```
 
-!!! Note:
-    Except for `additionalAuthorizeParams`, all properties listed above must be included in the file for it to be validated by Passport.
+!!! Note
+    Except for `additionalAuthorizeParams`, all properties listed above must be included in the file for it to be validated by Passport.  
     
 Placeholder URLs like `https://idp1.example.com` must be replaced with the URLs of actual remote IDPs. 
 
@@ -170,7 +170,7 @@ The actual process of creating trust will differ across IDP implementations.
 For example, for cases when the remote IDP is another Gluu Server, the relevant [documentation page](https://gluu.org/docs/ce/admin-guide/saml/#create-a-trust-relationship) should be followed. In case of other SAML IDPs, consult the corresponding documentation.
 
 !!! Note 
-    When registering the Passport SP at each remote IDP, at least `username` will be required for each user.
+    When registering the Passport SP at each remote IDP, at least `username` will be required for each user.  
 
 ## Testing your setup
 
