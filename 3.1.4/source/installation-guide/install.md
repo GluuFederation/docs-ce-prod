@@ -148,7 +148,7 @@ Configuration is completed by running the `setup.py` script. This generates cert
         
 !!! Note
     As of 3.1.4, OpenLDAP and Asimba have been deprecated. If they are needed, run
-    `./setup.py -allow_deprecated_applications`. If you plan to cluster your Gluu Servers, we do not recommend using OpenLDAP.  
+    `./setup.py --allow_deprecated_applications`. If you plan to cluster your Gluu Servers, we do not recommend using OpenLDAP.  
 
 You will be prompted to answer some questions about your deployment. Hit `Enter` to accept the default values.
 
