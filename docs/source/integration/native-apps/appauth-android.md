@@ -123,7 +123,7 @@ your `AndroidManifest.xml` file:
     </activity>
 ```
 Example here:
-<img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/AppManifest.png" width="98%" height="400">
+   ![](../../img/app-auth/AppManifest.png)
  
 #### Modify the `auth_config.json` File
 
@@ -142,26 +142,29 @@ with the following content:
   "https_required": true
 }
 ```
-<img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/AuthConfig.png" width="98%" height="400">
+   ![](../../img/app-auth/AuthConfig.png)
  
 _If you keep client_id blank, it will Automatically initialize the "**Dynamic client registration**" process mentioned above._
  
 ## Demonstration
 
-- Make sure there is a user registered in the Gluu Server that you can use to test the application through the oxTrust GUI.
+- Make sure there is a user register in Gluu server that you can use to test the application.
+Use Oxtrust GUI to do that.
 - Launch the app from Android Studio:
   You will see this screen:
-   <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591210.png" width="50%" height="400">
+
+   ![](../../img/app-auth/Screenshot_1520591210.png)
 
 - Click the `START AUTHORIZATION` button:
-  That will redirect you to your Gluu instance login page
+  That will redirect you to your gluu instance login page
 
- <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591219.png" width="30%" height="400">
- <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591224.png" width="30%" height="400">
- <img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591231.png" width="30%" height="400">
+   ![](../../img/app-auth/Screenshot_1520591219.png)
+   ![](../../img/app-auth/Screenshot_1520591224.png)
+   ![](../../img/app-auth/Screenshot_1520591231.png)
 
 - Provide the user credentials and hit the `login` button
-  The result is similar to this:
-<img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591248.png" width="45%" height="400">
-<img src="https://github.com/GluuFederation/docs-ce-prod/blob/3.1.2/3.1.2/source/img/app-auth/Screenshot_1520591256.png" width="45%" height="400">
+  The result is something like this:
+![](../../img/app-auth/Screenshot_1520591248.png)
+![](../../img/app-auth/Screenshot_1520591256.png)
+ 
  
