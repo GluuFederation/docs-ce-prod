@@ -28,7 +28,7 @@ Read the [OpenID Connect Front-Channel Logout Specifications](http://openid.net/
 ## SAML Logout
 The Shibboleth IDP (which is included in the Gluu Server) does not support single logout in any meaningful sense. Take a look at the [Shibboleth wiki](https://wiki.shibboleth.net/confluence/display/CONCEPT/SLOIssues) for more information.
 
-Instead, the logout has to be initiated from the SP. The logout URL is a combination of the SP logout link (i.e. for the Shibboleth SP, https://[SP_hostname]/Shibboleth.sso/Logout) and the Gluu Server SAML Logout link https://[Gluu_Server_hostname]/idp/Authn/oxAuth/logout.
+Instead, the logout has to be initiated from the SP. The logout URL is a combination of the SP logout link (i.e. for the Shibboleth SP, `https://[SP_hostname]/Shibboleth.sso/Logout`) and the Gluu Server SAML Logout link (` https://[Gluu_Server_hostname]/idp/Authn/oxAuth/logout`).
 
 Sending the above combination will kill the sessions from both the SP and the Gluu Server.
 
