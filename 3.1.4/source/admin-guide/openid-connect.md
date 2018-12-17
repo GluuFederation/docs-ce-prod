@@ -128,6 +128,11 @@ Setting up clients can be cumbersome and time consuming. Instead of deleting cli
 
 ![disable-openid](../img/openid/openidconnect-disable.png)
 
+### Adding Redirect URIs to Client
+
+If the redirect URI to be added to a client is in the same domain as the server, the URI can be added via the `Add Redirect URI` field in the Client Registration form.   
+If the URI is in a different domain, it must be added via a [sector identifier](#add-sector-identifier).
+
 
 ## Scopes
 
