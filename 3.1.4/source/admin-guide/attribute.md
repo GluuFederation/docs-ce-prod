@@ -41,13 +41,15 @@ attributeTypes: ( 1.3.6.1.4.1.48710.1.3.1400 NAME 'customTest'
     Spacing is *extremely* important here. There must be **2 spaces before and 1 space after each entry** (i.e. DESC), or your custom schema will fail to load properly.
 
   - Add custom attribute to the `gluuCustomPerson` objectClasses:
-  
+
+
 ```
 objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
  SUP ( top )
  AUXILIARY
  MAY ( customTest $ telephoneNumber $ mobile $ carLicense $ facsimileTelephoneNumber $ departmentNumber $ employeeType $ cn $ st $ manager $ street $ postOfficeBox $ employeeNumber $ preferredDeliveryMethod $ roomNumber $ secretary $ homePostalAddress $ l $ postalCode $ description $ title )
 ```
+
 !!! Warning
     You cannot have line spaces between `attributeTypes:` or `objectClasses:`. This will cause failure in schema. Please check the error logs in /opt/opendj/logs/errors if you are experiencing issues with adding custom schema. This will help guide you on where there may be syntax errors.
     
@@ -74,6 +76,7 @@ objectclass ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
         MAY ( telephoneNumber $ mobile $ carLicense $ facsimileTelephoneNumber $ departmentNumber $ employeeType $ cn $ st $ manager $ street $ postOfficeBox $ employeeNumber $ preferredDeliveryMethod $ roomNumber $ secretary $ homePostalAddress $ l $ postalCode $ description $ title $ customTest )
         X-ORIGIN 'Gluu - Custom persom objectclass' )
 ```
+
  - Stop LDAP server with command `service solserver stop`
  - Test custom configuration with `/opt/symas/bin/slaptest -f /opt/symas/etc/openldap/slapd.conf`
  - Start LDAP server with command `service solserver start`
