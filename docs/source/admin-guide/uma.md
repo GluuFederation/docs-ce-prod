@@ -410,7 +410,7 @@ By default RPT is plain bearer token. It is possible to return RPT as signed JWT
 
 Please note that it is not possible to update existing RPT at Token Endpoint if `rpt_as_jwt=true` for client since JWT has to be re-generated to encode new permissions. Therefore RPT as JWT is generated if existing RPT is not provided (at `rpt` request parameter) during requesting RPT at Token Endpoint. 
 
-RPT as JWT is signed with algorithm set by `access_token_as_jwt` client property or otherwise if it is not set then by `defaultSignatureAlgorithm` oxauth configuration property. 
+RPT as JWT is signed with algorithm set by `access_token_signing_alg` client property or otherwise if it is not set then by `defaultSignatureAlgorithm` oxauth configuration property. 
 
 Example of decoded JWT payload claims:
 ```json
