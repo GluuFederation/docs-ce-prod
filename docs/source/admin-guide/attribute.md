@@ -22,6 +22,41 @@ status to active/inactive, by clicking on a specific attribute.
 In order to create SSO to certain applications you may need to add custom attributes to your Gluu Server. Custom attributes can be added by following the instructions below: 
 
 ### Add the attribute to LDAP
+
+#### OpenDJ
+
+ - In OpenDJ, add custom attributes to `/opt/opendj/config/schema/77-customAttributes.ldif`
+ - In the below example, `customTest` is our custom attribute : 
+    ```
+    attributeTypes: ( 1.3.6.1.4.1.48710.1.3.1400 NAME 'customTest'
+      DESC 'Custom Attribute' 
+      EQUALITY caseIgnoreMatch 
+      SUBSTR caseIgnoreSubstringsMatch 
+      SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 
+      X-ORIGIN 'Gluu custom attribute' )
+      
+    ```
+    
+!!! Warning
+    Spacing is extremely important here. There must be 2 spaces before and 1 after every entry (i.e. DESC), or your custom schema will fail to load properly.
+
+  - Add custom attribute to the `gluuCustomPerson` objectClasses:
+  
+    ```
+    objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
+     SUP ( top )
+     AUXILIARY
+     MAY ( customTest $ telephoneNumber $ mobile $ carLicense $ facsimileTelephoneNumber $ departmentNumber $ employeeType $ cn $ st $ manager $ street $ postOfficeBox $ employeeNumber $ preferredDeliveryMethod $ roomNumber $ secretary $ homePostalAddress $ l $ postalCode $ description $ title )
+     
+    ```
+    
+!!! Warning
+    You cannot have line spaces between `attributeTypes:` or `objectClasses:`. This will cause failure in schema. Please check the error logs in /opt/opendj/logs/errors if you are experiencing issues with adding custom schema. This will help guide you on where there may be syntax errors.
+    
+ - Restart OpenDJ with `service opendj restart`
+ 
+This creates the attribute in the local LDAP server. 
+
 #### OpenLDAP
 
  - In OpenLDAP, add custom attributes to `/opt/gluu/schema/openldap/custom.schema` 
@@ -44,36 +79,6 @@ objectclass ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
  - Stop LDAP server with command `service solserver stop`
  - Test custom configuration with `/opt/symas/bin/slaptest -f /opt/symas/etc/openldap/slapd.conf`
  - Start LDAP server with command `service solserver start`
- 
-#### OpenDJ
-
- - In OpenDJ, add custom attributes to `/opt/opendj/config/schema/77-customAttributes.ldif`
- - In the below example, `customTest` is our custom attribute : 
-```
-attributeTypes: ( 1.3.6.1.4.1.48710.1.3.1400 NAME 'customTest'
-  DESC 'Custom Attribute' 
-  EQUALITY caseIgnoreMatch 
-  SUBSTR caseIgnoreSubstringsMatch 
-  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 
-  X-ORIGIN 'Gluu custom attribute' )
-```
-!!! Warning
-    Spacing is extremely important here. There must be 2 spaces before and 1 after every entry (i.e. DESC), or your custom schema will fail to load properly.
-
-  - Add custom attribute to the `gluuCustomPerson` objectClasses:
-  
-```
-objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
- SUP ( top )
- AUXILIARY
- MAY ( customTest $ telephoneNumber $ mobile $ carLicense $ facsimileTelephoneNumber $ departmentNumber $ employeeType $ cn $ st $ manager $ street $ postOfficeBox $ employeeNumber $ preferredDeliveryMethod $ roomNumber $ secretary $ homePostalAddress $ l $ postalCode $ description $ title )
-```
-!!! Warning
-    You cannot have line spaces between `attributeTypes:` or `objectClasses:`. This will cause failure in schema. Please check the error logs in /opt/opendj/logs/errors if you are experiencing issues with adding custom schema. This will help guide you on where there may be syntax errors.
-    
- - Restart OpenDJ with `service opendj restart`
- 
-This creates the attribute in the local LDAP server. 
 
 ### Add the attribute to oxTrust
 Now you need to register the new attribute in the Gluu Server GUI by navigating to `Configuration` > `Attributes`  and then click the `Register Attribute` button. 
