@@ -337,3 +337,27 @@ To enable this feature, SCIM script needs to be enabled from the SCIM tab:
 More on SCIM can be found [here](../user-management/scim2.md)
 
 - [SCIM sample script to extend default logic](https://github.com/GluuFederation/oxExternal/blob/master/scim_event_handler/sample/SampleScript.py)
+
+## Introspection
+
+Introspection scripts allows to modify response of Introspection Endpoint ([spec](https://tools.ietf.org/html/rfc7662)).
+
+The introspection interception script extends the base script type with the `init`, `destroy` and `getApiVersion` methods but also adds the following method(s):
+
+|Method|`def modifyResponse(self, responseAsJsonObject, context)`|
+|---|---|
+|**Method Parameter**|`responseAsJsonObject` is `org.codehaus.jettison.json.JSONObject`<br/>`context` is ` org.xdi.oxauth.service.external.context.ExternalIntrospectionContext`|
+
+Snippet
+```
+    # Returns boolean, true - apply introspection method, false - ignore it.
+    # This method is called after introspection response is ready. This method can modify introspection response.
+    # Note :
+    # responseAsJsonObject - is org.codehaus.jettison.json.JSONObject, you can use any method to manipulate json
+    # context is reference of org.xdi.oxauth.service.external.context.ExternalIntrospectionContext (in https://github.com/GluuFederation/oxauth project, )
+    def modifyResponse(self, responseAsJsonObject, context):
+        responseAsJsonObject.put("key_from_script", "value_from_script")
+        return True
+```
+
+Full version of introspection script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_3.1.5/static/extension/introspection/introspection.py). 
