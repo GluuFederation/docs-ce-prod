@@ -361,3 +361,32 @@ Snippet
 ```
 
 Full version of introspection script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_3.1.5/static/extension/introspection/introspection.py). 
+
+
+## Resource Owner Password Credentials
+
+Resource Owner Password Credentials script allows to modify behavior of Resource Owner Password Credentials Granth.
+
+Script is invoked after normal authentication and can either leave current result or change it 
+- authenticate if not authenticated - it should return `True` and optionally set user (via `context.setUser(user)`) 
+- cancel authentication if it is authenticated - - return `False` and set user to null (via `context.setUser(null)`) 
+
+Script extends the base script type with the `init`, `destroy` and `getApiVersion` methods but also adds the following method(s):
+
+|Method|`def authenticate(self, context)`|
+|---|---|
+|**Method Parameter**|`context` is `org.xdi.oxauth.service.external.context.ExternalResourceOwnerPasswordCredentialsContext`|
+
+Snippet
+```
+    # Returns boolean, true - authenticate user, false - ignore script and do not authenticate user.
+    # This method is called after normal ROPC authentication. This method can cancel normal authentication if it returns false and sets `context.setUser(null)`.
+    # Note :
+    # context is reference of org.xdi.oxauth.service.external.context.ExternalResourceOwnerPasswordCredentialsContext#ExternalResourceOwnerPasswordCredentialsContext (in https://github.com/GluuFederation/oxauth project, )
+    def authenticate(self, context):
+        if (context.getHttpRequest().getParameterValues("device_id")[0] == "device_id_1"):
+            return True
+        return False
+```
+
+Full version of script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_3.1.5/static/extension/resource_owner_password_credentials/resource_owner_password_credentials.py). 
