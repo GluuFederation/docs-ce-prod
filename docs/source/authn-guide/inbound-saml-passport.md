@@ -20,8 +20,6 @@ Passport is available as an optional component during [Gluu Server installation]
 
 1. Run `./post-setup-add-components.py -addpassport`
 
-1. Run `runuser -l node -c "cd /opt/gluu/node/passport/&&PATH=$PATH:/opt/node/bin npm install -P"`
-
 
 ## Authentication flow
 
