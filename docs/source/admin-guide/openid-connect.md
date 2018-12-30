@@ -87,7 +87,7 @@ OpenID Connect defines a standard API where clients can register themselves--
 
 It may be prefereable to **not allow** clients to dynamically register themselves! To disable this endpoint, in the oxAuth JSON properties, set the `dynamicRegistrationEnabled` value to False.
 
-Client expiration is controlled by `dynamicRegistrationExpirationTime` oxauth configuration property (in seconds). By default it is set to `-1` which means client without expiration. (Both `0` and `-1` means that client will not expire. )  
+Client expiration is controlled by `dynamicRegistrationExpirationTime` oxauth configuration property (in seconds). By default it is set to `-1` which means client without expiration. (Both `0` and `-1` mean that client will not expire. )  
  
 ### Manual clent registration
 To add a client manually in oxTrust, navigate to `OpenID Connect` > `Client` and click the `Add Client` button to expose the following form:
