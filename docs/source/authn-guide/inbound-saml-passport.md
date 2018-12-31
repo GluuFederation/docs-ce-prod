@@ -328,7 +328,7 @@ Email-based discovery, or "identifier-first" login, relies on an email address t
 
 1. Check if such IDP is allowed to be used with this application. The list of allowed IDPs will usually be derived from IDP entries in `passport-saml-config.json` file of target Gluu Server.
 
-1. If found, an OpenID Connect authorization request URL can be buit by supplying the IDP id in a custom parameter (as described [here](./passport.md#preselecting-an-external-provider)).
+1. If found, an OpenID Connect authorization request URL can be built by supplying the IDP id in a custom parameter (as described [here](./passport.md#preselecting-an-external-provider)).
 
 1. The user is redirected to the URL of the previous step, triggering the Passport Inbound SAML scenario.
 
