@@ -58,9 +58,11 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 - A separate NGINX server is necessary because replicating a Gluu server to a different hostname breaks the functionality of the Gluu web page when using a hostname other than what is in the certificates. For example, if I use idp1.example.com as my host and copy that to a second server (e.g. idp2.example.com), the process of accessing the site on idp2.example.com, even with replication, will fail authentication due to a hostname conflict. So if idp1 fails, you won't be able to use Gluu Server effectively
 
-- Now for the rest of the servers in the cluster, [download the Gluu packages](https://gluu.org/docs/ce/installation-guide/install/) but **don't run `setup.py` yet**   
+- On all of the non-primary Gluu Cluster members (not the NGINX server), [download the Gluu packages](https://gluu.org/docs/ce/installation-guide/install/) but **don't run `setup.py` yet**!   
 
-- We want to copy the `/install/community-edition-setu/setup.properties.last` file from the first install to the other servers as `setup.properties` so we have the exact same configurations. (Here I have SSH access to my other server outisde the Gluu chroot)
+- On the primary Gluu Server, log in to the chroot and cd to `/install/community-edition-setup/`
+
+- After setup was completed on the primary server, a file named "setup.properties.last" was created in the same directory. We want to copy the `/install/community-edition-setup/setup.properties.last` file from the first install to the other servers as `setup.properties`. This will allow us to to maintain the same configuration across the nodes. (Here I have SSH access to my other server outside the Gluu chroot)
 
 ```
 
