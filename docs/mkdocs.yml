@@ -18,8 +18,8 @@ pages:
 - Release Notes: 'release-notes/index.md'
 - Whats new in v3: '3.1.x-intro.md'
 - Installation Guide:
-        - 'Preparing VM': 'installation-guide/index.md'
-        - 'Install Gluu Server': 'installation-guide/install.md'
+        - 'VM Preparation': 'installation-guide/index.md'
+        - 'Installation': 'installation-guide/install.md'
         - 'Setup Script Options': 'installation-guide/setup_py.md'
         - 'Clustering': 'installation-guide/cluster.md'
 - Administration Guide:
@@ -28,6 +28,7 @@ pages:
         - User Management:
             - 'Local User Management': 'user-management/local-user-management.md'
             - 'AD/LDAP Synchronization': 'user-management/ldap-sync.md'
+            - 'User Registration': 'user-management/user-registration.md'
             - 'SCIM 2.0 User Management': 'user-management/scim2.md'
             - 'SCIM new features': 'user-management/scim-new-features.md'
             - 'Replacing Expired JKS Files': 'user-management/replace-expired-jks-scim.md'
@@ -57,9 +58,10 @@ pages:
         - 'Session Management': 'admin-guide/session.md'
         - 'Certificate Management': 'admin-guide/certificate.md'
         - 'CORS Configuration': 'admin-guide/cors.md'
-- SSO Integration Guide:
+- Integration Guide:
         - 'Introduction': 'integration/index.md'
         - 'Server Side Web Apps':
+            - 'OAuth2 Grants': 'admin-guide/oauth2.md'
             - 'oxd OAuth 2.0': 'integration/oxd-oauth2/index.md'
             - 'Nginx lua-resty-openidc': 'integration/sswebapps/nginx.md'
             - 'Apache mod_auth_openidc': 'integration/sswebapps/openidc-rp.md'
@@ -96,6 +98,7 @@ pages:
         - 'Upgrades': 'upgrade/index.md'
         - 'Patches': 'upgrade/patches.md'
         - 'Backups': 'operation/backup.md'
+        - 'Security tips': 'operation/security.md'
         - 'Ports': 'operation/ports.md'
         - 'Logout': 'operation/logout.md'
         - 'Log Management' : 'operation/logs.md'
@@ -107,4 +110,6 @@ pages:
         - 'Build oxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'
         - 'Localization': 'developer-guide/localization.md'
         - 'Script Debugging': 'developer-guide/script-debugging.md'
+- Tutorials:
+        - 'Inbound SAML with Passport': 'tutorials/passport-inbound-flow.md'
 - FAQ & Troubleshooting: 'operation/faq.md'
