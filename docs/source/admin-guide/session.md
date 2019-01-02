@@ -29,7 +29,7 @@ Session Timeout can be configured under `JSON Configuration` > `oxAuth Propertie
 
 The following properties related to OP session:
 
-- `sessionIdLifetime` - lifetime of the OP session in seconds. It sets both the `session_id` cookie expiration property as well as the OP session object expiration in the cache. It's a global property for OP session objects. Starting in version `3.1.4`, it is possible to set value to 0 or -1, which means that expiration is not set (not available in `3.1.3` or earlier except `2.4.4`). In this case, the `session_id` cookie expiration value is set to the `session` value, which means it's valid until the browser session ends.
+- `sessionIdLifetime` - lifetime of the OP session in seconds. It sets both the `session_id` cookie expiration property as well as the OP session object expiration in the cache. It's a global property for OP session objects. It is possible to set the value to 0 or -1, which means that expiration is not set. In this case, the `session_id` cookie expiration value is set to the `session` value, which means it's valid until the browser session ends.
 - `sessionIdUnusedLifetime` - unused OP session lifetime (set by default to 1 day). If an OP session is not used for a given amount of time, the OP session is removed. 
 - `sessionIdUnauthenticatedUnusedLifetime` - lifetime of `unauthenticated` OP session. This determines how long the user can be on the login page while unauthenticated. 
 - `sessionIdEnabled` - specifies whether it is allowed to authenticate user by session automatically (without end-user interaction).  
@@ -61,4 +61,4 @@ The OP doesn't know anything about end-user activity on the RP. Therefore, the R
 
 ### How can we force the user to log out if the browser is closed?
 
-Setting `sessionIdLifetime` to `-1` value sets the `session_id` cookie value to `expires=session`, and sets the OP session object to not have an expiration time. Most browsers clear cookies with `expires=session` when the browser is closed, removing the session object at that time. This feature is available in `3.1.4` version (it is not available in 3.1.3 version or earlier except 2.4.4). 
+Setting `sessionIdLifetime` to `-1` value sets the `session_id` cookie value to `expires=session`, and sets the OP session object to not have an expiration time. Most browsers clear cookies with `expires=session` when the browser is closed, removing the session object at that time.

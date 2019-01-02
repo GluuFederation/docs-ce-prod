@@ -145,7 +145,7 @@ disableJdkLogger                                   | Choose whether to disable J
 
 ### Brute Force Protection
 
-New to version 3.1.4, the following parameters are listed under the `authenticationProtectionConfiguration` header. These four parameters help protect against brute force attacks by periodically delaying login requests that occur too frequently in too short a period of time.
+The following parameters are listed under the `authenticationProtectionConfiguration` header. These four parameters help protect against brute force attacks by periodically delaying login requests that occur too frequently in too short a period of time.
 
 Name                                  | Description
 --------------------------------------|------------

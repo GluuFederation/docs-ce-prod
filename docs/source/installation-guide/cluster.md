@@ -32,15 +32,15 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
       
 ```
 45.55.232.15    loadbalancer.example.org (NGINX server)
-159.203.126.10  idp1.example.org (Gluu Server 3.1.4 on Ubuntu 14)
-138.197.65.243  idp2.example.org (Gluu Server 3.1.4 on Ubuntu 14)
+159.203.126.10  idp1.example.org (Gluu Server 3.1.5 on Ubuntu 14)
+138.197.65.243  idp2.example.org (Gluu Server 3.1.5 on Ubuntu 14)
 ```
      
 - To create the following instructions we used Ubuntu 14 Trusty     
 
 - To create the following instructions we used an Nginx load balancer/proxy, however if you have your own load balancer, like F5 or Cisco, you should use that instead and disregard the instructions about configuring NGINX   
 
-- Gluu Server version 3.1.4 using OpenDJ   
+- Gluu Server version 3.1.5 using OpenDJ   
 
 - Redis-server for caching short-lived tokens   
 
@@ -64,7 +64,7 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 ```
 
-scp /opt/gluu-server-3.1.4/install/community-edition-setup/setup.properties.last root@idp2.example.org:/opt/gluu-server-3.1.4/install/community-edition-setup/setup.properties
+scp /opt/gluu-server-3.1.5/install/community-edition-setup/setup.properties.last root@idp2.example.org:/opt/gluu-server-3.1.5/install/community-edition-setup/setup.properties
 
 ```
 
@@ -182,8 +182,8 @@ mkdir /etc/nginx/ssl/
 
 ```
 
-scp /opt/gluu-server-3.1.4/etc/certs/httpd.key root@loadbalancer.example.org:/etc/nginx/ssl/
-scp /opt/gluu-server-3.1.4/etc/certs/httpd.crt root@loadbalancer.example.org:/etc/nginx/ssl/
+scp /opt/gluu-server-3.1.5/etc/certs/httpd.key root@loadbalancer.example.org:/etc/nginx/ssl/
+scp /opt/gluu-server-3.1.5/etc/certs/httpd.crt root@loadbalancer.example.org:/etc/nginx/ssl/
 
 ```
 
@@ -366,7 +366,7 @@ You need to transfer certificates from the first server to the other servers.
 
 ```
 
-scp /opt/gluu-server-3.1.4/etc/certs/* root@idp2.example.org:/opt/gluu-server-3.1.4/etc/certs/
+scp /opt/gluu-server-3.1.5/etc/certs/* root@idp2.example.org:/opt/gluu-server-3.1.5/etc/certs/
 
 ```
 
@@ -422,7 +422,7 @@ keytool error: java.io.FileNotFoundException: /etc/certs/openldap.crt (No such f
 
 Gluu.Root # service identity stop && service oxauth restart && service identity start
 Gluu.Root # logout
-service gluu-server-3.1.4 restart
+service gluu-server-3.1.5 restart
 
 ```
 

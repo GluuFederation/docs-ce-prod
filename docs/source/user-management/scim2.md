@@ -673,7 +673,7 @@ When running your code in test mode, some new OpenID clients are created (they a
 
 `scim-client2` project uses the JAX-RS 2.0 Client API and RestEasy framework. Under the hood network communication between client and server is handled by HttpClient from the Apache HttpComponents project which by default makes use of `org.apache.http.impl.conn.SingleClientConnManager`. This connection manager manipulates a single socket at any given time and supports the use case in which one or more invocations are made serially from a single thread.
 
-The above means that by default, instances obtained via `ScimClientFactory` do not support concurrent calls in a safe manner. Starting with version 3.1.4, multithread support was added by employing the thread safe connection manager `org.apache.http.impl.conn.PoolingHttpClientConnectionManager`.
+The above means that by default, instances obtained via `ScimClientFactory` do not support concurrent calls in a safe manner. We added multithread support by employing the thread safe connection manager `org.apache.http.impl.conn.PoolingHttpClientConnectionManager`.
 
     !!! Note
         You need to explicitly enable this feature, otherwise, behavior will be standard (single execution thread per client instance). You will have to supply proper parameters to better suit your production environment needs.
