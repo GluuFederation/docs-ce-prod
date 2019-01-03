@@ -53,7 +53,6 @@ documentation and administrative guide.
 - [#941](https://github.com/GluuFederation/oxAuth/issues/941) Remove useless js dependency on Super Gluu QA Page
 - [#939](https://github.com/GluuFederation/oxAuth/issues/939) Change error message and string in twiliosms page
 - [#938](https://github.com/GluuFederation/oxAuth/issues/938) A NullPointerException is often throw during logout for some users
-- [#936](https://github.com/GluuFederation/oxAuth/issues/936) Add support for multi facet app IDs for FIDO 2 impl
 - [#934](https://github.com/GluuFederation/oxAuth/issues/934) Store metric records in separate backed o=metric
 - [#933](https://github.com/GluuFederation/oxAuth/issues/933) Remove JCE Requirement From Gluu Server CE
 - [#932](https://github.com/GluuFederation/oxAuth/issues/932) `Remember me` checkbox missing from login screen
@@ -74,10 +73,8 @@ documentation and administrative guide.
 - [#849](https://github.com/GluuFederation/oxAuth/issues/849) If session_id is not passed in logout request, oxAuth responds as if session termination succeed, while it didn't
 - [#830](https://github.com/GluuFederation/oxAuth/issues/830) Client-specific access token expiration
 - [#781](https://github.com/GluuFederation/oxAuth/issues/781) Add new endpoints for FIDO 2 / W3C web authentication
-- [#704](https://github.com/GluuFederation/oxAuth/issues/704) Add support for Client metadata: software_id, software_version, software_statement
 - [#566](https://github.com/GluuFederation/oxAuth/issues/566) Introspection endpoint: Add support for basic authentication
 - [#230](https://github.com/GluuFederation/oxAuth/issues/230) Resource Owner Password Credential Grant Interception Script
-- [#160](https://github.com/GluuFederation/oxAuth/issues/160) U2F: Add TLS Channel ID Binding
 
 ### [GluuFederation/oxTrust](https://github.com/GluuFederation/oxTrust/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.5+)
 
@@ -95,7 +92,6 @@ documentation and administrative guide.
 - [#1339](https://github.com/GluuFederation/oxTrust/issues/1339) 'Test LDAP Connection' in Cache Refresh page
 - [#1338](https://github.com/GluuFederation/oxTrust/issues/1338) Ubuntu14+CE3.1.4: change string in Forgot Password Flow
 - [#1334](https://github.com/GluuFederation/oxTrust/issues/1334) Ubuntu18+CE3.1.4: Missing Dashboard values
-- [#1331](https://github.com/GluuFederation/oxTrust/issues/1331) Random dashboard statistics in Gluu Server cluster
 - [#1329](https://github.com/GluuFederation/oxTrust/issues/1329) Wrong error message when password reset token was expired
 - [#1327](https://github.com/GluuFederation/oxTrust/issues/1327) `Remember me` checkbox missing from login screens
 - [#1323](https://github.com/GluuFederation/oxTrust/issues/1323) It's possible to create OIDC scopes with duplicated names in oxTrust
@@ -111,63 +107,50 @@ documentation and administrative guide.
 - [#1293](https://github.com/GluuFederation/oxTrust/issues/1293) Shorten long fields for brevity
 - [#1292](https://github.com/GluuFederation/oxTrust/issues/1292) Improve OpenID Scope selection UX
 - [#1286](https://github.com/GluuFederation/oxTrust/issues/1286) Cache Refresh metrics don't work as expected
-- [#1285](https://github.com/GluuFederation/oxTrust/issues/1285) Properties set via "Configure Relying Party" control don't have effect on TRs based on a federation's TR
-- [#1284](https://github.com/GluuFederation/oxTrust/issues/1284) Issues with "Client's registration expires" control of OIDC client's properties page
-- [#1283](https://github.com/GluuFederation/oxTrust/issues/1283) authenticationRecaptchaEnabled property in oxTrust configuration has invalid drop down menu action
-- [#1282](https://github.com/GluuFederation/oxTrust/issues/1282) Improve error messages when cust scripts have errors
-- [#1275](https://github.com/GluuFederation/oxTrust/issues/1275) Enhance error messages
-- [#1273](https://github.com/GluuFederation/oxTrust/issues/1273) "Failed to execute registration script" when hitting a non-existing /restv1 URL
-- [#1269](https://github.com/GluuFederation/oxTrust/issues/1269) Register page pop-up displayed for another user (the same browser)
-- [#1264](https://github.com/GluuFederation/oxTrust/issues/1264) Improve some public facing pages to match Gluu design
-- [#1262](https://github.com/GluuFederation/oxTrust/issues/1262) Suggestion for further re-work of "Add/Update OIDC client" page
-- [#1258](https://github.com/GluuFederation/oxTrust/issues/1258) Tabs should take users to new fields
-- [#1219](https://github.com/GluuFederation/oxTrust/issues/1219) Improvement : oxTrust automatically switch to another tab on update action.
-- [#1196](https://github.com/GluuFederation/oxTrust/issues/1196) Authentication graph improvement
-- [#1176](https://github.com/GluuFederation/oxTrust/issues/1176) Export Client Config
-- [#1149](https://github.com/GluuFederation/oxTrust/issues/1149) "uma grant" option not available in oxtrust OIDC client
-- [#1112](https://github.com/GluuFederation/oxTrust/issues/1112) Change menu item lbael "JSON Configuration" to "Base Configuration"
-- [#1093](https://github.com/GluuFederation/oxTrust/issues/1093) Improve layout and element design
-- [#1034](https://github.com/GluuFederation/oxTrust/issues/1034) 'Authentication Requests' graph should only include oxAuth authentication
-- [#1029](https://github.com/GluuFederation/oxTrust/issues/1029) conversation_error, 30 mins of inactivity
-- [#356](https://github.com/GluuFederation/oxTrust/issues/356) Default password reset email contents
-
-### [GluuFederation/oxShibboleth](https://github.com/GluuFederation/oxShibboleth/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.5+)
-
-- [#46](https://github.com/GluuFederation/oxShibboleth/issues/46) Implement SSO from SP/IDP/oxAuth
+- [#1285](https://github.com/GluuFederation/oxTrust/issues/1285) Fixed error where properties set via the "Configure Relying Party" control don't affect TRs based on a federation's TR
+- [#1284](https://github.com/GluuFederation/oxTrust/issues/1284) Fixed client registration expiration
+- [#1283](https://github.com/GluuFederation/oxTrust/issues/1283) Fixed invalid drop-down menu for the authenticationRecaptchaEnabled property in oxTrust configuration
+- [#1273](https://github.com/GluuFederation/oxTrust/issues/1273) Fixed incorrect error message when accessing an incorrect URL
+- [#1269](https://github.com/GluuFederation/oxTrust/issues/1269) Clarified registration result pop-up
+- [#1264](https://github.com/GluuFederation/oxTrust/issues/1264) Improved design of public facing pages
+- [#1262](https://github.com/GluuFederation/oxTrust/issues/1262) Improved layout of "Add/Update OIDC client" page
+- [#1258](https://github.com/GluuFederation/oxTrust/issues/1258) Users can now `tab` between fields in the profile page fields
+- [#1219](https://github.com/GluuFederation/oxTrust/issues/1219) Fixed issue where updating JSON Configuration switches the active tab
+- [#1196](https://github.com/GluuFederation/oxTrust/issues/1196) Improved metric labels on authentication graph 
+- [#1176](https://github.com/GluuFederation/oxTrust/issues/1176) You can now export client configuration as Markdown
+- [#1149](https://github.com/GluuFederation/oxTrust/issues/1149) Added "uma grant" option to oxTrust OIDC client
+- [#1093](https://github.com/GluuFederation/oxTrust/issues/1093) Improved oxTrust layout and element design
+- [#1034](https://github.com/GluuFederation/oxTrust/issues/1034) 'Authentication Requests' graph only includes oxAuth authentication
+- [#1029](https://github.com/GluuFederation/oxTrust/issues/1029) Fixed conversation_error occurring after 30 minutes of inactivity
+- [#356](https://github.com/GluuFederation/oxTrust/issues/356) Improved default password reset email contents
 
 ### [GluuFederation/gluu-passport](https://github.com/GluuFederation/gluu-passport/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.5+)
 
-- [#53](https://github.com/GluuFederation/gluu-passport/issues/53) Adjust IDP linking URL for casa social plugin
-- [#51](https://github.com/GluuFederation/gluu-passport/issues/51) Passport service doesn't perform restart properly / Error: Received unexpected HTTP status code of 503
-- [#49](https://github.com/GluuFederation/gluu-passport/issues/49) Remove Start.log Requirement From Passport Startup
-- [#48](https://github.com/GluuFederation/gluu-passport/issues/48) Passport Log Should Read "passport.log" and archive as "passport-$DATE.log"
-- [#47](https://github.com/GluuFederation/gluu-passport/issues/47) Add logging transport for stdout
-- [#46](https://github.com/GluuFederation/gluu-passport/issues/46) More Verbose And Explicit Error Message Than "Go back and register!" On Failures
-- [#33](https://github.com/GluuFederation/gluu-passport/issues/33) Overall logging enhancements
-- [#29](https://github.com/GluuFederation/gluu-passport/issues/29) IDP-inited flow for inbound identity - write custom script
-- [#28](https://github.com/GluuFederation/gluu-passport/issues/28) IDP-inited flow for inbound identity - AuthZ request + signed user profile
-- [#27](https://github.com/GluuFederation/gluu-passport/issues/27) IDP-inited flow for inbound identity - SP to OIDC client
-- [#26](https://github.com/GluuFederation/gluu-passport/issues/26) IDP-inited flow for inbound identity - Add enpoint to trigger flow
-- [#24](https://github.com/GluuFederation/gluu-passport/issues/24) Passport-Saml: IDP initiated flow fail
+- [#53](https://github.com/GluuFederation/gluu-passport/issues/53) Adjusted IDP-linking URL to work with Casa social plugin
+- [#49](https://github.com/GluuFederation/gluu-passport/issues/49) Removed Start.log requirement from Passport startup
+- [#48](https://github.com/GluuFederation/gluu-passport/issues/48) Passport log name in archives now contains the date
+- [#47](https://github.com/GluuFederation/gluu-passport/issues/47) Added logging transport for stdout
+- [#29](https://github.com/GluuFederation/gluu-passport/issues/29) Implemented custom script for Passport authorization requests for Inbound SAML flow
+- [#28](https://github.com/GluuFederation/gluu-passport/issues/28) AuthZ request and signed user profile are now sent as signed JWTs for Inbound SAML flow
+- [#27](https://github.com/GluuFederation/gluu-passport/issues/27) Implemented SP to OIDC client mapping for Inbound SAML
+- [#26](https://github.com/GluuFederation/gluu-passport/issues/26) Added endpoint to trigger Inbound SAML flow
 
 ### [GluuFederation/community-edition-setup](https://github.com/GluuFederation/community-edition-setup/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.5+)
 
-- [#498](https://github.com/GluuFederation/community-edition-setup/issues/498) Why Do We Change The Hostname Inside The Chroot?
-- [#497](https://github.com/GluuFederation/community-edition-setup/issues/497) OpenDJ init Script Fixes
-- [#496](https://github.com/GluuFederation/community-edition-setup/issues/496) Change display name of casa client registration script
-- [#495](https://github.com/GluuFederation/community-edition-setup/issues/495) Can we remove downloading oracle JCE in the installer?
-- [#492](https://github.com/GluuFederation/community-edition-setup/issues/492) Avoid SCIM hardcoded value for UMA Resource Id
-- [#491](https://github.com/GluuFederation/community-edition-setup/issues/491) Enable jetty threadlimit mod if needed
-- [#489](https://github.com/GluuFederation/community-edition-setup/issues/489) Create Static Inum's
-- [#488](https://github.com/GluuFederation/community-edition-setup/issues/488) Gluu-server should export JAVA_HOME, NODE_HOME and OPENDJ_HOME and modify PATH
-- [#486](https://github.com/GluuFederation/community-edition-setup/issues/486) Clean Up Apache Config
-- [#485](https://github.com/GluuFederation/community-edition-setup/issues/485) Abort setup.py if file descriptor is less than 64k
+- [#498](https://github.com/GluuFederation/community-edition-setup/issues/498) The Hostname inside the chroot is no longer changed during setup
+- [#497](https://github.com/GluuFederation/community-edition-setup/issues/497) Fixed init script headers for OpenDJ
+- [#496](https://github.com/GluuFederation/community-edition-setup/issues/496) Casa client registration script renamed for clarity
+- [#495](https://github.com/GluuFederation/community-edition-setup/issues/495) Obsolete JCE jurisdiction files are no longer downloaded
+- [#492](https://github.com/GluuFederation/community-edition-setup/issues/492) SCIM UMA Resource ID is no longer hard coded
+- [#488](https://github.com/GluuFederation/community-edition-setup/issues/488) Gluu Server now exports JAVA_HOME, NODE_HOME and OPENDJ_HOME and modify PATH
+- [#486](https://github.com/GluuFederation/community-edition-setup/issues/486) Apache configuration formatting cleaned up
+- [#485](https://github.com/GluuFederation/community-edition-setup/issues/485) setup.py now aborts if file descriptor is less than 64k
 
 ### [GluuFederation/oxCore](https://github.com/GluuFederation/oxCore/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.5+)
 
-- [#93](https://github.com/GluuFederation/oxCore/issues/93) Misleading Exception throw in oxCore
-- [#91](https://github.com/GluuFederation/oxCore/issues/91) Improve Custom script error message
+- [#93](https://github.com/GluuFederation/oxCore/issues/93) Clarified an exception throw in oxCore
+- [#91](https://github.com/GluuFederation/oxCore/issues/91) Improved the Custom script error message
 
 ### [GluuFederation/SCIM-Client](https://github.com/GluuFederation/SCIM-Client/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.5+)
 
-- [#71](https://github.com/GluuFederation/SCIM-Client/issues/71) NoHttpResponseException: failed to respond
+- [#71](https://github.com/GluuFederation/SCIM-Client/issues/71) Added parameter to revalidate after a set period of inactivity
