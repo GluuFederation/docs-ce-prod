@@ -26,13 +26,8 @@ screenshot below shows an according example.
 
 **Logging Levels configuration through OxTrust UI**
 
-These logging levels can also be set in oxTrust UI.
+The following log levels are available in oxTrust:
 
-1. Login to oxTrust UI as `admin` or with an administrator account.
-1. Navigate to Configuration > JSON Configuration > OxTrust Configuration Tab.
-    ![JSONConfig](../img/admin-guide/logs/json_config.png)
-1. Scroll to the very bottom of the page.
-1. Click on the `logging level` and select the levels from the drop down, choosing from the following:  
 | Log Level | Messages Logged |  
 |---------- |------------                  |  
 |Trace      | All messages                 |  
@@ -42,6 +37,14 @@ These logging levels can also be set in oxTrust UI.
 |Error      | Error level and above        |  
 |Fatal      | Only fatal errors            |  
 |off        | Logging is disabled          |  
+
+These logging levels can also be set in oxTrust UI.
+
+1. Login to oxTrust UI as `admin` or with an administrator account.
+1. Navigate to Configuration > JSON Configuration > OxTrust Configuration Tab.
+    ![JSONConfig](../img/admin-guide/logs/json_config.png)
+1. Scroll to the very bottom of the page.
+1. Click on the `logging level` and select the levels from the drop down.
 1. Default value will be set to `Default`, you can change the level as per your requirement for extensive
 troubleshooting.
 1. Click on `Save Configuration` to save the configuration.
@@ -59,14 +62,16 @@ i.e oxauth, asimba, idp, oxauth-rp and identity
 
 The available logging levels are :
 
-|Level|Description|
-|--|---|
-|ALL|All log levels are documented|
-|DEBUG|Detailed events useful to debug application|
-|ERROR|Errors are documented|
-|INFO|Logs informational messages as the application runs|
-|OFF|No logs are recorded|
-|TRACE|Logs detailed events; more than DEBUG|
+| Log Level | Messages Logged |  
+|---------- |------------                  |  
+|Trace      | All messages                 |  
+|Debug      | Debug level and above        |  
+|Info       | Informational level and above|  
+|Warn       | Warning level and above      |  
+|Error      | Error level and above        |  
+|Fatal      | Only fatal errors            |  
+|off        | Logging is disabled          |  
+
 
 The following files define the log levels in Gluu Server. Please edit the 
 file with the levels given above and restart the `jetty` server. 
