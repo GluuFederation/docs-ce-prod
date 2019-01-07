@@ -301,6 +301,6 @@ it could be performed by modifying the slapd.conf file under the above mentioned
 
 ## Clearing Logs
 
-The clear-logs feature can be used to clear all log files with the extension `.log`, including system logs. Clear-logs can be helpful during troubleshooting, as well as research and development. We discourage its use in production systems if the logs are not backed-up. More features are planned. Please consider this as work in progress.
+The clear-logs feature can be used to clear all log files with the extension `.log`, including system logs. Clear-logs can be helpful during troubleshooting, as well as research and development. We discourage its use in production systems if the logs are not backed-up. More features are planned. This feature is not supported on CentOS. Please consider this as work in progress.
 
 `# service gluu-server-3.1.3 clear-logs`
