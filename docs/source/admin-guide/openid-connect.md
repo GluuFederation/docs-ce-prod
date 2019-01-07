@@ -248,15 +248,16 @@ The default distribution of the Gluu Server includes custom authentication scrip
 |  ACR Value  	| Description			|
 |---------------|-------------------------------|
 |  u2f		| [FIDO U2F Device](../authn-guide/U2F.md)|
+|  fido2    | [FIDO 2.0 U2F Device](../authn-guide/fido2.md)
+| thumb_sign_in| Use of ThumbSignIn for biometric authentication |
 |  super_gluu	| [Multi-factor authentication](../authn-guide/supergluu.md)|
 |  duo		| [Duo soft-token authentication](../authn-guide/duo.md)|
 |  cert	| [Smart card or web browser X509 personal certificates](../authn-guide/cert-auth.md)|
-|  cas	| External CAS server|
-|  gplus	| [Google+ authentication](../authn-guide/google.md)|
-|  OTP	| [OATH one time password](../authn-guide/otp.md) |
-|  asimba	| Use of the Asimba proxy for inbound SAML |
+|  saml | Inbound SAML via Asimba authentication module |
+|  otp	| [OATH one time password](../authn-guide/otp.md) |
+|  passport_saml | Passport SAML authentication module |
+|  passport_social| Passport authentication module |
 |  twilio_sms	| Use of the Twilio Saas to send SMS one time passwords |
-|  passport	| Use of the [Passport component for social login](../authn-guide/passport.md/) |
 |  yubicloud	| Yubico cloud OTP verification service |
 |  uaf	| experimental support for the FIDO UAF protocol |
 |  basic_lock	| [Enables lockout after a certain number of failures](../authn-guide/intro.md#configuring-account-lockout) |
@@ -265,6 +266,19 @@ The default distribution of the Gluu Server includes custom authentication scrip
 Clients can request any enabled authentication mechanism. To enable an authentication script in oxTrust, navigate to `Configuration` > `Manage Custom Scripts`, find the desired script, check the `Enabled` box, scroll to the bottom of the page and click `Update`.
 
 Learn more in the [authentication guide](../authn-guide/intro.md).
+
+### Setting the Default ACR
+
+To set the default `acr_value` for a client, follow these steps:
+
+1. Navigate to `OpenID Connect` > `Clients`
+1. Select the client you wish to set
+1. Click the `Advanced Settings` tab
+1. Click the `Add Default ACR value` button
+    ![List of default ACRs](../img/openid/available_acrs.png)
+1. A list of available ACR values will pop up. Select the desired default value
+1. Click the `Ok` button
+1. Scroll to the bottom of the page and click the `Update` button
 
 ## Logout
 
