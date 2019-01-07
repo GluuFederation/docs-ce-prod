@@ -25,7 +25,7 @@ By default, the `Custom property (key/value)` field will include the value: `ena
 ![image](../img/admin-guide/user/config-manage-script_enable.png)  
 
 ## Enforcing Unique Email Addresses
-Administrators can now choose whether they want to enforce all users to have unique email addresses. Uniqueness is enforced by default. If this feature is disabled, more than one user can register the same email address. However, if a password reset is requested using a shared email address, only the first matching user listed in the LDAP will receive a reset email.
+Administrators can choose whether they want to require all users to have unique email addresses. Uniqueness **is** enforced by default. If this feature is disabled, more than one user can register the same email address. If a password reset is requested using a shared email address, the first matching user listed in LDAP will receive the reset email.
 
 To change this setting, you need to make the following changes in both oxTrust and the LDAP:
 
