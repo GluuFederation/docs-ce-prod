@@ -48,7 +48,6 @@ These logging levels can also be set in oxTrust UI.
 1. Default value will be set to `Default`, you can change the level as per your requirement for extensive
 troubleshooting.
 1. Click on `Save Configuration` to save the configuration.
-    ![save](../img/admin-guide/logs/saveconf.png)
 
 **Changing Log Levels using log4j2.xml**
 
