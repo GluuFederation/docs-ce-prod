@@ -89,7 +89,7 @@ It may be prefereable to **not allow** clients to dynamically register themselve
 
 Client expiration is controlled by `dynamicRegistrationExpirationTime` oxauth configuration property (in seconds). By default it is set to `-1` which means client without expiration. (Both `0` and `-1` mean that client will not expire. )  
  
-### Manual clent registration
+### Manual client registration
 To add a client manually in oxTrust, navigate to `OpenID Connect` > `Client` and click the `Add Client` button to expose the following form:
 
 ![add-client](../img/openid/add-client311.png)
@@ -136,6 +136,15 @@ Setting up clients can be cumbersome and time consuming. Instead of deleting cli
 If the redirect URI to be added to a client is in the same domain as the server, the URI can be added via the `Add Redirect URI` field in the Client Registration form.   
 If the URI is in a different domain, it must be added via a [sector identifier](#add-sector-identifier).
 
+### Client Summary
+Each client's entry in oxTrust contains an at-a-glance summary page. All configuration settings are portrayed on a single, easy-to-read page, and can be exported in Markdown to the clipboard with one click. Follow these steps:
+
+1. Navigate to `OpenID Connect` > `Clients`
+1. Find and click the target client
+1. Click the `Client Config Summary` button at the top of the page
+1. To export, click the `Copy as markdown to clipboard` button
+
+![](../img/openid/client-config-summary.png)
 
 ## Scopes
 
