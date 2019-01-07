@@ -36,6 +36,7 @@ pages:
             - 'Introduction': 'authn-guide/intro.md'
             - 'Basic Authentication': 'authn-guide/basic.md'
             - 'FIDO U2F': 'authn-guide/U2F.md'
+            - 'FIDO 2.0 U2F': 'authn-guide/fido2.md'
             - 'Super Gluu': 'authn-guide/supergluu.md'
             - 'OTP apps': 'authn-guide/otp.md'
             - 'SMS OTP': 'authn-guide/sms-otp.md'
