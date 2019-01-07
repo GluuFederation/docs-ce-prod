@@ -4,18 +4,18 @@ Gluu Server components have cryptographic keys and X.509 certificates that are s
 `chroot`. The details of the certificates are given below according to each component. The certificates
 are available in the `/etc/certs` folder.
 
-|ASIMBA		|Shibboleth	|APACHE		|OPENLDAP	|
-|---------------|---------------|---------------|---------------|
-|asimba.crt	|shibIDP.crt	|httpd.crt	|openldap.crt	|
-|asimba.csr	|shibIDP.csr	|https.csr	|openldap.csr	|
-|asimba.key	|shibIDP.jks	|httpd.key	|openldap.key	|
-|asimba.key.orig|shibIDP.key	|httpd.key.orig	|openldap.key.orig|
-|asimba.pkcs12	|shibIDP.key.orig|		|openldap.pem	|
-|asimbaIDP.jks	|shibIDP.pkcs	|		|		|
+|ASIMBA		    |Shibboleth	     |APACHE		 |OPENLDAP         |
+|---------------|--------------- |---------------|---------------  |
+|asimba.crt   	|shibIDP.crt	 |httpd.crt	     |openldap.crt	   |
+|asimba.csr 	|shibIDP.csr	 |https.csr	     |openldap.csr	   |
+|asimba.key 	|shibIDP.jks	 |httpd.key      |openldap.key	   |
+|asimba.key.orig|shibIDP.key	 |httpd.key.orig |openldap.key.orig|
+|asimba.pkcs12	|shibIDP.key.orig|		         |openldap.pem	   |
+|asimbaIDP.jks	|shibIDP.pkcs  	 |               |		           |
 
-The certificates for `Passport` authenticaiton are `passport-rp.jks, passport-rp.pem, passport-rs.jks`. The SCIM certificate is named `scim-rs.jks` and the OTP certificate is named `otp_configuration.json`.
+The certificates for `Passport` authentication are `passport-rp.jks, passport-rp.pem, passport-rs.jks`. The SCIM certificate is named `scim-rs.jks` and the OTP certificate is named `otp_configuration.json`.
 
-Additionally the following `json` files are avaibale which are used in different custom scripts for multi-factor authentication.
+Additionally the following `json` files are available which are used in different custom scripts for multi-factor authentication.
 
 * cert_creds.json
 * duo_creds.json
@@ -23,6 +23,14 @@ Additionally the following `json` files are avaibale which are used in different
 * otp_configuration.json
 * oxauth-keys.json
 * super_gluu_creds.json
+
+## Certificates in oxTrust
+
+Certificates commonly used for Single Sign On (SSO) typically have a short expiration date, and can be easily viewed and downloaded, in oxTrust. Navigate to Configuration > Certificates to access these certificates. The following are available:
+- OpenDJ SSL
+- httpd SSL
+- IDP Signing
+- IDP Encryption
 
 # Updating Apache Certificate
 
