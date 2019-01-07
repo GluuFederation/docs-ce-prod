@@ -54,6 +54,9 @@ Here is a sample entry:
 The script manager reloads scripts automatically without needing to
 restart the application once `oxRevision` is increased.
 
+### Script Naming
+New custom scripts should be given a descriptive `displayName`, as that is how they are listed in oxTrust. The `displayName` is limited to 60 characters.  
+
 ### Logs
 The log files regarding interception scripts are stored in the
 `oxauth.log` file. The logs are separated according to the module they
