@@ -1,10 +1,10 @@
 # FIDO2
 
 ## Overview
-FIDO Universal 2nd Factor (FIDO2 U2F) is an open authentication standard that strengthens and simplifies two-factor authentication using specialized USB or NFC devices. 
+FIDO 2.0 Universal 2nd Factor (FIDO2 U2F) is an open authentication standard that strengthens and simplifies two-factor authentication using specialized USB or NFC devices. 
 
 This document explains how to use the Gluu Server's included 
-[U2F interception script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/fido2/U2fExternalAuthenticator.py) 
+[FIDO2 U2F interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/fido2/Fido2ExternalAuthenticator.py) 
 to implement a two-step, two-factor authentication (2FA) process with username / password as the first step, and any U2F device as the second step. 
 
 !!! Note 
@@ -12,9 +12,9 @@ to implement a two-step, two-factor authentication (2FA) process with username /
 
 ## Prerequisites
 - A Gluu Server ([installation instructions](../installation-guide/index.md));      
-- [FIDO2 U2F interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/u2f/U2fExternalAuthenticator.py) (included in the default Gluu Server distribution);     
+- [FIDO2 U2F interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/fido2/Fido2ExternalAuthenticator.py) (included in the default Gluu Server distribution);     
 - At least one U2F device for testing, like one of the devices [listed below](#u2f-devices). 
-- For Linux based operating system, a little modification required in udev rule, that is stated [below](#u2f-linux).
+- For Linux-based operating systems, a little modification required in udev rule, that is stated [below](#u2f-linux).
 
 ### U2F Devices
 Some well known U2F devices and manufacturers include:           
@@ -42,8 +42,8 @@ Follow the steps below to enable U2F authentication:
 1. Click on the `Person Authentication` tab       
 ![person-auth](../img/admin-guide/multi-factor/person-auth.png)
 
-1. Find the U2F script       
-![u2f-script](../img/admin-guide/multi-factor/u2f-script.png)
+1. Find the fido2 script       
+![fido2-script](../img/admin-guide/multi-factor/fido2-script.png)
 
 1. Enable the script by checking the box       
 ![enable](../img/admin-guide/enable.png)
@@ -90,14 +90,14 @@ If U2F should be the default authentication mechanism, follow these instructions
 If FIDO2 U2F should be the default authentication mechanism for all access, change both fields to `fido2`.  
 
 !!! Note
-    If U2F is set as a default authentication mechanism users will **not** be able to access the protected resource(s) while using a mobile device or a browser that does not support U2F (e.g. Internet Explorer).  
+    If FIDO2 U2F is set as a default authentication mechanism users will **not** be able to access the protected resource(s) while using a mobile device or a browser that does not support U2F (e.g. Internet Explorer).  
 
 ## U2F Login Page
 Below is an illustration of the Gluu Server's default U2F login page:
 
-![u2f](../img/user-authn/u2f.png)
+![u2f](../img/user-authn/fido2.png)
 
-The design is being rendered from the [U2F xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/u2f/login.xhtml). To customize the look and feel of this page, follow the [customization guide](../operation/custom-design.md). 
+The design is being rendered from the [U2F xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/fido2/login.xhtml). To customize the look and feel of this page, follow the [customization guide](../operation/custom-design.md). 
 
 ## Using U2F Tokens 
 
@@ -110,16 +110,14 @@ All subsequent U2F authentications for that user account will require the enroll
 ### U2F Credential Management
 A user's FIDO2 U2F devices can be removed by a Gluu administrator in LDAP under the user entry as shown in the below screenshot. 
 
-![fidoldap](../img/admin-guide/multi-factor/fido-ldap-entry.png)
+![fidoldap](../img/admin-guide/multi-factor/fido2-ldap-entry.png)
 
 ## U2F Discovery Endpoint
 A discovery document for U2F is published by the Gluu Server at: `https://<hostname>/.well-known/fido-configuration` This document specifies the URL of the registration and authentication endpoints.
 
-## U2F Linux 
+## U2F in Linux 
 
 From your terminal run the below commands and reboot your computer. 
 
   - `sudo curl https://hypersecu.com/downloads/files/configurations/70-u2f.rules > /etc/udev/rules.d/70-u2f.rules`
   - `chmod +x /etc/udev/rules.d/70-u2f.rules`
-
-
