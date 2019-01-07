@@ -113,7 +113,7 @@ A user's FIDO2 U2F devices can be removed by a Gluu administrator in LDAP under 
 ![fidoldap](../img/admin-guide/multi-factor/fido2-ldap-entry.png)
 
 ## U2F Discovery Endpoint
-A discovery document for U2F is published by the Gluu Server at: `https://<hostname>/.well-known/fido-configuration` This document specifies the URL of the registration and authentication endpoints.
+A discovery document for U2F is published by the Gluu Server at: `https://<hostname>/.well-known/fido2-configuration` This document specifies the URL of the registration and authentication endpoints.
 
 ## U2F in Linux 
 
