@@ -31,7 +31,7 @@ The script has the following properties
 
 |	Property	|	Description		|	Example	|
 |-----------------------|-------------------------------|---------------|
-|u2f_server_uri		|URL of the oxAuth U2F server|`https://idp.mycompany.com`|
+|fido2_server_uri		|URL of the oxAuth FIDO2 server|`https://idp.mycompany.com`|
 
 ## Enable FIDO2
 
