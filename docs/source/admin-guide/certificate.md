@@ -32,6 +32,8 @@ Certificates commonly used for Single Sign On (SSO) typically have a short expir
 - IDP Signing
 - IDP Encryption
 
+![Example Certs in oxTrust](../img/admin-guide/oxtrust-certs.png)
+
 # Updating Apache Certificate
 
 The certificates must be manually updated from the `/etc/certs/` folder. 
