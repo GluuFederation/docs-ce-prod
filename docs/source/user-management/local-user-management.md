@@ -57,6 +57,10 @@ If the user has any associated Pairwise IDs, they will be displayed in a table o
 
 ![Pairwise IDs](../img/admin-guide/user/admin_users_pairwise.png)
 
+Likewise, if the user has any associated 2FA devices, they will be displayed in their own table at the bottom of the page. If an associated 2FA device needs to be removed, just click the `Remove` button.
+
+![2FA IDs](../img/admin-guide/user/admin_users_2fa.png)
+
 ## Manage Groups in oxTrust
 Out of the box, the Gluu Server includes one group: the Gluu Manager
 Group (`gluuManager`). Groups can be added and populated as
