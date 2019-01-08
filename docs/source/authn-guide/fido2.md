@@ -1,14 +1,13 @@
 # FIDO2
 
 ## Overview
-[FIDO 2.0 (FIDO2)](https://fidoalliance.org/fido2/) is an open authentication standard that strengthens and simplifies two-factor authentication using specialized USB or NFC devices. 
+[FIDO 2.0 (FIDO2)](https://fidoalliance.org/fido2/) is an open authentication standard that enable users to leverage common devices to securely authenticate to online services in both mobile and desktop environments.
 
-!!! Note
-    The FIDO2 interception script and endpoints will also support W3C, and is backwards compatible with previous FIDO standards.
+FIDO2 is comprised of the [W3C’s Web Authentication specification (WebAuthn)](https://www.w3.org/TR/webauthn/) and FIDO’s corresponding Client-to-Authenticator Protocol (CTAP). WebAuthn defines a standard web API that can be built into browsers and related web platform infrastructure to enable online services to use FIDO Authentication. CTAP enables external devices such as mobile handsets or FIDO Security Keys to work with WebAuthn and serve as authenticators to desktop applications and web services.
 
 This document explains how to use the Gluu Server's included 
 [FIDO2 interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/fido2/Fido2ExternalAuthenticator.py) 
-to implement a two-step, two-factor authentication (2FA) process with username / password as the first step, and any FIDO2 device as the second step. 
+to implement a two-step, two-factor authentication (2FA) with username / password as the first step, and any FIDO2 device as the second step. 
 
 ## Prerequisites
 - A Gluu Server ([installation instructions](../installation-guide/index.md));      
