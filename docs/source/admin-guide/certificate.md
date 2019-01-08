@@ -1,7 +1,7 @@
 # Certificates 
 
 Gluu Server components have cryptographic keys and X.509 certificates that are stored inside the
-`chroot`. Details for certificates for each component are provided below. Certificates
+`chroot`. Details for certificates associated with each component are provided below. Certificates
 are available in the `/etc/certs` folder.
 
 |ASIMBA		    |Shibboleth	     |APACHE		 |OPENLDAP         |
