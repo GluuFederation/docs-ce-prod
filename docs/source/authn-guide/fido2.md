@@ -15,7 +15,7 @@ to implement a two-step, two-factor authentication (2FA) with username / passwor
 - At least one FIDO2 device for testing, like one of the devices [listed below](#FIDO2-devices). 
 - For Linux-based operating systems, a little modification required in udev rule, that is stated [below](#fido2-linux).
 
-### FIDO2 Devices
+### FIDO2 devices
 Some well known FIDO2 devices and manufacturers include:           
 
 - [Yubico](https://www.yubico.com/)      
@@ -32,7 +32,7 @@ The script has the following properties
 |-----------------------|-------------------------------|---------------|
 |fido2_server_uri		|URL of the oxAuth FIDO2 server|`https://idp.mycompany.com`|
 
-## Enable FIDO2
+## Enable FIDO2 script
 
 Follow the steps below to enable FIDO2 authentication:
 
@@ -56,7 +56,7 @@ Now FIDO2 is an available authentication mechanism for your Gluu Server. This me
     configuration by navigating to the following URL: `https://<hostname>/.well-known/openid-configuration`. 
     Find `"acr_values_supported":` and you should see `"fido2"`. 
 
-## Enable FIDO2 Endpoints
+## Enable FIDO2 endpoints
 
 By default, the FIDO2 endpoints are disabled in the Gluu Server for compatibility with older versions. To activate the endpoints, follow these steps:
 
@@ -91,27 +91,27 @@ If FIDO2 should be the default authentication mechanism for all access, change b
 !!! Note
     If FIDO2 is set as a default authentication mechanism users will **not** be able to access the protected resource(s) while using a mobile device or a browser that does not support FIDO2 (e.g. Internet Explorer).  
 
-## FIDO2 Login Page
+## FIDO2 login page
 Below is an illustration of the Gluu Server's default FIDO2 login page:
 
 ![fido2](../img/user-authn/u2f.png)
 
 The design is being rendered from the [FIDO2 xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/fido2/login.xhtml). To customize the look and feel of this page, follow the [customization guide](../operation/custom-design.md). 
 
-## Using FIDO2 Tokens 
+## Using FIDO2 tokens 
 
-### Credential Enrollment
+### Credential enrollment
 FIDO2 device enrollment happens during the first authentication attempt. 
 
-### Subsequent Authentications
+### Subsequent authentications
 All subsequent FIDO2 authentications for that user account will require the enrolled FIDO2 key. 
 
-### FIDO2 Credential Management
+### FIDO2 credential management
 A user's FIDO2 devices can be removed by a Gluu administrator in LDAP under the user entry as shown in the below screenshot. 
 
 ![fidoldap](../img/admin-guide/multi-factor/fido2-ldap-entry.png)
 
-## FIDO2 Discovery Endpoint
+## FIDO2 discovery endpoint
 A discovery document for FIDO2 is published by the Gluu Server at: `https://<hostname>/.well-known/fido2-configuration` This document specifies the URL of the registration and authentication endpoints.
 
 ## FIDO2 in Linux 
