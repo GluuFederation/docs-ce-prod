@@ -8,6 +8,7 @@ The Gluu Server leverages [interception scripts](../admin-guide/custom-script.md
 
 The Gluu Server includes interception scripts for a number of authentication mechanisms, such as:
 
+- [FIDO 2.0](./fido2.md)
 - [FIDO U2F](./U2F.md)
 - [TOTP/HOTP](./otp.md)
 - [Super Gluu](./supergluu.md)  (Gluu's free 2FA mobile push app)   
@@ -43,12 +44,13 @@ Learn how to [configure basic authentication](./basic.md).
 
 Gluu includes interception scripts for the following forms of 2FA:
 
-- [U2F](./U2F.md)
-- [Super Gluu](./supergluu.md)  
-- [OTP apps](./otp.md)
-- [SMS OTP](./sms-otp.md)
-- [Duo Security](./duo.md)
-- [Certificate Authentication](./cert-auth.md)
+- [FIDO 2.0](./fido2.md)    
+- [U2F](./U2F.md)    
+- [Super Gluu](./supergluu.md)   
+- [OTP apps](./otp.md)    
+- [SMS OTP](./sms-otp.md)    
+- [Duo Security](./duo.md)    
+- [Certificate Authentication](./cert-auth.md)     
 
 To a support an authentication mechanism not listed above, review the [custom authentication script tutorial](./customauthn.md) to learn how to write your own authentication scripts. 
 
