@@ -1,8 +1,8 @@
 # Super Gluu
 ## Overview
-[Super Gluu](https://super.gluu.org) is a free two-factor authentication (2FA) mobile app built to work with the Gluu Server, a free open source Identity & Access Management (IAM) platform. 
+[Super Gluu](https://super.gluu.org) is push notification two-factor authentication (2FA) mobile app built to work with the Gluu Server. 
 
-This document explains how to configure the Gluu Server for two-factor authentication (2FA) with username / password as the first step, and Super Gluu as the second step. 
+This document explains how to configure the Gluu Server for 2FA with username / password as the first step, and Super Gluu as the second step. 
 
 A User Guide and Developer Guide can be found on the [Super Gluu docs site](https://gluu.org/docs/supergluu). 
 
