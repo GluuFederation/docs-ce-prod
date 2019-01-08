@@ -1,21 +1,37 @@
 # Certificates 
 
-Gluu Server components have cryptographic keys and X.509 certificates that are stored inside the
-`chroot`. Details for certificates associated with each component are provided below. Certificates
-are available in the `/etc/certs` folder.
+## Certificates in  Chroot
 
-|ASIMBA		    |Shibboleth	     |APACHE		 |OPENLDAP         |
-|---------------|--------------- |---------------|---------------  |
-|asimba.crt   	|shibIDP.crt	 |httpd.crt	     |openldap.crt	   |
-|asimba.csr 	|shibIDP.csr	 |https.csr	     |openldap.csr	   |
-|asimba.key 	|shibIDP.jks	 |httpd.key      |openldap.key	   |
-|asimba.key.orig|shibIDP.key	 |httpd.key.orig |openldap.key.orig|
-|asimba.pkcs12	|shibIDP.key.orig|		         |openldap.pem	   |
-|asimbaIDP.jks	|shibIDP.pkcs  	 |               |		           |
+Gluu Server components have cryptographic keys and X.509 certificates that are stored inside the`chroot`. Details for certificates associated with each component are provided below. The following certificates are available in the `/etc/certs` folder.
+
+|IDP		                  |Shibboleth	       |APACHE		       |OPENDJ         |
+|---------------        |---------------   |---------------|---------------  |
+|idp-encryption.crt    	|shibIDP.crt	      |httpd.crt	     |opendj.crt	   |
+|idp-encryption.csr    	|shibIDP.csr	      |https.csr	     |opendj.pksc12	   |
+|idp-encryption.key 	   |shibIDP.jks	      |httpd.key      |               |
+|idp-encryption.key.orig|shibIDP.key	      |httpd.key.orig |             |
+|idp-signing.crt	       |shibIDP.key.orig  |		             |	            |
+|idp-signing.csr       	|shibIDP.pkcs12  	 |               |		           |
+|idp-signing.key        |                  |               |             |
+|idp-signing.key.orig   |                  |               |             |
 
 The certificates for `Passport` authentication are `passport-rp.jks, passport-rp.pem, passport-rs.jks`. 
 
 The SCIM certificate is named `scim-rs.jks` and the OTP certificate is named `otp_configuration.json`.
+
+### Certificates for Deprecated Services
+
+|ASIMBA		    |OPENLDAP         |
+|---------------|--------------- |
+|asimba.crt   	|openldap.crt	   |
+|asimba.csr 	|openldap.csr	   |
+|asimba.key 	|openldap.key	   |
+|asimba.key.orig|openldap.key.orig|
+|asimba.pkcs12	|openldap.pem	   |
+|asimbaIDP.jks	|	           |
+
+
+### Custom Script JSON Files
 
 Additionally the following `json` files are available which are used in different custom scripts for multi-factor authentication.
  
@@ -24,7 +40,8 @@ Additionally the following `json` files are available which are used in differen
 * `gplus_client_secrets.json`     
 * `otp_configuration.json`    
 * `oxauth-keys.json`     
-* `super_gluu_creds.json`   
+* `super_gluu_creds.json`  
+* `vericloud_gluu_creds.json`
 
 ## Certificates in oxTrust
 
