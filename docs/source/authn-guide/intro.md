@@ -52,12 +52,13 @@ Gluu includes interception scripts for the following forms of 2FA:
 
 To a support an authentication mechanism not listed above, review the [custom authentication script tutorial](./customauthn.md) to learn how to write your own authentication scripts. 
 
+### 2FA enrollment
+
+Once 2FA is enabled, the Gluu Server's default behavior is to prompt for enrollment the first time a user signs in. 
+
 ### 2FA Credential Management	
 	
-Once 2FA is enforced, people need a good way to enroll, delete and manage their strong credentials (that doesn't involve calling the support desk!). In an effort to make the 2FA experience better for people and organizations, the Gluu Server now supports a new open source application called [Credential Manager](https://gluu.org/docs/creds). 
-
-Credential Manager is a simple, user-facing applications people can use to manage a variety of free or low-cost 2FA credentials in the Gluu Server. 
-
+Once users enroll 2FA credentials for their account, the credentials can be viewed and removed by the Gluu Server administrator either directly in LDAP, or in the user record in oxTrust via the [Manage People interface](../user-management/local-user-management.md#managing-associated-2fa-devices).  
 
 ## Social Login
 
