@@ -55,7 +55,11 @@ can modify specific attributes relating to that user.
 
 If the user has any associated Pairwise IDs, they will be displayed in a table on the bottom of the page. If an associated Pairwise ID needs to be removed, just click the `Remove` button.
 
+### Managing Associated Pairwise IDs
+
 ![Pairwise IDs](../img/admin-guide/user/admin_users_pairwise.png)
+
+### Managing Associated 2FA Devices
 
 Likewise, if the user has any associated 2FA devices, they will be displayed in their own table at the bottom of the page. If an associated 2FA device needs to be removed, just click the `Remove` button.
 
