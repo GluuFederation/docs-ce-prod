@@ -10,7 +10,7 @@ The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will
 
 ## Upgrade from 3.1.x to 3.1.5
 
-New to version 3.1.5, it is now possible to perform an in-place upgrade from 3.1.x to 3.1.5, rather than requiring manual configuration. To do so, follow these directions to download and run our new in-place upgrade script:
+To perform an in place upgrade to Gluu Server 3.1.5, download and run our in-place upgrade script following these instructions:
 
 1. Log into your server with `service gluu-server-3.1.x login`
 
