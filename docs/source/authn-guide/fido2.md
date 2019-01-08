@@ -56,7 +56,7 @@ Now FIDO2 is an available authentication mechanism for your Gluu Server. This me
     configuration by navigating to the following URL: `https://<hostname>/.well-known/openid-configuration`. 
     Find `"acr_values_supported":` and you should see `"fido2"`. 
 
-## Enable FIDO2 U2F Endpoints
+## Enable FIDO2 Endpoints
 
 By default, the FIDO2 endpoints are disabled in the Gluu Server for compatibility with older versions. To activate the endpoints, follow these steps:
 
