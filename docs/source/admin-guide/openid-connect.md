@@ -119,9 +119,9 @@ The sample client registration script is [available here](./sample-client-regist
 ### Disable client entry
 Setting up clients can be cumbersome and time consuming. Instead of deleting clients that should be inactive, it may be preferable to simply disable the client. To achieve this:
 
-1. Navigate to `OpenID Connect` > `Clients`
+1. Navigate to `OpenID Connect` > `Clients` > `Standard settings`
 1. Find and click the target client
-1. Scroll to the end of its settings' list and check the `Disabled` checkbox
+1. Check the `Disabled` checkbox
 1. Click the "Update" button
 
 ![disable-openid](../img/openid/openidconnect-disable.png)
