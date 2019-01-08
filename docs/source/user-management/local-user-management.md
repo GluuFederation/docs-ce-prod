@@ -53,9 +53,8 @@ can modify specific attributes relating to that user.
 
 ![Manage Users](../img/admin-guide/user/admin_users_edituser.png)
 
-If the user has any associated Pairwise IDs, they will be displayed in a table on the bottom of the page. If an associated Pairwise ID needs to be removed, just click the `Remove` button.
-
 ### Managing Associated Pairwise IDs
+If the user has any associated Pairwise IDs, they will be displayed in a table on the bottom of the page. If an associated Pairwise ID needs to be removed, just click the `Remove` button.
 
 ![Pairwise IDs](../img/admin-guide/user/admin_users_pairwise.png)
 
