@@ -218,6 +218,7 @@ Key and salt are read from oxAuth configuration entries `pairwiseCalculationKey`
 
 ![Pairwise Algorithmic configuration](../img/admin-guide/openid/pairwiseconfiguration.png)
 
+A user's associated Pairwise IDs can be viewed and managed directly in LDAP, or more conveniently in their oxTrust user record. Check the [Manage People doc](../user-management/local-user-management.md#managing-associated-pairwise-ids) for more information. 
 
 ### Add Sector Identifier
 
