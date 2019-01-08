@@ -80,7 +80,7 @@ This section describes the process of adding UMA scopes in the Gluu Server GUI. 
 
 ![uma-scopes](../img/uma/uma-scopes.png)
 
-The search bar can be used to find existing available scopes. New scopes can be added by clicking on the `Add Scope Description` button which will bring up the interface shown below:
+The search bar can be used to find existing available scopes. New scopes can be added by clicking on the `Add Scope` button, which will bring up the interface shown below:
 
 ![uma-scopes](../img/uma/scopes-add.png)
 
@@ -91,6 +91,10 @@ Additionally there is an option to add authorization policy with the new scope.
 Resources protected by UMA 2 must be registered in oxTrust by navigating to `UMA` > `Resources` or via [UMA-API](../api-guide/uma-api.md). . 
 
 ![uma-resources](../img/uma/uma-resources.png)
+
+The search bar can be used to find existing available resources. New resources can be added by clicking on the `Add Resource Set` button, which will bring up the interface shown below:
+
+![uma-resources](../img/uma/resources-add.png)
 
 Resource access can be restricted by associated client with `umaRestrictResourceToAssociatedClient` oxauth configuration property. Associated client is array that is automatically populated with `clientDn` that creates it.  
 
