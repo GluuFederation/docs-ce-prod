@@ -53,12 +53,12 @@ can modify specific attributes relating to that user.
 
 ![Manage Users](../img/admin-guide/user/admin_users_edituser.png)
 
-### Managing Associated Pairwise IDs
+### Managing associated Pairwise IDs
 If the user has any associated [Pairwise IDs](../admin-guide/openid-connect.md#subject-identifier-types), they will be displayed in a table on the bottom of the page. If an associated Pairwise ID needs to be removed, just click the `Remove` button.
 
 ![Pairwise IDs](../img/admin-guide/user/admin_users_pairwise.png)
 
-### Managing Associated 2FA Devices
+### Managing associated 2FA devices
 
 Likewise, if the user has any associated 2FA devices, they will be displayed in their own table at the bottom of the page. If an associated 2FA device needs to be removed, just click the `Remove` button.
 
@@ -125,9 +125,6 @@ The supported excel formats are `xls` and `xlsx`.
 * The file needs to be validated before it can be imported. Click on the `Validate` button.
 
 * Click on the `Import` button to complete the import of users.
-
-
-
  
    
 ## User Registration 
@@ -148,10 +145,10 @@ To enable user registration via the Gluu Server, follow these steps:
 !!! Note 
     When user registration is handled via oxTrust, users can **not** be added to a backend LDAP or Active Directory server. This means that self-registration via oxTrust is only effective if users are authenticated by GluuLDAP (and not a backend LDAP or AD server).
 
-### Adding Attributes to Registration
+### Adding attributes to registration
 A limited number of attributes are present in the default registration form. If more attributes are needed they can be added via the GUI by navigating to `Organization Configuration` > `Manage Registration`. Learn how to [add attributes](../admin-guide/oxtrust-ui.md#manage-registration) to the default registration form. 
 
-### Manual Approval of New Users
+### Manual approval of new users
 By default the `Custom property (key/value)` field will include the value: `enable_user` and `true`. This enables new users to login as soon as registration is complete. If you want to manually review and approve new user registrations, you can set this value to `false` as shown in the screenshot below.
 
 ![image](../img/admin-guide/user/config-manage-script_enable.png)
