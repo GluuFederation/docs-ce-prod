@@ -90,17 +90,13 @@ It may be prefereable to **not allow** clients to dynamically register themselve
 Client expiration is controlled by `dynamicRegistrationExpirationTime` oxauth configuration property (in seconds). By default it is set to `-1` which means client without expiration. (Both `0` and `-1` mean that client will not expire. )  
  
 ### Manual client registration
-To add a client manually in oxTrust, navigate to `OpenID Connect` > `Client` and click the `Add Client` button to expose the following form:
+To add a client manually in oxTrust, navigate to `OpenID Connect` > `Client` and click the `Add Client` button to access the following forms:
 
-![add-client](../img/openid/add-client311.png)
+![add-client](../img/openid/add_client_standard.png)
 
-![add-client1](../img/openid/add-client1-311.png)
+![add-client1](../img/openid/add_client_advanced.png)
 
-![add-client2](../img/openid/add-client2-311.png)
-
-![add-client3](../img/openid/add-client3-311.png)
-
-![add-client4](../img/openid/add-client4-311.png)
+![add-client2](../img/openid/add_client_encryption.png)
 
 There are many client configuration parameters. Most are specified in the [Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html#ClientRegistration) section of the OpenID Connect specification.
 
