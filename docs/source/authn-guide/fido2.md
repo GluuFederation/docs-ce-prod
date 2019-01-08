@@ -94,7 +94,7 @@ If FIDO2 should be the default authentication mechanism for all access, change b
 ## FIDO2 Login Page
 Below is an illustration of the Gluu Server's default FIDO2 login page:
 
-![fido2](../img/user-authn/fido2.png)
+![fido2](../img/user-authn/u2f.png)
 
 The design is being rendered from the [FIDO2 xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/fido2/login.xhtml). To customize the look and feel of this page, follow the [customization guide](../operation/custom-design.md). 
 
