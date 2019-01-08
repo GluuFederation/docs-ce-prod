@@ -116,7 +116,7 @@ A discovery document for FIDO2 is published by the Gluu Server at: `https://<hos
 
 ## FIDO2 in Linux 
 
-From your terminal run the below commands and reboot your computer. 
+Older versions of Linux may require a rules file to be backwards compatible with [Hypersecu devices](https://hypersecu.com/products/hyperfido). From your terminal run the below commands and reboot your computer. 
 
   - `sudo curl https://hypersecu.com/downloads/files/configurations/70-u2f.rules > /etc/udev/rules.d/70-u2f.rules`
   - `chmod +x /etc/udev/rules.d/70-u2f.rules`
