@@ -1,7 +1,7 @@
 # Certificates 
 
 Gluu Server components have cryptographic keys and X.509 certificates that are stored inside the
-`chroot`. The details of the certificates are given below according to each component. The certificates
+`chroot`. Details for certificates for each component are provided below. Certificates
 are available in the `/etc/certs` folder.
 
 |ASIMBA		    |Shibboleth	     |APACHE		 |OPENLDAP         |
@@ -13,24 +13,29 @@ are available in the `/etc/certs` folder.
 |asimba.pkcs12	|shibIDP.key.orig|		         |openldap.pem	   |
 |asimbaIDP.jks	|shibIDP.pkcs  	 |               |		           |
 
-The certificates for `Passport` authentication are `passport-rp.jks, passport-rp.pem, passport-rs.jks`. The SCIM certificate is named `scim-rs.jks` and the OTP certificate is named `otp_configuration.json`.
+The certificates for `Passport` authentication are `passport-rp.jks, passport-rp.pem, passport-rs.jks`. 
+
+The SCIM certificate is named `scim-rs.jks` and the OTP certificate is named `otp_configuration.json`.
 
 Additionally the following `json` files are available which are used in different custom scripts for multi-factor authentication.
-
-* cert_creds.json
-* duo_creds.json
-* gplus_client_secrets.json
-* otp_configuration.json
-* oxauth-keys.json
-* super_gluu_creds.json
+ 
+* `cert_creds.json`    
+* `duo_creds.json`    
+* `gplus_client_secrets.json`     
+* `otp_configuration.json`    
+* `oxauth-keys.json`     
+* `super_gluu_creds.json`   
 
 ## Certificates in oxTrust
 
-Certificates commonly used for Single Sign On (SSO) typically have a short expiration date, and can be easily viewed and downloaded, in oxTrust. Navigate to Configuration > Certificates to access these certificates. The following are available:
-- OpenDJ SSL
-- httpd SSL
-- IDP Signing
-- IDP Encryption
+Certificates commonly used for SSO typically have a short expiration date, and can now be easily viewed and downloaded in oxTrust. Navigate to `Configuration` > `Certificates` to access these certificates. 
+
+The following are available:
+
+- OpenDJ SSL   
+- httpd SSL   
+- IDP Signing   
+- IDP Encryption   
 
 ![Example Certs in oxTrust](../img/admin-guide/oxtrust-certs.png)
 
