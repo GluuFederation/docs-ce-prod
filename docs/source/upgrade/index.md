@@ -25,7 +25,7 @@ logout
 service gluu-server-3.1.x restart
 ```
 
-!!! Note:
+!!! Note
     Scripts and directories outside the Chroot will still reflect the version from which you upgraded. For example, if you started with version 3.1.3, the directory will still be gluu-server-3.1.3 even after upgrading to 3.1.5.
 
 ## Latest .war Files
