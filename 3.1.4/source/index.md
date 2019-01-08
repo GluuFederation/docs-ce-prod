@@ -82,7 +82,7 @@ projects are frequently prefixed with our open source handle: **ox** (e.g. oxAut
 |	oxAuth      | [MIT License](http://opensource.org/licenses/MIT)|
 |	oxTrust      | [MIT License](http://opensource.org/licenses/MIT)|
 |	Shibboleth IDP      | [Apache2](http://www.apache.org/licenses/LICENSE-2.0)|
-|   OpenDJ              | [CDDL](https://opensource.org/licenses/CDDL-1.0)
+|   Gluu OpenDJ              | [CDDL](https://opensource.org/licenses/CDDL-1.0)
 | Passport-JS           | [MIT License](https://github.com/jaredhanson/passport/blob/master/LICENSE) |
 |  UnboundID LDAP SDK	| [UnboundID LDAP SDK Free Use License](https://github.com/UnboundID/ldapsdk/blob/master/LICENSE-UnboundID-LDAPSDK.txt)|
 | Jetty / Apache HTTPD  | [Apache2](http://www.apache.org/licenses/LICENSE-2.0)|
