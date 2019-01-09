@@ -49,10 +49,10 @@ Gluu Docs:
 http://gluu.org/docs/ce
 
 Application integration guide:
-https://gluu.org/docs/ce/3.1.2/integration/
+https://gluu.org/docs/ce/integration/
 
 Authentication guide:
-https://gluu.org/docs/ce/3.1.2/authn-guide/intro/
+https://gluu.org/docs/ce/authn-guide/intro/
 
 Gluu Support (Register and ask here if you have any questions!):
 https://support.gluu.org
