@@ -31,21 +31,35 @@ Installation of the Gluu server will be done under `/root`.
 The Gluu Server will create its file system under `/root/` and will be 
 installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) 
 remain the same as the host.
+    
+<!--
+#### Ubuntu Server 18.04.x
 
-#### Ubuntu Server 14.04.x
-
-| Command Description     |               Trusty Commands         |
+|  Command Description    |               Xenial Commands         |
 |-------------------------|---------------------------------------|
-| Add Gluu Repository     | `# echo "deb https://repo.gluu.org/ubuntu/ trusty main" > /etc/apt/sources.list.d/gluu-repo.list` |
+| Add Gluu Repository     | `# echo "deb https://repo.gluu.org/ubuntu/ bionic main" > /etc/apt/sources.list.d/gluu-repo.list` |
+|Add Ubuntu Universe Repositories| `# echo "deb http://archive.ubuntu.com/ubuntu bionic universe" > /etc/apt/sources.list` |
+|(Continued)             | `# echo "deb http://archive.ubuntu.com/ubuntu bionic-updates universe" > /etc/apt/sources.list` |
 | Add Gluu GPG Key        | `# curl https://repo.gluu.org/ubuntu/gluu-apt.key | apt-key add -` |
 | Update/Clean Repo       | `# apt-get update`                         |
 | Install Gluu Server     | `# apt-get install gluu-server-3.1.5`      |
+-->    
     
 #### Ubuntu Server 16.04.x
 
 |  Command Description    |               Xenial Commands         |
 |-------------------------|---------------------------------------|
 | Add Gluu Repository     | `# echo "deb https://repo.gluu.org/ubuntu/ xenial main" > /etc/apt/sources.list.d/gluu-repo.list` |
+| Add Gluu GPG Key        | `# curl https://repo.gluu.org/ubuntu/gluu-apt.key | apt-key add -` |
+| Update/Clean Repo       | `# apt-get update`                         |
+| Install Gluu Server     | `# apt-get install gluu-server-3.1.5`      |
+
+
+#### Ubuntu Server 14.04.x
+
+| Command Description     |               Trusty Commands         |
+|-------------------------|---------------------------------------|
+| Add Gluu Repository     | `# echo "deb https://repo.gluu.org/ubuntu/ trusty main" > /etc/apt/sources.list.d/gluu-repo.list` |
 | Add Gluu GPG Key        | `# curl https://repo.gluu.org/ubuntu/gluu-apt.key | apt-key add -` |
 | Update/Clean Repo       | `# apt-get update`                         |
 | Install Gluu Server     | `# apt-get install gluu-server-3.1.5`      |
