@@ -122,7 +122,7 @@ Generates ID for given prefix and type.
 **Response**<br/>
 [String[Response]](#String[Response])
 
-**generateHtmlInum
+**generateHtmlInum**  
 **GET**`/id/{prefix}/{type}/`
 
 Generates ID for given prefix and type.
