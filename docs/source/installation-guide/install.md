@@ -38,11 +38,12 @@ remain the same as the host.
 |  Command Description    |               Xenial Commands         |
 |-------------------------|---------------------------------------|
 | Add Gluu Repository     | `# echo "deb https://repo.gluu.org/ubuntu/ bionic main" > /etc/apt/sources.list.d/gluu-repo.list` |
-|Add Ubuntu Universe Repositories| `# echo "deb http://archive.ubuntu.com/ubuntu bionic universe" > /etc/apt/sources.list` |
-|(Continued)             | `# echo "deb http://archive.ubuntu.com/ubuntu bionic-updates universe" > /etc/apt/sources.list` |
 | Add Gluu GPG Key        | `# curl https://repo.gluu.org/ubuntu/gluu-apt.key | apt-key add -` |
 | Update/Clean Repo       | `# apt-get update`                         |
 | Install Gluu Server     | `# apt-get install gluu-server-3.1.5`      |
+
+!!! Note  
+    If you use the server version of Ubuntu 18, you need to add the Ubuntu Universe repositories as well. Use these commands: `# echo "deb http://archive.ubuntu.com/ubuntu bionic universe" > /etc/apt/sources.list` and `# echo "deb http://archive.ubuntu.com/ubuntu bionic-updates universe" > /etc/apt/sources.list`
 -->    
     
 #### Ubuntu Server 16.04.x
