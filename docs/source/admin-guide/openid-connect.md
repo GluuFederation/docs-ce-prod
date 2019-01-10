@@ -178,7 +178,7 @@ The sample dynamic scope script is [available here](./sample-dynamic-script.py).
 
 ## Subject Identifier Types
 
-A Subject Identifier is a locally unique and never reassigned identifier within the Issuer for the End-User, which is intended to be consumed by the Client. Two Subject Identifier types are defined in oxAuth: `public` and `pairwise`.
+A Subject Identifier is a locally unique and never reassigned identifier within the Issuer for the End-User, which is intended to be consumed by the Client. The can be found by navigating to `Configuration` > `oxAuth Configuration`. Two Subject Identifier types are defined in oxAuth: `public` and `pairwise`.
  
 ![Subject Types Supported](../img/admin-guide/openid/subjecttypessupported.png)
 
