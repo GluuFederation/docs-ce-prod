@@ -31,7 +31,7 @@ Installation of the Gluu server will be done under `/root`.
 The Gluu Server will create its file system under `/root/` and will be 
 installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) 
 remain the same as the host.
-    
+
 <!--
 #### Ubuntu Server 18.04.x
 
@@ -43,9 +43,9 @@ remain the same as the host.
 | Install Gluu Server     | `# apt-get install gluu-server-3.1.5`      |
 
 !!! Note  
-    If you use the server version of Ubuntu 18, you need to add the Ubuntu Universe repositories as well. Use these commands: `# echo "deb http://archive.ubuntu.com/ubuntu bionic universe" > /etc/apt/sources.list` and `# echo "deb http://archive.ubuntu.com/ubuntu bionic-updates universe" > /etc/apt/sources.list`
--->    
-    
+    If you use the server version of Ubuntu 18, you need to add the Ubuntu Universe repositories as well. Use these commands: `# echo "deb http://archive.ubuntu.com/ubuntu bionic universe" > /etc/apt/sources.list` and `# echo "deb http://archive.ubuntu.com/ubuntu bionic-updates universe" > /etc/apt/sources.list` 
+    -->    
+
 #### Ubuntu Server 16.04.x
 
 |  Command Description    |               Xenial Commands         |
@@ -114,6 +114,7 @@ remain the same as the host.
 | Update/Clean Repo       | `# apt-get update`                         |
 | Install Gluu Server     | `# apt-get install gluu-server-3.1.5`      |
 
+<!--
 #### Debian 9 (Stretch)
 
 | Command Description     |              Stretch Commands         |
@@ -122,6 +123,8 @@ remain the same as the host.
 | Add Gluu GPG Key        | `# curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -` |
 | Update/Clean Repo       | `# apt-get update`                         |
 | Install Gluu Server     | `# apt-get install gluu-server-3.1.5`      |
+
+-->
 
 
 ### 2. Start the Gluu Server and Log In
@@ -135,7 +138,7 @@ For Centos 6.x, Red Hat 6.x, Ubuntu 14/16, and Debian 8, run the following comma
 # service gluu-server-3.1.5 login
 ```
 
-For Centos 7.x, Red Hat 7.x and Debian 9 run the following commands: 
+For Centos 7.x and Red Hat 7.x <!--Ubuntu 18, Centos 7.x, Red Hat 7.x and Debian 9--> run the following commands: 
 
 ```
 # /sbin/gluu-serverd-3.1.5 enable
