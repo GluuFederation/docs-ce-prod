@@ -157,10 +157,6 @@ To add OpenID Connect Scopes and Claims:
 1. Click the `Add scope` button
 ![scopedetails](../img/openid/add-scope1.png)
 
-1. To add more claims, simply click "Add Claim" and you will be presented
-with the following screen:
-![Add Claims](../img/openid/add-scope-claim.png)
-
 A description of the fields in the add scope page:
 
 - Display Name: Name of the scope which will be displayed when searched.
@@ -172,10 +168,10 @@ A description of the fields in the add scope page:
    - Dynamic: specifies to the Gluu Server that scope values will be generated from the result of the Dynamic Scopes custom interception script.
    - OAuth: specifies to the Gluu Server that the scope will have no claims, it will be meaningful to an external resource server.
        
-- Default Scope: If True, the scope may be added to clients' registrations created via Dynamic Client Registration protocol. Specifying a scope as "Default" means that any OIDC client using Dynamic Client Registration can enlist it among requested scopes. Because this may result in sensitive user data being leaked to unauthorized parties, thorough assessment of all claims associated with "Default" scopes is advised. Out-of-the-box, the only default scope is `openid`, which is required by the OpenID Connect specification. Additional scopes can be explicitly add added as needed by editing client registration metadata manually in oxTrust.
+- Allow for dynamic registration: Select whether a client using the scope is allowed to dynamically register the scope, as well.
 
 ### Customizing scopes
-Similar to client registration, scopes can be customized using interception scripts. The interface can be found in oxTrust by navigating to `Configuration` > `Custom Scripts` > `Dynamic Scopes`. 
+Similar to client registration, scopes can be customized using interception scripts. The interface can be found in oxTrust by navigating to `Configuration` > `Manage Custom Scripts` > `Dynamic Scopes`. 
 
 The sample dynamic scope script is [available here](./sample-dynamic-script.py).
 
