@@ -114,7 +114,7 @@ remain the same as the host.
 | Update/Clean Repo       | `# apt-get update`                         |
 | Install Gluu Server     | `# apt-get install gluu-server-3.1.5`      |
 
-<!--
+
 #### Debian 9 (Stretch)
 
 | Command Description     |              Stretch Commands         |
@@ -123,8 +123,6 @@ remain the same as the host.
 | Add Gluu GPG Key        | `# curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -` |
 | Update/Clean Repo       | `# apt-get update`                         |
 | Install Gluu Server     | `# apt-get install gluu-server-3.1.5`      |
-
--->
 
 
 ### 2. Start the Gluu Server and Log In
@@ -138,7 +136,7 @@ For Centos 6.x, Red Hat 6.x, Ubuntu 14/16, and Debian 8, run the following comma
 # service gluu-server-3.1.5 login
 ```
 
-For Centos 7.x and Red Hat 7.x <!--Ubuntu 18, Centos 7.x, Red Hat 7.x and Debian 9--> run the following commands: 
+For Centos 7.x, Red Hat 7.x<!--, Ubuntu 18--> and Debian 9, run the following commands: 
 
 ```
 # /sbin/gluu-serverd-3.1.5 enable
