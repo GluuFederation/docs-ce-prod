@@ -92,6 +92,7 @@ pages:
         - 'JSON Properties':
             - 'oxTrust JSON Properties': 'reference/JSON-oxtrust-prop.md'
             - 'oxAuth JSON Properties': 'reference/JSON-oxauth-prop.md'
+            - 'Cache Provider Configuration': 'reference/cache-provider-prop.md'
         - 'Gluu LDAP Schema':
             - 'oxLDAP Properties': 'reference/oxldap.md'
             - 'LDAP Schema': 'reference/schema.md'
