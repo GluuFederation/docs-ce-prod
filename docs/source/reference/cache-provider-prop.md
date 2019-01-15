@@ -2,6 +2,13 @@
 ## Overview
 This page explains the Cache Provider configuration that can be accessed by navigating to `Configuration` > `JSON Configuration` > `Cache Provider Configuration`. 
 
+The following cache providers are now supported and can be selected via the cacheProviderType combo box field (see screenshot below):
+
+[In Memory](#in-memory-configuration) - recommended for small deployments only   
+[Memcached](#memcached-configuration) - recommended for single cache server deployment  
+[Redis](#redis-configuration) - recommended for cluster deployments  
+[Native Persistence](#native-persistence-configuration) - recommended to avoid additional components installation. All cache entries are saved in persistence layers.  
+
 ## Cache Provider Properties
 ![image](../img/reference/config-cacheprovider.png)
 
@@ -13,7 +20,7 @@ Name                          | Description
 ------------------------------| -----------
 cacheProviderType             | The cache provider type
 
-#### memcachedConfiguration
+#### Memcached Configuration
 
 Name                           | Description
 ------------------------------ | -----------
@@ -23,13 +30,13 @@ bufferSize                     | Buffer size in bytes
 defaultPutExpiration           | Expiration timeout value in seconds
 MemcachedConnectionFactoryType | Is the Connection Factory in memory or memcached
 
-#### inMemoryConfiguration
+#### In-Memory Configuration
 
 Name                          | Description
 ------------------------------| -----------
 defaultPutExpiration          | defaultPutExpiration timeout value in seconds
 
-#### redisConfiguration
+#### Redis Configuration
 
 Name                          | Description
 ------------------------------|-----------
@@ -40,7 +47,7 @@ defaultPutExpiration          | Default expiration time for the object put into 
 useSSL                        | Enable SSL communication between Gluu Server and Redis cache
 sslTrustStoreFilePath         | Directory Path to Trust Store
 
-#### nativePersistenceConfiguration
+#### Native Persistence Configuration
 
 Name                          | Description
 ------------------------------|-----------
