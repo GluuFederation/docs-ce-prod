@@ -151,35 +151,14 @@ The Gluu Server administrator can manage oxAuth sessions by adding the desired s
 
 ### Cache Provider Configuration
 
-The following cache providers are now supported and can be selected via the `cacheProviderType` combo box field (see screenshot below):
+The following cache providers are now supported and can be selected via the `cacheProviderType` combo box field:
 
-* [In Memory](#in-memory-cache-configuration) - recommended for small deployments only
-* [Memcached](#memcached-cache-configuration ) - recommended for single cache server deployment
-* [Redis](#redis-cache-configuration) - recommended for cluster deployments
-* [NativePersistence](#native-persistence-cache-configuration) - recommended to avoid additional components installation. All cache entries are saved in persistence layers.
+* [In Memory](../reference/cache-provider-prop.md#in-memory-configuration) - recommended for small deployments only
+* [Memcached](../reference/cache-provider-prop.md#memcached-configuration) - recommended for single cache server deployment
+* [Redis](../reference/cache-provider-prop.md#redis-configuration) - recommended for cluster deployments
+* [NativePersistence](../reference/cache-provider-prop.md#native-persistence-configuration) - recommended to avoid additional components installation. All cache entries are saved in persistence layers.
 
-#### In Memory Cache Configuration
-
-* defaultPutExpiration - default expiration time for the object put into cache
-
-#### Memcached Cache Configuration 
-
-* servers - space seperated list of servers (e.g. `server1:8081 server2:8082`)
-* maxOperationQueueLength - maximum operation queue length
-* defaultPutExpiration - default expiration time for the object put into cache
-* MemcachedConnectionFactoryType - connection factory type
-
-#### Redis Cache Configuration
-
-* redisProviderType - redis connection type provider. Possible values: `STANDALONE` (for standalone redis server only), `CLUSTER` (for redis cluster deployment only), `SHARDED` (client sharding connection)
-* servers - comma seperated list of servers (e.g. `server1:8081,server2:8081,server3:8081,server4:8081,server5:8081,server6:8081,server7:8081`)
-* defaultPutExpiration - default expiration time for the object put into cache
-
-![URI](../img/admin-guide/cacheProvider.png)
-
-#### Native Persistence Cache Configuration
-
-* defaultPutExpiration - default expiration time for the object put into cache
+Full configuration options can be found at the [Cache Provider Reference doc](../reference/cache-provider-prop.md)
 
 ### oxTrust Import Configuration
 The oxTrust Import Person Configuration page contains the configuration for 
