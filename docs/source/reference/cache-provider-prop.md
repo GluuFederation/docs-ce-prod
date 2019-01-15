@@ -36,7 +36,7 @@ Name                          | Description
 redisProviderType             | Type of connection: standalone, clustered, or sharded
 Servers                       | Server details separated by commas (e.g. 'server1:8080,server2:8081')
 password                      | Redis password
-defaultPutExpiration          | defaultPutExpiration timeout in seconds
+defaultPutExpiration          | Default expiration time for the object put into cache in seconds
 useSSL                        | Enable SSL communication between Gluu Server and Redis cache
 sslTrustStoreFilePath         | Directory Path to Trust Store
 
@@ -44,4 +44,4 @@ sslTrustStoreFilePath         | Directory Path to Trust Store
 
 Name                          | Description
 ------------------------------|-----------
-defaultPutExpiration          | defaultPutExpiration timeout value in seconds
+defaultPutExpiration          | Default expiration time for the object put into cache in seconds
