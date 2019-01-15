@@ -1,0 +1,47 @@
+# Cache Provider Configuration
+## Overview
+This page explains the Cache Provider configuration that can be accessed by navigating to `Configuration` > `JSON Configuration` > `Cache Provider Configuration`. 
+
+## Cache Provider Properties
+![image](../img/reference/config-cacheprovider.png)
+
+The following tables include the name and description of each configurable oxAuth property:
+
+### Cache Configuration
+
+Name                          | Description
+------------------------------| -----------
+cacheProviderType             | The cache provider type
+
+#### memcachedConfiguration
+
+Name                           | Description
+------------------------------ | -----------
+servers                        | Server details separated by spaces (e.g. `server1:8080 server2:8081)
+maxOperationQueueLength        | Maximum number of operations that can be queued
+bufferSize                     | Buffer size in bytes
+defaultPutExpiration           | Expiration timeout value in seconds
+MemcachedConnectionFactoryType | Is the Connection Factory in memory or memcached
+
+#### inMemoryConfiguration
+
+Name                          | Description
+------------------------------| -----------
+defaultPutExpiration          | defaultPutExpiration timeout value in seconds
+
+#### redisConfiguration
+
+Name                          | Description
+------------------------------|-----------
+redisProviderType             | Type of connection: standalone, clustered, or sharded
+Servers                       | Server details separated by commas (e.g. 'server1:8080,server2:8081')
+password                      | Redis password
+defaultPutExpiration          | defaultPutExpiration timeout in seconds
+useSSL                        | Enable SSL communication between Gluu Server and Redis cache
+sslTrustStoreFilePath         | Directory Path to Trust Store
+
+#### nativePersistenceConfiguration
+
+Name                          | Description
+------------------------------|-----------
+defaultPutExpiration          | defaultPutExpiration timeout value in seconds
