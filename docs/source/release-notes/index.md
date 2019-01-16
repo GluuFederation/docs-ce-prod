@@ -122,6 +122,8 @@ documentation and administrative guide.
 
 ### [GluuFederation/oxTrust](https://github.com/GluuFederation/oxTrust/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.5+)
 
+- [#1451](https://github.com/GluuFederation/oxTrust/issues/1451) ~Error in client registration form~
+
 - [#1448](https://github.com/GluuFederation/oxTrust/issues/1448) ~Enhancement for some views~
 
 - [#1435](https://github.com/GluuFederation/oxTrust/issues/1435) ~add claims - better search / pagination~
