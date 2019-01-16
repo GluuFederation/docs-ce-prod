@@ -256,7 +256,7 @@ When a [custom authentication script](../authn-guide/customauthn.md) is enabled,
 its name is added to both dropdown lists, allowing you to select from a wide 
 variety of prepackaged authentication methods, or define your own.
 
-!!! Warning:
+!!! Warning
     If **both** default authentication methods are set to "Default", 
     oxAuth will use basic LDAP bind authentication, but only until 
     the moment some custom authentication script becomes enabled. 
