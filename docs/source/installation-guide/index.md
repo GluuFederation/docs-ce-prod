@@ -9,13 +9,14 @@ Good luck and welcome to the community!
     
 ## System Requirements
 
-The Gluu Server needs to be deployed on a server or VM with the following **minimum** requirements. 
+Deploy Gluu on a server or VM with the following **minimum** requirements: 
 
 |CPU Unit  |    RAM     |   Disk Space      | Processor Type |
 |----------|------------|-------------------|----------------|
 |       2  |    4GB     |   40GB            |  64 Bit        |
 
-If you plan on installing more than the default components (i.e. oxAuth, oxTrust, and LDAP), we recommend using a machine with at least 8GB of RAM. 
+
+When installing more than the default components (i.e. oxAuth, oxTrust, and LDAP), we recommend using a machine with **at least 8GB of RAM**. 
 
 !!! Note
     Want to try our newly released "Docker Edition"? Head over to the [docker edition docs](../docker/intro.md)
