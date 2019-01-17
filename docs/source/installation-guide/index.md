@@ -10,7 +10,7 @@ Good luck and welcome to the community!
 !!! Note
     To learn more about software licenses, use cases, and more, visit the [docs homepage](../index.md)
     
-!!! Note   
+!!! Note
     Prefer to try Gluu Server "Docker Edition"? Head over to the [docker edition docs](../docker/intro.md)
     
     
