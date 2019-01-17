@@ -11,7 +11,7 @@ Good luck and welcome to the community!
     To learn more about software licenses, use cases, and more, visit the [docs homepage](../index.md)
     
 !!! Note
-    Prefer to try Gluu Server "Docker Edition"? Head over to the [docker edition docs](../docker/intro.md)
+    Prefer to try Gluu Server "Docker Edition"? Head over to the [docker edition docs](https://gluu.org/docs/de)
     
     
 ## System Requirements
