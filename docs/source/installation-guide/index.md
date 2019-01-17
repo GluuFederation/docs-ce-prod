@@ -89,6 +89,10 @@ ulimit -n unlimited
 
 * Restart your system.     
 
+## Fully Qualified Domain Name (FQDN)
+
+Gluu must be deployed on a fully qualified domain name (FQDN), e.g. `https://my-gluu.server.com`. Localhost is **not** supported. 
+
 ## Cloud-specific notes
 
 ### Amazon AWS      
