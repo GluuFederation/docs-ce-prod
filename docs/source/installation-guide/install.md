@@ -21,7 +21,7 @@ Make sure the target server or VM meets the **all** [minimum requirements](../in
 
 - **Debian 8**: make sure the `apt-transport-https` package is already installed on the target system before the `gluu-repo.list` is added. Otherwise the installation might be hindered.
 
-- **Linux containers (e.g. Docker)**: This guide does not support installation via Linux containers. See [Gluu Server Docker Edition (DE)](../docker/intro.md) documentation for detailed instructions.
+- **Linux containers (e.g. Docker)**: This guide does not support installation via Linux containers. See [Gluu Server Docker Edition (DE)](https://gluu.org/docs/de) documentation for detailed instructions.
   
 
 ## Instructions
