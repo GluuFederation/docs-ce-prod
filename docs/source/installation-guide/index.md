@@ -16,7 +16,7 @@ Good luck and welcome to the community!
     
 ## System Requirements
 
-Deploy Gluu on a server or VM with the following **minimum** requirements: 
+Setup a server or VM with the following **minimum** requirements: 
 
 |CPU Unit  |    RAM     |   Disk Space      | Processor Type |
 |----------|------------|-------------------|----------------|
