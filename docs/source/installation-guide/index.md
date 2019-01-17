@@ -1,11 +1,18 @@
 # Preparing VM for Gluu Server Installation
 ## Overview
-Thank you for your interest in the Gluu Server! This document will provide instructions for preparing your VM for a standard Gluu Server deployment. Once the server is ready, move on to the [installation instructions](../installation-guide/install.md). 
+
+Thank you for your interest in the Gluu Server! 
+
+This document will provide instructions for preparing your VM  for a standard Gluu Server deployment (**not** Docker). Once the server is ready, move on to the [installation instructions](../installation-guide/install.md). 
 
 Good luck and welcome to the community!
 
 !!! Note
     To learn more about software licenses, use cases, and more, visit the [docs homepage](../index.md)
+    
+!!! Note   
+    Prefer to try Gluu Server "Docker Edition"? Head over to the [docker edition docs](../docker/intro.md)
+    
     
 ## System Requirements
 
@@ -18,9 +25,7 @@ Deploy Gluu on a server or VM with the following **minimum** requirements:
 
 When installing more than the default components (i.e. oxAuth, oxTrust, and LDAP), we recommend using a machine with **at least 8GB of RAM**. 
 
-!!! Note
-    Want to try our newly released "Docker Edition"? Head over to the [docker edition docs](../docker/intro.md)
-    
+
 !!! Warning
     Gluu must be deployed on a server or VM with a static IP Address. The static IP address should resolve to a computer hostname which can be achieved by adding an entry to the DNS server or in `/etc/hosts`.     
     
