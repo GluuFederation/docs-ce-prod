@@ -3,7 +3,7 @@
 
 Thank you for your interest in the Gluu Server! 
 
-This document will provide instructions for preparing your VM  for a standard Gluu Server deployment (**not** Docker). Once the server is ready, move on to the [installation instructions](../installation-guide/install.md). 
+This document will provide instructions for preparing your VM  for a standard Gluu Server deployment (i.e. **not** Docker). Once the server is ready, move on to the [installation instructions](../installation-guide/install.md). 
 
 Good luck and welcome to the community!
 
