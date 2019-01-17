@@ -13,15 +13,15 @@ installation procedure is similar across all the distributions:
     The below instructions are intended for single server Gluu deployments. If you intend to cluster your Gluu Server to achieve fail-over and high availability, please refer to the [cluster documentation](./cluster.md)
 
 ## Prerequisites
-Make sure the target server or VM meets the [minimum requirements](../installation-guide/index.md) to deploy the Gluu Server.
+Make sure the target server or VM meets the **all** [minimum requirements](../installation-guide/index.md) to deploy the Gluu Server.   
 
-!!! Warning
-    Docker containers are not supported by this guide. See [this page](../docker/intro.md) for Docker instructions.   
-
-### System specific requirements
+### System specific notes
 
 - **CentOS**: selinux must be set to permissive in /etc/selinux/config
+
 - **Debian 8**: make sure the `apt-transport-https` package is already installed on the target system before the `gluu-repo.list` is added. Otherwise the installation might be hindered.
+
+- **Linux containers (e.g. Docker)**: This guide does not support installation via Linux containers. See [Gluu Server Docker Edition (DE)](../docker/intro.md) documentation for detailed instructions.
   
 
 ## Instructions
