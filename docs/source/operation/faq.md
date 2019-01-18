@@ -304,7 +304,7 @@ You should always test new authentication methods in a different browser to redu
 
 In such a situation, you can use the following methods to revert back to the previous authentication method:
 
-1. Manual Method: 
+### Manual Method: 
 
 This method rely on ldif file to change the authentication mode in LDAP server directly.
 
@@ -331,7 +331,8 @@ This method rely on ldif file to change the authentication mode in LDAP server d
     ```
     root@gluu3-ubuntu:/opt/symas/bin# ./ldapmodify -h localhost -p 1389 -D "cn=directory manager,o=gluu" -w "{password provided during setup}" -f revert.ldif
     ```
-2. Graphical method:
+
+### Graphical method:
 
 The idea here is to use an LDAP browser, hence this method is much more simple.
 
