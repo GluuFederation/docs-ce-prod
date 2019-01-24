@@ -51,7 +51,7 @@ The following ports are open to the Internet by default.
 !!! Note
     See the [operations guide](../operation/ports.md) for a list of internal ports used by Gluu Server components (e.g. oxAuth, oxTrust, etc.). 
 
-## File Descriptors(FD)
+## File Descriptors (FD)
 
 The Gluu Server requires setting the **`file descriptors` to 65k**.
 
