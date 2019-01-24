@@ -53,7 +53,8 @@ The following ports are open to the Internet by default.
 
 ## File Descriptors(FD)
 
-The Gluu Server **requires** setting the `file descriptors` to 65k. 
+The Gluu Server requires setting the **`file descriptors` to 65k**.
+
 Follow these steps or research how to do this on your Linux platform.
 
 * Add the following lines in the `/etc/security/limits.conf` file.
