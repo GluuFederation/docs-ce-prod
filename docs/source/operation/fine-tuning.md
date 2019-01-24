@@ -91,9 +91,7 @@ Example configuration:
 
 ## Apache Tomcat
 
-1. Set maximum for parallel requests.    
-
-   Connector parameters in `server.xml`:
+1. Set maximum for parallel requests. Connector parameters in `server.xml`:
       - maxThreads="10000"
       - maxConnections="10000"
      
