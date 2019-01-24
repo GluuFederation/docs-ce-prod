@@ -13,7 +13,7 @@ installation procedure is similar across all the distributions:
     The below instructions are intended for single server Gluu deployments. If you intend to cluster your Gluu Server to achieve fail-over and high availability, please refer to the [cluster documentation](./cluster.md)
 
 ## Prerequisites
-Make sure the target server or VM meets the **all** [minimum requirements](../installation-guide/index.md) to deploy the Gluu Server.   
+Make sure the target server or VM meets **all minimum requirements** as specified in the [VM Preparation Guide](../installation-guide/index.md).   
 
 ### System specific notes
 
