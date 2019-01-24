@@ -8,11 +8,7 @@ This document will provide instructions for preparing a VM  for a standard Gluu 
 Good luck and welcome to the community!
 
 !!! Note
-    To learn more about software licenses, use cases, and more, visit the [docs homepage](../index.md)
-    
-!!! Note
-    Prefer to try Gluu Server "Docker Edition"? Head over to the [docker edition docs](https://gluu.org/docs/de)
-    
+    To learn more about software licenses, use cases, and more, visit the [docs homepage](../index.md)    
     
 ## System Requirements
 
