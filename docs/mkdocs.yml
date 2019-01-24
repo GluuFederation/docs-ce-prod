@@ -101,7 +101,7 @@ pages:
         - 'Patches': 'upgrade/patches.md'
         - 'Backups': 'operation/backup.md'
         - 'Security tips': 'operation/security.md'
-        - `Performance tuning': 'operation/fine-tuning.md'
+        - 'Performance tuning': 'operation/fine-tuning.md'
         - 'Ports': 'operation/ports.md'
         - 'Logout': 'operation/logout.md'
         - 'Log Management' : 'operation/logs.md'
