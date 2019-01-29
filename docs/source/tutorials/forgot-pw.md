@@ -48,4 +48,4 @@ This is an abstract guide to describe how to implement a self-service Forgot Pas
 
 ## Best Practices
 
-For an overview of best practices to follow, review [OWASP's Forgot PW cheatsheet](https://www.owasp.org/index.php/Forgot_Password_Cheat_Sheet). 
+For an overview of best practices to follow when implementing your custom page, review [OWASP's Forgot PW cheatsheet](https://www.owasp.org/index.php/Forgot_Password_Cheat_Sheet). 
