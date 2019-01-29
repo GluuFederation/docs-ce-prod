@@ -114,4 +114,5 @@ pages:
         - 'Script Debugging': 'developer-guide/script-debugging.md'
 - Tutorials:
         - 'Inbound SAML with Passport': 'tutorials/passport-inbound-flow.md'
+        - 'Forgot PW': 'tutorials/forgot-pw.md'
 - FAQ & Troubleshooting: 'operation/faq.md'
