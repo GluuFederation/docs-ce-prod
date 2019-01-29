@@ -1,44 +1,21 @@
 # Change IP Address of existing Gluu CE Server
 
-Question: What if my IP changes? Do I need to reinstall whole Gluu Server? 
+If your IP changes after initial setup, you need to change your Gluu Server's configuration.
 
-Answer: No. Here is how you can apply new IP in Gluu Server 3.1.x
-
-- Start container
-- Log into Gluu Server container
-- Configuration in apache2: 
-    - https_gluu.conf (location: /etc/apache2/sites-available )
-    - Apply new IP by replacing old one
-    - Restart apache2
-    
-    `service httpd stop`
-    
-    `service httpd start`
-    
-- Configuration in ldap: (open LDAP in LDAP editor/browser)
-    - Change 'gluuIpAddress'. It's under root ou=appliances DN
-- Change IP address in `/etc/hosts` file
-- Restart 'solserver'
-
-    `service solserver stop`
-    
-    `service solserver start`
-    
-- Restart apache2
-
-    `service httpd restart`
-    
-- Restart idp ( If you have Shibboleth installed )
-- Restart identity
-
-    `service identity stop`
-    
-    `service identity start`
-    
-- Restart oxauth
-
-    `service oxauth stop`
-    
-    `service oxauth start`
-    
-- Test
+1. Start the Gluu Server
+1. Log into Gluu Server Chroot container
+1. Update the Apache Configuration 
+    - Navigate to `/etc/apache2/sites-available`
+    - Open `https_gluu.conf` in a text editor
+    - Change the IP address
+    - Restart Apache2 with `service httpd restart`
+1. Update the LDAP Configuration
+    - Open the LDAP in an LDAP editor or browser
+    - Update 'gluuIpAddress', under the root ou=appliances DN
+1. Change the IP address in `/etc/hosts` file
+1. Restart Solserver with `service solserver restart`
+1. Restart Apache2 with `service httpd restart`
+1. Restart the IDP if you have Shibboleth installed
+1. Restart Identity with `service identity stop` and `service identity start`
+1. Restart oxAuth with `service oxauth stop` and `service oxauth start`
+1. Test
