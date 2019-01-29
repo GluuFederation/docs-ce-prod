@@ -1,6 +1,8 @@
 # Forgot Password using SCIM
+The Gluu Server ships with a built-in feature for Forgot Password, but it is **not** recommended for use in production. Instead, we recommend organizations write their own, or leverage an existing open source tool dedicated to offering end-users the ability to reset their lost passwords. 
 
-This is an abstract guide describing how to implement a self-service Forgot Password workflow using Gluu's SCIM APIs. 
+## Overivew
+The Gluu Server exposes SCIM APIs for managing user data. This is an abstract guide describing how to implement a self-service Forgot Password workflow using those SCIM APIs. 
 
 1. User clicks "forgot" password link from the login page and is redirected to the Forgot Password application. 
 1. User is asked to enter username or email. The page should not confirm nor deny existence of the user in order to avoid leaking data unnecessarily.          
@@ -46,4 +48,4 @@ This is an abstract guide describing how to implement a self-service Forgot Pass
 
 ## Best Practices
 
-For an overview of best practices to follow when implementing your custom page, review [OWASP's Forgot PW cheatsheet](https://www.owasp.org/index.php/Forgot_Password_Cheat_Sheet). 
+There is no industry standard for implementing a Forgot Password feature. However, for an overview of best practices, review [OWASP's Forgot PW cheatsheet](https://www.owasp.org/index.php/Forgot_Password_Cheat_Sheet). 
