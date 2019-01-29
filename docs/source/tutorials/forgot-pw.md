@@ -8,7 +8,7 @@ This is an abstract guide to describe how to implement a self-service Forgot Pas
     !!! Note
     It's best **not** to indicate if the user exists to avoid leaking data unnecessarily.      
     
-1. An e-mail is sent to the address associated with the account with a randomly generated link the user can click to reset password
+1. If there is an active user in the system associated with the username or email specified in the previous step, an e-mail is sent to the address on file with a randomly generated link the user can click to reset their password
 1. User clicks the link that takes the browser to a form
 1. The form shows two fields for the user to set `password` and `confirm password`
 1. Upon form submission in the server side, validate the data to confirm both password fields have the same content
