@@ -6,7 +6,7 @@ This is an abstract guide to describe how to implement a self-service Forgot Pas
 1. User is asked to enter username or email    
 
     !!! Note
-    It's best not to indicate if the user exists to avoid leaking data unnecessarily.      
+    It's best **not** to indicate if the user exists to avoid leaking data unnecessarily.      
     
 1. An e-mail is sent to the address associated with the account with a randomly generated link the user can click to reset password
 1. User clicks the link that takes the browser to a form
