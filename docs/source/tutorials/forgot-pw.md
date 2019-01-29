@@ -10,7 +10,7 @@ The Gluu Server exposes SCIM APIs for managing user data. This is an abstract gu
 1. User is asked to enter username or email. In order to avoid leaking data unnecessarily, this page should neither confirm nor deny existence of the user.          
 1. If there is an active user in the system associated with the username or email specified in the previous step, an e-mail is sent to the address on file with a link that is mapped to the user account with the help of a randomly generated, non-reusable token. The link should have sufficient entropy, and should expire within a short period of time, for instance 10 minutes. 
 1. User clicks the link and which opens their browser to the form.
-1. The form shows two fields for the user to set `password` and `confirm password`. A tool like [zxcvbn](https://github.com/dropbox/zxcvbn) might be used in this page to enforce a minimum level of entropy for the new password. 
+1. The form shows two fields for the user to set `password` and `confirm password`. A tool like [zxcvbn](https://github.com/dropbox/zxcvbn) might be used in this page to enforce a minimum level of entropy for new passwords. 
 1. Upon form submission in the server side, validate the data to confirm both password fields have the same content.
 1. If validation passes, a password update operation is performed by doing the following: 
 
