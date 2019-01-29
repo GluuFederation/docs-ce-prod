@@ -4,8 +4,10 @@ This is an abstract guide to describe how to implement a self-service Forgot Pas
 
 1. User clicks "forgot" password link from the login page and is redirected to the forgot pw application 
 1. User is asked to enter username or email    
+
     !!! Note
     It's best not to indicate if the user exists to avoid leaking data unnecessarily.      
+    
 1. An e-mail is sent to the address associated with the account with a randomly generated link the user can click to reset password
 1. User clicks the link that takes the browser to a form
 1. The form shows two fields for the user to set `password` and `confirm password`
