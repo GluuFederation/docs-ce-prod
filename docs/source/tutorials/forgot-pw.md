@@ -1,7 +1,7 @@
 # Forgot Password using SCIM
 The Gluu Server ships with a built-in feature for Forgot Password, but it is **not** recommended for use in production. Instead, we recommend organizations write their own app, or leverage an existing open source tool dedicated to offering end-users the ability to reset their lost passwords. 
 
-## Overivew
+## Overview
 The Gluu Server exposes SCIM APIs for managing user data. This is an abstract guide describing how to implement a self-service Forgot Password workflow using those SCIM APIs. 
 
 ## Workflow 
