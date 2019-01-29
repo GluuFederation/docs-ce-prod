@@ -2,7 +2,7 @@
 
 This is an abstract guide describing how to implement a self-service Forgot Password workflow using Gluu's SCIM APIs. 
 
-1. User clicks "forgot" password link from the login page and is redirected to the forgot pw application 
+1. User clicks "forgot" password link from the login page and is redirected to the Forgot Password application 
 1. User is asked to enter username or email    
 
     !!! Note 
