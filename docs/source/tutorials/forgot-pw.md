@@ -1,14 +1,16 @@
 # Forgot Password using SCIM
 
-This is an abstract guide to describe how to implement a self-service "forgot password" workflow using Gluu's SCIM APIs. 
+This is an abstract guide to describe how to implement a self-service "forgot password" workflow using Gluu's SCIM APIs. For an overview of best practices, review [OWASP's Forgot PW cheatsheet](https://www.owasp.org/index.php/Forgot_Password_Cheat_Sheet). 
 
-1. User clicks a "forgot" password link 
-1. User is requested to enter his username or email
-1. An mail is sent to the e-mail linked to the account identified by data entered in the previous step
-1. User clicks a link that takes the browser to a form
-1. The form shows two fields "password" and "confirm password" the user must enter
+1. User clicks "forgot" password link from the login page and is redirected to the forgot pw application 
+1. User is asked to enter username or email
+    !!! Note
+        It's best to not indicate if the user exists to avoid leaking data unnecessarily. 
+1. An e-mail is sent to the address associated with the account with a randomly generated link the user can click to reset password
+1. User clicks the link that takes the browser to a form
+1. The form shows two fields for the user to set `password` and `confirm password`
 1. Upon form submission in the server side, validate the data to confirm both password fields have the same content
-1. If validation passes, a password update is performed by doing
+1. If validation passes, a password update operation is performed by doing the following: 
 
     ```
     PUT /identity/restv1/scim/v2/Users/INUM_OF_USER
@@ -27,11 +29,11 @@ This is an abstract guide to describe how to implement a self-service "forgot pa
 
     where:
 
-    - INUM_OF_USER is the inum LDAP attribute of the user in question    
+    - INUM_OF_USER is the inum LDAP attribute of the user in question     
     - TOKEN is obtained according to UMA flow or test mode (ref doc [here](https://gluu.org/docs/ce/user-management/scim2/))    
     - and PASSWORD_VALUE is the value to set for password     
 
-1. If the password update took place, the following should be expected as response:
+1. If the password update was successful, the following should be expected as response:
 
     ```
     HTTP/1.1 200 OK
