@@ -3,9 +3,9 @@
 This is an abstract guide to describe how to implement a self-service "forgot password" workflow using Gluu's SCIM APIs. For an overview of best practices, review [OWASP's Forgot PW cheatsheet](https://www.owasp.org/index.php/Forgot_Password_Cheat_Sheet). 
 
 1. User clicks "forgot" password link from the login page and is redirected to the forgot pw application 
-1. User is asked to enter username or email
+1. User is asked to enter username or email    
     !!! Note
-        It's best to not indicate if the user exists to avoid leaking data unnecessarily. 
+        It's best to not indicate if the user exists to avoid leaking data unnecessarily.      
 1. An e-mail is sent to the address associated with the account with a randomly generated link the user can click to reset password
 1. User clicks the link that takes the browser to a form
 1. The form shows two fields for the user to set `password` and `confirm password`
