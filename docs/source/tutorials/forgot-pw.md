@@ -4,6 +4,8 @@ The Gluu Server ships with a built-in feature for Forgot Password, but it is **n
 ## Overivew
 The Gluu Server exposes SCIM APIs for managing user data. This is an abstract guide describing how to implement a self-service Forgot Password workflow using those SCIM APIs. 
 
+## Workflow 
+
 1. User clicks "forgot" password link from the login page and is redirected to the Forgot Password application. 
 1. User is asked to enter username or email. The page should not confirm nor deny existence of the user in order to avoid leaking data unnecessarily.          
 1. If there is an active user in the system associated with the username or email specified in the previous step, an e-mail is sent to the address on file with a link that is mapped to the user account with the help of a randomly generated, non-reusable token. The link should have sufficient entropy, and should expire within a short period of time, for instance 10 minutes. 
