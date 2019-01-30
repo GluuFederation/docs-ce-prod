@@ -28,30 +28,6 @@ service gluu-server-3.1.x restart
 !!! Note:
     Scripts and directories outside the Chroot will still reflect the version from which you upgraded. For example, if you started with version 3.1.3, the directory will still be gluu-server-3.1.3 even after upgrading to 3.1.4.
 
-## Latest .war Files
-
-The latest release of .war files can be downloaded from the locations provided below. Select the subdirectory corresponding to 
-your package version.
-
-!!! Note
-    Subdirectories marked as "-SNAPSHOT" are not safe for general public's use and should be avoided unless you were specifically instructed by Gluu staff to use one.
-
-- [oxTrust](https://ox.gluu.org/maven/org/xdi/oxtrust-server/)
-- [oxAuth](https://ox.gluu.org/maven/org/xdi/oxauth-server/)
-- [Shibboleth IdP](https://ox.gluu.org/maven/org/xdi/oxshibbolethIdp/)
-- [Asimba SAML proxy](https://ox.gluu.org/maven/org/asimba/asimba-wa/)
-- [oxAuth RP](https://ox.gluu.org/maven/org/xdi/oxauth-rp/)
-
-### Location of Gluu 3.1.4 Components
-
-Gluu 3.1.x components that can be updated in this way inside the container can be found at the following locations:
-
-- oxTrust: `/opt/gluu/jetty/identity/webapps/identity.war`
-- oxAuth: `/opt/gluu/jetty/oxauth/webapps/oxauth.war`
-- Shibboleth IdP: `/opt/gluu/jetty/idp/webapps/idp.war`
-- Asimba SAML proxy: `/opt/gluu/jetty/asimba/webapps/asimba.war`
-- oxAuth RP: `/opt/gluu/jetty/oxauth-rp/webapps/oxauth-rp.war`
-
 
 ## Upgrade from 3.0.x to 3.1.4
 
