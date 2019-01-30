@@ -1,7 +1,5 @@
 # Gluu Server Patches
 
-# Gluu Server Patches
-
 ## Publicly viewable oxTrust pages
 
 ### January 30, 2019
