@@ -29,10 +29,10 @@ The steps to fix below apply to **all** affected Gluu Server versions.
 1. Backup your Gluu Server -- either a VM snapshot or a tarball of the gluu-server container. [Read the docs](https://gluu.org/docs/ce/3.1.4/operation/backup/)        
 
 1. Log into your Gluu Server container.              
-         For Centos 6.x, Red Hat 6.x, Ubuntu 14/16, and Debian 8:
+     For Centos 6.x, Red Hat 6.x, Ubuntu 14/16, and Debian 8:
          `# service gluu-server-3.1.x login`
 
-         For Centos 7.x, Red Hat 7.x and Debian 9:
+     For Centos 7.x, Red Hat 7.x and Debian 9:
          `# /sbin/gluu-serverd-3.1.x login` 
 
 1. Download the patch script:             
