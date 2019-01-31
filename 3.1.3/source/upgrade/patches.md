@@ -26,8 +26,8 @@ The steps to fix below apply to **all** affected Gluu Server versions.
     We always recommend testing on a non-production environment first.
     
 
-1. Backup your Gluu Server -- either a VM snapshot or a tarball of the gluu-server container. [Read the docs](https://gluu.org/docs/ce/3.1.4/operation/backup/)
-1. Log into your Gluu Server container.
+1. Backup your Gluu Server -- either a VM snapshot or a tarball of the gluu-server container. [Read the docs](https://gluu.org/docs/ce/3.1.4/operation/backup/)      
+1. Log into your Gluu Server container.     
 
       For Centos 6.x, Red Hat 6.x, Ubuntu 14/16, and Debian 8:
 
@@ -36,13 +36,13 @@ The steps to fix below apply to **all** affected Gluu Server versions.
       For Centos 7.x, Red Hat 7.x and Debian 9:
 
       `# /sbin/gluu-serverd-3.1.x login` 
-1. Download the patch script:
+1. Download the patch script:   
       `wget https://repo.gluu.org/upd/security_patch_identity.py`
-1. Run the command:
+1. Run the command:    
       `chmod +x security_patch_identity.py`
-1. Run the command:
+1. Run the command:    
       `python security_patch_identity.py` 
-1. Open an incognito window in your browser and attempt to access the two affected pages. They should now require authentication.
+1. Open an incognito window in your browser and attempt to access the two affected pages. They should now require authentication.    
 
 ## Code White Patch
 ### August 21, 2018
