@@ -1,20 +1,22 @@
-# Password Reset
+# Forgot Password
 
 ## Overview
 
-As a privileged user, the administrator can configure the password reset feature built into the Gluu Server.
-This feature gives users the ability to reset their password.
-Below are the steps to configure that feature:
+An administrator can configure the Forgot Password feature by following these steps:
 
 1. Provide the SMTP Server configuration
 1. Enable password reset on OxTrust adminUI
 1. Test
 
+### Security concerns
+
+Forgot Password is a feature of oxTrust, the admin GUI for the Gluu Server. In most production deployments, oxTrust should **not** be accessible via the Internet. It's simply too powerful in the wrong hands. Under most circumstances we instead recommend following the [Forgot Password using SCIM tutorial](../tutorials/forgot-pw.md/). 
+
 ## Prerequisites
 
-The requirements are:  
+The following are requirements to use this feature:  
 
-1. A running Gluu Server instance  
+1. An active Gluu Server instance with oxTrust accessible via the web
 1. A working SMTP Server  
 
 ## Provide the SMTP Server Configuration
