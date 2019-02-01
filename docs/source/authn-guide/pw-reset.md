@@ -10,7 +10,7 @@ An administrator can configure the Gluu Server's built-in Forgot Password featur
 
 ### Security concerns
 
-Forgot Password is a feature of oxTrust, the admin GUI for the Gluu Server. In most production deployments, oxTrust should **not** be accessible via the Internet. It's simply too powerful in the wrong hands. Under most circumstances we instead recommend following the [Forgot Password using SCIM tutorial](../tutorials/forgot-pw.md/). 
+Forgot Password is a feature of oxTrust, the admin GUI for the Gluu Server. In most production deployments, oxTrust should **not** be accessible via the Internet. It's simply too powerful. Because so, under most circumstances we instead recommend following the [Forgot Password using SCIM tutorial](../tutorials/forgot-pw.md/). 
 
 ## Prerequisites
 
