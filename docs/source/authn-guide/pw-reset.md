@@ -2,7 +2,7 @@
 
 ## Overview
 
-An administrator can configure the Forgot Password feature by following these steps:
+An administrator can configure the Gluu Server's built-in Forgot Password feature by following these steps:
 
 1. Provide the SMTP Server configuration
 1. Enable password reset on OxTrust adminUI
