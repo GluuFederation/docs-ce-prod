@@ -3,7 +3,7 @@ Gluu Server has a stateless architecture and scales quite easily. However to ach
 
 Tuning consists of:
 
-- OS Tunning   
+- OS Tuning   
 - Memory and infrastructure   
 - LDAP Server (Gluu OpenDJ)      
 - Web Application Container (Tomcat, Jetty, JBoss)   
