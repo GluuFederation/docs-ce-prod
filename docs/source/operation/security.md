@@ -21,7 +21,9 @@ The following controls within the Gluu Server's virtual host files in `/etc/http
 
 ### Block access
 
-We recommend blocking access to the oxTrust web UI from public networks. This can be achieved, for example, by limiting access to a specific IP address/network range only, by updating corresponding "Location" directive in `/etc/httpd/conf.d/https_gluu.conf` In example below access is only allowed from one specific private range ip address, three private network ip address ranges, and from localhost (what is useful if you prefer to access oxTrust by forwarding TCP port 443 of your remote Gluu Server instance to your local machine):
+We recommend blocking access to the oxTrust web UI from public networks. This can be achieved, for example, by limiting access to a specific IP address/network range only, by updating corresponding "Location" directive in `/etc/httpd/conf.d/https_gluu.conf`. 
+
+In the example below, access is only allowed from one specific private range IP address, three private network IP address ranges, and from localhost (which is useful if you prefer to access oxTrust by forwarding TCP port 443 of your remote Gluu Server instance to your local machine):
 
 
 ```
@@ -36,7 +38,7 @@ We recommend blocking access to the oxTrust web UI from public networks. This ca
 ```
 
 !!! Note
-    oxTrust is responsible for publishing SCIM APIs. If SCIM is in use, the IP address of the SCIM client should be included to the rule above as well
+    oxTrust is responsible for publishing SCIM APIs. If SCIM is in use, the IP address of the SCIM client should be included to the rule above as well.
 
 
 ### Configure 2FA 
