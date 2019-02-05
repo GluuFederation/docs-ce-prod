@@ -87,13 +87,23 @@ button. The flow is _Add Member --> Search the name/email of the user
 
 ## Import People in oxTrust
 
-Gluu Server allows the administrator to import users from an excel file. 
+Gluu administrators can import users from an excel file by navigating to `Users` > `Import People`.
 
+![image](../img/admin-guide/user/import-people_add.png)
 
-### People Import file structure
+* Click the `Add` button to select the file from which the users will be imported. 
 
-The excel file needs to contain the following fields from which the user data will be pulled. 
-Please remember to use the exact spelling as shown here. 
+The supported excel formats are `xls` and `xlsx`.
+
+![image](../img/admin-guide/user/import-people_validate.png)
+
+* The file needs to be validated before it can be imported. Click on the `Validate` button.   
+
+* Click on the `Import` button to complete the import of users.   
+
+### File structure
+
+The excel file needs to contain the following default fields from which user data will be pulled. 
 
 * Username
 
@@ -103,28 +113,14 @@ Please remember to use the exact spelling as shown here.
 
 * Email
 
-The fields listed above are the default require fields, Gluu server  allows administrators to defined additionals fields.
-You can achieve that by navigating at: 
-   * Log into Gluu Admin UI
-   * Navigate to `Organization Configuration` > `JSON Configuration`
-   * Select `oxTrust Import Configuration` tab
-### People import template file
+!!! Note
+    Make sure to use the *exact* spelling as shown above. 
 
-The default template file is provide [here](../user-management/SampleUsersImport.xlsx) for your reference and it should will on default gluu installation.
+Gluu administrators can define additionals supported fields for import by navigating to:  
 
-### Importing people
-This can be accessed by navigating to `Users` > `Import People`.
-
-![image](../img/admin-guide/user/import-people_add.png)
-
-* Click on the `Add` button to select the file from which the users will be imported. 
-The supported excel formats are `xls` and `xlsx`.
-
-![image](../img/admin-guide/user/import-people_validate.png)
-
-* The file needs to be validated before it can be imported. Click on the `Validate` button.
-
-* Click on the `Import` button to complete the import of users.
+   * Log into Gluu Admin UI   
+   * Navigate to `Organization Configuration` > `JSON Configuration`   
+   * Select `oxTrust Import Configuration` tab    
  
    
 ## User Registration 
