@@ -103,15 +103,15 @@ The supported excel formats are `xls` and `xlsx`.
 
 ### File structure
 
-The excel file needs to contain the following default fields from which user data will be pulled. 
+The excel file needs to contain the following default fields from which user data will be pulled:  
 
-* Username
+* Username   
 
-* First Name
+* First Name   
 
-* Last Name
+* Last Name   
 
-* Email
+* Email   
 
 !!! Note
     Make sure to use the *exact* spelling as shown above. 
@@ -119,9 +119,10 @@ The excel file needs to contain the following default fields from which user dat
 Gluu administrators can define additionals supported fields for import by navigating to:  
 
    * Log into Gluu Admin UI   
+   
    * Navigate to `Organization Configuration` > `JSON Configuration`   
+   
    * Select `oxTrust Import Configuration` tab    
- 
    
 ## User Registration 
 The Gluu Server is shipped with a user registration script that implements a very basic user registration process. 
