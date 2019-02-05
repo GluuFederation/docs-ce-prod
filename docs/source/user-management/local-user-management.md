@@ -123,9 +123,7 @@ Gluu administrators can define additionals supported fields for import by naviga
    * Select `oxTrust Import Configuration` tab    
    
 ## User Registration 
-The Gluu Server is shipped with a user registration script that implements a very basic user registration process. 
-
-In most situations, we recommend writing a custom registraton app and then using Gluu's [SCIM 2.0 endpoints](./scim2.md#supporting-a-user-registration-process-with-scim) to send the identity data to Gluu. Using SCIM will give you more control and flexibility over the registration process. Also, since oxTrust is frequently not Internet facing, the registration page (`https://<hostname>/identity/register`) may not be available to a user on the web.        
+The Gluu Server includes a very basic user registration feature. In most situations, we recommend writing a custom registraton page that uses Gluu's [SCIM 2.0 endpoints](./scim2.md#supporting-a-user-registration-process-with-scim) to send user identity data to Gluu. Using SCIM will give you more control and flexibility over the registration process. Also, since oxTrust is frequently not Internet facing, the registration page (`https://<hostname>/identity/register`) may not be available to a user on the web.        
 
 Instructions for using Gluu's user registration functionality follows: 
 
