@@ -1,8 +1,7 @@
 # User Registration with SCIM
 
 ## Overview
-SCIM service has many use cases. One interesting and often arising is that of coding your 
-own user registration process. With your SCIM endpoints you can build a custom application to enter users to your LDAP directory.
+The [SCIM service](../user-management/scim2.md) included in the Gluu Server has many use cases. One interesting and often arising is that of coding your own user registration process. With your SCIM endpoints you can build a custom application to enter users to your LDAP directory.
 
 ## Important Considerations
 
