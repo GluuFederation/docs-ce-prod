@@ -93,6 +93,8 @@ Gluu administrators can import users from an excel file by navigating to `Users`
 
 * Click the `Add` button to select the file from which the users will be imported. The supported excel formats are `xls` and `xlsx`.
 
+* If an attribute has more than one value, separate the values with semicolons.
+
 ![image](../img/admin-guide/user/import-people_validate.png)
 
 * Click the `Validate` button to validate the user list.   
