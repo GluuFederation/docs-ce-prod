@@ -370,7 +370,19 @@ Example of introspection response with token which was created with MTLS:
      }
 ``` 
 
-It is critical to configure certificates validation on Apache 2 correctly, since actual validation of the certificates is performed by Apache 2.
+It is critical to configure certificates validation on Apache 2 correctly, since actual validation of the certificates is performed by Apache 2. After Apache certificate validation is configured correctly, make sure there is client certificate forward to `oxauth` application. `oxauth` (AS) expects certificate in `X-ClientCert` header. 
+
+```
+<LocationMatch /oxauth>
+    SSLVerifyClient require
+    SSLVerifyDepth 10
+    SSLOptions -StdEnvVars +ExportCertData
+
+    # Forward certificate to destination server (oxauth)
+    RequestHeader set X-ClientCert %{SSL_CLIENT_CERT}s
+</LocationMatch>
+
+``` 
 
 [MTLS spec](https://tools.ietf.org/html/draft-ietf-oauth-mtls-12)
 
