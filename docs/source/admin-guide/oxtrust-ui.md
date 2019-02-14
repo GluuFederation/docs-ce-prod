@@ -7,7 +7,7 @@ This section covers various features associated with managing your federation se
 The Gluu Server administration interface is accessible by navigating to `https://hostname` (the one you provided during setup). When you first complete an installation, the default username is `admin` and the password is the same as the `LDAP superuser` password. 
 
 ## Dashboard 
-After successful authentication, the administrator is taken to the Dashboard. Some basic information about the VM/server is displayed, as well as the server version, free memory, and disk space. A metrics graph is shown to report some quick stastics about user authentications handled by the service. In the top right, there is a user icon which can be used to log out of oxTrust. 
+After successful authentication, the administrator is taken to the Dashboard. Some basic information about the VM/server is displayed, as well as the server version, free memory, and disk space. A metrics graph is shown to report some quick statistics about user authentications handled by the service. In the top right, there is a user icon which can be used to log out of oxTrust. 
 The left-hand menu is used to navigate the admin interface. 
 
 ![welcome-page.png](../img/admin-guide/oxtrust/welcome-page.png "Welcome to Gluu Server")
