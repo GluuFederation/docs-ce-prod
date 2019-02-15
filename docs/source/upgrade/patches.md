@@ -12,7 +12,7 @@ OpenDJ 3.0 is affected by bug preventing replication server component from succe
 
 Upgrading to a fixed 3.5 package version isn't yet possible at the time of writting due to licensing. The only possible workaround is to rename/remove the `changeDBlog/` dir before starting OpenDJ's JVM. Thus a workaround was developed by the Gluu Team in attempt to mitigate its impact, which automates the process and does it transparenlty to an user.
 
-If the bug presents itself, when starting the Gluu Server you will see errors like: `changeLogDB doesn't have enough space so replication can't be performed.`
+If the bug presents itself, when starting the Gluu Server you will see errors like: `category=SYNC severity=ERROR msgID=org.opends.messages.replication.274 msg=The following log '/opt/opendj/changelogDb/2.dom/1234.server' must be released but it is not referenced."`
 
 ### Steps to Fix
 
