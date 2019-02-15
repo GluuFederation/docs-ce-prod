@@ -7,12 +7,15 @@
 - All Gluu versions (2.x - 3.x), any installation using Gluu OpenDJ
 
 ### Description
+OpenDJ 3.0 is affected by a bug preventing replication server from successfully starting if the size of certain changelog (binary) files become a multiple of 256. 
 
-OpenDJ 3.0 is affected by bug preventing replication server component from successfully starting if its DB's certain changelog (binary) files are of size of multiply of 256. More info on the [OpenDJ jira](https://bugster.forgerock.org/jira/browse/OPENDJ-2969).
+Upgrading to a fixed OpenDJ 3.5 or 4.0 package isn't possible at the time of writting due to licensing. The only possible workaround is to rename/remove the `changeDBlog/` dir before starting OpenDJ's JVM. Thus a workaround was developed by the Gluu Team in attempt to mitigate its impact, which automates the process and does it transparenlty to an user.
 
-Upgrading to a fixed 3.5 package version isn't yet possible at the time of writting due to licensing. The only possible workaround is to rename/remove the `changeDBlog/` dir before starting OpenDJ's JVM. Thus a workaround was developed by the Gluu Team in attempt to mitigate its impact, which automates the process and does it transparenlty to an user.
+If the bug presents itself, when starting the Gluu Server you will see an error like: 
 
-If the bug presents itself, when starting the Gluu Server you will see errors like: `category=SYNC severity=ERROR msgID=org.opends.messages.replication.274 msg=The following log '/opt/opendj/changelogDb/2.dom/1234.server' must be released but it is not referenced."`
+`category=SYNC severity=ERROR msgID=org.opends.messages.replication.274 msg=The following log '/opt/opendj/changelogDb/2.dom/1234.server' must be released but it is not referenced."`
+
+More info on the [OpenDJ jira](https://bugster.forgerock.org/jira/browse/OPENDJ-2969).
 
 ### Steps to Fix
 
