@@ -10,13 +10,15 @@
 
 OpenDJ 3.0 is affected by bug preventing replication server component from successfully starting if its DB's certain changelog (binary) files are of size of multiply of 256. More info on the [OpenDJ jira](https://bugster.forgerock.org/jira/browse/OPENDJ-2969).
 
-Upgrading to a fixed 3.5 package version isn't yet possible at the time of writting due to licensing. The only possible workaround is to rename/remove the `changeDBlog/ dir` before starting OpenDJ's JVM. Thus a workaround was developed by the Gluu Team in attempt to mitigate its impact, which automates the process and does it transparenlty to an user.
+Upgrading to a fixed 3.5 package version isn't yet possible at the time of writting due to licensing. The only possible workaround is to rename/remove the `changeDBlog/` dir before starting OpenDJ's JVM. Thus a workaround was developed by the Gluu Team in attempt to mitigate its impact, which automates the process and does it transparenlty to an user.
 
 ### Steps to Fix
 
 #### Patching steps
 
 Follow next steps to apply the patch:
+
+1. All work should be done inside Gluu-Server container. 
 
 1. Put patching script at `/usr/local/sbin/check_changelog.sh` (see source code of it below)   
 
