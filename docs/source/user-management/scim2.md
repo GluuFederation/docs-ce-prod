@@ -1079,7 +1079,7 @@ Former SCIM-Client versions used to deal with `BaseClientResponse<T>` objects an
 SCIM standard is concerned with two types of resources, namely, Users and Groups. However, according to spec, the service can be extended to add new resource types. Particularly, Gluu Server implementation of SCIM contains a resource type called "FIDO device". 
 
 A FIDO device represents a user credential stored in the Gluu Server LDAP that is 
-compliant with the [FIDO](https://fidoalliance.org) standards. 
+compliant with the [FIDO U2F](https://www.yubico.com/solutions/fido-u2f/) authentication standard. 
 These devices are used as a second factor in a setting of strong authentication. 
 Examples of FIDO devices are [u2f security keys](../authn-guide/U2F/) and [Super Gluu devices](../authn-guide/supergluu/).
 
@@ -1087,6 +1087,9 @@ Having FIDO devices as one of resource types allow application developers queryi
 updating and deleting already existing (added) devices. Addition of devices do not take place 
 through the service since this process requires direct end-user interaction, ie. device enrolling.
 
+!!! Warning
+    [Fido 2](https://fidoalliance.org/) devices are not accessible by current SCIM implementation.
+    
 The following is a summary of features of a Fido Device SCIM resource:
 
 - Schema URN: `urn:ietf:params:scim:schemas:core:2.0:FidoDevice`
