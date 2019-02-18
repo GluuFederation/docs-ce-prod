@@ -28,7 +28,7 @@ The following resources are supported:
 |-|-|-|
 |User|urn:ietf:params:scim:schemas:core:2.0:User|See [section 4.1](https://tools.ietf.org/html/rfc7643#section-4.1) of RFC 7643|
 |Group|urn:ietf:params:scim:schemas:core:2.0:Group|See [section 4.2](https://tools.ietf.org/html/rfc7643#section-4.2) of RFC 7643|
-|Fido devices|urn:ietf:params:scim:schemas:core:2.0:FidoDevice|Represents a [fido credential](../user-management/scim2.md#fido-devices) enrolled by a user|
+|Fido devices|urn:ietf:params:scim:schemas:core:2.0:FidoDevice|Represents a [fido u2f credential](../user-management/scim2.md#fido-devices) enrolled by a user|
 
 Additionally the following resource extensions are defined:
 
