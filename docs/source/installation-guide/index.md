@@ -130,8 +130,65 @@ If the above does not work, use the `ulimit` command to set the FD limit to the 
 ulimit -n 65535
 ```
 
-* Restart your system.     
+* Restart your system. 
 
+
+## IP ##
+Your server or VM must be deployed on a static IP. If your are on the cloud your cloud server should already have that set. If you are configuring your own Gluu server make sure your IP is static.
+
+In linux open the following using your editor of choice :
+
+```
+vi /etc/network/interfaces
+```
+You will find your network configuration in the file above. If it is set to dhcp it might look like this :
+
+```
+#This file describes the network interfaces available on your system
+#and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto ens33
+iface ens33 inet dhcp
+
+```
+
+Comment out the line that contains dhcp by adding ```#``` infront of it and add  your values for ```address```, ```netmask```, ```network```, ```broadcast```, ```gateway```, and ```dns-nameservers``` of your network as seen in the example below :
+
+```
+#This file describes the network interfaces available on your system
+#and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto ens33
+#iface ens33 inet dhcp
+iface ens33 inet static
+    # This value is an example
+    address 192.168.1.10 
+    # This value is an example
+    netmask 255.255.255.0
+    # This value is an example
+    network 192.168.1.0 #
+    # This value is an example
+    broadcast 192.168.1.255
+    # This value is an example
+    gateway 192.168.1.1 
+    
+# This value is an example
+dns-nameservers 8.8.8.8 8.8.4.4 # This value is an example
+```
 ## Fully Qualified Domain Name (FQDN)
 
 Gluu must be deployed on a fully qualified domain name (FQDN), e.g. `https://my-gluu.server.com`. Localhost is **not** supported. 
