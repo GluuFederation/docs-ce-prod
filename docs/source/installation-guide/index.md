@@ -55,7 +55,7 @@ Follow these steps or research how to do this on your Linux platform.
 * Add the following lines in the `/etc/security/limits.conf` file.
 
 ```
-* soft nofile 65536
+* soft nofile 65535
 * hard nofile 262144
 ```
 
