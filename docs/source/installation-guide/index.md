@@ -83,10 +83,16 @@ Please note, the command may vary depending on the OS flavor used.
 echo 65535 > /proc/sys/fs/file-max**
 ```
 
-* Use the `ulimit` command to set the FD limit to the hard limit specified in `/etc/security/limits.conf`.
+* Use the `ulimit` command to set the FD limit to the hard limit specified in `/etc/security/limits.conf`
 
 ```
-ulimit -n unlimited
+ulimit -n 262144
+```
+
+If that does not work, Use the `ulimit` command to set the FD limit to the soft limit of the file `/etc/security/limits.conf`
+
+```
+ulimit -n 65535
 ```
 
 !!!Note
