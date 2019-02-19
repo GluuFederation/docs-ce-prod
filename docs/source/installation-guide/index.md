@@ -61,6 +61,7 @@ Follow these steps or research how to do this on your Linux platform.
 ```
 
 * Add the following lines to `/etc/pam.d/login` if not already present.
+
 ```
 session required pam_limits.so
 ```
@@ -76,11 +77,13 @@ The FD limit can be found using the below command.
 ```
 # cat /proc/sys/fs/file-max
 ```
+
 Please note, the command may vary depending on the OS flavor used.
 
 ```
 echo 65535 > /proc/sys/fs/file-max**
 ```
+
 * Use the `ulimit` command to set the FD limit to the hard limit specified in `/etc/security/limits.conf`.
 
 ```
