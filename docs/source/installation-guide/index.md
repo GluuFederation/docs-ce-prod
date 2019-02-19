@@ -52,9 +52,8 @@ To check the status of these ports in Ubuntu, use the following commands (other 
 ufw status verbose
 ```
 
-The defaults for ```ufw``` is to ```deny incoming``` and ```allow outgoing```. 
 
-To reset the settings to default :
+The default for `ufw` is to `deny incoming` and `allow outgoing`. To reset your setting to default :
 
 ```
 ufw default deny incomming
@@ -64,7 +63,7 @@ ufw default deny incomming
 ufw default allow outgoing
 ```
 
-reset ```ufw```
+reset `ufw`
 
 ```
 ufw reset
@@ -100,13 +99,9 @@ Follow these steps or research how to do this on your Linux platform.
 session required pam_limits.so
 ```
 
-* Increase the FD limit to 65535. The system file limit 
-is set in `/proc/sys/fs/file-max`.
+* Increase the FD limit to 65535. The system file limit is set in `/proc/sys/fs/file-max`.
 
-It is recommended to check the FD limit before increasing it, 
-and if this limit is customized and more than default, 
-we recommend using the higher one.
-The FD limit can be found using the below command. 
+It is recommended to check the FD limit before increasing it. If this limit is customized and more than default, we recommend using the higher one. The FD limit can be found using the following command. 
 
 ```
 # cat /proc/sys/fs/file-max
@@ -134,41 +129,108 @@ If the above does not work, use the `ulimit` command to set the FD limit to the 
 ulimit -n 65535
 ```
 
-* Restart your system.     
+* Restart the system. 
+
+
+## IP
+
+The Gluu Server or VM must be deployed on a static IP. Cloud servers should already have that set. When installing the Gluu Server, make sure the server has a static IP.
+
+In Linux, open the following using any editor:
+
+```
+vi /etc/network/interfaces
+```
+
+Below is the network configuration. Notice `iface ens33 inet` is set to `dhcb`.
+
+```
+#This file describes the network interfaces available on your system
+#and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto ens33
+iface ens33 inet dhcp
+
+```
+
+Comment out the line that contains the `dhcp` by adding `#` in front of it and add the values for the `address`, `netmask`, `network`, `broadcast`, `gateway`, and `dns-nameservers` of the network, as seen in the example below:
+
+```
+#This file describes the network interfaces available on your system
+#and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto ens33
+#iface ens33 inet dhcp
+iface ens33 inet static
+    # This value is an example
+    address 192.168.1.10 
+    # This value is an example
+    netmask 255.255.255.0
+    # This value is an example
+    network 192.168.1.0 #
+    # This value is an example
+    broadcast 192.168.1.255
+    # This value is an example
+    gateway 192.168.1.1 
+    
+# This value is an example
+dns-nameservers 8.8.8.8 8.8.4.4 # This value is an example
+```
+
+Restart the network service:
+
+```
+service networking restart
+```
+or
+
+```
+/etc/init.d/networking restart
+```
+
+Restart the server.
 
 ## Fully Qualified Domain Name (FQDN)
 
 Gluu must be deployed on a fully qualified domain name (FQDN), e.g. `https://my-gluu.server.com`. Localhost is **not** supported. 
 
-If an FQDN is not available, edit all `hosts` files that will interact with Gluu including, and most importantly, the Gluu Server.
-
-In linux choosing the editor you like open the hosts file and add your IP and FQDN of choice :
+In Linux, edit the hosts file and add the appropriate IP and FQDN. For example:
 
 ```
 vi /etc/hosts
 ```
-If your IP was ```192.168.1.1``` ,and your FQDN was ```test.gluu.org```, you would add this to all your hosts files:
+If the IP was `192.168.1.1`, and the FQDN was `test.gluu.org`, add this to all hosts files:
 
 ```
 192.168.1.1 test.gluu.org
 ```
 
 !!! Note
-     Windows hosts file location is at ```C:\Windows\System32\drivers\etc\hosts```
+     The Windows hosts file is located at `C:\Windows\System32\drivers\etc\hosts`
 
 ## Cloud-specific notes
 
 ### Amazon AWS      
 
-Amazon AWS instances provide a public and private IP address. While
-running the `/install/community-edition-setup/setup.py` script, **use the
-Private IP address**. Also, use a hostname other than the long default
-hostname that Amazon provides as CN(Canonical Name). Update your DNS or hosts file accordingly.
+Amazon AWS instances provide a public and private IP address. While running the `/install/community-edition-setup/setup.py` script, **use the Private IP address**. Also, use a hostname other than the long default hostname that Amazon provides as CN(Canonical Name). Update the DNS or hosts file accordingly.
 
 ### Google Cloud Platform
 
-Gluu Server installation in GCP is pretty straight forward. We need to check a couple of 
-points for this installation: 
+Gluu Server installation in GCP is pretty straightforward. We need to check a couple of points for this installation: 
 
  - Deployer must select supported operating system and required resources. 
  - Enable 'HTTPS' from 'Firewall'
