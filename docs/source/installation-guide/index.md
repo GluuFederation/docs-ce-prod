@@ -59,6 +59,9 @@ Follow these steps or research how to do this on your Linux platform.
 * hard nofile 262144
 ```
 
+!!!Note
+    Centos by default will not accept more than the default maximum of 65535. You may get an error while performing the above command.
+
 * Add the following lines to `/etc/pam.d/login` if not already present.
 
 ```
@@ -94,9 +97,6 @@ If that does not work, Use the `ulimit` command to set the FD limit to the soft 
 ```
 ulimit -n 65535
 ```
-
-!!!Note
-    Centos by default will not accept more than the default maximum of 65535. You may get an error while performing the above command. If you do get an error, set it to `ulimit -n 262144`, or `65535` if you get a second error.
 
 * Restart your system.     
 
