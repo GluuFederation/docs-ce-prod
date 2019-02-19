@@ -44,7 +44,38 @@ The following ports are open to the Internet by default.
 |       22              |       tcp             | ssh              |
 
 !!! Note
-    See the [operations guide](../operation/ports.md) for a list of internal ports used by Gluu Server components (e.g. oxAuth, oxTrust, etc.). 
+    See the [operations guide](../operation/ports.md) for a list of internal ports used by Gluu Server components (e.g. oxAuth, oxTrust, etc.).
+
+As described above the ports 80, 443, and 22 should be open by default. In the case you want to check their status in Ubuntu, other OS have similar commands:
+
+```
+ufw status verbose
+```
+
+The defaults for ```ufw``` is to ```deny incoming``` and ```allow outgoing```. If you wish to reset your setting to default :
+
+```
+ufw default deny incomming
+```
+
+```
+ufw default allow outgoing
+```
+
+reset ```ufw```
+
+```
+ufw reset
+```
+If for some reason you have closed your ports , you can allow connections by :
+
+```
+ufw allow <port>
+```
+
+In our case you have to allow 443, 80, and 22.
+
+If Gluu is being [clusterered](../installation-guide/cluster.md) more ports must be configured.
 
 ## File Descriptors (FD)
 
@@ -104,6 +135,21 @@ ulimit -n 65535
 ## Fully Qualified Domain Name (FQDN)
 
 Gluu must be deployed on a fully qualified domain name (FQDN), e.g. `https://my-gluu.server.com`. Localhost is **not** supported. 
+
+If you do not have a globally FQDN or you are testing  Gluu out, you must edit all ```hosts``` files that will interact with Gluu including and most importantly your Gluu server.
+
+In linux choosing the editor you like open the hosts file and add your IP and FQDN of choice :
+```
+vi /etc/hosts
+```
+If your IP was ```192.168.1.1``` ,and your FQDN was ```test.gluu.org```, you would add this to all your hosts files:
+
+```
+192.168.1.1 test.gluu.org
+```
+
+!!! Note
+     Windows hosts file location is at ```C:\Windows\System32\drivers\etc\hosts```
 
 ## Cloud-specific notes
 
