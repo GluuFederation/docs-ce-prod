@@ -134,14 +134,15 @@ ulimit -n 65535
 
 
 ## IP ##
-Your server or VM must be deployed on a static IP. If your are on the cloud your cloud server should already have that set. If you are configuring your own Gluu server make sure your IP is static.
+The Gluu server or VM must be deployed on a static IP. Cloud servers should already have that set. When installing Gluu server make sure the server has a static IP.
 
-In linux open the following using your editor of choice :
+In linux open the following using any editor of choice :
 
 ```
 vi /etc/network/interfaces
 ```
-You will find your network configuration in the file above. If it is set to dhcp it might look like this :
+
+Below is the network configuration. Notice ```iface ens33 inet``` is set to ```dhcb```.
 
 ```
 #This file describes the network interfaces available on your system
@@ -159,7 +160,7 @@ iface ens33 inet dhcp
 
 ```
 
-Comment out the line that contains dhcp by adding ```#``` infront of it and add  your values for ```address```, ```netmask```, ```network```, ```broadcast```, ```gateway```, and ```dns-nameservers``` of your network as seen in the example below :
+Comment out the line that contains dhcp by adding ```#``` infront of it and add  the values for ```address```, ```netmask```, ```network```, ```broadcast```, ```gateway```, and ```dns-nameservers``` of your network as seen in the example below :
 
 ```
 #This file describes the network interfaces available on your system
@@ -189,6 +190,20 @@ iface ens33 inet static
 # This value is an example
 dns-nameservers 8.8.8.8 8.8.4.4 # This value is an example
 ```
+
+Restart the network service
+
+```
+service networking restart
+```
+or
+
+```
+/etc/init.d/networking restart
+```
+
+Restart server
+
 ## Fully Qualified Domain Name (FQDN)
 
 Gluu must be deployed on a fully qualified domain name (FQDN), e.g. `https://my-gluu.server.com`. Localhost is **not** supported. 
