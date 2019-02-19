@@ -77,7 +77,7 @@ The FD limit can be found using the below command.
 # cat /proc/sys/fs/file-max
 ```
 
-Please note, the command may vary depending on the OS flavor used.
+Please note, the command may vary depending on the OS in use.
 
 ```
 echo 65535 > /proc/sys/fs/file-max**
