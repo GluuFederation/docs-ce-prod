@@ -93,7 +93,7 @@ ulimit -n 262144
     Centos by default will not accept more than the default maximum of 65535. You may get an error while performing the above command.
 
 
-If that does not work, Use the `ulimit` command to set the FD limit to the soft limit of the file `/etc/security/limits.conf`
+If that does not work, use the `ulimit` command to set the FD limit to the soft limit of the file `/etc/security/limits.conf`
 
 ```
 ulimit -n 65535
