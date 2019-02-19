@@ -59,9 +59,6 @@ Follow these steps or research how to do this on your Linux platform.
 * hard nofile 262144
 ```
 
-!!!Note
-    Centos by default will not accept more than the default maximum of 65535. You may get an error while performing the above command.
-
 * Add the following lines to `/etc/pam.d/login` if not already present.
 
 ```
@@ -91,6 +88,10 @@ echo 65535 > /proc/sys/fs/file-max**
 ```
 ulimit -n 262144
 ```
+
+!!!Note
+    Centos by default will not accept more than the default maximum of 65535. You may get an error while performing the above command.
+
 
 If that does not work, Use the `ulimit` command to set the FD limit to the soft limit of the file `/etc/security/limits.conf`
 
