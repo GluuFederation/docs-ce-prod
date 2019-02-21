@@ -47,7 +47,7 @@ Now its time to update the default keystore of your JVM:
 
 You have next options:
 
-1. Checking how certificate chain is visualized and its healthiness is evaluated by your browser. For example, correctly configured certificate chain may look like this in Firefox: ![image]()
+1. Checking how certificate chain is visualized and its healthiness is evaluated by your browser. 
 2. You could use one of online validation tools, like the Qualys® SSL Labs' SSL Server Test
 3. Using console tools, like connecting to the SSL/TLS enabled port your Gluu's Apache listens on (443 by default) with `# openssl s_client -showcerts -connect <host>:<port>`. It will display the whole certificate chain sent by the web server together with secure overlay's parameters which were negotiated during SSL/TLS handshake.
 
