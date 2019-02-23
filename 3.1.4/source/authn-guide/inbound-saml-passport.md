@@ -72,7 +72,7 @@ The target application needs to have an SSO relationship with your Gluu Server.
 
 #### Register external IDPs with home IDP
 
-Passport expects to find information about supported SAML IDPs in the configuration file at `/etc/gluu/conf/passport-saml-config.json`. Every supported external IDP should be added as a JSON object. No restarts are required when changes are made to this file.
+Passport expects to find information about supported SAML IDPs in the configuration file at `/etc/gluu/conf/passport-saml-config.json`. Every supported external IDP should be added as a JSON object. When updates are applied to this file, please restart passport service.
 
 A sample configuration containing entries for two external IDPs named "idp1" and "idp2" is provided below:
  
