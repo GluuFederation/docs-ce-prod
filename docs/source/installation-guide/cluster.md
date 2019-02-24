@@ -32,11 +32,12 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
       
 ```
 45.55.232.15    loadbalancer.example.org (NGINX server)
-159.203.126.10  idp1.example.org (Gluu Server 3.1.5 on Ubuntu 14)
-138.197.65.243  idp2.example.org (Gluu Server 3.1.5 on Ubuntu 14)
+159.203.126.10  idp1.example.org (Gluu Server 3.1.5 on Ubuntu 16.04 )
+138.197.65.243  idp2.example.org (Gluu Server 3.1.5 on Ubuntu 16.04 )
+
 ```
      
-- To create the following instructions we used Ubuntu 14 Trusty     
+- To create the following instructions we used Ubuntu 16.04     
 
 - To create the following instructions we used an Nginx load balancer/proxy, however if you have your own load balancer, like F5 or Cisco, you should use that instead and disregard the instructions about configuring NGINX   
 
@@ -54,7 +55,6 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 !!! Warning
     Make sure to use a separate NGINX/Load-balancing server FQDN as hostname.   
-    Make sure to select OpenDJ as your LDAP choice [1].
 
 - A separate NGINX server is necessary because replicating a Gluu server to a different hostname breaks the functionality of the Gluu web page when using a hostname other than what is in the certificates. For example, if I use idp1.example.com as my host and copy that to a second server (e.g. idp2.example.com), the process of accessing the site on idp2.example.com, even with replication, will fail authentication due to a hostname conflict. So if idp1 fails, you won't be able to use Gluu Server effectively
 
@@ -62,15 +62,39 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 - On the primary Gluu Server, log in to the chroot and cd to `/install/community-edition-setup/`
 
-- After setup was completed on the primary server, a file named "setup.properties.last" was created in the same directory. We want to copy the `/install/community-edition-setup/setup.properties.last` file from the first install to the other servers as `setup.properties`. This will allow us to to maintain the same configuration across the nodes. (Here I have SSH access to my other server outside the Gluu chroot)
+- After setup was completed on the primary server, a file named "setup.properties.last" was created in the same directory. We want to copy the `/install/community-edition-setup/setup.properties.last` file from the first install to the other servers as `setup.properties`. This will allow us to to maintain the same configuration across the nodes.(Here I have SSH access to my other server outside the Gluu chroot)
+
+If you do not have `scp` command you must install `openssh-client`.
 
 ```
 
-scp /opt/gluu-server-3.1.5/install/community-edition-setup/setup.properties.last root@idp2.example.org:/opt/gluu-server-3.1.5/install/community-edition-setup/setup.properties
+apt-get install openssh-client
 
 ```
 
-- Once you have the `setup.properties` file in place on the **other** server(s), modify the IP to the current server:
+Otherwise continue to the following command changing `myuser@idp2.example.org` to your login credentials for each idp server your setting :
+
+```
+
+scp /opt/gluu-server-3.1.5/install/community-edition-setup/setup.properties.last myuser@idp2.example.org:/opt/gluu-server-3.1.5/install/community-edition-setup/setup.properties
+
+```
+
+If this throws a `Permission denied` error, that means your user, here `myuser`, does not have permission to write in the directory. Use the following command at the server you are trying to send the file to, here that is `idp2.example.org`. Change `<user>` to the user used in the command above, here `myuser`.
+
+```
+chown <user> /opt/gluu-server-3.1.5/install/community-edition-setup/
+
+```
+
+for security the `<user>` should always be set back to `root` so after transfer of files is completed run the command again with `root` as `<user>`.
+
+```
+chown root /opt/gluu-server-3.1.5/install/community-edition-setup/
+
+```
+
+- Once you have the `setup.properties` file in place on the **other** server(s), modify the IP to the current server, we only have one so we would changed our `ip=159.203.126.10` of idp1 server to the IP of idp2 server which is `ip=138.197.65.243`:
 
 ```
 
@@ -83,7 +107,7 @@ cmd_jar=/opt/jre/bin/jar
 oxauth_openid_jks_pass=t1j5ykEaHFs1
 idp3WebappFolder=/opt/shibboleth-idp/webapp
 countryCode=US
-ip=138.197.65.243						<------ changed this to the current server IP
+ip=138.197.65.243						<------ changed this from 159.203.126.10 to the current server IP
 opendj_ldap_binddn=cn\=directory manager
 installSaml=False
 sysemProfile=/etc/profile
@@ -106,6 +130,16 @@ Gluu.Root # ./setup.py
 ```
 
 - The rest of the configurations for the install should be automatically loaded and all you need to do here is press `Enter`
+
+!!! Note
+    Make sure that all your hosts file have the correct configuration to point the Ips of all IDPs and loadbalancer to the responding hostnames. For us all three servers have the following added in `/etc/hosts`.
+    
+    ```
+    45.55.232.15    loadbalancer.example.org (NGINX server)
+    159.203.126.10  idp1.example.org (Gluu Server 3.1.5 on Ubuntu 16.04)
+    138.197.65.243  idp2.example.org (Gluu Server 3.1.5 on Ubuntu 16.04)
+    
+    ```
 
 ### 2. Enable Replication
 
