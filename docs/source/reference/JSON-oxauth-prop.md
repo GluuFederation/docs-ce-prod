@@ -82,6 +82,8 @@ umaRestrictResourceToAssociatedClient              | Restrict access to resource
 umaKeepClientDuringResourceSetRegistration         | Save client information during resource registration
 umaRptAsJwt                                        | Issue RPT as JWT or as random string
 cleanServiceInterval                               | Time interval for the Clean Service in seconds
+cleanServiceBatchChunkSize                         | Clean service chunk size which is used during clean up.
+cleanServiceBaseDns                                | Array of base DNs where clean service will look up for expired entities.
 keyRegenerationEnabled                             | Boolean value specifying whether to regenerate keys
 keyRegenerationInterval                            | The interval for key regeneration in hours
 defaultSignatureAlgorithm                          | The default signature algorithm to sign ID Tokens

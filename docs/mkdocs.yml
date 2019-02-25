@@ -105,6 +105,7 @@ pages:
         - 'Log Management' : 'operation/logs.md'
         - 'Customize Public Pages': 'operation/custom-design.md'
         - 'Change IP Address': 'operation/changeip.md'
+        - 'Server clean up': 'operation/cleanup.md'
         #- 'Find your Gluu Version': 'operation/find-gluu-version.md'
         #       - 'Fine Tuning Gluu Server' : 'admin-guide/fine-tuning.md'
 - Developer Guide:
