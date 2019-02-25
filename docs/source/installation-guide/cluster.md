@@ -28,7 +28,11 @@ efforts may be needed to ensure they can be reached by incoming connections.
 ### Software
 Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:   
 
-- A minimum of three (3) servers or VMs: two (2) for Gluu Servers and one (1) for load balancing (in our example, NGINX). For the purpose of this tutorial, the server configurations are as follows:
+- A minimum of three (3) servers or VMs: two (2) for Gluu Servers and one (1) for load balancing (in our example, NGINX).
+
+- A separate NGINX server is necessary because replicating a Gluu server to a different hostname breaks the functionality of the Gluu web page when using a hostname other than what is in the certificates. For example, if I use idp1.example.com as my host and copy that to a second server (e.g. idp2.example.com), the process of accessing the site on idp2.example.com, even with replication, will fail authentication due to a hostname conflict. So if idp1 fails, you won't be able to use Gluu Server effectively.
+
+- For the purpose of this tutorial, the server configurations are as follows:
       
 ```
 45.55.232.15    loadbalancer.example.org (NGINX server)
@@ -53,26 +57,29 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 - First you need to [Install Gluu](https://gluu.org/docs/ce/installation-guide/install/) on one of the servers. It will be referred to as the "primary" for the sake of simplification. Once everything is configured, there will be no primary in the multi-master configuration
 
-!!! Warning
-    Make sure to use a separate NGINX/Load-balancing server FQDN as hostname.   
-
-- A separate NGINX server is necessary because replicating a Gluu server to a different hostname breaks the functionality of the Gluu web page when using a hostname other than what is in the certificates. For example, if I use idp1.example.com as my host and copy that to a second server (e.g. idp2.example.com), the process of accessing the site on idp2.example.com, even with replication, will fail authentication due to a hostname conflict. So if idp1 fails, you won't be able to use Gluu Server effectively
-
 - On all of the non-primary Gluu Cluster members (not the NGINX server), [download the Gluu packages](https://gluu.org/docs/ce/installation-guide/install/) but **don't run `setup.py` yet**!   
 
 - On the primary Gluu Server, log in to the chroot and cd to `/install/community-edition-setup/`
 
-- After setup was completed on the primary server, a file named "setup.properties.last" was created in the same directory. We want to copy the `/install/community-edition-setup/setup.properties.last` file from the first install to the other servers as `setup.properties`. This will allow us to to maintain the same configuration across the nodes. (Here I have SSH access to my other server outside the Gluu chroot)
+- After setup was completed on the primary server, a file named "setup.properties.last" was created in the same directory. We want to copy the `/install/community-edition-setup/setup.properties.last` file from the first install to the other servers as `setup.properties`. This will allow us to to maintain the same configuration across the nodes.(Here I have SSH access to my other server outside the Gluu chroot)
 
-If you do not have `scp` command, you must install `openssh-client`.
+If you do not have `scp` command you must install `openssh-client`:
 
 ```
-
 apt-get install openssh-client
 
 ```
-
-Otherwise, continue to the following command, changing `myuser@idp2.example.org` to your login credentials for each IDP server you're setting :
+!!! Note
+    Make sure that all your hosts file have the correct configuration to point the Ips of all IDPs and loadbalancer to the responding hostnames. For us all three servers have the following added in `/etc/hosts`.
+    
+    ```
+    45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
+    159.203.126.10  idp1.example.org (Gluu Server 3.1.5 on Ubuntu 16.04)
+    138.197.65.243  idp2.example.org (Gluu Server 3.1.5 on Ubuntu 16.04)
+    
+    ```
+    
+Otherwise continue to the following command changing `myuser@idp2.example.org` to your login credentials for each idp server your sending it to :
 
 ```
 
@@ -80,26 +87,28 @@ scp /opt/gluu-server-3.1.5/install/community-edition-setup/setup.properties.last
 
 ```
 
-If this throws a `Permission denied` error, that means your user, here `myuser`, does not have permission to write in the directory. Use the following command at the server you are trying to send the file to, in this example `idp2.example.org`. Change `<user>` to the user used in the command above, here `myuser`.
+If this throws a `Permission denied` error, that means your user, here `myuser`, does not have permission to write in the directory. Use the following command at the server you are trying to send the file to, here that is `idp2.example.org`. Change `<user>` to the user used in the command above, here `myuser`.
 
 ```
 chown <user> /opt/gluu-server-3.1.5/install/community-edition-setup/
 
 ```
 
-for security, the `<user>` should always be set back to `root` so after transfer of files is completed run the command again with `root` as `<user>`.
+for security the `<user>` should always be set back to `root` so after transfer of files is completed run the command again with `root` as `<user>`.
 
 ```
 chown root /opt/gluu-server-3.1.5/install/community-edition-setup/
 
 ```
 
-- Once you have the `setup.properties` file in place on the **other** server(s), modify the IP to the current server, we only have one, so we would changed our `ip=159.203.126.10` of `idp1` server to the IP of `idp2` server which is `ip=138.197.65.243`:
+- If the Gluu server has not been started, start it and login. Once you have the `setup.properties` file in place on the **other** server(s), modify the IP to the current server, we only have one so we changed our `ip=159.203.126.10` of idp1 server to the IP of idp2 server which is `ip=138.197.65.243.
+
 
 ```
-
-Gluu.Root # cd /install/community-edition
-Gluu.Root # vi setup.properties
+service gluu-server-3.1.5 start
+service gluu-server-3.1.5 login
+Gluu.Root # vi /install/community-edition-setup/setup.properties
+setup.properties
 
 ...
 passport_rs_client_jks_pass=xmQNp8RRuP0P
@@ -121,78 +130,394 @@ ldapPassFn=/home/ldap/.pw
 
 ```
 
-- Now run setup.py   
+- Now run `setup.py`.   
+
+```
+cd /install/community-edition-setup
+./setup.py
 
 ```
 
-Gluu.Root # ./setup.py
+- The rest of the configurations for the install should be automatically loaded as shown below. All you need to do here is press `Enter`
 
 ```
+Installing Gluu Server...
+Detected OS  :  ubuntu
+Detected init:  systemd
+Detected Apache:  2.4
 
-- The rest of the configurations for the install should be automatically loaded and all you need to do here is press `Enter`
+Installing Gluu Server...
+
+For more info see:
+  ./setup.log
+  ./setup_error.log
+
+
+** All clear text passwords contained in ./setup.properties.last.
+
+
+hostname                                             idp1.example.org
+orgName                                                 Example Inc.
+os                                                         ubuntu
+city                                                       Austin
+state                                                          Tx
+countryCode                                                    US
+support email                                    support@example.org
+Applications max ram                                         3072
+Admin Pass                                                   test
+Install oxAuth                                               True
+Install oxTrust                                              True
+Install LDAP                                                 True
+Install Apache 2 web server                                  True
+Install Shibboleth SAML IDP                                 False
+Install oxAuth RP                                           False
+Install Passport                                            False
+
+
+Proceed with these values [Y|n]
+
+
+```
 
 !!! Note
-    Make sure that all your hosts file have the correct configuration to point the IPs of all IDPs and loadbalancer to the responding hostnames. For us, all three servers have the following added in `/etc/hosts`.
+    Make sure that all your hosts file have the correct configuration to point the Ips of all IDPs and loadbalancer to the responding hostnames. For us all three servers have the following added in `/etc/hosts` and in the Gluu containers `/etc/hosts`.
     
     ```
-    45.55.232.15    loadbalancer.example.org (NGINX server)
+    45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
     159.203.126.10  idp1.example.org (Gluu Server 3.1.5 on Ubuntu 16.04)
     138.197.65.243  idp2.example.org (Gluu Server 3.1.5 on Ubuntu 16.04)
     
     ```
 
-### 2. Enable Replication
+### 2. Replication
 
-On the first server (idp1.example.org, in our example), utilize these commands inside the Gluu chroot to initialize and enable replication. All `<password>`'s should be changed to the same password.
+- Run the commands below in the Gluu container for all your **Nodes** , here that would be for `idp1.example.org` and `idp2.example.org`  :
+
+  Any attempts to login to the LDAP in anyform might result in an instant timeout error due to Java enabling Endpoint Identification which disrputs LDAPS connections. We have to set the default value to `true` by explicitly stating it in the `java.properties` file.
+
+  ```
+  sed -i 's/dsreplication.java-args=-Xms8m -client/dsreplication.java-args=-Xms8m -client-Dcom.sun.jndi.ldap.object.disableEndpointIdentification=true/g' /opt/opendj/config/java.properties
+  ```
+  
+  To set the new properties run the command in the Gluu container.
+
+   ```
+   
+   /opt/opendj/bin/dsjavaproperties
+
+   ```
+   
+   You should recieve an operation successful message:
+   
+   ```
+   
+   The operation was successful.  The server commands will use the java arguments and java home specified in the properties file located in /opt/opendj/config/java.properties
+
+   ```
+   We need to make all nodes accessible to each other by setting the listening address to `0.0.0.0`. In your command you may have to change `cn=directory manager` to your CN ( by default `cn=directory manager` unless changed ) ,and  `<password>` to your password set in the first installation of Gluu. If the below commands are not connecting try changing `localhost` to the nodes explicit IP addresss, here that would be `159.203.126.10` and `138.197.65.243`.
+   
+   **Run both commands**
+   
+   ```
+   /opt/opendj/bin/dsconfig -h localhost -p 4444 -D 'cn=directory manager' -w <password> -n set-administration-connector-prop --set listen-address:0.0.0.0 -X
+   
+   ```
+   
+   ```
+   
+   /opt/opendj/bin/dsconfig -h localhost -p 4444 -D 'cn=directory manager' -w <password> -n set-connection-handler-prop --handler-name 'LDAPS Connection Handler' --set enabled:true --set listen-address:0.0.0.0 -X
+   
+   ```
+   **This is the end of commands that had to be initiated in all nodes**
+   
+- Run the commands below in the Gluu container on your first "primary" Gluu server installed , here that would be `idp1.example.org`:   
+ 
+  Utilize this command inside the Gluu container to enable replication changing `<password>`'s to the password of your first installed Gluu server. If the below commands are not connecting try changing your nodes hostnames to, here `idp1.example.org` and `idp2.example.org` to the nodes explicit IP addresss, here that would be `159.203.126.10` and `138.197.65.243`. **You must add all your nodes to this command, here we only have two**
+
+  ```
+
+  /opt/opendj/bin/dsreplication enable --host1 idp1.example.org --port1 4444 --bindDN1 "cn=directory manager" --bindPassword1 <password> --replicationPort1 8989 --host2 idp2.example.org --port2 4444 --bindDN2 "cn=directory manager" --bindPassword2 <password> --replicationPort2 8989 --adminUID admin --adminPassword <password> --baseDN "o=gluu" -X -n
+
+  ```
+
+  You will get a message like this if it works : 
+
+  ```
+  Establishing connections ..... Done.
+  Checking registration information ..... Done.
+  Configuring Replication port on server idp1.example.org:4444 ..... Done.
+  Configuring Replication port on server idp2.example.org:4444 ..... Done.
+  Updating replication configuration for baseDN o=gluu on server
+  idp1.example.org:4444 .....Done.
+  Updating replication configuration for baseDN o=gluu on server
+  idp2.example.org:4444 .....Done.
+  Updating registration configuration on server idp1.example.org:4444 ..... Done.
+  Updating registration configuration on server idp2.example.org:4444 ..... Done.
+  Updating replication configuration for baseDN cn=schema on server
+  idp1.example.org:4444 .....Done.
+  Updating replication configuration for baseDN cn=schema on server
+  idp2.example.org:4444 .....Done.
+  Initializing registration information on server idp2.example.org:4444 with the
+  contents of server idp1.example.org:4444 .....Done.
+  Initializing schema on server idp2.example.org:4444 with the contents of server
+  idp1.example.org:4444 .....Done.
+
+  Replication has been successfully enabled.  Note that for replication to work
+  you must initialize the contents of the base DNs that are being replicated
+  (use dsreplication initialize to do so).
+
+
+  See /tmp/opendj-replication-8219363385622666180.log for a detailed log of this
+  operation.
+
+  ```
+
+  Now initialize replication. Change <password> to the password of your first installed Gluu server. **You must add all your nodes to this command**:
+
+  ```
+
+  /opt/opendj/bin/dsreplication initialize --baseDN "o=gluu" --adminUID admin --adminPassword <password> --hostSource idp1.example.org --portSource 4444  --hostDestination idp2.gluu.org --portDestination 4444 -X -n
+
+  ```
+
+  You will get a message like this if it works : 
+
+  ```
+  Initializing base DN o=gluu with the contents from idp1.example.org:4444:
+  3202 entries processed (23 % complete).
+  1233321 entries processed (100 % complete).
+  Base DN initialized successfully.
+
+  See /tmp/opendj-replication-7940848656437845148.log for a detailed log of this
+  operation.
+
+
+   ```
+
+   Secure the communications to all nodes. **You must add all your nodes to this command**:
+
+   ```
+   /opt/opendj/bin/dsconfig -h idp1.example.org -p 4444 -D "cn=Directory Manager" -w <password> --trustAll -n set-crypto-manager-prop    --set ssl-encryption:true
+   /opt/opendj/bin/dsconfig -h idp2.example.org -p 4444 -D "cn=Directory Manager" -w <password> --trustAll -n set-crypto-manager-prop --set ssl-encryption:true
+   ```
+
+   Now archive the OpenDJ keystore:
+
+   ```
+   cd /opt/opendj/config
+   
+   tar -cf opendj_crts.tar keystore keystore.pin truststore
+   
+   ```
+   
+
+   Transfer it to the other nodes. The `scp` command will most likley not be installed in your gluu container so exit out by just typing `exit`. Then transfer `opendj_crts.tar` to all the other nodes.  
+   
+   ```
+   
+    scp /opt/gluu-server-3.1.5/opt/opendj/config/opendj_crts.tar  myuser@idp2.example.org:/opt/gluu-server-3.1.5/opt/opendj/config/
+   
+   ```
+   !!! Note
+       If you want to check the status of OpenDJ replication run the following command:
+
+       ```
+       
+       /opt/opendj/bin/dsreplication status -n -X -h idp1.example.org -p 4444 -I admin -w <password>
+
+       ```
+       
+       
+   **This is the end of commands that had to be initiated in the first "primary" node**
+   
+   
+Run the following commands in all the Gluu container nodes where the archive of OpenDK keystore was sent to:
+
+ ```
+ cd /opt/opendj/config/
+   
+ tar -xf opendj_crts.tar
+   
+ ```
+ 
+ I
+
+Next (install csync2)[https://linuxaria.com/howto/csync2-a-filesystem-syncronization-tool-for-linux] for file system replication on all nodes outside the gluu container.
 
 ```
-# /opt/opendj/bin/dsreplication enable --host1 idp1.example.org --port1 4444 --bindDN1 "cn=directory manager" --bindPassword1 <password> --replicationPort1 8989 --host2 idp2.example.org --port2 4444 --bindDN2 "cn=directory manager" --bindPassword2 <password> --replicationPort2 8989 --adminUID admin --adminPassword <password> --baseDN "o=gluu" -X -n
-
-# /opt/opendj/bin/dsreplication initialize --baseDN "o=gluu" --adminUID admin --adminPassword <password> --hostSource idp1.example.org --portSource 4444  --hostDestination idp2.gluu.org --portDestination 4444 -X -n
-```
-
-Now run these commands on the first server to secure the communication:
+apt-get install csync2
 
 ```
-/opt/opendj/bin/dsconfig -h idp1.example.org -p 4444 -D "cn=Directory Manager" -w <password> --trustAll -n set-crypto-manager-prop --set ssl-encryption:true
-/opt/opendj/bin/dsconfig -h idp2.example.org -p 4444 -D "cn=Directory Manager" -w <password> --trustAll -n set-crypto-manager-prop --set ssl-encryption:true
-```
+- On the "primary" node, here idp1@example.org, do the following :
+  
+  Generate key file :
+  
+  ```
+  csync2 -k /etc/csync2.key
+  
+  ```
+  
+  Create an SSL certificate Csync2 :
+  
+  ```
+  openssl genrsa -out /etc/csync2_ssl_key.pem 1024
+  openssl req -batch -new -key /etc/csync2_ssl_key.pem -out /etc/csync2_ssl_cert.csr
+  openssl x509 -req -days 3600 -in /etc/csync2_ssl_cert.csr -signkey /etc/csync2_ssl_key.pem -out /etc/csync2_ssl_cert.pem
+  
+  ```
+  
+  Create a `csyn2.conf` file and place all directories to be replicated as in the `csync2.conf` file :
+  
+  ```
+  vi /etc/csync2.conf
+  
+  ```
+  
+  Add more `host <hostname>` according to the number of nodes you have.
+  
+  **`csync2.conf`**
+  
+  ```
+  
+  group gluucluster
+  {
+  host idp1.example.org;
+  host idp2.example.org;
+ 
+  key /etc/csync2.key;
+  include /opt/gluu-server-3.1.5/opt/gluu/jetty/identity/conf/shibboleth3/idp/;
+  include /opt/gluu-server-3.1.5/opt/gluu/jetty/identity/conf/shibboleth3/sp/;
+  include /opt/gluu-server-3.1.5/opt/shibboleth-idp/conf;
+  include /opt/gluu-server-3.1.5/opt/shibboleth-idp/metadata/;
+  include /opt/gluu-server-3.1.5/opt/shibboleth-idp/sp/;
+  include /opt/gluu-server-3.1.5/opt/shibboleth-idp/temp_metadata/;
+  include /opt/gluu-server-3.1.5/etc/gluu/conf/;
+  
+  exclude *~ .*;
+  }
+  
+ 
+  ```
+  Copy the contents of `csync2.conf` into the file `csync2.cfg`.
+  
+  Copy the csync2 configuration file, certifications and keys to the all the other nodes, here only idp2.example.org.
+  
+  ```
+  
+  scp /etc/csync2* user@idp2.example.org:/etc/
+  
+  ```
+  Make sure your hostname is set to the FQDN on each node :
+  
+  **Node 1**
+  
+  ```
+  
+  hostname idp1.example.org
+  
+  ```
+  
+  **Node 2**
+  
+  ```
+  
+  hostname idp2.example.org
+  
+  ```
+  
+  Restart inetd on all nodes
+  
+  ```
+  
+   /etc/init.d/openbsd-inetd restart
+  
+  ```
+  
+  You can test the connection at each node by running :
+  
+  ```
+  
+  csync2 -T
+  
+  ```
+  
+  - Run the following on **Node 1** `primary` :
+  
+      Force files to win conflicts
+  
+      ```
+  
+      csync2 -fr /
+   
+      ```
+      
+      Start the synchronization process :
+      
+      ```
+      
+       csync2 -xvvv
+       
+      ```
 
-Now archive the OpenDJ keystore:
+  
+  - Run the following on **All other nodes** :
+  
+      Force files to win conflicts
+  
+      ```
+  
+      csync2 -fr /
+   
+      ```
+      
+      Start the synchronization process :
+      
+      ```
+      
+      csync2 -xvvv
+       
+      ```
+  - Add a cron on **all nodes** to do the syncing using `crontab -e` :
+  
+    You can add a regular cron that runs every 5 mins at all nodes like this :
+    
+    ```
+    */5 * * * * csync2 -x
+    
+    ```
+    or for a more complex add syncronized crons that run in almost a continuous enviorment i.e the first node starts syncing one minuite the other starts the next and so forth. At our two nodes situation we would do the following: (**This is a very effective way in syncing data securely. However, you must know the size of data being moved and hence program the cron accordingly**) 
+    
+    **Node 1** “At every 10th minute from 0 through 59.”
+    
+    ```
+    
+    0-59/10 * * * * csync2 -x
+    
+    ```
+    
+    **Node 2** “At every 10th minute from 5 through 59.” 
+    
+    ```
+    
+    5-59/10 * * * * csync2 -x
+    
+    ```
+    
+    Reload cron :
+    
+    ```
+    
+    service cron reload
+    
+    ```
+    
 
-```
-# tar -cf opendj_crts.tar -C /opt/opendj/config/ keystore keystore.pin truststore
-```
-
-And transfer them to the other nodes and run the following command:
-
-```
-# tar -xf opendj_crts.tar -C /opt/opendj/config/
-```
-
-Note, if you want to check the status of OpenDJ replication run the following command:
-
-```
-/opt/opendj/bin/dsreplication status -n -X -h idp1.example.org -p 4444 -D "cn=Directory Manager" -I admin -w <password>
-```
-
-Next we should (install csync2)[https://linuxaria.com/howto/csync2-a-filesystem-syncronization-tool-for-linux] for file system replication.
-
-The necessary directories to replicate are as follows:
-
-```
-/opt/gluu/jetty/identity/conf/shibboleth3/idp/
-/opt/gluu/jetty/identity/conf/shibboleth3/sp/
-/opt/shibboleth-idp/conf
-/opt/shibboleth-idp/metadata/
-/opt/shibboleth-idp/sp/
-/opt/shibboleth-idp/temp_metadata/
-/etc/gluu/conf/
-/etc/certs/
-/opt/symas/etc/openldap/schema
-```
-
+  
 ### 3. Install NGINX
+
+!!! Warning
+    Make sure to use a separate NGINX/Load-balancing server FQDN as hostname.   
+
 
 **If you have your own load balancer, you can use the following NGINX configuration documentation as a guide for how to proxy with the Gluu Server.**
 
