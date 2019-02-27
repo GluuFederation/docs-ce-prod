@@ -70,7 +70,7 @@ apt-get install openssh-client
 
 ```
 !!! Note
-    Make sure that all your hosts file have the correct configuration to point the Ips of all IDPs and loadbalancer to the responding hostnames. For us all three servers have the following added in `/etc/hosts`.
+    Make sure that all your hosts file have the correct configuration to point the IPs of all IDPs and loadbalancer to the responding hostnames. For us all three servers have the following added in `/etc/hosts`.
     
     ```
     45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
@@ -180,7 +180,10 @@ Proceed with these values [Y|n]
 ```
 
 !!! Note
-    Make sure that all your hosts file have the correct configuration to point the Ips of all IDPs and loadbalancer to the responding hostnames. For us all three servers have the following added in `/etc/hosts` and in the Gluu containers `/etc/hosts`.
+    Make sure that all your hosts file have the correct configuration to point the Ips of all IDPs and loadbalancer to the responding hostnames. For us all three servers have the following added in `/etc/hosts`.
+    
+!!! Warning
+    In the Gluu containers `/etc/hosts` add all IPs **besides your nodes**. 
     
     ```
     45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
@@ -348,7 +351,7 @@ Next (install csync2)[https://linuxaria.com/howto/csync2-a-filesystem-syncroniza
 apt-get install csync2
 
 ```
-- On the "primary" node, here idp1@example.org, do the following :
+- On the "primary" node, here idp1.example.org, do the following :
   
   Generate key file :
   
