@@ -663,19 +663,29 @@ http {
 
 Please adjust the configuration for your IDP (Gluu Servers) and your Load Balancer FQDNs
 
-### 4. Install and Configure Redis
+### 4. Install and Configure Redis ( Seperate Ubuntu 18.04 Server)
 
 !!! Warning
     This can **not** be configured on your NGINX server or you'll get routing issues when attempting to cache
     
 - Redis-server is an memory caching solution created by redis-labs. It's ideal for clustering solutions but needs additional encryption    
 
-Now install and configure redis-server on one or more servers. 
+Now install and configure redis-server on a serperate Ubuntu 18.04 server .**You can setup a Redis cluster model and have them installed on all your nodes. 
+
+```
+apt-get update
+
+apt-get install redis-server
+
+```
+
 
 - The standard redis-server's configuration file binds to `127.0.0.1`. We need to comment out this entry so that it listens to external requests    
 
 ```
+
 vi /etc/redis/redis.conf
+
 ```
 
 - Modify this entry:
@@ -686,6 +696,13 @@ bind 127.0.0.1
 
 ```
 
+- You may choose to let it listen to only your servers in which case :
+
+```
+bind 159.203.126.10 138.197.65.243 45.55.232.15
+    
+
+```
 - Now restart redis-server
 
 ```
@@ -693,6 +710,27 @@ bind 127.0.0.1
 service redis-server force-reload
 
 ```
+- Check Redis status
+
+```
+
+systemctl status redis
+
+```
+
+The status should be running : 
+
+```
+
+● redis-server.service - Advanced key-value store
+   Loaded: loaded (/lib/systemd/system/redis-server.service; enabled; vendor preset: enabled)
+   Active: active (running) since Wed 2018-06-27 18:48:52 UTC; 12s ago
+     Docs: http://redis.io/documentation,
+           man:redis-server(1)
+
+```
+
+
 
 !!! Warning
     As I mentioned before, redis communications are not encrypted, but using a solution such as stunnel is relatively easy. Please see [how to do this here.](https://redislabs.com/blog/using-stunnel-to-secure-redis/)
