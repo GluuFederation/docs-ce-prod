@@ -183,7 +183,7 @@ Proceed with these values [Y|n]
     Make sure that all your hosts file have the correct configuration to point the Ips of all IDPs and loadbalancer to the responding hostnames. For us all three servers have the following added in `/etc/hosts`.
     
 !!! Warning
-    In the Gluu containers `/etc/hosts` add all IPs **besides your nodes**. 
+    In the Gluu containers `/etc/hosts` add all IPs. **Do not add your nodes IPs in the `/etc/hosts` file of your Gluu container**. 
     
     ```
     45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
