@@ -518,13 +518,9 @@ apt-get install csync2
   
 ### 3. Install NGINX
 
-!!! Warning
-    Make sure to use a separate NGINX/Load-balancing server FQDN as hostname.   
-
-
 **If you have your own load balancer, you can use the following NGINX configuration documentation as a guide for how to proxy with the Gluu Server.**
 
-On loadbalancer.example.org 
+On load balancer server, install NGINX: 
 
 ```
 
@@ -532,9 +528,7 @@ apt-get install nginx -y
 
 ```
 
-- We need the `httpd.crt` and `httpd.key` certs from one of the Gluu servers.   
-
-- From the NGINX server:  
+- On the NGINX server create a directory for the httpd `key` and `crt`:  
 
 ```
 
@@ -542,18 +536,26 @@ mkdir /etc/nginx/ssl/
 
 ```
 
-- From the first Gluu Server you installed:
+- Send the `httpd.crt` and `httpd.key` certs from one of the Gluu servers over to the NGINX server. 
+  
+  From the first Gluu Server installed:
 
 ```
 
-scp /opt/gluu-server-3.1.5/etc/certs/httpd.key root@loadbalancer.example.org:/etc/nginx/ssl/
-scp /opt/gluu-server-3.1.5/etc/certs/httpd.crt root@loadbalancer.example.org:/etc/nginx/ssl/
+scp /opt/gluu-server-3.1.5/etc/certs/httpd.key user@loadbalancer.example.org:/etc/nginx/ssl/
+scp /opt/gluu-server-3.1.5/etc/certs/httpd.crt user@loadbalancer.example.org:/etc/nginx/ssl/
 
 ```
 
-- And from the server, we created our nginx.conf file (idp1.example.org in my case), to the NGINX server (loadbalancer.example.org)
+- On the NGINX server in any editor prefered open `nginx.conf` and edit :
 
-- The following is a working `nginx.conf` example template for a Gluu cluster.
+```
+
+vi /etc/nginx/nginx.conf
+
+```
+
+- The following is a working `nginx.conf` example template for a Gluu cluster. Change all marked lines below that correspond to your Gluu nodes and NGINX server. 
 
 ```
 events {
@@ -563,21 +565,21 @@ events {
 http {
   upstream backend_id {
   ip_hash;
-  server idp1.example.org:443 max_fails=2 fail_timeout=10s;
-  server idp2.example.org:443 max_fails=2 fail_timeout=10s;
+  server idp1.example.org:443 max_fails=2 fail_timeout=10s;         ---> Change this
+  server idp2.example.org:443 max_fails=2 fail_timeout=10s;         ---> Change this
   }
   upstream backend {
-  server idp1.example.org:443 max_fails=2 fail_timeout=10s;
-  server idp2.example.org:443 max_fails=2 fail_timeout=10s;
+  server idp1.example.org:443 max_fails=2 fail_timeout=10s;         ---> Change this
+  server idp2.example.org:443 max_fails=2 fail_timeout=10s;         ---> Change this
   }
   server {
     listen       80;
-    server_name  loadbalancer.example.org;
-    return       301 https://loadbalance.example.org$request_uri;
+    server_name  loadbalancer.example.org;                          ---> Change this
+    return       301 https://loadbalance.example.org$request_uri;   ---> Change this
    }
   server {
     listen 443;
-    server_name loadbalancer.example.org;
+    server_name loadbalancer.example.org;                           ---> Change this
 
     ssl on;
     ssl_certificate         /etc/nginx/ssl/httpd.crt;
@@ -657,11 +659,13 @@ Please adjust the configuration for your IDP (Gluu Servers) and your Load Balanc
 
 ### 4. Install and Configure Redis
 
-Now you need to install and configure redis-server on one or more servers. 
+!!! Warning
+    This can **not** be configured on your NGINX server or you'll get routing issues when attempting to cache
+    
+- Redis-server is an memory caching solution created by redis-labs. It's ideal for clustering solutions but needs additional encryption    
 
-- Redis-server is an memory caching solution created by redis-labs. It's ideal for clustering solutions but needs additional encryption       
-- Mind you, this can not be configured on your NGINX server or you'll get routing issues when attempting to cache
-     
+Now install and configure redis-server on one or more servers. 
+
 - The standard redis-server's configuration file binds to `127.0.0.1`. We need to comment out this entry so that it listens to external requests    
 
 ```
