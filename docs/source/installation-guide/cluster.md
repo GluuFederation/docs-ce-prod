@@ -401,9 +401,15 @@ apt-get install csync2
   
  
   ```
+  
   Copy the contents of `csync2.conf` into the file `csync2.cfg`.
   
-  Copy the csync2 configuration file, certifications and keys to the all the other nodes, here only idp2.example.org.
+  ```
+  cp /etc/csync2.conf /etc/csync2.cfg
+  
+  ```
+  
+  Copy the csync2 configuration file, certifications and keys to the all the other nodes, here only idp2.example.org. **Make sure you have permission to move all the files especially csync2.cfg**
   
   ```
   
