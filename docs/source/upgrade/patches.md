@@ -4,7 +4,7 @@
 ### August 21, 2018
 
 ### Affected versions
-- Gluu versions (2.4.4, 3.1.3 and below). 3.1.5 is not affected by this vulnerability.
+- Gluu versions (2.4.4, 3.1.3 and below). 3.1.6 is not affected by this vulnerability.
 
 ### Description
 We have discovered a critical vulnerability in the Jboss Richfaces library. All versions of the component Richfaces (including the latest v4.5.17.Final) are affected by the vulnerability, which is an EL injection leading to Remote Code Execution. The CVE assignment to MITRE for it is CVE-2018-12532. The CVE can be seen on the [MITRE](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-12532) site as well as [NIST](https://nvd.nist.gov/vuln/detail/CVE-2018-12532). 
