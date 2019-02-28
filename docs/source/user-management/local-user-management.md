@@ -93,11 +93,13 @@ Gluu administrators can import users from an excel file by navigating to `Users`
 
 * Click the `Add` button to select the file from which the users will be imported. The supported excel formats are `xls` and `xlsx`.
 
-* If an attribute has more than one value, separate the values with semicolons.
+* If one field should contain multiple values, provide them in the same cell separated by semicolons, as in column H in the following example:
 
-![image](../img/admin-guide/user/import-people_validate.png)
+![Image showing multiple attributes in the same cell](../img/admin-guide/user/multiattributes.png)
 
 * Click the `Validate` button to validate the user list.   
+
+![image](../img/admin-guide/user/import-people_validate.png)
 
 * Click `Import` to complete the import of users.     
 
