@@ -79,7 +79,9 @@ echo "Moving towards normal opendj start now..."
 --- 19,24 ----
 
 ```
+#### Double checking
 
+To confirm, compare the amount of entries between all replicated trees of nodes after completing the above steps. Even if there is no error in replication, there might still be a difference between node A and node B. In the event this happens, disable/re-enable the whole replication operation. 
 
 ## Publicly viewable oxTrust pages
 
