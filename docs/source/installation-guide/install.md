@@ -26,7 +26,7 @@ Make sure the target server or VM meets **all minimum requirements** as specifie
 
 ## Instructions
 
-### 1. Install Gluu Server package
+### Install Gluu Server package
 
 Installation of the Gluu server will be done under `/root`. 
 The Gluu Server will create its file system under `/root/` and will be 
@@ -126,7 +126,7 @@ remain the same as the host.
 | Install Gluu Server     | `# apt-get install gluu-server-3.1.5`      |
 
 
-### 2. Start the Gluu Server and Log In
+### Start the Gluu Server and Log In
 
 The Gluu Server is a chroot container, which you must start to proceed. 
 
@@ -148,17 +148,14 @@ For Centos 7.x, Red Hat 7.x<!--, Ubuntu 18--> and Debian 9, run the following co
 !!! Note
     Only use `enable` the first time you start the Gluu Server.
 
-### 3. Run `setup.py`
+### Run `setup.py`
 
 Configuration is completed by running `setup.py` from inside the chroot container. This generates certificates, salt values, and renders configuration files. 
 
 ```
 # cd /install/community-edition-setup
 # ./setup.py
-```
-
-!!! Warning
-    Only run setup.py **one time**. Running the above command twice will break the instance.
+```   
 
 A prompt will appear to answer a few questions about the deployment. Hit `Enter` to accept the default values. 
 
@@ -183,12 +180,6 @@ Refer to the following table for details about available setup options:
 | Install oxAuth RP | Optional. OpenID Connect test client: recommended for test enviornments, for more details see [here](../admin-guide/openid-connect/#oxauth-rp) |
 
 
-!!! Note
-    OpenLDAP and Asimba are now deprecated options. If they are needed, run
-        `./setup.py -allow_deprecated_applications`. If you plan to cluster your Gluu Servers, we do not recommend using OpenLDAP.  
-
-!!! Warning
-	Changing the hostname after installation is not supported. 
 
 When complete, `setup.py` will show the selections and prompt for confirmation. If everything looks OK, select Y to finish installation. 
 
@@ -196,23 +187,33 @@ After 5-10 minutes the following success message will appear:
 
 `Gluu Server installation successful! Point your browser to [hostname].`
 
+#### Deprecated options
+
+OpenLDAP and Asimba are now deprecated components in the Gluu Server. If they are needed, during setup run:
+
+`./setup.py -allow_deprecated_applications` 
+
+!!!! Note 
+     For clustered deploments of Gluu, we do not recommend using OpenLDAP.  
+
 #### Avoiding common issues
 
-The easiest place to go wrong is with the first two questions:         
+Avoid setup issues by acknowledging the following:         
 
-1. Enter IP Address: Do **not** use `localhost` for either the IP address or hostname.     
+1. IP Address: Do **not** use `localhost` for either the IP address or hostname.     
 
-1. Enter hostname: Use a real hostname--this can always be managed via host file entries if adding a DNS entry is too much work for testing. For clustered deployments, use the hostname of the cluster that will be used by applications connecting to Gluu.    
+1. Hostname: Use a real hostname--this can always be managed via host file entries if adding a DNS entry is too much work for testing. For clustered deployments, use the hostname of the cluster that will be used by applications connecting to Gluu. Make sure to choose the hostname carefully. Changing the hostname after installation is not a simple task. 
 
+1. Only run setup.py **one time**. Running the above command twice will break the instance.
 
-### 4. Sign in via browser
+### Sign in via browser
 
 Wait about 10 minutes in total for the server to restart and finalize its configuration. After that period, sign in via a web browser. The username will be `admin` and your password will be the `ldap_password` you provided during installation. 
 
 !!! Note
     If the Gluu Server login page does not appear, confirm that port 443 is open in the VM. If it is not open, open port 443 and try to reach the host in the browser again. 
 
-### 5. Disable Gluu Repositories
+### Disable Gluu Repositories
 
 To prevent involuntary overwrites of the currently deployed instance (in case a newer version of the same package is found during regular OS updates), disable the previously added Gluu repositories after initial installation.
 
