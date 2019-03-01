@@ -1,10 +1,9 @@
 # Installation 
 ## Overview
-There are Gluu Server Linux packages for Ubuntu, CentOS, RHEL and Debian operating systems. The 
-installation procedure is similar across all distributions: 
+There are Gluu Server Linux packages for Ubuntu, CentOS, RHEL and Debian operating systems. The installation procedure is similar across all distributions: 
 
 1. [Install the Linux package](#install-the-package)
-2. [Start the Server and login to the container](#start-the-server-and-login)
+2. [Start the Server and log in to the container](#start-the-server-and-login)
 3. [Run `setup.py`](#run-setuppy)
 4. [Sign in via browser](#sign-in-via-browser)
 5. [Disable Gluu repositories](#disable-gluu-repositories)
@@ -29,9 +28,7 @@ There are a few system specific notes to follow:
 ### Install the package
 
 Installation of the Gluu server will be done under `/root`. 
-The Gluu Server will create its file system under `/root/` and will be 
-installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) 
-remain the same as the host.
+The Gluu Server will create its file system under `/root/` and will be installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) remain the same as the host.
 
 <!--
 #### Ubuntu Server 18.04.x
@@ -194,7 +191,7 @@ OpenLDAP and Asimba are now deprecated components in the Gluu Server. If they ar
 `./setup.py -allow_deprecated_applications` 
 
 !!! Note    
-    For clustered deploments of Gluu, we do not recommend using OpenLDAP.     
+    For clustered deployments of Gluu, we do not recommend using OpenLDAP.     
 
 #### Avoiding common issues
 
