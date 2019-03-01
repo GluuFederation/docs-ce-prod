@@ -26,7 +26,7 @@ Make sure the target server or VM meets **all minimum requirements** as specifie
 
 ## Instructions
 
-### Install Gluu Server package
+### Install the package
 
 Installation of the Gluu server will be done under `/root`. 
 The Gluu Server will create its file system under `/root/` and will be 
@@ -126,9 +126,9 @@ remain the same as the host.
 | Install Gluu Server     | `# apt-get install gluu-server-3.1.5`      |
 
 
-### Start the Gluu Server and Log In
+### Start the server and login
 
-The Gluu Server is a chroot container, which you must start to proceed. 
+The Gluu Server is a chroot container, which must be started to proceed. 
 
 For Centos 6.x, Red Hat 6.x, Ubuntu 14/16, and Debian 8, run the following commands:
 
