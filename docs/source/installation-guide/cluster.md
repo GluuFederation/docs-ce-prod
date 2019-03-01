@@ -680,7 +680,7 @@ apt-get install redis-server
 ```
 
 
-- The standard redis-server's configuration file binds to `127.0.0.1`. We need to comment out this entry so that it listens to external requests    
+- The standard redis-server's configuration file binds to `127.0.0.1`. We need to comment out this entry and place the external ip of your redis server.
 
 ```
 
@@ -692,14 +692,13 @@ vi /etc/redis/redis.conf
 
 ```
 
-bind 127.0.0.1
+#bind 127.0.0.1
 
 ```
 
-- You may choose to let it listen to only your servers in which case :
 
 ```
-bind 159.203.126.10 138.197.65.243 45.55.232.15
+bind <your-redis-ip-server>
     
 
 ```
@@ -707,7 +706,7 @@ bind 159.203.126.10 138.197.65.243 45.55.232.15
 
 ```
 
-service redis-server force-reload
+/etc/init.d/redis-server restart
 
 ```
 - Check Redis status
@@ -733,7 +732,7 @@ The status should be running :
 
 
 !!! Warning
-    As I mentioned before, redis communications are not encrypted, but using a solution such as stunnel is relatively easy. Please see [how to do this here.](https://redislabs.com/blog/using-stunnel-to-secure-redis/)
+    As mentioned before, redis communications are not encrypted, but using a solution such as stunnel is relatively easy. Please see [how to do this here.](https://redislabs.com/blog/using-stunnel-to-secure-redis/)
 
 !!! Note
     Redis can also be configured for HA and failover with multiple methods utilizing [Sentinel](https://redis.io/topics/sentinel) or [Redis-cluster](https://redis.io/topics/cluster-tutorial)
