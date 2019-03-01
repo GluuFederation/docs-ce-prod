@@ -202,10 +202,10 @@ Avoid setup issues by acknowledging the following:
 
 - IP Address: Do **not** use `localhost` for either the IP address or hostname.     
 
-- Hostname: 
-  - Make sure to choose the hostname carefully. Changing the hostname after installation is not a simple task.   
-  - Use a real hostname--this can always be managed via host file entries if adding a DNS entry is too much work for testing.   
-  - For clustered deployments, use the hostname of the cluster that will be used by applications connecting to Gluu.   
+- Hostname:     
+     - Make sure to choose the hostname carefully. Changing the hostname after installation is not a simple task.   
+     - Use a real hostname--this can always be managed via host file entries if adding a DNS entry is too much work for testing.   
+     - For clustered deployments, use the hostname of the cluster that will be used by applications connecting to Gluu.   
 
 - Only run setup.py **one time**. Running the command twice will break the instance.
 
