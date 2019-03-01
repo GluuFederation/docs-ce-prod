@@ -35,7 +35,8 @@ Here is how to configure NameID in oxTrust:
    - 'Enable' `Create NameID`
    - 'Attribute Base': Attribute value to calculate name Identifier. 
    - 'Attribute Name': Custom attribute name which we created [earlier here.](https://gluu.org/docs/ce/admin-guide/attribute/#custom-attributes)
-   - 'Attribute Type': Type of name identifier. 
+   - 'Attribute Type': Type of name identifier: `emailAddress`, `unspecified`, or `persistent`
+![name id type](../img/saml/name_id_type.png)
  - Restart `identity` and `idp` services by: 
    - `service identity stop/start`
    - `service idp stop/start`
