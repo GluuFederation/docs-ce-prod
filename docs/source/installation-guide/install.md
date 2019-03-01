@@ -1,7 +1,7 @@
 # Installation 
 ## Overview
 There are Gluu Server Linux packages for Ubuntu, CentOS, RHEL and Debian operating systems. The 
-installation procedure is similar across all the distributions: 
+installation procedure is similar across all distributions: 
 
 1. [Install the Linux package](#1-install-gluu-server-package)
 2. [Start the Gluu Server and log into the container](#2-start-the-gluu-server-and-log-in)
