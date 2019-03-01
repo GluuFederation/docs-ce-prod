@@ -3,11 +3,11 @@
 There are Gluu Server Linux packages for Ubuntu, CentOS, RHEL and Debian operating systems. The 
 installation procedure is similar across all distributions: 
 
-1. [Install the Linux package](#1-install-gluu-server-package)
-2. [Start the Gluu Server and log into the container](#2-start-the-gluu-server-and-log-in)
-3. [Run `setup.py`](#3-run-setuppy)
-4. [Log in via a browser](#4-log-in-via-browser)
-5. [Disable Gluu repositories](#5-disable-gluu-repositories)
+1. [Install the Linux package](#install-the-package)
+2. [Start the Gluu Server and log into the container](#start-the-server-and-login)
+3. [Run `setup.py`](#run-setuppy)
+4. [Log in via a browser](#sign-in-via-browser)
+5. [Disable Gluu repositories](#disable-gluu-repositories)
 
 !!! Note
     The below instructions are intended for single server Gluu deployments. If you intend to cluster your Gluu Server to achieve fail-over and high availability, please refer to the [cluster documentation](./cluster.md)
