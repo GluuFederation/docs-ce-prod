@@ -15,7 +15,7 @@ installation procedure is similar across all distributions:
 ## Prerequisites
 Make sure the target server or VM meets **all minimum requirements** as specified in the [VM Preparation Guide](../installation-guide/index.md).   
 
-### System specific notes
+There are a few system specific notes to follow:  
 
 - **CentOS**: selinux must be set to permissive in /etc/selinux/config
 
