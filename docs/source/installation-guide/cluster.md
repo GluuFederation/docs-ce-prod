@@ -38,6 +38,7 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 45.55.232.15    loadbalancer.example.org (NGINX server)
 159.203.126.10  idp1.example.org (Gluu Server 3.1.5 on Ubuntu 16.04 )
 138.197.65.243  idp2.example.org (Gluu Server 3.1.5 on Ubuntu 16.04 )
+197.122.32.421  redis.example.org (Redis Server)
 
 ```
      
@@ -76,6 +77,7 @@ apt-get install openssh-client
     45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
     159.203.126.10  idp1.example.org (Gluu Server 3.1.5 on Ubuntu 16.04)
     138.197.65.243  idp2.example.org (Gluu Server 3.1.5 on Ubuntu 16.04)
+    197.122.32.421  redis.example.org (Redis Server)
     
     ```
     
@@ -189,6 +191,7 @@ Proceed with these values [Y|n]
     45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
     159.203.126.10  idp1.example.org (Gluu Server 3.1.5 on Ubuntu 16.04)
     138.197.65.243  idp2.example.org (Gluu Server 3.1.5 on Ubuntu 16.04)
+    197.122.32.421  redis.example.org (Redis Server)
     
     ```
 
@@ -672,67 +675,256 @@ Please adjust the configuration for your IDP (Gluu Servers) and your Load Balanc
 
 Now install and configure redis-server on a serperate Ubuntu 18.04 server .**You can setup a Redis cluster model and have them installed on all your nodes. 
 
-```
-apt-get update
+- On your Redis server , here `197.122.32.421  redis.example.org (Redis Server)` do the following :
+  
+  
+  ```bash
+  
+  apt-get update
 
-apt-get install redis-server
+  apt-get install redis-server
 
-```
+  ```
+  
+  - Edit the Redis binding IP to the IP of your Redis server , here that is `197.122.32.421` :
+  
+  ```bash
+  
+  vi /etc/redis/redis.conf
+  
+  ```
+  
+  ```bash
+  # ~~~ WARNING ~~~ If the computer running Redis is directly exposed to the
+  # internet, binding to all the interfaces is dangerous and will expose the
+  # instance to everybody on the internet. So by default we uncomment the
+  # following bind directive, that will force Redis to listen only into
+  # the IPv4 lookback interface address (this means Redis will be able to
+  # accept connections only from clients running into the same computer it
+  # is running).
+  #
+  # IF YOU ARE SURE YOU WANT YOUR INSTANCE TO LISTEN TO ALL THE INTERFACES
+  # JUST COMMENT THE FOLLOWING LINE.
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  bind 197.122.32.421 ::1
 
+  
+  ```
+ 
+  - While you have the Redis configuration file open you should place your `password` for a more secured communication to the server, uncomment `requirepass` and place your password :
+  
+  ```bash
+  
+  requirepass chooseyourpasswordcarefully
+  
+  ```
+  
+  - Now restart redis-server
 
-- The standard redis-server's configuration file binds to `127.0.0.1`. We need to comment out this entry and place the external ip of your redis server.
+  ```
 
-```
+  /etc/init.d/redis-server restart
 
-vi /etc/redis/redis.conf
+  ```
+  
+  - Check Redis status
 
-```
+  ```
 
-- Modify this entry:
+  /etc/init.d/redis-server
 
-```
+  ```
 
-#bind 127.0.0.1
+  The status should be running : 
 
-```
+  ```
 
-
-```
-bind <your-redis-ip-server>
-    
-
-```
-- Now restart redis-server
-
-```
-
-/etc/init.d/redis-server restart
-
-```
-- Check Redis status
-
-```
-
-systemctl status redis
-
-```
-
-The status should be running : 
-
-```
-
-● redis-server.service - Advanced key-value store
+  ● redis-server.service - Advanced key-value store
    Loaded: loaded (/lib/systemd/system/redis-server.service; enabled; vendor preset: enabled)
    Active: active (running) since Wed 2018-06-27 18:48:52 UTC; 12s ago
      Docs: http://redis.io/documentation,
            man:redis-server(1)
 
+  ```
+  
+  - Install stunnel to encrypt the redis communications :
+  
+   ```bash
+  
+  apt-get update
+
+  apt-get install stunnel4
+
+  ```
+  
+  - Start the Stunnel service by changing `ENABLED=0` to `ENABLED=1` in `/etc/default/stunnel4` file :
+  
+  ```bash
+  
+  vi /etc/default/stunnel4
+  
+  ```
+  
+  - Create a certificate that will be used across all nodes and Redis server :
+  
+  ```bash
+  
+  openssl genrsa -out /etc/stunnel/key.pem 1024
+  openssl req -new -x509 -key /etc/stunnel/key.pem -out /etc/stunnel/cert.pem -days 365
+  
+  ```
+  
+  - Concatenate `key.pem` and `cert.pem` into one file `secureredis.pem`:
+  
+  ```bash
+  
+  cat /etc/stunnel/key.pem /etc/stunnel/cert.pem > /etc/stunnel/secureredis.pem
+  
+  ```
+  
+  - For security, change file permissions :
+  
+  ```bash
+  
+  chmod 640 /etc/stunnel/key.pem /etc/stunnel/cert.pem /etc/stunnel/secureredis.pem
+  
+  ```
+  
+  - Configure stunnel redis server configuration file , we will create ones for the nodes later  :
+  
+  ```bash
+  
+  vi /etc/stunnel/redis-server.conf
+  
+  ```
+  
+  Place your configurations inside this file. `accept` from your external ip and `connect` to the binding ip you placed in the `redis.conf` file. Both will be the same in our case because we are unifying the connections inside the Redis server. This is important for the nodes to easily communicate to the Redis server.**Its a good time to check all servers `/etc/hosts` file has all the four ips and hostnames. Remember for your nodes its the `/etc/hosts` file outside your gluu container
+  
+  ```bash
+  
+  cert = /etc/stunnel/secureredis.pem
+  pid = /var/run/stunnel.pid
+  [redis]
+  accept = 197.122.32.421:6379
+  connect = 197.122.32.421:6379
+  
+  ```
+  
+  - Start stunnel service :
+  
+  ```bash
+  
+  /etc/init.d/stunnel4 start
+  
+  ```
+  
+  **This is the end of the commands that had to be done inside the redis server**
+  
+- On **Node 1** and **Node 2** , here `159.203.126.10  idp1.example.org` and `138.197.65.243  idp2.example.org` do the following :
+
+  - Install `redis-tools` :
+  
+  ```bash
+
+  apt-get install redis-server
+  
+  ```
+  
+  - Install stunnel to encrypt the redis communications to the server  :
+  
+   ```bash
+  
+  apt-get update
+
+  apt-get install stunnel4
+
+  ```
+  
+  - Start the Stunnel service by changing `ENABLED=0` to `ENABLED=1` in `/etc/default/stunnel4` file :
+  
+  ```bash
+  
+  vi /etc/default/stunnel4
+  
+  ```
+  
+  - Copy the `secureredis.pem` created in the redis server to the nodes. From your redis server :
+  
+  ```bash
+  
+  scp /etc/stunnel/secureredis.pem root@159.203.126.10 /etc/stunnel/
+  
+  scp /etc/stunnel/secureredis.pem root@138.197.65.243 /etc/stunnel/
+  
+  
+  ```
+  
+  - For security, change file permissions :
+  
+  ```bash
+  
+  chmod 640 /etc/stunnel/secureredis.pem
+  
+  ```
+  
+  - Configure the stunnel redis client configuration file :
+  
+  ```bash
+  
+  vi /etc/stunnel/redis-client.conf
+  
+  ```
+  
+  Place your configurations inside this file. `accept` from your external ip and `connect` to the **redis server ip**. Both will be the same in our case because we are unifying the connections inside the Redis server.
+  
+  **Node 1**
+  
+  ```bash
+  
+  cert = /etc/stunnel/secureredis.pem
+  pid = /var/run/stunnel.pid
+  [redis]
+  accept = 159.203.126.10:6379
+  connect = 197.122.32.421:6379
+  
+  ```
+  
+  **Node 2**
+  
+  ```bash
+  
+  cert = /etc/stunnel/secureredis.pem
+  pid = /var/run/stunnel.pid
+  [redis]
+  accept = 138.197.65.243:6379
+  connect = 197.122.32.421:6379
+  
+  ```
+  
+  - Start stunnel service :
+  
+  ```bash
+  
+  /etc/init.d/stunnel4 start
+  
+  ```
+  
+  **This is the end of the commands that had to be done on both nodes**
+  
+- Test that you server is taking to the clients and vice versa :
+
+```bash
+
+redis-cli -h <hostname> -a <password> 
+
 ```
 
+In the `<hostname>` both IP ( `197.122.32.421`) and hostname (`redis.example.org`) have to be working on all clients and main redis server. Try to `Ping` and you should get a `PONG`.
 
+  
 
 !!! Warning
-    As mentioned before, redis communications are not encrypted, but using a solution such as stunnel is relatively easy. Please see [how to do this here.](https://redislabs.com/blog/using-stunnel-to-secure-redis/)
+    For more information please see [how to do this here.](https://redislabs.com/blog/using-stunnel-to-secure-redis/)
 
 !!! Note
     Redis can also be configured for HA and failover with multiple methods utilizing [Sentinel](https://redis.io/topics/sentinel) or [Redis-cluster](https://redis.io/topics/cluster-tutorial)
