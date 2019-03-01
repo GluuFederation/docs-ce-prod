@@ -217,7 +217,7 @@ Proceed with these values [Y|n]
    The operation was successful.  The server commands will use the java arguments and java home specified in the properties file located in /opt/opendj/config/java.properties
 
    ```
-   We need to make all nodes accessible to each other by setting the listening address to `0.0.0.0`. In your command you may have to change `cn=directory manager` to your CN ( by default `cn=directory manager` unless changed ) ,and  `<password>` to your password set in the first installation of Gluu. If the below commands are not connecting try changing `localhost` to the nodes explicit IP addresss, here that would be `159.203.126.10` and `138.197.65.243`.
+   We need to make all nodes accessible to each other by setting the listening address to `0.0.0.0`. In your command you may have to change `cn=directory manager` to your CN ( by default `cn=directory manager` unless changed ) ,and  `<password>` to your password set in the first installation of Gluu. If the below commands are not connecting try changing `localhost` to the nodes explicit IP addresss, here that would be `159.203.126.10` and `138.197.65.243`.**Restart all you nodes**
    
    **Run both commands**
    
