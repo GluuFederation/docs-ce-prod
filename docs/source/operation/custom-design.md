@@ -4,6 +4,7 @@ Most organizations will want to edit and customize the look and feel of public-f
 The following documentation provides the file locations of public facing pages, as well as instructions for adding custom HTML, CSS, and Javascript files to your Gluu Server. 
 
 Public pages include:  
+
   - All included sign-in pages  
   - Registration  
   - Password Recovery  
