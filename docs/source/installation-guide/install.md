@@ -200,11 +200,14 @@ OpenLDAP and Asimba are now deprecated components in the Gluu Server. If they ar
 
 Avoid setup issues by acknowledging the following:         
 
-1. IP Address: Do **not** use `localhost` for either the IP address or hostname.     
+- IP Address: Do **not** use `localhost` for either the IP address or hostname.     
 
-1. Hostname: Use a real hostname--this can always be managed via host file entries if adding a DNS entry is too much work for testing. For clustered deployments, use the hostname of the cluster that will be used by applications connecting to Gluu. Make sure to choose the hostname carefully. Changing the hostname after installation is not a simple task. 
+- Hostname: 
+  - Make sure to choose the hostname carefully. Changing the hostname after installation is not a simple task.   
+  - Use a real hostname--this can always be managed via host file entries if adding a DNS entry is too much work for testing.   
+  - For clustered deployments, use the hostname of the cluster that will be used by applications connecting to Gluu.   
 
-1. Only run setup.py **one time**. Running the above command twice will break the instance.
+- Only run setup.py **one time**. Running the command twice will break the instance.
 
 ### Sign in via browser
 
