@@ -193,8 +193,8 @@ OpenLDAP and Asimba are now deprecated components in the Gluu Server. If they ar
 
 `./setup.py -allow_deprecated_applications` 
 
-!!!! Note 
-     For clustered deploments of Gluu, we do not recommend using OpenLDAP.  
+!!! Note    
+    For clustered deploments of Gluu, we do not recommend using OpenLDAP.     
 
 #### Avoiding common issues
 
