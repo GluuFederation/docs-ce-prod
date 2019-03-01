@@ -213,8 +213,8 @@ Avoid setup issues by acknowledging the following:
 
 Wait about 10 minutes in total for the server to restart and finalize its configuration. After that period, sign in via a web browser. The username will be `admin` and your password will be the `ldap_password` you provided during installation. 
 
-!!! Note
-    If the Gluu Server login page does not appear, confirm that port 443 is open in the VM. If it is not open, open port 443 and try to reach the host in the browser again. 
+!!! Note   
+    If the Gluu Server login page does not appear, confirm that port 443 is open in the VM. If it is not open, open port 443 and try to reach the host in the browser again.   
 
 ### Disable Gluu Repositories
 
