@@ -731,7 +731,7 @@ Now install and configure redis-server on a serperate Ubuntu 18.04 server .**You
 
   ```
 
-  /etc/init.d/redis-server
+  /etc/init.d/redis-server status
 
   ```
 
@@ -826,7 +826,7 @@ Now install and configure redis-server on a serperate Ubuntu 18.04 server .**You
   
   ```bash
 
-  apt-get install redis-server
+  apt-get install redis-tools
   
   ```
   
