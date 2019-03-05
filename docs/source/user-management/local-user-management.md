@@ -64,6 +64,18 @@ Likewise, if the user has any associated 2FA devices, they will be displayed in 
 
 ![2FA IDs](../img/admin-guide/user/admin_users_2fa.png)
 
+### Managing associated authorizations 
+
+If the user has previously granted authorization to release their data to specific applications, this can also be managed in LDAP. There is a branch called `ou=clientAuthorizations,inum=...,ou=people,o=...,o=gluu`
+
+There can be several `oxId= ...` entries underneath. Every entry has the `oxAuthClientId` attribute, which is the inum of the OpenID client for which the user has authorized consent. 
+
+To remove consent for a user/client pair, manually remove the corresponding `oxId=...` subentry.
+
+To also remove the refresh tokens, check the clients branch `ou=clients,o=...,o=gluu`.
+
+Under the `oxAuthGrantId=...` branch, there will be subentries for `uniqueIdentifier=...`. Those have the following attributes which map client, user and type of token issued: `oxAuthClientId`, `oxAuthUserId`, `oxAuthTokenType`. Delete the `uniqueIdentifier=...` entries as needed. oxAuth will also clear those automatically as per the `oxAuthExpiration` attribute. 
+
 ## Manage Groups in oxTrust
 Out of the box, the Gluu Server includes one group: the Gluu Manager
 Group (`gluuManager`). Groups can be added and populated as
