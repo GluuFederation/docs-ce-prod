@@ -336,8 +336,6 @@ Alternatively you can use an absolute URL for `logo_img` if the image is hosted 
 
 Besides common social providers, external OpenID Connect Providers can also be supported. More specifically, you can enable one OpenID Provider and be up and running in a matter of minutes. 
 
-1. Register an OIDC client at the OP you want to support. Set its redirect URI value to `https://your-gluu-host/passport/auth/openidconnect/callback`
-
 1. In oxTrust navigate to `Configuration` > `Manage Authentication` > `Passport Authentication Method`. 
 
 1. Click `Add Strategy` and fill the `strategy` field with the value `openidconnect`.
