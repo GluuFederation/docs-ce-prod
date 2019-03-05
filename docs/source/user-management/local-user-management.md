@@ -36,7 +36,7 @@ In the below example we are showing how to connect and use Gluu Server's interna
 ## Manage People 
 Managing data associated with people can be performed in both oxTrust, the admin GUI, as well as LDAP. To manage people in oxTrust, navigate to `User` > `Manage People`.
 
-From this interface you can add and search users. Because the user database can potentially be very large, a value with at least two characters is required in the search field. In other words, you can not click search with a blank entry to populate all users. If you need to see all users, this would be best performed manually within the [Gluu LDAP server](#manage-users-in-gluu-ldap). Upon performing a user search in oxTrust a list will be populated with all users that match the search.
+From this interface you can add and search users. Because the user database can potentially be very large, a value with at least two characters is required in the search field. In other words, you can not click search with a blank entry to populate all users. If you need to see all users, this would be best performed manually within the [Gluu LDAP server](#manage-data-in-gluu-ldap). Upon performing a user search in oxTrust a list will be populated with all users that match the search.
 
 ![Search Users](../img/admin-guide/user/admin_users_searchadmin.png)
 
