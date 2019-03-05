@@ -4,7 +4,8 @@
 ### February 15, 2019
 
 ### Affected versions
-- All Gluu versions (2.x - 3.x), any installation using Gluu OpenDJ
+- Gluu versions (2.4.4, 3.1.5 and below). 3.1.6 is not affected by this vulnerability.
+
 
 ### Description
 OpenDJ 3.0 is affected by a bug preventing replication server from successfully starting if the size of certain changelog (binary) files become a multiple of 256. 

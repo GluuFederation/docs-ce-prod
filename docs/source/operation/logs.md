@@ -153,32 +153,26 @@ The oxauth logs contain the information about oxAuth authentication process and 
 The key oxauth logs are
 
 1. `oxauth.log` under `/opt/gluu/jetty/oxauth/logs/`
-This log is gathering most of the authentication related information. 
-Generally this is the first log to review for any authentication-related troubleshooting, 
-like authentication failure or missing clients etc. Here's an example showing a 
-successful user authentication:
+This log is gathering most of the authentication related information. Generally this is the first log to review for any authentication-related troubleshooting, like authentication failure or missing clients etc. Here's an example showing a successful user authentication:
 
         2016-07-16 15:43:28,232 INFO  [org.xdi.oxauth.auth.Authenticator] Authentication success for Client: '@!EFCB.890F.FB6C.2603!0001!0A49.F454!0008!F047.7275'
         2016-07-16 15:43:28,232 TRACE [org.xdi.oxauth.auth.Authenticator] Authentication successfully for '@!EFCB.890F.FB6C.2603!0001!0A49.F454!0008!F047.7275'
         2016-07-16 15:43:28,238 DEBUG [xdi.oxauth.token.ws.rs.TokenRestWebServiceImpl] Attempting to request access token: grantType = authorization_code, code = 61ba3c0d-42c4-4f1f-8420-fd5f6707f1b1, redirectUri = https://test.gluu.org/identity/authentication/authcode, username = null, refreshToken = null, clientId = null, ExtraParams = {grant_type=[Ljava.lang.String;@1add2a62, redirect_uri=[Ljava.lang.String;@2e0995b5, code=[Ljava.lang.String;@7743b5af}, isSecure = true, codeVerifier = null
         2016-07-16 15:43:28,249 DEBUG [org.xdi.oxauth.service.UserService] Getting user information from LDAP: userId = zico 
 
-2. `oxauth_script.log` under `/opt/gluu/jetty/oxauth/logs/`
-Most of the custom script's initialization and few more information are 
-loaded here in this script. In the sample log below we can see 'Super Gluu' 2FA 
-has been loaded in the Gluu Server:
+1. `oxauth_script.log` under `/opt/gluu/jetty/oxauth/logs/`
+  Most of the custom script's initialization and few more information are loaded here in this script. In the sample log below we can see 'Super Gluu' 2FA has been loaded in the Gluu Server:
 
         2016-07-16 19:06:32,705 INFO  [org.xdi.service.PythonService] (pool-2-thread-2) oxPush2. Initialization
         2016-07-16 19:06:32,713 INFO  [org.xdi.service.PythonService] (pool-2-thread-2) oxPush2. Initialize notification services
         2016-07-16 19:06:32,750 INFO  [org.xdi.service.PythonService] (pool-2-thread-2) oxPush2. Initialized successfully. oneStep: 'False', twoStep: 'True', pushNotifications: 'False'
 
+1. `oxauth_persistence_duration.log` under `/opt/gluu/jetty/oxauth/logs/`
+  This log contains information on the total execution times for LDAP operations such as `add` and `search`. It records at the `DEBUG` level, so it does not affect production environment performance.
+
 ### oxTrust logs
 1. `oxtrust.log` under `/opt/gluu/jetty/identity/logs`
-This log gather logs related to Gluu Server Admin panel (called oxTrust). 
-For example, what is the clientID of an oxTrust session? Or, what scopes are 
-being used, etc. In the example below, you can see an admin user has successfuly 
-logged into the `test.gluu.org` Gluu Server admin panel, has the proper authorizationCode, 
-a redirectURI, and the user's role:
+  This log gather logs related to Gluu Server Admin panel (called oxTrust). For example, what is the clientID of an oxTrust session? Or, what scopes are being used, etc. In the example below, you can see an admin user has successfully logged into the `test.gluu.org` Gluu Server admin panel, has the proper authorizationCode, a redirectURI, and the user's role:
 
         2016-07-16 16:41:55,690 INFO  [org.gluu.oxtrust.action.Authenticator] authorizationCode : 555a7586-6ca2-4b39-ab39-2ac78ec81524
         2016-07-16 16:41:55,690 INFO  [org.gluu.oxtrust.action.Authenticator]  scopes : user_name email openid profile
@@ -189,16 +183,11 @@ a redirectURI, and the user's role:
         2016-07-16 16:41:55,692 INFO  [org.gluu.oxtrust.action.Authenticator] redirectURI : https://test.gluu.org/identity/authentication/authcode
         2016-07-16 16:41:55,919 DEBUG [org.gluu.oxtrust.action.Authenticator]  tokenResponse : org.xdi.oxauth.client.TokenResponse@1914b8d
 
-2. `oxtrust_script.log` under `/opt/gluu/jetty/identity/logs`   
-This log collects information on oxTrust related scripts and their operations. 
-For example, if an organization uses a custom attribute which populates values 
-for every user, then the Gluu Server Administrator needs to use a custom script 
-for their 'Cache Refresh' process. This log will receive information when the custom script runs.
+1. `oxtrust_script.log` under `/opt/gluu/jetty/identity/logs`   
+  This log collects information on oxTrust related scripts and their operations. For example, if an organization uses a custom attribute which populates values for every user, then the Gluu Server Administrator needs to use a custom script for their 'Cache Refresh' process. This log will receive information when the custom script runs.
 
-3. `oxtrust_cache_refresh.log` under `/opt/gluu/jetty/identity/logs`    
-Cache Refresh related information such as status, primary failure, etc., 
-is available in this log. In the sample snippet below we see the total number of 
-users that have been synced into the Gluu Server, number of failures, and total number of updated users. 
+1. `oxtrust_cache_refresh.log` under `/opt/gluu/jetty/identity/logs`    
+  Cache Refresh related information such as status, primary failure, etc., is available in this log. In the sample snippet below we see the total number of users that have been synced into the Gluu Server, number of failures, and total number of updated users. 
 
         2016-07-16 17:18:17,691 DEBUG [gluu.oxtrust.ldap.cache.service.CacheRefreshTimer] (pool-1-thread-9) Updated person '@!EFCB.890F.FB6C.2603!0001!0A49.F454!0000!40EB.AB8E'
         2016-07-16 17:18:17,691 INFO  [gluu.oxtrust.ldap.cache.service.CacheRefreshTimer] (pool-1-thread-9) Updated '2,002' entries
@@ -209,14 +198,17 @@ users that have been synced into the Gluu Server, number of failures, and total 
         2016-07-16 17:18:17,739 INFO  [gluu.oxtrust.ldap.cache.service.CacheRefreshTimer] (pool-1-thread-9) There are '2,002' entries before updating inum list
         2016-07-16 17:18:17,740 INFO  [gluu.oxtrust.ldap.cache.service.CacheRefreshTimer] (pool-1-thread-9) There are '2,002' entries after removal '0' entries 
         
-4. `oxtrust_audit.log` under `/opt/gluu/jetty/identity/logs`
-This log provides basic auditing for oxTrust identity. It gathers information about who did what, when, and from where in the following format:
+1. `oxtrust_audit.log` under `/opt/gluu/jetty/identity/logs`
+  This log provides basic auditing for oxTrust identity. It gathers information about who did what, when, and from where in the following format:
 
-Date - Object changed - Who applied the change - from which IP
+  Date - Object changed - Who applied the change - from which IP
 
-For example:
+  For example:
 
     2018-09-26 09:07:55,938 INFO  [qtp804611486-16]- OPENID CLIENT @!2D59.8992.A7F7.CD81!0001!6290.A960!0008!ACA6.3181.A647.456C **MyOwnClient** ADDED  BY USER Default Admin User FROM IP ADDRESS 192.168.1.6
+    
+1. `oxtrust_persistence_duration.log` under `/opt/gluu/jetty/oxauth/logs/`
+  This log contains information on the total execution times for LDAP operations such as `add` and `search`. It records at the `DEBUG` level, so it does not affect production environment performance.
 
 #### client_id and/or client_name logging
 oxTrust configured to generate and view client_id and/or client_name logs. 
@@ -326,4 +318,4 @@ it could be performed by modifying the slapd.conf file under the above mentioned
 
 The "clear-logs" feature can be used to clear all log files with the extension `.log`, including system logs. Clear-logs can be helpful during troubleshooting, as well as research and development. We discourage its use in production systems if the logs are not backed-up. More features are planned. Please consider this as work in progress.
 
-`# service gluu-server-3.1.5 clear-logs`
+`# service gluu-server-3.1.6 clear-logs`
