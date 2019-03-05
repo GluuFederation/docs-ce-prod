@@ -1,16 +1,16 @@
 # Customizing Public Pages
 
-Most organizations will want to edit and customize the look and feel of public-facing Gluu Server pages to match their own corporate branding. 
-The following documentation provides the file locations of public facing pages, as well as instructions for adding custom HTML, CSS, and Javascript files to your Gluu Server. 
+Most organizations will want to edit and customize the look and feel of public-facing Gluu Server pages to match their corporate branding. The following documentation provides file locations of public facing pages and instructions for adding custom HTML, CSS, and Javascript files to your Gluu Server. 
 
 Public pages include:  
+
   - All included sign-in pages  
   - Registration  
   - Password Recovery  
   - Error Pages  
 
-!!! Warning: 
-    Customizations should only be made by people with a solid understanding of web development. Before changing any files, we recommend creating backups to easily revert your instance to its original state.
+!!! Warning 
+    Customizations should only be made by people with a solid understanding of web development. Before changing files, we strongly recommend creating backups.
 
 ## Overview
 
