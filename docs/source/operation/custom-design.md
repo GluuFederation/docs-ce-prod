@@ -26,8 +26,8 @@ A typical example would be customizing oxAuth's login page. There are two ways t
 
 ## Directory structure and mappings
 
-!!! Note:
-        Log into the Gluu Server chroot before working on design customizations for any pages.
+!!! Note
+    Log into the Gluu Server chroot before working on design customizations for any pages.
 
 New directories trees have been added inside the Gluu Server `chroot` to make page customizations easier. 
 Each such tree is placed in the configuration directory of the corresponding Gluu component (only 
@@ -81,12 +81,8 @@ Thus, a modified `login.xhtml` page put under `custom/pages/` will be used inste
 `webapp/login.xhtml` file from the exploded archive. You can use files unpacked there 
 as a base for your own customized files.
 
-!!! Warning: 
-    Jetty included in earlier Gluu 3.x packages is known to create duplicated 
-    directories under `/opt/jetty-<VERSION>/temp/` for each of its components. 
-    In case of encountering this issue, it's recommended to stop corresponding 
-    service and remove all subdirectories related to it from the `temp/` 
-    directory. After starting service again its WAR archive will be unpacked there again.
+!!! Warning 
+    Jetty included in earlier Gluu 3.x packages is known to create duplicated directories under `/opt/jetty-<VERSION>/temp/` for each of its components. In case of encountering this issue, it's recommended to stop corresponding service and remove all subdirectories related to it from the `temp/` directory. After starting service again its WAR archive will be unpacked there again.
 
 Customized `libs` for oxAuth to use should be placed in the following directories:
 ```
@@ -120,7 +116,7 @@ All images should be placed under:
 
 `/opt/gluu/jetty/oxauth/custom/static/img`
 
-!!! Note:
+!!! Note
     You can change the logo on every public-facing page here. Place your image in `/static/img` and name it `logo.png`.
 
 And all CSS are inside:
@@ -151,7 +147,7 @@ Base directory:
 - Custom authentication scripts; XHTML files under:
     `./webapp/auth/`
 
-### oxTrust:
+### oxTrust
 
 oxTrust is responsible for displaying the Gluu Server's default registration page, as well as the administrator web UI's pages. 
 
@@ -172,7 +168,8 @@ The oxAuth and oxTrust services need to be restarted for customizations to be ap
 # service identity start
 ```
 
-**Note:** There is a 10 second delay on page modification reload.
+!!! Note
+    There is a 10 second delay on page modification reload.
 
 ## An Example: Removing the Gluu copyright 
 
