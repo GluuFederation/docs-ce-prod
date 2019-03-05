@@ -1,7 +1,7 @@
 ## Notice
 
 This document, also known as the Gluu Release Note, 
-relates to the Gluu Server Release versioned 3.1.6. The work is licensed under “The MIT License” 
+relates to the Gluu Server Release versioned 3.1.5. The work is licensed under “The MIT License” 
 allowing the use, copy, modify, merge, publish, distribute, sub-license and sale without 
 limitation and liability. This document extends only to the aforementioned release version 
 in the heading.
@@ -14,7 +14,7 @@ OR USING THE RELEASE.
 
 ## Purpose
 
-The document is released with the Version 3.1.6 of the Gluu Software. The purpose of this document is to provide the changes made/new features included in this release of the Gluu Software. The list is not exhaustive and there might be some omission of negligible issues, but the noteworthy features, enhancements and fixes are covered. 
+The document is released with the Version 3.1.5 of the Gluu Software. The purpose of this document is to provide the changes made/new features included in this release of the Gluu Software. The list is not exhaustive and there might be some omission of negligible issues, but the noteworthy features, enhancements and fixes are covered. 
 
 ## Background
 
@@ -27,8 +27,8 @@ The most common use cases for the Gluu Server include single sign-on (SSO), mobi
 Please visit the [Gluu Documentation Page](http://www.gluu.org/docs/ce) for the complete 
 documentation and administrative guide. 
 
-## Available components in Gluu Server 3.1.6
-- oxAuth, oxTrust, oxCore v3.1.6
+## Available components in Gluu Server 3.1.5
+- oxAuth, oxTrust, oxCore v3.1.5
 - Gluu OpenLDAP v2.4.44-5
 - Gluu OpenDJ v3.0
 - Shibboleth v3.2.1
@@ -44,7 +44,7 @@ documentation and administrative guide.
 
 ## Changes
 
-### [GluuFederation/oxAuth](https://github.com/GluuFederation/oxAuth/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
+### [GluuFederation/oxAuth](https://github.com/GluuFederation/oxAuth/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.5+)
 
 - [#975](https://github.com/GluuFederation/oxAuth/issues/975) Implemented Fido2 authenticator script which based on Fido2 API
 
@@ -120,7 +120,7 @@ documentation and administrative guide.
 
 - [#230](https://github.com/GluuFederation/oxAuth/issues/230) Resource Owner Password Credential Grant Interception Script
 
-### [GluuFederation/oxTrust](https://github.com/GluuFederation/oxTrust/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
+### [GluuFederation/oxTrust](https://github.com/GluuFederation/oxTrust/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.5+)
 
 - [#1451](https://github.com/GluuFederation/oxTrust/issues/1451) Error in client registration form
 
@@ -246,7 +246,7 @@ documentation and administrative guide.
 
 - [#356](https://github.com/GluuFederation/oxTrust/issues/356) Default password reset email contents
 
-### [GluuFederation/community-edition-setup](https://github.com/GluuFederation/community-edition-setup/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
+### [GluuFederation/community-edition-setup](https://github.com/GluuFederation/community-edition-setup/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.5+)
 
 - [#503](https://github.com/GluuFederation/community-edition-setup/issues/503) Enhance oxtrus/oxAuth log level
 
@@ -268,7 +268,7 @@ documentation and administrative guide.
 
 - [#485](https://github.com/GluuFederation/community-edition-setup/issues/485) Abort setup.py if file descriptor is less than 64k
 
-### [GluuFederation/oxcore](https://github.com/GluuFederation/oxcore/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
+### [GluuFederation/oxcore](https://github.com/GluuFederation/oxcore/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.5+)
 
 - [#105](https://github.com/GluuFederation/oxCore/issues/105) Increase custom script name length to 60 characters
 
@@ -286,17 +286,17 @@ documentation and administrative guide.
 
 - [#91](https://github.com/GluuFederation/oxCore/issues/91) Improve Custom script error message
 
-### [GluuFederation/SCIM-Client](https://github.com/GluuFederation/SCIM-Client/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
+### [GluuFederation/SCIM-Client](https://github.com/GluuFederation/SCIM-Client/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.5+)
 
 - [#71](https://github.com/GluuFederation/SCIM-Client/issues/71) NoHttpResponseException: <server> failed to respond
 
-### [GluuFederation/oxShibboleth](https://github.com/GluuFederation/oxShibboleth/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
+### [GluuFederation/oxShibboleth](https://github.com/GluuFederation/oxShibboleth/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.5+)
 
 - [#50](https://github.com/GluuFederation/oxShibboleth/issues/50) 'SAML2Logout' Relying party configuration availability
 
 - [#49](https://github.com/GluuFederation/oxShibboleth/issues/49) Restore previous configuration for nameid generation
 
-### [GluuFederation/gluu-passport](https://github.com/GluuFederation/gluu-passport/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
+### [GluuFederation/gluu-passport](https://github.com/GluuFederation/gluu-passport/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.5+)
 
 - [#55](https://github.com/GluuFederation/gluu-passport/issues/55) Passport social show empty page when the email is already register
 

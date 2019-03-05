@@ -206,7 +206,7 @@ authorizationRequest.setState(state);
 return String.format("https://%s/oxauth/authorize.htm?%s", host, authorizationRequest.getQueryString());
 ```
 
-Place this [jar file](https://ox.gluu.org/maven/org/xdi/oxauth-client/3.1.6.Final/oxauth-client-3.1.6.Final.jar) in your classpath to compile and run the code above.
+Place this [jar file](https://ox.gluu.org/maven/org/xdi/oxauth-client/3.1.5.Final/oxauth-client-3.1.5.Final.jar) in your classpath to compile and run the code above.
 
 The string produced looks like:
 

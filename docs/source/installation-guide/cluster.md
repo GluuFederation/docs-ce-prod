@@ -32,15 +32,16 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
       
 ```
 45.55.232.15    loadbalancer.example.org (NGINX server)
-159.203.126.10  idp1.example.org (Gluu Server 3.1.6 on Ubuntu 16.04 )
-138.197.65.243  idp2.example.org (Gluu Server 3.1.6 on Ubuntu 16.04 )
+159.203.126.10  idp1.example.org (Gluu Server 3.1.5 on Ubuntu 16.04 )
+138.197.65.243  idp2.example.org (Gluu Server 3.1.5 on Ubuntu 16.04 )
+
 ```
      
 - To create the following instructions we used Ubuntu 16.04     
 
 - To create the following instructions we used an Nginx load balancer/proxy, however if you have your own load balancer, like F5 or Cisco, you should use that instead and disregard the instructions about configuring NGINX   
 
-- Gluu Server version 3.1.6 using OpenDJ   
+- Gluu Server version 3.1.5 using OpenDJ   
 
 - Redis-server for caching short-lived tokens   
 
@@ -75,21 +76,21 @@ Otherwise, continue to the following command, changing `myuser@idp2.example.org`
 
 ```
 
-scp /opt/gluu-server-3.1.6/install/community-edition-setup/setup.properties.last myuser@idp2.example.org:/opt/gluu-server-3.1.6/install/community-edition-setup/setup.properties
+scp /opt/gluu-server-3.1.5/install/community-edition-setup/setup.properties.last myuser@idp2.example.org:/opt/gluu-server-3.1.5/install/community-edition-setup/setup.properties
 
 ```
 
 If this throws a `Permission denied` error, that means your user, here `myuser`, does not have permission to write in the directory. Use the following command at the server you are trying to send the file to, in this example `idp2.example.org`. Change `<user>` to the user used in the command above, here `myuser`.
 
 ```
-chown <user> /opt/gluu-server-3.1.6/install/community-edition-setup/
+chown <user> /opt/gluu-server-3.1.5/install/community-edition-setup/
 
 ```
 
 for security, the `<user>` should always be set back to `root` so after transfer of files is completed run the command again with `root` as `<user>`.
 
 ```
-chown root /opt/gluu-server-3.1.6/install/community-edition-setup/
+chown root /opt/gluu-server-3.1.5/install/community-edition-setup/
 
 ```
 
@@ -135,8 +136,8 @@ Gluu.Root # ./setup.py
     
     ```
     45.55.232.15    loadbalancer.example.org (NGINX server)
-    159.203.126.10  idp1.example.org (Gluu Server 3.1.6 on Ubuntu 16.04)
-    138.197.65.243  idp2.example.org (Gluu Server 3.1.6 on Ubuntu 16.04)
+    159.203.126.10  idp1.example.org (Gluu Server 3.1.5 on Ubuntu 16.04)
+    138.197.65.243  idp2.example.org (Gluu Server 3.1.5 on Ubuntu 16.04)
     
     ```
 
@@ -217,8 +218,8 @@ mkdir /etc/nginx/ssl/
 
 ```
 
-scp /opt/gluu-server-3.1.6/etc/certs/httpd.key root@loadbalancer.example.org:/etc/nginx/ssl/
-scp /opt/gluu-server-3.1.6/etc/certs/httpd.crt root@loadbalancer.example.org:/etc/nginx/ssl/
+scp /opt/gluu-server-3.1.5/etc/certs/httpd.key root@loadbalancer.example.org:/etc/nginx/ssl/
+scp /opt/gluu-server-3.1.5/etc/certs/httpd.crt root@loadbalancer.example.org:/etc/nginx/ssl/
 
 ```
 
@@ -401,7 +402,7 @@ You need to transfer certificates from the first server to the other servers.
 
 ```
 
-scp /opt/gluu-server-3.1.6/etc/certs/* root@idp2.example.org:/opt/gluu-server-3.1.6/etc/certs/
+scp /opt/gluu-server-3.1.5/etc/certs/* root@idp2.example.org:/opt/gluu-server-3.1.5/etc/certs/
 
 ```
 
@@ -457,7 +458,7 @@ keytool error: java.io.FileNotFoundException: /etc/certs/openldap.crt (No such f
 
 Gluu.Root # service identity stop && service oxauth restart && service identity start
 Gluu.Root # logout
-service gluu-server-3.1.6 restart
+service gluu-server-3.1.5 restart
 
 ```
 

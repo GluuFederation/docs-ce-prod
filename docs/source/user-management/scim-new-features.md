@@ -1,7 +1,7 @@
 ## New features and enhancements
 
 !!! Note
-    This page describes new features and enhancements included in the 3.1.3 release. Features added in later versions will be marked appropriately.
+    This page describes new features and enhancements included in the 3.1.3 release. Features added for 3.1.4 or 3.1.5 are marked as *new in 3.1.4 or 3.1.5*.
     
 SCIM server implementation was updated for version 3.1.3 in order to adhere more closely to SCIM standard and include features we had been missing. The following summarizes the most important enhancements:
 
@@ -120,7 +120,7 @@ Handling of public pairwise identifiers (PPIDs) changed slightly. This multivalu
 
 This special attribute cannot be modified (its mutability being "readOnly"), however it can be removed. For this particular operation developers have to use PATCH.
 
-For examples on pairwise identifiers usage, you may like to check this Java [test case](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.6/scim-client2/src/test/java/gluu/scim2/client/corner/PairwiseIdentifiersTest.java#L26).
+For examples on pairwise identifiers usage, you may like to check this Java [test case](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.5/scim-client2/src/test/java/gluu/scim2/client/corner/PairwiseIdentifiersTest.java#L26).
 
 ### About SCIM-Client
 
@@ -168,7 +168,7 @@ Choose one of the following pom fragments for your projects:
 <dependency>
   <groupId>gluu.scim.client</groupId>
   <artifactId>scim-client2</artifactId>
-  <version>3.1.6.Final</version>
+  <version>3.1.5.Final</version>
 </dependency>
 ```
 
@@ -177,7 +177,7 @@ Choose one of the following pom fragments for your projects:
 <dependency>
   <groupId>gluu.scim.client</groupId>
   <artifactId>scim-client</artifactId>
-  <version>3.1.6.Final</version>
+  <version>3.1.5.Final</version>
 </dependency>
 ```
 
@@ -322,9 +322,9 @@ If you still need to return a list of all users in LDAP you can:
 * Provide a suitable value for the `attrsList` parameter. This the same well-known `attributes` query param the spec refers to. This way you can reduce the amount of attributes retrieved per user. 
 
 For examples, see the following test cases:
-* [QueryParamCreateUpdateTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.6/scim-client2/src/test/java/gluu/scim2/client/singleresource/QueryParamCreateUpdateTest.java)
-* [QueryParamRetrievalTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.6/scim-client2/src/test/java/gluu/scim2/client/singleresource/QueryParamRetrievalTest.java)
-* [ComplexSearchUserTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.6/scim-client2/src/test/java/gluu/scim2/client/search/ComplexSearchUserTest.java)
+* [QueryParamCreateUpdateTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.5/scim-client2/src/test/java/gluu/scim2/client/singleresource/QueryParamCreateUpdateTest.java)
+* [QueryParamRetrievalTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.5/scim-client2/src/test/java/gluu/scim2/client/singleresource/QueryParamRetrievalTest.java)
+* [ComplexSearchUserTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.5/scim-client2/src/test/java/gluu/scim2/client/search/ComplexSearchUserTest.java)
 
 ###### Extended attributes
 

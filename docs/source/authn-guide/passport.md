@@ -39,7 +39,7 @@ The following is a high-level diagram depicting a simple inbound identity user a
 
 ## Supported social login providers 
 
-Gluu Server 3.1.6 ships with strategies to support social login at the following providers:
+Gluu Server 3.1.5 ships with strategies to support social login at the following providers:
 
 - Dropbox
 - Facebook
@@ -335,8 +335,6 @@ Alternatively you can use an absolute URL for `logo_img` if the image is hosted 
 ### External OpenID Connect Providers
 
 Besides common social providers, external OpenID Connect Providers can also be supported. More specifically, you can enable one OpenID Provider and be up and running in a matter of minutes. 
-
-1. Register an OIDC client at the OP you want to support. Set its redirect URI value to `https://your-gluu-host/passport/auth/openidconnect/callback`
 
 1. In oxTrust navigate to `Configuration` > `Manage Authentication` > `Passport Authentication Method`. 
 
