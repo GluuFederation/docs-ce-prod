@@ -157,7 +157,7 @@ Refer to the following table for details about the available setup options:
 | Setup Option                |  Explanation                               |
 |-------------------------|--------------------------------------------|
 | Enter IP Address | Used primarily by Apache httpd for the [Listen](https://httpd.apache.org/docs/2.4/bind.html) directive. **Use an IP address assigned to one of this server's network interfaces (usage of addresses assigned to loopback interfaces is not supported)**|
-| Enter hostname | Internet-facing hostname, FQDN, or CNAME whichever your organization follows to be used to generate certificates and metadata. **Do not use an IP address or localhost.** |
+| Enter hostname | Internet-facing FQDN that is used to generate certificates and metadata. **Do not use an IP address or localhost.** |
 | Enter your city or locality | Used to generate X.509 certificates. |
 | Enter your state or province two letter code | Used to generate X.509 certificates. |
 | Enter two letter Country Code | Used to generate X.509 certificates. |
