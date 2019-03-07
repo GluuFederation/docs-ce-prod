@@ -120,7 +120,7 @@ table should help you answer the questions correctly.
 | Question                |  Explanation                               |
 |-------------------------|--------------------------------------------|
 | Enter IP Address | Used primarily by Apache HTTPD for the [Listen](https://httpd.apache.org/docs/2.4/bind.html) directive|
-| Enter hostname | Internet-facing hostname, used to generate certificates and metadata. **Don't use an IP address or localhost here** |
+| Enter hostname | Internet-facing FQDN that is used to generate certificates and metadata. **Don't use an IP address or localhost here** |
 | Enter your city or locality | Used to generate X.509 certificates |
 | Enter your state or province two letter code | Used to generate X.509 certificates |
 | Enter two letter Country Code | Used to generate X.509 certificates |
