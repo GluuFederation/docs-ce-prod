@@ -97,9 +97,9 @@ To add a client manually in oxTrust, navigate to `OpenID Connect` > `Client` and
 
 ![add-client2](../img/openid/add_client_encryption.png)
 
-There are many client configuration parameters. Most are specified in the [Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html#ClientRegistration) section of the OpenID Connect specification.
+There are many client configuration parameters. Most are specified in the [Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html#ClientRegistration) section of the OpenID Connect specification. The Client Secret field features a `Lock Secret Field` button to prevent accidental edits or autofill. 
 
-There are two configurations params which can only be configured via oxTrust by an administrator. These include:
+There are two configurations parameters that can only be configured via oxTrust by an administrator. These include:
 
 1. Pre-Authorization: If the OAuth authorization prompt should not be displayed to end users, set this field to `True`. This is useful for SSO to internal clients (not third party) where there is no need to prompt the person to approve the release of information.
  
