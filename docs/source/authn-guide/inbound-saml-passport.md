@@ -2,11 +2,12 @@
 
 ## Overview
 
-The Gluu Server bundles Passport.js authentication middleware to enable inbound SAML and [inbound OAuth and OpenID Connect](./passport.md) (all of which can be referred to as "inbound identity"). Passport normalizes the process of supporting user authentication at external identity providers (IDP) and offers a standard mapping for user claims and user registration in your Gluu Server. 
+The following guide offers steps for supporting user authentication at an external SAML identity provider (IDP), a.k.a. Inbound SAML. 
 
-Passport is an MIT licensed, Node.js web app that supports hundreds of "authentication strategies" out-of-the-box, including SAML. 
+To achieve this solution, the Gluu Server leverages Passport.js authentication middleware. Passport is an MIT licensed, Node.js web app that supports hundreds of "authentication strategies" out-of-the-box, including SAML. Passport not only normalizes the process of supporting external IDPs, but also offers a standard mapping for user claims and user registration in your Gluu Server. 
 
 ## Passport setup 
+The first step is to make sure Passport.js is available in your Gluu Server installation. 
 
 ### During Gluu instalation
 Passport is available as an optional component during [Gluu Server installation](https://gluu.org/docs/ce/installation-guide/). Simply opt to include it during initial installation. 
