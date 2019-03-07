@@ -9,7 +9,7 @@ To achieve this solution, the Gluu Server leverages Passport.js authentication m
 ## Passport setup 
 The first step is to make sure Passport.js is available in your Gluu Server installation. 
 
-### During Gluu instalation
+### During Gluu installation
 Passport is available as an optional component during [Gluu Server installation](https://gluu.org/docs/ce/installation-guide/). Simply opt to include it during initial installation. 
 
 ### Post Gluu installation
