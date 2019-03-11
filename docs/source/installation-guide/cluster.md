@@ -71,7 +71,7 @@ apt-get install openssh-client
 
 ```
 !!! Note
-    Make sure that all your hosts file have the correct configuration to point the IPs of all IDPs and loadbalancer to the responding hostnames. For us all three servers have the following added in `/etc/hosts`.
+    Make sure that all your hosts file have the correct configuration to point the IPs of all IDPs and loadbalancer to the responding hostnames.
     
     ```
     45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
@@ -80,7 +80,26 @@ apt-get install openssh-client
     197.122.32.421  redis.example.org (Redis Server)
     
     ```
+!!! Note
+    Your nodes might have a different '/etc/hosts' so to point each IP to the same hostname , here ' idp1.example.org
     
+    ### Node 1
+    
+    ```
+    45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
+    159.203.126.10  idp1.example.org (Gluu Server 3.1.5 on Ubuntu 16.04)
+    197.122.32.421  redis.example.org (Redis Server)
+    
+    ```
+    
+    ### Node 2
+    
+    ```
+    45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
+    138.197.65.243  idp1.example.org (Gluu Server 3.1.5 on Ubuntu 16.04)
+    197.122.32.421  redis.example.org (Redis Server)
+    
+    ```
 Otherwise continue to the following command changing `myuser@idp2.example.org` to your login credentials for each idp server your sending it to :
 
 ```
