@@ -87,20 +87,16 @@ Follow these instructions to create a SAML TR in your Gluu Server:
 
 A description of each field follows:
 
-- **Display Name**: Name of the Trust Relationship (it should be unique for every TR);       
-- **Description**: Purpose of the TR and an SSO link can be added here;         
-
-- **Metadata Type**: There are four available options to choose from. The correct Type depends on how the SP is delivering Metadata to your IDP.      
-
-    - *File*: Choose `File` if the SP has provided an uploadable metadata document in XML format.
-    - *URI*: Chose `URI` if the SP metadata is hosted on a URI that is accessible from the Internet.
-    - *Federation*: Choose this option if the target application (SP) is affiliated with a federation service (e.g. InCommon, NJEdge etc.). Fedeartion's TR must be created first for it to appear in this list. Learn more about working with a federation [below](#federation-configuration).   
-      
-- **Released**: The SPs required attributes must be added to this panel. The required attributes can be selected from the menu on the left with the heading “Release Additional Attributes”.     
-
+- **Display Name**: Name of the Trust Relationship (it should be unique for every TR)       
+- **Description**: Purpose of the TR and an SSO link can be added here       
 - **Entity Type**: You have two options to choose for entity type.
     - *Single SP*: 
     - *Federation/Aggregate* 
+- **Metadata Location**: There are four available options to choose from. The correct Type depends on how the SP is delivering Metadata to your IDP      
+    - *File*: Choose `File` if the SP has provided an uploadable metadata document in XML format.
+    - *URI*: Chose `URI` if the SP metadata is hosted on a URI that is accessible from the Internet.
+    - *Federation*: Choose this option if the target application (SP) is affiliated with a federation service (e.g. InCommon, NJEdge etc.). Fedeartion's TR must be created first for it to appear in this list. Learn more about working with a federation [below](#federation-configuration).
+- **Released**: The SPs required attributes must be added to this panel. The required attributes can be selected from the menu on the left with the heading “Release Additional Attributes”.     
     
 The Trust Relationship (TR) can be added by clicking the `Add` button located in the lower left side of the page.     
 
