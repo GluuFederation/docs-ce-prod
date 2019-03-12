@@ -930,7 +930,7 @@ Now install and configure redis-server on a serperate Ubuntu 18.04 server .**You
   
   **This is the end of the commands that had to be done on both nodes**
   
-- Test that you server is taking to the clients and vice versa :
+- Test that you server is talking to the clients and vice versa :
 
 ```bash
 
