@@ -58,6 +58,7 @@ The administrator can use the following command line options to include addition
 * __-w__ get the development head war files
 * __-e__ Download JCE 1.8 and install it
 * __--allow_deprecated_applications__ Give the option to install Asimba and OpenLDAP
-* __--import-ldif=custom-ldif-dir__ Render ldif templates from custom-ldif-dir and import them in LDAP
+* __--import-ldif=custom-ldif-dir__ Render LDIF templates from custom-ldif-dir and import them in LDAP
+* __--listen_all_interfaces__ Allow the LDAP server to listen on all server interfaces. This is required for clustered installations to replicate between LDAP servers. If not enabled, the LDAP server listens only to localhost.
 
 Example Command: `# ./setup.py -as` This command will install Gluu Server with Asimba and Shibboleth IDP.
