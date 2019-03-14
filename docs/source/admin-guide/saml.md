@@ -90,7 +90,7 @@ A description of each field follows:
 - **Display Name**: Name of the Trust Relationship (it should be unique for every TR)       
 - **Description**: Purpose of the TR and an SSO link can be added here       
 - **Entity Type**: You have two options to choose for entity type.
-    - *Single SP*: 
+    - *Single SP*  
     - *Federation/Aggregate* 
 - **Metadata Location**: There are four available options to choose from. The correct Type depends on how the SP is delivering Metadata to your IDP      
     - *File*: Choose `File` if the SP has provided an uploadable metadata document in XML format.
@@ -101,9 +101,7 @@ A description of each field follows:
 The Trust Relationship (TR) can be added by clicking the `Add` button located in the lower left side of the page.     
 
 ## Relying Party Configuration     
-Through the Relying Party configuration you can customize how different IDP profiles will respond to requests received from the SP, including encryption and digital signature options. The underlying IDPs functionality is described in [the Shibboleth wiki](https://wiki.shibboleth.net/confluence/display/IDP30/RelyingPartyConfiguration). 
-
-oxTrust allows you to tweak a limited subset of profiles mentioned in the Shibboleth wiki. The [SAML2SSO profile](https://wiki.shibboleth.net/confluence/display/IDP30/SAML2SSOConfiguration) is the most commonly used browser SSO profile. 
+Through the Relying Party configuration you can customize how different IDP profiles will respond to requests received from the SP, including encryption and digital signature options. The underlying IDPs functionality is described in [the Shibboleth wiki](https://wiki.shibboleth.net/confluence/display/IDP30/RelyingPartyConfiguration).  
 
 The "Configure Relying Party" checkbox is accessible on the TR creation page and must be enabled with a specific profile(s) selected as active for this TR to generate a valid configuration. In most cases, just adding the SAML2SSO profile with default settings will suffice.
 
@@ -112,6 +110,15 @@ The "Configure Relying Party" checkbox is accessible on the TR creation page and
 Setting the checkbox will result in a link which, if clicked, will summon a list of profiles currently available for customization. Each entry in the list has a brief description of its purpose and a selection of settings for which custom values may be chosen, as can be seen on image below.     
 
 ![tr-relying-party](../img/saml/tr-relying-party.png)     
+
+oxTrust allows you to tweak a limited subset of profiles mentioned in the Shibboleth wiki. The SAML2SSO profile is the most commonly used browser SSO profile.
+
+| Profile  | Configuration Wiki Link |
+| -------  | ----------------------- |
+| SAML2SSO | [https://wiki.shibboleth.net/confluence/display/IDP30/SAML2SSOConfiguration](https://wiki.shibboleth.net/confluence/display/IDP30/SAML2SSOConfiguration) |
+| SAML2Logout | [https://wiki.shibboleth.net/confluence/display/IDP30/SAML2LogoutConfiguration](https://wiki.shibboleth.net/confluence/display/IDP30/SAML2LogoutConfiguration) |
+| SAML2AttributeQuery | [https://wiki.shibboleth.net/confluence/display/IDP30/SAML2AttributeQueryConfiguration](https://wiki.shibboleth.net/confluence/display/IDP30/SAML2AttributeQueryConfiguration) |
+| SAML2ArtifactResolution | [https://wiki.shibboleth.net/confluence/display/IDP30/SAML2ArtifactResolutionConfiguration](https://wiki.shibboleth.net/confluence/display/IDP30/SAML2ArtifactResolutionConfiguration) |
     
 ## Federation Configuration     
 If the SP is part of an identity federation such as [InCommon](https://www.incommon.org/participants/), the Gluu administrator has option to establish a Trust Relationship with it based on the federation's metadata. To achieve this he must add TR for the federation in the Gluu Server first. This will enable the administrator to more easily create TRs with SPs in the federation. 
