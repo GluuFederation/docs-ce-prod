@@ -19,12 +19,13 @@ The following fields are available for edit in the menu.
 | schemaAddObjectClassWithoutAttributeTypesDefinition | The schema to add various attribute types |
 
 ## personObjectClassTypes
-This class holds the relation between the person entry and its relative object class.
+This class holds the relation between the person entry and its relative object class. If a custom attribute is required for a specific operation and needs to be stored in LDAP, add it here. 
 
 | Fields/Attributes | Description |
 | ------------------|-------------|
-| item 1 | inetOrgPerson |
+| item 1 | gluuCustomPerson |
 | item 2 | gluuPerson |
+| item 3 | eduPerson | 
 | personCustomObjectClass| |
 
 ## personObjectClassDisplayNames
