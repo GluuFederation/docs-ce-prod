@@ -716,7 +716,7 @@ Now install and configure redis-server on a serperate Ubuntu 18.04 server .**You
 
   ```
   
-  - Edit the Redis binding IP to the IP of your Redis server , here that is `197.122.32.421` :
+  - Edit the Redis binding IP to the localhost IP of your Redis server , that is `127.0.0.1` :
   
   ```bash
   
