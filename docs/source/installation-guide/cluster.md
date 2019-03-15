@@ -21,7 +21,7 @@ efforts may be needed to ensure they can be reached by incoming connections.
 | 22 | SSH | Utility |
 | 443| SSL/TLS | Load-balancer to oxAuth |
 |4444| OpenDJ Replication| Between Gluu Servers |
-|6379| Redis Server | From oxAuth to Redis |
+|16379| Redis Server through stunnel | From oxAuth to stunnel to Redis |
 |8989| OpenDJ Replication|  Between Gluu Servers |
 |30865| Csync2 Default |  Between Gluu Servers |
 
@@ -301,7 +301,7 @@ Proceed with these values [Y|n]
   138.197.65.243:4444 .....Done.
   Initializing registration information on server 138.197.65.243:4444 with the
   contents of server 159.203.126.10:4444 .....Done.
-  Initializing schema on server idp2.example.org:4444 with the contents of server
+  Initializing schema on server 138.197.65.243:4444 with the contents of server
   159.203.126.10:4444 .....Done.
 
   Replication has been successfully enabled.  Note that for replication to work
@@ -835,8 +835,8 @@ Now install and configure redis-server on a serperate Ubuntu 18.04 server .**You
   cert = /etc/stunnel/secureredis.pem
   pid = /var/run/stunnel.pid
   [redis]
-  accept = 197.122.32.421:6379
-  connect = 127.0.0.1:6379
+  accept = 197.122.32.421:16379
+  connect = 127.0.0.1:16379
   
   ```
   
@@ -914,8 +914,8 @@ Now install and configure redis-server on a serperate Ubuntu 18.04 server .**You
   cert = /etc/stunnel/secureredis.pem
   pid = /var/run/stunnel.pid
   [redis]
-  accept = 159.203.126.10:6379
-  connect = 197.122.32.421:6379
+  accept = 159.203.126.10:16379
+  connect = 197.122.32.421:16379
   
   ```
   
@@ -926,8 +926,8 @@ Now install and configure redis-server on a serperate Ubuntu 18.04 server .**You
   cert = /etc/stunnel/secureredis.pem
   pid = /var/run/stunnel.pid
   [redis]
-  accept = 138.197.65.243:6379
-  connect = 197.122.32.421:6379
+  accept = 138.197.65.243:16379
+  connect = 197.122.32.421:16379
   
   ```
   
@@ -971,7 +971,7 @@ Use JXplorer (or a similar LDAP browser) to modify some of the JSON entries in L
 
 ![alt text](https://raw.githubusercontent.com/GluuFederation/cluster-mgr/master/manual_install/images/ManualCache_ox.png)
 
-- The important things I changed were "cacheProviderType" from "IN_MEMORY" to "REDIS". After that, in the "redisConfiguration" portion of "servers", I added "idp1.example.org:6379" which is the server I installed redis-server. 6379 is the default port redis-server listens and you can add as many servers as you want her, they just need to be comma separated
+- The important things I changed were "cacheProviderType" from "IN_MEMORY" to "REDIS". After that, in the "redisConfiguration" portion of "servers", I added "cluster.example.org:16379" which is the server I installed redis-server.
 
 - We also must make sure that all LDAP servers are utilized for authorization by modifying the "oxIDPAuthentication" attribute.
 
@@ -981,7 +981,7 @@ Use JXplorer (or a similar LDAP browser) to modify some of the JSON entries in L
 
 ```
 
-"servers\": [\"idp1.example.org:1636\",\"idp2.example.org:1636\"],
+"servers\": [\"cluster.example.org:1636\"],
 
 ```
 
@@ -997,7 +997,7 @@ You need to transfer certificates from the first server to the other servers.
 
 ```
 
-scp /opt/gluu-server-3.1.5/etc/certs/* root@idp2.example.org:/opt/gluu-server-3.1.5/etc/certs/
+scp /opt/gluu-server-3.1.5/etc/certs/* root@138.197.65.243:/opt/gluu-server-3.1.5/etc/certs/
 
 ```
 
