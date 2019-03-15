@@ -28,7 +28,8 @@ efforts may be needed to ensure they can be reached by incoming connections.
 ### Software
 - For the purpose of this tutorial, the server configurations are as follows:
       
-```
+```bash
+
 45.55.232.15    loadbalancer.example.org (NGINX server)
 159.203.126.10  cluster.example.org (Gluu Server 3.1.5 on Ubuntu 16.04 ) (Node -1 )
 138.197.65.243  cluster.example.org (Gluu Server 3.1.5 on Ubuntu 16.04 ) (Node -2 )
@@ -75,48 +76,48 @@ apt-get install openssh-client
 
 !!! Note
     Make sure that all your hosts file have the correct configuration to point the IPs of all IDPs and loadbalancer to the responding hostnames.
+ 
+### Loadbalancer `/etc/hosts`
     
-    ### Loadbalancer `/etc/hosts`
+```bash
+
+45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
+197.122.32.421  redis.example.org (Redis Server) -- for us this has not been setup yet
+
+```
     
-    ```bash
+ ### Redis `/etc/hosts`
     
-    45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
-    197.122.32.421  redis.example.org (Redis Server) -- for us this has not been setup yet
+```bash
+
+45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
+197.122.32.421  redis.example.org (Redis Server) -- for us this has not been setup yet
+
+```
     
-    ```
+ ### Node 1 `/etc/hosts`
     
-    ### Redis `/etc/hosts`
+```bash
+
+45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
+197.122.32.421  redis.example.org (Redis Server) -- for us this has not been setup yet
+159.203.126.10  cluster.example.org (Gluu Server 3.1.5 on Ubuntu 16.04) (Node 1)
+
+```
     
-    ```bash
+ ### Node 2 `/etc/hosts`
     
-    45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
-    197.122.32.421  redis.example.org (Redis Server) -- for us this has not been setup yet
-    
-    ```
-    
-    ### Node 1
-    
-    ```bash
-    
-    45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
-    197.122.32.421  redis.example.org (Redis Server) -- for us this has not been setup yet
-    159.203.126.10  cluster.example.org (Gluu Server 3.1.5 on Ubuntu 16.04) (Node 1)
-    
-    ```
-    
-    ### Node 2
-    
-    ```bash
-    
-    45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
-    197.122.32.421  redis.example.org (Redis Server) -- for us this has not been setup yet
-    138.197.65.243  cluster.example.org (Gluu Server 3.1.5 on Ubuntu 16.04) (Node 2)
-    
-    ```
+```bash
+
+45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
+197.122.32.421  redis.example.org (Redis Server) -- for us this has not been setup yet
+138.197.65.243  cluster.example.org (Gluu Server 3.1.5 on Ubuntu 16.04) (Node 2)
+
+```
     
     
-    !!! Warning
-        **Do not add your nodes IPs in the `/etc/hosts` file of your Gluu container**. They are configured automatically.
+ !!! Warning
+     **Do not add your nodes IPs in the `/etc/hosts` file of your Gluu container**. They are configured automatically.
         
 Otherwise continue to the following command changing `myuser@138.197.65.243` to your login credentials for each Gluu node your sending it to :
 
