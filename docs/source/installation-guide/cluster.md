@@ -221,7 +221,7 @@ Proceed with these values [Y|n]
   Any attempts to login to the LDAP in anyform might result in an instant timeout error due to Java enabling Endpoint Identification which disrputs LDAPS connections. We have to set the default value to `true` by explicitly stating it in the `java.properties` file.
 
   ```
-  sed -i 's/dsreplication.java-args=-Xms8m -client/dsreplication.java-args=-Xms8m -client-Dcom.sun.jndi.ldap.object.disableEndpointIdentification=true/g' /opt/opendj/config/java.properties
+  sed -i 's/dsreplication.java-args=-Xms8m -client/dsreplication.java-args=-Xms8m -client -Dcom.sun.jndi.ldap.object.disableEndpointIdentification=true/g' /opt/opendj/config/java.properties
   ```
   
   To set the new properties run the command in the Gluu container.
@@ -714,6 +714,7 @@ Now install and configure redis-server on a serperate Ubuntu 18.04 server .**You
   ```
   
   ```bash
+  
   # ~~~ WARNING ~~~ If the computer running Redis is directly exposed to the
   # internet, binding to all the interfaces is dangerous and will expose the
   # instance to everybody on the internet. So by default we uncomment the
@@ -725,8 +726,7 @@ Now install and configure redis-server on a serperate Ubuntu 18.04 server .**You
   # IF YOU ARE SURE YOU WANT YOUR INSTANCE TO LISTEN TO ALL THE INTERFACES
   # JUST COMMENT THE FOLLOWING LINE.
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  bind 197.122.32.421 ::1
-
+  bind 127.0.0.1 ::1
   
   ```
  
@@ -825,7 +825,7 @@ Now install and configure redis-server on a serperate Ubuntu 18.04 server .**You
   pid = /var/run/stunnel.pid
   [redis]
   accept = 197.122.32.421:6379
-  connect = 197.122.32.421:6379
+  connect = 127.0.0.1:6379
   
   ```
   
