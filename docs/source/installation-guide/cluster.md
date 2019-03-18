@@ -29,13 +29,11 @@ The following ports are used by different components to communicate with their p
 - For the purpose of this tutorial, the server configurations are as follows:
       
 ```bash
-
 45.55.232.15    loadbalancer.example.org (NGINX server)
 159.203.126.10  cluster.example.org (Gluu Server 3.1.5 on Ubuntu 16.04 ) (Node -1 )
 138.197.65.243  cluster.example.org (Gluu Server 3.1.5 on Ubuntu 16.04 ) (Node -2 )
 All server nodes will have the same hostname
 197.122.32.421  redis.example.org (Redis Server)
-
 ```
      
 Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:   
@@ -120,31 +118,24 @@ apt-get install openssh-client
 Otherwise, continue to the following command changing `myuser@138.197.65.243` to the login credentials for each Gluu node your sending it to :
 
 ```bash
-
 scp /opt/gluu-server-3.1.5/install/community-edition-setup/setup.properties.last myuser@138.197.65.243:/opt/gluu-server-3.1.5/install/community-edition-setup/setup.properties
-
 ```
 
 If this throws a `Permission denied` error, that means the user, here `myuser`, does not have permission to write in the directory. Use the following command at the node you are trying to send the file to, here that is `138.197.65.243`. Change `<user>` to the user used in the command above, here `myuser`.
 
 ```bash
-
 chown <user> /opt/gluu-server-3.1.5/install/community-edition-setup/
-
 ```
 
-For security the `<user>` should always be set back to `root`, so after finishing the file transfer, run the command again with `root` as `<user>`.
+For security, the `<user>` should always be set back to `root`, so after finishing the file transfer, run the command again with `root` as `<user>`.
 
 ```bash
-
 chown root /opt/gluu-server-3.1.5/install/community-edition-setup/
-
 ```
 
 - If the Gluu server has not been started, start it and log in. Once the `setup.properties` file is in place on the **other** node(s), modify the IP to the current node. In the example, there is only one, so we changed our `ip=159.203.126.10` of node 1 to the IP of node 2 server which is `ip=138.197.65.243.
 
 ```bash
-
 service gluu-server-3.1.5 start
 service gluu-server-3.1.5 login
 Gluu.Root # vi /install/community-edition-setup/setup.properties
@@ -172,16 +163,13 @@ ldapPassFn=/home/ldap/.pw
 - Now run `setup.py`.   
 
 ```bash
-
 cd /install/community-edition-setup
 ./setup.py
-
 ```
 
 - The rest of the configuration for the install should be automatically loaded, as shown below. Just press `Enter`.
 
 ```bash
-
 Installing Gluu Server...
 Detected OS  :  ubuntu
 Detected init:  systemd
@@ -216,12 +204,11 @@ Install Passport                                            False
 
 
 Proceed with these values [Y|n]
-
 ```
 
 ### Replication
 
-- Run the commands below in the Gluu container for all **Nodes**, here that would be for `159.203.126.10` and `138.197.65.243`  :
+- Run the commands below in the Gluu container for all **Nodes**, here that would be for `159.203.126.10` and `138.197.65.243`:
 
   Any attempts to log in to the LDAP in any form might result in an instant timeout error, due to Java enabling Endpoint Identification, which disrupts LDAPS connections. Set the default value to `true` by explicitly stating it in the `java.properties` file.
 
@@ -231,7 +218,7 @@ Proceed with these values [Y|n]
   
   ```
   
-  To set the new properties, run the command in the Gluu container.
+To set the new properties, run the command in the Gluu container.
 
    ```bash
    
@@ -239,45 +226,40 @@ Proceed with these values [Y|n]
 
    ```
    
-   You should recieve an operation successful message:
+You should recieve an operation successful message:
    
    ```bash
    
    The operation was successful.  The server commands will use the java arguments and java home specified in the properties file located in /opt/opendj/config/java.properties
 
    ```
-   We need to make all nodes accessible to each other by setting the listening address to `0.0.0.0`. In your command you may have to change `cn=directory manager` to your CN ( by default `cn=directory manager` unless changed ), and  `<password>` to the password set in the first installation of Gluu on node 1. If the below commands are not connecting, try changing `localhost` to the nodes' explicit IP addresss, here that would be `159.203.126.10` and `138.197.65.243`.**Restart all nodes**
+We need to make all nodes accessible to each other by setting the listening address to `0.0.0.0`. In your command you may have to change `cn=directory manager` to your CN ( by default `cn=directory manager` unless changed ), and  `<password>` to the password set in the first installation of Gluu on node 1. If the below commands are not connecting, try changing `localhost` to the nodes' explicit IP addresss, here that would be `159.203.126.10` and `138.197.65.243`.
    
-   **Run both commands**
+   **Restart all nodes**
+   
+Run the following two commands:
    
    ```bash
-   
    /opt/opendj/bin/dsconfig -h localhost -p 4444 -D 'cn=directory manager' -w <password> -n set-administration-connector-prop --set listen-address:0.0.0.0 -X
-   
    ```
    
    ```bash
-   
    /opt/opendj/bin/dsconfig -h localhost -p 4444 -D 'cn=directory manager' -w <password> -n set-connection-handler-prop --handler-name 'LDAPS Connection Handler' --set enabled:true --set listen-address:0.0.0.0 -X
-   
    ```
    
    **This is the end of commands that had to be initiated in all nodes**
    
 - Run the commands below in the Gluu container on the first "primary" Gluu server installed, here that would be `159.203.126.10`:   
  
-  Utilize this command inside the Gluu container to enable replication changing `<password>`'s to the password of your first installed Gluu server. **You must add all your nodes to this command, here we only have two**
+Utilize this command inside the Gluu container to enable replication changing `<password>`'s to the password of your first installed Gluu server. **You must add all your nodes to this command, here we only have two**
 
   ```bash
-
   /opt/opendj/bin/dsreplication enable --host1 159.203.126.10 --port1 4444 --bindDN1 "cn=directory manager" --bindPassword1 <password> --replicationPort1 8989 --host2 138.197.65.243 --port2 4444 --bindDN2 "cn=directory manager" --bindPassword2 <password> --replicationPort2 8989 --adminUID admin --adminPassword <password> --baseDN "o=gluu" -X -n
-
   ```
 
   If successful, you'll get a message like this: 
 
   ```bash
-  
   Establishing connections ..... Done.
   Checking registration information ..... Done.
   Configuring Replication port on server 159.203.126.10:4444 ..... Done.
@@ -304,21 +286,17 @@ Proceed with these values [Y|n]
 
   See /tmp/opendj-replication-8219363385622666180.log for a detailed log of this
   operation.
-
   ```
 
-  Now initialize replication. Change <password> to the password of the first installed Gluu server. **All nodes must be added to this command** :
+Now initialize replication. Change <password> to the password of the first installed Gluu server. **All nodes must be added to this command** :
 
   ```bash
-
   /opt/opendj/bin/dsreplication initialize --baseDN "o=gluu" --adminUID admin --adminPassword <password> --hostSource 159.203.126.10 --portSource 4444  --hostDestination 138.197.65.243 --portDestination 4444 -X -n
-
   ```
 
   If successful, it'll look like this: 
 
   ```bash
-  
   Initializing base DN o=gluu with the contents from 159.203.126.10:4444:
   3202 entries processed (23 % complete).
   1233321 entries processed (100 % complete).
@@ -326,44 +304,35 @@ Proceed with these values [Y|n]
 
   See /tmp/opendj-replication-7940848656437845148.log for a detailed log of this
   operation.
-
    ```
 
    Secure communication to all nodes. **Add all nodes to this command**:
 
    ```bash
-   
-   /opt/opendj/bin/dsconfig -h 159.203.126.10 -p 4444 -D "cn=Directory Manager" -w <password> --trustAll -n set-crypto-manager-prop    --set ssl-encryption:true
-   /opt/opendj/bin/dsconfig -h 138.197.65.243 -p 4444 -D "cn=Directory Manager" -w <password> --trustAll -n set-crypto-manager-prop --set ssl-encryption:true
-   
+     /opt/opendj/bin/dsconfig -h 159.203.126.10 -p 4444 -D "cn=Directory Manager" -w <password> --trustAll -n set-crypto-manager-prop    --set ssl-encryption:true
+     /opt/opendj/bin/dsconfig -h 138.197.65.243 -p 4444 -D "cn=Directory Manager" -w <password> --trustAll -n set-crypto-manager-prop --set ssl-encryption:true
    ```
 
    Now archive the OpenDJ keystore:
 
    ```bash
-   
    cd /opt/opendj/config
    
    tar -cf opendj_crts.tar keystore keystore.pin truststore
-   
    ```
    
    Transfer it to the other nodes. The `scp` command will most likely not be installed in the Gluu container, so exit out by typing `exit`. Then transfer `opendj_crts.tar` to all the other nodes.  
    
    ```bash
-   
     scp /opt/gluu-server-3.1.5/opt/opendj/config/opendj_crts.tar  myuser@138.197.65.243:/opt/gluu-server-3.1.5/opt/opendj/config/
-   
    ```
    
-   !!! Note
-       If you want to check the status of OpenDJ replication run the following command:
+!!! Note
+    If you want to check the status of OpenDJ replication run the following command:
 
-       ```bash
-       
-       /opt/opendj/bin/dsreplication status -n -X -h 159.203.126.10  -p 4444 -I admin -w <password>
-
-       ```
+   ```bash
+     /opt/opendj/bin/dsreplication status -n -X -h 159.203.126.10  -p 4444 -I admin -w <password>
+   ```
            
    **This is the end of commands that had to be initiated in the first "primary" node**
    
@@ -371,19 +340,15 @@ Proceed with these values [Y|n]
 Run the following commands in all the Gluu container nodes where the archive of OpenDK keystore was sent to:
 
  ```bash
- 
  cd /opt/opendj/config/
    
  tar -xf opendj_crts.tar
-   
  ```
 
 Next, [install Csync2](https://linuxaria.com/howto/csync2-a-filesystem-syncronization-tool-for-linux) for file system replication on all nodes outside the Gluu container.
 
 ```bash
-
 apt-get install csync2
-
 ```
 
 - On the "primary" node, here `159.203.126.10`, do the following:
@@ -391,27 +356,21 @@ apt-get install csync2
   Generate the key file:
   
   ```bash
-  
   csync2 -k /etc/csync2.key
-  
   ```
   
   Create an SSL certificate Csync2:
   
   ```bash
-  
   openssl genrsa -out /etc/csync2_ssl_key.pem 1024
   openssl req -batch -new -key /etc/csync2_ssl_key.pem -out /etc/csync2_ssl_cert.csr
   openssl x509 -req -days 3600 -in /etc/csync2_ssl_cert.csr -signkey /etc/csync2_ssl_key.pem -out /etc/csync2_ssl_cert.pem
-  
   ```
   
   Create a `csyn2.conf` file and place all directories to be replicated as in the `csync2.conf` file:
   
   ```bash
-  
   vi /etc/csync2.conf
-  
   ```
   
   Add more `host <hostname>` entries, according to the number of nodes you have.
@@ -419,7 +378,6 @@ apt-get install csync2
   **`csync2.conf`**
   
   ```bash
-  
   group gluucluster
   {
   host 159.203.126.10;
@@ -436,16 +394,12 @@ apt-get install csync2
   
   exclude *~ .*;
   }
-  
- 
   ```
   
   Copy the contents of `csync2.conf` into the file `csync2.cfg`.
   
   ```bash
-  
   cp /etc/csync2.conf /etc/csync2.cfg
-  
   ```
   
   Copy the Csync2 configuration file, certifications and keys to the all the other nodes, here only `138.197.65.243`. **Make sure you have permission to move all the files, especially `csync2.cfg`**
@@ -477,9 +431,7 @@ apt-get install csync2
       Force files to win conflicts
   
       ```bash
-  
       csync2 -fr /
-   
       ```
       
       Start the synchronization process :
@@ -504,10 +456,9 @@ apt-get install csync2
       Start the synchronization process :
       
       ```bash
-      
       csync2 -xvvv
-       
       ```
+      
   - Add a cron on **all nodes** to sync using `crontab -e`:
   
     Add a regular cron that runs every 5 mins at all nodes like this :
@@ -522,25 +473,19 @@ apt-get install csync2
     **Node 1** “At every 10th minute from 0 through 59.”
     
     ```bash
-    
     0-59/10 * * * * csync2 -x
-    
     ```
     
     **Node 2** “At every 10th minute from 5 through 59.” 
     
     ```bash
-    
     5-59/10 * * * * csync2 -x
-    
     ```
     
     Reload cron :
     
     ```bash
-    
     service cron reload
-    
     ```
   
 ### Install NGINX
@@ -550,17 +495,13 @@ apt-get install csync2
 On the load balancer server, install NGINX: 
 
 ```bash
-
 apt-get install nginx -y
-
 ```
 
 - On the NGINX server, create a directory for the httpd `key` and `crt`:  
 
 ```bash
-
 mkdir /etc/nginx/ssl/
-
 ```
 
 - Send the `httpd.crt` and `httpd.key` certs from one of the Gluu servers over to the NGINX server. 
@@ -568,24 +509,19 @@ mkdir /etc/nginx/ssl/
   From the first Gluu Server installed, do the following:
 
 ```bash
-
 scp /opt/gluu-server-3.1.5/etc/certs/httpd.key user@loadbalancer.example.org:/etc/nginx/ssl/
 scp /opt/gluu-server-3.1.5/etc/certs/httpd.crt user@loadbalancer.example.org:/etc/nginx/ssl/
-
 ```
 
 - On the NGINX server in any editor, open `nginx.conf` and edit:
 
 ```bash
-
 vi /etc/nginx/nginx.conf
-
 ```
 
 - The following is a working `nginx.conf` example template for a Gluu cluster. Change all marked lines that correspond to your Gluu nodes and NGINX server. 
 
 ```bash
-
 events {
         worker_connections 6500;
 }
@@ -679,8 +615,6 @@ http {
 
   }
 }
-
-
 ```
 
 ### Install and configure Redis on a separate Ubuntu 18.04 server
@@ -696,9 +630,7 @@ Now install and configure redis-server on a separate Ubuntu 18.04 server .**You 
   
   
   ```bash
-  
   apt-get update
-
   apt-get install redis-server
 
   ```
@@ -706,13 +638,10 @@ Now install and configure redis-server on a separate Ubuntu 18.04 server .**You 
   - Edit the Redis binding IP to the localhost IP of the Redis server , that is `127.0.0.1`:
   
   ```bash
-  
   vi /etc/redis/redis.conf
-  
   ```
   
   ```bash
-  
   # ~~~ WARNING ~~~ If the computer running Redis is directly exposed to the
   # internet, binding to all the interfaces is dangerous and will expose the
   # instance to everybody on the internet. So by default we uncomment the
@@ -725,114 +654,89 @@ Now install and configure redis-server on a separate Ubuntu 18.04 server .**You 
   # JUST COMMENT THE FOLLOWING LINE.
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   bind 127.0.0.1 ::1
-  
   ```
  
   - While editing the Redis configuration file, add your `password` for more secure communication to the server. Uncomment `requirepass` and place your password:
   
   ```bash
-  
   requirepass chooseyourpasswordcarefully
-  
   ```
   
   - Now restart redis-server:
 
   ```bash
-
   /etc/init.d/redis-server restart
-
   ```
   
   - Check Redis status:
 
   ```bash
-
   /etc/init.d/redis-server status
-
   ```
 
   The status should be running : 
 
   ```
-
   ● redis-server.service - Advanced key-value store
    Loaded: loaded (/lib/systemd/system/redis-server.service; enabled; vendor preset: enabled)
    Active: active (running) since Wed 2018-06-27 18:48:52 UTC; 12s ago
      Docs: http://redis.io/documentation,
            man:redis-server(1)
-
   ```
   
   - Install stunnel to encrypt the redis communications:
   
    ```bash
-  
   apt-get update
 
   apt-get install stunnel4
-
   ```
   
   - Start the stunnel service by changing `ENABLED=0` to `ENABLED=1` in the `/etc/default/stunnel4` file :
   
   ```bash
-  
   vi /etc/default/stunnel4
-  
   ```
   
   - Create a certificate that will be used across all nodes and Redis server:
   
   ```bash
-  
   openssl genrsa -out /etc/stunnel/key.pem 1024
   openssl req -new -x509 -key /etc/stunnel/key.pem -out /etc/stunnel/cert.pem -days 365
-  
   ```
   
   - Combine `key.pem` and `cert.pem` into one file `secureredis.pem`:
   
   ```bash
-  
   cat /etc/stunnel/key.pem /etc/stunnel/cert.pem > /etc/stunnel/secureredis.pem
-  
   ```
   
   - For security, change the file permissions:
   
   ```bash
-  
   chmod 640 /etc/stunnel/key.pem /etc/stunnel/cert.pem /etc/stunnel/secureredis.pem
-  
   ```
   
   - Configure the stunnel redis server configuration file, we will create files for the nodes later:
   
   ```bash
-  
   vi /etc/stunnel/redis-server.conf
-  
   ```
   
   Place the configuration inside this file. `accept` from your external IP and `connect` to the binding IP you placed in the `redis.conf` file. Here we are unifying the connections inside the Redis server, accepting from the external IP and connecting to the `localhost`. This is important for the nodes to easily communicate to the Redis server. **It's a good time to check all servers, ensuring that the `/etc/hosts` file has all the IPs and hostnames as described in the beginning of this file. Remember for the nodes, it's the `/etc/hosts` file outside your Gluu container.
   
   ```bash
-  
   cert = /etc/stunnel/secureredis.pem
   pid = /var/run/stunnel.pid
   [redis]
   accept = 197.122.32.421:16379
   connect = 127.0.0.1:16379
-  
   ```
   
   - Start Stunnel service :
   
   ```bash
-  
   /etc/init.d/stunnel4 start
-  
   ```
   
   **This is the end of the commands that had to be done inside the redis server**
@@ -842,54 +746,41 @@ Now install and configure redis-server on a separate Ubuntu 18.04 server .**You 
   - Install `redis-tools :
   
   ```bash
-
   apt-get install redis-tools
-  
   ```
   
   - Install Stunnel to encrypt the redis communications to the server:
   
    ```bash
-  
   apt-get update
 
   apt-get install stunnel4
-
   ```
   
   - Start the Stunnel service by changing `ENABLED=0` to `ENABLED=1` in `/etc/default/stunnel4` file:
   
   ```bash
-  
   vi /etc/default/stunnel4
-  
   ```
   
   - Copy the `secureredis.pem` created in the redis server to the nodes. From your redis server:
   
   ```bash
-  
   scp /etc/stunnel/secureredis.pem root@159.203.126.10 /etc/stunnel/
   
   scp /etc/stunnel/secureredis.pem root@138.197.65.243 /etc/stunnel/
-  
-  
   ```
   
   - For security, change the file permissions:
   
   ```bash
-  
   chmod 640 /etc/stunnel/secureredis.pem
-  
   ```
   
   - Configure the Stunnel redis client configuration file:
   
   ```bash
-  
   vi /etc/stunnel/redis-client.conf
-  
   ```
   
   Place the configuration files inside this file. `accept` from your external IP and `connect` to the **redis server IP**.
@@ -897,41 +788,33 @@ Now install and configure redis-server on a separate Ubuntu 18.04 server .**You 
   **Node 1**
   
   ```bash
-  
   cert = /etc/stunnel/secureredis.pem
   pid = /var/run/stunnel.pid
   [redis]
   accept = 159.203.126.10:16379
   connect = 197.122.32.421:16379
-  
   ```
   
   **Node 2**
   
   ```bash
-  
   cert = /etc/stunnel/secureredis.pem
   pid = /var/run/stunnel.pid
   [redis]
   accept = 138.197.65.243:16379
   connect = 197.122.32.421:16379
-  
   ```
   
   - Start the Stunnel service:
   
   ```bash
-  
   /etc/init.d/stunnel4 start
-  
   ```
   
   - Test that the server is talking to the clients and vice versa:
 
   ```bash
-
   redis-cli -h <hostname> -a <password> 
-
   ```
   
   In the `<hostname>`, both IP (`197.122.32.421`) and hostname (`redis.example.org`) have to be working on all clients and the main redis server. Try to `Ping`, and you should get a `PONG`.
@@ -967,9 +850,7 @@ Use JXplorer (or a similar LDAP browser) to modify some of the JSON entries in L
 - Here, change the servers from localhost:1636 to the FQDNs of my servers
 
 ```
-
 "servers\": [\"cluster.example.org:1636\"],
-
 ```
 
 - Click `Submit` on the bottom after all changes 
@@ -983,9 +864,7 @@ Transfer certificates from the first server to the other servers. To do so:
 - From the primary server:
 
 ```
-
 scp /opt/gluu-server-3.1.5/etc/certs/* root@138.197.65.243:/opt/gluu-server-3.1.5/etc/certs/
-
 ```
 
 - Change ownership of the certificates to Gluu, with the exception of `oxauth-keys.j*` which need to be owned by Jetty
@@ -993,11 +872,9 @@ scp /opt/gluu-server-3.1.5/etc/certs/* root@138.197.65.243:/opt/gluu-server-3.1.
 - On the server, the certificates were just transferred to:
 
 ```
-
 Gluu.Root # cd /etc/certs/
 Gluu.Root # chown .gluu *
 Gluu.Root # chown jetty.jetty oxauth-keys.j*
-
 ```
 
 - Next, update the keystores in all Gluu instances, including the primary server 
@@ -1005,9 +882,7 @@ Gluu.Root # chown jetty.jetty oxauth-keys.j*
 - Download this script to **every** server, which automatically removes and adds the necessary certificates to the keystore:
 
 ```
-
 Gluu.Root # wget https://raw.githubusercontent.com/GluuFederation/cluster-mgr/master/manual_install/keystore_Config.py
-
 ```
 
 - Modify the `hostname` to the NGINX/Load-balancer's FQDN
@@ -1023,9 +898,7 @@ hostname = "loadbalancer.example.org"
 - Run the script:
 
 ```
-
 Gluu.Root # python keystore_Config.py
-
 ```
 
 This error is fine if OpenLDAP is not installed, and vice versa for OpenDJ.
@@ -1037,11 +910,9 @@ keytool error: java.io.FileNotFoundException: /etc/certs/openldap.crt (No such f
 - Restart Identity and oxAuth on all servers, then restart all your Gluu servers
 
 ```
-
 Gluu.Root # service identity stop && service oxauth restart && service identity start
 Gluu.Root # logout
 service gluu-server-3.1.5 restart
-
 ```
 
 - Now, the administrator web UI and oxAuth have some failover redundancy. There is obviously more configuration necessary on the network layer of the topology for true HA failover, but that is outside of the scope of this documentation.          
