@@ -77,7 +77,7 @@ apt-get install openssh-client
 !!! Note
     Make sure that all hosts files are configured to point the IPs of all IDPs and the loadbalancer to the corresponding hostnames.
  
-#### Loadbalancer - /etc/hosts
+#### Loadbalancer `/etc/hosts`
     
 ```bash
 
@@ -86,7 +86,7 @@ apt-get install openssh-client
 
 ```
     
- #### Redis - /etc/hosts
+#### Redis `/etc/hosts`
     
 ```bash
 
@@ -95,7 +95,7 @@ apt-get install openssh-client
 
 ```
     
- #### Node 1 - /etc/hosts
+#### Node 1 `/etc/hosts`
     
 ```bash
 
@@ -105,7 +105,7 @@ apt-get install openssh-client
 
 ```
     
- #### Node 2 - /etc/hosts
+#### Node 2 `/etc/hosts`
     
 ```bash
 
