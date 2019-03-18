@@ -10,6 +10,8 @@ Gluu also offers a tool to automate the steps below, called [Cluster Manager](ht
 
 Clustering uses OpenDJ replication and configuration changes to greatly improve Gluu Server availability, via a proxy.
 
+![cluster manager diagram](../img/cluster/cluster-manager-diagram.png)
+
 ## Prerequisites
 
 ### Ports
@@ -686,7 +688,7 @@ Now install and configure redis-server on a separate Ubuntu 18.04 server .**You 
   
   - Install stunnel to encrypt the redis communications:
   
-   ```bash
+  ```bash
   apt-get update
 
   apt-get install stunnel4
