@@ -90,6 +90,14 @@ documentation and administrative guide.
 
 ### [GluuFederation/oxTrust](https://github.com/GluuFederation/oxTrust/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
 
+- [#1567](https://github.com/GluuFederation/oxTrust/issues/1567) Fix system information issue on CentOS 6 and Rhel 6
+
+- [#1566](https://github.com/GluuFederation/oxTrust/issues/1566) Use new CR method to specify if run user sync process or not on specific node
+
+- [#1555](https://github.com/GluuFederation/oxTrust/issues/1555) Remove Generate method from SAML TR
+
+- [#1553](https://github.com/GluuFederation/oxTrust/issues/1553) Minor UX changes for the add new client form
+
 - [#1549](https://github.com/GluuFederation/oxTrust/issues/1549) Secret field is now editable while adding client
 
 - [#1545](https://github.com/GluuFederation/oxTrust/issues/1545) Change Client Secret deletes client secret
