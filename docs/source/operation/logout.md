@@ -19,6 +19,7 @@ The workflow for single logout for two applications using OpenID Connect Front-C
 8. App-A does not know anything about `frontchannel_logout_uri_2`, it just calls `/end_session` endpoint and it's the responsibility of the AS to track it and return the correct HTML page with iframes (once iframe is loaded, it means that `frontchannel_logout_uri_2` is called and app-B must log itself out).
 
 There are a few important points to note:
+
 1. `post_logout_redirect_uri` is not mandatory but registration specification says `The value MUST have been previously registered with the OP`. We have dual behavior description directly in specification. `oxauth` ends session successfully (if session is present on OP) independently from whether `post_logout_redirect_uri` is valid or not. If it is not valid then server returns 200 with message `Session is ended successfully but redirect to post logout redirect uri is not performed because it fails validation`. Server returns 200 because session was ended successfully however inform that validation failed.
 2. `id_token_hint` and `session_id` parameters are optional. Therefore OP will end session successfully if these parameters are missed. However from other side if RP included them in request OP validates them and if any of those are invalid OP returns 400 (Bad Request) http code.
 
