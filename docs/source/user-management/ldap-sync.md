@@ -42,7 +42,7 @@ After configuring Cache Refresh, you should give it some time to run and populat
 # /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w pass_of_ldap_ -b "ou=people,o=DA....,o=gluu" dn | grep "dn\:" | wc -l
 ```
 
-* Try to login with one of these users. We assume that you have also
+* Try to log in with one of these users. We assume that you have also
   setup your Gluu Server to use the correct LDAP server for
   authentication.
 
@@ -221,3 +221,27 @@ The Gluu Server 3.x introduced two upgraded sections here.
 
   * _Update and Validate Script:_ This button is used to test the
     operation and integrity of any custom script such as a Jython Script.
+    
+### Using Cache Refresh with containers
+
+By default, Cache Refresh runs on the node specified in the Cache Refresh GUI in the `IP address` field. If CE or the external database is installed on a container such as Docker, that IP address could change, causing Cache Refresh to fail. To prevent this, a new method is now available in the Cache Refresh script, allowing administrators to add alternate startup logic to keep the process working as expected.
+
+To add custom start-up logic, follow these steps:
+ 
+  - Navigate to `Configuration` > `Manage Custom Scripts` > `Cache Refresh`
+  - Scroll down in the script until you find the new method:
+  
+    ```
+    
+    def getApiVersion(self):
+        return 3
+
+    def isStartProcess(self, configurationAttributes):
+        print "Cache refresh. Is start process method"
+       
+        return True/False
+    ```    
+    
+  - Insert the custom startup logic in the line before `return True/False`
+  
+When Cache Refresh runs, it'll first try to use the listed IPs to synchronize. If the IP check is successful, Cache Refresh will run. If it fails, it'll try again with the startup logic in the new method.
