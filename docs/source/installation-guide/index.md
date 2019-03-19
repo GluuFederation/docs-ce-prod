@@ -142,7 +142,7 @@ In Linux, open the following using any editor:
 vi /etc/network/interfaces
 ```
 
-Below is the network configuration. Notice `iface ens33 inet` is set to `dhcb`.
+Below is the network configuration. Notice `iface ens33 inet` is set to `dhcp`.
 
 ```
 #This file describes the network interfaces available on your system
