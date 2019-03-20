@@ -4,7 +4,7 @@ Server has built-in clean up service. There are a few configuration properties.
 
 - `cleanServiceInterval` - defines interval in seconds how often run clean up service. It must be positive, if negative then clean up timer is off.
 - `cleanServiceBaseDns` - list of additional `base dns` under which server will look up for expired entities (server look up for expired entries also under built-in `base dns`).
-- `cleanServiceBatchChunkSize` - each clean up iteration fetches chunk of expired data per `base dn` and removes it from storage.
+- `cleanServiceBatchChunkSize` - each clean up iteration fetches chunk of expired data per `base dn` and removes it from storage. Default value is 100. Please adjust it according to load.
 
 Any change in configuration properties related to clean up timer takes effect only after `oxauth` restart (`service oxauth restart`).
 
