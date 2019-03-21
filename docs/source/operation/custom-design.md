@@ -29,10 +29,7 @@ A typical example would be customizing oxAuth's login page. There are two ways t
 !!! Note  
         Log into the Gluu Server chroot before working on design customizations for any pages.
 
-New directories trees have been added inside the Gluu Server `chroot` to make page customizations easier. 
-Each such tree is placed in the configuration directory of the corresponding Gluu component (only 
-customization of oxAuth and oxTrust pages is supported at the moment by this feature). 
-The new directory structure can be illustrated as follows (only directories related to this feature are shown for clarity):
+New directories trees have been added inside the Gluu Server `chroot` to make page customizations easier. Each such tree is placed in the configuration directory of the corresponding Gluu component (only customization of oxAuth and oxTrust pages is supported at the moment by this feature). The new directory structure can be illustrated as follows (only directories related to this feature are shown for clarity):
 
 ### oxAuth
 
@@ -96,30 +93,55 @@ So, for example, CSS file placed at this path:
 
 ```
 /opt/gluu/jetty/oxauth/custom/static/stylesheet/theme.css
+
+and
+
+/opt/gluu/jetty/identity/custom/static/stylesheet/theme.css
 ```
 
 ...will be externally available at a URL similar to this:
 
 ```
 https://your.gluu.host/oxauth/ext/resources/stylesheet/theme.css
+
+and
+
+https://your.gluu.host/identity/ext/resources/stylesheet/theme.css
 ```
 
 ...and should be referenced from inside of source codes of customized files by path like this:
 
 ```
 /oxauth/ext/resources/stylesheet/theme.css
+
+and
+
+/identity/ext/resources/stylesheet/theme.css
 ```
 
 All images should be placed under: 
 
-`/opt/gluu/jetty/oxauth/custom/static/img`
+```
+/opt/gluu/jetty/oxauth/custom/static/img
+
+and
+
+/opt/gluu/jetty/identity/custom/static/img
+
+```
 
 !!! Note
     You can change the logo on every public-facing page here. Place your image in `/static/img` and name it `logo.png`.
 
 And all CSS are inside:
 
-`/opt/gluu/jetty/oxauth/custom/static/stylesheet`
+```
+/opt/gluu/jetty/oxauth/custom/static/stylesheet
+
+and
+
+/opt/gluu/jetty/identity/custom/static/stylesheet
+```
 
 ## Location of key webpage source files
 
