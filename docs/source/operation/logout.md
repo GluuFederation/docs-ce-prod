@@ -27,15 +27,11 @@ There are a few important points to note:
 Read the [OpenID Connect Front-Channel Logout Specifications](http://openid.net/specs/openid-connect-frontchannel-1_0.html) to learn more about logout with OpenID Connect.
 
 ## SAML Logout
-The Shibboleth IDP (which is included in the Gluu Server) does not support single logout in any meaningful sense. Take a look at the [Shibboleth wiki](https://wiki.shibboleth.net/confluence/display/CONCEPT/SLOIssues) for more information.
+Gluu Server now supports SAML2 Single Logout. Once it's [enabled by the adminstrator](../admin-guide/saml.md#saml-single-logout), the logout URL is `https://[hostname]/idp/Authn/oxAuth/logout`.
 
-Instead, the logout has to be initiated from the SP. The logout URL is a combination of the SP logout link (i.e. for the Shibboleth SP, `https://[SP_hostname]/Shibboleth.sso/Logout`) and the Gluu Server SAML Logout link (` https://[Gluu_Server_hostname]/idp/Authn/oxAuth/logout`).
+The user will be directed to the following confirmation page.
 
-Sending the above combination will kill the sessions from both the SP and the Gluu Server.
-
-Click the picture below to see a video example of the process in action:
-
-[![Link to SAML Logout video](https://img.youtube.com/vi/wth_IMKS_sA/0.jpg)](https://www.youtube.com/watch?v=wth_IMKS_sA)
+[SAML2 SLO Confirmation Page](../img/saml/saml_slo_confirm.png)
 
 ## Customizing Logout
 It is possible to use a custom authentication script to call individual logout methods for both SAML and OpenID Connect and log out of the desired SP/RPs when the user logs out of the Gluu Server. Please see the [Custom Script Guide](../authn-guide/customauthn.md) to start writing your own custom scripts. 
