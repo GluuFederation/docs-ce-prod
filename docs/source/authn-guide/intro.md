@@ -36,7 +36,7 @@ In addition, specific apps can request specific forms of authentication using th
 
 ## Basic Authentication
 
-Gluu will default to Basic Authentcation, which is username and password authentication against the local Gluu LDAP. If [LDAP synchronization](../user-management/ldap-sync.md) has been configured, an existing backend LDAP server can be used for authentication.
+Gluu will default to Basic Authentication, which is username and password authentication against the local Gluu LDAP. If [LDAP synchronization](../user-management/ldap-sync.md) has been configured, an existing backend LDAP server can be used for authentication.
 
 Learn how to [configure basic authentication](./basic.md).
 
