@@ -31,7 +31,7 @@ Gluu Server now supports SAML2 Single Logout. Once it's [enabled by the adminstr
 
 The user will be directed to the following confirmation page.
 
-[SAML2 SLO Confirmation Page](../img/saml/saml_slo_confirm.png)
+![SAML2 SLO Confirmation Page](../img/saml/saml_slo_confirm.png)
 
 ## Customizing Logout
 It is possible to use a custom authentication script to call individual logout methods for both SAML and OpenID Connect and log out of the desired SP/RPs when the user logs out of the Gluu Server. Please see the [Custom Script Guide](../authn-guide/customauthn.md) to start writing your own custom scripts. 
