@@ -77,7 +77,9 @@ The example below adds `customTest`, which we [created earlier here](https://glu
 
 ## Force Authentication
 
-The Gluu Server supports force authentication out-of-the-box. Including `ForceAuthn=true` in the initial SAML request from the SP triggers a requirement for the user to reauthenticate, even with a valid session in the server. This feature can be used to verify the user's identity when accessing protected resources.
+The Gluu Server supports force authentication out-of-the-box. Including `ForceAuthn=true` in the initial SAML request from the SP signals to the IDP that the user must reauthenticate, even if they already have a valid session at the server. This feature can be used to verify the user's identity prior to granting them access to highly protected resources.
+
+Upon receiving the SAML request with this flag, the IDP will invalidate its session for the user, then will issue a new OpenID Connect (OIDC) authorization request to oxAuth, including the `prompt=login` parameter. This parameter forces oxAuth to invalidate its session as well. The user will then follow the full authentication procedure.
 
 ## Create a Trust Relationship
 Follow these instructions to create a SAML TR in your Gluu Server: 
