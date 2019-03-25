@@ -77,7 +77,7 @@ The example below adds `customTest`, which we [created earlier here](https://glu
 
 ## Force Authentication
 
-The Gluu Server supports force authentication out-of-the-box. Including `ForceAuthn=true` in the initial SAML request from the SP triggers the user to be required to reauthenticate, even with a valid session in the server. This feature can be used to verify the user's identity when accessing protected resources.
+The Gluu Server supports force authentication out-of-the-box. Including `ForceAuthn=true` in the initial SAML request from the SP triggers a requirement for the user to reauthenticate, even with a valid session in the server. This feature can be used to verify the user's identity when accessing protected resources.
 
 ## Create a Trust Relationship
 Follow these instructions to create a SAML TR in your Gluu Server: 
