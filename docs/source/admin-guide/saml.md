@@ -124,11 +124,11 @@ oxTrust allows you to tweak a limited subset of profiles mentioned in the Shibbo
 
 Gluu Server supports SAML2 single logout if enabled by the administrator. To enable, create a SAML2Logout RP profile with the following configuration:
 
-[SAML2 SLO configuration](../img/saml/saml_slo.png)
+![SAML2 SLO configuration](../img/saml/saml_slo.png)
 
 Once enabled, the user can be directed to `https://[hostname]/idp/Authn/oxAuth/logout` when they wish to log out. The user will be directed to a confirmation page.
 
-[SAML2 SLO logout confirmation page](../img/saml/saml_slo_confirm.png)
+![SAML2 SLO logout confirmation page](../img/saml/saml_slo_confirm.png)
 
 If the user clicks `Yes` or just waits a few seconds, the session will be killed and the user will be logged out.
     
