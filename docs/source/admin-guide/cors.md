@@ -46,7 +46,7 @@ CORS can be configured with ease using Gluu CE oxTrust UI. Below are the steps
 
     ![cors enable](../img/admin-guide/cors/cors-enable.png)
 
-6. You will be displayed with the set of cors Configuration Filters parameters as depicted below
+6. This will bring up the cors Configuration Filters parameters, as depicted below
 
     ![cors](../img/admin-guide/cors/cors.png)
 
