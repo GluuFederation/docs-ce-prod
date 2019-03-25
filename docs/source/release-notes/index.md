@@ -154,6 +154,10 @@ documentation and administrative guide.
 
 No changes
 
+### [GluuFederation/oxshibboleth](https://github.com/GluuFederation/oxShibboleth/issues?utf8=?&3Aissue+milestone%3A3.1.6+)
+
+- [#10](https://github.com/GluuFederation/oxShibboleth/issues/10) Support ForceAuth = true
+
 ### [GluuFederation/oxcore](https://github.com/GluuFederation/oxcore/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
 
 - [#107](https://github.com/GluuFederation/oxCore/issues/107) Log all LDAP operation times to a separate log
