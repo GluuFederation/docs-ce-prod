@@ -704,7 +704,7 @@ cert = /etc/stunnel/secureredis.pem
 pid = /var/run/stunnel.pid
 [redis]
 accept = 197.122.32.421:16379
-connect = 127.0.0.1:16379
+connect = 127.0.0.1:6379
 ```
   
 - Start Stunnel service :
