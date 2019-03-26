@@ -96,15 +96,18 @@ If you want to follow the first approach (direct interaction with registration e
 
 The more pleasant second alternative is using the Gluu server administration web interface. Just follow these steps:
 
+
 - Log in to `https://<your-gluu-host>/identity` using the admin credentials
 
 - Go to `OpenId connect` > `Clients` and click the **Add client** button
 
-- Fill out the form using the following values. Most of the default values are OK:
+- Fill out the form using the following values. Most defaults are OK:
 
     - Client Name: SCIM-Client. You may enter a different name
 
     - Client secret: Think of it as a password. Choose something safe but comfortable for your testing exercise
+
+    - Client Secret Expires: Choose a future date (one week ahead is fine)
 
     - Application type: Native
 
@@ -114,21 +117,13 @@ The more pleasant second alternative is using the Gluu server administration web
 
     - Authentication method for the Token Endpoint: client_secret_basic
 
-    - Require Auth Time: false
-
-    - Logout Session Required: false
-
-    - Include Claims In ID Token: false
-
-    - Client Secret Expires: Choose a future date (one week ahead is fine)
-
-- Scroll down to the bottom of the page and click the "Add Scope" button, type openid in the text field, and press search. Select the row whose "display name" is **openid**, and click OK
-
-- Repeat the previous step to add the **permission** scope
+- Scroll down and click the "Add Scope" button. Select the rows named **openid** and **permission**
 
 - Click the "Add Response Types" button. In the list choose **token** and click OK
 
 - Click the "Add Grant Type" button, then select **client_credentials**
+
+- Switch to the advanced tab and set: Require Auth Time(false), Logout Session Required (false), Include Claims In ID Token (false)
 
 - At the bottom press the "Add" button to finish creating your OpenId client
 
