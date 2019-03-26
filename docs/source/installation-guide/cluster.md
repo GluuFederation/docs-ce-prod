@@ -599,7 +599,7 @@ http {
     
 Redis-server is a memory caching solution created by redis-labs. It's ideal for clustering solutions but needs additional encryption.    
 
-- Now install and configure redis-server on a separate Ubuntu 18.04 server .**You can setup a Redis cluster model and have them installed on all nodes. 
+- Now install and configure redis-server on a separate Ubuntu 18.04 server .**You can set up a Redis cluster model and have them installed on all nodes.**
 
 - On the Redis server, here `197.122.32.421  redis.example.org (Redis Server)`, do the following :
   
