@@ -19,9 +19,9 @@ Setup a server or VM with the following **minimum** requirements:
 |       2  |    4GB     |   40GB            |  64 Bit        |
 
 
-A few additional notes about system requirements:
+A few additional notes about setting up the server:
 
-- When installing more than the default components (i.e. oxAuth, oxTrust, and LDAP), we recommend using a machine with at least 8GB of RAM. 
+- When installing more than the default components (i.e. oxAuth, oxTrust, and LDAP), create a machine with at least 8GB of RAM. 
 
 - Gluu must be deployed on a server or VM with a **static IP Address**. The IP should resolve to a computer hostname which can be achieved by adding an entry to the DNS server or in `/etc/hosts`.     
 
