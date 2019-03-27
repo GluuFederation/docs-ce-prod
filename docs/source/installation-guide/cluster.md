@@ -818,7 +818,7 @@ Test node 1 and node 2 from each site including the redis server, here we have t
 This should succeed when you `PING` you should recieve a `PONG`.
 
 !!! Note
-    You should not be able to connect to the redis server using `port 16379` using the `redis-cli` directly like the following `redis-cli -h <ip of each node> -p 16379 -a <password>`. If you manage to connect using this command then your stunnel setup is of no use. The stunnel uses the certificate to initialize the communication t from `port 6379` to the stunnel on redis server on `port 16379` which  then uses the certificate to connect to the redis server on `port 6379`. Under no case should you be able to connect to the redis server directly.
+    You should not be able to connect to the redis server using `port 16379` using the `redis-cli` directly like the following `redis-cli -h <ip of each node> -p 16379 -a <password>`. If you manage to connect using this command then your stunnel setup is of no use. The stunnel uses the certificate to initialize the communication  from `port 6379` to the stunnel on redis server on `port 16379` which  is also using same certificate to connect to the redis server on `port 6379`. Under no case should you be able to connect to the redis server directly.
     
 !!! Info
     For more information or if you're having trouble, please see [this redis how-to guide.](https://redislabs.com/blog/using-stunnel-to-secure-redis/)
