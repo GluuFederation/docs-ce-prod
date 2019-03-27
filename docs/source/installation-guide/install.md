@@ -30,7 +30,6 @@ There are a few system specific notes to follow:
 Installation of the Gluu server will be done under `/root`. 
 The Gluu Server will create its file system under `/root/` and will be installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) remain the same as the host.
 
-<!--
 #### Ubuntu Server 18.04.x
 
 |  Command Description    |               Xenial Commands         |
@@ -41,8 +40,7 @@ The Gluu Server will create its file system under `/root/` and will be installed
 | Install Gluu Server     | `# apt-get install gluu-server-3.1.6`      |
 
 !!! Note  
-    If you use the server version of Ubuntu 18, you need to add the Ubuntu Universe repositories as well. Use these commands: `# echo "deb http://archive.ubuntu.com/ubuntu bionic universe" > /etc/apt/sources.list` and `# echo "deb http://archive.ubuntu.com/ubuntu bionic-updates universe" > /etc/apt/sources.list` 
-    -->    
+    If you use the server version of Ubuntu 18, you need to add the Ubuntu Universe repositories as well. Use these commands: `# echo "deb http://archive.ubuntu.com/ubuntu bionic universe" > /etc/apt/sources.list` and `# echo "deb http://archive.ubuntu.com/ubuntu bionic-updates universe" > /etc/apt/sources.list`     
 
 #### Ubuntu Server 16.04.x
 
@@ -55,6 +53,9 @@ The Gluu Server will create its file system under `/root/` and will be installed
 
 
 #### Ubuntu Server 14.04.x
+
+!!! Important
+    Ubuntu Server 14.x has an official End of Life date of April 2019. It will not be supported in future versions of the Gluu Server.
 
 | Command Description     |               Trusty Commands         |
 |-------------------------|---------------------------------------|
@@ -134,7 +135,7 @@ For Centos 6.x, Red Hat 6.x, Ubuntu 14/16, and Debian 8, run the following comma
 # service gluu-server-3.1.6 login
 ```
 
-For Centos 7.x, Red Hat 7.x<!--, Ubuntu 18--> and Debian 9, run the following commands: 
+For Centos 7.x, Red Hat 7.x, Ubuntu 18 and Debian 9, run the following commands: 
 
 ```
 # /sbin/gluu-serverd-3.1.6 enable
