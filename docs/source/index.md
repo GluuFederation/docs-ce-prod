@@ -23,7 +23,7 @@ Gluu supports open web standards for authentication, authorization, federated id
 - SAML 2.0   
 - System for Cross-domain Identity Management (SCIM)    
 - FIDO Universal 2nd Factor (U2F)    
-- FIDO 2.0
+- FIDO 2.0 / WebAuthn
 - Lightweight Directory Access Protocol (LDAP)   
 
 ## Installation
