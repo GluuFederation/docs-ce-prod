@@ -7,8 +7,14 @@ The Gluu Server bundles the Passport.js authentication middleware to enable soci
 Passport is an MIT licensed, Node.js web app that supports hundreds of "authentication strategies" out-of-the-box, including strategies for popular consumer apps like Facebook, Twitter, Github, etc.    
 
 ## Passport setup 
+Passport is available as an optional component in the Gluu Server that can included during initial installation or added post installation, as needed.  
 
-Passport is available as an optional component during [Gluu Server installation](https://gluu.org/docs/ce/installation-guide/). Or, to add Passport to an existing Gluu Server installation, perform the following actions (requires Internet access):
+### During Gluu installation
+For new deployments, simply opt to include Passport during [Gluu Server installation](https://gluu.org/docs/ce/installation-guide/). 
+
+### Post Gluu installation
+
+To add Passport to an existing Gluu Server installation, perform the following actions (requires Internet access):
 
 1. Login to Gluu Server chroot
 
