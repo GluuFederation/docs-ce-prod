@@ -5,7 +5,7 @@
 If you require high availability (HA) or failover, follow the instructions below to manually configure multi-master replication (MMR) across multiple Gluu Servers.
 
 !!! Note
-    To simplify the setup of, and ongoing operations of Glu in an HA environment, Gluu offers the [Cluster Manager](https://gluu.org/docs/cm) tool with the [Gluu VIP Subscription](https://gluu.org/pricing#vip).
+    To simplify the setup of, and ongoing operations of Gluu in an HA environment, Gluu offers the [Cluster Manager](https://gluu.org/docs/cm) tool with the [Gluu VIP Subscription](https://gluu.org/pricing#vip).
 
 
 ## Concept
