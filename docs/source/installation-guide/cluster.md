@@ -892,6 +892,3 @@ service gluu-server-3.1.6 restart
 ```
 
 - Now, the administrator web UI and oxAuth have some failover redundancy. There is obviously more configuration necessary on the network layer of the topology for true HA failover, but that is outside of the scope of this documentation.          
-
-## Support
-If you have any questions or run into any issues, please open a ticket on [Gluu Support](https://support.gluu.org).
