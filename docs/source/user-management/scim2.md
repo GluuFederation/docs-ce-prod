@@ -1142,6 +1142,59 @@ Your result list might look like this:
 }
 ``` 
 
+## How is SCIM data stored?
+
+SCIM [schema spec](https://tools.ietf.org/html/rfc7643) does not use LDAP attribute names but a different naming convention for resource attributes. The following table lists the core SCIM attributes and their corresponding LDAP destination attributes. Note this is not the case of custom attributes where the SCIM name used is that of the LDAP attribute.
+
+|SCIM|LDAP|Type of resource|
+|-|-|-|
+|active|oxTrustActive|User|
+|addresses|oxTrustAddresses|User|
+|application|oxApplication|FidoDevice|
+|counter|oxCounter|FidoDevice|
+|description|description|FidoDevice|
+|deviceData|oxDeviceData|FidoDevice|
+|deviceHashCode|oxDeviceHashCode|FidoDevice|
+|deviceKeyHandle|oxDeviceKeyHandle|FidoDevice|
+|deviceRegistrationConf|oxDeviceRegistrationConf|FidoDevice|
+|displayName|displayName|User/FidoDevice/Group|
+|emails.value|mail|User|
+|emails.value|oxTrustEmail|User|
+|entitlements|oxTrustEntitlements|User|
+|externalId|oxTrustExternalId|User|
+|groups.value|memberOf|User|
+|id|inum|User/Group|
+|id|oxId|FidoDevice|
+|ims|oxTrustImsValue|User|
+|lastAccessTime|oxLastAccessTime|FidoDevice|
+|locale|locale|User|
+|members|member|Group|
+|meta.created|creationDate|FidoDevice|
+|meta.created|oxCreationTimestamp|User|
+|meta.lastModified|updatedAt|User|
+|meta.lastModified|oxTrustMetaLastModified|FidoDevice/Group|
+|meta.location|oxTrustMetaLocation|User/FidoDevice/Group|
+|name.familyName|sn|User|
+|name.formatted|oxTrustNameFormatted|User|
+|name.givenName|givenName|User|
+|name.honorificPrefix|oxTrusthonorificPrefix|User|
+|name.honorificSuffix|oxTrusthonorificSuffix|User|
+|name.middleName|middleName|User|
+|nickName|nickName|User|
+|nickname|oxNickName|FidoDevice|
+|pairwiseIdentitifers|oxPPID|User|
+|profileUrl|oxTrustProfileURL|User|
+|phoneNumbers|oxTrustPhoneValue|User|
+|photos|oxTrustPhotos|User|
+|preferredLanguage|preferredLanguage|User|
+|roles|oxTrustRole|User|
+|userName|uid|User|
+|userType|oxTrustUserType|User|
+|status|oxStatus|FidoDevice|
+|timezone|timezone|User|
+|title|oxTrustTitle|User|
+|x509Certificates|oxTrustx509Certificate|User|
+
 ## Supporting a User Registration Process with SCIM
 
 SCIM service has many use cases. One interesting and often arising is that of coding your 
