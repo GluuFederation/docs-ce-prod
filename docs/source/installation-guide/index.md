@@ -130,9 +130,9 @@ ulimit -n 65535
 
 * Restart the system. 
 
-## IP
+## IP Address
     
-The Gluu Server or VM must be deployed on a static IP. Cloud servers should already have that set. When installing the Gluu Server, make sure the server has a static IP.
+The Server or VM must be deployed on a static IP address. Cloud servers should already have that set. When installing the Gluu Server, make sure the server has a static IP.
 
 In Linux, open the following using any editor:
 
@@ -206,7 +206,7 @@ Restart the server.
 
 Gluu must be deployed on a fully qualified domain name (FQDN), e.g. `https://my-gluu.server.com`. Localhost is **not** supported. 
 
-In Linux, edit the hosts file and add the appropriate IP and FQDN. For example:
+In Linux, edit the hosts file and add the appropriate IP Address and FQDN. For example:
 
 ```
 vi /etc/hosts
