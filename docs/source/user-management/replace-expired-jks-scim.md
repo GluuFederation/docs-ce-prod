@@ -76,13 +76,3 @@ Update your client's SCIM application to use `fresher-scim-rp.jks` with its corr
 Finally, remove the `tmp` directory in your server.
 
 Something went wrong? Feel free to open a [support ticket](https://support.gluu.org).
-
-<!-- I'm testing superfences, I'll remove this soon -->
-
-```sequence
-Title: Here is a title
-A->B: Normal line
-B-->C: Dashed line
-C->>D: Open arrow
-D-->>A: Dashed open arrow
-```
