@@ -207,7 +207,7 @@ ones used by your installation):
 1) Login into Gluu's chroot environment with the command below:
 
 ```
-# service gluu-server login
+# service gluu-server-3.1.6 login
 ```
 
 2) Run this command:
