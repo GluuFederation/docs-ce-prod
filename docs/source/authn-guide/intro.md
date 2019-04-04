@@ -60,7 +60,10 @@ Once 2FA is enabled, the Gluu Server's default behavior is to prompt for enrollm
 
 ### 2FA Credential Management	
 	
-Once users enroll 2FA credentials for their account, the credentials can be viewed and removed by the Gluu Server administrator either directly in LDAP, or in the user record in oxTrust via the [Manage People interface](../user-management/local-user-management.md#managing-associated-2fa-devices).  
+Once users enroll 2FA credentials for their account, the credentials can be viewed and removed by the Gluu Server administrator either directly in LDAP, or in the user record in oxTrust via the [Manage People interface](../user-management/local-user-management.md#managing-associated-2fa-devices). 
+
+!!! Note
+    To offer "self-service" 2FA, where end-users can manage their own account security preferences, such as two-factor authentication credentials, check out our new app, [Gluu Casa](https://casa.gluu.org). 
 
 ## Social Login
 
