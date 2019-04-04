@@ -88,5 +88,6 @@ If passwords are stored locally, Gluu admins can reset a user's password in two 
 It's possible to reset a user's password in a Remote Backend Server, but requires configuration of a [different Authentication module](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/basic.change_password/BasicPassowrdUpdateExternalAuthenticator.py). 
 
 
+## Self-service account security
 
-
+To offer end-users a portal where they can manage their own account security preferences, including their password, check out our new app, [Gluu Casa](https://casa.gluu.org). 
