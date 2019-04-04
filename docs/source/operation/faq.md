@@ -18,7 +18,7 @@ Run the following commands if you find your instance running out of disk space:
 
 ```
 # /etc/init.d/gluu-server-3.1.6 stop
-# rm -rf /opt/gluu-server-3.1.6/opt/jetty-9.3/temp/*
+# rm -rf /opt/gluu-server-3.1.6/opt/jetty-9.x/temp/*
 # /etc/init.d/gluu-server-3.1.6 start
 ```
 
