@@ -266,11 +266,7 @@ add: member
 member: inum=tempadmin,ou=people,o=@!f9cc.d762.4778.1032!0001!2c72.bb87,o=gluu
 ```
 
-Again, please note the strings' segment marked with bold: you will have
-to substitute contents of the "dn:" string with dn of your own Gluu
-Manager Group which you've acquired in step 2), and for "member:" string
-you will have to use the dn of tempadmin user (the one you already
-specified in the 1st line of the file in step 4).
+Again, please note the strings' segment marked with bold: you will have to substitute contents of the "dn:" string with dn of your own Gluu Manager Group which you've acquired in step 2), and for "member:" string you will have to use the dn of tempadmin user (the one you already specified in the 1st line of the file in step 4).
 
 7) Run this command:
 
@@ -278,19 +274,15 @@ specified in the 1st line of the file in step 4).
 # /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/add_2_group.ldif
 ```
 
-This will add tempadmin user to the IdP managers group and you can then
-login and assign another user to act as admin.
+This will add tempadmin user to the IdP managers group and you can then login and assign another user to act as admin.
 
 ## DNS errors
-It is possible that even after configuring everything there is a `DNS` resolve error in Gluu Server.
-The reason is the `DNS` used inside the chroot container; the `dns` used by the container is the Google DNS servers 
-and the `DNS` for the host OS is not used. Therefore to fix this issue:
+It is possible that even after configuring everything there is a `DNS` resolve error in Gluu Server. The reason is the `DNS` used inside the chroot container; the `dns` used by the container is the Google DNS servers and the `DNS` for the host OS is not used. Therefore to fix this issue:
 
 - Change the DNS inside the container by editing the `/etc/resolv.conf` file and adding the DNS used by your organization
 
 ## How to recover an admin password 
-The Gluu Server stores the admin password in the file `/install/community-edition-setup/setup.properties.last` under the
-property `ldapPass`. Retrieve the data using the following command:
+The Gluu Server stores the admin password in the file `/install/community-edition-setup/setup.properties.last` under the property `ldapPass`. Retrieve the data using the following command:
 
 ```
 # grep ldapPass= /install/community-edition-setup/*.last
@@ -332,6 +324,7 @@ This method rely on ldif file to change the authentication mode in LDAP server d
         Replace the `inum` from the example above with the `inum` of your Gluu Server from the `ldapsearch` command.
 
 - Replace the the authentication mode using `ldapmodify` command.
+
     ```
     
     root@gluu3-ubuntu:/opt/opendj/bin# ./ldapmodify -h localhost -p 1636 -Z -X -D "cn=directory manager" -w "{password provided during setup}" -f revert.ldif
@@ -354,7 +347,6 @@ You have to update one or both oxAuthenticationMode and OxTrustAuthenticationMod
 
 One more option, InPrivate or Incognito or Private Browser from various Browsers can be used.
 
-    
 ## No admin access after Cache Refresh?
 Add the password for your admin account to `~/.pw` and then use the commands below to add yourself as an admin.
 
@@ -385,7 +377,7 @@ echo 'add: member' >> $ldiffile
 echo "member: $(/opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -j ~/.pw -Z -X -b "o=gluu" "uid=$newgluuadmin" uid givenName sn cn |grep -A1 dn |cut -d ' ' -f 2- | sed 'N;s/\n//')" >> $ldiffile
 ```
 
-The resulting ldif will look like this:
+The resulting LDIF will look like this:
 
 ```bash
 dn: inum=@!134D.3C3D.796E.FECE!0001!E022.CC3C!0003!60B7,ou=groups,o=@!134D.3C3D.796E.FECE!0001!E022.CC3C,o=gluu
@@ -394,39 +386,18 @@ add: member
 member: inum=@!134D.3C3D.796E.FECE!0001!E022.CC3C!0000!A8F2.DE1E.D7FB,ou=people,o=@!134D.3C3D.796E.FECE!0001!E022.CC3C,o=gluu
 ```
 
-Once the ldif looks right, run this to grant your account admin rights in Gluu:
+Once the LDIF looks right, run this to grant your account admin rights in Gluu:
 
 ```bash
 /opt/opendj/bin/ldapmodify -h localhost -p 1636 -Z -X -D "cn=directory manageru" -j ~/.pw -Z -X -f addManagers.ldif
 ```
 
-Log into the web interface and pick up where you left off :)
+Log into the web interface and pick up where you left off.
 
 ## How do I present a different login page depending on where the user came from (i.e. based on the SP/RP)?
 
 ### SAML
 The SAML IDP sends an authorization request to oxAuth for user authentication.. In the request there is a JWT state parameter which contains a claim called `relyingPartyId`. You can use this `relyingPartyId` to render the proper form based on the SP... so `SP=relyingPartyId`. 
-
-## How to fix image/files upload issue in Gluu 3.1.3
- 
- There is a [known issue](https://github.com/GluuFederation/oxTrust/issues/1007) in Gluu 3.1.3 that affects file upload feature like **Person Import**, **Organization logo upload**.
- 
- Below are steps to fix that issue by patching the oxtrust war file.
- 
- 1. Login into Gluu container
- 1. Save a copy of you actual `/opt/gluu/jetty/identity/identity.war`
- 1. Move to home directory: `#cd` 
- 1. Copy identity.war in the current directory: `#cp /opt/gluu/jetty/identity/identity.war .`
- 1. Run : ``` #zip -d identity.war WEB-INF/lib/jsf-api-2.2.17.jar```
- 1. Run : ``` #zip -d identity.war WEB-INF/lib/jsf-impl-2.2.17.jar```
- 1. Make directory: `#mkdir -p WEB-INF/lib`
- 1. Change directory: `#cd WEB-INF/lib`
- 1. Run: `#wget http://repository.jboss.org/nexus/content/groups/public-jboss/com/sun/faces/jsf-api/2.2.16/jsf-api-2.2.16.jar`
- 1. Run: `#wget http://repository.jboss.org/nexus/content/groups/public-jboss/com/sun/faces/jsf-impl/2.2.16/jsf-impl-2.2.16.jar`
- 1. Run: `#jar -uf identity.war WEB-INF/lib/jsf-api-2.2.16.jar`
- 1. Run: `#jar -uf identity.war WEB-INF/lib/jsf-impl-2.2.16.jar`
- 1. Move back the war file: `#cp identity.war /opt/gluu/jetty/identity/identity.war`
- 1. Restart identity service: `#service identity restart`
  
 ## How to redirect your Gluu hostname to a URL other than /identity
 By default, when you hit your Gluu Server hostname it will redirect to `<hostname>/identity` and you will login to your oxTrust GUI. As oxTrust is primarily an admin tool, you might want to change this default behavior so that users are not able to access oxTrust without specifically requesting the `<hostname>/identity` URL. Follow the below steps to adjust your web server configuration:
