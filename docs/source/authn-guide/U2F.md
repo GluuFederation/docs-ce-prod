@@ -112,5 +112,6 @@ From your terminal run below commands and reboot your computer.
   - `sudo curl https://hypersecu.com/downloads/files/configurations/70-u2f.rules > /etc/udev/rules.d/70-u2f.rules`
   - `chmod +x /etc/udev/rules.d/70-u2f.rules`
 
+## Self-service account security
 
-
+To offer end-users a portal where they can manage their own account security preferences, including two-factor authentication credentials like U2F keys, check out our new app, [Gluu Casa](https://casa.gluu.org). 
