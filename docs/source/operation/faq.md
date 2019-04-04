@@ -343,7 +343,7 @@ You have to update one or both oxAuthenticationMode and OxTrustAuthenticationMod
 
 - Open LDAP in a LDAP Browser (JXplorer is used here and recommended).
 - Navigate to "gluu > appliances > {GUID or appliance number}". 
-- Search for "oxAuthenticationMode"  and "oxTrustAuthenticationMode" attribute and delete the values. ![Revert authentication attrb](../img/integration/revert-authentication2.png)
+- Search for "oxAuthenticationMode"  and "oxTrustAuthenticationMode" attribute and replace values (i.e. duo ) with 'auth_ldap_server. ![Revert authentication attrb](../img/integration/revert-authentication2.png)
     - OxAuthenticationMode attribute is used for Login pages, which stores the name of the custom script used.
     - OxTrustAuthenticationMode is used for OxTrust Admin UI page.
 - Submit the changes.
