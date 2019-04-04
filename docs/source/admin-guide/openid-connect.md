@@ -75,18 +75,9 @@ The Gluu Server also supports [WebFinger](http://en.wikipedia.org/wiki/WebFinger
 
 ## Client Registration / Configuration
 
-OAuth clients need a `client_id` and `redirect_uris` to indicate to the Authorization Server where users should be redirected post
-authorization.
+OAuth clients need a `client_id` and `redirect_uris` to indicate to the Authorization Server where users should be redirected post authorization.
 
-Clients can be dynamically registered or created manually in oxTrust.
-
-### Dynamic client registration
-OpenID Connect defines a standard API where clients can register themselves--
-[Dynamic Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html). The registration URL can be found at the configuration endpoint: `https://<hostname>/.well-known/openid-configuration`.
-
-It may be prefereable to **not allow** clients to dynamically register themselves! To disable this endpoint, in the oxAuth JSON properties, set the `dynamicRegistrationEnabled` value to False.
-
-Client expiration is controlled by `dynamicRegistrationExpirationTime` oxauth configuration property (in seconds). By default it is set to `-1` which means client without expiration. (Both `0` and `-1` mean that client will not expire. )  
+Clients can be created manually in oxTrust or dynamically registered via the standard API.
  
 ### Manual client registration
 To add a client manually in oxTrust, navigate to `OpenID Connect` > `Client` and click the `Add Client` button to access the following forms:
@@ -104,6 +95,13 @@ There are two configurations parameters that can only be configured via oxTrust 
 1. Pre-Authorization: If the OAuth authorization prompt should not be displayed to end users, set this field to `True`. This is useful for SSO to internal clients (not third party) where there is no need to prompt the person to approve the release of information.
  
 1. Persist Client Authorizations: If end users should only be prompted for authorization the *first* time they access the client, set this field to `True`. All data will be persisted under the person's entry in the Gluu LDAP and the end user will not be prompted to release informationd during subsequent logins. This feature is automatically set to `True` if Pre-Authorization is enabled.
+
+### Dynamic client registration
+OpenID Connect defines a standard API for [Dynamic Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html). The registration URL can be found at the configuration endpoint: `https://<hostname>/.well-known/openid-configuration`.
+
+To manage this feature in oxTrust, navigate to `Configuration` > `JSON Configuration` > `oxAuth configuration`, and find the `dynamicRegistrationEnabled` property. Set it to `true` or `false` to enable or disable dynamic client registration, as needed. 
+
+Expiration of dynamically registered clients is controlled by the `dynamicRegistrationExpirationTime` property, which can also be found in the oxAuth configuration table. Find more details about these oxAuth properties and others in the [reference section](../reference/JSON-oxauth-prop.md).
 
 ### Customizing client registration
 
