@@ -333,7 +333,7 @@ This method rely on ldif file to change the authentication mode in LDAP server d
 
 - Replace the the authentication mode using `ldapmodify` command.
     ```
-    root@gluu3-ubuntu:/opt/symas/bin# ./ldapmodify -h localhost -p 1389 -D "cn=directory manager,o=gluu" -w "{password provided during setup}" -f revert.ldif
+    root@gluu3-ubuntu:/opt/symas/bin# ./ldapmodify -h localhost --useSSL -p 1636 -D "cn=directory manager,o=gluu" -w "{password provided during setup}" -f revert.ldif
     ```
 
 ### Graphical method:
