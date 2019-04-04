@@ -18,7 +18,7 @@ Run the following commands if you find your instance running out of disk space:
 
 ```
 # /etc/init.d/gluu-server-3.1.6 stop
-# rm -rf /opt/gluu-server-3.1.6/opt/jetty-9.3/temp/*
+# rm -rf /opt/gluu-server-3.1.6/opt/jetty-9.x/temp/*
 # /etc/init.d/gluu-server-3.1.6 start
 ```
 
@@ -101,7 +101,7 @@ Then restart `oxauth`:
 Now, if you're running the gluu system inside a virtual machine (or just a different machine than your host machine), forward the ports `6005` and `5005` to your local machine. Type this command on your local machine, where you forward these two ports as you `ssh` into the Gluu machine:
 
 ```
-$ ssh -L5005:localhost:5005 -L6005:localhost:6005 user@gluu
+$ ssh -L 5005:localhost:5005 -L 6005:localhost:6005 user@gluu
 ```
 
 As long as you keep this `ssh` connection open, you can access the debug ports `5005` and `6005` as if they were running locally.
@@ -152,12 +152,12 @@ identified with the [port number](./ports.md) after the localhost.
 
 ## Connect an external LDAP browser
 
-Sooner or later you will probably want to peek at what is stored in the Gluu Server's local LDAP. This means connecting something like Apache Directory Studio to the `slapd` process running inside the chroot container.
+Sooner or later you will probably want to peek at what is stored in the Gluu Server's local LDAP. This means connecting something like Apache Directory Studio to the `ldap` process running inside the chroot container.
 
 You can find the configuration you need in `/opt/gluu-server-3.1.6/etc/gluu/conf/ox-ldap.properties`, e.g.:
 
 ```
-bindDN: cn=directory manager,o=gluu
+bindDN: cn=directory manager
 bindPassword: foobar
 servers: localhost:1636
 ```
@@ -207,13 +207,13 @@ ones used by your installation):
 1) Login into Gluu's chroot environment with the command below:
 
 ```
-# service gluu-server login
+# service gluu-server-3.1.6 login
 ```
 
 2) Run this command:
 
 ```
-#/opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager,o=gluu' -w 'YOUR_BIND_PASSWORD' -b o=gluu gluuGroupType=gluuManagerGroup 1.1
+#/opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -b o=gluu gluuGroupType=gluuManagerGroup 1.1
 ```
 
 and remember the displayed dn of the Gluu Manager Group for future use.
@@ -221,7 +221,7 @@ and remember the displayed dn of the Gluu Manager Group for future use.
 3) Run this command:
 
 ```
-# /opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager,o=gluu' -w 'YOUR_BIND_PASSWORD' -b o=gluu ou=people 1.1
+# /opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -b o=gluu ou=people 1.1
 ```
 
 and remember the displayed dn of the People ou for future use.
@@ -250,7 +250,7 @@ step 3).
 5) Run this command:
 
 ```
-# /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager,o=gluu' -w 'YOUR_BIND_PASSWORD' -f ~/add_user.ldif
+# /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/add_user.ldif
 ```
 
 This will create new user tempadmin with attributes provided via file
@@ -275,7 +275,7 @@ specified in the 1st line of the file in step 4).
 7) Run this command:
 
 ```
-# /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager,o=gluu' -w 'YOUR_BIND_PASSWORD' -f ~/add_2_group.ldif
+# /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/add_2_group.ldif
 ```
 
 This will add tempadmin user to the IdP managers group and you can then
@@ -333,7 +333,9 @@ This method rely on ldif file to change the authentication mode in LDAP server d
 
 - Replace the the authentication mode using `ldapmodify` command.
     ```
-    root@gluu3-ubuntu:/opt/opendj/bin/ldapmodify --useSSL -p 1636 -D "cn=directory manager,o=gluu" -w "{password provided during setup}" -f revert.ldif
+    
+    root@gluu3-ubuntu:/opt/opendj/bin# ./ldapmodify -h localhost -p 1636 -Z -X -D "cn=directory manager" -w "{password provided during setup}" -f revert.ldif
+
     ```
 
 ### Graphical method:
@@ -364,7 +366,7 @@ export newgluuadmin='myusername'
 export ldiffile='addManagers.ldif'
 
 # run this and verify that the output is for your account
-/opt/opendj/bin/ldapsearch -h localhost -p 1636 -D "cn=directory manager,o=gluu" -j ~/.pw -Z -X -b "o=gluu" "uid=$newgluuadmin" uid givenName sn cn
+/opt/opendj/bin/ldapsearch -h localhost -p 1636 -D "cn=directory manager" -j ~/.pw -Z -X -b "o=gluu" "uid=$newgluuadmin" uid givenName sn cn
 
 dn: inum=@!134D.3C3D.796E.FECE!0001!E022.CC3C!0000!A8F2.DE1E.D7FB,ou=people,o=@!134D.
  3C3D.796E.FECE!0001!E022.CC3C,o=gluu
@@ -380,7 +382,7 @@ Now you can run these commands to make the file above:
 head -n1 /opt/opendj/ldif/groups.ldif > $ldiffile
 echo 'changetype: modify' >> $ldiffile
 echo 'add: member' >> $ldiffile
-echo "member: $(/opt/opendj/bin/ldapsearch -h localhost -p 1636 -D "cn=directory manager,o=gluu" -j ~/.pw -Z -X -b "o=gluu" "uid=$newgluuadmin" uid givenName sn cn |grep -A1 dn |cut -d ' ' -f 2- | sed 'N;s/\n//')" >> $ldiffile
+echo "member: $(/opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -j ~/.pw -Z -X -b "o=gluu" "uid=$newgluuadmin" uid givenName sn cn |grep -A1 dn |cut -d ' ' -f 2- | sed 'N;s/\n//')" >> $ldiffile
 ```
 
 The resulting ldif will look like this:
@@ -395,7 +397,7 @@ member: inum=@!134D.3C3D.796E.FECE!0001!E022.CC3C!0000!A8F2.DE1E.D7FB,ou=people,
 Once the ldif looks right, run this to grant your account admin rights in Gluu:
 
 ```bash
-/opt/opendj/bin/ldapmodify -h localhost -p 1636 -D "cn=directory manager,o=gluu" -j ~/.pw -Z -X -f addManagers.ldif
+/opt/opendj/bin/ldapmodify -h localhost -p 1636 -Z -X -D "cn=directory manageru" -j ~/.pw -Z -X -f addManagers.ldif
 ```
 
 Log into the web interface and pick up where you left off :)
