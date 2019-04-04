@@ -175,7 +175,7 @@ Refer to the following table for details about available setup options:
 | Install Passport |  Optional. Install if you want to support external IDP, for instance to offer users social login. |
 | Install Apache HTTPD Server | Required |
 | Install Shibboleth SAML IDP | Optional. Only install if a SAML identity provider (IDP) is needed. |
-| Install oxAuth RP | Optional. OpenID Connect test client: recommended for test enviornments, for more details see [here](../admin-guide/openid-connect/#oxauth-rp) |
+| Install oxAuth RP | Optional. OpenID Connect test client: useful for test enviornments, for more details see [here](../admin-guide/openid-connect/#oxauth-rp) |
 
 When complete, `setup.py` will show the selections and prompt for confirmation. If everything looks OK, select Y to finish installation. 
 
@@ -262,5 +262,3 @@ For Centos 7.x and Red Hat 7.x:
 
 ## Support
 Please review the [Gluu support portal](https://support.gluu.org). There are many existing tickets about troubleshooting installation issues. If there is no similar existing public issue, register for an account and open a new ticket. 
-
-If your organization needs guaranteed responses, SLAs, and priority access to the Gluu support and development team, consider purchasing one of our [VIP support contracts](https://gluu.org/pricing).  
