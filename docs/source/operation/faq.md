@@ -157,7 +157,7 @@ Sooner or later you will probably want to peek at what is stored in the Gluu Ser
 You can find the configuration you need in `/opt/gluu-server-3.1.6/etc/gluu/conf/ox-ldap.properties`, e.g.:
 
 ```
-bindDN: cn=directory manager,o=gluu
+bindDN: cn=directory manager
 bindPassword: foobar
 servers: localhost:1636
 ```
