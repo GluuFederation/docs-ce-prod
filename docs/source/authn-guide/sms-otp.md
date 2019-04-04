@@ -123,3 +123,7 @@ Twilio SMS. Initialized successfully
 ```
 
 Also make sure you are using the latest version of the script that can be found [here](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/twilio_sms/twilio2FA.py).
+
+## Self-service account security
+
+To offer end-users a portal where they can manage their own account security preferences, including two-factor authentication credentials like phone numbers for SMS OTP, check out our new app, [Gluu Casa](https://casa.gluu.org). 
