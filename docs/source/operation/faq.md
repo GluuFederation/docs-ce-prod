@@ -314,7 +314,8 @@ This method rely on ldif file to change the authentication mode in LDAP server d
     $/opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w 'yourPassword' -b "ou=appliances,o=gluu" -s one "objectclass=*" oxAuthenticationMode
     ```
 
-- You need to prepare two LDIF files if you changed both methods; otherwise just one will do. ![dual_method](![Revert authentication attrb](../img/integration/dual_changed.PNG)
+- You need to prepare two LDIF files if you changed both methods; otherwise just one will do. ![dual_method}(../img/integration/dual_changed.PNG)
+
 - Create  `LDIF` file with the contents below:
  
     `dn: inum=@!1E3B.F133.14FA.5062!0002!4B66.CF9C,ou=appliances,o=gluu`
