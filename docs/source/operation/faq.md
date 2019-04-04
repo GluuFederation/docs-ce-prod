@@ -339,7 +339,7 @@ The idea here is to use an LDAP browser, hence this method is much more simple.
 You have to update one or both oxAuthenticationMode and OxTrustAuthenticationMode values to match the desired authentication method value. For example for ldap which is the default authentication mode for Gluu, the value is `auth_ldap_server`. Below are the steps:
 
 - Open LDAP in a LDAP Browser (JXplorer is used here and recommended).
-- Navigate to "gluu > appliances > {GUID or appliance number}". ![Revert authentication](../img/integration/revert-authentication1.png)
+- Navigate to "gluu > appliances > {GUID or appliance number}". 
 - Search for "oxAuthenticationMode"  and "oxTrustAuthenticationMode" attribute and delete the values. ![Revert authentication attrb](../img/integration/revert-authentication2.png)
     - OxAuthenticationMode attribute is used for Login pages, which stores the name of the custom script used.
     - OxTrustAuthenticationMode is used for OxTrust Admin UI page.
