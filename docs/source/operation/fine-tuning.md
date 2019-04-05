@@ -88,7 +88,7 @@ Example configuration:
     </Set>
 </Configure>
 ```
-
+<!--
 ## Apache Tomcat
 
 1. Set maximum for parallel requests. Connector parameters in `server.xml`:
@@ -102,6 +102,8 @@ Example configuration:
 1. Operating time: Check via Tomcat monitor whether requests are handled or just "hangs" because there are not enough resources. Here is sample when processing time increase due to lack of resources:
 
    ![tomcatStatus](../img/admin-guide/fine-tuning/tomcatStatus.png)
+   
+-->
 
 ## Gluu Server
 
