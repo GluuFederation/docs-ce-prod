@@ -258,7 +258,7 @@ For Centos 7.x and Red Hat 7.x:
 ```
 
 !!! Note
-    `apt-get purge gluu-server-3.1.6` or `apt-get remove --purge gluu-server-3.1.6` can also be used to uninstall and remove all the folders and services of the Gluu Server.
+    `apt-get purge gluu-server-3.1.6` or `apt-get remove --purge gluu-server-3.1.6` can also be used to uninstall and remove all the folders and services of the Gluu Server. Make sure to backup ALL directories of `/opt` into other direction ( tmp or root directory itself ) before running purge command. 
 
 ## Support
 Please review the [Gluu support portal](https://support.gluu.org). There are many existing tickets about troubleshooting installation issues. If there is no similar existing public issue, register for an account and open a new ticket. 
