@@ -59,7 +59,7 @@ ufw status verbose
 The default for `ufw` is to `deny incoming` and `allow outgoing`. To reset your setting to default :
 
 ```
-ufw default deny incomming
+ufw default deny incoming
 ```
 
 ```
