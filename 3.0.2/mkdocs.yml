@@ -13,7 +13,7 @@ markdown_extensions:
 - toc:
      permalink: '#'
 - pymdownx.superfences
-pages:
+nav:
 - Home: 'index.md'
 - Release Notes: 'release-notes/index.md'
 - Whats new in 3.x: 'operation/intro.md'
