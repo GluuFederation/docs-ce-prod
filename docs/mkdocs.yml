@@ -12,7 +12,7 @@ markdown_extensions:
 - admonition
 - toc:
      permalink: '#'
-nav:
+pages:
 - Home: 'index.md'
 - Release Notes: 'release-notes/index.md'
 - Whats new in v4: '3.1.x-intro.md'
