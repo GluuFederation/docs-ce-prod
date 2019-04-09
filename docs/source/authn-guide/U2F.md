@@ -19,6 +19,7 @@ to implement a two-step, two-factor authentication (2FA) process with username /
 ### U2F Devices
 Some well known U2F devices and manufacturers include:           
 
+- [Nitrokey](https://www.nitrokey.com/)
 - [Yubico](https://www.yubico.com/)      
 - [Vasco DIGIPASS SecureClick](https://www.vasco.com/products/two-factor-authenticators/hardware/one-button/digipass-secureclick.html)   
 - [HyperFIDO](http://hyperfido.com/)       
