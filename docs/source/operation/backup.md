@@ -282,7 +282,8 @@ If your Gluu Server is backed by OpenLDAP, follow these steps to backup your dat
 
 1. Import previous ldif 
 
-		```
+	Next import your previously exported ldif:
+		
 		bash
 		/opt/symas/bin/slapadd -l /root/yourdata.ldif
 
@@ -297,7 +298,7 @@ If your Gluu Server is backed by OpenLDAP, follow these steps to backup your dat
 
 1. Start services
 
-	Now start Identity, oxAuth, and solserver services:
+	- Now start Identity, oxAuth, and solserver services:
 	
 		```
 		bash
