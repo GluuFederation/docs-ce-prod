@@ -119,7 +119,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 		/opt/opendj/bin/backendstat show-index-status --backendID userRoot --baseDN o=gluu
 		```
 
-	Take note of all indexes that need to be rebuilt. **If no indexes need rebuilding, move on to step 4.**
+	Take note of all indexes that need to be rebuilt. **If no indexing is needed, move on to step 4.**
 
 	- Start OpenDJ to build backend index :
 
@@ -174,14 +174,14 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 1. Import previous ldif
 
-	- Next import your previously exported ldif:
+	Next import your previously exported ldif:
 	
 		```
 		bash
 		/opt/opendj/bin/import-ldif -n userRoot -l yourdata.ldif
 		```
 
-	- If you moved to a new ldap copy back your schema files to this directory:
+	If you moved to a new LDAP, copy back your schema files to this directory:
 
 		```
 		bash
@@ -190,7 +190,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 1. Start services
 
-	- Now start Identity, oxAuth, and OpenDJ services:
+	Now start Identity, oxAuth, and OpenDJ services:
 
 		```
 		bash
@@ -209,7 +209,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 1. Verify
 
-	- Finally, verify your cache entries have been removed:
+	Finally, verify your cache entries have been removed:
 
 		```
 		bash
@@ -227,7 +227,7 @@ Errors that this may help fix include but are not restricted to:
 
 1. Check cache entries
 
-	- Check your cache entries by running the following command:**
+	Check your cache entries by running the following command:
 
 		```
 		bash
@@ -305,7 +305,7 @@ Errors that this may help fix include but are not restricted to:
 	/opt/symas/bin/slapadd -l /root/yourdata.ldif
 	```
 
-Wait for it to successfully load...
+	Wait for it to successfully load...
 
 1. Chown data
 
@@ -317,7 +317,8 @@ Wait for it to successfully load...
 	```
 1. Start services
 
-	- Now start Identity, oxAuth, and solserver services:
+	Now start Identity, oxAuth, and solserver services:
+	
 		```
 		bash
 		service identity start
