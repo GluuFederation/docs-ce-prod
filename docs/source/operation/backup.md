@@ -34,6 +34,8 @@ Errors that this may help fix include but are not restricted to:
 
 - Out of Memory
 
+If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
+
 1. Check cache entries
 
 	First check your cache entries by running the following command:
