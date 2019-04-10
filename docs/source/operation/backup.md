@@ -26,7 +26,7 @@ All Gluu Server files live in a single folder: `/opt`. The entire Gluu Server CE
 ## LDIF Data Backup
 From time to time (daily or weekly), the LDAP database should be exported in a standard LDIF format. Having the data in plain text offers some options for recovery that are not possible with a binary backup. 
 
-Instructions are provided below for exporting both OpenDJ and OpenLDAP data. 
+Instructions are provided below for exporting both OpenDJ and OpenLDAP data. The below instructions address situations where unused and expired cache and session related entries are piling and causing issues with functionality. Read more about this [issue](https://www.gluu.org/blog/managing-cache-in-the-gluu-server/).
 
 ### OpenDJ 
 
@@ -85,7 +85,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 		/opt/opendj/config/schema/
 		```
 
-	- Now export ldif:
+	- Now export ldif and save it somewhere safe. You will not be importing this if you choose to apply any filters as below:
 
 		```
 		bash
@@ -96,14 +96,14 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 		```
 		bash
-		/opt/opendj/bin/export-ldif -n userRoot -l yourdata.ldif --includeFilter '(!(oxAuthGrantId=*))'
+		/opt/opendj/bin/export-ldif -n userRoot -l yourdata_withoutoxAuthGrantId.ldif --includeFilter '(!(oxAuthGrantId=*))'
 		```
 
 	- You may also wish to exclude `oxMetric` so the command becomes:
 
 		```
 		bash
-		/opt/opendj/bin/export-ldif -n userRoot -l yourdata.ldif --includeFilter '(&(!(oxAuthGrantId=*))(!			(objectClass=oxMetric)))'
+		/opt/opendj/bin/export-ldif -n userRoot -l yourdata_withoutGrantIdMetic.ldif --includeFilter '(&(!(oxAuthGrantId=*))(!			(objectClass=oxMetric)))'
 		```
 
 1. Rebuild indexes (as needed)
@@ -165,10 +165,12 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 1. Import previous ldif
 
-	Next import your previously exported ldif:
+	Next import your previously exported ldif. Here, we are importing without  `oxAuthGrantId` . 
+	
+	**Note : You may import the exact export of your ldap `exactdatabackup_date.ldif`.Do not import your exact copy of your ldif if you are following instructions to to clean your cache entries
 	
 		bash
-		/opt/opendj/bin/import-ldif -n userRoot -l yourdata.ldif
+		/opt/opendj/bin/import-ldif -n userRoot -l yourdata_withoutoxAuthGrantId.ldif
 
 	If you moved to a new LDAP, copy back your schema files to this directory:
 
