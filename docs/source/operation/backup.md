@@ -79,7 +79,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 		/opt/opendj/bin/stop-ds
 		```
 
-	- If you are moving to a new ldap copy over your schema files from this directory. Otherwise simply copy it for backup:
+	- If you are moving to a new LDAP, copy over your schema files from the following directory. Otherwise simply copy it for backup:
 
 		```
 		bash
@@ -119,7 +119,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 		/opt/opendj/bin/backendstat show-index-status --backendID userRoot --baseDN o=gluu
 		```
 
-	Note all indexes that need to be rebuilt. **If no indexes need to be rebuilt, go to step 4.**
+	Take note of all indexes that need to be rebuilt. **If no indexes need rebuilding, move on to step 4.**
 
 	- Start OpenDJ to build backend index :
 
@@ -221,83 +221,122 @@ You should be done and everything should be working perfectly. You may notice yo
 
 ### OpenLDAP
 
-### Errors that it may help fix include but not restricted to the following  ##
--MDB_MAP_FULL: Environment mapsize limit reached(-30792)#
+Errors that this may help fix include but are not restricted to: 
 
-**First Step : Check your cache entries by running the following command:**
+- MDB_MAP_FULL: Environment mapsize limit reached (-30792)
 
-```bash
- /opt/symas/bin/slapcat | grep oxAuthGrantId | wc -l
-```
-**Second Step : Dump your database**
+1. Check cache entries
 
--Log in to root:
-```bash
-sudo su -
-```
--Log into **Gluu-Server-3.1.x -** **_this step is important!!_**
+	- Check your cache entries by running the following command:**
 
-```bash
-service gluu-server-3.1.x login
-```
+		```
+		bash
+		 /opt/symas/bin/slapcat | grep oxAuthGrantId | wc -l
+		```
+1. Dump the db
 
--Stop **Identity**,**OxAuth**, and **solserver** services :
+	- Log in to root:
+		
+		```
+		bash
+		sudo su -
+		```
+	
+	- Log into Gluu-Server-3.1.x: 
 
-```bash
-service identity stop
-```
+		```
+		bash
+		service gluu-server-3.1.x login
+		```
 
-```bash
-service oxauth stop
-```
+	- Stop Identity, oxAuth, and solserver services :
 
-```bash
-service solserver stop
-```
+		```
+		bash
+		service identity stop
+		```
 
--It is time to dump the data we want:
-```bash
-/opt/symas/bin/slapcat -a '(!(oxAuthGrantId=*))' > /root/yourdata.ldif
-```
-**_The above command excludes oxAuthGrantID if you wish to dump all your data simply run:_**
-```bash
-/opt/symas/bin/slapcat > /root/allyourdata.ldif
-```
-**_You may also wish to exclude  OxMetrics so the command becomes :_**
-```bash
-/opt/symas/bin/slapcat -a '(&(!(oxAuthGrantId=*))(!(objectClass=oxMetric)))' > /root/yourdata.ldif
-```
-**Third Step: Move your current database.**
-- The reason behind this is so solsover loads an empty database when it starts.
-- **_Even if you have a new installation of Gluu you still have to move it so it’s no longer used:_**
-```bash
-mv /opt/gluu/data/main_db/data.mdb /opt/gluu/data/main_db/olddata.mdb.org
-```
-**Step Four : Import your previously exported ldif:**
-```bash
-/opt/symas/bin/slapadd -l /root/yourdata.ldif
-```
-**_-Wait for it to successfully load._**
+		```
+		bash
+		service oxauth stop
+		```
 
-**Step Five : chown data to ldap**
-```bash
-chown ldap:ldap /opt/gluu/data/main_db/data.mdb
-```
-**Step six : start Identity,OxAuth, and solserver services**
-```bash
-service identity start
-```
+		```
+		bash
+		service solserver stop
+		```
 
-```bash
-service oxauth start
-```
+	- Now dump the data:
+	
+		```
+		bash
+		/opt/symas/bin/slapcat -a '(!(oxAuthGrantId=*))' > /root/yourdata.ldif
+		```
 
-```bash
-service solserver start
-```
-Congrats! 
+	- The above command excludes `oxAuthGrantID`. If you wish to dump all your data, simply run:
 
-**You should be done now and everything should be working perfectly. You may notice that your Gluu Server is responding slower than before and that is fine. Your LDAP is adjusting to the new data and indexing might be in effect. Give it time and it should be back to normal.** 
+		```
+		bash
+		/opt/symas/bin/slapcat > /root/allyourdata.ldif
+		```
+
+	- You may also wish to exclude `oxMetric` so the command becomes:
+	
+		```
+		bash
+		/opt/symas/bin/slapcat -a '(&(!(oxAuthGrantId=*))(!(objectClass=oxMetric)))' > /root/yourdata.ldif
+		```
+		
+1. Move the current DB
+
+	Now you need to move your current database so solsover loads an empty database when it starts. Even if you have a new installation of Gluu, you still need to follow this step so the db is no longer used:
+
+		```
+		bash
+		mv /opt/gluu/data/main_db/data.mdb /opt/gluu/data/main_db/olddata.mdb.org
+		```
+
+1. Import previous ldif 
+
+	Import your previously exported ldif:
+	
+	```
+	bash
+	/opt/symas/bin/slapadd -l /root/yourdata.ldif
+	```
+
+Wait for it to successfully load...
+
+1. Chown data
+
+	Next chown the data to LDAP:
+	
+	```
+	bash
+	chown ldap:ldap /opt/gluu/data/main_db/data.mdb
+	```
+1. Start services
+
+	- Now start Identity, oxAuth, and solserver services:
+		```
+		bash
+		service identity start
+		```
+
+		```
+		bash
+		service oxauth start
+		```
+
+		```
+		bash
+		service solserver start
+		```
+
+You should be done and everything should be working perfectly. You may notice your Gluu Server responding slower than before. That is expected -- your LDAP is adjusting to the new data, and indexing might be in process. Give it some time and it should be back to normal.
+
+
+
 
 <!--
 ## Script Method
