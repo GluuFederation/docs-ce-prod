@@ -173,7 +173,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 1. Import previous ldif
 
-	Next import your previously exported ldif:
+	- Next import your previously exported ldif:
 	
 		```
 		bash
@@ -189,7 +189,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 1. Start services
 
-	Now start Identity, oxAuth, and OpenDJ services :
+	- Now start Identity, oxAuth, and OpenDJ services:
 
 		```
 		bash
@@ -208,7 +208,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 1. Verify
 
-	Finally, verify your cache entries have been removed:
+	- Finally, verify your cache entries have been removed:
 
 		```
 		bash
