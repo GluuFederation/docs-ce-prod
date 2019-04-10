@@ -154,14 +154,12 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 		```
 		bash
 		/opt/opendj/bin/backendstat show-index-status --backendID userRoot --baseDN o=gluu
-
 		```
 
-	- Verify built indexes : 
+	- Verify indexes: 
 
 		```
 		bash
-
 		 /opt/opendj/bin/verify-index --baseDN o=gluu --countErrors
 		```
 
@@ -169,21 +167,17 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 	Next import your previously exported ldif:
 	
-		```
 		bash
 		/opt/opendj/bin/import-ldif -n userRoot -l yourdata.ldif
-		```
 
 	If you moved to a new LDAP, copy back your schema files to this directory:
 
-		```
 		bash
 		/opt/opendj/config/schema/
-		```
 
 1. Start services
 
-	Now start Identity, oxAuth, and OpenDJ services:
+	- Now start Identity, oxAuth, and OpenDJ services:
 
 		```
 		bash
@@ -204,10 +198,8 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 	Finally, verify your cache entries have been removed:
 
-		```
 		bash
  		/opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w <password> -b 'o=gluu' -T 		'oxAuthGrantId=*' dn | grep 'dn:' | wc –l
-		```
  
 
 You should be done and everything should be working perfectly. You may notice your Gluu Server responding slower than before. That is expected -- your LDAP is adjusting to the new data, and indexing might be in process. Give it some time and it should be back to normal.
@@ -260,7 +252,7 @@ If your Gluu Server is backed by OpenLDAP, follow these steps to backup your dat
 		service solserver stop
 		```
 
-	- Now dump the data:
+	- Dump the data:
 	
 		```
 		bash
