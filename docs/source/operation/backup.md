@@ -225,6 +225,8 @@ Errors that this may help fix include but are not restricted to:
 
 - MDB_MAP_FULL: Environment mapsize limit reached (-30792)
 
+If your Gluu Server is backed by OpenLDAP, follow these steps to backup your data:   
+
 1. Check cache entries
 
 	Check your cache entries by running the following command:
