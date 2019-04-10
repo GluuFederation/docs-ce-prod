@@ -48,52 +48,59 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 	Next dump your database: 
 
-		- Log in to root:
+	- Log in to root:
 		
-			```bash
-			sudo su -
-			```
-		- Log into Gluu-Server-3.1.x -
+		```
+		bash
+		sudo su -
+		```
+	- Log into Gluu-Server-3.1.x -
 
-			```bash
-			service gluu-server-3.1.x login
-			```
+		```
+		bash
+		service gluu-server-3.1.x login
+		```
 
-		- Stop Identity, oxAuth, and OpenDJ services:
+	- Stop Identity, oxAuth, and OpenDJ services:
 
-			```bash
-			service identity stop
-			```
+		```
+		bash
+		service identity stop
+		```
 
-			```bash
-			service oxauth stop
-			```
+		```
+		bash
+		service oxauth stop
+		```
 
-			```bash
-			/opt/opendj/bin/stop-ds
-			```
+		```
+		bash
+		/opt/opendj/bin/stop-ds
+		```
 
-	If you are moving to a new ldap copy over your schema files from this directory. Copy it otherwise for backup:
+	- If you are moving to a new ldap copy over your schema files from this directory. Otherwise simply copy it for backup:
 
-		```bash
+		```
+		bash
 		/opt/opendj/config/schema/
 		```
 
-	Now Export ldif:
+	- Now Export ldif:
 
 
-		```bash
+		```
+		bash
 		/opt/opendj/bin/export-ldif -n userRoot -l exactdatabackup_date.ldif
 		```
 
-	Now Exclude  oxAuthGrantId so the command becomes:
+	- Now Exclude  oxAuthGrantId so the command becomes:
 
 		```
 		bash
 		/opt/opendj/bin/export-ldif -n userRoot -l yourdata.ldif --includeFilter '(!(oxAuthGrantId=*))'
 		```
 
-	You may also wish to exclude oxMetrics so the command becomes:
+	- You may also wish to exclude oxMetrics so the command becomes:
 
 		```
 		bash
