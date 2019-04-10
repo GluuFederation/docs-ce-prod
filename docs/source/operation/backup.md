@@ -43,9 +43,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 		bash
 		/opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w <password> -b 'o=gluu' -T 'oxAuthGrantId=*' dn | grep 'dn:' | wc –l
 
-1. Dump the db
-
-	Next dump your database: 
+1. Dump the data as LDIF
 
 	- Log in to root:
 		
