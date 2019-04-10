@@ -14,7 +14,7 @@ Snaphots should be taken for all Gluu environments (e.g. Prod, Dev, QA, etc.) an
  
 
 ## Tarball Method
-Tarball the entire Gluu Server CE `chroot` folder using the `tar` command: 
+All Gluu Server files live in a single folder: `/opt`. The entire Gluu Server CE `chroot` folder can be archived using the `tar` command: 
 
 1. Stop the server: `# service gluu-server-3.1.6 stop`
 	
@@ -24,178 +24,195 @@ Tarball the entire Gluu Server CE `chroot` folder using the `tar` command:
 	
 
 ## LDIF Data Backup
-From time to time (daily or weekly) you will want to export the LDAP database to a standard LDIF format. If you have the data in plain text, it gives you some options for recovery that are not possible with a binary backup. 
+From time to time (daily or weekly), the LDAP database should be exported in a standard LDIF format. Having the data in plain text offers some options for recovery that are not possible with a binary backup. 
 
-## OpenDJ 
+Instructions are provided below for exporting both OpenDJ and OpenLDAP data. 
 
-### Errors that it may help fix include but not restricted to the following  ##
+### OpenDJ 
 
-:heavy_exclamation_mark: **_Out of Memory_**
+Errors that this may help fix include but are not restricted to: 
 
-**First Step : Check your cache entries by running the following command:**
+- Out of Memory
 
-```bash
- /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w <password> -b 'o=gluu' -T 'oxAuthGrantId=*' dn | grep 'dn:' | wc –l
-```
+1. Check cache entries
 
-**Second Step : Dump your database**
+	First check your cache entries by running the following command:
 
--Log in to root:
-```bash
-sudo su -
-```
--Log into **Gluu-Server-3.1.x -** **_this step is important!!_**
+	```bash
+	 /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w <password> -b 'o=gluu' -T 		'oxAuthGrantId=*' dn | grep 'dn:' | wc –l
+	```
 
-```bash
-service gluu-server-3.1.x login
-```
+1. Dump the db
 
-### Time to dump the data we want.
+	Next dump your database: 
 
+		- Log in to root:
+		
+			```bash
+			sudo su -
+			```
+		- Log into Gluu-Server-3.1.x -
 
--Stop **Identity**,**OxAuth**, and **OpenDJ** services :
+			```bash
+			service gluu-server-3.1.x login
+			```
 
-```bash
-service identity stop
-```
+		- Stop Identity, oxAuth, and OpenDJ services:
 
-```bash
-service oxauth stop
-```
+			```bash
+			service identity stop
+			```
 
-```bash
-/opt/opendj/bin/stop-ds
-```
+			```bash
+			service oxauth stop
+			```
 
-If you are moving to a new ldap copy over your schema files from this directory. Copy it otherwise for backup :
-:
+			```bash
+			/opt/opendj/bin/stop-ds
+			```
 
-```bash
-/opt/opendj/config/schema/
-```
+	If you are moving to a new ldap copy over your schema files from this directory. Copy it otherwise for backup:
 
-Export ldif:
+		```bash
+		/opt/opendj/config/schema/
+		```
 
-Before we export the ldif that we will use later. Let us export all our data:
-
-```bash
-/opt/opendj/bin/export-ldif -n userRoot -l exactdatabackup_date.ldif
-```
-
-**_ Now Exclude  oxAuthGrantId so the command becomes :_**
-
-```bash
-/opt/opendj/bin/export-ldif -n userRoot -l yourdata.ldif --includeFilter '(!(oxAuthGrantId=*))'
-```
-
-**_You may also wish to exclude  OxMetrics so the command becomes :_**
-
-```bash
-/opt/opendj/bin/export-ldif -n userRoot -l yourdata.ldif --includeFilter '(&(!(oxAuthGrantId=*))(!(objectClass=oxMetric)))'
-```
-
-**Third Step : Rebuild Indexes if needed ONLY**
-### Rebuilding indexes:
-
-Check status of indexes : 
-
-```bash
-
-/opt/opendj/bin/backendstat show-index-status --backendID userRoot --baseDN o=gluu
-
-```
-
-Note all indexes that need to be rebuild. **If nothing needs to be rebuild please go to the Forth Step.**
-
-Start OpenDJ to build backend index :
-
-```bash
-
-/opt/opendj/bin/start-ds
-
-```
-
-Build backend index for all indexes that need it accoring to previous status command, change passoword `-w` and index name accourdinngly. This command has to be run for every index seperatly: 
-
-```bash
-
-./dsconfig create-backend-index --port 4444 --hostname localhost --bindDN "cn=directory manager" -w password --backend-name userRoot --index-name iname --set index-type:equality --set index-entry-limit:4000 --trustAll --no-prompt
-
-```
-
-Stop OpenDJ:
-
-```bash
-
-/opt/opendj/bin/stop-ds
-
-```
-
-Rebuild the indexes as needed these are examples : 
-
-```bash
-   /opt/opendj/bin/rebuild-index --baseDN o=gluu --index iname
-   /opt/opendj/bin/rebuild-index --baseDN o=gluu --index uid
-   /opt/opendj/bin/rebuild-index --baseDN o=gluu --index mail
-```
+	Now Export ldif:
 
 
-Check status again :
+		```bash
+		/opt/opendj/bin/export-ldif -n userRoot -l exactdatabackup_date.ldif
+		```
 
-```bash
+	Now Exclude  oxAuthGrantId so the command becomes:
 
-/opt/opendj/bin/backendstat show-index-status --backendID userRoot --baseDN o=gluu
+		```
+		bash
+		/opt/opendj/bin/export-ldif -n userRoot -l yourdata.ldif --includeFilter '(!(oxAuthGrantId=*))'
+		```
 
-```
+	You may also wish to exclude oxMetrics so the command becomes:
 
-Verify built indexes : 
+		```
+		bash
+		/opt/opendj/bin/export-ldif -n userRoot -l yourdata.ldif --includeFilter '(&(!(oxAuthGrantId=*))(!			(objectClass=oxMetric)))'
+		```
+
+1. Rebuild indexes (as needed)
+
+	Now, **only if needed**, rebuild indexes:
+
+	Check status of indexes : 
+
+		```
+		bash
+		/opt/opendj/bin/backendstat show-index-status --backendID userRoot --baseDN o=gluu
+		```
+
+	Note all indexes that need to be rebuilt. **If no indexes need to be rebuilt, go to step 4.**
+
+	Start OpenDJ to build backend index :
+
+		```
+		bash
+		/opt/opendj/bin/start-ds
+		```
+
+	Build backend index for all indexes that need it accoring to previous status command, change passoword `-w` and index name accourdingly. This command has to be run for every index separately: 
+
+		```
+		bash
+
+		./dsconfig create-backend-index --port 4444 --hostname localhost --bindDN "cn=directory manager" -w password --backend-name userRoot --index-name iname --set index-type:equality --set index-entry-limit:4000 --trustAll --no-prompt
+
+		```
+
+	Stop OpenDJ:
+
+		```
+		bash
+
+		/opt/opendj/bin/stop-ds
+
+		```
+
+	Rebuild the indexes as needed, here are examples : 
+
+		```
+		bash
+   		/opt/opendj/bin/rebuild-index --baseDN o=gluu --index iname
+   		/opt/opendj/bin/rebuild-index --baseDN o=gluu --index uid
+   		/opt/opendj/bin/rebuild-index --baseDN o=gluu --index mail
+		```
 
 
-```bash
+	Check status again :
 
- /opt/opendj/bin/verify-index --baseDN o=gluu --countErrors
+		```
+		bash
+
+		/opt/opendj/bin/backendstat show-index-status --backendID userRoot --baseDN o=gluu
+
+		```
+
+	Verify built indexes : 
+
+
+		```
+		bash
+
+		 /opt/opendj/bin/verify-index --baseDN o=gluu --countErrors
  
-```
+		```
 
-**Fourth Step : Import your previously exported ldif:**
+1. Import previous ldif
 
-```bash
-/opt/opendj/bin/import-ldif -n userRoot -l yourdata.ldif
-```
+	Next import your previously exported ldif:
+	
+		```
+		bash
+		/opt/opendj/bin/import-ldif -n userRoot -l yourdata.ldif
+		```
 
-- If you moved to a new ldap copy back your schema files to this directory:
+	- If you moved to a new ldap copy back your schema files to this directory:
 
-```bash
-/opt/opendj/config/schema/
-```
+		```
+		bash
+		/opt/opendj/config/schema/
+		```
 
+1. Start services
 
-**Fifth Step** : Start **Identity**,**OxAuth**, and **OpenDJ** services :
+	Now start Identity, oxAuth, and OpenDJ services :
 
-```bash
-/opt/opendj/bin/start-ds
-```
+		```
+		bash
+		/opt/opendj/bin/start-ds
+		```
 
-```bash
-service identity start
-```
+		```
+		bash
+		service identity start
+		```
 
-```bash
-service oxauth start
-```
+		```
+		bash
+		service oxauth start
+		```
 
+1. Verify
 
-**Sixth Step : Verify your cache entries have been removed**
+	Finally, verify your cache entries have been removed:
 
-```bash
- /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w <password> -b 'o=gluu' -T 'oxAuthGrantId=*' dn | grep 'dn:' | wc –l
-```
+		```
+		bash
+ 		/opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w <password> -b 'o=gluu' -T 		'oxAuthGrantId=*' dn | grep 'dn:' | wc –l
+		```
+ 
 
-Congrats! 
+You should be done and everything should be working perfectly. You may notice your Gluu Server responding slower than before. That is expected -- your LDAP is adjusting to the new data, and indexing might be in process. Give it some time and it should be back to normal.
 
-**You should be done now and everything should be working perfectly. You may notice that your Gluu Server is responding slower than before and that is fine. Your LDAP is adjusting to the new data and indexing might be in effect. Give it time and it should be back to normal.**
-
-## OpenLDAP
+### OpenLDAP
 
 ### Errors that it may help fix include but not restricted to the following  ##
 -MDB_MAP_FULL: Environment mapsize limit reached(-30792)#
