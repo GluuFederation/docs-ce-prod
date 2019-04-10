@@ -85,7 +85,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 		/opt/opendj/config/schema/
 		```
 
-	- Now Export ldif:
+	- Now export ldif:
 
 
 		```
@@ -93,14 +93,14 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 		/opt/opendj/bin/export-ldif -n userRoot -l exactdatabackup_date.ldif
 		```
 
-	- Now Exclude  oxAuthGrantId so the command becomes:
+	- Now exclude `oxAuthGrantId` so the command becomes:
 
 		```
 		bash
 		/opt/opendj/bin/export-ldif -n userRoot -l yourdata.ldif --includeFilter '(!(oxAuthGrantId=*))'
 		```
 
-	- You may also wish to exclude oxMetrics so the command becomes:
+	- You may also wish to exclude `oxMetric` so the command becomes:
 
 		```
 		bash
@@ -111,7 +111,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 	Now, **only if needed**, rebuild indexes:
 
-	Check status of indexes : 
+	- Check status of indexes: 
 
 		```
 		bash
@@ -120,14 +120,14 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 	Note all indexes that need to be rebuilt. **If no indexes need to be rebuilt, go to step 4.**
 
-	Start OpenDJ to build backend index :
+	- Start OpenDJ to build backend index :
 
 		```
 		bash
 		/opt/opendj/bin/start-ds
 		```
 
-	Build backend index for all indexes that need it accoring to previous status command, change passoword `-w` and index name accourdingly. This command has to be run for every index separately: 
+	- Build backend index for all indexes that need it accoring to previous status command, change passoword `-w` and index name accourdingly. This command has to be run for every index separately: 
 
 		```
 		bash
@@ -136,7 +136,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 		```
 
-	Stop OpenDJ:
+	- Stop OpenDJ:
 
 		```
 		bash
@@ -145,7 +145,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 		```
 
-	Rebuild the indexes as needed, here are examples : 
+	- Rebuild the indexes as needed, here are examples : 
 
 		```
 		bash
@@ -154,8 +154,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
    		/opt/opendj/bin/rebuild-index --baseDN o=gluu --index mail
 		```
 
-
-	Check status again :
+	- Check status again :
 
 		```
 		bash
@@ -164,14 +163,12 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 		```
 
-	Verify built indexes : 
-
+	- Verify built indexes : 
 
 		```
 		bash
 
 		 /opt/opendj/bin/verify-index --baseDN o=gluu --countErrors
- 
 		```
 
 1. Import previous ldif
