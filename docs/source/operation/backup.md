@@ -40,9 +40,8 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 	First check your cache entries by running the following command:
 
-	```bash
-	 /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w <password> -b 'o=gluu' -T 		'oxAuthGrantId=*' dn | grep 'dn:' | wc –l
-	```
+		bash
+		/opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w <password> -b 'o=gluu' -T 'oxAuthGrantId=*' dn | grep 'dn:' | wc –l
 
 1. Dump the db
 
@@ -88,7 +87,6 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 	- Now export ldif:
 
-
 		```
 		bash
 		/opt/opendj/bin/export-ldif -n userRoot -l exactdatabackup_date.ldif
@@ -132,18 +130,14 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 		```
 		bash
-
 		./dsconfig create-backend-index --port 4444 --hostname localhost --bindDN "cn=directory manager" -w password --backend-name userRoot --index-name iname --set index-type:equality --set index-entry-limit:4000 --trustAll --no-prompt
-
 		```
 
 	- Stop OpenDJ:
 
 		```
 		bash
-
 		/opt/opendj/bin/stop-ds
-
 		```
 
 	- Rebuild the indexes as needed, here are examples : 
@@ -159,7 +153,6 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 		```
 		bash
-
 		/opt/opendj/bin/backendstat show-index-status --backendID userRoot --baseDN o=gluu
 
 		```
@@ -231,10 +224,9 @@ If your Gluu Server is backed by OpenLDAP, follow these steps to backup your dat
 
 	Check your cache entries by running the following command:
 
-		```
 		bash
 		 /opt/symas/bin/slapcat | grep oxAuthGrantId | wc -l
-		```
+
 1. Dump the db
 
 	- Log in to root:
@@ -293,19 +285,14 @@ If your Gluu Server is backed by OpenLDAP, follow these steps to backup your dat
 
 	Now you need to move your current database so solsover loads an empty database when it starts. Even if you have a new installation of Gluu, you still need to follow this step so the db is no longer used:
 
-		```
 		bash
 		mv /opt/gluu/data/main_db/data.mdb /opt/gluu/data/main_db/olddata.mdb.org
-		```
 
 1. Import previous ldif 
 
-	Import your previously exported ldif:
-	
-	```
-	bash
-	/opt/symas/bin/slapadd -l /root/yourdata.ldif
-	```
+		```
+		bash
+		/opt/symas/bin/slapadd -l /root/yourdata.ldif
 
 	Wait for it to successfully load...
 
@@ -313,10 +300,9 @@ If your Gluu Server is backed by OpenLDAP, follow these steps to backup your dat
 
 	Next chown the data to LDAP:
 	
-	```
-	bash
-	chown ldap:ldap /opt/gluu/data/main_db/data.mdb
-	```
+		bash
+		chown ldap:ldap /opt/gluu/data/main_db/data.mdb
+
 1. Start services
 
 	Now start Identity, oxAuth, and solserver services:
