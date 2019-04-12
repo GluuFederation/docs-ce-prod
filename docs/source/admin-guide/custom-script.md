@@ -372,7 +372,6 @@ Resource Owner Password Credentials script allows to modify behavior of Resource
 
 Script is invoked after normal authentication and can either leave current result or change it 
 - authenticate if not authenticated - it should return `True` and optionally set user (via `context.setUser(user)`) 
-- cancel authentication if it is authenticated - - return `False` and set user to null (via `context.setUser(null)`) 
 
 Script extends the base script type with the `init`, `destroy` and `getApiVersion` methods but also adds the following method(s):
 
