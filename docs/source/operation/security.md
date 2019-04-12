@@ -16,7 +16,15 @@ The following controls within the Gluu Server's virtual host files in `/etc/http
   
   - "Content-Security-Policy" and "X-Frame-Options" clauses which are commented out by default; keep in mind those haven't been properly tested and default settings may need to be adjusted to be compatible with the current Gluu Server package
   
-  - We recommend blocking access to oxTrust web UI from public networks. This can be achieved, for example, by limiting access to a specific IP address/network range only, by updating corresponding "Location" directive in `/etc/httpd/conf.d/https_gluu.conf` In example below access is only allowed from one specific private range ip address, three private network ip address ranges, and from localhost (what is useful if you prefer to access oxTrust by forwarding TCP port 443 of your remote Gluu Server instance to your local machine):
+
+## Securing oxTrust
+
+### Block access
+
+We recommend blocking access to the oxTrust web UI from public networks. This can be achieved, for example, by limiting access to a specific IP address/network range only, by updating corresponding "Location" directive in `/etc/httpd/conf.d/https_gluu.conf`. 
+
+In the example below, access is only allowed from one specific private range IP address, three private network IP address ranges, and from localhost (which is useful if you prefer to access oxTrust by forwarding TCP port 443 of your remote Gluu Server instance to your local machine):
+
 
 ```
         <Location /identity>
@@ -30,10 +38,10 @@ The following controls within the Gluu Server's virtual host files in `/etc/http
 ```
 
 !!! Note
-    oxTrust is responsible for publishing SCIM APIs. If SCIM is in use, the IP address of the SCIM client should be included to the rule above as well
+    oxTrust is responsible for publishing SCIM APIs. If SCIM is in use, the IP address of the SCIM client should be included to the rule above as well.
 
 
-## 2FA to oxTrust
+### Configure 2FA 
 
 Consider enforcing 2FA for access to oxTrust. Gluu supports an assortment of 2FA methods out-of-the-box, including [Duo Security](https://gluu.org/docs/ce/3.1.3/authn-guide/duo/), [Super Gluu](https://gluu.org/docs/ce/3.1.3/authn-guide/supergluu/) or [FIDO U2F](https://gluu.org/docs/ce/3.1.3/authn-guide/U2F/).
 

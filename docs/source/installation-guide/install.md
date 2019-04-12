@@ -1,21 +1,20 @@
 # Installation 
 ## Overview
-There are Gluu Server Linux packages for Ubuntu, CentOS, RHEL and Debian operating systems. The 
-installation procedure is similar across all the distributions: 
+There are Gluu Server Linux packages for Ubuntu, CentOS, RHEL and Debian operating systems. The installation procedure is similar across all distributions: 
 
-1. [Install the Linux package](#1-install-gluu-server-package)
-2. [Start the Gluu Server and log into the container](#2-start-the-gluu-server-and-log-in)
-3. [Run `setup.py`](#3-run-setuppy)
-4. [Log in via a browser](#4-log-in-via-browser)
-5. [Disable Gluu repositories](#5-disable-gluu-repositories)
+1. [Install the Linux package](#install-the-package)
+2. [Start the Server and log in to the container](#start-the-server-and-login)
+3. [Run `setup.py`](#run-setuppy)
+4. [Sign in via browser](#sign-in-via-browser)
+5. [Disable Gluu repositories](#disable-gluu-repositories)
 
 !!! Note
     The below instructions are intended for single server Gluu deployments. If you intend to cluster your Gluu Server to achieve fail-over and high availability, please refer to the [cluster documentation](./cluster.md)
 
 ## Prerequisites
-Make sure the target server or VM meets the **all** [minimum requirements](../installation-guide/index.md) to deploy the Gluu Server.   
+Make sure the target server or VM meets **all minimum requirements** as specified in the [VM Preparation Guide](../installation-guide/index.md).   
 
-### System specific notes
+There are a few system specific notes to follow:  
 
 - **CentOS**: selinux must be set to permissive in /etc/selinux/config
 
@@ -26,12 +25,10 @@ Make sure the target server or VM meets the **all** [minimum requirements](../in
 
 ## Instructions
 
-### 1. Install Gluu Server package
+### Install the package
 
 Installation of the Gluu server will be done under `/root`. 
-The Gluu Server will create its file system under `/root/` and will be 
-installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) 
-remain the same as the host.
+The Gluu Server will create its file system under `/root/` and will be installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) remain the same as the host.
 
 <!--
 #### Ubuntu Server 18.04.x
@@ -126,9 +123,9 @@ remain the same as the host.
 | Install Gluu Server     | `# apt-get install gluu-server-3.1.5`      |
 
 
-### 2. Start the Gluu Server and Log In
+### Start the server and login
 
-The Gluu Server is a chroot container, which you must start to proceed. 
+The Gluu Server is a chroot container, which must be started to proceed. 
 
 For Centos 6.x, Red Hat 6.x, Ubuntu 14/16, and Debian 8, run the following commands:
 
@@ -148,33 +145,23 @@ For Centos 7.x, Red Hat 7.x<!--, Ubuntu 18--> and Debian 9, run the following co
 !!! Note
     Only use `enable` the first time you start the Gluu Server.
 
-### 3. Run `setup.py`
+### Run `setup.py`
 
-Configuration is completed by running the `setup.py` script. This generates certificates, salt values and renders configuration files. 
+Configuration is completed by running `setup.py` from inside the chroot container. This generates certificates, salt values, and renders configuration files. 
 
 ```
 # cd /install/community-edition-setup
 # ./setup.py
-```
+```   
 
-!!! Note
-    You must be logged into the Gluu Server chroot container to run `setup.py`.
+A prompt will appear to answer a few questions about the deployment. Hit `Enter` to accept the default values. 
 
-!!! Warning
-    Only run setup.py **one time**. Running the above command twice will break the instance.
-        
-!!! Note
-    OpenLDAP and Asimba is now deprecated. If they are needed, run
-        `./setup.py -allow_deprecated_applications`. If you plan to cluster your Gluu Servers, we do not recommend using OpenLDAP.  
-
-You will be prompted to answer some questions about your deployment. Hit `Enter` to accept the default values.
-
-Refer to the following table for details about the available setup options:
+Refer to the following table for details about available setup options:    
 
 | Setup Option                |  Explanation                               |
 |-------------------------|--------------------------------------------|
 | Enter IP Address | Used primarily by Apache httpd for the [Listen](https://httpd.apache.org/docs/2.4/bind.html) directive. **Use an IP address assigned to one of this server's network interfaces (usage of addresses assigned to loopback interfaces is not supported)**|
-| Enter hostname | Internet-facing hostname, FQDN, or CNAME whichever your organization follows to be used to generate certificates and metadata. **Do not use an IP address or localhost.** |
+| Enter hostname | Internet-facing FQDN that is used to generate certificates and metadata. **Do not use an IP address or localhost.** |
 | Enter your city or locality | Used to generate X.509 certificates. |
 | Enter your state or province two letter code | Used to generate X.509 certificates. |
 | Enter two letter Country Code | Used to generate X.509 certificates. |
@@ -183,37 +170,51 @@ Refer to the following table for details about the available setup options:
 | Optional: enter password for oxTrust and LDAP superuser | Used as the LDAP directory manager password, and for the default admin user for oxTrust. |
 | Install oxAuth OAuth2 Authorization Server | Required. Includes Gluu's OpenID Connect provider (OP) and UMA authorization server (AS) implementations.|
 | Install oxTrust Admin UI | Required. This is the Gluu server admin dashboard. |
-| Install LDAP Server | Required. LDAP is used to store user info and configuration data. **We recommend using the Gluu OpenDJ fork.**|
-| Install Passport |  Install if you want to support external IDP, for instance to offer users social login. |
+| Install LDAP Server | Required. LDAP is used to store user info and configuration data. |
+| Install Passport |  Optional. Install if you want to support external IDP, for instance to offer users social login. |
 | Install Apache HTTPD Server | Required |
-| Install Shibboleth SAML IDP | Optional: only install if you need to a SAML identity provider. |
-| Install oxAuth RP | OpenID Connect test client: recommended for test enviornments, for more details see [here](../admin-guide/openid-connect/#oxauth-rp) |
-| Install Asimba SAML Proxy | **Not recommended**: previously used to achieve inbound SAML. We now recommend using passport.js (above) |
+| Install Shibboleth SAML IDP | Optional. Only install if a SAML identity provider (IDP) is needed. |
+| Install oxAuth RP | Optional. OpenID Connect test client: recommended for test enviornments, for more details see [here](../admin-guide/openid-connect/#oxauth-rp) |
 
 
-!!! Warning
-	Changing the hostname after installation is not supported. 
 
-After answering these questions, `setup.py` will show your selections and ask if you want to continue. If everything looks good, select Y to finish installation. 
+When complete, `setup.py` will show the selections and prompt for confirmation. If everything looks OK, select Y to finish installation. 
 
-After 5-10 minutes you should see the following success message: 
+After 5-10 minutes the following success message will appear: 
 
 `Gluu Server installation successful! Point your browser to [hostname].`
 
-!!! Note
-    The easiest place to go wrong is with the first two questions:                 
-        1. Enter IP Address: Do **not** use `localhost` for either the IP address or hostname.     
-	2. Enter hostname: Use a real hostname--you can always manage via host file entries even if you don't want to mess with DNS for testing. If you are deploying a cluster, use the hostname of the cluster--that is used by the clients connecting to the Gluu Server.    
+#### Deprecated options
 
-### 4. Log In Via Browser
-Wait about 10 minutes in total for the server to restart and finalize its configuration. After that period, log into your Gluu Server via a web browser. 
+OpenLDAP and Asimba are now deprecated components in the Gluu Server. If they are needed, during setup run:
 
-Your username will be `admin` and your password will be the `ldap_password` you provided during installation. 
+`./setup.py -allow_deprecated_applications` 
 
-!!! Note
-    If the Gluu Server login page is still not appearing after you've received the success message and waited about 10 minutes, check if port 443 is open in the VM. If it is not open, open port 443 and try to reach the host in your browser again. 
+!!! Note    
+    For clustered deployments of Gluu, we do not recommend using OpenLDAP.     
 
-### 5. Disable Gluu Repositories
+#### Avoiding common issues
+
+Avoid setup issues by acknowledging the following:         
+
+- IP Address: Do **not** use `localhost` for either the IP address or hostname.     
+
+- Hostname:     
+     - Make sure to choose the hostname carefully. Changing the hostname after installation is not a simple task.   
+     - Use a real hostname--this can always be managed via host file entries if adding a DNS entry is too much work for testing.   
+     - For clustered deployments, use the hostname of the cluster that will be used by applications connecting to Gluu.   
+
+- Only run setup.py **one time**. Running the command twice will break the instance.
+
+### Sign in via browser
+
+Wait about 10 minutes in total for the server to restart and finalize its configuration. After that period, sign in via a web browser. The username will be `admin` and your password will be the `ldap_password` you provided during installation. 
+
+!!! Note   
+    If the Gluu Server login page does not appear, confirm that port 443 is open in the VM. If it is not open, open port 443 and try to reach the host in the browser again.   
+
+### Disable Gluu Repositories
+
 To prevent involuntary overwrites of the currently deployed instance (in case a newer version of the same package is found during regular OS updates), disable the previously added Gluu repositories after initial installation.
 
 For CentOS/RHEL: 
@@ -258,9 +259,8 @@ For Centos 7.x and Red Hat 7.x:
 ```
 
 !!! Note
-    You can also use `apt-get purge gluu-server-3.1.5` or `apt-get remove --purge gluu-server-3.1.5` to uninstall and remove all the folders and services of Gluu server.
+    `apt-get purge gluu-server-3.1.5` or `apt-get remove --purge gluu-server-3.1.5` can also be used to uninstall and remove all the folders and services of Gluu server.
 
 ## Support
-If you run into issues please review the [Gluu support portal](https://support.gluu.org). If you can't find a similar existing public issue, register for an account and open a new ticket. 
+Please review the [Gluu support portal](https://support.gluu.org). There are many existing tickets about troubleshooting installation issues. If there is no similar existing public issue, register for an account and open a new ticket. 
 
-If your organization needs guaranteed responses, SLAs, and priority access to the Gluu support and development team, consider purchasing one of our [VIP support contracts](https://gluu.org/pricing).  

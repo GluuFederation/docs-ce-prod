@@ -7,7 +7,7 @@ One of the most most commonly used interception scripts is for person authentica
 
 In addition to person authentication, many interception scripts are available. Forking the code makes your instance hard to upgrade. If you need to fork the code to accomplish something, you should open a support ticket and suggest an interception script which would help you avoid the fork.  
 
-The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scritps`.
+The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scripts`.
 
 ### Jython
 Interception scripts are written in [Jython](http://www.jython.org).  An interpreted language was chosen because it's easier for system administrators to understand and modify. Java can be a black box for administrators--scripts help make the business logic more visible, which aids in troubleshooting. 

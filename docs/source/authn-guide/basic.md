@@ -1,7 +1,7 @@
 # Authentication against LDAP (a.k.a “Basic” or “Internal”)
 
 ## Overview
-The 'Basic' or 'Internal' method is used to implement username / password authentication.
+The 'Basic' or 'Internal' method is used to implement username / password authentication. 
 
 Basic authentication relies on a successful LDAP BIND operation against an LDAP directory--either the
 local LDAP included in the Gluu Server, or a backend LDAP server like Active Directory that has been configured for
@@ -45,10 +45,9 @@ GLUU.[root@gluu logs]# tail -f oxauth_script.log
 ```
  
 ### Backend AD/LDAP 
-If a backend AD or LDAP is being used to store passwords and authenticate users, navigate to: `Configuration` > `Manage authentication` > `Manage LDAP Authentication` and provide information on the backend directory, incuding bindDN, bindDN user password, Primary Key ( don't change local primary_key ), Server Name / IP along with port and BaseDN/s. 
+If a backend AD or LDAP is being used to store passwords and authenticate users, navigate to: `Configuration` > `Manage authentication` > `Manage LDAP Authentication` and provide information on the backend directory, including bindDN, bindDN user password, Primary Key ( don't change local primary_key ), Server Name / IP along with port and BaseDN/s. 
 
-A more detailed description of each field can be found in the [Manage Authentication](../admin-guide/oxtrust-ui/#manage-authentication) 
-section of the Gluu docs.
+A more detailed description of each field can be found in the [Manage Authentication](../admin-guide/oxtrust-ui/#manage-authentication) section of the Gluu docs.
 
 ## Make 'Basic' the Default
 
@@ -60,6 +59,14 @@ By default, basic authentication is the default authentication method for the Gl
 ## Using Basic Authentication
 
 Open up a new browser or incognito window, try to login into your Gluu Server or perform SSO with an SP or RP. 
+
+### Configuring Basic Authentication
+
+To switch the basic authentication method between username and email address, follow these steps:
+1. Navigate to `Configuration` > `Manage Authentication`
+1. Change the `Local Primary Key` to `uid` for username or `mail` for email address.
+
+Other LDAP configuration settings can be found in the [oxTrust documentation](../admin-guide/oxtrust-ui/#manage-authentication)
 
 ### Password reset in local Gluu LDAP
 

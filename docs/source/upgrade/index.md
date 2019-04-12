@@ -28,17 +28,6 @@ service gluu-server-3.1.x restart
 !!! Note
     Scripts and directories outside the Chroot will still reflect the version from which you upgraded. For example, if you started with version 3.1.3, the directory will still be gluu-server-3.1.3 even after upgrading to 3.1.5.
 
-### Location of Gluu 3.1.5 Components
-
-Gluu 3.1.x components that can be updated in this way inside the container can be found at the following locations:
-
-- oxTrust: `/opt/gluu/jetty/identity/webapps/identity.war`
-- oxAuth: `/opt/gluu/jetty/oxauth/webapps/oxauth.war`
-- Shibboleth IdP: `/opt/gluu/jetty/idp/webapps/idp.war`
-- Asimba SAML proxy: `/opt/gluu/jetty/asimba/webapps/asimba.war`
-- oxAuth RP: `/opt/gluu/jetty/oxauth-rp/webapps/oxauth-rp.war`
-
-
 ## Upgrade from 3.0.x to 3.1.5
 
 

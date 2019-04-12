@@ -82,7 +82,7 @@ Follow [these instructions](https://gluu.org/docs/ce/admin-guide/attribute/#add-
 Here are a few sample attribute values we added to the `custom.schema` doc:
 
 ```
-attributetype ( 1.3.6.1.4.1.48710.1.3.1003 NAME 'RoleEntitlement'
+attributeTypes ( 1.3.6.1.4.1.48710.1.3.1003 NAME 'RoleEntitlement'
         EQUALITY caseIgnoreMatch
         SUBSTR caseIgnoreSubstringsMatch
         SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
@@ -90,7 +90,7 @@ attributetype ( 1.3.6.1.4.1.48710.1.3.1003 NAME 'RoleEntitlement'
 ```   
       
 ```
-attributetype ( 1.3.6.1.4.1.48710.1.3.1004 NAME 'RoleSessionName'
+attributeTypes ( 1.3.6.1.4.1.48710.1.3.1004 NAME 'RoleSessionName'
         EQUALITY caseIgnoreMatch
         SUBSTR caseIgnoreSubstringsMatch
         SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
@@ -105,7 +105,7 @@ objectclass ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
         X-ORIGIN 'Gluu - Custom persom objectclass' )
 ```  
       
-Make sure the `attributetype` LDAP ID number is unique. 
+Make sure the `attributeTypes` LDAP ID number is unique. 
 
 Save and test the custom configuration.
 

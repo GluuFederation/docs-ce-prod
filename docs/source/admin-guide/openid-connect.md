@@ -9,10 +9,8 @@ The Gluu Server is a [fully certified OpenID Provider (OP)](http://openid.net/ce
 - Front Channel Logout [(draft)](http://openid.net/specs/openid-connect-frontchannel-1_0.html)
 
 ## Protocol Overview
-OpenID Connect is an identity layer that profiles and extends OAuth 2.0.
-It defines a sign-in flow that enables an application (client) to
-authenticate a person, and to obtain authorization to obtain
-information (or "claims") about that person. For more information,
+OpenID Connect is an identity layer that profiles OAuth 2.0 to define a sign-in flow for applications (clients) to
+authenticate a person and obtain authorization to gather information (or "claims") about that person. For more information,
 see [http://openid.net/connect](http://openid.net/connect)
 
 It's handy to know some OpenID Connect terminology:
@@ -69,8 +67,9 @@ need them from the authorization endpoint too.
 
 ## Configuration / Discovery
 
-A good place to start when you're learning about OpenID Connect is the configuration endpoint, which is located in the Gluu Server
-at the following URL: `https://{hostname}/.well-known/openid-configuration`.
+The configuration endpoint publishes core details about the OpenID Connect service. These details can be found by accessing the following URL: 
+
+`https://{hostname}/.well-known/openid-configuration`
 
 The Gluu Server also supports [WebFinger](http://en.wikipedia.org/wiki/WebFinger), as specified in the [OpenID Connect discovery specification](http://openid.net/specs/openid-connect-discovery-1_0-21.html).
 

@@ -1,69 +1,68 @@
 # Fine Tuning Gluu Server
-Gluu Server has a stateless architecture, it scales quite easy. However
-to get high-performant server it must be tuned accordingly.
+Gluu Server has a stateless architecture and scales quite easily. However to achieve high-performance, the server must be tuned accordingly.
 
 Tuning consists of:
 
-- OS Tunning
-- Memory and infrastructure
-- LDAP Server (OpenDJ, OpenLDAP)
-- Web Application Container (Tomcat, Jetty, JBoss)
-- Gluu Server configuration Tuning
+- OS Tuning   
+- Memory and infrastructure   
+- LDAP Server (Gluu OpenDJ)      
+- Web Application Container (Tomcat, Jetty, JBoss)   
+- Gluu Server configuration Tuning    
 
-## OS Tunning
+## OS Tuning
 
-Operation System running depends on actual OS. CE is designed to work under Linux, therefore it's recommended to tune it as following:
-(most of below configs can be tuned in `/etc/security/limits.conf`, however it may depends on OS)
+CE is designed to work on Linux, therefore it's recommended to tune the following:
+
+!!! Note
+    Most of below configs can be tuned in `/etc/security/limits.conf`, however it may depend on OS. 
 
 1. Increase TCP Buffer Sizes
-```
- sysctl -w net.core.rmem_max=16777216
- sysctl -w net.core.wmem_max=16777216
- sysctl -w net.ipv4.tcp_rmem="4096 87380 16777216"
- sysctl -w net.ipv4.tcp_wmem="4096 16384 16777216"
-```
+   ```
+   sysctl -w net.core.rmem_max=16777216
+   sysctl -w net.core.wmem_max=16777216
+   sysctl -w net.ipv4.tcp_rmem="4096 87380 16777216"
+   sysctl -w net.ipv4.tcp_wmem="4096 16384 16777216"
+   ```
 
-2. Increase connection listening size
-```
- sysctl -w net.core.somaxconn=4096
- sysctl -w net.core.netdev_max_backlog=16384
- sysctl -w net.ipv4.tcp_max_syn_backlog=8192
- sysctl -w net.ipv4.tcp_syncookies=1
-```
+1. Increase connection listening size
+   ```
+   sysctl -w net.core.somaxconn=4096
+   sysctl -w net.core.netdev_max_backlog=16384
+   sysctl -w net.ipv4.tcp_max_syn_backlog=8192
+   sysctl -w net.ipv4.tcp_syncookies=1
+   ```
 
-3. Increase ports range
-```
- sysctl -w net.ipv4.ip_local_port_range="1024 65535"
- sysctl -w net.ipv4.tcp_tw_recycle=1
-```
+1. Increase ports range
+   ```
+   sysctl -w net.ipv4.ip_local_port_range="1024 65535"
+   sysctl -w net.ipv4.tcp_tw_recycle=1
+   ```
 
-4. Increase file descriptors
+1. Increase file descriptors
 
-```
-* soft nofile 65536
-* hard nofile 262144
-```
+   ```
+   * soft nofile 65536
+   * hard nofile 262144
+   ```
 
 ## Memory and infrastructure
 
-Make sure there is enough memory for each part of the solution. For high load systems it is helpful to set each part on separate machine (LDAP Server, Jetty).  
+Make sure there is enough memory for each Gluu Server component (e.g. LDAP Server, Jetty). For high load systems, it can be helpful to have each component on separate machine.  
 
 ## LDAP Server
 
-(For convenience all samples stick to OpenDJ however general recommendations are the same for other LDAP Servers)
+!!! Note
+    For convenience all samples stick to Gluu OpenDJ, however general recommendations are the same for other LDAP Servers.
 
-1. Maximum number of allowed connections<br/>If there are not enough connections to serve the client, a connection is
-put "on hold" and waits. To avoid delays it's recommended to provide
-expected maximum allowed connections.<br/>
- ```
- max-allowed-client-connections=1000
- ```
-2. Provide enough resources to LDAP Server<br/> For example OpenDJ use JVM for running, for high performance it's
-    recommended to give enough memory via JVM system properties.
-3. Allow LDAP Server use cache as much as possible.
-```
-dsconfig -n set-backend-prop --backend-name userRoot --set db-cache-percent:50
-```
+1. Maximum number of allowed connections: If there are not enough connections to serve the client, a connection is put "on hold" and waits. To avoid delays it's recommended to provide expected maximum allowed connections, e.g. 
+    ```
+    max-allowed-client-connections=1000
+    ```
+1. Provide enough resources to LDAP Server: For example OpenDJ uses JVM for running, for high performance it's recommended to give enough memory via JVM system properties.
+1. Allow LDAP Server use cache as much as possible.
+   ```
+   dsconfig -n set-backend-prop --backend-name userRoot --set db-cache-percent:50
+   ```
 
 ## Jetty
 
@@ -87,23 +86,6 @@ Example configuration:
     </Set>
 </Configure>
 ```
-
-## Apache Tomcat
-
-1. Set maximum for parallel requests.
-<br/>Connector parameters in `server.xml`:<br/>
-    - maxThreads="10000"
-    - maxConnections="10000"
-2. Set memory settings via JAVA_OPTS<br/>
- ```
- set "JAVA_OPTS=-Xms1456m -Xmx7512m -XX:MaxPermSize=256m -XX:+DisableExplicitGC"
- ```
-3. Operating time<br/>
-Check via Tomcat monitor whether requests are handled or just "hangs"
-because there are not enough resources. Here is sample when processing
-time increase due to lack of resources:
-
-![tomcatStatus](../img/admin-guide/fine-tuning/tomcatStatus.png)
 
 ## Gluu Server
 

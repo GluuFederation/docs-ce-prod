@@ -2,13 +2,19 @@
 
 ## Overview
 
-The Gluu Server bundles the Passport.js authentication middleware to enable inbound SAML and [inbound OAuth and OpenID Connect](./passport.md) (all of which can be referred to as "inbound identity"). Passport normalizes the process of supporting user authentication at external identity providers (IDP) and offers a standard mapping for user claims and user registration in your Gluu Server. 
+The following guide offers steps for supporting user authentication at an external SAML identity provider (IDP), a.k.a. Inbound SAML. 
 
-Passport is an MIT licensed, Node.js web app that supports hundreds of "authentication strategies" out-of-the-box.
+To achieve this solution, the Gluu Server leverages Passport.js authentication middleware. Passport is an MIT licensed, Node.js web app that supports hundreds of "authentication strategies" out-of-the-box, including SAML. Passport not only normalizes the process of supporting external IDPs, but also offers a standard mapping for user claims and user registration in your Gluu Server. 
 
 ## Passport setup 
+The first step is to make sure Passport.js is available in your Gluu Server installation. 
 
-Passport is available as an optional component during [Gluu Server installation](https://gluu.org/docs/ce/installation-guide/). Or, to add Passport to an existing Gluu Server installation, perform the following actions (requires Internet access):
+### During Gluu installation
+Passport is available as an optional component during [Gluu Server installation](https://gluu.org/docs/ce/installation-guide/). Simply opt to include it during initial installation. 
+
+### Post Gluu installation
+
+To add Passport to an existing Gluu Server installation, perform the following actions (requires Internet access):
 
 1. Login to Gluu Server chroot
 
@@ -70,7 +76,7 @@ The target application needs to have an SSO relationship with your Gluu Server.
 
 #### Register external IDPs with home IDP
 
-Passport expects to find information about supported SAML IDPs in the configuration file at `/etc/gluu/conf/passport-saml-config.json`. Every supported external IDP should be added as a JSON object. No restarts are required when changes are made to this file.
+Passport expects to find information about supported SAML IDPs in the configuration file at `/etc/gluu/conf/passport-saml-config.json`. Every supported external IDP should be added as a JSON object. When updates are applied to this file, please restart passport service.
 
 A sample configuration containing entries for two external IDPs named "idp1" and "idp2" is provided below:
  
