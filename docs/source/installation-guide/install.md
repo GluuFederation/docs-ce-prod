@@ -40,7 +40,7 @@ The Gluu Server will create its file system under `/root/` and will be installed
 | Install Gluu Server     | `# apt-get install gluu-server-3.1.6`      |
 
 !!! Note  
-    If you use the server version of Ubuntu 18, you need to add the Ubuntu Universe repositories as well. Use these commands: `# echo "deb http://archive.ubuntu.com/ubuntu bionic universe" > /etc/apt/sources.list` and `# echo "deb http://archive.ubuntu.com/ubuntu bionic-updates universe" > /etc/apt/sources.list`     
+    If you use the server version of Ubuntu 18, you need to add the Ubuntu Universe repositories as well. Use these commands: `# echo "deb http://archive.ubuntu.com/ubuntu bionic universe" >> /etc/apt/sources.list` and `# echo "deb http://archive.ubuntu.com/ubuntu bionic-updates universe" >> /etc/apt/sources.list`     
 
 #### Ubuntu Server 16.04.x
 
