@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Gluu Server bundles the Passport authentication middleware to enable inbound SAML, OAuth, and OpenID Connect (all of which can be referred to as "inbound identity"). Passport normalizes the process of supporting user authentication at external identity providers and user registration in your Gluu Server.
+The Gluu Server bundles the Passport authentication middleware to enable inbound identity for SAML, OAuth, and OpenID Connect (all of which can be referred to as "inbound identity"). Passport normalizes the process of supporting user authentication at external identity providers and user registration in your Gluu Server.
 
 Passport consists of a Node.js application and a couple of oxAuth custom interception scripts and custom pages, which together coordinate the flows required for an inbound identity solution.
 
@@ -39,7 +39,7 @@ The following is a high-level diagram depicting a typical inbound identity user 
 1. If the user does not exist already in local Gluu LDAP, it is created with the attributes present in profile data (if already existing, the profile is updated)
 1. A session is created for the user at the authorization server. The user access the application.
 
-Later, in section [](??) more specific details are provided. Also means to alter the standard flow are presented.
+Later, in section [Inbound flow revisited](#inbound-flow-revisited) more specific details are provided. Also means to alter the standard flow are presented.
 
 ## Supported providers
 
@@ -51,12 +51,14 @@ Out of the box, the following external identity providers can be integrated:
 
 A typical usage of OAuth inbound identity is for supporting social login, ie. making your users log in to your application by using their existing accounts at popular sites like Facebook, Twitter, Github, etc.
 
+### Strategies
+
 Gluu Passport is built upon the popular authentication middleware [Passport.js](http://www.passportjs.org/) which supports plugins (AKA "*Strategies*") that allow integration of identity providers easily. There are hundreds of strategies available in [npm](https://www.npmjs.com/) (the Node.js Package Registry). You can integrate any strategy as long as it lives under the OAuth umbrella.
 
 
 ## Passport configuration
 
-For most inbound identity needs, we provide an easy point-and-click solution to configure your setup. To learn how to integrate and configure inbound identity for SAML providers visit [this](??) page. For OpenID connect and OAuth providers found the relevant contents [here](???).
+For most inbound identity needs, we provide an easy point-and-click solution to configure your setup. To learn how to integrate and configure inbound identity for SAML providers visit [this](./inbound-saml-passport.md) page. For OpenID connect and OAuth providers find the relevant contents [here](./inbound-oauth-passport.md).
 
 At a high level the following can be performed directly via the admin UI:
 
@@ -64,13 +66,13 @@ At a high level the following can be performed directly via the admin UI:
 - Setting global configuration parameters, such as [logging](#logging) behavior
 - Addding identity providers (specifying underlying Passport.js strategy, parameterization, and attribute mapping/transformation file)
 - Managing identity providers (disabling, removal, etc.)
-- Setting configuration parameters for IDP-initiated flows (SAML IDPs only)
+- Setting configuration parameters for [IDP-initiated flows](./authn-guide/inbound-saml-passport.md#idp-initiated-inbound-flow) (SAML IDPs only)
  
 ### Logging
 
 #### Files and severity level
 
-In Gluu chroot, Passport logs can be found in `/opt/gluu/node/passport/logs`. By default, severity of messages logged is `INFO`. You can change this by using the steps below:
+In Gluu chroot, Passport logs can be found in directory `/opt/gluu/node/passport/logs`. By default, severity of messages logged is `INFO`. You can change this by using the steps below:
 
 1. In oxTrust go to `Passport` > `Basic Configuration`
 
@@ -85,7 +87,7 @@ In addition to Passport logs, the log statements of the custom script are key (t
     
 #### Logging to a messaging system
 
-Besides log files, administrators can send log statements to a messaging server that support the [STOMP](http://stomp.github.io/) protocol such as [Apache ActiveMQ](http://activemq.apache.org). To do so simply enter the required data in `Message Queue settings` panel and tick the "Is enabled" checkbox.
+Besides log files, administrators can send log statements to a messaging server that support the [STOMP](http://stomp.github.io/) protocol such as [Apache ActiveMQ](http://activemq.apache.org). To do so, simply enter the required data in `Message Queue settings` panel and tick the "Is enabled" checkbox.
 
 Ensure the host and port are accessible from the machine running your Passport instance, finally press update. Messages will be sent to a queue named "oauth2.audit.logging".
 
@@ -94,7 +96,7 @@ You can disable forwarding of messages at any time by unchecking the "Is enabled
 
 ## Attribute mapping and transformation
 
-Attribute mapping is the process of taking the user's attributes released by the external identity provider and assign those to local Gluu attributes (LDAP attributes in this case). 
+Attribute mapping is the process of taking the user's attributes released by the external identity provider and assign those to internal Gluu attributes (LDAP attributes in this case). 
 
 In previous Passport versions (3.1.x), specifying mapping of attributes required applying a series of manual tasks possibly at different places. We revamped this process to make it more streamlined:
 
@@ -115,22 +117,23 @@ Passport already bundles several mappings by default. Most of them are targetted
 
 
 !!! Note:
-    This section assumes you have already onboarded (integrated) one or more external providers in Passport. If you haven't done so, visit [](??) (for SAML providers) or visit [](??) (for OpenID connect and OAuth providers).
+    This section assumes you have already onboarded (integrated) one or more external providers in Passport. If you haven't done so, visit [this page](./inbound-saml-passport.md) (for SAML providers) or visit [this page](./inbound-oauth-passport.md) (for OpenID connect and OAuth providers).
 
 
 ### How user onboarding works
 
 As stated in the [sample flow](#sample-authentication-flow), after a user has logged in at an external provider a new record is added in local LDAP - or updated in case the user is known. 
 
-To determine if a user was already added, a string is composed with the provider name and the user ID. For example, if user "MrBrown" has logged in at Twitter, the string would look like `passport-twitter:mrbrown`. An LDAP search is performed for a match in the people branch for an entry where attribute `oxExternalUid` equals `passport-twitter:mrbrown`.
+To determine if a user was already added, a string is composed with the provider name and the user ID. For example, if user "MrBrown123" has logged in at Twitter, the string would look like `passport-twitter:mrbrown123`. An LDAP search is performed for a match in the people branch for an entry where attribute `oxExternalUid` equals `passport-twitter:mrbrown123`.
 
-If there are no matches, a new user entry is added using the values [received](#inspecting-profile-data) from the external provider (after having applied the corresponding attribute mapping), as well as the computed value for `oxExternalUid`. The user profile can contain single or multivalued attributes.
+If there are no matches, an entry is added using the values received from the external provider (after having applied the corresponding attribute mapping) attaching the computed value for `oxExternalUid`. The user profile can contain single or multivalued attributes.
 
-### Altering flow behaviour
+### Altering flow behavior
 
 There are a couple of ways to modify the behavior of the authentication flow. These are slight flow changes though. To achieve needs not covered in this section, you may want to open a [support ticket](https://support.gluu.org) for further assistance. Customization may require programming skills in languages such as Python, Java, and Node.js.
 
-Wait at least 1 minute before testing all modications to give the server time to pick up configuration changes.
+!!! Warning:
+    Wait at least 1 minute before testing all modications to give the server time to pick up configuration changes.
 
 #### Requiring email in profile
 
@@ -146,7 +149,7 @@ External providers may prompt users to authorize the release of personal attribu
 
 #### Email account linking
 
-There are cases in which an external provider is trusted so you can change the default behavior of adding a new user entry locally, but binding an existing user to the one that is logging in. This linking can be done via `mail` attribute.
+There are cases in which an external provider is trusted so you can change the default behavior of adding a new user entry locally, but binding an existing account to the person logging in. This linking can be done via `mail` attribute.
 
 For example, suppose you have 3 users in your Gluu local LDAP: Larry (`larry@acme.com`), Moe (`moe@acme.com`), and Curly (`curly@acme.com`). When you enable email account linking for provider "XYZ" and certain user logs in through XYZ to access your application, he will be logged as Moe as long as his email is "moe@acme.com" at XYZ.
 
@@ -162,8 +165,6 @@ To enable account linking, follow these steps:
 #### Preselecting an external provider
 
 In some cases administrators might not want to show a selection list of external identity providers, instead, simply directing a user to a specific external provider. In this case, a customized OIDC authorization request has to be sent to Gluu in order to pass the desired provider. For this purpose a custom parameter for authorization requests has to be added and the corresponding passport script should be parameterized accordingly.
-
-Please follow these steps:
 
 1. Create a custom parameter for authorization request
     
