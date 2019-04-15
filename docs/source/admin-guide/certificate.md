@@ -84,12 +84,12 @@ Please follow these steps shown below to update the Apache SSL cert:
     <br/> `/opt/jdkx.x.x.x/jre/bin/keytool -importcert -file httpd.der -keystore /opt/jdkx.x.x.x/jre/lib/security/cacerts -alias <hostname_of_your_Gluu_Server>_httpd -storepass changeit`
 - Restart LDAP server, apache2/httpd and Identity Services.
 ```
-service solserver stop
+service opendj stop
 service apache2/httpd stop
 service oxauth stop
 service identity stop
 :
-service solserver start
+service opendj start
 service apache2/httpd start
 service oxauth start
 service identity start
