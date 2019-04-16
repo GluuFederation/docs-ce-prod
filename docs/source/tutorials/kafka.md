@@ -46,6 +46,7 @@ This tutorial offers a step-by-step guide to enable [Apache Kafka log aggregatio
 1. Restart systemd, oxAuth, and Identity
 
     ```
-    # systemctl daemon-reload
     # service oxauth restart && service identity restart
+    # logout
+    # systemctl daemon-reload
     ```
