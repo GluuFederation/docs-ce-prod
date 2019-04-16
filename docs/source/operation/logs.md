@@ -1,5 +1,7 @@
 # Gluu Server Logs
 
+## Overview
+
 When it comes to troubleshooting issues in the Gluu Server-from service hiccups to outages-logs are the best place to start. 
 
 The Gluu Server administrator can investigate logs from the oxTrust [View Logs](../admin-guide/oxtrust-ui.md#view-log-file) feature or directly with SSH access to the Gluu-Server container. 
