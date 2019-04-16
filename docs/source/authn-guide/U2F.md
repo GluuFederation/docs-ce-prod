@@ -100,7 +100,7 @@ A users FIDO U2F devices can be removed by a Gluu administrator either via the o
 ![fidoldap](../img/admin-guide/multi-factor/fido-ldap-entry.png)
 
 ## U2F Discovery Endpoint
-A discovery document for U2F is published by the Gluu Server at: `https://<hostname>/.well-known/fido-configuration` This document specifies the URL of the registration and authentication endpoints. The endpoint was `https://<hostname>/.well-known/fido-2fa-configuration` in previous versions, but has been deprecated in version 3.1.4.
+A discovery document for U2F is published by the Gluu Server at: `https://<hostname>/.well-known/fido-configuration` This document specifies the URL of the registration and authentication endpoints. The endpoint was `https://<hostname>/.well-known/fido-2fa-configuration` in previous versions, but has been deprecated in version 4.0.
 
 ## U2F SCIM APIs
 For a discussion of how to manage FIDO devices using the SCIM protocol, see the [SCIM documentation](../user-management/scim2.md#fido-devices). 

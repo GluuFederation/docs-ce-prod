@@ -1,22 +1,22 @@
-# Upgrade to Gluu Server 3.1.4
+# Upgrade to Gluu Server 4.0
 
 ## Overview
-The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will need to either use our in-place upgrade script or explicitly install the new version and export/import your data. Find your existing version below for upgrade instructions to Gluu Server 3.1.4. 
+The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will need to either use our in-place upgrade script or explicitly install the new version and export/import your data. Find your existing version below for upgrade instructions to Gluu Server 4.0. 
 
 ### Pre-requisites
 
 - Before upgrading, make sure to [back up](../operation/backup.md) the Gluu container or LDAP LDIF. 
 - Upgrades should always be thoroughly scoped and tested on a development environment *first*.
 
-## Upgrade from 3.1.x to 3.1.4
+## Upgrade from 3.1.x to 4.0
 
-New to version 3.1.4, it is now possible to perform an in-place upgrade from 3.1.x to 3.1.4, rather than requiring manual configuration. To do so, follow these directions to download and run our new in-place upgrade script:
+New to version 4.0, it is now possible to perform an in-place upgrade from 3.1.x to 4.0, rather than requiring manual configuration. To do so, follow these directions to download and run our new in-place upgrade script:
 
 1. Log into your server with `service gluu-server-3.1.x login`
 
-1. Download the upgrade script with `wget https://repo.gluu.org/upd/3-1-4-upg.sh`
+1. Download the upgrade script with `wget https://repo.gluu.org/upd/4.0-upg.sh`
 
-1. Run the script with `sh 3-1-4-upg.sh`
+1. Run the script with `sh 4.0-upg.sh`
 
 1. When the script has finished, restart your server:
 
@@ -26,10 +26,10 @@ service gluu-server-3.1.x restart
 ```
 
 !!! Note:
-    Scripts and directories outside the Chroot will still reflect the version from which you upgraded. For example, if you started with version 3.1.3, the directory will still be gluu-server-3.1.3 even after upgrading to 3.1.4.
+    Scripts and directories outside the Chroot will still reflect the version from which you upgraded. For example, if you started with version 3.1.3, the directory will still be gluu-server-3.1.3 even after upgrading to 4.0.
 
 
-## Upgrade from 3.0.x to 3.1.4
+## Upgrade from 3.0.x to 4.0
 
 
 Upgrading generally involves the following steps:
@@ -87,14 +87,14 @@ Stop the current version of the Gluu Server.
 # service gluu-server-3.0.x stop
 ```
 
-Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.1.4`, execute the following commands:
+Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `4.0`, execute the following commands:
 
 ```
-# cp -r /opt/gluu-server-3.0.x/root/backup_3031/ /opt/gluu-server-3.1.4/root/
+# cp -r /opt/gluu-server-3.0.x/root/backup_3031/ /opt/gluu-server-4.0/root/
 
-# service gluu-server-3.1.4 start
+# service gluu-server-4.0 start
 
-# service gluu-server-3.1.4 login
+# service gluu-server-4.0 login
 
 # cd
 
@@ -161,7 +161,7 @@ Now run the import script:
 
 Any errors or warnings will be displayed in the terminal and can be reviewed in the import log. Now you should be able to log into the oxTrust web UI using the old admin credentials and you should see all previous data in place. 
 
-## Upgrade from 2.x.x to 3.1.4
+## Upgrade from 2.x.x to 4.0
 
 !!! Warning
     Before proceeding with an upgrade, make sure to [back up](../operation/backup.md) the Gluu container or LDAP LDIF before proceeding with the upgrade. 
@@ -237,14 +237,14 @@ Stop the current version of the Gluu Server.
 # service gluu-server-2.4.x stop
 ```
 
-Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.1.4`, then follow the next steps to prepare :
+Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `4.0`, then follow the next steps to prepare :
 
 ```
-# cp -r /opt/gluu-server-2.4.x/root/backup_2431/ /opt/gluu-server-3.1.4/root/
+# cp -r /opt/gluu-server-2.4.x/root/backup_2431/ /opt/gluu-server-4.0/root/
 
-# service gluu-server-3.1.4 start
+# service gluu-server-4.0 start
 
-# service gluu-server-3.1.4 login
+# service gluu-server-4.0 login
 
 # cd
 

@@ -1,7 +1,7 @@
 ## Notice
 
 This document, also known as the Gluu Release Note, 
-relates to the Gluu Server Release versioned 3.1.4. The work is licensed under “The MIT License” 
+relates to the Gluu Server Release versioned 4.0. The work is licensed under “The MIT License” 
 allowing the use, copy, modify, merge, publish, distribute, sub-license and sale without 
 limitation and liability. This document extends only to the aforementioned release version 
 in the heading.
@@ -14,7 +14,7 @@ OR USING THE RELEASE.
 
 ## Purpose
 
-The document is released with the Version 3.1.4 of the Gluu Software. The purpose of this document is to provide the changes made/new features included in this release of the Gluu Software. The list is not exhaustive and there might be some omission of negligible issues, but the noteworthy features, enhancements and fixes are covered. 
+The document is released with the Version 4.0 of the Gluu Software. The purpose of this document is to provide the changes made/new features included in this release of the Gluu Software. The list is not exhaustive and there might be some omission of negligible issues, but the noteworthy features, enhancements and fixes are covered. 
 
 ## Background
 
@@ -27,8 +27,8 @@ The most common use cases for the Gluu Server include single sign-on (SSO), mobi
 Please visit the [Gluu Documentation Page](http://www.gluu.org/docs/ce) for the complete 
 documentation and administrative guide. 
 
-## Available components in Gluu Server 3.1.4
-- oxAuth, oxTrust, oxCore v3.1.4
+## Available components in Gluu Server 4.0
+- oxAuth, oxTrust, oxCore v4.0
 - Gluu OpenLDAP v2.4.44-5
 - Gluu OpenDJ v3.0
 - Shibboleth v3.2.1
@@ -46,7 +46,7 @@ documentation and administrative guide.
 
 ## Fixes / Enhancements
 
-### [GluuFederation/oxAuth](https://github.com/GluuFederation/oxAuth/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.4+)
+### [GluuFederation/oxAuth](https://github.com/GluuFederation/oxAuth/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
 
 - [#824](https://github.com/GluuFederation/oxAuth/issues/824) UMA : Introduce separate ticket lifetime configuration
  
@@ -88,7 +88,7 @@ documentation and administrative guide.
  
 - [#230](https://github.com/GluuFederation/oxAuth/issues/230) Resource Owner Password Credential Grant Interception Script
 
-### [GluuFederation/oxTrust](https://github.com/GluuFederation/oxTrust/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.4+)
+### [GluuFederation/oxTrust](https://github.com/GluuFederation/oxTrust/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
 
 - [#1014](https://github.com/GluuFederation/oxTrust/issues/1014) Ability to Disable Gathering Of Metrics
  
@@ -112,13 +112,13 @@ documentation and administrative guide.
  
 - [#557](https://github.com/GluuFederation/oxTrust/issues/557) Improve Passport.js user experience
 
-### [GluuFederation/oxShibboleth](https://github.com/GluuFederation/oxShibboleth/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.4+)
+### [GluuFederation/oxShibboleth](https://github.com/GluuFederation/oxShibboleth/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
 
 - [#44](https://github.com/GluuFederation/oxShibboleth/issues/44) Update Idp to V3.3.3
 
 - [#43](https://github.com/GluuFederation/oxShibboleth/issues/43) eduPerson schema update
 
-### [GluuFederation/gluu-passport](https://github.com/GluuFederation/gluu-passport/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.4+)
+### [GluuFederation/gluu-passport](https://github.com/GluuFederation/gluu-passport/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
 
 
 - [#37](https://github.com/GluuFederation/gluu-passport/issues/37) Bundle passport with openid connect support
@@ -141,7 +141,7 @@ documentation and administrative guide.
 
 - [#10](https://github.com/GluuFederation/gluu-passport/issues/10) Readability of passport log
 
-### [GluuFederation/community-edition-setup](https://github.com/GluuFederation/community-edition-setup/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.4+)
+### [GluuFederation/community-edition-setup](https://github.com/GluuFederation/community-edition-setup/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
 
 - [#440](https://github.com/GluuFederation/community-edition-setup/issues/440) 2.4.x to 3.1.3 upgrade ( OpenDJ --> OpenDJ ): don't export `100-user.ldif` schema
 
@@ -151,7 +151,7 @@ documentation and administrative guide.
 
 - [#436](https://github.com/GluuFederation/community-edition-setup/issues/436) 3.0.x to 3.1.x upgrade: metadata-provider template broken
  
-- [#427](https://github.com/GluuFederation/community-edition-setup/issues/427) Asimba should be available in 3.1.4 as deprecated commmonent only
+- [#427](https://github.com/GluuFederation/community-edition-setup/issues/427) Asimba should be available in 4.0 as deprecated commmonent only
 
 - [#425](https://github.com/GluuFederation/community-edition-setup/issues/425) Setup should prepare CE to work with dynamic IP correctly
 
@@ -159,10 +159,10 @@ documentation and administrative guide.
 
 - [#100](https://github.com/GluuFederation/community-edition-setup/issues/100) Ensure 'hostname' is not 'localhost' by default
 
-### [GluuFederation/SCIM-Client](https://github.com/GluuFederation/SCIM-Client/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.4+)
+### [GluuFederation/SCIM-Client](https://github.com/GluuFederation/SCIM-Client/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
 
 - [#70](https://github.com/GluuFederation/SCIM-Client/issues/70) Add test cases for special chars handling
 
 - [#69](https://github.com/GluuFederation/SCIM-Client/issues/69) Search results count isn't accurate when startindex > 1
 
-### [GluuFederation/gluu-asimba](https://github.com/GluuFederation/gluu-asimba/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.4+)
+### [GluuFederation/gluu-asimba](https://github.com/GluuFederation/gluu-asimba/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)

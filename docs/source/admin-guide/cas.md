@@ -45,7 +45,7 @@ to leverage your existing infrastracture and broadens your authentication option
 From a technical standpoint it's just another 
 [custom authentication script](../authn-guide/customauthn/) which is already 
 pre-packaged in your instance. You can find out more about how to configure 
-it on [corresponding Github page](https://github.com/GluuFederation/oxAuth/tree/version_3.1.4/Server/integrations/cas2).
+it on [corresponding Github page](https://github.com/GluuFederation/oxAuth/tree/version_4.0/Server/integrations/cas2).
 
 ### Outbound CAS
 In Gluu CE 3.x outbound CAS configuration is split into two different parts. First, CAS support must be enabled in web UI.
@@ -76,7 +76,7 @@ Let's start by configuring a very basic CAS setup which only returns user's id t
 
 1. Move into the Gluu CE container: 
 
-    `# service gluu-server-3.1.4 login`
+    `# service gluu-server-4.0 login`
     
 2. Edit `/opt/gluu/jetty/identity/conf/shibboleth3/idp/cas-protocol.xml.vm` template file by 
 putting a `ServiceDefinition` bean inside pre-existing `reloadableServiceRegistry`
@@ -130,7 +130,7 @@ containing at least your user id (which is taken from `uid` attribute by default
 
 Shibboleth IdP requires you to define all atributes it will work with 
 when serving SAML and CAS requests in `/opt/shibboleth-idp/conf/attribute-resolver.xml` file. 
-Though Gluu CE 3.1.4 doesn't offer complete CAS support in admin web UI, 
+Though Gluu CE 4.0 doesn't offer complete CAS support in admin web UI, 
 there is a neat hack which can make this step easier for you. 
 As all attributes added to list of released attributes of any SAML TR in 
 web UI are automatically placed in the `attribute-resolver.xml`, 
@@ -177,7 +177,7 @@ to service registry in the beginning:
 
 1. Move into the Gluu CE container: 
 
-    `# service gluu-server-3.1.4 login`
+    `# service gluu-server-4.0 login`
     
 2. Edit `/opt/gluu/jetty/identity/conf/shibboleth3/idp/attribute-filter.xml.vm` 
 template file by putting an `AttributeFilterPolicy` bean provided below right 

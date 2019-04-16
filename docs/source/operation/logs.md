@@ -196,7 +196,7 @@ users that have been synced into the Gluu Server, number of failures, and total 
         2016-07-16 17:18:17,740 INFO  [gluu.oxtrust.ldap.cache.service.CacheRefreshTimer] (pool-1-thread-9) There are '2,002' entries after removal '0' entries 
         
 4. `oxtrust_audit.log` under `/opt/gluu/jetty/identity/logs`
-New to version 3.1.4, this log provides basic auditing for oxTrust identity. It gathers information about who did what, when, and from where in the following format:
+New to version 4.0, this log provides basic auditing for oxTrust identity. It gathers information about who did what, when, and from where in the following format:
 
 Date - Object changed - Who applied the change - from which IP
 
@@ -310,6 +310,6 @@ it could be performed by modifying the slapd.conf file under the above mentioned
 
 ## Clearing Logs
 
-A new "clear-logs" feature was introduced in CE 3.1.4. This feature can be used to clear all log files with the extension `.log`, including system logs. Clear-logs can be helpful during troubleshooting, as well as research and development. We discourage its use in production systems if the logs are not backed-up. More features are planned. Please consider this as work in progress.
+A new "clear-logs" feature was introduced in CE 4.0. This feature can be used to clear all log files with the extension `.log`, including system logs. Clear-logs can be helpful during troubleshooting, as well as research and development. We discourage its use in production systems if the logs are not backed-up. More features are planned. Please consider this as work in progress.
 
-`# service gluu-server-3.1.4 clear-logs`
+`# service gluu-server-4.0 clear-logs`
