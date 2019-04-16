@@ -39,7 +39,7 @@ The following are the steps required to integrate an external OP for login in an
 
 1. In `type` choose "openidconnect" (if you are using Gluu oxd as a mediator with an OP check [this](#using-oxd-as-mediator) section)
 
-1. Supply a `logo path` for this provider. Check this [section](./passport.md#about-logo-images) of the introductory page to learn more
+1. Optionally supply a `logo path` for this provider. Check this [section](./passport.md#about-logo-images) of the introductory page to learn more
 
 1. Check `Is enabled` (unless there is a reason to leave this provider integration temporarily disabled)
 
@@ -177,7 +177,7 @@ The following are the steps required to offer social login in an OIDC applicatio
 
 1. Fill the name of the applicable mapping. Use the following table as reference:
 
-    |Provider|Strategy|
+    |Provider|Mapping|
     |-|-|
     |Dropbox|dropbox|
     |Facebook|facebook|
@@ -193,7 +193,7 @@ The following are the steps required to offer social login in an OIDC applicatio
     
     It is recommended to create mappings based on existing mapping files. Make a copy of any file listed in the table above (see directory `/opt/gluu/node/passport/server/mappings` in Gluu chroot) and name it appropriately. Enter the name (without file extension) in the form field. The [tutorial](??) contains instructions on how to write attribute mappings. It is an easy task and generally does not demand programming skills.
     
-1. If the provider being added is present in the table above, you can leave the `logo path` field blank. Otherwise check this [section](./passport.md#about-logo-images) of the introductory page.
+1. If the provider being added is present in the table above, enter `../../ext/resources/img/passport/<mapping>.png` (we already bundle images for the social sites supported out-of-the-box). Otherwise check this [section](./passport.md#about-logo-images) of the introductory page.
 
 1. `Authenticate params` is a field that normally can be left empty. It is employed to supply the value for the second parameter of Passport.js method `passport.authenticate`. It is recommended to supply data here only when the provider to be added is not listed in the table above.
 
