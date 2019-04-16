@@ -4,7 +4,7 @@
 
 This tutorial offers a step-by-step guide to enable [Apache Kafka log aggregation](https://kafka.apache.org) in the Gluu Server. 
 
-### Process
+## Process
 
 1. From inside the chroot, unzip the oxAuth and Identity war files.
 
