@@ -12,6 +12,7 @@ This tutorial offers a step-by-step guide to enable [Apache Kafka log aggregatio
     # unzip -p /opt/gluu/jetty/oxauth/webapps/oxauth.war WEB-INF/classes/log4j2.xml > /opt/gluu/jetty/oxauth/resources/log4j2.xml
     # unzip -p /opt/gluu/jetty/identity/webapps/identity.war WEB-INF/classes/log4j2.xml > /opt/gluu/jetty/identity/resources/log4j2.xml
     ```
+    
 1. Download the Kafka Clients jar file and copy it into oxAuth and Identity.
 
     ```
