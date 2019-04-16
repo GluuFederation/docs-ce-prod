@@ -116,4 +116,5 @@ pages:
 - Tutorials:
         - 'Inbound SAML with Passport': 'tutorials/passport-inbound-flow.md'
         - 'Forgot PW': 'tutorials/forgot-pw.md'
+        - 'Kafka Logging: 'tutorials/kafka.md'
 - FAQ & Troubleshooting: 'operation/faq.md'
