@@ -28,6 +28,9 @@ The following are the steps required to integrate an external IDP for inbound SA
 1. Configure attributes mappings
 1. Make use of `passport_saml` authentication
 
+!!! Note:
+    Ensure the machine(s) running Passport have access to the SAML provider you are trying to connect to.
+
 ### Add the IDP in the admin UI
 
 1. In oxTrust navigate to `Configuration` > `Passport` > `Providers`

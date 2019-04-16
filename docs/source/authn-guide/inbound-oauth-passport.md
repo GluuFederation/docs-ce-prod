@@ -27,7 +27,10 @@ The following are the steps required to integrate an external OP for login in an
 1. Supply OIDC parameters
 1. Protect the OIDC application with `passport_social` authentication
 
-**Note**: Integration of OPs is achieved via [`passport-openidconnect`](https://github.com/jaredhanson/passport-openidconnect) strategy which **only** supports the OpenID Connect code flow (not hybrid or implicit). Additionally, comunication with the token endpoint is carried out via POST only. There is no support for secretless clients (just confidential oauth clients).
+**Notes**: 
+
+- Integration of OPs is achieved via [`passport-openidconnect`](https://github.com/jaredhanson/passport-openidconnect) strategy which **only** supports the OpenID Connect code flow (not hybrid or implicit). Additionally, comunication with the token endpoint is carried out via POST only. There is no support for secretless clients (just confidential oauth clients).
+- Ensure the machine(s) running Passport have access to the OP you are trying to connect to
 
 ### Add the OP in the admin UI
 
@@ -143,6 +146,9 @@ The following are the steps required to offer social login in an OIDC applicatio
 1. Obtain client credentials
 1. Supply strategy parameters
 1. Protect the application with `passport_social` authentication
+
+!!! Note:
+    Ensure the machine(s) running Passport have access to the OAuth provider you are trying to connect to.
 
 ### Add the provider in the admin UI
 
