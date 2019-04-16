@@ -8,13 +8,16 @@ The Gluu Server administrator can investigate logs from the oxTrust [View Logs](
 
 ## View Log File
 
-The log files configured in the earlier section can be viewed using the **View log file** feature. This feature can be accessed through the configuration menu using **Configuration --> View Log File**.
+Previously configured log files can be viewed using the **View log file** feature. This feature can be accessed through the configuration menu using **Configuration --> View Log File**.
 
 ![view-log](../img/admin-guide/logs/view-log.png)
 
 The **Display last lines count** field contains the lines that will be displayed in the Web GUI. If the field contains the value **400**, then the Gluu Server will show the last 400 lines of the log in the GUI. The screenshot below shows an according example.
 
 ![tail-log](../img/admin-guide/logs/tail-log.png)
+
+!!! Note  
+    Logs can be set up for [Apache Kafka log aggregation](https://kafka.apache.org) using [this tutorial](../tutorials/kafka.md)
 
 ## Log Levels
 
@@ -291,7 +294,6 @@ By default Log Level of OpenLDAP is set to `stats sync`. If one has to change th
 |2048|  parse | print entry parsing debugging  |
 |16384|  sync|  syncrepl consumer processing  |
 |32768 |  none|  only messages that get logged whatever log level is set  |
-
 
 ## Clearing Logs
 
