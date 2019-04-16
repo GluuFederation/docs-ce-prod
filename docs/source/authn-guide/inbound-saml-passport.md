@@ -100,7 +100,7 @@ Ensure to apply the required configurations at the IDP so the attributes of your
 
 A mapping is a mechanism that defines how the profile data released by the IDP is saved to local Gluu LDAP (see [attribute mapping](./passport.md#attribute-mapping-and-transformation). By default, IDPs use the `saml_ldap_profile` mapping which is inspired on the [X.500/LDAP Attribute Profile](http://www.oasis-open.org/committees/download.php/28042/sstc-saml-attribute-x500-cs-01.pdf).
 
-To learn more about how mappings work check the [tutorial](??). Also review the file `/opt/gluu/node/passport/server/mappings/saml_ldap_profile.js` in Gluu chroot. If the mapping does not suit your needs or requires some sort of adjustment, do not edit the default mapping file but create a new one based on its contents. You may also check the `saml_basic_profile` which is inspired on the SAML Basic Attribute Profile.
+To learn more about how mappings work check the [tutorial](../tutorials/passport-attributes-mapping.md). Also review the file `/opt/gluu/node/passport/server/mappings/saml_ldap_profile.js` in Gluu chroot. If the mapping does not suit your needs or requires some sort of adjustment, do not edit the default mapping file but create a new one based on its contents. You may also check the `saml_basic_profile` which is inspired on the SAML Basic Attribute Profile.
 
 Provide the name (excluding extension) of the mapping file to use in the providers details form (field `mapping`).
 

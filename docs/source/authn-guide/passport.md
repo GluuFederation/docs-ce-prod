@@ -111,7 +111,7 @@ In previous Passport versions (3.1.x), specifying mapping of attributes required
 Passport already bundles several mappings by default. Most of them are targetted at social login and are proven to work for most use cases. `saml_basic_profile` and `saml_ldap_profile` are generic mappings inspired on the SAML basic and SAML X.500 attribute profiles, respectively. `oxd-default` and `opendidconnect-default` are intended for use when the `passport-oxd` and `passport-openidconnect` strategies are employed to integrate OPs.
 
 !!! Warning:
-    Do not edit out-of-the-box mappings, instead, create your own versions based on existing files. See the [tutorial](??)
+    Do not edit out-of-the-box mappings, instead, create your own versions based on existing files. See the [tutorial](../tutorials/passport-attributes-mapping.md).
 
 ## Inbound flow revisited
 
@@ -203,7 +203,7 @@ In this case `<provider-ID>` is the identifier assigned to the provider already 
 
 #### IDP-initiated inbound flow
 
-This feature is specific to SAML providers. Check [here](??) to learn more.
+This feature is specific to SAML providers. Check [here](./inbound-saml-passport.md#idp-initiated-inbound-flow) to learn more.
 
 ## About logo images
 

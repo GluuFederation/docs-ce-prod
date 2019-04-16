@@ -49,7 +49,7 @@ The following are the steps required to integrate an external OP for login in an
 
 **Note:**
 A simple standard [attribute mapping](./passport.md#attribute-mapping-and-transformation) is used for OpenID Connect providers by default. This will populate LDAP attributes `uid`, `mail`, `cn`, `displayName`, `givenName`, and `sn` if the relevant corresponding claims were gathered in the `userInfo` request.
-To learn more about how mappings work check the [tutorial](??). Also review the file `/opt/gluu/node/passport/server/mappings/openidconnect-default.js` in Gluu chroot. If you need to make adjustments, do not edit the default mapping file but create a new one based on its contents.
+To learn more about how mappings work check the [tutorial](../tutorials/passport-attributes-mapping.md). Also review the file `/opt/gluu/node/passport/server/mappings/openidconnect-default.js` in Gluu chroot. If you need to make adjustments, do not edit the default mapping file but create a new one based on its contents.
 
 ### Register a client at the OP
 
@@ -191,7 +191,7 @@ The following are the steps required to offer social login in an OIDC applicatio
 
     If the provider of interest is not listed, it is necessary to create a mapping file. A mapping is a mechanism that defines how the profile data released by the external provider is saved to local Gluu LDAP. 
     
-    It is recommended to create mappings based on existing mapping files. Make a copy of any file listed in the table above (see directory `/opt/gluu/node/passport/server/mappings` in Gluu chroot) and name it appropriately. Enter the name (without file extension) in the form field. The [tutorial](??) contains instructions on how to write attribute mappings. It is an easy task and generally does not demand programming skills.
+    It is recommended to create mappings based on existing mapping files. Make a copy of any file listed in the table above (see directory `/opt/gluu/node/passport/server/mappings` in Gluu chroot) and name it appropriately. Enter the name (without file extension) in the form field. The [tutorial](../tutorials/passport-attributes-mapping.md) contains instructions on how to write attribute mappings. It is an easy task and generally does not demand programming skills.
     
 1. If the provider being added is present in the table above, enter `../../ext/resources/img/passport/<mapping>.png` (we already bundle images for the social sites supported out-of-the-box). Otherwise check this [section](./passport.md#about-logo-images) of the introductory page.
 
