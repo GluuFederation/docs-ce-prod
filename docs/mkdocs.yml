@@ -115,4 +115,8 @@ pages:
         - 'Build oxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'
         - 'Localization': 'developer-guide/localization.md'
         - 'Script Debugging': 'developer-guide/script-debugging.md'
+- Tutorials:
+        - 'Inbound SAML with Passport': 'tutorials/passport-inbound-flow.md'
+        - 'Forgot PW': 'tutorials/forgot-pw.md'
+        - 'Kafka Logging': 'tutorials/kafka.md'
 - FAQ & Troubleshooting: 'operation/faq.md'
