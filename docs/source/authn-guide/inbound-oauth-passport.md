@@ -80,8 +80,13 @@ The same steps described for [Social Login](#protect-the-application-with-passpo
 When using oxd, administrators can follow the steps similar as [above](#integrating-openid-connect-providers) taking into account these considerations:
 
 - For provider `type` select "openidconnect-oxd"
-- Instead of creating a client directly, a call to OXD Server [`register-site` API method](https://gluu.org/docs/oxd/4.0/api/#register-site) must be issued. [Here](https://github.com/GluuFederation/passport-oxd#create-a-client) is an example. From this action, the so-called `oxdID` will be obtained 
-- Supply values for the properties requested. This properties are explained [here](https://github.com/GluuFederation/passport-oxd#configure-strategy) (see options parameter)
+
+- Instead of creating a client directly, a call to OXD Server [`register-site` API method](https://gluu.org/docs/oxd/4.0/api/#register-site) must be issued. [Here](https://github.com/GluuFederation/passport-oxd#create-a-client) is an example. From this action, the so-called `oxdID` will be obtained. Ensure the client created actually got the scopes requested.
+
+- Supply values for the properties required. These properties are explained [here](https://github.com/GluuFederation/passport-oxd#configure-strategy) (see options parameter). 
+
+- If you need to supply values for optional properties account their values must be provided as JSON content. The following are examples of valid JSON values: `true`, `0`, `"a string"`, `["item1", "item2"]`, `{ "key": { "some": "value" }}`.
+
 - `/opt/gluu/node/passport/server/mappings/oxd-default.js` is the default mapping file. Create your own if it does not fit your needs.
 
 #### Using an external Gluu Server as OP
@@ -200,7 +205,7 @@ The following are the steps required to offer social login in an OIDC applicatio
     As an example suppose [VKontakte](http://www.vk.com) is the external provider to integrate. To have access to user's email a proper scope must be specified (check [here](https://github.com/stevebest/passport-vkontakte#extended-permissions) and [here](https://vk.com/dev/permissions)). In this case the field `Authenticate params` can be filled this way: `{ "scope": ["email"] }`. Note the usage of `"` instead of `'` and that object keys have to be wrapped with `"`.
     
     !!! Warning:
-    Only static values will work. No Javascript dynamic expressions should be included. For instance `{ "key": Math.random() }` won't produce the effect desired.
+    Only valid JSON content will work. No Javascript dynamic expressions can be included. For instance `{ "key": Math.random() }` won't produce the effect desired.
     
     In all Passport.js strategies, `passport.authenticate` is usually called at two different places in code. The params configured here are those corresponding to the route `/auth/<PROVIDER-ID>` and not to the callback URL `/auth/<PROVIDER-ID>/callback`.
     
