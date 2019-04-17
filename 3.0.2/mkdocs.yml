@@ -11,7 +11,7 @@ docs_dir: source
 #repo_name: GluuFederation/docs-ce-prod
 repo_url: https://github.com/GluuFederation/docs-ce-prod/tree/3.0.2/3.0.2
 #repo_url: https://github.com/GluuFederation/docs-ce-prod/
-#edit_uri: edit/3.0.2/docs/source
+#edit_uri: edit/3.0.2/3.0.2/source
 
 # Configuration
 theme_dir: theme/material
