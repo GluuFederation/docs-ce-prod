@@ -206,7 +206,7 @@ After migration is done you should be able to log in as the temporary admin user
 
 # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/export2431.py
 
-# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/ldif.py
+# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.6/ldif.py
 
 ```
 
