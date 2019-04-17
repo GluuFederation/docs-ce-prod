@@ -1,8 +1,8 @@
-# Enable Kafka Logging with the Gluu Server
+# Kafka logging for Gluu
 
 ## Overview
 
-This tutorial offers a step-by-step guide to enable [Apache Kafka log aggregation](https://kafka.apache.org) in the Gluu Server. 
+This tutorial offers a step-by-step guide for using [Apache Kafka](https://kafka.apache.org) to aggregate logs for oxAuth and oxTrust. 
 
 ## Process
 
