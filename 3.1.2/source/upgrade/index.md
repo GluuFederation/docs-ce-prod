@@ -158,7 +158,7 @@ Gluu provides the necessary [scripts](https://github.com/GluuFederation/communit
 # service gluu-server-3.0.x login
 # cd
 # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/export3031.py
-# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/ldif.py
+# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.6/ldif.py
 ```
 Install the `python-pip` package.
 
@@ -287,7 +287,7 @@ After migration is done you should be able to log in as the temporary admin user
 # service gluu-server-2.x.x login
 # cd
 # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/export2431.py
-# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/ldif.py
+# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.6/ldif.py
 ```
 Install the `python-pip` package:
 
