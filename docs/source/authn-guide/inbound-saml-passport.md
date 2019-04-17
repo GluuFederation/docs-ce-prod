@@ -172,6 +172,80 @@ Remember to provide the new redirect URI in oxTrust (`Passport` > `IDP-initiated
 !!! Note:
     Your page will receive in the HTTP request the typical parameters of an OIDC authentication response. Do not transfer those parameters to other requests/redirects that your handler logic may perform.
 
+## Using the demo app
+
+!!! Warning 
+    This is a minimalistic web application developed with the sole purpose of showcasing how inbound SAML can be achieved with Passport. It is strongly discouraged to leave it running indefinitely on a production server.
+    
+The ["Inbound SAML Demo"](https://github.com/GluuFederation/Inbound-SAML-Demo) application is a small Node.js app that provides an easy way to test the Inbound SAML scenario. The project requires `node` to be installed on the machine where the app will run. Optionally, and for the sake of simplicity, we recommend re-using the `Node.js` setup of your Gluu Server where Passport is running.
+
+Follow the guidelines below to run the Demo app in your Gluu Server host:
+
+### Web UI configuration steps
+
+1. Log in to oxTrust web UI as an administrator user
+
+1. Navigate to the `OpenID Connect` > `Clients` page, and register a new OIDC client to your Gluu Server with following required properties:
+
+    - *Redirect login uri*: `http://passport-saml-demo-app.example.com:3000/profile/`    
+    - *Grant types*: `authorization_code`   
+    - *Response types*: `code` and `id_token`    
+    - *Scopes*: `openid`, `email`, `user_name` and `profile`   
+    - *Client secret*: an non-empty value
+
+1. Go to `Configuration` > `JSON configuration` > `oxAuth configuration`
+
+    - Scroll down to `authorizationRequestCustomAllowedParameters` and click on the plus icon
+    - Enter `preselectedExternalProvider`
+    - Save the configuration
+
+### Console configuration steps
+
+1. Login to Gluu chroot container.
+
+1. Ensure your VM has internet access, also that incoming connections to TCP port 3000 are allowed to reach applications running on this machine.
+
+1. Switch to "node" user: `# su - node`.
+
+1. Download and extract the [project files](https://github.com/GluuFederation/Inbound-SAML-Demo/archive/master.zip).
+
+1. Edit the file `server.js` in the line that reads `let idps = ...`. Supply the IDs of the SAML IDPs you have added so far, e.g `['Shib_123', 'OktaCore']`
+
+1. Edit the file `client-config.json` file and provide proper values for: `ClientID` (the `inum` of the client created in oxTrust), `clientSecret`, and `hostname` (FQDN of this Gluu Server instance).
+
+1. Initialize the Demo app:      
+
+    - `$ cd ~/Inbound-SAML-Demo/`
+    
+    - `$ npm install`
+    
+1. Run the application: `$ node server.js` You can stop the app by hitting `Ctrl + C` at any moment.
+
+!!! Note 
+    Starting the demo app as described above will render your SSH session unusable while allowing to see useful debug output redirected to stdout. Consider starting another SSH session in a separate console window for other tasks.
+
+### Test it!
+
+1. In the machine where you will run this test, add a host entry so that the name `passport-saml-demo-app.example.com` resolves to the IP address of the machine where the demo app was installed.
+
+1. Open a web browser and hit `http://passport-saml-demo-app.example.com:3000`.
+
+1. Select one of the displayed IDPs to initiate external authentication.
+
+    ![](../img/user-authn/passport/demo_1.png)
+
+1. After logging in at the IDP, you will be redirected back to Gluu Server where you might be prompted to authorize release of your personal data to the Demo app.
+
+   ![](../img/user-authn/passport/demo_2.png)
+   
+1. After consenting to release the requested claims, you'll be sent to the Demo app with an authorization code which is needed for retrieving your personal data.
+
+1. The application will display retrieved claims on the "/profile" page   
+
+    ![](../img/user-authn/passport/demo_3.png)  
+
+See the Demo in action in this [video](https://www.youtube.com/watch?v=ubhDgGU8C8s&feature=youtu.be).
+
 ## Implementing IDP discovery ("WAYF")
 
 IDP Discovery refers to process of determining which IDP users should be sent to for authentication (also known as: "Where Are You From", or WAYF). There are many ways to achieve this, but the following methods are most commonly used in practice.
