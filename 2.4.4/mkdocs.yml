@@ -48,6 +48,8 @@ markdown_extensions:
 #    - '3.1.0': 'https://gluu.org/docs/ce/3.1.0/'
 #    - '3.0.2': 'https://gluu.org/docs/ce/3.0.2/'
 #    - '3.0.1': 'https://gluu.org/docs/ce/3.0.1/'
+#- ' ': 'https:/gluu.org/docs'
+#- ' ': 'https:/gluu.org/docs'
 pages:
 - Home: 'index.md'
 - Gluu Introduction:
