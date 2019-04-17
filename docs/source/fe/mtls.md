@@ -91,7 +91,7 @@ Common Name (e.g. server FQDN or YOUR name) []:accounts.example.com
 Email Address []:example@example.com
 ```
 
-Above command will create two files: example-ca.key and example-ca.crt
+Above command will create two files: **example-ca.key** and **example-ca.crt**
 
 ```
 GLUU.root@localhost:~# ls
@@ -114,7 +114,7 @@ Generating RSA private key, 2048 bit long modulus
 e is 65537 (0x10001)
 ```
 
-Above command create example.key
+Above command creates **example.key**
 
 See the output:
 
@@ -154,7 +154,7 @@ An optional company name []:
 GLUU.root@localhost:~# 
 ```
 
-The command will create example.csr as seen below:
+The command will create **example.csr** as seen below:
 
 ```
 GLUU.root@localhost:~# ls
@@ -163,7 +163,7 @@ GLUU.root@localhost:~#
 ```
 
 
-Next we will sign the Apache server CSR example.csr we just generated as below:
+Next we will sign the Apache server CSR **example.csr** we just generated as below:
 
 `openssl x509 -req -in example.csr -CA example-ca.crt -CAkey example-ca.key -set_serial 100 -days 365 -outform PEM -out example.crt`
 
@@ -178,7 +178,7 @@ GLUU.root@localhost:~#
 ```
  
 
-The command will create: example.crt and for 10 years.
+The command will create: **example.crt** and for 10 years.
 
 ```
 GLUU.root@localhost:~# 
@@ -189,7 +189,7 @@ GLUU.root@localhost:~#
 
 
 
-The following lines should be included in Apache configuration which is responsible for ssl connection. The paths of cert files could be different. Like for CentOS /etc/pki/tls is the path. /etc/ssl/ is for Debian based distros. So, use yours.
+The following lines should be included in Apache configuration which is responsible for ssl connection. The paths of cert files could be different. Like for CentOS **/etc/pki/tls** is the path. **/etc/ssl/** is for Debian based distros. So, use yours.
 
 ```
 SSLEngine On
@@ -231,7 +231,7 @@ e is 65537 (0x010001)
 ganesh@rddwiw0001:~/client$ 
 ```
 
-The command creates example-cli.key as seen below:
+The command creates **example-cli.key** as seen below:
 
 ```
 ganesh@rddwiw0001:~/client$ ls
@@ -266,7 +266,7 @@ A challenge password []:
 An optional company name []:
 ```
 
-This run will create example-cli.csr as seen below:
+This run will create **example-cli.csr** as seen below:
 ```
 ganesh@rddwiw0001:~/client$ ls
 example-cli.csr  example-cli.key
@@ -286,7 +286,7 @@ Getting CA Private Key
 ganesh@rddwiw0001:~/client$ 
 ```
 
-The run creates example-cli.crt as seen below.
+The run creates **example-cli.crt** as seen below.
 ```
 ganesh@rddwiw0001:~/client$ ls
 example-ca.crt  example-cli.crt  example-cli.key  example.csr
