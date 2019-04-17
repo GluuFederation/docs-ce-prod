@@ -54,7 +54,7 @@ Gluu provides the necessary [scripts](https://github.com/GluuFederation/communit
 
 # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/export3031.py
 
-# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/ldif.py
+# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.6/ldif.py
 ```
 
 Install the `python-pip` package.
