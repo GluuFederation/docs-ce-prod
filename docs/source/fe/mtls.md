@@ -309,7 +309,9 @@ example-ca.key  example-cli.csr  example-cli.p12  example.csr
 ganesh@rddwiw0001:~/client$ 
 ```
 
+The **example-cli.p12** can be imported into Firefox in Menu(Three horizontal lined button) ---> Preferences ---> Privacy & Security ---> Certificates ---> View Certificates ---> Your Certificates ---> Imports
 
+In Chrome Menu ---> Advanced ---> Privacy and security ---> Manage Certificates ---> Your Certificates ---> Import will be the path.
 
 
 
