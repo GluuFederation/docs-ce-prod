@@ -308,10 +308,15 @@ example-ca.crt  example-cli.crt  example-cli.key  example.crt  example.key
 example-ca.key  example-cli.csr  example-cli.p12  example.csr
 ganesh@rddwiw0001:~/client$ 
 ```
+### How to import clent certificate
 
 The **example-cli.p12** can be imported into Firefox in Menu(Three horizontal lined button) ---> Preferences ---> Privacy & Security ---> Certificates ---> View Certificates ---> Your Certificates ---> Imports
 
 In Chrome Menu ---> Advanced ---> Privacy and security ---> Manage Certificates ---> Your Certificates ---> Import will be the path.
+
+### How to verify if the client certificate is actually requested by Apache
+
+The line `RequestHeader set X-ClientCert %{SSL_CLIENT_CERT}s` in apache config is responsible for that. Simply if you install php and create a sample file test.php with the content: `phpinfo();`, the variable name **$_SERVER['HTTP_X_CLIENTCERT']**_ under `php variables` heading shows the clent certificate. You can use other methods of your preference as well.
 
 
 
