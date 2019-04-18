@@ -22,7 +22,7 @@ module.exports = profile => {
 
 Here `profile =>` syntax is equivalent to `function (profile)`, namely a function with a single parameter named `profile`. This function returns an object with properties `uid`, `mail`, and `displayName` taking values from `profile` object. This routine dictates which data will be persisted at destination as we'll shortly see.
 
-A configured provider uses exactly one mapping but one mapping can be used by any number of providers. Mappings are stored in directory `/opt/gluu/node/passport/server/mappings` of Gluu chroot. When you specify the mapping for a given provider in oxTrust, you supply the filename (excluding the extension).
+A configured identity provider uses exactly one mapping but one mapping can be used by any number of providers. Mappings are stored in directory `/opt/gluu/node/passport/server/mappings` of Gluu chroot. When you specify the mapping for a given provider in oxTrust, you supply the filename (excluding the extension).
 
 ## Internals of mappings
 
@@ -62,7 +62,7 @@ module.exports = profile => {
 }
 ```
 
-The above simply prints the profile object in JSON notation. Note any number of (valid Javascript) statements can be added before the `return` line.
+The above simply prints the profile object in JSON notation. Note any number of (valid Javascript) statements can be added before the `return` keyword.
 
 Save the file in `/opt/gluu/node/passport/server/mappings`, restart passport and trigger the authentication flow in the browser for the attribute mapping to take place. To see the printed output, please `tail` file `/opt/gluu/node/passport/server/logs/start.log`.
 
@@ -76,7 +76,7 @@ Once debugging is finished, all log statements should be removed or commented.
 
 One benefit of the attribute mapping approach used in Passport is that custom logic can be introduced. The function to code can be simple as those found in out-of-the-box mappings or arbitrarily complex. Administrators can do any sort of transformations to incoming attributes so that they match their needs to detail.
 
-Common use cases include meeting length or format restrictions of destination attributes in LDAP. As an example suppose the attribute `birthdate` is present in the input profile. If this date is expressed as an integer (relative to the "unix epoch"), it is clear a transformation is needed so that it can be stored in `birthdate` LDAP attribute which follows the [generalized time](https://ldapwiki.com/wiki/GeneralizedTime) syntax. Here is how this can be achieved:
+Common use cases include meeting length or format restrictions of destination attributes in LDAP. As an example suppose the attribute `birthdate` is present in the input profile. If this date is represented as an integer (relative to the "unix epoch"), it is clear a transformation is needed so that it can be stored in `birthdate` LDAP attribute which follows the [generalized time](https://ldapwiki.com/wiki/GeneralizedTime) syntax. Here is how this can be achieved:
 
 ```
 module.exports = profile => {
