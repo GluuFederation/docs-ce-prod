@@ -59,6 +59,9 @@ GLUU.root@localhost:~# apachectl -M | grep ssl
  ssl_module (shared)
 GLUU.root@localhost:~# 
 ```
+Usually third party or Certbot SSL certs are used for web server ssl connections. In that case no extra configuration is necessary. But if we want to use self-signed certs, then follow on.
+
+### Self-signed ssl certs
 
 Now, we're covering the case if you want to deploy your own CA Cert.
 
@@ -216,7 +219,7 @@ To check if SSL cert on apache works:
 `Openssl s_client -connect sample.example.com:443`
 
 
-Mutual Authentication Setup
+### Client-Side Mutual Authentication Setup
 
 First thing is to generate private key for client. Run the command below to generate private key:
 
