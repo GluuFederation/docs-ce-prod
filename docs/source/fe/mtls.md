@@ -310,7 +310,7 @@ ganesh@rddwiw0001:~/client$
 ```
 ### How to import client certificate
 
-The **example-cli.p12** can be imported into Firefox in Menu(Three horizontal lined button) ---> Preferences ---> Privacy & Security ---> Certificates ---> View Certificates ---> Your Certificates ---> Imports
+The **example-cli.p12** can be imported into Firefox in Menu(Three horizontal lined button) ---> Preferences ---> Privacy & Security ---> Certificates ---> View Certificates ---> Your Certificates ---> Imports.
 
 In Chrome Menu ---> Advanced ---> Privacy and security ---> Manage Certificates ---> Your Certificates ---> Import will be the path.
 
