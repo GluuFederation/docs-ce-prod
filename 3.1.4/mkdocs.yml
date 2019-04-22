@@ -1,56 +1,51 @@
 # Project information
 site_name: Gluu Docs
 site_description: Documentation for Gluu Server Community Edition
-site_favicon: 'favicon.ico'
 
 # Copyright
 copyright: Copyright &copy; 2019, Gluu, Inc.
 
 # Repository
 docs_dir: source
-#repo_name: GluuFederation/docs-ce-prod
-repo_url: https://github.com/GluuFederation/docs-ce-prod/tree/3.1.4/3.1.4
-#repo_url: https://github.com/GluuFederation/docs-ce-prod/
-#edit_uri: edit/3.1.4/3.1.4/source
+repo_name: GluuFederation/docs-ce-prod
+repo_url: https://github.com/GluuFederation/docs-ce-prod/
+edit_uri: edit/3.1.4/3.1.4/source
 
 # Configuration
-theme_dir: theme/material
-#theme: 
-#    name: material
-#    palette:
-#        primary: 'green'
-#        accent: 'green'
-#    logo: 'gluu.jpg'
-#    favicon: 'favicon.ico'
+theme: 
+    name: material
+    palette:
+        primary: 'green'
+        accent: 'green'
+    logo: 'gluu.jpg'
+    favicon: 'favicon.ico'
 extra:
     version: '3.1.4'
-    logo: 'gluu.png'
     
 # Extensions
 markdown_extensions:
 - admonition
 - toc:
      permalink: '#'
-#- codehilite     
+- codehilite     
 - pymdownx.superfences
 
 # Navigation
-#nav:
-#- 'Versions':
-#    - '3.1.4': 'https://gluu.org/docs/ce/3.1.4/'
-#    - '3.1.6': 'https://gluu.org/docs/ce/3.1.6/'
-#    - '3.1.5': 'https://gluu.org/docs/ce/3.1.5/'
-#    - '3.1.3.1': 'https://gluu.org/docs/ce/3.1.3.1/'
-#    - '3.1.3': 'https://gluu.org/docs/ce/3.1.3/'
-#    - '3.1.2': 'https://gluu.org/docs/ce/3.1.2/'
-#    - '3.1.1': 'https://gluu.org/docs/ce/3.1.1/'
-#    - '3.1.0': 'https://gluu.org/docs/ce/3.1.0/'
-#    - '3.0.2': 'https://gluu.org/docs/ce/3.0.2/'
-#    - '3.0.1': 'https://gluu.org/docs/ce/3.0.1/'
-#    - '2.4.4': 'https://gluu.org/docs/ce/2.4.4/'
-#- ' ': 'https:/gluu.org/docs'
-#- ' ': 'https:/gluu.org/docs'
-pages:
+nav:
+- 'Versions':
+    - '3.1.4': 'https://gluu.org/docs/ce/3.1.4/'
+    - '3.1.6': 'https://gluu.org/docs/ce/3.1.6/'
+    - '3.1.5': 'https://gluu.org/docs/ce/3.1.5/'
+    - '3.1.3.1': 'https://gluu.org/docs/ce/3.1.3.1/'
+    - '3.1.3': 'https://gluu.org/docs/ce/3.1.3/'
+    - '3.1.2': 'https://gluu.org/docs/ce/3.1.2/'
+    - '3.1.1': 'https://gluu.org/docs/ce/3.1.1/'
+    - '3.1.0': 'https://gluu.org/docs/ce/3.1.0/'
+    - '3.0.2': 'https://gluu.org/docs/ce/3.0.2/'
+    - '3.0.1': 'https://gluu.org/docs/ce/3.0.1/'
+    - '2.4.4': 'https://gluu.org/docs/ce/2.4.4/'
+- ' ': 'https://gluu.org/docs'
+- ' ': 'https://gluu.org/docs'
 - Home: 'index.md'
 - Release Notes: 'release-notes/index.md'
 - Whats new in v3: '3.1.x-intro.md'
