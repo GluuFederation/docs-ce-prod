@@ -205,6 +205,7 @@ Follow the guidelines below to run the Demo app in your Gluu Server host:
     - In `Person Authentication` tab, expand the script labelled `passport_saml`   
     - Click `Add new property` and enter `authz_req_param_provider` in the left field      
     - In the right field, enter the name of the custom parameter (e.g. `preselectedExternalProvider`)
+    - Press `Update` at the bottom
 
 ### Console configuration steps
 
