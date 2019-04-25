@@ -10,7 +10,7 @@ This section of the document discusses how to build oxTrust using Eclipse. This 
 
 Gluu CE installation is discussed in the [Installation Guide](../installation-guide/install/#install-gluu-server-package).
 
-Testing and Beta release can be found here: [Beta Release](https://ox.gluu.org/doku.php?id=qa:platforms )
+Testing and Beta release can be found here: [Beta Release](https://repo.gluu.org)
 
 ### Summary
 Here is a quick summary: 
