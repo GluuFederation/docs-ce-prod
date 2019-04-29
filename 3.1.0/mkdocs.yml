@@ -135,3 +135,6 @@ nav:
         #       - 'Fine Tuning Gluu Server' : 'admin-guide/fine-tuning.md'
 - Developer Guide:
         - 'Build oxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'
+- Tutorials:
+        - 'Kafka Logging': 'tutorials/kafka.md'
+        - 'Migrate OpenDJ to OpenLDAP': 'tutorials/migrate-opendj.md'
