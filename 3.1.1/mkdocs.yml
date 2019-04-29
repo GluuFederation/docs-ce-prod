@@ -139,6 +139,9 @@ nav:
         - 'FAQ & Troubleshooting': 'operation/faq.md'
         - 'Change IP Address': 'operation/changeip.md'
         #       - 'Fine Tuning Gluu Server' : 'admin-guide/fine-tuning.md'
+- Tutorials:
+        - 'Kafka Logging': 'tutorials/kafka.md'
+        - 'Migrate OpenDJ to OpenLDAP': 'tutorials/migrate-opendj.md'
 - Developer Guide:
         - 'Build oxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'
         - 'Localization': 'developer-guide/localization.md'
