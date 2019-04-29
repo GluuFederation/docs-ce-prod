@@ -146,4 +146,7 @@ nav:
         - 'Build oxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'
         - 'Localization': 'developer-guide/localization.md'
         - 'Script Debugging': 'developer-guide/script-debugging.md'
+- Tutorials:
+        - 'Kafka Logging': 'tutorials/kafka.md'
+        - 'Migrate OpenDJ to OpenLDAP': 'tutorials/migrate-opendj.md'
 - FAQ & Troubleshooting: 'operation/faq.md'
