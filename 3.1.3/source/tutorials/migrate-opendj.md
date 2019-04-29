@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide describes migrating the Gluu Server database from OpenLDAP to OpenDJ in Ubuntu or Centos 7 using a [migration script](https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/openldap2opendj_migration/openldap2opendj.py). It is intended for existing deployments and is compatible with Gluu Server versions 3.0.0 through 3.1.3(included).
+This guide describes migrating the Gluu Server database from OpenLDAP to OpenDJ in Ubuntu or Centos 7 using a [migration script](https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/openldap2opendj_migration/openldap2opendj.py). It is intended for existing deployments and is compatible with Gluu Server versions 3.0.0 through 3.1.3.1(included).
 
 ## Update setup.properties
 
