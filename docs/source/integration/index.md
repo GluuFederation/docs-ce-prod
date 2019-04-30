@@ -31,7 +31,8 @@ Client software performs some of the heavy lifting for developers around leverag
 
 Gluu supports the following software to secure and integrate server-side web applications:
 
-- [oxd](https://gluu.org/docs/oxd) (commercial software)
+- [oxd](https://gluu.org/docs/oxd)
+
 
 ## Single Page Apps
 Single Page Applications (SPAs) can be seen as a mix between traditional Web SSO and API access: the application itself is loaded from a (possibly protected) regular website and the Javascript code starts calling APIs in another (or the same) domain(s). For this use case, the OpenID Connect spec points to using the “Implicit grant type” for passing token(s) to the SPA since that grant was specifically designed with the “in-browser client” in mind. 
