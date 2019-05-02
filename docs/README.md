@@ -1,4 +1,3 @@
-# docs-3.1.0 Development docs site
-Gluu Server 3.1.0 Docs - Development documentation
+# docs-4.0 Development docs site
+Gluu Server 4.0 Docs
 
-Used only for development and modifications to documentation structure and content
