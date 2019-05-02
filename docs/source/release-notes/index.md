@@ -48,121 +48,408 @@ documentation and administrative guide.
 
 ### [GluuFederation/oxAuth](https://github.com/GluuFederation/oxAuth/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
 
-- [#824](https://github.com/GluuFederation/oxAuth/issues/824) UMA : Introduce separate ticket lifetime configuration
- 
-- [#821](https://github.com/GluuFederation/oxAuth/issues/821) Remove hardcoded code from passport page
- 
-- [#820](https://github.com/GluuFederation/oxAuth/issues/820) Stack trace on 'Failed to load session from LDAP'
- 
-- [#819](https://github.com/GluuFederation/oxAuth/issues/819) UMA 2 : restrict access to resource by associated client (make it configurable)
- 
-- [#817](https://github.com/GluuFederation/oxAuth/issues/817) startSession and endSession to manage application_session
- 
-- [#816](https://github.com/GluuFederation/oxAuth/issues/816) Review the prepareForStep method of passport social script
- 
-- [#812](https://github.com/GluuFederation/oxAuth/issues/812) Restrict requesting claims individually
- 
-- [#807](https://github.com/GluuFederation/oxAuth/issues/807) OTP 2FA / enrollment page + login page
- 
-- [#803](https://github.com/GluuFederation/oxAuth/issues/803) "acr_values" contains "null" in introspection endpoint's response
- 
-- [#802](https://github.com/GluuFederation/oxAuth/issues/802) NPE during end_session if client is expired and does not exist in LDAP anymore
- 
-- [#801](https://github.com/GluuFederation/oxAuth/issues/801) Getting NullPointerException whlie authorizing user
- 
-- [#799](https://github.com/GluuFederation/oxAuth/issues/799) If custom script getPageForStep throws error Authenticator should redirect to error page
- 
-- [#798](https://github.com/GluuFederation/oxAuth/issues/798) Relax log level when claims gathering script name is blank
- 
-- [#797](https://github.com/GluuFederation/oxAuth/issues/797) Implemented migration password script from BCRYPT to SSHA
- 
-- [#796](https://github.com/GluuFederation/oxAuth/issues/796) User should be redirect to error page instead of login when an exception occurs during external authentication
- 
-- [#791](https://github.com/GluuFederation/oxAuth/issues/791) Dynamic Registration: Minor request - add new info logger
+- [#1058](https://github.com/GluuFederation/oxAuth/issues/1058) URL-Encoding problem when retrieving value of custom param of authz request
 
-- [#764](https://github.com/GluuFederation/oxAuth/issues/764) Create oxAuth JSON property to disable fido u2f endpoints
- 
-- [#753](https://github.com/GluuFederation/oxAuth/issues/753) Create Authorization Script to check BCrypt Hash
- 
-- [#638](https://github.com/GluuFederation/oxAuth/issues/638) Allow configuration of JWT for access token on a per client basis
- 
-- [#230](https://github.com/GluuFederation/oxAuth/issues/230) Resource Owner Password Credential Grant Interception Script
+- [#1057](https://github.com/GluuFederation/oxAuth/issues/1057) Reported by GG: No permissions associated with ticket
+
+- [#1055](https://github.com/GluuFederation/oxAuth/issues/1055) Allow to update key generator interval without server restart
+
+- [#1052](https://github.com/GluuFederation/oxAuth/issues/1052) Resource Owner Password Credential Grant Interception Script Buggly Logic
+
+- [#1047](https://github.com/GluuFederation/oxAuth/issues/1047) KeyGenerator should allow to specify expiration in hours instead of days
+
+- [#1044](https://github.com/GluuFederation/oxAuth/issues/1044) Remove usages of Filter.create to create string-based filters
+
+- [#1042](https://github.com/GluuFederation/oxAuth/issues/1042) Client authorization live in LDAP forever. Need to move it under client entity to clean it up
+
+- [#1035](https://github.com/GluuFederation/oxAuth/issues/1035) Remove ou=session and from LDAP and static oxAuth configuration
+
+- [#1034](https://github.com/GluuFederation/oxAuth/issues/1034) Fix NPE in RO Grant when client hasn't redirect_uri
+
+- [#1033](https://github.com/GluuFederation/oxAuth/issues/1033) Change oxauth persistence model: Drop 'oxAuthGrant' objects from persistence and reduce load on ~30%
+
+- [#1031](https://github.com/GluuFederation/oxAuth/issues/1031) Server does not track clients that take part in SSO if ACR is changed (flow 4, 4.0)
+
+- [#1021](https://github.com/GluuFederation/oxAuth/issues/1021) Move attributes mapping logic out of passport scripts
+
+- [#1020](https://github.com/GluuFederation/oxAuth/issues/1020) Adjust passport scripts to conform to new configuration structure
+
+- [#1007](https://github.com/GluuFederation/oxAuth/issues/1007) CIBA: Update Discovery Metadata
+
+- [#995](https://github.com/GluuFederation/oxAuth/issues/995) invalid_grant_and_session, wrong description?
+
+- [#983](https://github.com/GluuFederation/oxAuth/issues/983) Prepare successful 4.0 oxauth build before go on with new features
+
+- [#982](https://github.com/GluuFederation/oxAuth/issues/982) OB: OAuth 2.0 Mutual TLS Client Authentication and Certificate Bound Access Tokens
+
+- [#957](https://github.com/GluuFederation/oxAuth/issues/957) Remove completely authorization by 'access_token' from Authorization Endpoint
+
+- [#950](https://github.com/GluuFederation/oxAuth/issues/950) Align claims in id_token and Userinfo
+
+- [#946](https://github.com/GluuFederation/oxAuth/issues/946) Support OAuth MTLS Client Authentication and Certificate Bound Access Tokens
+
+- [#894](https://github.com/GluuFederation/oxAuth/issues/894) 'loginPage' value
+
+- [#884](https://github.com/GluuFederation/oxAuth/issues/884) Don't return refresh token if client doesn't have refresh_token grant
+
+- [#847](https://github.com/GluuFederation/oxAuth/issues/847) Bouncycastle throw ClassCastException after upgrade to 1.59
+
+- [#841](https://github.com/GluuFederation/oxAuth/issues/841) Bug: extra error string
+
+- [#813](https://github.com/GluuFederation/oxAuth/issues/813) CleanupTimer has to run in own connection pool to not effect oxauth performance
+
+- [#784](https://github.com/GluuFederation/oxAuth/issues/784) Add support for Token Revocation
+
+- [#767](https://github.com/GluuFederation/oxAuth/issues/767) Could you add these authorization code request and response sections in a future version of oxauth-rp
+
+- [#748](https://github.com/GluuFederation/oxAuth/issues/748) UMA RPT Policy evaluator: if no policies it grants access. We have to make it configurable (e.g. deny instead of grant)
+
+- [#734](https://github.com/GluuFederation/oxAuth/issues/734) 'uniqueIdentifier' removal in replicated server / clustered Gluu Server
+
+- [#678](https://github.com/GluuFederation/oxAuth/issues/678) Couchbase Support
+
+- [#602](https://github.com/GluuFederation/oxAuth/issues/602) Update client resets grant-types if it has no value
+
+- [#548](https://github.com/GluuFederation/oxAuth/issues/548) Add s_hash to id_Token
+
+- [#480](https://github.com/GluuFederation/oxAuth/issues/480) acr_values router script
+
+- [#413](https://github.com/GluuFederation/oxAuth/issues/413) Increase size of oxAuth-rp text areas
+
+- [#313](https://github.com/GluuFederation/oxAuth/issues/313) Support Proof of Possession Tokens
+
+- [#308](https://github.com/GluuFederation/oxAuth/issues/308) Support JWT Token Revocation
+
+- [#267](https://github.com/GluuFederation/oxAuth/issues/267) IDP Initiated Authentication Script
+
+- [#207](https://github.com/GluuFederation/oxAuth/issues/207) User Review of Persistent Client Scope Authorizations
 
 ### [GluuFederation/oxTrust](https://github.com/GluuFederation/oxTrust/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
 
-- [#1014](https://github.com/GluuFederation/oxTrust/issues/1014) Ability to Disable Gathering Of Metrics
- 
-- [#1012](https://github.com/GluuFederation/oxTrust/issues/1012) The notification bubble that appears after updating the manage authentication seems a little off
- 
-- [#1011](https://github.com/GluuFederation/oxTrust/issues/1011) Better Button Locations in OpenID Connect Client Configuration
- 
-- [#1009](https://github.com/GluuFederation/oxTrust/issues/1009) The person import feature thrown error when the excel file upload has been created via a recent Excel version
- 
-- [#1007](https://github.com/GluuFederation/oxTrust/issues/1007) All file upload features in Gluu 3.1.3 don't works
- 
-- [#1002](https://github.com/GluuFederation/oxTrust/issues/1002) Adding organization logo throw an exception
- 
-- [#996](https://github.com/GluuFederation/oxTrust/issues/996) Log login initator exception with TRACE level only
- 
-- [#953](https://github.com/GluuFederation/oxTrust/issues/953) Auto-generate client secret
- 
-- [#952](https://github.com/GluuFederation/oxTrust/issues/952) log statements of level lower than INFO not shown after start
- 
-- [#703](https://github.com/GluuFederation/oxTrust/issues/703) Update OpenID Client page to support JWT access tokens
- 
-- [#557](https://github.com/GluuFederation/oxTrust/issues/557) Improve Passport.js user experience
+- [#1616](https://github.com/GluuFederation/oxTrust/issues/1616) Adapt oxTrust to oxAuth scope changes
+
+- [#1612](https://github.com/GluuFederation/oxTrust/issues/1612) Calendar popup for Date type attributes
+
+- [#1611](https://github.com/GluuFederation/oxTrust/issues/1611) Couchbase: can't access OpenId Scopes and Clients page
+
+- [#1610](https://github.com/GluuFederation/oxTrust/issues/1610) Couchbase & LDAP: Can't access passport pages
+
+- [#1608](https://github.com/GluuFederation/oxTrust/issues/1608) Attribute disappears from the list if administrator is forbidden to edit it
+
+- [#1605](https://github.com/GluuFederation/oxTrust/issues/1605) oxTrust RS code (passport, scim, oxtrust-api) must set scopes for protection
+
+- [#1603](https://github.com/GluuFederation/oxTrust/issues/1603) Some UI Fixes
+
+- [#1600](https://github.com/GluuFederation/oxTrust/issues/1600) Error showing certificates list
+
+- [#1599](https://github.com/GluuFederation/oxTrust/issues/1599) OIDC revamp
+
+- [#1598](https://github.com/GluuFederation/oxTrust/issues/1598) gluu4 build -24, redundant/typo on client -> encryption/signing tab
+
+- [#1597](https://github.com/GluuFederation/oxTrust/issues/1597) viewing new client opens to last tab viewed of previous client
+
+- [#1596](https://github.com/GluuFederation/oxTrust/issues/1596) OIDC client view screen squished with long redirect URIs
+
+- [#1594](https://github.com/GluuFederation/oxTrust/issues/1594) 4.0 QA: Error in User Registration
+
+- [#1582](https://github.com/GluuFederation/oxTrust/issues/1582) Email Validation Wrong Message Displayed
+
+- [#1579](https://github.com/GluuFederation/oxTrust/issues/1579) Password/Confirm Password Validation shown for all mandatory fields
+
+- [#1576](https://github.com/GluuFederation/oxTrust/issues/1576) Add new clean configuration properties in oxTrust
+
+- [#1574](https://github.com/GluuFederation/oxTrust/issues/1574) Remove deprecated linktrack code and pages
+
+- [#1573](https://github.com/GluuFederation/oxTrust/issues/1573) Oops error when showing an UMA resource with associated client deleted
+
+- [#1572](https://github.com/GluuFederation/oxTrust/issues/1572) When displaying a sector identifier check if the clients assign to it are still present in LDAP
+
+- [#1562](https://github.com/GluuFederation/oxTrust/issues/1562) Move some log line from INFO level to DEBUG level
+
+- [#1560](https://github.com/GluuFederation/oxTrust/issues/1560) Old configuration properties clean up
+
+- [#1558](https://github.com/GluuFederation/oxTrust/issues/1558) Merge some 3.1.6 commit manually into master
+
+- [#1552](https://github.com/GluuFederation/oxTrust/issues/1552) Remove Asimba GUI and API 
+
+- [#1538](https://github.com/GluuFederation/oxTrust/issues/1538) Move existing api code into master
+
+- [#1536](https://github.com/GluuFederation/oxTrust/issues/1536) Create a module for oxtrust_api
+
+- [#1534](https://github.com/GluuFederation/oxTrust/issues/1534) Add form for IDP-initiating flow configuration
+
+- [#1533](https://github.com/GluuFederation/oxTrust/issues/1533) Revamp form for providers management configuration
+
+- [#1532](https://github.com/GluuFederation/oxTrust/issues/1532) Add form for passport configuration management
+
+- [#1531](https://github.com/GluuFederation/oxTrust/issues/1531) Create passport forms as needed
+
+- [#1530](https://github.com/GluuFederation/oxTrust/issues/1530) Refactor passport configuration endpoint
+
+- [#1512](https://github.com/GluuFederation/oxTrust/issues/1512) Client: add ability to specify client attributes as JSON
+
+- [#1510](https://github.com/GluuFederation/oxTrust/issues/1510) Fix compilation error on Jenkins build
+
+- [#1490](https://github.com/GluuFederation/oxTrust/issues/1490) Improvements in sector identifier and redirect uri assignment in oxTrust UI
+
+- [#1483](https://github.com/GluuFederation/oxTrust/issues/1483) Fix security issue
+
+- [#1481](https://github.com/GluuFederation/oxTrust/issues/1481) Move to Java 1.8
+
+- [#1471](https://github.com/GluuFederation/oxTrust/issues/1471) OIDC clients get deleted by cleanUp services
+
+- [#1470](https://github.com/GluuFederation/oxTrust/issues/1470) Fix Password Reset
+
+- [#1469](https://github.com/GluuFederation/oxTrust/issues/1469) Fix certificates issue
+
+- [#1468](https://github.com/GluuFederation/oxTrust/issues/1468) Error while adding TR
+
+- [#1467](https://github.com/GluuFederation/oxTrust/issues/1467) Error while adding OIDC scope
+
+- [#1466](https://github.com/GluuFederation/oxTrust/issues/1466) Regular expression never evaluate on attribute named userPassword
+
+- [#1461](https://github.com/GluuFederation/oxTrust/issues/1461) Couchbase with multiple buckets
+
+- [#1332](https://github.com/GluuFederation/oxTrust/issues/1332) Should localhost be allowed in redirect uri for clients?
+
+- [#1291](https://github.com/GluuFederation/oxTrust/issues/1291) Show All Attributes shows error page
+
+- [#1290](https://github.com/GluuFederation/oxTrust/issues/1290) Impossible to add new TR
+
+- [#1289](https://github.com/GluuFederation/oxTrust/issues/1289) Impossible to add new User
+
+- [#1106](https://github.com/GluuFederation/oxTrust/issues/1106) OpenID client auto-generated password is not cryptographically strong
+
+- [#1088](https://github.com/GluuFederation/oxTrust/issues/1088) SMTP Server configuration are not saved
+
+- [#998](https://github.com/GluuFederation/oxTrust/issues/998) SCIM2 filter code should build filter graph to allow to convert it in any filter type
+
+- [#992](https://github.com/GluuFederation/oxTrust/issues/992) Use automate tests to test API instead of manual testing
+
+- [#935](https://github.com/GluuFederation/oxTrust/issues/935) Server Log API
+
+- [#934](https://github.com/GluuFederation/oxTrust/issues/934) Server Status API
+
+- [#933](https://github.com/GluuFederation/oxTrust/issues/933) oxAuth configuration API
+
+- [#932](https://github.com/GluuFederation/oxTrust/issues/932) oxTrust configuration API
+
+- [#931](https://github.com/GluuFederation/oxTrust/issues/931) Registration API
+
+- [#930](https://github.com/GluuFederation/oxTrust/issues/930) Custom scripts API
+
+- [#929](https://github.com/GluuFederation/oxTrust/issues/929) Certificates API
+
+- [#928](https://github.com/GluuFederation/oxTrust/issues/928) Attributes API
+
+- [#927](https://github.com/GluuFederation/oxTrust/issues/927) Authentication Method API
+
+- [#926](https://github.com/GluuFederation/oxTrust/issues/926) Organization profile API
+
+- [#925](https://github.com/GluuFederation/oxTrust/issues/925) Personal profile API
+
+- [#924](https://github.com/GluuFederation/oxTrust/issues/924) Users API - People
+
+- [#923](https://github.com/GluuFederation/oxTrust/issues/923) Users API - Groups
+
+- [#922](https://github.com/GluuFederation/oxTrust/issues/922) CAS API
+
+- [#921](https://github.com/GluuFederation/oxTrust/issues/921) UMA API
+
+- [#920](https://github.com/GluuFederation/oxTrust/issues/920) OpenID Connect API
+
+- [#919](https://github.com/GluuFederation/oxTrust/issues/919) SAML - Asimba API
+
+- [#918](https://github.com/GluuFederation/oxTrust/issues/918) SAML - TrustRelationship API
+
+- [#820](https://github.com/GluuFederation/oxTrust/issues/820) Verify user's memberOf is synced when group members are changed via SCIM
+
+- [#815](https://github.com/GluuFederation/oxTrust/issues/815) Show Modality according to requirement
+
+- [#812](https://github.com/GluuFederation/oxTrust/issues/812) Rename @protected SCIM annotation to @ScimProtectedApi
+
+- [#803](https://github.com/GluuFederation/oxTrust/issues/803) Protect oxTrust APIs by UMA
+
+- [#786](https://github.com/GluuFederation/oxTrust/issues/786) Cover oxTrust API by tests
+
+- [#785](https://github.com/GluuFederation/oxTrust/issues/785) Cover all oxTrust GUI by oxTrust API
+
+- [#784](https://github.com/GluuFederation/oxTrust/issues/784) Prepare working prototype which demonstrates oxTrust API
+
+- [#783](https://github.com/GluuFederation/oxTrust/issues/783) Prepare client/server code to protect oxTrust API endpoints using UMA
+
+- [#762](https://github.com/GluuFederation/oxTrust/issues/762) Expose APIs for everything
+
+- [#758](https://github.com/GluuFederation/oxTrust/issues/758) Couchbase Support
+
+- [#697](https://github.com/GluuFederation/oxTrust/issues/697) Gluu Server memory usage (3.1.0)
+
+- [#551](https://github.com/GluuFederation/oxTrust/issues/551) Remove ou=appliances
 
 ### [GluuFederation/oxShibboleth](https://github.com/GluuFederation/oxShibboleth/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
 
-- [#44](https://github.com/GluuFederation/oxShibboleth/issues/44) Update Idp to V3.3.3
+- [#35](https://github.com/GluuFederation/oxShibboleth/issues/35) Create authentication flow to replace RemoteUser flow 
 
-- [#43](https://github.com/GluuFederation/oxShibboleth/issues/43) eduPerson schema update
+- [#30](https://github.com/GluuFederation/oxShibboleth/issues/30) SAML metadata is not processing properly 
+
+- [#25](https://github.com/GluuFederation/oxShibboleth/issues/25) Don't show stacktrace 
+
+- [#24](https://github.com/GluuFederation/oxShibboleth/issues/24) SLO binding links are breaking IDP metadata
+
+- [#16](https://github.com/GluuFederation/oxShibboleth/issues/16) /opt/shibboleth-idp/metadata/idp-metadata.xml (No such file or directory) 
+
+- [#5](https://github.com/GluuFederation/oxShibboleth/issues/5) Override Logout Functionality 
 
 ### [GluuFederation/gluu-passport](https://github.com/GluuFederation/gluu-passport/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
 
+- [#60](https://github.com/GluuFederation/gluu-passport/issues/60) Add a cache provider when inResponseTo validation is used in a clustered environment
 
-- [#37](https://github.com/GluuFederation/gluu-passport/issues/37) Bundle passport with openid connect support
+- [#46](https://github.com/GluuFederation/gluu-passport/issues/46) More verbose and explicit error message than "Go back and register!" on failures
 
-- [#35](https://github.com/GluuFederation/gluu-passport/issues/35) `Error in parsing JSON in getJSON` in passport log at startup
+- [#19](https://github.com/GluuFederation/gluu-passport/issues/19) Passport should support dynamic mapping
 
-- [#33](https://github.com/GluuFederation/gluu-passport/issues/33) Overall logging enhancements
-
-- [#32](https://github.com/GluuFederation/gluu-passport/issues/32) Make logging level a parameter in config file
-
-- [#31](https://github.com/GluuFederation/gluu-passport/issues/31) NPE upon start when no strategies are defined
-
-- [#18](https://github.com/GluuFederation/gluu-passport/issues/18) Passport should POST user data to /oxauth/postlogin
-
-- [#14](https://github.com/GluuFederation/gluu-passport/issues/14) Updating certain inbound attributes showing errors in log
-
-- [#12](https://github.com/GluuFederation/gluu-passport/issues/12) Re-attempt to get oxAuth metadata and token
-
-- [#11](https://github.com/GluuFederation/gluu-passport/issues/11) Passport should return non zero exit code on startup errors
-
-- [#10](https://github.com/GluuFederation/gluu-passport/issues/10) Readability of passport log
+- [#4](https://github.com/GluuFederation/gluu-passport/issues/4) Rename repo to oxPassport
 
 ### [GluuFederation/community-edition-setup](https://github.com/GluuFederation/community-edition-setup/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
 
-- [#440](https://github.com/GluuFederation/community-edition-setup/issues/440) 2.4.x to 3.1.3 upgrade ( OpenDJ --> OpenDJ ): don't export `100-user.ldif` schema
+- [#529](https://github.com/GluuFederation/community-edition-setup/issues/529) Fix Couchbase indexes creation
 
-- [#439](https://github.com/GluuFederation/community-edition-setup/issues/439) OpenLDAP enabled Gluu to OpenDJ-Gluu upgrade: ldap search filter not updating
+- [#528](https://github.com/GluuFederation/community-edition-setup/issues/528) UMA org units must be created during installation
 
-- [#437](https://github.com/GluuFederation/community-edition-setup/issues/437) Remove '99-user.ldif' schema related calling
+- [#527](https://github.com/GluuFederation/community-edition-setup/issues/527) Generate initial JWKS with expiration time 'keyRegenerationInterval' + 'idTokenLifetime'
 
-- [#436](https://github.com/GluuFederation/community-edition-setup/issues/436) 3.0.x to 3.1.x upgrade: metadata-provider template broken
- 
-- [#427](https://github.com/GluuFederation/community-edition-setup/issues/427) Asimba should be available in 4.0 as deprecated commmonent only
+- [#526](https://github.com/GluuFederation/community-edition-setup/issues/526) Ubuntu 16 uninstall - apt purge removing opt directory
 
-- [#425](https://github.com/GluuFederation/community-edition-setup/issues/425) Setup should prepare CE to work with dynamic IP correctly
+- [#525](https://github.com/GluuFederation/community-edition-setup/issues/525) Replace python 2.7 with python 3.x
 
-- [#420](https://github.com/GluuFederation/community-edition-setup/issues/420) Update node passport init.d script
+- [#522](https://github.com/GluuFederation/community-edition-setup/issues/522) Remove orgInum, applianceInum, and Inum from RDN
 
-- [#100](https://github.com/GluuFederation/community-edition-setup/issues/100) Ensure 'hostname' is not 'localhost' by default
+- [#520](https://github.com/GluuFederation/community-edition-setup/issues/520) Disable OpenDJ JMX connection handler
+
+- [#519](https://github.com/GluuFederation/community-edition-setup/issues/519) Remove Asimba and OpenLDAP support
+
+- [#518](https://github.com/GluuFederation/community-edition-setup/issues/518) LDAP schema is broken
+
+- [#512](https://github.com/GluuFederation/community-edition-setup/issues/512) Create the passport configuration upon installation only?
+
+- [#511](https://github.com/GluuFederation/community-edition-setup/issues/511) Move passport configuration to LDAP
+
+- [#509](https://github.com/GluuFederation/community-edition-setup/issues/509) Ask user to select jdk 8 or 11 in experimental mode
+
+- [#508](https://github.com/GluuFederation/community-edition-setup/issues/508) Implement systemctl scripts for CentOS 7
+
+- [#507](https://github.com/GluuFederation/community-edition-setup/issues/507) Migrate gluu-server startup scripts to systemctl
+
+- [#501](https://github.com/GluuFederation/community-edition-setup/issues/501) Modification in 101-ox.ldif schema for birthdate
+
+- [#489](https://github.com/GluuFederation/community-edition-setup/issues/489) Create static inums
+
+- [#483](https://github.com/GluuFederation/community-edition-setup/issues/483) Typo when restarting the Gluu Server
+
+- [#462](https://github.com/GluuFederation/community-edition-setup/issues/462) Support Ubuntu 18.04.1 and deprecate 14.04 support
+
+- [#457](https://github.com/GluuFederation/community-edition-setup/issues/457) Gluu is vulnerable to BEAST
+
+- [#453](https://github.com/GluuFederation/community-edition-setup/issues/453) Remove Asimba from Options Dialogue
+
+- [#452](https://github.com/GluuFederation/community-edition-setup/issues/452) Couchbase should not listen by default on all server IPs
+
+- [#451](https://github.com/GluuFederation/community-edition-setup/issues/451) Don't prompt to install IDP if admin selected Couchbase as persistence DB
+
+- [#450](https://github.com/GluuFederation/community-edition-setup/issues/450) Create additional Couchbase backends during install
+
+- [#449](https://github.com/GluuFederation/community-edition-setup/issues/449) Command to import LDIF into Couchbase
+
+- [#448](https://github.com/GluuFederation/community-edition-setup/issues/448) Improve Couchbase up-checking method
+
+- [#445](https://github.com/GluuFederation/community-edition-setup/issues/445) IDP Script runs before OpenDJ causing issues
+
+- [#438](https://github.com/GluuFederation/community-edition-setup/issues/438) OpenLDAP replication in Gluu 3.1.3 is taking too much time to sync changes
+
+- [#431](https://github.com/GluuFederation/community-edition-setup/issues/431) Authentication scripts' levels need to be updated
+
+- [#423](https://github.com/GluuFederation/community-edition-setup/issues/423) 3.0.2 -> 3.1.2 upgrade / custom branding for login not working
+
+- [#412](https://github.com/GluuFederation/community-edition-setup/issues/412) Automate package updates
+
+- [#361](https://github.com/GluuFederation/community-edition-setup/issues/361) Upgrade: LDAP data import too slow
+
+- [#360](https://github.com/GluuFederation/community-edition-setup/issues/360) In setup script: allow selection of LDAP or Couchbase as the database
+
+- [#358](https://github.com/GluuFederation/community-edition-setup/issues/358) Getting 404 for '.well-known/simple-web-discovery' endpoint
+
+- [#275](https://github.com/GluuFederation/community-edition-setup/issues/275) Configure firewall on host to open https port after installing CE
+
+- [#170](https://github.com/GluuFederation/community-edition-setup/issues/170) Dockerizing Gluu Server
 
 ### [GluuFederation/SCIM-Client](https://github.com/GluuFederation/SCIM-Client/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
 
-- [#70](https://github.com/GluuFederation/SCIM-Client/issues/70) Add test cases for special chars handling
+- [#62](https://github.com/GluuFederation/SCIM-Client/issues/62) Add support for boolean custom attributes
 
-- [#69](https://github.com/GluuFederation/SCIM-Client/issues/69) Search results count isn't accurate when startindex > 1
+- [#60](https://github.com/GluuFederation/SCIM-Client/issues/60) Service metadata endpoints must reject the presence of filter query param
+
+- [#59](https://github.com/GluuFederation/SCIM-Client/issues/59) Wrong modeling of SearchRequest and its schema
+
+- [#57](https://github.com/GluuFederation/SCIM-Client/issues/57) Bugs in filter functionality
+
+- [#56](https://github.com/GluuFederation/SCIM-Client/issues/56) Refactor Bulk Operation service code
+
+- [#54](https://github.com/GluuFederation/SCIM-Client/issues/54) Move SCIM-related oxtrust.properties inside the "ScimProperties" object
+
+- [#53](https://github.com/GluuFederation/SCIM-Client/issues/53) Cases 10.2/10.3, delete a user with if-match etag
+
+- [#52](https://github.com/GluuFederation/SCIM-Client/issues/52) Cases 7.2/7.3, retrieve a user with if-none-match etag
+
+- [#51](https://github.com/GluuFederation/SCIM-Client/issues/51) Cases 5.13/5.14, update a user with if-match etag
+
+- [#49](https://github.com/GluuFederation/SCIM-Client/issues/49) Case 6.3, add a value to a multi-valued attribute with PATCH
+
+- [#48](https://github.com/GluuFederation/SCIM-Client/issues/48) Case 6.2, Update a multi-valued attribute with PATCH
+
+- [#47](https://github.com/GluuFederation/SCIM-Client/issues/47) Case 6.1, Update a simple attribute with PATCH
+
+- [#45](https://github.com/GluuFederation/SCIM-Client/issues/45) Cases 11.1/11.2, searching with POST /.search
+
+- [#44](https://github.com/GluuFederation/SCIM-Client/issues/44) Cases 4.4/5.4/5.5/5.6, handling of immutable attribute
+
+- [#43](https://github.com/GluuFederation/SCIM-Client/issues/43) Groups endpoint allows writing non-existing members
+
+- [#42](https://github.com/GluuFederation/SCIM-Client/issues/42) Group assignment for users should be done at /Group not through /Users endpoint
+
+- [#41](https://github.com/GluuFederation/SCIM-Client/issues/41) Adjust /Schemas endpoint impl to pick attributes characteristics automatically
+
+- [#40](https://github.com/GluuFederation/SCIM-Client/issues/40) casa 8.11/8.12, retrieve a list of users with attributes query param (POST)
+
+- [#39](https://github.com/GluuFederation/SCIM-Client/issues/39) Replace deprecated ProxyFactory usage in client code
+
+- [#38](https://github.com/GluuFederation/SCIM-Client/issues/38) Cases 7.4/7.5 retrieve a user with attributes query param
+
+- [#37](https://github.com/GluuFederation/SCIM-Client/issues/37) Cases 8.3/8.4, Retrieve a list of users with attributes query param
+
+- [#36](https://github.com/GluuFederation/SCIM-Client/issues/36) Cases 5.8/5.9, update a user with attributes query param
+
+- [#35](https://github.com/GluuFederation/SCIM-Client/issues/35) Cases 4.5/4.6, create a user with attributes query param
+
+- [#34](https://github.com/GluuFederation/SCIM-Client/issues/34) Remove hard-coded list of ISO3166 countries
+
+- [#33](https://github.com/GluuFederation/SCIM-Client/issues/33) Enhance ResourceTypes endpoint
+
+- [#32](https://github.com/GluuFederation/SCIM-Client/issues/32) Add a logging framework
+
+- [#31](https://github.com/GluuFederation/SCIM-Client/issues/31) Remove redundant code in authorization check for SCIM service
+
+- [#30](https://github.com/GluuFederation/SCIM-Client/issues/30) Service does not handle properly the attributes/excludedAttributes parameters
+
+- [#29](https://github.com/GluuFederation/SCIM-Client/issues/29) Add support for PATCH verb to service
+
+- [#28](https://github.com/GluuFederation/SCIM-Client/issues/28) In user retrieval JSON response has the type attribute malformed for certain multi-valued attributes
+
+- [#27](https://github.com/GluuFederation/SCIM-Client/issues/27) Creating and retrieval operations return unexpected attributes
+
+- [#26](https://github.com/GluuFederation/SCIM-Client/issues/26) Validate locale attribute
+
+- [#25](https://github.com/GluuFederation/SCIM-Client/issues/25) Validate timezone attribute
 
 ### [GluuFederation/gluu-asimba](https://github.com/GluuFederation/gluu-asimba/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
+
+No changes
