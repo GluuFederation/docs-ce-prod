@@ -24,6 +24,7 @@ Client introspects OAuth 2 token.
 ###### Parameters
 
 - token - REQUIRED.  The string value of the token.  For access tokens, this is the "access_token" value returned from the token endpoint.
+- response_as_jwt - OPTIONAL. Boolean value with default value false. If true, returns introspection response as JWT (signed based on client configuration used for authentication to Introspection Endpoint).
 
 ###### Response
 
@@ -37,6 +38,7 @@ Content-Type: application/x-www-form-urlencoded
 Authorization: Bearer 23410913-abewfq.123483
 
 token=2YotnFZFEjr1zCsicMWpAA
+response_as_jwt=false
 
 HTTP/1.1 200 OK
 Content-Type: application/json
