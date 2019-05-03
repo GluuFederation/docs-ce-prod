@@ -83,7 +83,7 @@ In Gluu chroot, Passport logs can be found in directory `/opt/gluu/node/passport
 
 ![Logging](../img/user-authn/passport/logging.png) 
 
-!!! Note:
+!!! Note
     The console log only option sends all messages to `stdout` and prevents messages be written to log files or message queue 
 
 In addition to Passport logs, the log statements of the custom script are key (they contain statements about every step of the [flow](#sample-authentication-flow)). You can find them in file `/opt/gluu/jetty/oxauth/logs/oxauth_script.log`.
@@ -113,13 +113,12 @@ In previous Passport versions (3.1.x), specifying mapping of attributes required
 
 Passport already bundles several mappings by default. Most of them are targetted at social login and are proven to work for most use cases. `saml_basic_profile` and `saml_ldap_profile` are generic mappings inspired on the SAML basic and SAML X.500 attribute profiles, respectively. `oxd-default` and `opendidconnect-default` are intended for use when the `passport-oxd` and `passport-openidconnect` strategies are employed to integrate OPs.
 
-!!! Warning:
+!!! Warning
     Do not edit out-of-the-box mappings, instead, create your own versions based on existing files. See the [tutorial](../tutorials/passport-attributes-mapping.md).
 
 ## Inbound flow revisited
 
-
-!!! Note:
+!!! Note
     This section assumes you have already onboarded (integrated) one or more external providers in Passport. If you haven't done so, visit [this page](./inbound-saml-passport.md) (for SAML providers) or visit [this page](./inbound-oauth-passport.md) (for OpenID connect and OAuth providers).
 
 ### How user onboarding works
@@ -134,7 +133,7 @@ If there are no matches, an entry is added using the values received from the ex
 
 There are a couple of ways to modify the behavior of the authentication flow. These are slight flow changes though. To achieve needs not covered in this section, you may want to open a [support ticket](https://support.gluu.org) for further assistance. Customization may require programming skills in languages such as Python, Java, and Node.js.
 
-!!! Warning:
+!!! Warning
     Wait at least 1 minute before testing all modications to give the server time to pick up configuration changes.
 
 #### Requiring email in profile
@@ -161,7 +160,7 @@ To enable account linking, follow these steps:
 - Tick the `Email Linking` checkbox
 - Hit Update button
 
-!!! Note:
+!!! Note
     Only enable this feature for trusted providers and do not enable `Request For Email` at the same time since this opens a big security hole.
 
 #### Preselecting an external provider
