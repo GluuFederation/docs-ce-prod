@@ -64,7 +64,7 @@ By default only a small set of parameters for a working setup are shown in the o
 
 #### Supply extra properties if needed
 
-Add other properties you migh consider relevant. For details on this topic you can check `passport-saml` repo [documentation](https://github.com/bergie/passport-saml/#config-parameter-details). If not specified, the following properties are added by default:
+Add other properties you might consider relevant. For details on this topic you can check `passport-saml` repo [documentation](https://github.com/bergie/passport-saml/#config-parameter-details). If not specified, the following properties are added by default:
 
 |Property|Value|
 |-|-|
@@ -121,11 +121,11 @@ If your application is a SP (SAML provider), ....
 
 ### Overview
 
-The standard inbound SAML flow resembles the [generic flow](./passport.md#sample-authentication-flow) of inbound identity. In certain circumstances, the IDP may attempt to initiate the flow by delivering a SAML response without any previously existing SAML request. This is called "IPD-initiated inbound" flow.
+The inbound SAML flow resembles the [generic flow](./passport.md#sample-authentication-flow) of inbound identity used in Gluu. However in certain circumstances, the IDP may attempt to initiate the flow by delivering a SAML response without any previously existing SAML request. This is called "IPD-initiated inbound" flow.
 
-The approach in Gluu to handle this scenario consists of detecting if SAML responses are unsolicited (ie not associated to preliminar SAML requests) by examining the SAML `inResponseTo` attribute. If `inResponseTo` is missing, it is considered an action initiated by the IDP.
+The approach in Gluu to handle this scenario consists of detecting if SAML responses are unsolicited (ie. not associated to preliminar SAML requests) by examining the SAML `inResponseTo` attribute. If `inResponseTo` is missing, it is considered an action initiated by the IDP.
 
-When this kind of request is received by Passport SP, the usual profile mapping takes place, and then the profile data is sent (encoded) in the parameters of an OpenID Connect authorization request to Gluu Server. The request is processed by oxAuth and the user provisioning occurs locally as it does in the standard flow.
+When this kind of request is received by Passport SP, the usual profile mapping takes place, and then the profile data is sent (encoded) in the parameters of an OpenID Connect authorization request to Gluu Server. The request is processed by oxAuth and the user provisioning occurs locally as it does with the standard flow.
 
 Finally this will generate a redirection to a URL whose handler logic should be able to take the user to its final destination. This logic can be deemed part of an OpenID Connect Requesting party (the analog of an SP in SAML world).
 
