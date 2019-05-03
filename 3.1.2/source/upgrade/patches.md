@@ -1,48 +1,5 @@
 # Gluu Server Patches
-<!--
-### May 2, 2019
 
-### Affected Versions 
-
-Gluu Server 3.1.6 and prior 
-
-### Description
-
-We discovered the following page in oxTrust are not properly protected: 
-
- - `../identity/authentication/finishlogin`
-
-The steps to fix below apply to **all** affected Gluu Server versions. 
-
-### Steps to fix
-
-!!! Note 
-    You will need a 5 minute maintenance window for your /identity endpoint to apply the fix.
-    
-!!! Warning
-    We always recommend testing on a non-production environment first.
-    
-
-1. Back up your Gluu Server -- either a VM snapshot or a tarball of the gluu-server container. [Read the docs](../operation/backup/)        
-
-1. Log into your Gluu Server container.              
-     For Centos 6.x, Red Hat 6.x, Ubuntu 14/16, and Debian 8:
-         `# service gluu-server-3.1.2 login`
-
-     For Centos 7.x, Red Hat 7.x and Debian 9:
-         `# /sbin/gluu-serverd-3.1.2 login` 
-
-1. Download the patch script:             
-         `wget https://repo.gluu.org/upd/security_patch_identity-2.py`
-
-1. Run the command:               
-         `chmod +x security_patch_identity-2.py`
-
-1. Run the command:             
-         `python security_patch_identity-2.py` 
-
-1. Open an incognito window in your browser and attempt to access the affected page. It should no longer grant access.   
--->
 ## OPENDJ-2969 
 ### February 15, 2019
 
