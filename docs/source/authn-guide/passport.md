@@ -35,6 +35,7 @@ The following is a high-level diagram depicting a typical inbound identity user 
 1. Without a session, user's browser is redirected to a page showing a list where he can choose the identity provider he wants to use for login (eg. a SAML IDP or a OIDC OP). 
 1. User is taken to the external site where he is asked for login credentials.
 1. Upon successful authentication, a redirection is made to Passport Node app where user's profile data is gathered.
+1. Attribute mapping is performed upon profile data so it is suitable for LDAP insertion
 1. Passport securely sends relevant profile data to Gluu authentication component (oxAuth)
 1. If the user does not exist already in local Gluu LDAP, it is created with the attributes present in profile data (if already existing, the profile is updated)
 1. A session is created for the user at the authorization server. The user access the application.
@@ -58,7 +59,7 @@ Gluu Passport is built upon the popular authentication middleware [Passport.js](
 
 ## Passport configuration
 
-For most inbound identity needs, we provide an easy point-and-click solution to configure your setup. To learn how to integrate and configure inbound identity for SAML providers visit [this](./inbound-saml-passport.md) page. For OpenID connect and OAuth providers find the relevant contents [here](./inbound-oauth-passport.md).
+For most inbound identity needs, we provide an easy point-and-click solution to configure your setup. To learn how to integrate and configure inbound identity for **SAML providers** visit [this](./inbound-saml-passport.md) page. For **OpenID connect and OAuth providers** find the relevant contents [here](./inbound-oauth-passport.md).
 
 At a high level the following can be performed directly via the admin UI:
 
@@ -79,6 +80,8 @@ In Gluu chroot, Passport logs can be found in directory `/opt/gluu/node/passport
 1. Set the log level in "Logging settings" section
 
 1. Press the update button
+
+![Logging](../img/user-authn/passport/logging.png) 
 
 !!! Note:
     The console log only option sends all messages to `stdout` and prevents messages be written to log files or message queue 
@@ -118,7 +121,6 @@ Passport already bundles several mappings by default. Most of them are targetted
 
 !!! Note:
     This section assumes you have already onboarded (integrated) one or more external providers in Passport. If you haven't done so, visit [this page](./inbound-saml-passport.md) (for SAML providers) or visit [this page](./inbound-oauth-passport.md) (for OpenID connect and OAuth providers).
-
 
 ### How user onboarding works
 
@@ -226,3 +228,6 @@ Out of the box the providers selection page will show on the right pane a list o
 1. Wait 1 minute, then verify the image appears correctly by acessing your application in a browser.
 
 Alternatively you can use an absolute URL for logo if the image is hosted elsewhere (e.g. `https://another.site.co/path/to/image`).
+
+![Logo](../img/user-authn/passport/logo.png) 
+

@@ -7,7 +7,7 @@ The [introductory page](./passport.md) provides a quick glance at key concepts t
 1. Custom script:
 
     - In oxTrust navigate to `Configuration` > `Custom scripts`          
-    - Navigate to the `Person Authentication` tab, expand the script labelled `passport_saml`, check `enabled`, and click `Update`    ![Enable passport_saml](../img/user-authn/passport/enable-passport.png)     
+    - Navigate to the `Person Authentication` tab, expand the script labelled `passport_saml`, check `enabled`, and click `Update`    ![Enable passport_saml](../img/user-authn/passport/enable-passport_saml.png)     
     - Navigate to the `UMA RPT Policies` tab, expand the script labelled `scim_access_policy`, check `enabled`, and click `Update`       
       
 1. Passport support:    
@@ -59,6 +59,8 @@ By default only a small set of parameters for a working setup are shown in the o
 
 !!! Note: 
     The certificate supplied for `cert` is the one intended for signing. For example, if you are using Shibboleth bundled in a Gluu Server instance, visit `https://<remote-gluu-host>/idp/shibboleth` and see the contents of XML tag `KeyDescriptor` where `use="signing"` inside `IDPSSODescriptor` tag.
+
+![saml_provider](../img/user-authn/passport/saml_provider.png)
 
 #### Supply extra properties if needed
 
@@ -141,6 +143,8 @@ https://<your-gluu-host>/passport/auth/saml/<PROVIDER-ID>/callback
 
 where `PROVIDER-ID` is the identifier assigned to the given IDP. In oxTrust just visit `Passport` > `Providers` and see ID column in the providers table. 
 
+![summary_table](../img/user-authn/passport/summary_table.png)
+
 This is the same endpoint used in the regular flow where SAML requests are previously sent to the IDP.
 
 ### Configuring the flow
@@ -157,6 +161,8 @@ In order to enable IDP-initiated inbound capabilities for an existing IDP, proce
 - Click the `Add` button
 - Choose the IDP you want to enable usage of IDP-initiated flow
 - Accept the defaults and click on `Update`
+
+![IDP-initiated config for an IDP](../img/user-authn/passport/ii_choose_provider.png)
 
 From here on, if the IDP sends an unsolicited response to Passport ACS, an OIDC authorization request will be issued by using the client that appears selected on the top of the form (by default the "Passport IDP-initiated flow Client"). After the user is authenticated in Gluu, a redirection will be made to `https://<your-gluu-host>/oxauth/auth/passport/sample-redirector.htm` which will simply redirect to the value of the `relayState` which is assummed to be a valid URL.
 

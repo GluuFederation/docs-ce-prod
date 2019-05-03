@@ -7,7 +7,7 @@ The [introductory page](./passport.md) provides a quick glance at key concepts t
 1. Custom script:
 
     - In oxTrust navigate to `Configuration` > `Custom scripts`          
-    - Navigate to the `Person Authentication` tab, expand the script labelled `passport_social`, check `enabled`, and click `Update`    ![Enable passport_social](../img/user-authn/passport/enable-passport.png)     
+    - Navigate to the `Person Authentication` tab, expand the script labelled `passport_social`, check `enabled`, and click `Update`    ![Enable passport_social](../img/user-authn/passport/enable-passport_social.png)     
     - Navigate to the `UMA RPT Policies` tab, expand the script labelled `scim_access_policy`, check `enabled`, and click `Update`       
       
 1. Passport support:    
@@ -50,6 +50,8 @@ The following are the steps required to integrate an external OP for login in an
 
 1. Click on `Add` (meanwhile accept the default values for the remaining fields)
 
+![oidc_provider](../img/user-authn/passport/oidc_provider.png) 
+
 **Note:**
 A simple standard [attribute mapping](./passport.md#attribute-mapping-and-transformation) is used for OpenID Connect providers by default. This will populate LDAP attributes `uid`, `mail`, `cn`, `displayName`, `givenName`, and `sn` if the relevant corresponding claims were gathered in the `userInfo` request.
 To learn more about how mappings work check the [tutorial](../tutorials/passport-attributes-mapping.md). Also review the file `/opt/gluu/node/passport/server/mappings/openidconnect-default.js` in Gluu chroot. If you need to make adjustments, do not edit the default mapping file but create a new one based on its contents.
@@ -65,6 +67,8 @@ https://your-gluu-host/passport/auth/<PROVIDER-ID>/callback
 ```
 
 where `PROVIDER-ID` is the identifier assigned to the provider recently added. This can be seen in the summary table of providers (ID column). In oxTrust just visit `Passport` > `Providers`.
+
+![summary_table](../img/user-authn/passport/summary_table.png)
 
 After the process is finished you should be given a client ID and a client Secret.
 
@@ -91,6 +95,8 @@ When using oxd, administrators can follow the steps similar as [above](#integrat
 - If you need to supply values for optional properties account their values must be provided as JSON content. The following are examples of valid JSON values: `true`, `0`, `"a string"`, `["item1", "item2"]`, `{ "key": { "some": "value" }}`.
 
 - `/opt/gluu/node/passport/server/mappings/oxd-default.js` is the default mapping file. Create your own if it does not fit your needs.
+
+![oidc_oxd_provider](../img/user-authn/passport/oidc_oxd_provider.png) 
 
 #### Using an external Gluu Server as OP
 
@@ -205,7 +211,9 @@ The following are the steps required to offer social login in an OIDC applicatio
     It is recommended to create mappings based on existing mapping files. Make a copy of any file listed in the table above (see directory `/opt/gluu/node/passport/server/mappings` in Gluu chroot) and name it appropriately. Enter the name (without file extension) in the form field. The [tutorial](../tutorials/passport-attributes-mapping.md) contains instructions on how to write attribute mappings. It is an easy task and generally does not demand programming skills.
     
 1. If the provider being added is present in the table above, enter `../../ext/resources/img/passport/<mapping>.png` (we already bundle images for the social sites supported out-of-the-box). Otherwise check this [section](./passport.md#about-logo-images) of the introductory page.
-
+    
+    ![oauth_provider](../img/user-authn/passport/oauth_provider.png) 
+    
 1. `Authenticate params` is a field that normally can be left empty. It is employed to supply the value for the second parameter of Passport.js method `passport.authenticate`. It is recommended to supply data here only when the provider to be added is not listed in the table above.
 
     As an example suppose [VKontakte](http://www.vk.com) is the external provider to integrate. To have access to user's email a proper scope must be specified (check [here](https://github.com/stevebest/passport-vkontakte#extended-permissions) and [here](https://vk.com/dev/permissions)). In this case the field `Authenticate params` can be filled this way: `{ "scope": ["email"] }`. Note the usage of `"` instead of `'` and that object keys have to be wrapped with `"`.
@@ -237,6 +245,8 @@ https://your-gluu-host/passport/auth/<PROVIDER-ID>/callback
 
 where `PROVIDER-ID` is the identifier assigned to the provider recently added. This can be seen in the summary table of providers (ID column). In oxTrust just visit `Passport` > `Providers`.
 
+![summary_table](../img/user-authn/passport/summary_table.png)
+
 Once the application is created you will be given two pieces of data: client ID and client secret. Terminology varies depending on provider; sometimes it is called consumer key and consumer secret, or app ID and app secret, etc. For instance, [this is how it looks on Facebook](../img/user-authn/passport/fb-addurl.png).    
 
 ### Supply strategy parameters
@@ -254,6 +264,8 @@ new VKontakteStrategy(
 ```
 
 If this behavior is desired, click on `Add new property`, fill on the left with `profileFields` and on the right with the actual value for this property (eg. `["email", "city", "bdate"]`). Note again the use of `"` in preference of `'`
+
+![oauth_provider_params](../img/user-authn/passport/oauth_provider_params.png)
 
 Any number of properties can be added. The following are examples of valid values for a property: `true`, `0`, `"a string"`, `["item1", "item2"]`.
 
@@ -293,7 +305,7 @@ Once login is successful, you can check user profile data as explained [here](#c
 
 Once login is successful, check user data by navigating to `Personal` > `Profile` in oxTrust. Alternatively you can use the admin user and navigate to `Users` > `Manage people` to inspect the recently created user entry.
 
-To check the actual profile data received during the authentication transaction, review the [logs](./passport.md#files-and-severity-level) and search for a message that looks like "Resulting profile data is". To be able to view this message, set logging level to debug and wait for the server to pick the changes.  
+To check the actual profile data received during the authentication transaction, review the [logs](./passport.md#files-and-severity-level) and search for a message that looks like "Resulting profile data is". To be able to view this message, set logging level to `debug` and wait for the server to pick the changes.  
 
 If you modify some aspect of your profile at the external provider and attempt to re-login, the user attributes will also be updated in your local Gluu LDAP.
 
