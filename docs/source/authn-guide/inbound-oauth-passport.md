@@ -53,6 +53,7 @@ The following are the steps required to integrate an external OP for login in an
 ![oidc_provider](../img/user-authn/passport/oidc_provider.png) 
 
 **Note:**
+
 A simple standard [attribute mapping](./passport.md#attribute-mapping-and-transformation) is used for OpenID Connect providers by default. This will populate LDAP attributes `uid`, `mail`, `cn`, `displayName`, `givenName`, and `sn` if the relevant corresponding claims were gathered in the `userInfo` request.
 To learn more about how mappings work check the [tutorial](../tutorials/passport-attributes-mapping.md). Also review the file `/opt/gluu/node/passport/server/mappings/openidconnect-default.js` in Gluu chroot. If you need to make adjustments, do not edit the default mapping file but create a new one based on its contents.
 
