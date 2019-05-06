@@ -1,12 +1,12 @@
 # User Authentication Introduction
-The Gluu Server was designed to be very flexible in handling user authentication. Username / password is the default form of authentication ("basic"). Stronger forms of authentication, like One-Time Passcodes (OTP), U2F Security Keys, and Gluu's free U2F mobile app, Super Gluu, can be implemented to increase account security. 
+The Gluu Server was designed to be very flexible in handling user authentication. Username and password is the default form of authentication ("basic"). Stronger forms of authentication, like One-Time Passcodes (OTP), FIDO Security Keys, and Gluu's U2F push-notification mobile app, Super Gluu, can be implemented to increase account security. 
 
-All Gluu Server authentications are routed through the oxAuth OpenID Provider (OP). You can take incoming SAML or CAS assertions from a 3rd party IDP, for example ADFS, and use that as the basis for an OpenID Connect session in Gluu. This enables seamless SSO across a diverse environment of federated applications. 
+All Gluu Server authentications are routed through the oxAuth OpenID Provider (OP) using the OpenID Connect `acr` paramter. Incoming SAML or CAS assertions can be taken from a 3rd party IDP, for example ADFS, and can be used as the basis for an OpenID Connect session in Gluu. This enables seamless SSO across a diverse environment of federated applications. 
 
 ## Authentication Interception Scripts
-The Gluu Server leverages [interception scripts](../admin-guide/custom-script.md) to facilitate the user authentication process. Interception scripts specify how an authentication mechanism should be applied, and what pages should be presented during sign-in. 
+The Gluu Server leverages [interception scripts](../admin-guide/custom-script.md) to facilitate the user authentication process. Interception scripts specify authentication steps and which pages should be presented to the user. The name of each script corresponds with its acr value in the Gluu Server.  
 
-The Gluu Server includes interception scripts for a number of authentication mechanisms, such as:
+Interception scripts are included for a number of authentication mechanisms, such as:
 
 - [FIDO U2F](./U2F.md)
 - [TOTP/HOTP](./otp.md)
