@@ -16,9 +16,15 @@ This tutorial offers a step-by-step guide for using [Apache Kafka](https://kafka
 1. Download the Kafka Clients jar file and copy it into oxAuth and Identity.
 
     ```
-    # wget http://central.maven.org/maven2/org/apache/kafka/kafka-clients/2.1.1/kafka-clients-2.1.1.jar -O /tmp/kafka-clients-2.1.1.jar
-    # cp /tmp/kafka-clients-2.1.1.jar /opt/gluu/jetty/oxauth/custom/libs/
-    # cp /tmp/kafka-clients-2.1.1.jar /opt/gluu/jetty/identity/custom/libs/
+    # mkdir /tmp/jars
+    # wget http://central.maven.org/maven2/org/apache/kafka/kafka-clients/2.2.0/kafka-clients-2.2.0.jar -O /tmp/jars/kafka-clients-2.2.0.jar
+    # wget http://central.maven.org/maven2/org/lz4/lz4-java/1.5.0/lz4-java-1.5.0.jar -O /tmp/jars/lz4-java-1.5.0.jar
+    # wget http://central.maven.org/maven2/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar -O /tmp/jars/slf4j-api-1.7.25.jar
+    # wget http://central.maven.org/maven2/org/xerial/snappy/snappy-java/1.1.7.2/snappy-java-1.1.7.2.jar -O /tmp/jars/snappy-java-1.1.7.2.jar
+    # wget http://central.maven.org/maven2/com/github/luben/zstd-jni/1.3.8-1/zstd-jni-1.3.8-1.jar -O /tmp/jars/zstd-jni-1.3.8-1.jar
+    # cp /tmp/jars/*.jar /opt/gluu/jetty/oxauth/lib/ext/
+    # cp /tmp/jars/*.jar /opt/gluu/jetty/identity/lib/ext/
+    # rm -rf /tmp/jars
     ```
     
 1. Make the following changes to `log4j2.xml` in both `/opt/gluu/jetty/oxauth/resources` and `/opt/gluu/jetty/identity/resources`:
