@@ -18,7 +18,7 @@ All Gluu Server files live in a single folder: `/opt`. The entire Gluu Server CE
 
 1. Stop the server: `# service gluu-server-3.1.6 stop`
 	
-1. Use `tar` to take a backup: `# tar cvf gluu301-backup.tar /opt/gluu-server-3.1.6/`
+1. Use `tar` to take a backup: `# tar cvf gluu316-backup.tar /opt/gluu-server-3.1.6/`
 	
 1. Start the server again: `# service gluu-server-3.1.6 start`
 	
