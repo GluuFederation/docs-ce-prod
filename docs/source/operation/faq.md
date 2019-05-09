@@ -437,6 +437,11 @@ By default, when you hit your Gluu Server hostname it will redirect to `<hostnam
 1. Search for: `RedirectMatch ^(/)$ /identity/`
 1. Change `/identity/` to a different URL
 1. Run the command: `service httpd reload`
+
+## Concurrent login of the same user (same session). Got `retry` error.
+
+When user is trying to login to multiple RP but do not finish login process then `retry` error can be returned which indicates that RP has to re-send authorization request. 
+
  
 
 
