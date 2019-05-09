@@ -79,7 +79,7 @@ nav:
             - 'Password Reset': 'authn-guide/pw-reset.md'
             - 'Custom Script Tutorial': 'authn-guide/customauthn.md'
             #- 'Inbound SAML using Asimba': 'authn-guide/inbound-saml-asimba.md'
-        - Inbound Identity with Passport:
+        - Inbound Identity:
             - 'Basics of Inbound Identity': 'authn-guide/passport.md'
             - 'Inbound OAuth & OpenID Connect': 'authn-guide/inbound-oauth-passport.md'
             - 'Inbound SAML': 'authn-guide/inbound-saml-passport.md'
