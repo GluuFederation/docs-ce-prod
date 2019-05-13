@@ -260,32 +260,6 @@ Follow the guidelines below to run the Demo app in your Gluu Server host:
 
 See the Demo in action in this [video](https://www.youtube.com/watch?v=ubhDgGU8C8s&feature=youtu.be).
 
-## Implementing IDP discovery ("WAYF")
-
-IDP Discovery refers to process of determining which IDP users should be sent to for authentication (also known as: "Where Are You From", or WAYF). There are many ways to achieve this, but the following methods are most commonly used in practice.
-
-### Discovery based on supplied email address
-
-Email-based discovery, or "identifier-first" login, relies on an email address to discover where to send an user for authentication. It can be implemented as follows:
-
-1. Users are asked for an email address which they usually use for logging in their home IDP.
-
-1. The domain name part of the email address is parsed and evaluated; the domain name part is a sub-string of the email address following the "@" character.
-
-1. Check if such IDP is known. If so, an OpenID Connect authorization request URL can be built by supplying the IDP ID in a custom parameter (as described [here](./passport.md#preselecting-an-external-provider)).
-
-1. The user is redirected to the URL triggering the Inbound SAML flow.
-
-1. In oxAuth, the `passport_saml` authentication script parses the custom parameter, and the flow proceeds to the designated IDP.
-
-### Landing page discovery
-
-If you do not mind exposing the list of your external IDP partners, you can allow users to choose which IDP better suits their needs by displaying all IDPs you've established trust with. This is the standard behavior in Gluu Server with Passport.
-
-###  Discovery based on sub-domain or sub-directory
-
-If you provide a dedicated sub-domain or sub-path namespace to your customers or partners (URLs like `https://customer1.mydomain.com` or `https://mydomain.com/customer1` illustrate this approach), then you can perform discovery based on this as well. When an unauthenticated user tries to access any protected resources related to those dedicated namespaces, an appropriate IDP related to it can be looked up in a configuration file and its ID encoded into a custom parameter of the authorization request before redirecting the user to Gluu Server.
-
 ## Troubleshooting tips
 
 In case of issues during setup or tests, consider the following:

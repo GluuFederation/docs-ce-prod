@@ -205,6 +205,32 @@ In this case, `<provider-ID>` is the identifier assigned to the provider already
 
 This feature is specific to SAML providers. Check [here](./inbound-saml-passport.md#idp-initiated-inbound-flow) to learn more.
 
+### Implementing discovery ("WAYF")
+
+External provider discovery or IDP Discovery refers to the process of determining which identity provider users should be sent to for authentication (also known as: "Where Are You From", or WAYF). There are many ways to achieve this, but the following methods are most commonly used in practice.
+
+#### Discovery based on supplied email address
+
+Email-based discovery, or "identifier-first" login, relies on an email address to discover where to send an user for authentication. It can be implemented as follows:
+
+1. Users are asked for an email address which they usually use for logging in their home IDP/OP.
+
+1. The domain name part of the email address is parsed and evaluated; the domain name part is a sub-string of the email address following the "@" character.
+
+1. Check if such IDP/OP is known. If so, an OpenID Connect authorization request URL can be built by supplying the IDP ID in a custom parameter (as described [here](#preselecting-an-external-provider)).
+
+1. The user is redirected to the URL triggering the Inbound flow.
+
+1. In oxAuth, the `passport_saml` or `passport_social` authentication script parsesthe custom parameter, and the flow proceeds to the designated provider.
+
+#### Landing page discovery
+
+If you do not mind exposing the list of your external identity provider partners, you can allow users to choose which provider suits their needs best by displaying all providers you trust. This is the standard behavior in Gluu Server with Passport.
+
+####  Discovery based on sub-domain or sub-directory
+
+If you provide a dedicated sub-domain or sub-path namespace to your customers or partners (URLs like `https://customer1.mydomain.com` or `https://mydomain.com/customer1` illustrate this approach), then you can perform discovery based on this as well. When an unauthenticated user tries to access any protected resources related to those dedicated namespaces, an appropriate IDP/OP related to it can be looked up in a configuration file and its ID encoded into a custom parameter of the authorization request before redirecting the user to Gluu Server.
+
 ## About logo images
 
 Out of the box the providers selection page will show on the right pane a list of the currently enabled configured providers. Only their logo and display name are visualized. The instructions below explain how to specify/change a logo image for an identity provider:
