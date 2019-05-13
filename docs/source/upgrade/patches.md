@@ -68,7 +68,7 @@ The steps below apply to **all** affected Gluu Server versions.
     python security_patch_identity-2.py
     ```
     
-- Open an incognito window in your browser and attempt to access the affected page: https://{hostname}/identity/authentication/finishlogin . If it results a blank page, the patch was successful.
+- Open an incognito window in your browser and attempt to access the affected page: https://{hostname}/identity/authentication/finishlogin . If it returns a blank page, the patch was successful.
 
 ## OPENDJ-2969 
 ### February 15, 2019
