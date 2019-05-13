@@ -1,5 +1,75 @@
 # Gluu Server Patches
 
+## oxTrust Unauthorized Access Patch
+### May 13, 2019
+
+### Affected versions
+All versions of the Gluu Server
+
+### Issue Description
+
+The following page in oxTrust is not properly protected:
+
+```
+../identity/authentication/finishlogin/
+```
+
+Navigating to this URL directly obtains an unauthorized session for a random user.
+
+Normally, oxAuth sends a request with an authorization code to oxTrust at `../identity/authentication/getauthcode`. oxTrust then uses that code to obtain the user's `id_token` and personal claims, then redirects to `../finishlogin`.
+
+Navigating directly to `../finishlogin` without meaningful session context caused `entryManager` to build an `objectClass=gluuPerson` filter without `uid=user_name`. This returned all users and created an unauthorized session for the first user on that list.
+
+### Fix Description
+
+The patch below adds two lines to the `finishlogin` xhtml file to catch null `user-id` parameters. Once applied, unauthenticated attempts to access this URL will be blocked.
+
+!!! Note
+    As the administrative portal for your authentication service, we always recommend **blocking public access to oxTrust**. Learn how [in the docs](https://gluu.org/docs/ce/operation/security/#securing-oxtrust).
+    
+### Steps to apply fix
+
+The steps below apply to **all** affected Gluu Server versions.
+
+!!! Note
+    A 5-minute maintenance window is needed to apply the fix. Make sure to test and confirm in a non-production environment first. If Gluu helps manage your server(s), please [open a ticket](https://support.gluu.org) to schedule a maintenance window.
+
+- [Back up your Gluu Server](https://gluu.org/docs/ce/operation/backup/)  -- either a VM snapshot or a tarball of the Gluu Server container.
+ 
+- Log into your Gluu Server container:
+
+    - For Centos 6.x, Red Hat 6.x, Ubuntu 14/16, and Debian 8:
+    
+    ```
+    # service gluu-server-3.1.4 login
+    ```
+    
+    - For Centos 7.x, Red Hat 7.x and Debian 9:
+    
+    ```
+    # /sbin/gluu-serverd-3.1.4 login
+    ```
+
+- Download the patch script:
+
+    ```
+    wget https://repo.gluu.org/upd/security_patch_identity-2.py
+    ```
+    
+- Run the command:
+
+    ```
+    chmod +x security_patch_identity-2.py
+    ```
+    
+- Run the command:
+
+    ```
+    python security_patch_identity-2.py
+    ```
+    
+- Open an incognito window in your browser and attempt to access the affected page: https://{hostname}/identity/authentication/finishlogin . If it results in a blank page, the patch was successful.
+
 ## OPENDJ-2969 
 ### February 15, 2019
 
