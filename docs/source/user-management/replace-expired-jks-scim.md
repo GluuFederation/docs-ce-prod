@@ -4,7 +4,7 @@ When your SCIM service is protected with UMA, your client application uses the `
 
 The following steps are required to update the keystores so that your server and client behave properly after expiration:
 
-First, log into the Gluu Server chroot (e.g. `service gluu-server-3.1.3 login`).
+First, log into the Gluu Server chroot (e.g. `service gluu-server-4.0 login`).
 
 Create a temporary folder (e.g. `mkdir tmp`) and `cd` to it.
    
@@ -69,7 +69,7 @@ print base64.b64encode(en_data)
 
   - The last line printed has the value needed. Type `quit()` to return to the prompt.
 
-In oxTrust, visit `Configuration` > `Json configuration` > `oxTrust configuration`. Update the "scimUmaClientKeyStoreFile" field to point to the new keystore (e.g. `/etc/certs/fresher-scim-rs.jks`), and paste the value obtained in the previous step in the`scimUmaClientKeyStorePassword` field.  Press "Save" at the bottom of the page.
+In oxTrust, visit `Configuration` > `JSON configuration` > `oxTrust configuration`. Update the "scimUmaClientKeyStoreFile" field to point to the new keystore (e.g. `/etc/certs/fresher-scim-rs.jks`), and paste the value obtained in the previous step in the`scimUmaClientKeyStorePassword` field.  Press "Save" at the bottom of the page.
 
 Update your client's SCIM application to use `fresher-scim-rp.jks` with its corresponding password and test it.
 
