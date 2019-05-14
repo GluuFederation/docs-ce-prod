@@ -42,7 +42,28 @@ documentation and administrative guide.
 - FluentD 3.5
 - Redis
 
-## Changes
+<!--
+
+## 3.1.6.sp1 Changes
+
+### [GluuFederation/oxAuth](https://github.com/GluuFederation/oxAuth/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
+
+- [#1063](https://github.com/GluuFederation/oxAuth/issues/1063) Add a config value to allow to share the same subject identifier between two Clients with the same sector identifier
+- [#1047](https://github.com/GluuFederation/oxAuth/issues/1047) Add option to KeyGenerator to specify `expiration_hours`
+- authorization.xhtml page no longer requires session
+
+### [GluuFederation/oxTrust](https://github.com/GluuFederation/oxTrust/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
+
+- [#1646](https://github.com/GluuFederation/oxTrust/pull/1646) Add a config value to allow to share the same subject identifier between two Clients with the same sector identifier
+- Removed finishlogin.xhtml
+
+### [GluuFederation/community-edition-setup](https://github.com/GluuFederation/community-edition-setup/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
+
+- [#534](https://github.com/GluuFederation/community-edition-setup/pull/534) Add a config value to allow to share the same subject identifier between two Clients with the same sector identifier
+
+-->
+
+## 3.1.6 Changes
 
 ### [GluuFederation/oxAuth](https://github.com/GluuFederation/oxAuth/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
 
