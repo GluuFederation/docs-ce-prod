@@ -49,6 +49,7 @@ objectclass ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
 
  - In OpenDJ, add custom attributes to `/opt/opendj/config/schema/77-customAttributes.ldif`
  - In the below example, `customTest` is our custom attribute : 
+ 
 ```
 attributeTypes: ( 1.3.6.1.4.1.48710.1.3.1400 NAME 'customTest'
   DESC 'Custom Attribute' 
@@ -57,6 +58,7 @@ attributeTypes: ( 1.3.6.1.4.1.48710.1.3.1400 NAME 'customTest'
   SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 
   X-ORIGIN 'Gluu custom attribute' )
 ```
+
 !!! Warning
     Spacing is extremely important here. There must be 2 spaces before and 1 after every entry (i.e. DESC), or your custom schema will fail to load properly.
 
@@ -68,6 +70,7 @@ objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
  AUXILIARY
  MAY ( customTest $ telephoneNumber $ mobile $ carLicense $ facsimileTelephoneNumber $ departmentNumber $ employeeType $ cn $ st $ manager $ street $ postOfficeBox $ employeeNumber $ preferredDeliveryMethod $ roomNumber $ secretary $ homePostalAddress $ l $ postalCode $ description $ title )
 ```
+
 !!! Warning
     You cannot have line spaces between `attributeTypes:` or `objectClasses:`. This will cause failure in schema. Please check the error logs in /opt/opendj/logs/errors if you are experiencing issues with adding custom schema. This will help guide you on where there may be syntax errors.
     
