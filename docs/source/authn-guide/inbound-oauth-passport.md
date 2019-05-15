@@ -283,7 +283,7 @@ From the application, send an OpenID connect authorization request to your Gluu 
 
 ![provider selection form](../img/user-authn/passport/provider_selection.png)
 
-For more information on `acr_values` manipulation, check this [page](../admin-guide/openid-connect/index.md#authentication).
+For more information on `acr_values` manipulation, check this [page](../admin-guide/openid-connect.md#authentication).
 
 For a concrete example, and as a means to quickly test the work so far, oxTrust can be configured to be protected with `passport_social` this way:
 
