@@ -1,2 +1,0 @@
-#SuiteCRM
-Page under construction
