@@ -2,12 +2,12 @@
 
 ## Requisites
 
-The [introductory page](./passport.md) provides a quick glance at key concepts to get the most out of inbound identity with Gluu Passport. Ensure your installation already has the [Passport component installed](./passport.md#passport-setup). Now proceed to enable it:
+The [introductory page](./passport.md) provides a quick overview of key concepts to get the most out of inbound identity with Gluu Passport. Ensure your installation already has the [Passport component installed](./passport.md#passport-setup). Follow these steps to enable it:
 
 1. Custom script:
 
-    - In oxTrust navigate to `Configuration` > `Custom scripts`          
-    - Navigate to the `Person Authentication` tab, expand the script labelled `passport_social`, check `enabled`, and click `Update`    
+    - In oxTrust, navigate to `Configuration` > `Custom scripts`          
+    - Navigate to the `Person Authentication` tab, expand the script labeled `passport_social`, check `enabled`, and click `Update`    
     ![Enable passport_social](../img/user-authn/passport/enable-passport_social.png)     
     - Navigate to the `UMA RPT Policies` tab, expand the script labelled `scim_access_policy`, check `enabled`, and click `Update`       
       
@@ -55,8 +55,8 @@ The following are the steps required to integrate an external OP for login in an
 
 **Note:**
 
-A simple standard [attribute mapping](./passport.md#attribute-mapping-and-transformation) is used for OpenID Connect providers by default. This will populate LDAP attributes `uid`, `mail`, `cn`, `displayName`, `givenName`, and `sn` if the relevant corresponding claims were gathered in the `userInfo` request.
-To learn more about how mappings work check the [tutorial](../tutorials/passport-attributes-mapping.md). Also review the file `/opt/gluu/node/passport/server/mappings/openidconnect-default.js` in Gluu chroot. If you need to make adjustments, do not edit the default mapping file but create a new one based on its contents.
+A simple standard [attribute mapping](./passport.md#attribute-mapping-and-transformation) is used for OpenID Connect providers by default. This will populate `uid`, `mail`, `cn`, `displayName`, `givenName`, and `sn` LDAP attributes if the relevant corresponding claims were gathered in the `userInfo` request.
+To learn more about how mappings work, check the [tutorial](../tutorials/passport-attributes-mapping.md). Also review the `/opt/gluu/node/passport/server/mappings/openidconnect-default.js` file in the Gluu chroot. If you need to make adjustments, do not edit the default mapping file but create a new one based on its contents.
 
 ### Register a client at the OP
 
