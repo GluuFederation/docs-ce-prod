@@ -67,7 +67,7 @@ At a high level the following can be performed directly via the admin UI:
 - Setting global configuration parameters, such as [logging](#logging) behavior
 - Adding identity providers (specifying underlying Passport.js strategy, parameterization, and attribute mapping/transformation file)
 - Managing identity providers (disabling, removal, etc.)
-- Setting configuration parameters for [IDP-initiated flows](./authn-guide/inbound-saml-passport.md#idp-initiated-inbound-flow) (SAML IDPs only)
+- Setting configuration parameters for [IDP-initiated flows](./inbound-saml-passport.md#idp-initiated-inbound-flow) (SAML IDPs only)
  
 ### Logging
 
