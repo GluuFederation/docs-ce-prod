@@ -186,6 +186,30 @@ The oxAuth and oxTrust services need to be restarted for customizations to be ap
 !!! Note
     There is a 10 second delay on page modification reload.
 
+## An Example: Changing Primary Key name for Login
+
+Your organzation might use 'Email Address' as the primary key for users instead of 'Username'. 
+Let's move forward to change that login name from 'Username' to 'Email Address'. 
+
+1. Log into the Gluu container: `# service gluu-server-3.1.6 login`
+
+1. Grab `login.xhtml` from 'jetty-9.x/temp' location to `/opt/gluu/jetty/oxauth/custom/pages`: `cp /opt/jetty-9.4/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-13153919175814468.dir/webapp/login.xhtml /opt/gluu/jetty/oxauth/custom/pages/`
+
+1. Modify attribute value to 'Email Address' under 'form-group' class: 
+
+```
+....
+....
+<h:inputHidden id="platform"/>
+   <h:panelGroup>
+      <div class="form-group">
+          <h:outputLabel styleClass="col-sm-4 control-label" for="username" value="Email Address" />
+               <div class="col-sm-8">
+....
+....
+```
+
+<!--
 ## An Example: Removing the Gluu copyright 
 
 For a good practical example, let's consider a task of removing the Gluu copyright at the bottom of oxAuth's login page. You can follow these steps to achieve this:
@@ -213,5 +237,5 @@ For a good practical example, let's consider a task of removing the Gluu copyrig
   ```
   # cp /opt/jetty-9.4/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/login.xhtml /opt/gluu/jetty/oxauth/custom/pages/
   ```
-
+--!>
   Don't forget to apply appropriate file system permissions if needed. Restarting oxAuth's service inside container will display the changes: `# service oxauth stop && service oxauth start`
