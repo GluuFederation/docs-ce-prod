@@ -237,9 +237,9 @@ For a good practical example, let's consider a task of removing the Gluu copyrig
   ```
   # cp /opt/jetty-9.4/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/login.xhtml /opt/gluu/jetty/oxauth/custom/pages/
   ```
---!>
+-->
 
-  Don't forget to apply appropriate file system permissions if needed. Restarting oxAuth's service inside container will display the changes:  
+Don't forget to apply appropriate file system permissions if needed. Restarting oxAuth's service inside container will display the changes:  
   
   ```
   service oxauth stop && service oxauth start
