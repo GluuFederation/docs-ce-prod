@@ -116,6 +116,8 @@ If you plan to offer inbound SAML from an OpenID Connect application, you can us
 <!--
 If your application is a SP (SAML provider), ....
 -->
+### Checking user profile
+To check the actual profile data received during the authentication transaction, review the logs and search for a message that looks like "Resulting profile data is". To be able to view this message, set logging level to debug and wait for the server to pick the changes.
 
 ## IDP-initiated inbound flow
 
