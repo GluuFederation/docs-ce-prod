@@ -48,7 +48,7 @@ Additionally the following `json` files are available which are used in differen
 The Gluu Server is compatible with the [Java KeyGenerator](https://docs.oracle.com/javase/7/docs/api/javax/crypto/KeyGenerator.html)
 to create new cryptographic keys if needed.
 
-To get KeyGenerator, run the following command:
+To get KeyGenerator, run the following command in the `/etc/certs` folder:
 
 ```
 wget https://ox.gluu.org/maven/org/xdi/oxauth-client/3.1.6.sp1/oxauth-client-3.1.6.sp1-jar-with-dependencies.jar -O oxauth-client.jar
@@ -63,7 +63,7 @@ java -jar oxauth-client.jar <arguments>
 Our implementation of KeyGenerator accepts the following arguments:
 
 | Argument | Description |
-| ----   | ---- |
+| --- | --- |
 | -at <arg> | oxEleven Access Token |
 | -dnname <arg> | DN of certificate issuer |
 | -enc_keys <arg> | Encryption keys to generate (For example: RSA_OAEP, RSA1_5) |
@@ -73,6 +73,7 @@ Our implementation of KeyGenerator accepts the following arguments:
 | -keystore <arg> | Key Store file |
 | -ox11 <arg> | oxEleven Generate Key Endpoint. |
 | -sig_keys <arg> | Signature keys to generate. (For example: RS256 RS384 RS512 ES256 ES384 ES512 PS256 PS384 PS512) |
+
 
 ## Certificates in oxTrust
 
