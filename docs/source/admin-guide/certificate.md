@@ -56,7 +56,7 @@ The following are available:
 
 ![Example Certs in oxTrust](../img/admin-guide/oxtrust-certs.png)
 
-# Updating Apache Certificate
+## Updating Apache Certificate
 
 The certificates must be manually updated from the `/etc/certs/` folder. 
     
