@@ -63,6 +63,7 @@ java -jar oxauth-client.jar <arguments>
 Our implementation of KeyGenerator accepts the following arguments:
 
 | Argument | Description |
+| ----   | ---- |
 | -at <arg> | oxEleven Access Token |
 | -dnname <arg> | DN of certificate issuer |
 | -enc_keys <arg> | Encryption keys to generate (For example: RSA_OAEP, RSA1_5) |
