@@ -67,7 +67,6 @@ Our implementation of KeyGenerator accepts the following arguments:
 | -dnname <arg> | DN of certificate issuer |
 | -enc_keys <arg> | Encryption keys to generate (For example: RSA_OAEP, RSA1_5) |
 | -expiration <arg> | Expiration in days |
-| -expiration_hours <arg> | Expiration in hours |
 | -h | Show help |
 | -keypasswd <arg> | Key Store password |
 | -keystore <arg> | Key Store file |
