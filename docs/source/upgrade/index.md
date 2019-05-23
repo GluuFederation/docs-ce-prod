@@ -1,7 +1,9 @@
-# Upgrade to Gluu Server 3.1.6
+# Upgrade to the latest Gluu Server
 
 ## Overview
-The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will need to either use our in-place upgrade script or explicitly install the new version and export/import your data. Find your existing version below for upgrade instructions to Gluu Server 3.1.6. 
+The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will need to either use our in-place upgrade script or explicitly install the new version and export/import your data. 
+
+Find your existing version below for instructions to upgrade to the latest version of Gluu. 
 
 !!! Note
     Scripts and directories outside the Chroot will still reflect the version from which you upgraded. For example, if you started with version 3.1.3, the directory will still be gluu-server-3.1.3 even after upgrading to 3.1.6.
@@ -12,7 +14,7 @@ The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will
 - Upgrades should always be thoroughly scoped and tested on a development environment *first*.
 
 
-## Upgrade from 3.1.6 - 3.1.6.sp1
+## Upgrade from 3.1.6 to 3.1.6.sp1
 
 To perform an in-place upgrade from Gluu Server 3.1.6 to 3.1.6.sp1, download and run our in-place upgrade script, following these instructions:
 
