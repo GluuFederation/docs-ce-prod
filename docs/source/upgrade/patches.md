@@ -1,6 +1,6 @@
 # Gluu Server Patches
 
-## oxTrust Unauthorized Access Patch
+## oxTrust Unauthorized Access
 ### May 21, 2019
 
 ### Affected versions
