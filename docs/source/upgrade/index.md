@@ -1,13 +1,14 @@
 # Upgrade to the latest Gluu Server
 
 ## Overview
-The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will need to either use our in-place upgrade script or explicitly install the new version and export/import your data. 
-
 Find your existing version below for instructions to upgrade to the latest version of Gluu. 
 
 !!! Note
-    Scripts and directories outside the Chroot will still reflect the version from which you upgraded. For example, if you started with version 3.1.3, the directory will still be gluu-server-3.1.3 even after upgrading to 3.1.6.
-    
+    Scripts and directories outside the Chroot will still reflect the version from which you upgraded. For example, if you started with version 3.1.3, the directory will still be gluu-server-3.1.3, even after upgrading to 3.1.6.
+
+!!! Note
+    The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. Either use our in-place upgrade script, described below (recommended), or do a fresh install of the latest version and export/import your existing data. 
+
 ### Prerequisites
 
 - Before upgrading, make sure to [back up](../operation/backup.md) the Gluu container or LDAP LDIF. 
