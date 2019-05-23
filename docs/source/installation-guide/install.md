@@ -53,26 +53,6 @@ The Gluu Server will create its file system under `/root/` and will be installed
 | Update/Clean Repo       | `# apt-get update`                         |
 | Install Gluu Server     | `# apt-get install gluu-server-4.0`      |
 
-
-#### Ubuntu Server 14.04.x
-
-| Command Description     |               Trusty Commands         |
-|-------------------------|---------------------------------------|
-| Add Gluu Repository     | `# echo "deb https://repo.gluu.org/ubuntu/ trusty main" > /etc/apt/sources.list.d/gluu-repo.list` |
-| Add Gluu GPG Key        | `# curl https://repo.gluu.org/ubuntu/gluu-apt.key | apt-key add -` |
-| Update/Clean Repo       | `# apt-get update`                         |
-| Install Gluu Server     | `# apt-get install gluu-server-4.0`      |
-
-#### CentOS 6.x
-
-| Command Description     |               CentOS 6.x              |
-|-------------------------|---------------------------------------|
-| Add Gluu Repository     | `# wget https://repo.gluu.org/centos/Gluu-centos6.repo -O /etc/yum.repos.d/Gluu.repo`|
-| Add Gluu GPG Key        | `# wget https://repo.gluu.org/centos/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU`|
-| Import GPG Key          | `# rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU`|
-| Update/Clean Repo       | `# yum clean all`                          |
-| Install Gluu Server     | `# yum install gluu-server-4.0`          |
-
 #### CentOS 7.x
 
 | Command Description     |               CentOS 7.2              |
@@ -127,14 +107,14 @@ The Gluu Server will create its file system under `/root/` and will be installed
 
 The Gluu Server is a chroot container, which must be started to proceed. 
 
-For Centos 6.x, Red Hat 6.x, Ubuntu 14/16, and Debian 8, run the following commands:
+For Red Hat 6.x, Ubuntu 16, and Debian 8, run the following commands:
 
 ```
 # service gluu-server-4.0 start
 # service gluu-server-4.0 login
 ```
 
-For Centos 7.x, Red Hat 7.x<!--, Ubuntu 18--> and Debian 9, run the following commands: 
+For Centos 7.x, Red Hat 7.x <!--, Ubuntu 18--> and Debian 9, run the following commands: 
 
 ```
 # /sbin/gluu-serverd-4.0 enable
@@ -231,7 +211,7 @@ For Ubuntu/Debian:
 Sometimes things go wrong! It can be difficult to troubleshoot issues if the steps to reproduce the issue are not clearly documented. This is why we **always** recommend creating [backups of your Gluu Server](../operation/backup.md). 
 
 ## Uninstallation
-For Ubuntu 14/16, and Debian 8:
+For Ubuntu 16, and Debian 8:
 
 ```
 # service gluu-server-4.0 stop
@@ -239,7 +219,7 @@ For Ubuntu 14/16, and Debian 8:
 # rm -rf /opt/gluu-server-4.0.save
 ```
 
-For Centos 6.x, Red Hat 6.x: 
+For Red Hat 6.x: 
 
 ```
 # service gluu-server-4.0 stop
