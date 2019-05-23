@@ -3,16 +3,37 @@
 ## Overview
 The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will need to either use our in-place upgrade script or explicitly install the new version and export/import your data. Find your existing version below for upgrade instructions to Gluu Server 3.1.6. 
 
-### Pre-requisites
+!!! Note
+    Scripts and directories outside the Chroot will still reflect the version from which you upgraded. For example, if you started with version 3.1.3, the directory will still be gluu-server-3.1.3 even after upgrading to 3.1.6.
+    
+### Prerequisites
 
 - Before upgrading, make sure to [back up](../operation/backup.md) the Gluu container or LDAP LDIF. 
 - Upgrades should always be thoroughly scoped and tested on a development environment *first*.
 
+
+## Upgrade from 3.1.6 - 3.1.6.sp1
+
+To perform an in-place upgrade from Gluu Server 3.1.6 to 3.1.6.sp1, download and run our in-place upgrade script, following these instructions:
+
+1. Log in to your server with `service gluu-server-3.1.6 login`
+
+1. Download the upgrade script with `wget https://repo.gluu.org/upd/3-1-6-sp1-upg.sh`
+
+1. Run the script with `sh 3-1-6-sp1-upg.sh`
+
+1. When the script has finished, restart your server:
+
+```
+logout
+service gluu-server-3.1.6 restart
+```
+
 ## Upgrade from 3.1.x to 3.1.6
 
-To perform an in place upgrade to Gluu Server 3.1.6, download and run our in-place upgrade script following these instructions:
+To perform an in-place upgrade to Gluu Server 3.1.6, download and run our in-place upgrade script, following these instructions:
 
-1. Log into your server with `service gluu-server-3.1.x login`
+1. Log in to your server with `service gluu-server-3.1.x login`
 
 1. Download the upgrade script with `wget https://repo.gluu.org/upd/3-1-6-upg.sh`
 
@@ -24,9 +45,6 @@ To perform an in place upgrade to Gluu Server 3.1.6, download and run our in-pla
 logout
 service gluu-server-3.1.x restart
 ```
-
-!!! Note
-    Scripts and directories outside the Chroot will still reflect the version from which you upgraded. For example, if you started with version 3.1.3, the directory will still be gluu-server-3.1.3 even after upgrading to 3.1.6.
 
 ## Upgrade from 3.0.x to 3.1.6
 
