@@ -32,7 +32,7 @@ The patch below adds two lines to the `finishlogin` xhtml file to catch null `us
 The steps below apply to **all** affected Gluu Server versions.
 
 !!! Note
-    A 5-minute maintenance window is needed to apply the fix. Make sure to test and confirm in a non-production environment first. If Gluu helps manage your server(s), please [open a ticket](https://support.gluu.org) to schedule a maintenance window.
+    A 5-minute maintenance window is needed to apply the fix. Make sure to test and confirm in a non-production environment first. 
 
 - [Back up your Gluu Server](https://gluu.org/docs/ce/operation/backup/)  -- either a VM snapshot or a tarball of the Gluu Server container.
  
