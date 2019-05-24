@@ -63,7 +63,6 @@ nav:
             - 'User Registration': 'user-management/user-registration.md'
             - 'SCIM 2.0 User Management': 'user-management/scim2.md'
             - 'SCIM new features': 'user-management/scim-new-features.md'
-            - 'Replacing Expired JKS Files': 'user-management/replace-expired-jks-scim.md'
         - User Authentication:
             - 'Introduction': 'authn-guide/intro.md'
             - 'Basic Authentication': 'authn-guide/basic.md'
@@ -140,7 +139,7 @@ nav:
         - 'Log Management' : 'operation/logs.md'
         - 'Customize Public Pages': 'operation/custom-design.md'
         - 'Change IP Address': 'operation/changeip.md'
-        #- 'Find your Gluu Version': 'operation/find-gluu-version.md'
+        - 'Replacing Expired JKS Files': 'user-management/replace-expired-jks-scim.md'
 - Developer Guide:
         - 'Build oxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'
         - 'Localization': 'developer-guide/localization.md'
