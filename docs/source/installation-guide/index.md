@@ -18,7 +18,7 @@ The Gluu Server needs to be deployed on a server or VM with the following **mini
 If you plan on installing more than the default components (i.e. oxAuth, oxTrust, and LDAP), we recommend using a machine with at least 8GB of RAM. 
 
 !!! Note
-    Want to try our newly released "Docker Edition"? Head over to the [Docker Edition docs](https://gluu.org/docs/de)
+    Want to try "Docker Edition"? Head over to the [Docker Edition docs](https://gluu.org/docs/de)
     
 !!! Warning
     Gluu must be deployed on a server or VM with a static IP Address. The static IP address should resolve to a computer hostname which can be achieved by adding an entry to the DNS server or in `/etc/hosts`.     
@@ -27,8 +27,8 @@ If you plan on installing more than the default components (i.e. oxAuth, oxTrust
 ## Supported Operating Systems
 Deploy Gluu on a server or VM with one of the following supported operating systems:
 
-- Ubuntu 14.04, 16.04
-- CentOS 6.x, 7.x
+- Ubuntu 16, 18
+- CentOS 7.x
 - RHEL 6.x, 7.x
 - Debian 8
 
@@ -47,8 +47,7 @@ The following ports are open to the Internet by default.
 
 ## File Descriptors(FD)
 
-The Gluu Server **requires** setting the `file descriptors` to 65k. 
-Follow these steps or research how to do this on your Linux platform.
+The Gluu Server **requires** setting the `file descriptors` to 65k. Follow these steps or research how to do this on your Linux platform.
 
 * Add the following lines in the `/etc/security/limits.conf` file.
 
@@ -62,17 +61,14 @@ Follow these steps or research how to do this on your Linux platform.
 session required pam_limits.so
 ```
 
-* Increase the FD limit to 65535. The system file limit 
-is set in `/proc/sys/fs/file-max`.
+* Increase the FD limit to 65535. The system file limit is set in `/proc/sys/fs/file-max`.
 
-It is recommended to check the FD limit before increasing it, 
-and if this limit is customized and more than default, 
-we recommend using the higher one.
-The FD limit can be found using the below command. 
+It is recommended to check the FD limit before increasing it, and if this limit is customized and more than default, we recommend using the higher one. The FD limit can be found using the below command. 
 
 ```
 # cat /proc/sys/fs/file-max
 ```
+
 Please note, the command may vary depending on the OS flavor used.
 
 ```
@@ -84,7 +80,7 @@ echo 65535 > /proc/sys/fs/file-max**
 ulimit -n unlimited
 ```
 
-!!!Note
+!!! Note
     Centos by default will not accept more than the default maximum of 65535. You may get an error while performing the above command. If you do get an error, set it to `ulimit -n 262144`, or `65535` if you get a second error.
 
 * Restart your system.     
@@ -125,7 +121,7 @@ Follow these steps to set up the VM on Azure:
 
 3. From the menu, choose `Compute` > `Virtual Machine` > `From Gallery` branch.
 
-4. Choose Ubuntu Server 14.04 LTS or CentOS 6.7. Remember to set selinux
+4. Choose the operating system. Remember to set selinux
    to permissive if you choose CentOS.
 
 5. Provide a name for the VM in the `Virtual Machine Name` field and use `Standard` for `Tier`.
@@ -135,47 +131,40 @@ Follow these steps to set up the VM on Azure:
 7. Provide a username/password to connect via SSH and upload an SSH certificate. Click `Next`.
 
 8. Create a new cloud service and select `None` for the `Availability Set` option.
-        * Endpoints Section: This is where port forwarding is set so
-      that the internal IP address can be selectively reachable from
-      the outside world. By default, only tcp /22 is there for SSH. The
-      public ports for `http` and `https` (tcp ports 80 and 443) have to be
-      added and mapped to the same private ports. If the cloud mappings
-      are flagged as conflicting, proceed without setting them. Remember to
-      set them after the creation of the VM. Then, click `Next`.
 
-9. Choose not to install `VM Agent` and click the `tick` button to
-   finalize the VM.
+    * Endpoints Section: This is where port forwarding is set so that the internal IP address can be selectively reachable from the outside world. By default, only tcp /22 is there for SSH. The public ports for `http` and `https` (tcp ports 80 and 443) have to be added and mapped to the same private ports. If the cloud mappings are flagged as conflicting, proceed without setting them. Remember to set them after the creation of the VM. Then, click `Next`.
 
-10. Go to the `Dashboard` tab of VM Management Panel and copy the `DNS
-    Name`. This is the name that is used to access the Gluu Server.
+9. Choose not to install `VM Agent` and click the `tick` button to finalize the VM.
 
-11. SSH to the server and proceed with the 
-    installation.
+10. Go to the `Dashboard` tab of VM Management Panel and copy the `DNS Name`. This is the name that is used to access the Gluu Server.
+
+11. SSH to the server and proceed with the installation.
 
 
 ### Linode VM
 
-Linode Virtual Machines (VM) use a custom kernel which is not 
-supported by the Gluu Server, therefore the kernel must be updated before 
-the Gluu Server can be installed in a Linode VM. The following steps will 
-guide you through kernel update in the Linode VM.
+Linode Virtual Machines (VM) use a custom kernel which is not supported by the Gluu Server, therefore the kernel must be updated before the Gluu Server can be installed in a Linode VM. The following steps will guide you through kernel update in the Linode VM.
 
 * Check for the current version of the kernel. If the output contains `-Linode`, then proceed
+
 ```
 # uname -a
 ```
 
 * Run the following command to update the kernel:
+
 ```
 # apt-get install linux-image-virtual grub2
 ```
 
 * Modify `grub` file in the `/etc/default/` folder:
+
 ```
 # vim /etc/default/grub
 ```
 
   * Ensure that the following lines are present in the grub file
+  
 ```
 GRUB_TIMEOUT=10
 GRUB_CMDLINE_LINUX="console=ttyS0,19200n8"
@@ -184,6 +173,7 @@ GRUB_SERIAL_COMMAND="serial --speed=19200 --unit=0 --word=8 --parity=no --stop=1
 ```
 
 * Finally run the following commands to update `grub` and reboot:
+
 ```
 # update-grub
 # reboot
