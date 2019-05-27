@@ -4,7 +4,7 @@ There are two technical entities in any standard SSO transaction:
 1. The application (a.k.a "client" or "RP" / "SP"), and;
 1. The identity provider (a.k.a IDP or OP) 
 
-The SSO integration guide below offers a list of pre-existing SAML & OAuth 2.0 client software projects developers can use to secure and integrate their applications ("clients") with an identity provider, like the Gluu Server. 
+The SSO integration guide below offers strategies for using the Gluu Server IDP/OP to achieve SSO with a variety of types of applications, including server-side, javascript, native, and SaaS / off-the-shelf web and mobile applications. 
 
 !!! Note
     Due to a wide range of variability in implementation quality, Gluu (the organization) only provides support for the following client software projects.  
