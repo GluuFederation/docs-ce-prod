@@ -17,7 +17,7 @@ long-lived access token or refresh token.
 
 The flow is illustrated below:
 
-![flow](https://raw.githubusercontent.com/GluuFederation/docs/master/sources/img/openid_connect/client_credentials_grant.png)
+![flow](../img/oauth2/client-credentials-grant.png)
 
 The steps of the flow are:
 
@@ -98,7 +98,7 @@ long-lived access token or refresh token.
 
 The flow is illustrated below:
 
-![flow](https://raw.githubusercontent.com/GluuFederation/docs/master/sources/img/openid_connect/resource_owner_password_credentials_flow.png)
+![flow](../img/oauth2/password-credential-grant.png)
 
 The steps of the flow are:
 
