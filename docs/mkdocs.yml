@@ -65,7 +65,6 @@ nav:
             - 'User Registration': 'user-management/user-registration.md'
             - 'SCIM 2.0 User Management': 'user-management/scim2.md'
             - 'SCIM new features': 'user-management/scim-new-features.md'
-            - 'Replacing Expired JKS Files': 'user-management/replace-expired-jks-scim.md'
         - User Authentication:
             - 'Introduction': 'authn-guide/intro.md'
             - 'Basic Authentication': 'authn-guide/basic.md'
@@ -94,6 +93,7 @@ nav:
 - Integration Guide:
         - 'Introduction': 'integration/index.md'
         - 'Server Side Web Apps':
+            - 'OAuth2 Grants': 'admin-guide/oauth2.md'
             - 'oxd OAuth 2.0': 'integration/oxd-oauth2/index.md'
             - 'Nginx lua-resty-openidc': 'integration/sswebapps/nginx.md'
             - 'Apache mod_auth_openidc': 'integration/sswebapps/openidc-rp.md'
@@ -123,6 +123,7 @@ nav:
         - 'JSON Properties':
             - 'oxTrust JSON Properties': 'reference/JSON-oxtrust-prop.md'
             - 'oxAuth JSON Properties': 'reference/JSON-oxauth-prop.md'
+            - 'Cache Provider Configuration': 'reference/cache-provider-prop.md'
         - 'Gluu LDAP Schema':
             - 'oxLDAP Properties': 'reference/oxldap.md'
             - 'LDAP Schema': 'reference/schema.md'
@@ -130,12 +131,15 @@ nav:
         - 'Upgrades': 'upgrade/index.md'
         - 'Patches': 'upgrade/patches.md'
         - 'Backups': 'operation/backup.md'
+        - 'Security tips': 'operation/security.md'
+        - 'Performance tuning': 'operation/fine-tuning.md'
         - 'Ports': 'operation/ports.md'
         - 'Logout': 'operation/logout.md'
         - 'Log Management' : 'operation/logs.md'
         - 'Customize Public Pages': 'operation/custom-design.md'
         - 'Change IP Address': 'operation/changeip.md'
         - 'Server Clean-up': 'operation/cleanup.md'
+        - 'Replacing Expired JKS Files': 'operation/replace-expired-jks-scim.md'
 - Developer Guide:
         - 'Build oxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'
         - 'Localization': 'developer-guide/localization.md'
