@@ -201,14 +201,13 @@ The oxAuth and oxTrust services need to be restarted for customizations to be ap
 
 ## An Example: Changing Primary Key name for Login
 
-Your organzation might use 'Email Address' as the primary key for users instead of 'Username'. 
-Let's move forward to change that login name from 'Username' to 'Email Address'. 
+Your organzation might use "Email Address" as the primary key for users instead of "Username". In this example, we will change the field on the login page from "Username" to "Email Address". 
 
 1. Log into the Gluu container: `# service gluu-server-3.1.6 login`
 
-1. Grab `login.xhtml` from 'jetty-9.x/temp' location to `/opt/gluu/jetty/oxauth/custom/pages`: `cp /opt/jetty-9.4/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-13153919175814468.dir/webapp/login.xhtml /opt/gluu/jetty/oxauth/custom/pages/`
+1. Grab `login.xhtml` from `jetty-9.x/temp` location to `/opt/gluu/jetty/oxauth/custom/pages`: `cp /opt/jetty-9.4/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-13153919175814468.dir/webapp/login.xhtml /opt/gluu/jetty/oxauth/custom/pages/`
 
-1. Modify attribute value to 'Email Address' under 'form-group' class: 
+1. Modify attribute value to 'Email Address' under the `form-group` class: 
 
 ```
 ....
@@ -252,8 +251,11 @@ For a good practical example, let's consider a task of removing the Gluu copyrig
   ```
 -->
 
-Don't forget to apply appropriate file system permissions if needed. Restarting oxAuth's service inside container will display the changes:  
+Restarting oxAuth's service inside container will display the changes:  
   
   ```
   service oxauth stop && service oxauth start
   ```
+
+!!! Note
+    Don't forget to apply appropriate file system permissions if needed. 
