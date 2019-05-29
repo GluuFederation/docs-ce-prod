@@ -251,7 +251,7 @@ For a good practical example, let's consider a task of removing the Gluu copyrig
   ```
 -->
 
-Restarting oxAuth's service inside container will display the changes:  
+1. Restart oxAuth's service inside the container to display the changes:  
   
   ```
   service oxauth stop && service oxauth start
