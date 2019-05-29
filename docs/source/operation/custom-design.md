@@ -8,6 +8,7 @@ Public pages include:
   - Registration  
   - Password Recovery  
   - Error Pages  
+  - Logout pages
 
 !!! Warning 
     Customizations should only be made by people with a solid understanding of web development. Before changing files, we strongly recommend creating backups.
