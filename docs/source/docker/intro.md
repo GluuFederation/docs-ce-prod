@@ -15,5 +15,5 @@ The Gluu Server now supports installation via containers. This documentation is 
 - [Example Implementations](./example.md)
 - [FAQ](./faq.md)
 
-## Support
-Gluu Server DE is currently in Beta. If you have questions or feedback, please open a ticket on the [Gluu support portal](https://support.gluu.org/).
+## License
+Gluu Server DE is available under the Gluu Support License. 
