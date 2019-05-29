@@ -54,7 +54,6 @@ nav:
         - 'Installation': 'installation-guide/install.md'
         - 'Setup Script Options': 'installation-guide/setup_py.md'
         - 'Clustering': 'installation-guide/cluster.md'
-        - 'Docker Edition': 'docker/intro.md'
 - Administration Guide:
         - 'oxTrust admin UI': 'admin-guide/oxtrust-ui.md'
         - 'Interception Scripts': 'admin-guide/custom-script.md'
