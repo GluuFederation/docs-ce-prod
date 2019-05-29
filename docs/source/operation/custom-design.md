@@ -209,17 +209,27 @@ Your organzation might use "Email Address" as the primary key for users instead 
 
 1. Modify attribute value to 'Email Address' under the `form-group` class: 
 
-```
-....
-....
-<h:inputHidden id="platform"/>
-   <h:panelGroup>
-      <div class="form-group">
-          <h:outputLabel styleClass="col-sm-4 control-label" for="username" value="Email Address" />
-               <div class="col-sm-8">
-....
-....
-```
+    ```
+    ....
+    ....
+    <h:inputHidden id="platform"/>
+      <h:panelGroup>
+          <div class="form-group">
+              <h:outputLabel styleClass="col-sm-4 control-label" for="username" value="Email Address" />
+                  <div class="col-sm-8">
+    ....
+    ....
+    ```
+
+1. Restart oxAuth's service inside the container to display the changes:  
+  
+    ```
+    service oxauth stop && service oxauth start
+    ```
+
+!!! Note
+    Don't forget to apply appropriate file system permissions if needed. 
+
 
 <!--
 ## An Example: Removing the Gluu copyright 
@@ -250,12 +260,3 @@ For a good practical example, let's consider a task of removing the Gluu copyrig
   # cp /opt/jetty-9.4/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/login.xhtml /opt/gluu/jetty/oxauth/custom/pages/
   ```
 -->
-
-1. Restart oxAuth's service inside the container to display the changes:  
-  
-  ```
-  service oxauth stop && service oxauth start
-  ```
-
-!!! Note
-    Don't forget to apply appropriate file system permissions if needed. 
