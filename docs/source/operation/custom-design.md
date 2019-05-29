@@ -227,8 +227,8 @@ Your organzation might use "Email Address" as the primary key for users instead 
     service oxauth stop && service oxauth start
     ```
 
-!!! Note
-    Don't forget to apply appropriate file system permissions if needed. 
+    !!! Note
+        Don't forget to apply appropriate file system permissions if needed. 
 
 
 <!--
