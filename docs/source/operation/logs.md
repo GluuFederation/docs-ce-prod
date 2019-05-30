@@ -213,14 +213,14 @@ oxTrust configured to generate and view client_id and/or client_name logs. To co
 
 - For client_name to be populated and viewed in the logs set `logClientNameOnClientAuthentication` to `true`
 
-#### System logs 
+#### System log location
 
 These logs contain global system messages.
 
 - For Ubuntu: `/var/log/syslog`
 - For RPM based systems: `/var/log/messages`
 
-#### Web Server logs
+#### Web Server log location
 - For Debian: `/var/log/apache2/`
 - For RPM based systems: `/var/log/httpd/` 
 
