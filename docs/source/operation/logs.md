@@ -103,7 +103,7 @@ The following files define the log levels in Gluu Server. Please edit the file w
 Please restart the specific service after any change in log levels to allow the changes to take effect. Use the following command to restart Tomcat:
 
 !!! Note
-    It is recommended to use OxTrust UI to change the logging levels.
+    It is recommended to use oxTrust UI to change the logging levels.
     
 ## Setup Logs
 The setup logs are stored inside the `/install/community-edition-setup/` folder. There are two logs available, one detailing the setup process and the other documenting the errors:
@@ -214,16 +214,15 @@ oxTrust configured to generate and view client_id and/or client_name logs. To co
 - For client_name to be populated and viewed in the logs set `logClientNameOnClientAuthentication` to `true`
 
 #### System logs 
+
+These logs contain global system messages.
+
 - For Ubuntu: `/var/log/syslog`
 - For RPM based systems: `/var/log/messages`
 
 #### Web Server logs
 - For Debian: `/var/log/apache2/`
-- For RPM based systems: `/var/log/httpd/`
-
-## System Logs
-
-Sometimes it's worth checking system logs like `/var/log/messages`. These logs contain global system messages.
+- For RPM based systems: `/var/log/httpd/` 
 
 ## Web Server logs
 
