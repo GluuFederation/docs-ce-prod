@@ -224,6 +224,29 @@ These logs contain global system messages.
 - For Debian: `/var/log/apache2/`
 - For RPM based systems: `/var/log/httpd/` 
 
+### Adjust Shibboleth log level
+
+If troubleshooting SAML issues, it may be necessary to adjust the Shibboleth log level temporarily. To do so, follow these steps.
+
+1. Navigate to `/opt/shibboleth-idp/conf/`
+1. Open `logback.xml` in an editor
+1. Find the following snippet:
+
+    ```
+    <!-- Logging level shortcuts. -->
+    <variable name="idp.loglevel.idp" value="INFO" />
+    <variable name="idp.loglevel.ldap" value="WARN" />
+    <variable name="idp.loglevel.messages" value="INFO" />
+    <variable name="idp.loglevel.encryption" value="INFO" />
+    <variable name="idp.loglevel.opensaml" value="INFO" />
+    <variable name="idp.loglevel.props" value="INFO" />
+    ```
+    
+1. Replace `INFO` with `DEBUG` to get more logging info
+1. Restart the `idp` service with `service idp stop/start`
+1. Navigate to `/opt/shibboleth-idp/logs_/`
+1. After the issue is resolved, be sure to set the level back to `WARN` for `idp.loglevel.ldap` and `INFO` for the other logs in the production server.
+
 ## Web Server logs
 
 Apache httpd / apache2 logs are available in `/var/log/httpd` or `/var/log/apache2` for Ubuntu.
