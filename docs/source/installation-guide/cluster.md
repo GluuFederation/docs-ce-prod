@@ -38,7 +38,7 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
      
 - To create the following instructions we used Ubuntu 14 Trusty     
 
-- To create the following instructions we used an Nginx load balancer/proxy, however if you have your own load balancer, like F5 or Cisco, you should use that instead and disregard the instructions about configuring NGINX   
+- To create the following instructions we used an Nginx load balancer/proxy, however if you have your own load balancer, like F5 or Cisco, you should use that instead and disregard the instructions about configuring Nginx   
 
 - Gluu Server version 4.0 using OpenDJ   
 
@@ -60,7 +60,7 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 - Now for the rest of the servers in the cluster, [download the Gluu packages](https://gluu.org/docs/ce/installation-guide/install/) but **don't run `setup.py` yet**   
 
-- We want to copy the `/install/community-edition-setu/setup.properties.last` file from the first install to the other servers as `setup.properties` so we have the exact same configurations. (Here I have SSH access to my other server outisde the Gluu chroot)
+- We want to copy the `/install/community-edition-setup/setup.properties.last` file from the first install to the other servers as `setup.properties` so we have the exact same configurations. (Here I have SSH access to my other server outisde the Gluu chroot)
 
 ```
 
