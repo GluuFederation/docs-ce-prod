@@ -92,8 +92,7 @@ A description of each field follows:
 - **Metadata Type**: There are four available options to choose from. The correct Type depends on how the SP is delivering Metadata to your IDP.      
 
     - *File*: Choose `File` if the SP has provided an uploadable metadata document in XML format.
-    - *URI*: Chose `URI` if the SP metadata is hosted on a URI that is accessible from the Internet.
-    - *Generate*: Choose `Generate` if the SP is an "in-house application" or the “Shibboleth SP” is going to be installed in the target application (SP). This option will generate a how-to guide for installing the Shibboleth SP. 
+    - *URI*: Chose `URI` if the SP metadata is hosted on a URI that is accessible from the Internet. 
     - *Federation*: Choose this option if the target application (SP) is affiliated with a federation service (e.g. InCommon, NJEdge etc.). Fedeartion's TR must be created first for it to appear in this list. Learn more about working with a federation [below](#federation-configuration).   
     
 !!! Note 
