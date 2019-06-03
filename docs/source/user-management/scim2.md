@@ -1146,6 +1146,17 @@ Your result list might look like this:
 }
 ``` 
 
+## How is SCIM data stored?
+
+SCIM [schema spec](https://tools.ietf.org/html/rfc7643) does not use LDAP attribute names but a different naming convention for resource attributes (note this is not the case of custom attributes where the SCIM name used is that of the LDAP attribute). 
+
+In the attributes form of oxTrust it is possible to determine if a given LDAP attribute is being mapped to a SCIM attribute. To do so navigate to `Configuration` > `Attributes` and click on any attribute. If the "SCIM Attribute" field appears listed, it will show the corresponding name in SCIM terms including the type of resource(s) applicable. When missing, it indicates it is not an SCIM attribute unless "SCIM extended attribute" is checked meaning this is an attribute part of (User) extension.
+
+The image above shows the example of `middleName` whose corresponding SCIM core attribute is `name.middleName`:
+
+![scim attribute vs ldap attribute](../img/scim/scim-attr-vs-ldap-attrs.png)
+
+
 ## Supporting a User Registration Process with SCIM
 
 SCIM service has many use cases. One interesting and often arising is that of coding your 
