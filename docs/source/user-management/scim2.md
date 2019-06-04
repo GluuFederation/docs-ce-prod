@@ -1075,12 +1075,14 @@ Former SCIM-Client versions used to deal with `BaseClientResponse<T>` objects an
 
 ## Additional Features of SCIM Service
 
-### FIDO Devices
+SCIM standard is concerned with two types of resources, namely, Users and Groups. However, according to spec, the service can be extended to add new resource types. Particularly, Gluu Server implementation of SCIM contains the additional resource types "FIDO 2.0 device" and "FIDO u2f device" (formerly known as "FIDO device"). 
 
-SCIM standard is concerned with two types of resources, namely, Users and Groups. However, according to spec, the service can be extended to add new resource types. Particularly, Gluu Server implementation of SCIM contains a resource type called "FIDO device". 
+Fido 2.0 devices are enrolled in Gluu Server by means of the `fido2` custom interception script while Fido u2f devices correspond to the `u2f` script. Since Fido 2.0 has u2f support, u2f devices are treated generally as 2.0 devices if they were enrolled by using the `fido2` script. 
 
-A FIDO device represents a user credential stored in the Gluu Server LDAP that is 
-compliant with the [FIDO](https://fidoalliance.org) standards. 
+### FIDO U2F Devices
+
+A FIDO u2f device represents a user credential stored in the Gluu Server LDAP that is 
+compliant with the [FIDO u2f](https://fidoalliance.org) standard. 
 These devices are used as a second factor in a setting of strong authentication. 
 Examples of FIDO devices are [u2f security keys](../authn-guide/U2F/) and [Super Gluu devices](../authn-guide/supergluu/).
 
@@ -1099,7 +1101,7 @@ The following is a summary of features of a Fido Device SCIM resource:
 - Device attributes: Attributes pertaining to this resource type are listed by visiting the
 URL `https://<host-name>/identity/restv1/scim/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:FidoDevice`
 
-Currently the service supports only:
+Currently the endpoint supports only:
 
 - Devices search and retrieval (via GET and POST)
 
@@ -1146,6 +1148,30 @@ Your result list might look like this:
 }
 ``` 
 
+### FIDO 2 Devices
+
+Analog to u2f devices, fido 2 device resources adhere to the more current Fido 2.0 initiative (WebAuthn + CTAP). The following is a summary of features of a Fido Device SCIM resource:
+
+- Schema URN: `urn:ietf:params:scim:schemas:core:2.0:Fido2Device`
+
+- Name of resource: Fido2Device
+
+- Endpoint URL (relative to base URL of service): `/scim/v2/Fido2Devices`
+
+- Device attributes: Attributes pertaining to this resource type are listed by visiting the
+URL `https://<host-name>/identity/restv1/scim/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:Fido2Device`
+
+Currently the endpoint supports only:
+
+- Devices search and retrieval (via GET and POST)
+
+- Single device deletion via DELETE
+
+- Single device update via PUT or PATCH
+
+!!! Note
+    Given the nature of this resource, most of its attributes are not modifiable. Editing is limited to the following attributes: `displayName` and `status`.
+    
 ## How is SCIM data stored?
 
 SCIM [schema spec](https://tools.ietf.org/html/rfc7643) does not use LDAP attribute names but a different naming convention for resource attributes (note this is not the case of custom attributes where the SCIM name used is that of the LDAP attribute). 
