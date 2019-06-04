@@ -3,7 +3,7 @@
 This page explains the oxTrust JSON Configuration which can by found by navigating to `Configuration` > `JSON Configuration`. 
 
 ## oxtrust.properties
-![image](../img/reference/config-json_oxtrustproperties311.png)
+![image](../img/reference/config-json_oxtrustpropertiesv4.png)
 
 The following fields are available for edit in the menu.
 
