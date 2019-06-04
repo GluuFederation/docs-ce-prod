@@ -1,4 +1,4 @@
-# oxTrust JSON Configurations
+# oxTrust JSON Configuration
 ## Overview
 This page explains the oxTrust JSON Configuration which can by found by navigating to `Configuration` > `JSON Configuration`. 
 
@@ -9,32 +9,33 @@ The following fields are available for edit in the menu.
 
 | Fields/Attributes | Description |
 | ------------------|-------------|
-| baseDN | The base distinguished name of oxtrust. The default is `o=gluu` |
-| orgIname | This can be left blank |
+| baseDN | The base distinguished name of oxTrust. The default is `o=gluu` |
 | orgSupportEmail | The support email address of the Gluu Server installation |
-| applianceInum | The [INUM][inum] of the appliance |
 | applianceUrl | The [URI][uri] of the appliance |
 | baseEndpoint | | 
-| schemaAddObjectClassWithAttributeTypesDefinition | The schema to add various attribute types |
-| schemaAddObjectClassWithoutAttributeTypesDefinition | The schema to add various attribute types |
 
 ## personObjectClassTypes
-This class holds the relation between the person entry and its relative object class.
+This class holds the relationship between the person entry and its relative object class.
 
 | Fields/Attributes | Description |
 | ------------------|-------------|
 | item 1 | inetOrgPerson |
 | item 2 | gluuPerson |
-| personCustomObjectClass| |
+| item 3 | eduPerson |
+| personCustomObjectClass| gluuCustomPerson |
 
 ## personObjectClassDisplayNames
-This class holds the relation between the display name of the person and the relative object class.
+This class holds the relationship between the display name of the person and the relative object class.
 
 | Fields/Attributes | Description |
 | ------------------|-------------|
-| item 1 | inetOrgPerson |
+| item 1 | gluuCustomPerson |
 | item 2 | gluuPerson |
-| schemaAddAttributeDefenition | | 
+| item 3 | eduPerson |
+
+## contactObjectClassTypes
+
+Items can be added under this class by clicking on the `+ item` button.
 
 ## contactObjectClassDisplayNames 
 
@@ -52,7 +53,7 @@ Items can be added under this class by clicking on the `+ item` button.
 | shibboleth2IdpRootDir | root directory for the shibboleth plugin |
 | shibboleth2SpConfDir | Configuration directory for the shibboleth plugin |
 | pokenApplicationSecret | |
-| updateAplicanceStatus | update appliance state for the site. Use `true` to allow, and `false` to forbid (default value) |
+| updateStatus | update appliance state for the site. Use `true` to allow, and `false` to forbid |
 | svnConfigurationStoreRoot | Root of the [SVN][svn] configuration store |
 | svnConfigurationStorePassword | Password of the [SVN][svn] configuration store |
 | keystorePath | Path to the keystore |
@@ -74,15 +75,11 @@ Items can be added here by clicking on the `+ item` button.
 | configGeneration | This entry controls the automatic generation of the configuration files. Use `enable` to allow and `disable` otherwise |
 | idpLdapProtocol | Protocol used by the [LDAP][ldap] server |
 | idpLdapServer | Hostname of the [LDAP][ldap] server with port |
-| orgInum | [INUM][inum] of the organization |
 | idpBindDn | Domain name of the [OpenID][openid] provider |
 | idpBindPassowrd | Password for the [OpenID][openid] provider |
 | idpUserFields | |
 | gluuSpCert | Certificate name and location of the Gluu Server |
-| mysqlUrl | MySql connector as [URI][uri] |
-| mysqlUser | Username for the MySql server |
-| mysqlPassword | Passowrd for the MySql server |
-| shibboleth2FederationRootDir | Root directory for the [Shobboleth][shibboleth] federation plugin |
+| shibboleth3FederationRootDir | Root directory for the [Shobboleth][shibboleth] federation plugin |
 | cacheRefreshEnabled | Value of the cache refresh mechanism. Use `true` to enable and `false` otherwise |
 | cacheRefreshIntervalMinutes | Time in minutes counting down to next cache-refresh event |
 | caCertsLocation | Keystore to use for downloaded [SSL][ssl] certificates |
@@ -91,19 +88,12 @@ Items can be added here by clicking on the `+ item` button.
 | certDir | Locaiton of certificates used in configuration files |
 | servicesRestartTrigger | Location of the file which will restart the applicance server if deleted |
 | persistSVN | State of persistence in [SVN][svn]. Use `true` to enable or `false` otherwise |
-| oxAuthAuthorizeUrl | Authorization [URI][uri] for oxAuth |
-| oxAuthTokenUrl | Token [URI][uri] for oxAuth |
-| oxAuthValidateTokenUrl | [URI][uri] for oxAuth token validation |
-| oxAuthEndSessionUrl | [URI][uri] for oxAuth session termination |
-| oxAuthLogoutUrl | [URI][uri] for logging out of oxAuth |
-| oxAuthTokenValidationUrl | [URI][uri] for oxAuth token validation |
-| oxAuthUserInfo | [URI][uri] for oxAuth user information |
 | oxAuthSectorIdentifierUrl | [URI][uri] for oxAuth sector identifier |
 | oxAuthClientId | Identification number for oxAuth client |
-| oxAuthClientPassowrd | Password for oxAuth client |
+| oxAuthClientPassword | Password for oxAuth client |
 | oxAuthClientScope | Scope of the oxAuth client |
 | loginRedirectUrl | Redirect [URI][uri] for oxAuth |
-| logoutRedirectUrl | [URI][uri] for oxAuth | 
+| logoutRedirectUrl | Logout redirect [URI][uri] for oxAuth | 
 
 ## clusteredInums
 Items can be added here by clicking on the `+ item` button.
@@ -120,11 +110,23 @@ Items can be added here by clicking on the `+ item` button.
 | scimUmaScope | Scopes available for this resource |
 | scimUmaClientKeyStoreFile| |
 | scimUmaClientKeyStorePassword| |
-| passportUmaClientId| |
-| passportUmaClientKeyId| |
-| passportUmaResourceID | |
-| passportUmaScope| |
+| apiUmaClientID | |
+| apiUmaClientKeyId| |
+| apiUmaResourceId| |
+
+## apiUmaScopes
+Items can be added here by clicking on the `+ item` button
+
+| Fields/Attributes | Description |
+| ------------------|-------------|
+| apiUmaClientKeyStoreFile | |
+| apiUmaClientKeyStorePassword | |
+| passportUmaClientId | |
+| passportUmaClientKeyId | |
+| passportUmaResourceId | |
+| passportUmaScope | |
 | passportUmaClientKeyStoreFile | |
+| passportUmaClientKeyStorePassword | |
 | recaptchaSiteKey | |
 | recaptchaSecretKey | |
 | cssLocation | Path to the CSS files |
@@ -144,9 +146,8 @@ Items can be added here by clicking on the `+ item` button.
 | organizationName | |
 | idp3SigningCert | |
 | idp3EncryptionCert | |
-| disableJdkLogger | Boolean value specifying whether to disable JDK loggers |
-| passwordResetRequestExpirationTime | Expiration time in secionds for password reset requests |
-| cleanServiceInterval | Time interval for the Clean Service in seconds |
+| oxIncommonFlag | |
+| loggingLevel | Logging level for oxTrust loggers |
 
 ### clientWhiteList
 
@@ -158,7 +159,14 @@ This list details the blacklisted client redirection URIs
 
 ### Scim Properties
 
-
+| Fields/Attributes | Description |
+| ------------------|-------------|
+| MAX COUNT | Maximum value "count" query parameter can take (also used as default value when not specified) |
+| disableJdkLogger | Boolean value specifying whether to enable JDK Loggers|
+| passwordResetRequestExpirationTime | Expiration time in seconds for password reset requests |
+| cleanServiceInterval | Time interval for the Clean Service in seconds |
+| authenticationRecaptchaEnabled | Boolean value specifying whether to enable Recaptcha on authentication |
+| enforceEmailUniqueness | Boolean value specifying whether to enforce email uniqueness on oxTrust side |
 
 [inum]: https://en.wikipedia.org/wiki/INum_Initiative "INUM definition in wikipedia"
 [uri]: https://en.wikipedia.org/wiki/Uniform_Resource_Identifier "Uniform Resource Identifier"
