@@ -759,7 +759,7 @@ Status code 200 is returned for a successful response.
 
 ### GET
 
-Returns a fido device by id (see [section 3.4.1](https://tools.ietf.org/html/rfc7644#section-3.4.1) of RFC 7644).
+Returns a fido u2f device by id (see [section 3.4.1](https://tools.ietf.org/html/rfc7644#section-3.4.1) of RFC 7644).
 
 #### Parameters
 
@@ -788,11 +788,11 @@ Returns a fido device by id (see [section 3.4.1](https://tools.ietf.org/html/rfc
 
 The <a href="#/definitions/FidoDevice">FidoDevice</a> requested containing the attributes whose returnability is "default". This can be overriden by supplying **attributes** or **excludedAttributes** query parameters (see [section 3.4.2.5](https://tools.ietf.org/html/rfc7644#section-3.4.2.5) of RFC 7644).
 
-Status code 200 is returned upon successful operation. If the id supplied as part of the URL does not map to an existing fido device, then 404 is returned.
+Status code 200 is returned upon successful operation. If the id supplied as part of the URL does not map to an existing fido u2f device, then 404 is returned.
 
 ### PUT
 
-Updates a fido device (see [section 3.5.1](https://tools.ietf.org/html/rfc7644#section-3.5.1) of RFC 7644).
+Updates a fido u2f device (see [section 3.5.1](https://tools.ietf.org/html/rfc7644#section-3.5.1) of RFC 7644).
 
 #### Parameters
 
@@ -831,17 +831,105 @@ Take into account the mutability of attributes for this resource (check the `/Sc
 
 The representation of the <a href="#/definitions/FidoDevice">FidoDevice</a> (after the update) containing the attributes whose returnability is "default". This can be overriden by supplying **attributes** or **excludedAttributes** query parameters (see [section 3.4.2.5](https://tools.ietf.org/html/rfc7644#section-3.4.2.5) of RFC 7644).
 
-Status code 200 is returned upon successful operation. If the id supplied as part of the URL does not map to an existing fido device, then 404 is returned.
+Status code 200 is returned upon successful operation. If the id supplied as part of the URL does not map to an existing fido u2f device, then 404 is returned.
 
 ### DELETE
 
-Deletes a fido device (see [section 3.6](https://tools.ietf.org/html/rfc7644#section-3.6) of RFC 7644).
+Deletes a fido u2f device (see [section 3.6](https://tools.ietf.org/html/rfc7644#section-3.6) of RFC 7644).
 
 #### Parameters
 None 
 
 #### Response
-A no content response (status code 204) if the operation was a successful. If the id supplied as part of the URL does not map to an existing fido device, then 404 is returned.  
+A no content response (status code 204) if the operation was a successful. If the id supplied as part of the URL does not map to an existing fido u2f device, then 404 is returned.  
+
+## `/identity/restv1/scim/v2/Fido2Devices/{id}`
+
+### GET
+
+Returns a fido 2.0 device by id (see [section 3.4.1](https://tools.ietf.org/html/rfc7644#section-3.4.1) of RFC 7644).
+
+#### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Required</th>
+        <th>Located in</th>
+        <th>Data type</th>
+    </tr>
+    <tr>
+        <td>attributes</th>
+        <td>no</td>
+        <td>url</td>
+        <td>string (comma-separated list)</td>
+    </tr>
+    <tr>
+        <td>excludedAttributes</td>
+        <td>no</td>
+        <td>url</td>
+        <td>string (comma-separated list)</td>
+    </tr>
+</table>
+
+#### Response
+
+The <a href="#/definitions/Fido2Device">Fido2Device</a> requested containing the attributes whose returnability is "default". This can be overriden by supplying **attributes** or **excludedAttributes** query parameters (see [section 3.4.2.5](https://tools.ietf.org/html/rfc7644#section-3.4.2.5) of RFC 7644).
+
+Status code 200 is returned upon successful operation. If the id supplied as part of the URL does not map to an existing fido 2 device, then 404 is returned.
+
+### PUT
+
+Updates a fido 2 device (see [section 3.5.1](https://tools.ietf.org/html/rfc7644#section-3.5.1) of RFC 7644).
+
+#### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Required</th>
+        <th>Located in</th>
+        <th>Data type</th>
+    </tr>
+    <tr>
+        <td>attributes</th>
+        <td>no</td>
+        <td>url</td>
+        <td>string (comma-separated list)</td>
+    </tr>
+    <tr>
+        <td>excludedAttributes</td>
+        <td>no</td>
+        <td>url</td>
+        <td>string (comma-separated list)</td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td>yes</td>
+        <td>body (payload)</td>
+        <td><a href="#/definitions/Fido2Device">Fido2Device</a></td>
+    </tr>
+</table>
+
+For payload data, it's not necessary to provide the whole Fido2Device representation. Partial data suffices, that is, a Json object that contains the attributes to be replaced in the destination.
+
+Take into account the mutability of attributes for this resource (check the `/Schemas` endpoint). For security reasons only a few attributes are allowed to be modified.
+
+#### Response
+
+The representation of the <a href="#/definitions/Fido2Device">Fido2Device</a> (after the update) containing the attributes whose returnability is "default". This can be overriden by supplying **attributes** or **excludedAttributes** query parameters (see [section 3.4.2.5](https://tools.ietf.org/html/rfc7644#section-3.4.2.5) of RFC 7644).
+
+Status code 200 is returned upon successful operation. If the id supplied as part of the URL does not map to an existing fido 2 device, then 404 is returned.
+
+### DELETE
+
+Deletes a fido 2 device (see [section 3.6](https://tools.ietf.org/html/rfc7644#section-3.6) of RFC 7644).
+
+#### Parameters
+None 
+
+#### Response
+A no content response (status code 204) if the operation was a successful. If the id supplied as part of the URL does not map to an existing fido 2 device, then 404 is returned.
 
 ## `/identity/restv1/scim/v2/Bulk` 
 
@@ -1783,7 +1871,7 @@ This section summarizes data model definitions useful to understand what values 
 </table>
 
 
-#### Fido devices-related
+#### Fido u2f devices-related
 
 <a name="/definitions/FidoDevice">FidoDevice</a>
 
@@ -1870,6 +1958,58 @@ This section summarizes data model definitions useful to understand what values 
     </tr>
     <tr>
         <td>nickname</td>
+        <td> string </td>
+        <td>no</td>
+    </tr>
+</table>
+
+#### Fido 2.0 devices-related
+
+<a name="/definitions/Fido2Device">Fido2Device</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+    </tr>
+    <tr>
+        <td>schemas</td>
+        <td> array[string] </td>
+        <td>yes</td>
+    </tr>
+    <tr>
+        <td>meta</td>
+        <td> <a href="#/definitions/Meta">Meta</a> </td>
+        <td>no</td>
+    </tr>
+    <tr>
+        <td>id</td>
+        <td> string </td>
+        <td>no</td>
+    </tr>
+    <tr>
+        <td>userId</td>
+        <td> string </td>
+        <td>no</td>
+    </tr>
+    <tr>
+        <td>creationDate</td>
+        <td> string (date-time) </td>
+        <td>no</td>
+    </tr>
+    <tr>
+        <td>counter</td>
+        <td> integer </td>
+        <td>no</td>
+    </tr>
+    <tr>
+        <td>status</td>
+        <td> string </td>
+        <td>no</td>
+    </tr>
+    <tr>
+        <td>displayName</td>
         <td> string </td>
         <td>no</td>
     </tr>
