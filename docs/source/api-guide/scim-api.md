@@ -843,6 +843,119 @@ None
 
 #### Response
 A no content response (status code 204) if the operation was a successful. If the id supplied as part of the URL does not map to an existing fido u2f device, then 404 is returned.  
+## `/identity/restv1/scim/v2/Fido2Devices`
+
+### GET
+
+Search fido 2.0 devices based on filter criteria (see [section 3.4.2](https://tools.ietf.org/html/rfc7644#section-3.4.2) of RFC 7644). 
+
+#### Query parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Required</th>
+        <th>Data type</th>
+    </tr>
+    <tr>
+        <td>filter</td>
+        <td>no</td>
+        <td>string</td>
+    </tr>
+    <tr>
+        <td>startIndex</td>
+        <td>no</td>
+        <td>string</td>
+    </tr>
+    <tr>
+        <td>count</td>
+        <td>no</td>
+        <td>int</td>
+    </tr>
+    <tr>
+        <td>sortBy</td>
+        <td>no</td>
+        <td>string</td>
+    </tr>
+    <tr>
+        <td>sortOrder</td>
+        <td>no</td>
+        <td>string</td>
+    </tr>
+    <tr>
+        <td>attributes</td>
+        <td>no</td>
+        <td>string (comma-separated list)</td>
+    </tr>
+    <tr>
+        <td>excludedAttributes</td>
+        <td>no</td>
+        <td>string (comma-separated list)</td>
+    </tr>
+</table>
+
+#### Response
+
+Output data is in form of a [ListResponse](#/definitions/ListResponse). Resources returned belong to <a href="#/definitions/Fido2Device">Fido2Device</a>.
+
+Status code 200 is returned for a successful response.
+
+
+## `/identity/restv1/scim/v2/Fido2Devices/.search`
+
+Search fido 2.0 devices based on filter criteria (see [section 3.4.3](https://tools.ietf.org/html/rfc7644#section-3.4.3) of RFC 7644). 
+
+### POST
+
+#### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Required</th>
+        <th>Data type</th>
+    </tr>
+    <tr>
+        <td>filter</td>
+        <td>no</td>
+        <td>string</td>
+    </tr>
+    <tr>
+        <td>startIndex</td>
+        <td>no</td>
+        <td>string</td>
+    </tr>
+    <tr>
+        <td>count</td>
+        <td>no</td>
+        <td>int</td>
+    </tr>
+    <tr>
+        <td>sortBy</td>
+        <td>no</td>
+        <td>string</td>
+    </tr>
+    <tr>
+        <td>sortOrder</td>
+        <td>no</td>
+        <td>string</td>
+    </tr>
+    <tr>
+        <td>attributes</td>
+        <td>no</td>
+        <td>string (comma-separated list)</td>
+    </tr>
+    <tr>
+        <td>excludedAttributes</td>
+        <td>no</td>
+        <td>string (comma-separated list)</td>
+    </tr>
+</table>
+
+#### Response
+Output data is in form of a [ListResponse](#/definitions/ListResponse). Resources returned belong to <a href="#/definitions/Fido2Device">Fido2Device</a>.
+
+Status code 200 is returned for a successful response.
 
 ## `/identity/restv1/scim/v2/Fido2Devices/{id}`
 
