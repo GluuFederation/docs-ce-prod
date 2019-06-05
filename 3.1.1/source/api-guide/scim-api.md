@@ -27,9 +27,9 @@ The endpoints URLS are incomplete without the hostname. Please use the hostname 
 
 |Resource|Endpoint			|Operations		|Description	|
 |--------|------------------------------|-----------------------|---------------|
-|User    |/seam/resource/restv1/Users	|GET, POST|Retrieve/Add/Modify Users	|
-|Group	 |/seam/resource/restv1/Groups	|GET, POST|Retrieve/Add/Modify Groups	|
-|Bulk	 |/seam/resource/restv1/scim/v1/Bulk|GET, POST|Bulk modify Resources	|
+|User    |/restv1/Users	|GET, POST|Retrieve/Add/Modify Users	|
+|Group	 |/restv1/Groups	|GET, POST|Retrieve/Add/Modify Groups	|
+|Bulk	 |/restv1/scim/v1/Bulk|GET, POST|Bulk modify Resources	|
 
 The endpoints are described in detail in the following sections. Please remember to go through the specifications before using SCIM.
 
@@ -37,12 +37,12 @@ The endpoints are described in detail in the following sections. Please remember
 The userinfo endpoint is shown above in [Section SCIM 1.1](#scim-11). The following is an example of a userinfo endpoint for a Gluu Server with hostname `idp.gluu.org`:
 
 ```
-https://idp.gluu.org/host/seam/resource/restv1/scim/v1/Users/{rsid}
+https://idp.gluu.org/host/restv1/scim/v1/Users/{rsid}
 ```
 The groups endpoint is also shown in [Section SCIM 1.1](#scim-11). The following is an example of a groupinfo endpoint for a Gluu Server with hostname `idp.gluu.org`:
 
 ```
-https://idp.gluu.org/host/seam/resource/restv1/scim/v1/Groups/{rsid}
+https://idp.gluu.org/host/restv1/scim/v1/Groups/{rsid}
 ```
 The following table details the request parameters to the endpoints:
 
@@ -59,7 +59,7 @@ Please see the [Response Code Section](#response-codes) for more details.
 The following is an example to add a new user with SCIM 1.1 in `idp.gluu.org` using a JSON Request.
 
 ```
-POST https://idp.gluu.org/oxTrust/seam/resource/restv1/Users/ 
+POST https://idp.gluu.org/oxTrust/restv1/Users/ 
 Accept: application/json 
 Authorization: Basic bWlrZTpzZWNyZXQ=
 ```
@@ -98,7 +98,7 @@ Authorization: Basic bWlrZTpzZWNyZXQ=
     "created": "2010-01-23T04:56:22Z",
     "lastModified": "2011-05-13T04:42:34Z",
     "version": "W\\\"b431af54f0671a2\"",
-    "location": "http://localhost:8080/oxTrust/seam/resource/restv1/Users/@!1111!0000!D4E7"
+    "location": "http://localhost:8080/oxTrust/restv1/Users/@!1111!0000!D4E7"
   }
 }
 ```
@@ -108,7 +108,7 @@ The response is in JSON as well. The following is the expected response
 ```
 201 CREATED
 Server:  Apache-Coyote/1.1
-Location:  https://idp.gluu.org/oxTrust/seam/resource/restv1/Users/@!1111!0000!D4E7
+Location:  https://idp.gluu.org/oxTrust/restv1/Users/@!1111!0000!D4E7
 Content-Type:  application/json
 ```
 ```
@@ -147,7 +147,7 @@ Content-Type:  application/json
     "created": "2010-01-23T04:56:22Z",
     "lastModified": "2011-05-13T04:42:34Z",
     "version": "W\\\"b431af54f0671a2\"",
-    "location": "http://localhost:8080/oxTrust/seam/resource/restv1/Users/@!1111!0000!D4E7"
+    "location": "http://localhost:8080/oxTrust/restv1/Users/@!1111!0000!D4E7"
   }
 }
 ```
@@ -158,7 +158,7 @@ Bulk endpoint allows the administrator to work with a large collection of Resour
 The example below shows the bulk operation endpoint for a Gluu Server with hostname `idp.gluu.org`:
 
 ```
-https://idp.gluu.org/seam/resource/restv1/scim/v1/Bulk
+https://idp.gluu.org/restv1/scim/v1/Bulk
 ```
 
 The following table details the request parameters:
@@ -1365,7 +1365,7 @@ The detailed SCIM 2.0 Specifications are available at:
 ### User Endpoint
 
 #### URL
-    <domain root>/identity/seam/resource/restv1/scim/v2/Users
+    <domain root>/identity/restv1/scim/v2/Users
 
 #### GET
 
@@ -1532,7 +1532,7 @@ The detailed SCIM 2.0 Specifications are available at:
 | 201    | successful operation | <a href="#/definitions/User">User</a>|
 
 #### URL
-    <domain root>/identity/seam/resource/restv1/scim/v2/Users/{id}
+    <domain root>/identity/restv1/scim/v2/Users/{id}
 
 #### GET
 
@@ -1731,7 +1731,7 @@ The detailed SCIM 2.0 Specifications are available at:
 | default     | successful operation |  -    |
 
 #### URL
-    <domain root>/identity/seam/resource/restv1/scim/v2/Users/Search
+    <domain root>/identity/restv1/scim/v2/Users/Search
 
 #### POST
 
@@ -1796,7 +1796,7 @@ The detailed SCIM 2.0 Specifications are available at:
 ### Group Endpoint
 
 #### URL
-    <domain root>/identity/seam/resource/restv1/scim/v2/Groups
+    <domain root>/identity/restv1/scim/v2/Groups
 
 #### GET
 
@@ -1963,7 +1963,7 @@ The detailed SCIM 2.0 Specifications are available at:
 | 201    | successful operation | <a href="#/definitions/Group">Group</a>|
 
 #### URL
-    <domain root>/identity/seam/resource/restv1/scim/v2/Groups/{id}
+    <domain root>/identity/restv1/scim/v2/Groups/{id}
 
 #### GET
 
@@ -2166,7 +2166,7 @@ The detailed SCIM 2.0 Specifications are available at:
 ### Bulk Operation Endpoint
 
 #### URL
-    <domain root>/identity/seam/resource/restv1/scim/v2/Bulk
+    <domain root>/identity/restv1/scim/v2/Bulk
 
 #### POST
 
