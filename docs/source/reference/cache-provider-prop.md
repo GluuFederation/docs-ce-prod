@@ -10,7 +10,7 @@ The following cache providers are now supported and can be selected via the cach
 [Native Persistence](#native-persistence-configuration) - recommended to avoid additional components installation. All cache entries are saved in persistence layers.  
 
 ## Cache Provider Properties
-![image](../img/reference/config-cacheprovider.png)
+![image](../img/reference/config-json_cachepropertiesv4.png)
 
 The following tables include the name and description of each configurable oxAuth property:
 
