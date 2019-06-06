@@ -7,13 +7,9 @@ This section covers various features associated with managing your federation se
 The Gluu Server administration interface is accessible by navigating to `https://hostname` (the one you provided during setup). When you first complete an installation, the default username is `admin` and the password is the same as the `LDAP superuser` password. 
 
 ## Welcome Page
-After successful authentication, the administrator is taken to the 
-Dashboard. Some basic information about the VM/server is displayed, as 
-well as the server version, free memory, and disk space. In the top 
-right, there is a user icon which can be used to log out of oxTrust. 
-The left-hand menu is used to navigate the admin interface.
+After successful authentication, the administrator is taken to the Dashboard. Some basic information about the VM/server is displayed, as well as the server version, free memory, and disk space. In the top right, there is a user icon which can be used to log out of oxTrust. The left-hand menu is used to navigate the admin interface.
 
-![welcome-page.png](../img/admin-guide/oxtrust/welcome-page.png "Welcome to Gluu Server")
+![Welcome to Gluu Server](../img/admin-guide/oxtrust/welcome-pagev4.png)
 
 ## Localization of oxTrust UI
 
@@ -68,7 +64,7 @@ There are four tabs in the organization configuration page:
 
 #### System Configuration
 
-![system-config-options](../img/admin-guide/oxtrust/system-config-options.png)
+![system-config-options](../img/admin-guide/oxtrust/system-config-optionsv4.png)
 
 - Self-service password reset: Allow users to trigger the password reset sequence by following a URL like `https://your.idp.host/identity/person/passwordReminder.htm`. A new password will be sent to the email box provided in "Email" attribute of their user entry (if any). In order for this feature to work, the admin will also need to perform [SMTP Server Configuration](#smtp-server-configuration)      
 
@@ -86,7 +82,7 @@ There are four tabs in the organization configuration page:
 
 #### SMTP Server Configuration     
 
-![smtp-config](../img/admin-guide/oxtrust/smtp-config.png "SMTP Configuration")
+![SMTP Configuration](../img/admin-guide/oxtrust/smtp-configv4.png)
 
 The Gluu Server needs a mail server in order to send notifications. All fields in this form are mandatory and the configuration can be tested before confirmation.
 
@@ -103,20 +99,13 @@ The Gluu Server needs a mail server in order to send notifications. All fields i
      
 #### oxTrust Settings  
 
-
-![oxtrust-settings](../img/admin-guide/oxtrust/oxtrust-settings.png "OxTrust Settings")
+![OxTrust Settings](../img/admin-guide/oxtrust/oxtrust-settingsv4.png)
 
 From the oxTrust Settings page, the administrator can find the oxTrust build date and number, and manage the organization name, logo, and favicon. 
 This page also contains the name of the Gluu Server administrator group. 
 Users added to this group will have administrator access to the Gluu Server.
 
-#### oxAuth Settings
-
-oxAuth Settings allow you to designate the oxAuth server IP.
-
-![oxauth-settings](../img/admin-guide/oxtrust/oxauth-settings.png)
-
-## JSON Configuration      
+### JSON Configuration      
 The following tabs are included in the `JSON Configuration` menu:
 
 * [oxTrust Configuration](#oxtrust-configuration)
@@ -126,30 +115,33 @@ The following tabs are included in the `JSON Configuration` menu:
 
 ![json-config-head](../img/admin-guide/oxtrust/json-config-head.png "JSON Configuration Headers")
 
-### oxTrust Configuration
+#### oxTrust Configuration
 From this tab, you can access and edit the oxTrust JSON configuration file. 
 Click the update button at the bottom of the page to save any changes. 
 
-#### WhiteList/BlackList URIs
+##### WhiteList/BlackList URIs
 
 An administrator can allow or deny access to URIs by updating JSON properties in the oxTrust UI.
-
-##### Configure WhiteList/BlackList of URIs
 
 1. Click on `Configuration` > `JSON Properties`
 2. Click the `oxTrust properties` tab and search for whitelist and blacklist label.
 
 ![URI](../img/reference/whitelistblacklisturi.png)
 
-### oxAuth Configuration
+#### oxAuth Configuration
+
+![oxAuth Configuration](../img/admin-guide/oxtrust/oxauth-configurationv4.png)
+
 The oxAuth JSON configuration page gives easy access to the different endpoints used by Gluu Server CE. 
 This page also contains the supported response, grants, and algorithms. 
 
-#### Session Management 
+##### Session Management 
 
 The Gluu Server administrator can manage oxAuth sessions by adding the desired session time in seconds as the value for the `sessionIdUnusedLifetime` field. Check the [session management](../admin-guide/session.md) section of the documentation to learn more.
 
-### Cache Provider Configuration
+#### Cache Provider Configuration
+
+![Cache Provider Configuration](../img/admin-guide/cacheProviderv4.png)
 
 The following cache providers are now supported and can be selected via the `cacheProviderType` combo box field (see screenshot below):
 
@@ -158,30 +150,31 @@ The following cache providers are now supported and can be selected via the `cac
 * [Redis](#redis-cache-configuration) - recommended for cluster deployments
 * [NativePersistence](#native-persistence-cache-configuration) - recommended to avoid additional components installation. All cache entries are saved in persistence layers.
 
-#### In Memory Cache Configuration
+##### In Memory Cache Configuration
 
 * defaultPutExpiration - default expiration time for the object put into cache
 
-#### Memcached Cache Configuration 
+##### Memcached Cache Configuration 
 
 * servers - space seperated list of servers (e.g. `server1:8081 server2:8082`)
 * maxOperationQueueLength - maximum operation queue length
 * defaultPutExpiration - default expiration time for the object put into cache
 * MemcachedConnectionFactoryType - connection factory type
 
-#### Redis Cache Configuration
+##### Redis Cache Configuration
 
 * redisProviderType - redis connection type provider. Possible values: `STANDALONE` (for standalone redis server only), `CLUSTER` (for redis cluster deployment only), `SHARDED` (client sharding connection)
 * servers - comma seperated list of servers (e.g. `server1:8081,server2:8081,server3:8081,server4:8081,server5:8081,server6:8081,server7:8081`)
 * defaultPutExpiration - default expiration time for the object put into cache
 
-![URI](../img/admin-guide/cacheProvider.png)
-
-#### Native Persistence Cache Configuration
+##### Native Persistence Cache Configuration
 
 * defaultPutExpiration - default expiration time for the object put into cache
 
-### oxTrust Import Configuration
+#### oxTrust Import Configuration
+
+![oxtrustimport](../img/admin-guide/oxtrust/oxtrust-importv4.png)
+
 The oxTrust Import Person Configuration page contains the configuration for 
 the file method of importing users into the Gluu Server. The administrator 
 can import users from an `xls` file which must be defined in this tab to import 
@@ -193,11 +186,9 @@ data in the LDAP attributes. The default format should contain the following fie
 - firstname, 
 etc..
 
-![oxtrustimport](../img/admin-guide/oxtrust/oxtrust-import.png)
+### Manage Authentication
 
-## Manage Authentication
-
-### Manage LDAP Authentication
+#### Manage LDAP Authentication
 This section allows the Gluu Server administrator to define how and
 where the server should connect to authenticate users. If it is a remote
 LDAP/Active Directory server, the values are required. Put the details
@@ -205,48 +196,42 @@ of the data source that you are trying to connect with Gluu Server. For
 example, the data source can be your back-end Active Directory, or your
 local LDAP server.
 
-![Manage LDAP Authentication](../img/admin-guide/oxtrust/admin_manage_ldap.png)
+![Manage LDAP Authentication](../img/admin-guide/oxtrust/admin_manage_ldapv4.png)
 
 * _Name:_ This field contains the name of the authentication server
 
 * _Bind DN:_ The _Username_ for the authentication server (local
   LDAP/remote LDAP/remote Active Directory) goes here
 
-* _Max Connections:_ This option can be used to define the total number
-  of simultaneous connections allowed for reading local LDAP/remote Active
-  Directory/remote LDAP
+* _Max Connections:_ This option can be used to define the total number of simultaneous connections allowed for reading local LDAP/remote Active Directory/remote LDAP
   
 * _Primary Key:_ This field is used in search and bind operations against the LDAP directory that is configured in the “Manage Authentication” tab, which actually verifies the credentials supplied by the user at the login page. By default, it uses Gluu Server’s internal LDAP, but any LDAP server already set up in the network can be used, allowing the Gluu server to be integrated seamlessly into any corporate environment. The key could be *SAMAccountName*, *uid*, *mail*, etc
 
 * _Local Primary Key:_ This field is used in searches against Gluu Server’s internal LDAP directory to verify that a local user entry for this user exists and is active. Generally the key is either *uid* or *mail* 
 
-* _Server:_ The unique name of the authentication server and port number
-  (e.g. auth.company.org:636) goes here
+* _Server:_ The unique name of the authentication server and port number (e.g. auth.company.org:636) goes here
 
-* _Base DN:_ Add base DNs in this field to allow the Gluu Server to
-  connect and search the LDAP server. Every directory tree should be added
-  separately using the *Add Base DN* option
+* _Base DN:_ Add base DNs in this field to allow the Gluu Server to connect and search the LDAP server. Every directory tree should be added separately using the *Add Base DN* option
 
-* _Change Bind Password:_ This button assignes a password to
-  authenticate the *Authentication Server*
+* _Change Bind Password:_ This button assignes a password to authenticate the *Authentication Server*
 
 * _Use SSL:_ Enable SSL if the authentication server requires a secured port (e.g. 636)
 
-* _Enabled:_ This check-box is used to enable the keys that are inserted
-  in their respective fields
+* _Enabled:_ This check-box is used to enable the keys that are inserted in their respective fields
 
-* _Deactivate:_ This button *Deactivates/Activates* the Gluu Server
-  accessibility for authentication
+* _Deactivate:_ This button *Deactivates/Activates* the Gluu Server accessibility for authentication
 
-* _Test LDAP Connection:_ Use this button to check whether the provided
-  information is sufficient to connect to the authentication server. The
-  scan is done in real time
-  
-### Default Authentication Method
+* _Test LDAP Connection:_ Use this button to check whether the provided information is sufficient to connect to the authentication server. The scan is done in real time
 
-This page allows the Gluu Server administrator to select the default
-authentication method and level for person authentication. Additional 
-authentication mechanisms may be enabled via [custom scripts](#manage-custom-scripts). 
+#### Manage Captcha
+
+![Manage Captcha](../img/admin-guide/oxtrust/manageCaptchav4.png)
+
+This page allows the Gluu server administrator to select whether a Captcha is included in the Password Reminder form.
+
+#### Default Authentication Method
+
+This page allows the Gluu Server administrator to select the default authentication method and level for person authentication. Additional authentication mechanisms may be enabled via [custom scripts](#manage-custom-scripts). 
 
 |Authentication Method|Description|
 |---|---|
@@ -254,59 +239,36 @@ authentication mechanisms may be enabled via [custom scripts](#manage-custom-scr
 |oxTrust authentication mode|This mode is used for authentication to the Gluu Server GUI|
 
 
-Gluu Server relies on its core component, called oxAuth, when authenticating users accessing
-its services. User authentication is a mandatory step that precedes 
-any interactions defined by a variety of supported SSO protocols (such as OpenID Connect, SAML, CAS)
+Gluu Server relies on its core component, called oxAuth, when authenticating users accessing its services. User authentication is a mandatory step that precedes any interactions defined by a variety of supported SSO protocols (such as OpenID Connect, SAML, CAS)
 
-![default](../img/admin-guide/auth-management/default.png)
+![default](../img/admin-guide/oxtrust/defaultv4.png)
 
 * Default acr: This control defines method used for general authentication in oxAuth by default. It will also be applied to users accessing the oxTrust administrator interface, unless overriden by "oxTrust authentication mode". Remote applications may also specify desired authentication method explicitly by including "acr_values=" url query parameter during initial authorization request of OpenID Connect flows
 * oxTrust acr: This control defines authentication method used when user is accessing the oxTrust administrator interface. By setting "oxTrust authentication mode" to some other (possibly stricter, like Duo auth) method you may ensure administrator's tools are properly protected against malicious users
 
-
-
 The values are available for selection out-of-the-box: "basic", "super_gluu" and "auth_ldap_server". 
-The later instructs corresponding modules to use a [basic LDAP bind authentication](../authn-guide/basic.md) against 
-LDAP server configured on "Manage LDAP Authentication" tab of this page, which is by default 
-a Gluu's internal LDAP directory. When "Default" is set for "oxTrust authentication mode",
-it will fall-back to the default method set for oxAuth.
+The later instructs corresponding modules to use a [basic LDAP bind authentication](../authn-guide/basic.md) against LDAP server configured on "Manage LDAP Authentication" tab of this page, which is by default a Gluu's internal LDAP directory. When "Default" is set for "oxTrust authentication mode", it will fall-back to the default method set for oxAuth.
 
 Instructions for basic and Super Gluu authentication methods can be found in the [user management section](../authn-guide/intro.md) of this documentation.
 
-When a [custom authentication script](../authn-guide/customauthn.md) is enabled,
-its name is added to both dropdown lists, allowing you to select from a wide 
-variety of prepackaged authentication methods, or define your own.
+When a [custom authentication script](../authn-guide/customauthn.md) is enabled, its name is added to both dropdown lists, allowing you to select from a wide variety of prepackaged authentication methods, or define your own.
 
 !!! Warning:
-    If **both** default authentication methods are set to "Default", 
-    oxAuth will use basic LDAP bind authentication, but only until 
-    the moment some custom authentication script becomes enabled. 
-    In case there are enabled custom auth scripts, it will use the 
-    one with the lowest priority level (defined by "Level" setting) 
-    to authenticate all users automatically, even if you don't set it as 
-    default authentication mode explicitly. So if this script hasn't yet 
-    been properly configured you may lose access to your instance's web UI. 
-    Please ensure that you set at least "auth_ldap_server" method for "Authentication mode" 
-    before trying to explore other advanced authentication methods.
+    If **both** default authentication methods are set to "Default", oxAuth will use basic LDAP bind authentication, but only until the moment some custom authentication script becomes enabled. In case there are enabled custom auth scripts, it will use the one with the lowest priority level (defined by "Level" setting) to authenticate all users automatically, even if you don't set it as default authentication mode explicitly. So if this script hasn't yet been properly configured you may lose access to your instance's web UI. Please ensure that you set at least "auth_ldap_server" method for "Authentication mode" before trying to explore other advanced authentication methods.
     
-### Passport Authentication Method
+#### Passport Authentication Method
 This tab allows you to enabled or disable the Passport Authentication method to authenticate users from or to another application from or to Gluu Server.
 
 * Passport Support: This control enables Passport component, an authentication middleware offering an easy access to a variety of third-party authentication mechanisms, like ones offered by Google+, Twitter, Facebook, allowing them to easily be used for users' authenticattion in Gluu Server
 
-![passport](../img/admin-guide/auth-management/passport.png)   
+![passport](../img/admin-guide/oxtrust/passport.png)   
 
-## Manage Custom Scripts
-The Gluu Server exposes interception scripts in places where it is common 
-for organizations to implement custom workflows, or changes to the 
-look and feel of the Gluu Server. The most commonly used scripts are 
-for authentication, authorization, and identity synchronization. Each
-type of script has its own interface--in other words, what methods are
-available. For more information, see the reference page detailing each type of [interception script](./custom-script.md).
+### Manage Custom Scripts
+The Gluu Server exposes interception scripts in places where it is common for organizations to implement custom workflows, or changes to the look and feel of the Gluu Server. The most commonly used scripts are for authentication, authorization, and identity synchronization. Each type of script has its own interface--in other words, what methods are available. For more information, see the reference page detailing each type of [interception script](./custom-script.md).
 
-![Manage Custom Scripts](../img/admin-guide/auth-management/managecustomscripts.png)
+![Manage Custom Scripts](../img/admin-guide/oxtrust/managecustomscriptsv4.png)
 
-## Manage Registration
+### Manage Registration
 The Gluu Server is shipped with a very basic user registration feature. The registration page can be found at `https://<hostname>/identity/register`. For custom enrollment requirements we recommend that you write a registration page and use SCIM to add the user record to the Gluu Server. In some cases, oxTrust is not Internet-facing, which makes it a bad option for user registration. Only use the net-net feature for basic requirements. See [user registration](../user-management/local-user-management#user-registration) for more. 
 
 The tab has two options:
@@ -315,46 +277,48 @@ The tab has two options:
 2. `Configure Registration Form Attributes`      
 
 **Disable Captcha for registration form**     
-![registration](../img/admin-guide/manage_registration.png)
+![registration](../img/admin-guide/oxtrust/manage_registrationv4.png)
 
 This option adds a required CAPTCHA to the registration form.     
 
 **Configure Registration Form Attributes**      
-![attr_filter](../img/admin-guide/config_registration.png)
 
 This section allows you to manage the list of attributes displayed in the registration form. Search, select, add, and order desired attributes here.
 
-## Attributes
+### Attributes
+
+![attr_filter](../img/admin-guide/oxtrust/config_registrationv4.png)
+
 Attributes are individual pieces of user data, like `uid` or `email`, that are required by applications in order to identify a user and grant access to protected resources. A list of user attributes that are available in your federation service can be found by navigating to `Configuration` > `Attributes`. For a detailed discussion of attributes, visit our [attributes documentation](./attribute.md) page.
 
-## Import/Export Attribute LDIF
+### Import/Export Attribute LDIF
 Gluu Server provides you with an option to import and export attribute LDIF. 
 This allows you to export attributes from one Gluu Server instance and import them to another instance.
  
-![import-export](../img/admin-guide/import-export.png)
+![import-export](../img/admin-guide/oxtrust/import-export.png)
 
 !!! Note
-    Before importing attributes to another instance, perfom the appropiate change in the `dn` value so that it match with the structure of the instance we are about to apply import to.
-    For instance let's say we have this dn `dn: inum=@!C6F1.6ADE.4777.2F1B!0001!3B73.1218!0005!9472,ou=attributes,o=@!C6F1.6ADE.4777.2F1B!0001!3B73.1218,o=gluu`.
-    In this case we have to make sure that there is an organisation with id `@!C6F1.6ADE.4777.2F1B!0001!3B73.1218` under `gluu`.
-    We can check with the LDAP search command or using a LDAP browser like `jxplorer`.
+    Before importing attributes to another instance, perfom the appropiate change in the `dn` value so that it match with the structure of the instance we are about to apply import to. For instance let's say we have this dn `dn: inum=@!C6F1.6ADE.4777.2F1B!0001!3B73.1218!0005!9472,ou=attributes,o=@!C6F1.6ADE.4777.2F1B!0001!3B73.1218,o=gluu`. In this case we have to make sure that there is an organisation with id `@!C6F1.6ADE.4777.2F1B!0001!3B73.1218` under `gluu`. We can check with the LDAP search command or using a LDAP browser like `jxplorer`.
 
-## Cache Refresh
+### Cache Refresh
 Cache Refresh, a.k.a. LDAP Synchronization, is the process of connecting one or more existing backend LDAP servers, like Microsoft Active Directory, with the Gluu Server's local LDAP server. `Cache Refresh` periodically searches these data sources, compares the results to previous searches, and if a changed user account is found, it is updated.The frequency of cache refresh is also set from this page via the `Polling interval (minutes)`. The `key attribute(s)` is used to correlate a user if the user is found in more then one LDAP server. In this case, the two entries are joined. The source attributes specify which attributes will be pulled from the backend LDAP server. The backend server address, bind DN and other connection information is speciifed in the `Source Backend LDAP Servers` tab. More information on [LDAP Syncronization](../user-management/ldap-sync.md) can be found in the user management section of the docs. 
 
-## Configure Log Viewer / View Log File
+### Configure Log Viewer / View Log File
 This tool can be used to view file system logs. If you don't like to SSH, 
 Log Viewer is your friend! Several common logs are preconfigured, or you can define 
 new logs by specifying the path.
 
-## Server Status
+### Server Status
 This page provides basic information about the Gluu Server such as the hostname, IP address, free memory & disk space. The number of users in the backend is also available in this page.
 
-## Certificates
+### Certificates
 The certificate page provides summary information about your SSL and SAML certificates. Learn more about [certificate management](./certificate.md) in the Gluu Server.
 
 ## SAML
 If you deployed the Shibboleth SAML IDP or the Asimba SAML proxy during Gluu Server installation, you will see a link to manage inbound and outbound SAML requirements in the left hand navigation. Learn more about configuring and managing SAML in the [SAML](./saml.md) portion of the docs. 
+
+## Passport
+The Passport authentication middleware enables inbound identity for SAML, OAuth, and OpenID Connect (all of which can be referred to as "inbound identity"). Passport normalizes the process of supporting user authentication at external identity providers and user registration in your Gluu Server. Learn more about [Passport](../authn-guide/passport.md) in the inbound identity docs.
 
 ## OpenID Connect
 The OpenID Connect protocol is supported by default in all Gluu Server deployments. Learn more about configuring and managing OpenID Connect in the [OpenID Connect](./openid-connect.md) portion of the docs. 
