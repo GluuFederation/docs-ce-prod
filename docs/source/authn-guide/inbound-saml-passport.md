@@ -1,6 +1,6 @@
 # Inbound SAML using Passport
 
-## Enabling Passport
+## Enable Passport
 
 The [introductory page](./passport.md) provides a quick glance at key concepts to get the most out of inbound identity with Gluu Passport. Ensure your installation already has [Passport component installed](./passport.md#passport-setup). Now proceed to enable it:
 
