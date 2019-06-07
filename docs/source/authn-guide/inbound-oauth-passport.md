@@ -1,6 +1,6 @@
 # Inbound OAuth & OpenID Connect using Passport
 
-## Requisites
+## Enabling Passport
 
 The [introductory page](./passport.md) provides a quick overview of key concepts to get the most out of inbound identity with Gluu Passport. Ensure your installation already has the [Passport component installed](./passport.md#passport-setup). Follow these steps to enable it:
 
