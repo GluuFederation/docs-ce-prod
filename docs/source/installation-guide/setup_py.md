@@ -61,8 +61,24 @@ The administrator can use the following command line options to include addition
 * __--import-ldif=custom-ldif-dir__ Render ldif templates from custom-ldif-dir and import them in LDAP
 * __--listen_all_interfaces__ Allow the LDAP server to listen on all server interfaces. This is required for clustered installations to replicate between LDAP servers. If not enabled, the LDAP server listens only to localhost
 * __--allow_pre_released_applications__ Enable options to install experimental features, not yet officially supported.
-* __--remote-ldap__ Enables to use remote LDAP server
-* __--remote-couchbase__ Enables to use remote couchbase server
+* __--remote-ldap__ Enables using remote LDAP server. For further information see https://github.com/GluuFederation/support-docs/blob/master/howto/4.0/setup_remote_LDAP.md
+* __--remote-couchbase__ Enables using remote couchbase server. For further information see https://github.com/GluuFederation/support-docs/blob/master/howto/4.0/CE_with_remote_CB.md
 
 
-Example Command: `# ./setup.py -as` This command will install Gluu Server with Asimba and Shibboleth IDP.
+Example Command: `# ./setup.py -ps` This command will install Gluu Server with Passport and Shibboleth IDP.
+
+If both couchbase and ldap (either locally or remote) are available, you will be asked if you want to use hybrid backends:
+
+```
+Install (1) Gluu OpenDj (2) Couchbase (3) Hybrid [1|2|3] [1] : 3
+  Please note that you have to update your firewall configuration to
+  allow connections to the following ports:
+  4369, 28091 to 28094, 9100 to 9105, 9998, 9999, 11207, 11209 to 11211,
+  11214, 11215, 18091 to 18093, and from 21100 to 21299.
+By using this software you agree to the End User License Agreement.
+See /opt/couchbase/LICENSE.txt.
+Use Gluu OpenDj to store (1) default (2) user (3) cache (4) statistic (5) site : 14
+```
+
+In this example, both OpenDJ and Couchbase will be used for storing data. Default storage (system configurations, attributes, clients, etc.) will be OpenDJ and also metric data (statistic) will be stored in OpenDJ. Other data will be stored in Couchbase server.
+
