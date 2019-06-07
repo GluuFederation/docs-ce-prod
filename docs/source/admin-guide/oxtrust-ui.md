@@ -141,7 +141,7 @@ The Gluu Server administrator can manage oxAuth sessions by adding the desired s
 
 #### Cache Provider Configuration
 
-![Cache Provider Configuration](../img/admin-guide/cacheProviderv4.png)
+![Cache Provider Configuration](../img/admin-guide/oxtrust/cacheProviderv4.png)
 
 The following cache providers are now supported and can be selected via the `cacheProviderType` combo box field (see screenshot below):
 
@@ -253,15 +253,8 @@ Instructions for basic and Super Gluu authentication methods can be found in the
 
 When a [custom authentication script](../authn-guide/customauthn.md) is enabled, its name is added to both dropdown lists, allowing you to select from a wide variety of prepackaged authentication methods, or define your own.
 
-!!! Warning:
-    If **both** default authentication methods are set to "Default", oxAuth will use basic LDAP bind authentication, but only until the moment some custom authentication script becomes enabled. In case there are enabled custom auth scripts, it will use the one with the lowest priority level (defined by "Level" setting) to authenticate all users automatically, even if you don't set it as default authentication mode explicitly. So if this script hasn't yet been properly configured you may lose access to your instance's web UI. Please ensure that you set at least "auth_ldap_server" method for "Authentication mode" before trying to explore other advanced authentication methods.
-    
-#### Passport Authentication Method
-This tab allows you to enabled or disable the Passport Authentication method to authenticate users from or to another application from or to Gluu Server.
-
-* Passport Support: This control enables Passport component, an authentication middleware offering an easy access to a variety of third-party authentication mechanisms, like ones offered by Google+, Twitter, Facebook, allowing them to easily be used for users' authenticattion in Gluu Server
-
-![passport](../img/admin-guide/oxtrust/passport.png)   
+!!! Warning
+    If **both** default authentication methods are set to "Default", oxAuth will use basic LDAP bind authentication, but only until the moment some custom authentication script becomes enabled. In case there are enabled custom auth scripts, it will use the one with the lowest priority level (defined by "Level" setting) to authenticate all users automatically, even if you don't set it as default authentication mode explicitly. So if this script hasn't yet been properly configured you may lose access to your instance's web UI. Please ensure that you set at least "auth_ldap_server" method for "Authentication mode" before trying to explore other advanced authentication methods. 
 
 ### Manage Custom Scripts
 The Gluu Server exposes interception scripts in places where it is common for organizations to implement custom workflows, or changes to the look and feel of the Gluu Server. The most commonly used scripts are for authentication, authorization, and identity synchronization. Each type of script has its own interface--in other words, what methods are available. For more information, see the reference page detailing each type of [interception script](./custom-script.md).
@@ -277,7 +270,7 @@ The tab has two options:
 2. `Configure Registration Form Attributes`      
 
 **Disable Captcha for registration form**     
-![registration](../img/admin-guide/oxtrust/manage_registrationv4.png)
+![registration](../img/admin-guide/oxtrust/manage-registrationv4.png)
 
 This option adds a required CAPTCHA to the registration form.     
 
@@ -295,7 +288,7 @@ Attributes are individual pieces of user data, like `uid` or `email`, that are r
 Gluu Server provides you with an option to import and export attribute LDIF. 
 This allows you to export attributes from one Gluu Server instance and import them to another instance.
  
-![import-export](../img/admin-guide/oxtrust/import-export.png)
+![import-export](../img/admin-guide/oxtrust/import-exportv4.png)
 
 !!! Note
     Before importing attributes to another instance, perfom the appropiate change in the `dn` value so that it match with the structure of the instance we are about to apply import to. For instance let's say we have this dn `dn: inum=@!C6F1.6ADE.4777.2F1B!0001!3B73.1218!0005!9472,ou=attributes,o=@!C6F1.6ADE.4777.2F1B!0001!3B73.1218,o=gluu`. In this case we have to make sure that there is an organisation with id `@!C6F1.6ADE.4777.2F1B!0001!3B73.1218` under `gluu`. We can check with the LDAP search command or using a LDAP browser like `jxplorer`.
@@ -319,6 +312,8 @@ If you deployed the Shibboleth SAML IDP or the Asimba SAML proxy during Gluu Ser
 
 ## Passport
 The Passport authentication middleware enables inbound identity for SAML, OAuth, and OpenID Connect (all of which can be referred to as "inbound identity"). Passport normalizes the process of supporting user authentication at external identity providers and user registration in your Gluu Server. Learn more about [Passport](../authn-guide/passport.md) in the inbound identity docs.
+
+This tab is hidden until Passport is enabled for [SAML](../authn-guide/inbound-saml-passport.md#enable-passport) and/or [OAuth/OpenID Connect](../authn-guide/inbound-oauth-passport.md#enable-passport)
 
 ## OpenID Connect
 The OpenID Connect protocol is supported by default in all Gluu Server deployments. Learn more about configuring and managing OpenID Connect in the [OpenID Connect](./openid-connect.md) portion of the docs. 
