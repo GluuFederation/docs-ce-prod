@@ -45,7 +45,6 @@ the interactive setup.
 
 The administrator can use the following command line options to include additional components:
 
-* __-a__ Install Asimba
 * __-r__ Install oxAuth RP
 * __-p__ Install Passport
 * __-d__ specify the directory where community-edition-setup is located. Defaults to '.'
@@ -56,10 +55,14 @@ The administrator can use the following command line options to include addition
 * __-s__ install the Shibboleth IDP
 * __-u__ update hosts file with IP address/hostname
 * __-w__ get the development head war files
-* __-e__ Download JCE 1.8 and install it
+* __-t__ Load test data
+* __-x__ Load test data and exit
 * __--allow_deprecated_applications__ Give the option to install Asimba and OpenLDAP
 * __--import-ldif=custom-ldif-dir__ Render ldif templates from custom-ldif-dir and import them in LDAP
 * __--listen_all_interfaces__ Allow the LDAP server to listen on all server interfaces. This is required for clustered installations to replicate between LDAP servers. If not enabled, the LDAP server listens only to localhost
 * __--allow_pre_released_applications__ Enable options to install experimental features, not yet officially supported.
+* __--remote-ldap__ Enables to use remote LDAP server
+* __--remote-couchbase__ Enables to use remote couchbase server
+
 
 Example Command: `# ./setup.py -as` This command will install Gluu Server with Asimba and Shibboleth IDP.
