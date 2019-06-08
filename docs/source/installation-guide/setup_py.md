@@ -16,13 +16,12 @@ Enter maximum RAM for applications in MB [3072] :
 Optional: enter password for oxTrust and LDAP superuser [hlE3vzf0hMdD] :
 Install oxAuth OAuth2 Authorization Server? [Yes] : 
 Install oxTrust Admin UI? [Yes] : 
-Install LDAP Server? [Yes] : 
+Install Backend DB Server? [Yes] : 
 Install Apache HTTPD Server [Yes] : 
 Install Shibboleth SAML IDP? [No] : 
 Install oxAuth RP? [No] : 
 Install Passport? [No] : 
-Install JCE 1.8? [Yes] : 
-You must accept the Oracle Binary Code License Agreement for the Java SE Platform Products to download this software. Accept License Agreement? [Yes] : 
+Install Gluu Radius? [No] : 
 ```
 !!! Login
     Please log in using the username `admin` and the password from the setup script prompt e.g `hlE3vzf0hMdD` or the password entered
