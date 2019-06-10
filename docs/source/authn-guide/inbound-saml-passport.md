@@ -2,15 +2,15 @@
 
 ## Enable Passport
 
-The [introductory page](./passport.md) provides a quick glance at key concepts to get the most out of inbound identity with Gluu Passport. Ensure the Gluu Server installation already has [Passport component installed](./passport.md#passport-setup). Now, enable it:
+The [introductory page](./passport.md) provides a quick overview of key concepts to get the most out of inbound identity with Gluu Passport. Ensure the Gluu Server installation already has [Passport component installed](./passport.md#passport-setup). Follow theses steps to enable it:
 
-### Enable custom script:
+### Enable the custom script
 
 - In oxTrust, navigate to `Configuration` > `Custom scripts`          
 - Navigate to the `Person Authentication` tab, expand the script labelled `passport_saml`, check `enabled`, and click `Update`    ![Enable passport_saml](../img/user-authn/passport/enable-passport_saml.png)     
 - Navigate to the `UMA RPT Policies` tab, expand the script labelled `scim_access_policy`, check `enabled`, and click `Update`       
       
-### Enable Passport support:    
+### Enable Passport support 
 
 - In oxTrust navigate to `Configuration` > `Organization configuration` > `System configuration`
 - In `Passport support` choose `Enabled`    
@@ -35,7 +35,7 @@ Follow these steps to integrate an external IDP for inbound SAML:
 
 1. In `type`, choose "saml"
 
-1. Optionally, supply a `logo path` for this provider. Check this [section](./passport.md#about-logo-images) of the introductory page to learn more.
+1. Optionally, supply a `logo path` for this provider. Check this [section](./passport.md#about-logo-images) of the introductory page to learn more
 
 1. Check `Is enabled` (unless there is a reason to leave this provider integration temporarily disabled)
 
