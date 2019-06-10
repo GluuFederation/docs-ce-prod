@@ -4,14 +4,14 @@
 
 The [introductory page](./passport.md) provides a quick overview of key concepts to get the most out of inbound identity with Gluu Passport. Ensure your installation already has the [Passport component installed](./passport.md#passport-setup). Follow these steps to enable it:
 
-1. Custom script:
+1. Enable the custom script
 
     - In oxTrust, navigate to `Configuration` > `Custom scripts`          
-    - Navigate to the `Person Authentication` tab, expand the script labeled `passport_social`, check `enabled`, and click `Update`    
+    - Navigate to the `Person Authentication` tab, expand the script labelled `passport_social`, check `enabled`, and click `Update`    
     ![Enable passport_social](../img/user-authn/passport/enable-passport_social.png)     
     - Navigate to the `UMA RPT Policies` tab, expand the script labelled `scim_access_policy`, check `enabled`, and click `Update`       
       
-1. Passport support:    
+1. Enable Passport support:    
 
     - In oxTrust, navigate to `Configuration` > `Organization configuration` > `System configuration`
     - In `Passport support` choose `Enabled`    
@@ -19,23 +19,25 @@ The [introductory page](./passport.md) provides a quick overview of key concepts
 
     ![enable passport](../img/user-authn/passport/enable_passport.png) 
 
-## Integrating OpenID Connect providers
+## Integrate OpenID Connect providers
 
-The following are the steps required to integrate an external OP for login in an OIDC application:
+Follow these steps to integrate an external OP for login to an OIDC application:
 
 1. Add the OP in the admin UI
 1. Register a client at the OP
 1. Supply OIDC parameters
 1. Protect the OIDC application with `passport_social` authentication
 
-**Notes**: 
+**Notes:**
 
-- OP integration is achieved via the [`passport-openidconnect`](https://github.com/jaredhanson/passport-openidconnect) strategy which **only** supports the OpenID Connect code flow (not hybrid or implicit). Additionally, comunication with the token endpoint is carried out via POST only. There is no support for secretless clients (just confidential oauth clients).
-- Ensure the machine(s) running Passport have access to the OP you are trying to connect to
+- OP integration is achieved via the [`passport-openidconnect`](https://github.com/jaredhanson/passport-openidconnect) strategy, which **only** supports the OpenID Connect code flow (not hybrid or implicit). 
+- Communication with the token endpoint is carried out via POST only.
+- There is no support for secretless clients (just confidential OAuth clients). 
+- Ensure the machine(s) running Passport have access to the OP you are trying to connect to.
 
 ### Add the OP in the admin UI
 
-1. In oxTrust navigate to `Configuration` > `Passport` > `Providers`
+1. In oxTrust, navigate to `Configuration` > `Passport` > `Providers`
 
 1. Click on `Add new provider`
 
@@ -47,16 +49,15 @@ The following are the steps required to integrate an external OP for login in an
 
 1. Check `Is enabled` (unless there is a reason to leave this provider integration temporarily disabled)
 
-1. It's not required to check `Request For Email` or `Email linking` unless you want to exercise a [custom flow](./passport.md#altering-flow-behaviour)
+1. It's not required to check `Request For Email` or `Email linking` unless implementing a [custom flow](./passport.md#altering-flow-behaviour)
 
 1. Click on `Add` (meanwhile, accept the default values for the remaining fields)
 
 ![oidc_provider](../img/user-authn/passport/oidc_provider.png) 
 
-**Note:**
-
 A simple standard [attribute mapping](./passport.md#attribute-mapping-and-transformation) is used for OpenID Connect providers by default. This will populate `uid`, `mail`, `cn`, `displayName`, `givenName`, and `sn` LDAP attributes if the relevant corresponding claims were gathered in the `userInfo` request.
-To learn more about how mappings work, check the [tutorial](../tutorials/passport-attributes-mapping.md). Also review the `/opt/gluu/node/passport/server/mappings/openidconnect-default.js` file in the Gluu chroot. If you need to make adjustments, do not edit the default mapping file but create a new one based on its contents.
+
+To learn more about how mappings work, check the [tutorial](../tutorials/passport-attributes-mapping.md). Also review the `/opt/gluu/node/passport/server/mappings/openidconnect-default.js` file in the Gluu chroot. If you need to make adjustments, do not edit the default mapping file, create a new one based on its contents.
 
 ### Register a client at the OP
 
@@ -76,35 +77,33 @@ After the process is finished, you should be given a client ID and a client Secr
 
 ### Supply OIDC parameters
 
-In the summary table, click on the name of the recently added provider and supply values for `clientID` and `clientSecret`. Fill the rest of fields according to the endpoints exposed by the OP being configured. Depending on the OP capabilities, you can add more properties as supported, for instance `acr_values`.
+In the summary table, click on the name of the recently added provider and supply values for `clientID` and `clientSecret`. Fill the rest of the fields according to the endpoints exposed by the OP being configured. Depending on the OP capabilities, you can add more properties as supported, for instance `acr_values`.
 
 ### Protect the OIDC application with `passport_social` authentication
 
 The same steps described for [Social Login](#protect-the-application-with-passport_social-authentication) can be followed in this case. If additional assistance is needed, open a ticket on [Gluu support](https://support.gluu.org).
 
-### Extra topics
+### Using oxd as mediator
 
-#### Using oxd as mediator
-
-When using oxd, administrators can follow the steps similar as [above](#integrating-openid-connect-providers) taking into account the following considerations:
+When using oxd, administrators can follow the steps similar as [above](#integrating-openid-connect-providers), taking into account the following considerations:
 
 - For provider `type`, select "openidconnect-oxd"
 
 - Instead of creating a client directly, a call to the oxd server [`register-site` API method](https://gluu.org/docs/oxd/4.0/api/#register-site) must be issued. [Here](https://github.com/GluuFederation/passport-oxd#create-a-client) is an example. From this action, the `oxdID` will be obtained. Ensure the client created actually has the scopes requested.
 
-- Supply values for the properties required. These properties are explained [here](https://github.com/GluuFederation/passport-oxd#configure-strategy) (see options parameter). 
+- Supply values for the properties required. These properties are explained [here](https://github.com/GluuFederation/passport-oxd#configure-strategy) (see the options parameter). 
 
-- If you need to supply values for optional properties account their values must be provided as JSON content. The following are examples of valid JSON values: `true`, `0`, `"a string"`, `["item1", "item2"]`, `{ "key": { "some": "value" }}`.
+- If you need to supply values for optional properties, their values must be provided as JSON content. The following are examples of valid JSON values: `true`, `0`, `"a string"`, `["item1", "item2"]`, `{ "key": { "some": "value" }}`.
 
 - `/opt/gluu/node/passport/server/mappings/oxd-default.js` is the default mapping file. Create your own if it does not fit your needs.
 
 ![oidc_oxd_provider](../img/user-authn/passport/oidc_oxd_provider.png) 
 
-#### Using an external Gluu Server as OP
+### Using an external Gluu Server as OP
 
 In this section, we provide specific steps on how to configure a Gluu Server instance as the external OP (here called "remote Gluu"). Note that this is **not** the same server in which Passport has been installed. 
 
-1. To [register a client](#register-a-client-at-the-op) in your remote Gluu server. Log in with admin credentials to `https://<remote-gluu-server>/identity` and navigate to `OpenID Connect` > `Clients` > `Add`. Provide the following settings:
+1. To [register a client](#register-a-client-at-the-op) in your remote Gluu server, log in with admin credentials to `https://<remote-gluu-server>/identity` and navigate to `OpenID Connect` > `Clients` > `Add`. Provide the following settings:
 
     - client name: *any of your choosing*
     
@@ -118,7 +117,7 @@ In this section, we provide specific steps on how to configure a Gluu Server ins
 
     - subject type: pairwise
 
-    - jws algorithm ID token: rs256
+    - JWS algorithm ID token: rs256
 
     - authentication method for token endpoint: client_secret_post
 
@@ -132,7 +131,7 @@ In this section, we provide specific steps on how to configure a Gluu Server ins
 
     - response types: code
 
-    - redirect login uri: `https://<host-name>/passport/auth/<PROVIDER-ID>/callback`. Where `<host-name>` is the host of the Passport-enabled Gluu Server 
+    - redirect login URI: `https://<host-name>/passport/auth/<PROVIDER-ID>/callback`. Where `<host-name>` is the host of the Passport-enabled Gluu Server 
 
 1. Supply the [OIDC parameters](#supply-oidc-parameters) as follows:
 
@@ -182,17 +181,17 @@ The following are the steps required to offer social login in an OIDC applicatio
     |Windows Live|passport-windowslive|
     |Yahoo!|passport-yahoo-oauth2|
 
-    If the provider of interest is not listed, it is necessary to find a proper [node package](https://www.npmjs.com/) for that provider and install it. Recall that the package **has to be** actually a Passport.js strategy based on OAuth 1.0 or OAuth 2.0.
+    If the provider of interest is not listed, it is necessary to find a proper [node package](https://www.npmjs.com/) for that provider and install it. That the package **has to be** a Passport.js strategy based on OAuth 1.0 or OAuth 2.0.
 
     Installation can be performed the following way:
 
     - Log in to Gluu Server chroot.
     - Switch to `node` user: `su - node`.
-    - Add `node` executable to path: `export PATH=$PATH:/opt/node/bin`.
-    - `cd` to passport application: `cd /opt/gluu/node/passport`. Recommended: backup this folder before proceeding
-    - Ensure your vm has Internet access and install the strategy, eg. `npm install STRATEGY --save` where `STRATEGY` is the package to install, for instance, `passport-reddit`.
+    - Add the `node` executable to path: `export PATH=$PATH:/opt/node/bin`.
+    - `cd` to the Passport application: `cd /opt/gluu/node/passport`. Recommended: back up this folder before proceeding
+    - Ensure the VM has Internet access and install the strategy, eg. `npm install STRATEGY --save` where `STRATEGY` is the package to install, for instance, `passport-reddit`.
 
-    Unfortunately, strategies do not follow any standardized naming convention, thus it's not possible to autofill the "Passport.js strategy" field based on words previously entered in the provider's display name. Also, there are cases where several strategies are suitable for a given provider.
+    Unfortunately, strategies do not follow any standardized naming convention, so it's not possible to autofill the "Passport.js strategy" field based on words previously entered in the provider's display name. Also, there are cases where several strategies are suitable for a given provider.
 
 1. Fill the name of the applicable mapping. Use the following table as reference:
 
@@ -218,15 +217,15 @@ The following are the steps required to offer social login in an OIDC applicatio
     
 1. `Authenticate params` is a field that normally can be left empty. It is used to supply the value for the second parameter of Passport.js method `passport.authenticate`. It is recommended to supply data here only when the provider to be added is not listed in the table above.
 
-    As an example, suppose [VKontakte](http://www.vk.com) is the external provider to integrate. To have access to user's email a proper scope must be specified (check [here](https://github.com/stevebest/passport-vkontakte#extended-permissions) and [here](https://vk.com/dev/permissions)). In this case the field `Authenticate params` can be filled this way: `{ "scope": ["email"] }`. Note the usage of `"` instead of `'` and that object keys have to be wrapped with `"`.
+    As an example, suppose [VKontakte](http://www.vk.com) is the external provider to integrate. To have access to user's email, a proper scope must be specified (check [here](https://github.com/stevebest/passport-vkontakte#extended-permissions) and [here](https://vk.com/dev/permissions)). In this case, the field `Authenticate params` can be filled with `{ "scope": ["email"] }`. Note the usage of `"` instead of `'` and that object keys have to be wrapped with `"`.
    
     **Only valid JSON content will work.** No Javascript dynamic expressions can be included. For instance, `{ "key": Math.random() }` won't produce the effect desired.
     
-    In all Passport.js strategies, `passport.authenticate` is usually called at two different places in code. The params configured here are those corresponding to the route `/auth/<PROVIDER-ID>` and not to the callback URL `/auth/<PROVIDER-ID>/callback`.
+    In all Passport.js strategies, `passport.authenticate` is usually called at two different places in the code. The params configured here are those corresponding to the route `/auth/<PROVIDER-ID>` and not to the callback URL `/auth/<PROVIDER-ID>/callback`.
     
 1. Check `Is enabled` (unless there is a reason to leave this provider integration temporarily disabled)
 
-1. It's not required to check `Request For Email` or `Email linking` unless you want to exercise a [custom flow](./passport.md#altering-flow-behaviour)
+1. It's not required to check `Request For Email` or `Email linking` unless implementing a [custom flow](./passport.md#altering-flow-behaviour)
 
 1. Leave the fields under the `Providers Options` empty and click `Add`.
 
@@ -309,7 +308,6 @@ Once login is successful, check user data by navigating to `Personal` > `Profile
 To check the actual profile data received during the authentication transaction, review the [logs](./passport.md#files-and-severity-level) and search for a message that looks like "Resulting profile data is". To be able to view this message, set logging level to `debug` and wait for the server to pick the changes.  
 
 If you modify some aspect of your profile at the external provider and attempt to re-login, the user attributes will also be updated in your local Gluu LDAP.
-
 
 ## Making all applications use inbound identity flow
 
