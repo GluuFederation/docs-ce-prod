@@ -108,7 +108,7 @@ In previous Passport versions (3.1.x), specifying attribute mapping required a s
 - Every provider configured can use any existing mapping
 - Attribute transformations can take place in the attribute mapping itself (this is useful to solve formatting mismatches or generating values based on the original profile data or from an external source)
 
-See our tutorial for [attribute mapping and transformation](../tutorials/passport-attributes-mapping) to learn the new process.
+See our tutorial for [attribute mapping and transformation](../tutorials/passport-attributes-mapping.md) to learn the new process.
 
 ### Default mappings
 
