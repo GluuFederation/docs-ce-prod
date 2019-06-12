@@ -28,7 +28,7 @@ There are a few important points to note:
 Read the [OpenID Connect Front-Channel Logout Specifications](http://openid.net/specs/openid-connect-frontchannel-1_0.html) to learn more about logout with OpenID Connect.
 
 ## SAML Logout
-Gluu Server now supports SAML Single Logout. Once it's [enabled by the administrator](../admin-guide/saml.md#saml-single-logout), the logout URL is 'https://[hostname]/idp/Authn/oxAuth/logout'.
+Gluu Server now supports SAML Single Logout. Once it's [enabled by the administrator](../admin-guide/saml.md#saml-single-logout), the logout URL is `https://[hostname]/idp/Authn/oxAuth/logout`.
 
 The user will be directed to the following confirmation page.
 
