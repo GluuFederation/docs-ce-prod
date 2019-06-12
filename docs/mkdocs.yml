@@ -139,7 +139,7 @@ nav:
         - 'Log Management' : 'operation/logs.md'
         - 'Customize Public Pages': 'operation/custom-design.md'
         - 'Change IP Address': 'operation/changeip.md'
-        - 'Replacing Expired JKS Files': 'user-management/replace-expired-jks-scim.md'
+        - 'Replacing Expired JKS Files': 'operation/replace-expired-jks-scim.md'
 - Developer Guide:
         - 'Build oxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'
         - 'Localization': 'developer-guide/localization.md'
