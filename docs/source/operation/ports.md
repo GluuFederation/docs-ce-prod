@@ -10,6 +10,8 @@ The following ports are used by internal Gluu Server applications (i.e. oxAuth, 
 |8082| oxTrust Server|
 |8086| Shibboleth IDP|
 |8085| oxAuth-RP|
+|8090| Passport |
+|8091| Casa |
 
 !!! Note
     If Gluu is being clustered, more ports must be accessible from the clustered nodes. Follow the [cluster documentation](../installation-guide/cluster.md). 
