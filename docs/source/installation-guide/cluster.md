@@ -4,9 +4,9 @@
 ## Introduction
 Many organizations need to cluster their Gluu Server in order to provide failover and high availability (HA). 
 
-The instructions below provide detailed steps for manually configuring HA across multuple instances of the Gluu Server. Although we provide detailed instructions, clustering for production scenarios is not a simple task, and Gluu does **not** provide free community support for manual HA configuration. 
+The instructions below provide detailed steps for manually configuring HA across multuple instances of the Gluu Server. Although we provide instructions, clustering for production scenarios is not a simple task, and Gluu does **not** provide free community support for manual HA configurations. 
 
-We also offer the following two supported strategies for HA, which require either a [Gluu VIP Subscription](https://gluu.org/pricing/#vip), *or* a support agreement with one of our OEM partners. 
+We offer two supported strategies for HA, both of which require either a [Gluu VIP Subscription](https://gluu.org/pricing/#vip), *or* a support agreement with one of our OEM partners. 
 
 1. [Cluster Manager (CM)](https://gluu.org/docs/cm), our GUI tool for automating many of the complicated steps below. 
 
