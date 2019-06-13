@@ -6,7 +6,7 @@
  
  Below are steps to fix that issue by patching the oxtrust war file.
  
- 1. Login into Gluu container
+ 1. Log in to Gluu container
  1. Save a copy of you actual `/opt/gluu/jetty/identity/webapps/identity.war`
  1. Move to home directory: `#cd` 
  1. Copy identity.war in the current directory: `#cp /opt/gluu/jetty/identity/webapps/identity.war .`
