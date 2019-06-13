@@ -1,14 +1,13 @@
 # Gluu LDAP Schema
 
-Below are the schemes for OpenDJ and OpenLDAP. The OpenDJ schema should work for 389DS, too:
+Below are the schemes for OpenDJ. The OpenDJ schema should work for 389DS, too:
 
  * [OpenDJ](https://github.com/GluuFederation/community-edition-setup/tree/master/static/opendj)
- * [OpenLDAP](https://github.com/GluuFederation/community-edition-setup/tree/master/static/openldap)
 
-!!!Note:
+!!!Note
     This section of the documentation is for reference and Schemas should not be manually edited.
 
-Below objectclasses and attributes are extracted from Gluu Specific Schemas.
+The below objectclasses and attributes are extracted from Gluu Specific Schemas.
 
 ## pairwiseIdentifier
 * __oxId__:  Identifier
@@ -627,48 +626,6 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 * __oxAuthRedirectURI__:  oxAuth Redirect URI
 * __oxAuthClientId__:  oxAuth Client id
 
-## oxAsimbaConfiguration
-* __ou__
-* __friendlyName__:  oxAsimba friendlyName field
-* __uniqueIdentifier__
-* __inum__:  XRI i-number
-* __oxAsimbaEntry__:  oxAsimba configuration JSON/XML serialization field
-* __oxConfApplication__:  ox Application Configuration
-* __oxRevision__:  Revision
-
-## oxAsimbaSelector
-* __ou__
-* __friendlyName__:  oxAsimba friendlyName field
-* __uniqueIdentifier__
-* __inum__:  XRI i-number
-* __organizationId__:  oxAsimba IDP organizationId field
-* __oxAsimbaEntry__:  oxAsimba configuration JSON/XML serialization field
-* __oxRevision__:  Revision
-
-## oxAsimbaIDP
-* __ou__
-* __friendlyName__:  oxAsimba friendlyName field
-* __uniqueIdentifier__
-* __inum__:  XRI i-number
-* __oxAsimbaEntry__:  oxAsimba configuration JSON/XML serialization field
-* __oxRevision__:  Revision
-
-## oxAsimbaRequestorPool
-* __ou__
-* __friendlyName__:  oxAsimba friendlyName field
-* __uniqueIdentifier__
-* __inum__:  XRI i-number
-* __oxAsimbaEntry__:  oxAsimba configuration JSON/XML serialization field
-* __oxRevision__:  Revision
-
-## oxAsimbaSPRequestor
-* __ou__
-* __friendlyName__:  oxAsimba friendlyName field
-* __uniqueIdentifier__
-* __inum__:  XRI i-number
-* __oxAsimbaEntry__:  oxAsimba configuration JSON/XML serialization field
-* __oxRevision__:  Revision
-
 ## oxPassportConfiguration
 * __ou__
 * __gluuPassportConfiguration__:  oxTrust Passport Strategy Configuration
@@ -676,7 +633,7 @@ Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 
 ## oxShibbolethCASProtocolConfiguration
 * __ou__
-* __friendlyName__:  oxAsimba friendlyName field
+* __friendlyName__:  oxShibboleth friendlyName field
 * __uniqueIdentifier__
 * __inum__:  XRI i-number
 * __oxConfApplication__:  ox Application Configuration
