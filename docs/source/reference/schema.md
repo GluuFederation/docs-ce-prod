@@ -5,7 +5,7 @@ Below are the schemes for OpenDJ and OpenLDAP. The OpenDJ schema should work for
  * [OpenDJ](https://github.com/GluuFederation/community-edition-setup/tree/master/static/opendj)
  * [OpenLDAP](https://github.com/GluuFederation/community-edition-setup/tree/master/static/openldap)
 
-!!!Note:
+!!!Note
     This section of the documentation is for reference and Schemas should not be manually edited.
 
 Below objectclasses and attributes are extracted from Gluu Specific Schemas.
