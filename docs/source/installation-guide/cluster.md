@@ -1,5 +1,5 @@
 
-# Gluu Server Clustering
+# Clustering for HA
 
 ## Introduction
 Many organizations need to cluster their Gluu Server in order to provide failover and high availability (HA). 
