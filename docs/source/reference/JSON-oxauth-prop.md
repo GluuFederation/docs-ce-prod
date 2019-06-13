@@ -11,20 +11,19 @@ The following tables include the name and description of each configurable oxAut
 
 Name                          |Description
 ---------------------------------------------------|-----------
-umaValidateClaimToken                              | Validate claim_token as id_token, assuming it is issued by a local IDP
 sessionAsJwt                                       | Experimental feature. This saves session data as a JWT
-loginPage                                          | The login page's URL
-authorizationPage                                  | The oxAuth authorization page URL
+Issuer                                             | URL using the https scheme that OP asserts as Issuer identifier
 baseEndpoint                                       | The base URL for endpoints
 authorizationEndpoint                              | The authorization endpoint URL
 tokenEndpoint                                      | The token endpoint URL
+tokenRevocationEndpoint                            | The URL for the access_token or refresh_token revocation endpoint
 userInfoEndpoint                                   | The User Info endpoint URL
 clientInfoEndpoint                                 | The Client Info endpoint URL
 checkSessionIFrame                                 | URL for an OP IFrame that supports cross-origin communications for session state information with the RP Client using the HTML5 postMessage API
 endSessionEndpoint                                 | URL at the OP to which an RP can perform a redirect to request that the end user be logged out at the OP
 jwksUri                                            | URL of the OP's JSON Web Key Set (JWK) document. This contains the signing key(s) the RP uses to validate signatures from the OP
 registrationEndpoint                               | Registration endpoint URL
-OpenIdDiscoveryEndpoint                            | Discovery endpoint URL
+openIdDiscoveryEndpoint                            | Discovery endpoint URL
 idGenerationEndpoint                               | ID Generation endpoint URL
 introspectionEndpoint                              | Introspection endpoint URL
 introspectionAccessTokenMustHaveUmaProtectionScope | If True, rejects introspection requests if access_token does not have the uma_protection scope in its authorization header
@@ -76,7 +75,6 @@ umaTicketLifetime                                  | UMA ticket lifetime
 umaPctLifetime                                     | UMA PCT lifetime
 umaResourceLifetime                                | UMA Resource lifetime
 umaAddScopesAutomatically                          | Add UMA scopes automatically if it is not registered yet
-Issuer                                             | URL using the https scheme with no query or fragment component that the OP asserts as its Issuer Identifier
 umaGrantAccessIfNoPolicies                         | Specify whether to grant access to resources if there is no any policies associated with scopes
 umaRestrictResourceToAssociatedClient              | Restrict access to resource by associated client
 umaKeepClientDuringResourceSetRegistration         | Save client information during resource registration
@@ -101,7 +99,6 @@ authenticationFiltersEnabled                       | Boolean value specifying wh
 clientAuthenticationFiltersEnabled                 | Boolean value specifying whether to enable client authentication filters
 authenticationFilters                              | This list details filters for user authentication
 clientAuthenticationFilters                        | This list details filters for client authentication
-applianceInum                                      | The appliance Inum
 sessionIdUnusedLifetime                            | The lifetime for unused session states
 sessionIdUnauthenticatedUnusedLifetime             | The lifetime for unused unauthenticated session states
 sessionIdLifetime                                  | The lifetime of session id in seconds. If 0 or -1 then expiration is not set. `session_id` cookie expires when browser session ends.
@@ -117,6 +114,7 @@ metricReporterEnabled                              | Boolean value specifying wh
 pairwiseIdType                                     | the pairwise ID type
 pairwiseCalculationKey                             | Key to calculate algorithmic pairwise IDs
 pairwiseCalculationSalt                            | Salt to calculate algorithmic pairwise IDs
+shareSubjectIdBetweenClientWithSameSectorId        | Choose if clients with the same Sector ID also share Subject ID
 webKeysStorage                                     | Web Key Storage Type
 dnName                                             | DN of certificate issuer
 keyStoreFile                                       | The Key Store File (JKS)
@@ -128,6 +126,7 @@ legacyIdTokenClaims                                | Choose whether to include c
 customHeadersWithAuthorizationResponse             | Choose whether to enable the custom response header parameter to return custom headers with the authorization response
 frontChannelLogoutSessionSupported                 | Choose whether to support front channel session logout
 useCacheForAllImplicitFlowObjects                  | Choose whether to persist all objects into the cache during implicit flow
+invalidateSessionCookiesAfterAuthorizationFlow     | Boolean value to specify whether to invalidate `session_id` and `consent_session_id` cookies right after successful or unsuccessful authorization
 updateUserLastLogonTime                            | Choose if application should update oxLastLogonTime attribute upon user authentication
 updateClientAccessTime                             | Choose if application should update oxLastAccessTime/oxLastLogonTime attributes upon client authentication
 enableClientGrantTypeUpdate                        | Choose if client can update Grant Type values
@@ -139,11 +138,13 @@ authorizationRequestCustomAllowedParameters        | This list details the allow
 legacyDynamicRegistrationScopeParam                | Choose whether to allow legacy dynamic registration JSON array parameters
 openidScopeBackwardCompatability                   | Set to false to only allow token endpoint request for openid scope with grant type equals to authorization_code, restrict access to userinfo to scope openid and only return id_token if scope contains openid
 skipAuthorizationForOpenIdScopeAndPairwiseId       | Choose whether to skip authorization if a client has an OpenId scope and a pairwise ID
+allowPostLogoutRedirectWithoutValidation           | Allows post-logout redirect without validation for the End Session endpoint
 httpLoggingEnabled                                 | Enable/disable request/response logging filter
 httpLoggingExcludePaths                            | This list details the base URIs for which the request/response logging filter will not record activity
 externalLoggerConfiguration                        | The path to the external log4j2 logging configuration
 disableU2fEndpoint                                 | Choose whether to disable U2F endpoints
 disableJdkLogger                                   | Choose whether to disable JDK loggers
+errorHandlingMethod                                | A list of possible error handling methods
 
 ### Brute Force Protection
 
@@ -168,3 +169,17 @@ bruteForceProtectionEnabled: true
 ```
 
 ... will insert a 2 second delay after every fourth login attempt within 15 minutes of each other.
+
+### fido2Configuration
+
+Name                                  | Description
+--------------------------------------|------------
+authenticatorCertsFolder              | Location of authenticator certificate folder
+mdsAccessToken                        | MDS Access Token
+mdsCertsFolder                        | Location of MDS TOC root certificate folder
+mdsTocsFolder                         | Location of MDS TOC files folder
+userAutoEnrollment                    | Select whether to enroll users on enrollment/authentication requests
+unfinishedRequestExpiration           | Expiration time in seconds for pending enrollment/authentication requests
+authenticationHistoryExpiration       | Expiration time in seconds for approved authentication requests
+serverMetadataFolder                  | Location of authenticator metadata in JSON format, such as virtual devices
+disableFido2                          | Enable/disable Fido2 endpoints
