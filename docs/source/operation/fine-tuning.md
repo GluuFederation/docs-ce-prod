@@ -9,12 +9,12 @@ Tuning consists of:
 - Web Application Container (Tomcat, Jetty, JBoss)   
 - Gluu Server configuration Tuning    
 
-## OS Tunning
+## OS Tuning
 
 CE is designed to work on Linux, therefore it's recommended to tune the following:
 
 !!! Note
-    Most of below configs can be tuned in `/etc/security/limits.conf`, however it may depend on OS. 
+    Most of the below configuration can be tuned in `/etc/security/limits.conf`, however it may depend on OS. 
 
 1. Increase TCP Buffer Sizes
    ```
@@ -56,12 +56,15 @@ Make sure there is enough memory for each Gluu Server component (e.g. LDAP Serve
 
 1. Maximum number of allowed connections: If there are not enough connections to serve the client, a connection is
 put "on hold" and waits. To avoid delays it's recommended to provide expected maximum allowed connections, e.g. 
+
     ```
     max-allowed-client-connections=1000
     ```
+    
 1. Provide enough resources to LDAP Server: For example OpenDJ uses JVM for running, for high performance it's
     recommended to give enough memory via JVM system properties.
 1. Allow LDAP Server use cache as much as possible.
+
    ```
    dsconfig -n set-backend-prop --backend-name userRoot --set db-cache-percent:50
    ```
@@ -88,22 +91,6 @@ Example configuration:
     </Set>
 </Configure>
 ```
-<!--
-## Apache Tomcat
-
-1. Set maximum for parallel requests. Connector parameters in `server.xml`:
-      - maxThreads="10000"
-      - maxConnections="10000"
-     
-1. Set memory settings via JAVA_OPTS    
-    ```
-    set "JAVA_OPTS=-Xms1456m -Xmx7512m -XX:MaxPermSize=256m -XX:+DisableExplicitGC"
-    ```
-1. Operating time: Check via Tomcat monitor whether requests are handled or just "hangs" because there are not enough resources. Here is sample when processing time increase due to lack of resources:
-
-   ![tomcatStatus](../img/admin-guide/fine-tuning/tomcatStatus.png)
-   
--->
 
 ## Gluu Server
 
