@@ -1,12 +1,18 @@
 
-# Manual Gluu Server Clustering
+# Gluu Server Clustering
 
 ## Introduction
-If you require high availability (HA) or failover, follow the instructions below to manually configure multi-master replication (MMR) across multiple Gluu Servers.
+Many organizations need to cluster their Gluu Server in order to provide failover and high availability (HA). 
 
-!!! Note
-    To simplify setup and ongoing operations of Gluu in an HA environment, we offer a tool called [Cluster Manager](https://gluu.org/docs/cm) with the [Gluu VIP Subscription](https://gluu.org/pricing#vip).
+The instructions below provide detailed steps for manually configuring HA across multuple instances of the Gluu Server. Although we provide detailed instructions, clustering for production scenarios is not a simple task, and Gluu does not provide free community support for manual HA configuration. 
 
+We also offer the following two supported strategies for HA, which require either a [Gluu VIP Subscription](https://gluu.org/pricing/#vip), *or* a support agreement with one of our OEM partners. 
+
+1. [Cluster Manager (CM)](https://gluu.org/docs/cm), our GUI tool for automating many of the complicated steps below. 
+
+1. [Docker Edition (DE)](https://gluu.org/docs/de), which provides assets, recipes, and examples for running all Gluu Services in their own Linux containers. DE not only enables HA, but also provides operational, performance, and security advantages over traditional VM-based deployments of Gluu.
+
+For more details about supported options for HA, [schedule a call](https://gluu.org/booking). 
 
 ## Concept
 
