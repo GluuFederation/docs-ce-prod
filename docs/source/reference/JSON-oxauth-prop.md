@@ -91,7 +91,7 @@ oxOpenIdConnectVersion                             | OpenID Connect Version
 organizationInum                                   | The Organization Inum
 oxId                                               | URL for the Inum generator Service
 dynamicRegistrationEnabled                         | Boolean value specifying whether to enable Dynamic Registration
-dynamicRegistrationExpirationTime                  | Expiration time in seconds for clients created with dynamic registration, 0 means never expire
+dynamicRegistrationExpirationTime                  | Expiration time in seconds for clients created with dynamic registration, 0 or -1 means never expire
 dynamicRegistrationPersistClientAuthorizations     | Boolean value specifying whether to persist client authorizations
 trustedClientEnabled                               | Boolean value specifying whether a client is trusted and no authorization is required
 dynamicRegistrationScopesParamEnabled              | Boolean value specifying whether to enable scopes parameter in dynamic registration
