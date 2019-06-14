@@ -140,3 +140,7 @@ Now the old device is gone and the user can enroll a new device following the ab
  
 ## U2F SCIM APIs
 See the [SCIM documentation](../user-management/scim2.md#fido-devices) for a discussion on how to manage FIDO devices, including Super Gluu, using the SCIM protocol. 
+
+## Self-service account security
+
+To offer end-users a portal where they can manage their own account security preferences, including two-factor authentication credentials like Super Gluu, check out our new app, [Gluu Casa](https://casa.gluu.org). 
