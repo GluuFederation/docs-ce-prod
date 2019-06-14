@@ -43,6 +43,7 @@ Learn how to [configure basic authentication](./basic.md).
 
 Gluu includes interception scripts for the following forms of 2FA:
 
+- [FIDO 2.0](./fido2.md)
 - [U2F](./U2F.md)
 - [Super Gluu](./supergluu.md)  
 - [OTP apps](./otp.md)
@@ -52,11 +53,16 @@ Gluu includes interception scripts for the following forms of 2FA:
 
 To a support an authentication mechanism not listed above, review the [custom authentication script tutorial](./customauthn.md) to learn how to write your own authentication scripts. 
 
+### 2FA enrollment
+
+Once 2FA is enabled, the Gluu Server's default behavior is to prompt for enrollment the first time a user signs in. 
+
 ### 2FA Credential Management	
 	
-Once 2FA is enforced, people need a good way to enroll, delete and manage their strong credentials (that doesn't involve calling the support desk!). In an effort to make the 2FA experience better for people and organizations, the Gluu Server now supports a new open source application called [Credential Manager](https://gluu.org/docs/creds). 
+Once users enroll 2FA credentials for their account, the credentials can be viewed and removed by the Gluu Server administrator either directly in LDAP, or in the user record in oxTrust via the [Manage People interface](../user-management/local-user-management.md#managing-associated-2fa-devices). 
 
-Credential Manager is a simple, user-facing applications people can use to manage a variety of free or low-cost 2FA credentials in the Gluu Server. 
+!!! Note
+    To offer self-service credential management, where end-users can manage their own 2FA authentication credentials, check out our new app, [Gluu Casa](https://casa.gluu.org). 
 
 
 ## Social Login
@@ -65,8 +71,7 @@ If you want to support social login or inbound SAML, include Passport in your in
 
 Passport provides a crowd-sourced approach to supporting social login at many popular consumer IDPs, such as Facebook, LinkedIn, GitHub, etc. In addition to normalizing social login, it provides a standard mapping for user claims, allowing you to dynamically enroll new users into your Gluu Server that have authenticated elsewhere.
 
-Learn how to [configure social login](./passport.md) or [inbound SAML providers](./inbound-saml-passport.md). 
-
+Learn how to [configure social login](./passport.md), [inbound SAML providers](./inbound-saml-passport.md) and [inbound OIDC providers](./inbound-oauth-passport.md). 
 
 ## Multiple Authentication Mechanisms
 The Gluu Server can concurrently support multiple authentication mechanisms, enabling Web and mobile apps ("clients") to request a specific type of authentication using the standard OpenID Connect request parameter: `acr_value`. 
