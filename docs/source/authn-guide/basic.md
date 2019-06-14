@@ -45,7 +45,7 @@ GLUU.[root@gluu logs]# tail -f oxauth_script.log
 ```
  
 ### Backend AD/LDAP 
-If a backend AD or LDAP is being used to store passwords and authenticate users, navigate to: `Configuration` > `Manage authentication` > `Manage LDAP Authentication` and provide information on the backend directory, incuding bindDN, bindDN user password, Primary Key ( don't change local primary_key ), Server Name / IP along with port and BaseDN/s. 
+If a backend AD or LDAP is being used to store passwords and authenticate users, navigate to: `Configuration` > `Manage authentication` > `Manage LDAP Authentication` and provide information on the backend directory, including bindDN, bindDN user password, Primary Key ( don't change local primary_key ), Server Name / IP along with port and BaseDN/s. 
 
 A more detailed description of each field can be found in the [Manage Authentication](../admin-guide/oxtrust-ui/#manage-authentication) section of the Gluu docs.
 
