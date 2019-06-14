@@ -65,9 +65,7 @@ Follow the steps below to enable U2F authentication:
 Now SMS OTP is an available authentication mechanism for your Gluu Server. This means that, using OpenID Connect `acr_values`, applications can now request OTP SMS authentication for users. 
 
 !!! Note 
-    To make sure OTP SMS has been enabled successfully, you can check your Gluu Server's OpenID Connect 
-    configuration by navigating to the following URL: `https://<hostname>/.well-known/openid-configuration`. 
-    Find `"acr_values_supported":` and you should see `"twilio_sms"`. 
+    To make sure OTP SMS has been enabled successfully, you can check your Gluu Server's OpenID Connect configuration by navigating to the following URL: `https://<hostname>/.well-known/openid-configuration`. Find `"acr_values_supported":` and you should see `"twilio_sms"`. 
 
 ## Make SMS OTP the Default
 If SMS OTP should be the default authentication mechanism, follow these instructions: 
@@ -88,14 +86,9 @@ If SMS OTP should be the default authentication mechanism for all access, change
     
 ## SMS OTP Login Pages
 
-The Gluu Server includes <!--two default login pages --> one page for SMS OTP:
+The Gluu Server includes one page for SMS OTP:
 
-<!--
-1. An **enrollment** page that is displayed the first time a user is prompted for SMS OTP authentication;
-[insert screenshot]                
--->
-
-1. A **login** page that is displayed for all <!--subsequent--> SMS OTP authentications. 
+1. A **login** page that is displayed for all SMS OTP authentications. 
 ![sms](../img/user-authn/sms.png)
 
 The designs are being rendered from the [Twilio SMS xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/twiliosms/twiliosms.xhtml). To customize the look and feel of the pages, follow the [customization guide](../operation/custom-design.md).
@@ -123,3 +116,7 @@ Twilio SMS. Initialized successfully
 ```
 
 Also make sure you are using the latest version of the script that can be found [here](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/twilio_sms/twilio2FA.py).
+
+## Self-service account security
+
+To offer end-users a portal where they can manage their own account security preferences, including two-factor authentication credentials like phone numbers for SMS OTP, check out our new app, [Gluu Casa](https://casa.gluu.org). 
