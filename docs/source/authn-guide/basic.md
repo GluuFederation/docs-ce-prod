@@ -47,19 +47,26 @@ GLUU.[root@gluu logs]# tail -f oxauth_script.log
 ### Backend AD/LDAP 
 If a backend AD or LDAP is being used to store passwords and authenticate users, navigate to: `Configuration` > `Manage authentication` > `Manage LDAP Authentication` and provide information on the backend directory, incuding bindDN, bindDN user password, Primary Key ( don't change local primary_key ), Server Name / IP along with port and BaseDN/s. 
 
-A more detailed description of each field can be found in the [Manage Authentication](../admin-guide/oxtrust-ui/#manage-authentication) 
-section of the Gluu docs.
+A more detailed description of each field can be found in the [Manage Authentication](../admin-guide/oxtrust-ui/#manage-authentication) section of the Gluu docs.
 
 ## Make 'Basic' the Default
 
 By default, basic authentication is the default authentication method for the Gluu Server. In case it needs to be reset, follow these steps:
  
- 1. Navigate to `Configuration` > `Manage Authentication` >  `Default Authentication Method`
- 2. Select 'basic' for 'Default acr' and / or 'oxTrust acr' 
+1. Navigate to `Configuration` > `Manage Authentication` >  `Default Authentication Method`
+1. Select 'basic' for 'Default acr' and / or 'oxTrust acr' 
  
 ## Using Basic Authentication
 
 Open up a new browser or incognito window, try to login into your Gluu Server or perform SSO with an SP or RP. 
+
+### Configuring Basic Authentication
+
+To switch the basic authentication method between username and email address, follow these steps:
+1. Navigate to `Configuration` > `Manage Authentication`
+1. Change the `Local Primary Key` to `uid` for username or `mail` for email address.
+
+Other LDAP configuration settings can be found in the [oxTrust documentation](../admin-guide/oxtrust-ui/#manage-authentication)
 
 ### Password reset in local Gluu LDAP
 
@@ -72,14 +79,10 @@ If passwords are stored locally, Gluu admins can reset a user's password in two 
    - Set the new password      
 
 1. Using LDAP:    
-   - Access the local LDAP following [these instructions](https://gluu.org/docs/ce/user-management/local-user-management/#manage-users-in-gluu-openldap)     
+   - Access the local LDAP following [these instructions](https://gluu.org/docs/ce/user-management/local-user-management/#manage-users-in-gluu-ldap)     
    - Search for user with 'uid' or 'mail' attribute    
    - Password attribute ( userPassword ) can be changed using ldapmodify commands      
 
 ### Password reset in Remote Backend Server
 
 It's possible to reset a user's password in a Remote Backend Server, but requires configuration of a [different Authentication module](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/basic.change_password/BasicPassowrdUpdateExternalAuthenticator.py). 
-
-
-
-
