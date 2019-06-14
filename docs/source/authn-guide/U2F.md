@@ -4,8 +4,7 @@
 FIDO Universal 2nd Factor (U2F) is an open authentication standard that strengthens and simplifies two-factor authentication using specialized USB or NFC devices. 
 
 This document explains how to use the Gluu Server's included 
-[U2F interception script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/u2f/U2fExternalAuthenticator.py) 
-to implement a two-step, two-factor authentication (2FA) process with username / password as the first step, and any U2F device as the second step. 
+[U2F interception script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/u2f/U2fExternalAuthenticator.py) to implement a two-step, two-factor authentication (2FA) process with username / password as the first step, and any U2F device as the second step. 
 
 !!! Note 
     For more background on U2F, including a discussion of its security advantages, visit the [Yubico blog](https://www.yubico.com/solutions/fido-u2f/). 
@@ -54,9 +53,7 @@ Follow the steps below to enable U2F authentication:
 Now U2F is an available authentication mechanism for your Gluu Server. This means that, using OpenID Connect `acr_values`, applications can now request U2F authentication for users. 
 
 !!! Note 
-    To make sure U2F has been enabled successfully, you can check your Gluu Server's OpenID Connect 
-    configuration by navigating to the following URL: `https://<hostname>/.well-known/openid-configuration`. 
-    Find `"acr_values_supported":` and you should see `"u2f"`. 
+    To make sure U2F has been enabled successfully, you can check your Gluu Server's OpenID Connect configuration by navigating to the following URL: `https://<hostname>/.well-known/openid-configuration`. Find `"acr_values_supported":` and you should see `"u2f"`. 
 
 ## Make U2F the Default
 
@@ -100,7 +97,7 @@ A users FIDO U2F devices can be removed by a Gluu administrator either via the o
 ![fidoldap](../img/admin-guide/multi-factor/fido-ldap-entry.png)
 
 ## U2F Discovery Endpoint
-A discovery document for U2F is published by the Gluu Server at: `https://<hostname>/.well-known/fido-configuration` This document specifies the URL of the registration and authentication endpoints. The endpoint was `https://<hostname>/.well-known/fido-2fa-configuration` in previous versions, but has been deprecated in version 4.0.
+A discovery document for U2F is published by the Gluu Server at: `https://<hostname>/.well-known/fido-configuration` This document specifies the URL of the registration and authentication endpoints. The endpoint was `https://<hostname>/.well-known/fido-2fa-configuration` in previous versions, but has been deprecated.
 
 ## U2F SCIM APIs
 For a discussion of how to manage FIDO devices using the SCIM protocol, see the [SCIM documentation](../user-management/scim2.md#fido-devices). 
@@ -111,6 +108,3 @@ From your terminal run below commands and reboot your computer.
 
   - `sudo curl https://hypersecu.com/downloads/files/configurations/70-u2f.rules > /etc/udev/rules.d/70-u2f.rules`
   - `chmod +x /etc/udev/rules.d/70-u2f.rules`
-
-
-
