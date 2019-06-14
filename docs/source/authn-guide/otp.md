@@ -86,3 +86,7 @@ A user's OTP device(s) can be removed by a Gluu administrator either via the oxT
 OTP custom script works in one of two modes: TOTP (time-based) or HOTP (even-based). When using time-based flavor of OTP, mobile applications generate codes based on the current time of the device, this code is validated by the server using its own time. As consequene, significant time lags can provoke authentication failures.
 
 It's out of admins control have users devices in a consistent time, but they can maintain server system time accurately. For this you can follow any of the different approaches for linux time synchronization over the network, the most common being **ntp**.
+
+## Self-service account security
+
+To offer end-users a portal where they can manage their own account security preferences, including two-factor authentication credentials like OTP apps, check out our new app, [Gluu Casa](https://casa.gluu.org). 
