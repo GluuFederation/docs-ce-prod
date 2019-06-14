@@ -74,33 +74,33 @@ The example below adds `customTest`, which we [created earlier here](https://glu
 
 `service identity/idp start`
 
+## Force Authentication
+
+The Gluu Server supports force authentication out-of-the-box. Including `ForceAuthn=true` in the initial SAML request from the SP signals to the IDP that the user must reauthenticate, even if they already have a valid session at the server. This feature can be used to verify the user's identity prior to granting them access to highly protected resources.
+
+Upon receiving the SAML request with this flag, the IDP will invalidate its session for the user, then will issue a new OpenID Connect (OIDC) authorization request to oxAuth, including the `prompt=login` parameter. This parameter forces oxAuth to invalidate its session as well. The user will then follow the full authentication procedure.
+
 ## Create a Trust Relationship
 Follow these instructions to create a SAML TR in your Gluu Server: 
 
 1. Go to `SAML` > `Trust Relationships`    
 2. Click on `Add Trust Relationship`     
-3. A new page will appear where you can provide all the required information to create a Trust
-  Relationship(TR).     
+3. A new page will appear where you can provide all the required information to create a Trust Relationship(TR).     
 
 ![newTR](../img/saml/samlfederationTR.png)
 
 A description of each field follows:
 
-- **Display Name**: Name of the Trust Relationship (it should be unique for every TR);       
-- **Description**: Purpose of the TR and an SSO link can be added here;         
-
+- **Display Name**: Name of the Trust Relationship (it should be unique for every TR)       
+- **Description**: Purpose of the TR and an SSO link can be added here         
+- **Entity Type**: You have two options to choose for entity type.
+    - *Single SP*
+    - *Federation/Aggregate*
 - **Metadata Type**: There are four available options to choose from. The correct Type depends on how the SP is delivering Metadata to your IDP.      
 
     - *File*: Choose `File` if the SP has provided an uploadable metadata document in XML format.
     - *URI*: Chose `URI` if the SP metadata is hosted on a URI that is accessible from the Internet. 
-    - *Federation*: Choose this option if the target application (SP) is affiliated with a federation service (e.g. InCommon, NJEdge etc.). Fedeartion's TR must be created first for it to appear in this list. Learn more about working with a federation [below](#federation-configuration).   
-    
-!!! Note 
-    If you plan on using the Generate method, please note the following:       
-    
-    - The URL is the hostname of the SP.           
-    - You must provide a **non password protected** public certificate, which is a Base64 encoded ASCII file, and contain "-----BEGIN CERTIFICATE-----" and "-----END CERTIFICATE-----".        
-    - After creating the Trust Relationship, download the generated configuration files from the `Download Shibboleth2 configuration files` link and place these configuration files inside your SP configuration.              
+    - *Federation*: Choose this option if the target application (SP) is affiliated with a federation service (e.g. InCommon, NJEdge etc.). Federtion's TR must be created first for it to appear in this list. Learn more about working with a federation [below](#federation-configuration).   
       
 - **Released**: The SPs required attributes must be added to this panel. The required attributes can be selected from the menu on the left with the heading “Release Additional Attributes”.     
 
@@ -113,8 +113,6 @@ The Trust Relationship (TR) can be added by clicking the `Add` button located in
 ## Relying Party Configuration     
 Through the Relying Party configuration you can customize how different IDP profiles will respond to requests received from the SP, including encryption and digital signature options. The underlying IDPs functionality is described in [the Shibboleth wiki](https://wiki.shibboleth.net/confluence/display/IDP30/RelyingPartyConfiguration). 
 
-oxTrust allows you to tweak a limited subset of profiles mentioned in the Shibboleth wiki. The [SAML2SSO profile](https://wiki.shibboleth.net/confluence/display/IDP30/SAML2SSOConfiguration) is the most commonly used browser SSO profile. 
-
 The "Configure Relying Party" checkbox is accessible on the TR creation page and must be enabled with a specific profile(s) selected as active for this TR to generate a valid configuration. In most cases, just adding the SAML2SSO profile with default settings will suffice.
 
 ![enable-relying-party.png](../img/saml/enable-relying-party.png)     
@@ -122,6 +120,27 @@ The "Configure Relying Party" checkbox is accessible on the TR creation page and
 Setting the checkbox will result in a link which, if clicked, will summon a list of profiles currently available for customization. Each entry in the list has a brief description of its purpose and a selection of settings for which custom values may be chosen, as can be seen on image below.     
 
 ![tr-relying-party](../img/saml/tr-relying-party.png)     
+     
+oxTrust allows you to tweak a limited subset of profiles mentioned in the Shibboleth wiki. The SAML2SSO profile is the most commonly used browser SSO profile.
+
+| Profile  | Configuration Wiki Link |
+| -------  | ----------------------- |
+| SAML2SSO | [https://wiki.shibboleth.net/confluence/display/IDP30/SAML2SSOConfiguration](https://wiki.shibboleth.net/confluence/display/IDP30/SAML2SSOConfiguration) |
+| SAML2Logout | [https://wiki.shibboleth.net/confluence/display/IDP30/SAML2LogoutConfiguration](https://wiki.shibboleth.net/confluence/display/IDP30/SAML2LogoutConfiguration) |
+| SAML2AttributeQuery | [https://wiki.shibboleth.net/confluence/display/IDP30/SAML2AttributeQueryConfiguration](https://wiki.shibboleth.net/confluence/display/IDP30/SAML2AttributeQueryConfiguration) |
+| SAML2ArtifactResolution | [https://wiki.shibboleth.net/confluence/display/IDP30/SAML2ArtifactResolutionConfiguration](https://wiki.shibboleth.net/confluence/display/IDP30/SAML2ArtifactResolutionConfiguration) |
+
+### SAML Single Logout
+
+Gluu Server supports SAML2 single logout if enabled by the administrator. To enable, create a SAML2Logout RP profile with the following configuration:
+
+![SAML2 SLO configuration](../img/saml/saml_slo.png)
+
+Once enabled, the user can be directed to `https://[hostname]/idp/Authn/oxAuth/logout` when they wish to log out. The user will be directed to a confirmation page.
+
+![SAML2 SLO logout confirmation page](../img/saml/saml_slo_confirm.png)
+
+If the user clicks `Yes` or just waits a few seconds, the session will be killed and the user will be logged out.
     
 ## Federation Configuration     
 If the SP is part of an identity federation such as [InCommon](https://www.incommon.org/participants/), the Gluu administrator has option to establish a Trust Relationship with it based on the federation's metadata. To achieve this he must add TR for the federation in the Gluu Server first. This will enable the administrator to more easily create TRs with SPs in the federation. 
