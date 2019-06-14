@@ -12,9 +12,9 @@ Below are the steps to configure that feature:
 
 ## Prerequisites
 
-The requirements are:  
+The following are requirements to use this feature:  
 
-1. A running Gluu Server instance  
+1. An active Gluu Server instance with oxTrust accessible via the web
 1. A working SMTP Server  
 
 ## Provide the SMTP Server Configuration
