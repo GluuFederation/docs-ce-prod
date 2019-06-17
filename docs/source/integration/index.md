@@ -61,7 +61,7 @@ There is existing Gluu documentation for configuring SSO to popular applications
 - Refer to the [OpenID Connect Provider (OP) documentation](../admin-guide/openid-connect.md) for configuring your Gluu OP for SSO
 - Refer to the [SAML Identity Provider (IDP) documentation](../admin-guide/saml.md) for configuring your Gluu SAML IDP for SSO
 
-!!!Note
+!!! Note
     If the target application does not already support SAML or OpenID Connect, our best advice is find a similar product or provider that does support one of these open web standards for single sign-on (SSO).  
 
 
