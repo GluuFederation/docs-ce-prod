@@ -1,10 +1,13 @@
-# Single Sign-On (SSO) Integration Guide
+# Integration Guide
+
+## Overview
+
 There are two technical entities in any standard SSO transaction: 
 
 1. The application (a.k.a "client" or "RP" / "SP"), and;
 1. The identity provider (a.k.a IDP or OP) 
 
-The SSO integration guide below offers a list of pre-existing SAML & OAuth 2.0 client software projects developers can use to secure and integrate their applications ("clients") with an identity provider, like the Gluu Server. 
+The integration guide below offers strategies for using the Gluu Server IDP/OP to achieve SSO with a variety of types of applications, including server-side, javascript, native, and SaaS / off-the-shelf web and mobile applications. 
 
 !!! Note
     Due to a wide range of variability in implementation quality, Gluu (the organization) only provides support for the following client software projects.  
@@ -31,7 +34,7 @@ Client software performs some of the heavy lifting for developers around leverag
 
 Gluu supports the following software to secure and integrate server-side web applications:
 
-- [oxd](https://gluu.org/docs/oxd) (commercial software)
+- [oxd](https://gluu.org/docs/oxd)
 
 ## Single Page Apps
 Single Page Applications (SPAs) can be seen as a mix between traditional Web SSO and API access: the application itself is loaded from a (possibly protected) regular website and the Javascript code starts calling APIs in another (or the same) domain(s). For this use case, the OpenID Connect spec points to using the “Implicit grant type” for passing token(s) to the SPA since that grant was specifically designed with the “in-browser client” in mind. 
