@@ -1,20 +1,20 @@
 # Interception Scripts
 
 ## Overview
-Interception scripts allow you to customize many aspects of your Gluu Server identity and access management service. 
+Interception scripts allow you to implement custom business logic without having to fork the code. Each type of interception script is described by an interface (i.e. which methods are required). These scripts give you quite a bit of flexibility to do things that are specific to your organizational requirements in a way that is upgrade-proof. 
 
-For example, if you want to use an external authentication service like [Duo Security](https://duo.com/) or [ThumbSignIn](https://thumbsignin.com/), you would use an interception script to call the APIs of the authentication service and define the authentication flow. Or, if you wanted to perform fraud detection during login, you could write an interception script that calls the API of your fraud detection service. 
+One of the most most commonly used interception scripts is for person authentication.  These scripts enable you to implement a complex multi-step authentication workflow. You can call external API's, or adapt the number of steps based on the risk of the authentication event. For example, if you call a fraud detection API in step one that indicates unacceptable risk, you could add a second step (i.e. present another page that asks for a stronger authentication credential). 
 
-These are just a couple examples showing how interception scripts can be used to customize the behavior of the Gluu Server. Both examples focus on login, but the Gluu Server supports interception scripts for many aspects of the access management service including registration, user updates, authorization and more. 
+In addition to person authentication, many interception scripts are available. Forking the code makes your instance hard to upgrade. If you need to fork the code to accomplish something, you should open a support ticket and suggest an interception script which would help you avoid the fork.  
 
-The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scritps`.
+The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scripts`.
 
 ### Jython
-Interception scripts are written in [Jython](http://www.jython.org/docs/tutorial/indexprogress.html). 
+Interception scripts are written in [Jython](http://www.jython.org).  An interpreted language was chosen because it's easier for system administrators to understand and modify. Java can be a black box for administrators--scripts help make the business logic more visible, which aids in troubleshooting. 
 
-Jython was chosen because an interpreted language facilitates dynamic creation of business logic, and makes it easier to distribute this logic to a cluster of Gluu servers. 
+Jython enables developers to import either Java or Python classes. So if you really hate writing Python, while the syntax of the script requires Python, you can write most of the functionality in Java, keeping the Python code to a minimum. 
 
-Jython enables developers to use either Java or Python classes. You can use the full power of Java in your scripts, including iterators, converting `Set` to `List`, manipulating data as you wish--literally everything that is accessible in context. Combined with the option of calling web services from Python or Java, this enables the Gluu Server to support any business-driven policy requirement.
+If you import Python classes, they must be "pure python." For example, you couldn't import a class that wraps C libraries.
 
 ### Methods
 There are three methods that inherit a base interface:
@@ -53,6 +53,9 @@ Here is a sample entry:
 
 The script manager reloads scripts automatically without needing to
 restart the application once `oxRevision` is increased.
+
+### Script Naming
+New custom scripts should be given a descriptive `displayName`, as that is how they are listed in oxTrust. The `displayName` is limited to 60 characters.  
 
 ### Logs
 The log files regarding interception scripts are stored in the
@@ -120,13 +123,7 @@ For a complete list of pre-written, open source authentication scripts, view our
 - View a [sample Authentication Script](./sample-authentication-script.py).    
 
 ## Consent Gathering
-OAuth 2.0 allows providers to prompt users for consent before releasing 
-their personal information to a client (application). 
-The standard consent process is binary: approve or deny. 
-Using the consent gathering interception script, the consent flow can be customized 
-to meet unique business requirements, for instance to support payment authorization, 
-where you need to present transactional information, or where you need to step-up authentication 
-to add security. 
+OAuth 2.0 allows providers to prompt users for consent before releasing their personal information to a client (application). The standard consent process is binary: approve or deny. Using the consent gathering interception script, the consent flow can be customized to meet unique business requirements, for instance to support payment authorization, where you need to present transactional information, or where you need to step-up authentication to add security. 
 
 Consent Gathering can be enabled via oxTrust UI as shown below 
 
@@ -142,10 +139,7 @@ Users will be prompted for consent as below.
 
 ## Update User     
 
-oxTrust allows an admin to add and modify users which belong to groups.
-In order to simplify this process and apply repeating actions, oxTrust
-supports an Update User script. In this script it is possible to modify
-a person entry before it is stored in LDAP.
+oxTrust allows an admin to add and modify users which belong to groups. In order to simplify this process and apply repeating actions, oxTrust supports an Update User script. In this script it is possible to modify a person entry before it is stored in LDAP.
 
 This script type adds only one method to the base script type:
 
@@ -160,9 +154,7 @@ This script can be used in an oxTrust application only.
 
 ## User Registration      
 
-oxTrust allows users to perform self-registration. In order to
-control/validate user registrations there is the user registration
-script type.
+oxTrust allows users to perform self-registration. In order to control/validate user registrations there is the user registration script type.
 
 This script type adds three methods to the base script type:
 
@@ -337,3 +329,54 @@ To enable this feature, SCIM script needs to be enabled from the SCIM tab:
 More on SCIM can be found [here](../user-management/scim2.md)
 
 - [SCIM sample script to extend default logic](https://github.com/GluuFederation/oxExternal/blob/master/scim_event_handler/sample/SampleScript.py)
+
+## Introspection
+
+Introspection scripts allows to modify response of Introspection Endpoint ([spec](https://tools.ietf.org/html/rfc7662)).
+
+The introspection interception script extends the base script type with the `init`, `destroy` and `getApiVersion` methods but also adds the following method(s):
+
+|Method|`def modifyResponse(self, responseAsJsonObject, context)`|
+|---|---|
+|**Method Parameter**|`responseAsJsonObject` is `org.codehaus.jettison.json.JSONObject`<br/>`context` is ` org.xdi.oxauth.service.external.context.ExternalIntrospectionContext`|
+
+Snippet
+```
+    # Returns boolean, true - apply introspection method, false - ignore it.
+    # This method is called after introspection response is ready. This method can modify introspection response.
+    # Note :
+    # responseAsJsonObject - is org.codehaus.jettison.json.JSONObject, you can use any method to manipulate json
+    # context is reference of org.xdi.oxauth.service.external.context.ExternalIntrospectionContext (in https://github.com/GluuFederation/oxauth project, )
+    def modifyResponse(self, responseAsJsonObject, context):
+        responseAsJsonObject.put("key_from_script", "value_from_script")
+        return True
+```
+
+Full version of introspection script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_4.0/static/extension/introspection/introspection.py). 
+
+
+## Resource Owner Password Credentials
+
+Resource Owner Password Credentials script allows to modify behavior of Resource Owner Password Credentials Grant.
+
+Script is invoked after normal authentication and can either leave current result or change it - authenticate if not authenticated - it should return `True` and optionally set user (via `context.setUser(user)`) 
+
+Script extends the base script type with the `init`, `destroy` and `getApiVersion` methods but also adds the following method(s):
+
+|Method|`def authenticate(self, context)`|
+|---|---|
+|**Method Parameter**|`context` is `org.xdi.oxauth.service.external.context.ExternalResourceOwnerPasswordCredentialsContext`|
+
+Snippet
+```
+    # Returns boolean, true - authenticate user, false - ignore script and do not authenticate user.
+    # This method is called after normal ROPC authentication. This method can cancel normal authentication if it returns false and sets `context.setUser(null)`.
+    # Note :
+    # context is reference of org.xdi.oxauth.service.external.context.ExternalResourceOwnerPasswordCredentialsContext#ExternalResourceOwnerPasswordCredentialsContext (in https://github.com/GluuFederation/oxauth project, )
+    def authenticate(self, context):
+        if (context.getHttpRequest().getParameterValues("device_id")[0] == "device_id_1"):
+            return True
+        return False
+```
+
+Full version of script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_4.0/static/extension/resource_owner_password_credentials/resource_owner_password_credentials.py). 
