@@ -14,7 +14,7 @@ The integration guide below offers strategies for using the Gluu Server IDP/OP t
 ## Server Side Web Apps
 Many applications are "server-side", meaning the web page displays content but most of the dynamic business logic resides on the web server. Two design patterns have emerged for integrating server-side web applications with an IDP like Gluu: 
 
-1. Web server filters and reverse proxies;            
+1. Web server filters and reverse proxies;            The integration guide below offers a list of pre-existing SAML & OAuth 2.0 client software projects developers can use to secure and integrate their applications ("clients") with an identity provider, like the Gluu Server. 
 1. Leveraging OAuth 2.0 directly in your application. 
 
 Option 1 offers easier devops. Option 2 enables a tighter integration with centralized security policies into your application.
@@ -61,7 +61,7 @@ There is existing Gluu documentation for configuring SSO to popular applications
 - Refer to the [OpenID Connect Provider (OP) documentation](../admin-guide/openid-connect.md) for configuring your Gluu OP for SSO
 - Refer to the [SAML Identity Provider (IDP) documentation](../admin-guide/saml.md) for configuring your Gluu SAML IDP for SSO
 
-!!!Note
+!!! Note
     If the target application does not already support SAML or OpenID Connect, our best advice is find a similar product or provider that does support one of these open web standards for single sign-on (SSO).  
 
 
