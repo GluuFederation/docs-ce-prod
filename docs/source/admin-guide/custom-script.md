@@ -368,7 +368,7 @@ Full version of introspection script example can be found [here](https://github.
 
 ## Resource Owner Password Credentials
 
-Resource Owner Password Credentials script allows to modify behavior of Resource Owner Password Credentials Granth.
+Resource Owner Password Credentials script allows to modify behavior of Resource Owner Password Credentials Grant.
 
 Script is invoked after normal authentication and can either leave current result or change it 
 - authenticate if not authenticated - it should return `True` and optionally set user (via `context.setUser(user)`) 
