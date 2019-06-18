@@ -18,7 +18,7 @@ Alternatively, for testing purposes you can temporarily enable the test mode. In
 
 By default, the API is not active, so the first step is just to enable it:
 
-- Log into the oxTrust GUI
+- Log in to the oxTrust GUI
 
 - Go to `Configuration` > `Organization Configuration` and choose "enabled" for the SCIM support property
 
@@ -34,7 +34,7 @@ Then, enable UMA protection mode:
 
 By default the API is not active, so the first step is just to enable it:
 
-- Log into the oxTrust GUI
+- Log in  to the oxTrust GUI
 
 - Go to `Configuration` > `Organization Configuration` and choose "enabled" for the SCIM support property
 
@@ -134,7 +134,7 @@ The more pleasant second alternative is using the Gluu server administration web
 
 ### Request an Access Token to the Token Endpoint
 
-!!!Note
+!!! Note
     This section requires basic knowledge of HTTP at programming or scripting (eg. bash) level.
 
 The **client_credentials** grant chosen allows us to obtain a token very easily: just make a POST to the token endpoint passing the recently-created client credentials. Do the following:
@@ -341,7 +341,7 @@ One of the simplest ways to test retrieval is querying all information about a s
 
 `curl -G -H 'Authorization: Bearer ...access token...' 'https://<host-name>/identity/restv1/scim/v2/Users/<user-inum>'`
 
-!!! Note:
+!!! Note
     In the Gluu Server, `inums` are long strings consisting of alphanumeric characters and typically start with @!, include these two characters as well. Note that the URL was surrounded with single quotes: bang characters might be misleading to your command line interpreter.
     
 As a response, you will get a JSON document with all of the attributes in the user schema and their corresponding values. Note that only non-null attributes are present in the output:
@@ -675,8 +675,8 @@ When running your code in test mode, some new OpenID clients are created (they a
 
 The above means that by default, instances obtained via `ScimClientFactory` do not support concurrent calls in a safe manner. Starting with version 4.0, multithread support was added by employing the thread safe connection manager `org.apache.http.impl.conn.PoolingHttpClientConnectionManager`.
 
-    !!! Note:
-        You need to explicitly enable this feature, otherwise, behavior will be standard (single execution thread per client instance). You will have to supply proper parameters to better suit your production environment needs.
+!!! Note
+    You need to explicitly enable this feature, otherwise, behavior will be standard (single execution thread per client instance). You will have to supply proper parameters to better suit your production environment needs.
 
 The following lists the steps required to switch the java client to support access in a multithreaded environment:
 
@@ -690,7 +690,7 @@ The following lists the steps required to switch the java client to support acce
 
 #### Supplying custom request headers
 
-!!! Note:
+!!! Note
     This feature is only available in artifact 4.0.1.Final
 
 You can make the client send extra header parameters upon every request by setting some Java system variables:
@@ -714,7 +714,7 @@ For more information on UMA please visit the corresponding [page](../admin-guide
 Gluu Server CE supports UMA protection for SCIM endpoints from version 2.4.0 onwards. This functionality is built-in and does not require any special package or installation. 
 
 !!! Note
-    Gluu server 3.1.0 and later supports UMA 2.0 - the latest version of the standard. UMA 1.0.1 is not supported any longer.
+    Gluu server 3.1.0 and later supports UMA 2.0 - the latest version of the standard. UMA 1.0.1 is no longer supported.
 
 ### Actors Involved in Protection
 
@@ -1072,23 +1072,17 @@ public void handleError(String title, String description, String scimType) {
 
 Former SCIM-Client versions used to deal with `BaseClientResponse<T>` objects and it was not possible to read the entity as an instance of a class other than `T` (usually `T` being User or Group) because the response was already fully consumed. This usually led to errors like "Stream closed". Newer client allows you to read the response as many times as you need without restriction of type parameter `T` as the underlying response stream is buffered by default.
 
-
 ## Additional Features of SCIM Service
 
-SCIM standard is concerned with two types of resources, namely, Users and Groups. However, according to spec, the service can be extended to add new resource types. Particularly, Gluu Server implementation of SCIM contains the additional resource types "FIDO 2.0 device" and "FIDO u2f device" (formerly known as "FIDO device"). 
+The SCIM standard is concerned with two types of resources, Users and Groups. However, according to spec, the service can be extended to add new resource types. Particularly, Gluu Server implementation of SCIM contains the additional resource types "FIDO 2.0 device" and "FIDO u2f device" (formerly known as "FIDO device"). 
 
-Fido 2.0 devices are enrolled in Gluu Server by means of the `fido2` custom interception script while Fido u2f devices correspond to the `u2f` script. Since Fido 2.0 has u2f support, u2f devices are treated generally as 2.0 devices if they were enrolled by using the `fido2` script. 
+Fido 2.0 devices are enrolled in Gluu Server through the `fido2` custom interception script, while FIDO U2F devices correspond to the `u2f` script. Since FIDO 2.0 has U2F support, U2F devices are treated generally as 2.0 devices if they were enrolled by using the `fido2` script. 
 
 ### FIDO U2F Devices
 
-A FIDO u2f device represents a user credential stored in the Gluu Server LDAP that is 
-compliant with the [FIDO u2f](https://fidoalliance.org) standard. 
-These devices are used as a second factor in a setting of strong authentication. 
-Examples of FIDO devices are [u2f security keys](../authn-guide/U2F/) and [Super Gluu devices](../authn-guide/supergluu/).
+A FIDO U2F device represents a user credential stored in the Gluu Server LDAP that is compliant with the [FIDO u2f](https://fidoalliance.org) standard. These devices are used as a second factor in a setting of strong authentication. Examples of FIDO devices are [u2f security keys](../authn-guide/U2F/) and [Super Gluu devices](../authn-guide/supergluu/).
 
-Having FIDO devices as one of resource types allow application developers querying, 
-updating and deleting already existing (added) devices. Addition of devices do not take place 
-through the service since this process requires direct end-user interaction, ie. device enrolling.
+Having FIDO devices as one of resource types allow application developers querying, updating and deleting already existing (added) devices. Addition of devices do not take place through the service since this process requires direct end-user interaction, ie. device enrolling.
 
 The following is a summary of features of a Fido Device SCIM resource:
 
