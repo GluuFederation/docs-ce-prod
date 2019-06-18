@@ -38,18 +38,18 @@ Filter Name for CORS Filter in Gluu CE will be `org.xdi.oxauth.filter.CorsFilter
 
 CORS can be configured with ease using Gluu CE oxTrust UI. Below are the steps 
 
-1. Login to oxTrust UI
-2. Click on `Configuration`
-3. Click on `JSON Configuration` and scroll down to find `corsConfigurationFilters`
-4. If `corsConfigurationFilters` is hidden or collapsed, click on the arrow to be expand.
+1. Log in to oxTrust UI
+1. Navigate to `Configuration > JSON Configuration > oxAuth Configuration`
+1. Scroll down to find `corsConfigurationFilters`
+1. If `corsConfigurationFilters` is hidden or collapsed, click on the arrow to be expand.
 
     ![cors enable](../img/admin-guide/cors/cors-enable.png)
 
-5. You will be displayed with the set of cors Configuration Filters parameters as depicted below
+1. This will bring up the cors Configuration Filters parameters as depicted below
 
     ![cors](../img/admin-guide/cors/cors.png)
 
-6. Once all the parameters are defined and configured, click on the `save` button at the end of the page.
+1. Once all the parameters are defined and configured, click on the `save` button at the end of the page.
 
 ### Parameters supported by CORS Filters
 
