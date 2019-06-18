@@ -114,7 +114,7 @@ nav:
             - 'GitHub Enterprise': 'integration/saas/github-enterprise.md'
             - 'Cisco WebEx': 'integration/saas/webex.md'
             - 'Amazon Web Services (AWS)': 'integration/saas/aws.md'
-            - 'TestShib2': 'integration/saas/testShib2.md'
+            - 'SAMLTest.id': 'integration/saas/saml_test_id.md'
 - Reference:
         - Gluu API Guide:
             - 'Introspection & Custom ID Generation': 'api-guide/api.md'
