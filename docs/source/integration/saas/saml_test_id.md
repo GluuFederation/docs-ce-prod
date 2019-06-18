@@ -14,7 +14,7 @@
 ## Configuration in Gluu Server
 
  - From `https://samltest.id/download/`, grab the SAMLTest.ID SP link: `https://samltest.id/saml/sp`
- - Move to create Trust Relationship in Gluu Server. [Here](...) is how you can create SAML Trust Relationship in Gluu Server.
+ - Move to create Trust Relationship in Gluu Server. [Here](../../admin-guide/saml.md#trust-relationship-requirements) is how you can create SAML Trust Relationship in Gluu Server.
  ![image](../../img/samltest_id/SAMLTestID_Gluu_TR.PNG)
 
 ## Test
