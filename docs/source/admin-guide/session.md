@@ -34,6 +34,7 @@ The following properties related to OP session:
 - `sessionIdUnauthenticatedUnusedLifetime` - lifetime of `unauthenticated` OP session. This determines how long the user can be on the login page while unauthenticated. 
 - `sessionIdEnabled` - specifies whether it is allowed to authenticate user by session automatically (without end-user interaction).  
 - `sessionIdPersistOnPromptNone` - specifies whether to persist or update the session object with data if `prompt=none`. Default value is `true`, so session is persisted by default.
+- `invalidateSessionCookiesAfterAuthorizationFlow` - this is special property which specifies whether to invalidate `session_id` and `consent_session_id` cookies right after successful or unsuccessful authorization. 
 
 Since the OP session has two states, `authenticated` and `unauthenticated`, the `sessionIdUnauthenticatedUnusedLifetime` is used when the OP session is `unauthenticated` and `sessionIdUnusedLifetime` is used when the OP session is `authenticated`.
 
@@ -60,4 +61,4 @@ The OP doesn't know anything about end-user activity on the RP. Therefore, the R
 
 ### How can we force the user to log out if the browser is closed?
 
-Setting `sessionIdLifetime` to `-1` value sets the `session_id` cookie value to `expires=session`, and sets the OP session object to not have an expiration time. Most browsers clear cookies with `expires=session` when the browser is closed, removing the session object at that time. This feature is available in `4.0` version (it is not available in 3.1.3 version or earlier except 2.4.4). 
+Setting `sessionIdLifetime` to `-1` value sets the `session_id` cookie value to `expires=session`, and sets the OP session object to not have an expiration time. Most browsers clear cookies with `expires=session` when the browser is closed, removing the session object at that time. 
