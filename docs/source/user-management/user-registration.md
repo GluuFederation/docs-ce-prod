@@ -39,9 +39,21 @@ To change this setting, you need to make the following changes in both oxTrust a
 ### OpenDJ
 1. Log in to the Gluu container with `service gluu-server-4.0 login`
 1. Run this command to list all plugins:  
-    `/opt/opendj/bin/dsconfig -h hostname -p 4444 -D "cn=directory manager" -w yourPassword -n list-plugins`
+
+    ```
+    /opt/opendj/bin/dsconfig -h hostname -p 4444 -D "cn=directory manager" -w yourPassword -n list-plugins
+    ```
+    
 1. To disable the email uniqueness plugin, run this command:  
-    `/opt/opendj/bin/dsconfig -h hostname -p 4444 -D "cn=directory manager" -w yourPassword -n set-plugin-prop --plugin-name "Unique mail address" --set enabled:false`
+
+    ```
+    /opt/opendj/bin/dsconfig -h hostname -p 4444 -D "cn=directory manager" -w yourPassword -n set-plugin-prop --plugin-name "Unique mail address" --set enabled:false
+    ```
+    
 1. If you want to re-enable the email uniqueness plugin, run this command:  
-    `/opt/opendj/bin/dsconfig -h hostname -p 4444 -D "cn=directory manager" -w yourPassword -n set-plugin-prop --plugin-name "Unique mail address" --set enabled:true`
+
+    ```
+    /opt/opendj/bin/dsconfig -h hostname -p 4444 -D "cn=directory manager" -w yourPassword -n set-plugin-prop --plugin-name "Unique mail address" --set enabled:true
+    ```
+    
 1. Restart OpenDJ: `service opendj restart`
