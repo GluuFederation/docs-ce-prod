@@ -9,10 +9,8 @@ The Gluu Server is a [fully certified OpenID Provider (OP)](http://openid.net/ce
 - Front Channel Logout [(draft)](http://openid.net/specs/openid-connect-frontchannel-1_0.html)
 
 ## Protocol Overview
-OpenID Connect is an identity layer that profiles and extends OAuth 2.0.
-It defines a sign-in flow that enables an application (client) to
-authenticate a person, and to obtain authorization to obtain
-information (or "claims") about that person. For more information,
+OpenID Connect is an identity layer that profiles OAuth 2.0 to define a sign-in flow for applications (clients) to
+authenticate a person and obtain authorization to gather information (or "claims") about that person. For more information,
 see [http://openid.net/connect](http://openid.net/connect)
 
 It's handy to know some OpenID Connect terminology:
@@ -69,44 +67,41 @@ need them from the authorization endpoint too.
 
 ## Configuration / Discovery
 
-A good place to start when you're learning about OpenID Connect is the configuration endpoint, which is located in the Gluu Server
-at the following URL: `https://{hostname}/.well-known/openid-configuration`.
+The configuration endpoint publishes core details about the OpenID Connect service. These details can be found by accessing the following URL: 
+
+`https://{hostname}/.well-known/openid-configuration`
 
 The Gluu Server also supports [WebFinger](http://en.wikipedia.org/wiki/WebFinger), as specified in the [OpenID Connect discovery specification](http://openid.net/specs/openid-connect-discovery-1_0-21.html).
 
 ## Client Registration / Configuration
 
-OAuth clients need a `client_id` and `redirect_uris` to indicate to the Authorization Server where users should be redirected post
-authorization.
+OAuth clients need a `client_id` and `redirect_uris` to indicate to the Authorization Server where users should be redirected post authorization.
 
-Clients can be dynamically registered or created manually in oxTrust.
+Clients can be created manually in oxTrust or dynamically registered via the standard API.
+ 
+### Manual client registration
+To add a client manually in oxTrust, navigate to `OpenID Connect` > `Client` and click the `Add Client` button to access the following forms:
+
+![add-client](../img/openid/add_client_standard.png)
+
+![add-client1](../img/openid/add_client_advanced.png)
+
+![add-client2](../img/openid/add_client_encryption.png)
+
+There are many client configuration parameters. Most are specified in the [Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html#ClientRegistration) section of the OpenID Connect specification. The Client Secret field features a `Lock Secret Field` button to prevent accidental edits or autofill. 
+
+There are two configurations parameters that can only be configured via oxTrust by an administrator. These include:
+
+1. Pre-Authorization: If the OAuth authorization prompt should not be displayed to end users, set this field to `True`. This is useful for SSO to internal clients (not third party) where there is no need to prompt the person to approve the release of information.
+ 
+1. Persist Client Authorizations: If end users should only be prompted for authorization the *first* time they access the client, set this field to `True`. All data will be persisted under the person's entry in the Gluu LDAP and the end user will not be prompted to release informationd during subsequent logins. This feature is automatically set to `True` if Pre-Authorization is enabled.
 
 ### Dynamic client registration
-OpenID Connect defines a standard API where clients can register themselves--
-[Dynamic Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html). The registration URL can be found at the configuration endpoint: `https://<hostname>/.well-known/openid-configuration`.
+OpenID Connect defines a standard API for [Dynamic Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html). The registration URL can be found at the configuration endpoint: `https://<hostname>/.well-known/openid-configuration`.
 
-It may be prefereable to **not allow** clients to dynamically register themselves! To disable this endpoint, in the oxAuth JSON properties, set the `dynamicRegistrationEnabled` value to False.
+To manage this feature in oxTrust, navigate to `Configuration` > `JSON Configuration` > `oxAuth configuration`, and find the `dynamicRegistrationEnabled` property. Set it to `true` or `false` to enable or disable dynamic client registration, as needed. 
 
-### Manual clent registration
-To add a client manually in oxTrust, navigate to `OpenID Connect` > `Client` and click the `Add Client` button to expose the following form:
-
-![add-client](../img/openid/add-client311.png)
-
-![add-client1](../img/openid/add-client1-311.png)
-
-![add-client2](../img/openid/add-client2-311.png)
-
-![add-client3](../img/openid/add-client3-311.png)
-
-![add-client4](../img/openid/add-client4-311.png)
-
-There are many client configuration parameters. Most are specified in the [Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html#ClientRegistration) section of the OpenID Connect specification.
-
-There are two configurations params which can only be configured via oxTrust by an administrator. These include:
-
-1. Pre-Authorization: If the OAuth authorization prompt should not be displayed to end users, set this field to `Enabled`. This is useful for SSO to internal clients (not third party) where there is no need to prompt the person to approve the release of information.
- 
-1. Persist Client Authorizations: If end users should only be prompted for authorization the *first* time they access the client, set this field to `True`. All data will be persisted under the person's entry in the Gluu LDAP and the end user will not be prompted to release informationd during subsequent logins.
+Expiration of dynamically registered clients is controlled by the `dynamicRegistrationExpirationTime` property, which can also be found in the oxAuth configuration table. Find more details about these oxAuth properties and others in the [reference section](../reference/JSON-oxauth-prop.md).
 
 ### Customizing client registration
 
@@ -121,13 +116,28 @@ The sample client registration script is [available here](./sample-client-regist
 ### Disable client entry
 Setting up clients can be cumbersome and time consuming. Instead of deleting clients that should be inactive, it may be preferable to simply disable the client. To achieve this:
 
-1. Navigate to `OpenID Connect` > `Clients`
+1. Navigate to `OpenID Connect` > `Clients` > `Standard settings`
 1. Find and click the target client
-1. Scroll to the end of its settings' list and check the `Disabled` checkbox
+1. Check the `Disabled` checkbox
 1. Click the "Update" button
 
 ![disable-openid](../img/openid/openidconnect-disable.png)
 
+
+### Adding Redirect URIs to Client
+
+If the redirect URI to be added to a client is in the same domain as the server, the URI can be added via the `Add Redirect URI` field in the Client Registration form.   
+If the URI is in a different domain, it must be added via a [sector identifier](#add-sector-identifier).
+
+### Client Summary
+Each client's entry in oxTrust contains an at-a-glance summary page. All configuration settings are portrayed on a single, easy-to-read page, and can be exported in Markdown to the clipboard with one click. Follow these steps:
+
+1. Navigate to `OpenID Connect` > `Clients`
+1. Find and click the target client
+1. Click the `Client Config Summary` button at the top of the page
+1. To export, click the `Copy as markdown to clipboard` button
+
+![](../img/openid/client-config-summary.png)
 
 ## Scopes
 
@@ -144,10 +154,6 @@ To add OpenID Connect Scopes and Claims:
 1. Click the `Add scope` button
 ![scopedetails](../img/openid/add-scope1.png)
 
-1. To add more claims, simply click "Add Claim" and you will be presented
-with the following screen:
-![Add Claims](../img/openid/add-scope-claim.png)
-
 A description of the fields in the add scope page:
 
 - Display Name: Name of the scope which will be displayed when searched.
@@ -159,17 +165,17 @@ A description of the fields in the add scope page:
    - Dynamic: specifies to the Gluu Server that scope values will be generated from the result of the Dynamic Scopes custom interception script.
    - OAuth: specifies to the Gluu Server that the scope will have no claims, it will be meaningful to an external resource server.
        
-- Default Scope: If True, the scope may be added to clients' registrations created via Dynamic Client Registration protocol. Specifying a scope as "Default" means that any OIDC client using Dynamic Client Registration can enlist it among requested scopes. Because this may result in sensitive user data being leaked to unauthorized parties, thorough assessment of all claims associated with "Default" scopes is advised. Out-of-the-box, the only default scope is `openid`, which is required by the OpenID Connect specification. Additional scopes can be explicitly add added as needed by editing client registration metadata manually in oxTrust.
+- Allow for dynamic registration: Select whether a client using the scope is allowed to dynamically register the scope, as well.
 
 ### Customizing scopes
-Similar to client registration, scopes can be customized using interception scripts. The interface can be found in oxTrust by navigating to `Configuration` > `Custom Scripts` > `Dynamic Scopes`. 
+Similar to client registration, scopes can be customized using interception scripts. The interface can be found in oxTrust by navigating to `Configuration` > `Manage Custom Scripts` > `Dynamic Scopes`. 
 
 The sample dynamic scope script is [available here](./sample-dynamic-script.py).
 
 
 ## Subject Identifier Types
 
-A Subject Identifier is a locally unique and never reassigned identifier within the Issuer for the End-User, which is intended to be consumed by the Client. Two Subject Identifier types are defined in oxAuth: `public` and `pairwise`.
+A Subject Identifier is a locally unique and never reassigned identifier within the Issuer for the End-User, which is intended to be consumed by the Client. The can be found by navigating to `Configuration` > `oxAuth Configuration`. Two Subject Identifier types are defined in oxAuth: `public` and `pairwise`.
  
 ![Subject Types Supported](../img/admin-guide/openid/subjecttypessupported.png)
 
@@ -201,6 +207,7 @@ Key and salt are read from oxAuth configuration entries `pairwiseCalculationKey`
 
 ![Pairwise Algorithmic configuration](../img/admin-guide/openid/pairwiseconfiguration.png)
 
+A user's associated Pairwise IDs can be viewed and managed directly in LDAP, or more conveniently in their oxTrust user record. Check the [Manage People doc](../user-management/local-user-management.md#managing-associated-pairwise-ids) for more information. 
 
 ### Add Sector Identifier
 
@@ -231,15 +238,16 @@ The default distribution of the Gluu Server includes custom authentication scrip
 |  ACR Value  	| Description			|
 |---------------|-------------------------------|
 |  u2f		| [FIDO U2F Device](../authn-guide/U2F.md)|
+|  fido2    | [FIDO 2.0 U2F Device](../authn-guide/fido2.md)
+| thumb_sign_in| Use of ThumbSignIn for biometric authentication |
 |  super_gluu	| [Multi-factor authentication](../authn-guide/supergluu.md)|
 |  duo		| [Duo soft-token authentication](../authn-guide/duo.md)|
 |  cert	| [Smart card or web browser X509 personal certificates](../authn-guide/cert-auth.md)|
-|  cas	| External CAS server|
-|  gplus	| [Google+ authentication](../authn-guide/google.md)|
-|  OTP	| [OATH one time password](../authn-guide/otp.md) |
-|  asimba	| Use of the Asimba proxy for inbound SAML |
+|  saml | Inbound SAML via Asimba authentication module |
+|  otp	| [OATH one time password](../authn-guide/otp.md) |
+|  passport_saml | Passport SAML authentication module |
+|  passport_social| Passport authentication module |
 |  twilio_sms	| Use of the Twilio Saas to send SMS one time passwords |
-|  passport	| Use of the [Passport component for social login](../authn-guide/passport.md/) |
 |  yubicloud	| Yubico cloud OTP verification service |
 |  uaf	| experimental support for the FIDO UAF protocol |
 |  basic_lock	| [Enables lockout after a certain number of failures](../authn-guide/intro.md#configuring-account-lockout) |
@@ -248,6 +256,19 @@ The default distribution of the Gluu Server includes custom authentication scrip
 Clients can request any enabled authentication mechanism. To enable an authentication script in oxTrust, navigate to `Configuration` > `Manage Custom Scripts`, find the desired script, check the `Enabled` box, scroll to the bottom of the page and click `Update`.
 
 Learn more in the [authentication guide](../authn-guide/intro.md).
+
+### Setting the Default ACR
+
+To set the default `acr_value` for a client, follow these steps:
+
+1. Navigate to `OpenID Connect` > `Clients`
+1. Select the client you wish to set
+1. Click the `Advanced Settings` tab
+1. Click the `Add Default ACR value` button
+    ![List of default ACRs](../img/openid/available_acrs.png)
+1. A list of available ACR values will pop up. Select the desired default value
+1. Click the `Ok` button
+1. Scroll to the bottom of the page and click the `Update` button
 
 ## Logout
 
