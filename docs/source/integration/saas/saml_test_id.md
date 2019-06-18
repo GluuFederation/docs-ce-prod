@@ -7,7 +7,7 @@
   
   ![image](../../img/samltest_id/SAMLTestID_upload_fetch_metadata.PNG)
   
-  - After successful upload of fetching, you will see the following confirmation: 
+  - After successful upload or fetch, you will see the following confirmation: 
   
   ![image](../../img/samltest_id/SAMLTESTID_METADATA_PARSED.PNG)
 
