@@ -80,7 +80,7 @@ This section describes the process of adding UMA scopes in the Gluu Server GUI. 
 
 ![uma-scopes](../img/uma/uma-scopes.png)
 
-The search bar can be used to find existing available scopes. New scopes can be added by clicking on the `Add Scope Description` button which will bring up the interface shown below:
+The search bar can be used to find existing available scopes. New scopes can be added by clicking on the `Add Scope` button which will bring up the interface shown below:
 
 ![uma-scopes](../img/uma/scopes-add.png)
 
@@ -91,6 +91,10 @@ Additionally there is an option to add authorization policy with the new scope.
 Resources protected by UMA 2 must be registered in oxTrust by navigating to `UMA` > `Resources` or via [UMA-API](../api-guide/uma-api.md). . 
 
 ![uma-resources](../img/uma/uma-resources.png)
+
+The search bar can be used to find existing available resources. New resources can be added by clicking on the `Add Resource Set` button, which will bring up the interface shown below:
+
+![uma-resources](../img/uma/resources-add.png)
 
 Resource access can be restricted by associated client with `umaRestrictResourceToAssociatedClient` oxauth configuration property. Associated client is array that is automatically populated with `clientDn` that creates it.  
 
@@ -396,6 +400,47 @@ Below is example of including all scopes except `http://photoz.example.com/dev/a
 }
 ```
 
+## RPT as JWT
+
+By default RPT is plain bearer token. It is possible to return RPT as signed JWT. It is configurable via `rpt_as_jwt` boolean client property. Signed RPT JWT contains:
+
+- `pct_claims` - list of PCT claims
+- `permissions` - list of permissions for given RPT
+- `exp` - expiration date in seconds
+- `iat` - creation date in seconds
+- `iss` - issuer
+- `aud` - audience
+- `client_id` - client id
+
+Please note that it is not possible to update existing RPT at Token Endpoint if `rpt_as_jwt=true` for client since JWT has to be re-generated to encode new permissions. Therefore RPT as JWT is generated if existing RPT is not provided (at `rpt` request parameter) during requesting RPT at Token Endpoint. 
+
+RPT as JWT is signed with algorithm set by `access_token_signing_alg` client property or otherwise if it is not set then by `defaultSignatureAlgorithm` oxauth configuration property. 
+
+Example of decoded JWT payload claims:
+
+```json
+{
+  "iss": "https://myop.gluu.org",
+  "aud": "@!DBE5.84F8.631A.9172!0001!CD07.49BE!0008!AB77!1A2B",
+  "client_id": "@!DBE5.84F8.631A.9172!0001!CD07.49BE!0008!AB77!1A2B",
+  "exp": 1544112457,
+  "iat": 1544108857,
+  "pct_claims": {
+    "country": "US",
+    "city": "NY"
+  },
+  "permissions": [
+    {
+      "resource_id": "eb2591de-db07-498d-860a-b7c223be302e",
+      "resource_scopes": [
+        "http://photoz.example.com/dev/scopes/view"
+      ],
+      "exp": 1544112448,
+      "params": null
+    }
+  ]
+}
+``` 
 
 ## UMA RS Implementation
 If you need to secure apps with OpenID Connect RP and UMA 2 RS code, you might want to take a look at our [oxd client software](http://oxd.gluu.org).
