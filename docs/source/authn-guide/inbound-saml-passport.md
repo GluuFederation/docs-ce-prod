@@ -157,7 +157,8 @@ To enable IDP-initiated inbound capabilities for an existing IDP, follow these s
 - Navigate to `Passport` > `IDP-initiated flows config`
 - Click the `Add` button
 - Choose the IDP you want to enable usage of IDP-initiated flow
-- Accept the defaults and click on `Update`
+- Accept the defaults and click on `Add`
+- Click on `Save` at the bottom
 
 ![IDP-initiated config for an IDP](../img/user-authn/passport/ii_choose_provider.png)
 

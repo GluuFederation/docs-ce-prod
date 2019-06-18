@@ -29,14 +29,14 @@ This will create two files: `fresher-scim-rp.jks` and `fresher-scim-rs.jks`. You
 Add suitable keys and export two JSON files: 
   
 ```  
-java -cp '/home/jetty/lib/*' org.xdi.oxauth.util.KeyGenerator \  
+java -cp '/home/jetty/lib/*' org.gluu.oxauth.util.KeyGenerator \  
 -keystore fresher-scim-rp.jks -keypasswd secret \  
 -sig_keys RS256 RS384 RS512 ES256 ES384 ES512 \  
 -enc_keys RS256 RS384 RS512 ES256 ES384 ES512 \  
 -dnname "CN=oxAuth CA Certificates" \  
 -expiration 365 > keys-rp.json  
   
-java -cp '/home/jetty/lib/*' org.xdi.oxauth.util.KeyGenerator \  
+java -cp '/home/jetty/lib/*' org.gluu.oxauth.util.KeyGenerator \  
 -keystore fresher-scim-rs.jks -keypasswd secret \  
 -sig_keys RS256 RS384 RS512 ES256 ES384 ES512 \  
 -enc_keys RS256 RS384 RS512 ES256 ES384 ES512 \  
