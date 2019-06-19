@@ -150,11 +150,12 @@ Refer to the following table for details about available setup options:
 | Optional: enter password for oxTrust and LDAP superuser | Used as the LDAP directory manager password, and for the default admin user for oxTrust. |
 | Install oxAuth OAuth2 Authorization Server | Required. Includes Gluu's OpenID Connect provider (OP) and UMA authorization server (AS) implementations.|
 | Install oxTrust Admin UI | Required. This is the Gluu server admin dashboard. |
-| Install LDAP Server | Required. LDAP is used to store user info and configuration data. |
-| Install Passport |  Optional. Install if you want to support external IDP, for instance to offer users social login. |
-| Install Apache HTTPD Server | Required |
+| Install Backend DB Server | Required. Installs OpenDJ, used to store user info and configuration data. |
+| Install Apache 2 web server | Required |
 | Install Shibboleth SAML IDP | Optional. Only install if a SAML identity provider (IDP) is needed. |
 | Install oxAuth RP | Optional. OpenID Connect test client: useful for test environments, for more details see [here](../admin-guide/openid-connect/#oxauth-rp) |
+| Install Passport |  Optional. Install if you want to support external IDP, for instance to offer users social login. |
+| Install Gluu Radius | Installs Radius server. More information is available [here](../admin-guide/radius-server/gluu-radius.md)
 
 When complete, `setup.py` will show the selections and prompt for confirmation. If everything looks OK, select Y to finish installation. 
 
@@ -162,14 +163,6 @@ After 5-10 minutes the following success message will appear:
 
 `Gluu Server installation successful! Point your browser to [hostname].`
 
-#### Deprecated options
-
-OpenLDAP and Asimba are now deprecated components in the Gluu Server. If they are needed, during setup run:
-
-`./setup.py -allow_deprecated_applications` 
-
-!!! Note    
-    For clustered deployments of Gluu, we do not recommend using OpenLDAP.     
 
 #### Avoiding common issues
 
