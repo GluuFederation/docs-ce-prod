@@ -116,9 +116,9 @@ nav:
             - 'SAMLtest.id': 'integration/saas/saml_test_id.md'
 - Reference:
         - Gluu API Guide:
-            - 'Introspection & Custom ID Generation': 'api-guide/api.md'
+            - 'Gluu Server API': 'api-guide/api.md'
             - 'OpenID Connect API': 'api-guide/openid-connect-api.md'
-            - 'SCIM API Configuration': 'api-guide/scim-api.md'
+            - 'SCIM API': 'api-guide/scim-api.md'
             - 'UMA API': 'api-guide/uma-api.md'
         - 'JSON Properties':
             - 'oxTrust JSON Properties': 'reference/JSON-oxtrust-prop.md'
