@@ -50,7 +50,7 @@ service [service name] restart
 
 The following list of services included with the Gluu Server may differ from deployment to deployment based on installed components.
 
-- httpd/apache
+- httpd/apache2
 - oxauth
 - oxauth-rp
 - identity
