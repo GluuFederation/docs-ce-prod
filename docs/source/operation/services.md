@@ -61,3 +61,4 @@ The following list of services included with the Gluu Server may differ from dep
 - opendj
 - couchbase-server
 - memcached
+- redis
