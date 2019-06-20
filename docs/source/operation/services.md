@@ -2,7 +2,7 @@
 
 ## Overview
 
-Many configuration changes require stopping or restarting individual services within the Gluu Server. 
+Many configuration changes require stopping or restarting individual services within the Gluu Server. The process to do so differs slightly depending on the operating system in use.
 
 ## Commands
 
