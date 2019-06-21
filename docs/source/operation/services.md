@@ -4,6 +4,23 @@
 
 Many configuration changes require stopping or restarting individual services within the Gluu Server. The process to do so differs slightly depending on the operating system in use.
 
+## Available services
+
+The following list of services included with the Gluu Server may differ from deployment to deployment based on installed components.
+
+- httpd/apache2
+- oxauth
+- oxauth-rp
+- identity
+- idp
+- passport
+- casa
+- gluu-radius
+- opendj
+- couchbase-server
+- memcached
+- redis
+
 ## Commands
 
 ### Start
@@ -45,20 +62,3 @@ systemctl [service name] restart
 ``` tab="Other OS"
 service [service name] restart
 ```
-
-## Available services
-
-The following list of services included with the Gluu Server may differ from deployment to deployment based on installed components.
-
-- httpd/apache2
-- oxauth
-- oxauth-rp
-- identity
-- idp
-- passport
-- casa
-- gluu-radius
-- opendj
-- couchbase-server
-- memcached
-- redis
