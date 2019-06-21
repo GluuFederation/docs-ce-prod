@@ -175,7 +175,7 @@ The following are the steps required to offer social login in an OIDC applicatio
     |Facebook|passport-facebook|
     |Github|passport-github|
     |Google|passport-google-oauth2|
-    |LinkedIn|passport-linkedin-oauth2|
+    |LinkedIn|@sokratis/passport-linkedin-oauth2|
     |Tumblr|passport-tumblr|
     |Twitter|passport-twitter|
     |Windows Live|passport-windowslive|
