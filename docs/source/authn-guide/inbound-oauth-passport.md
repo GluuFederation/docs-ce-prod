@@ -45,7 +45,7 @@ Follow these steps to integrate an external OP for login to an OIDC application:
 
 1. In `type`, choose "openidconnect" (if you are using Gluu oxd as a mediator with an OP, check [this](#using-oxd-as-mediator) section)
 
-1. Optionally, supply a `logo path` for this provider. Check this [section](./passport.md#about-logo-images) of the introductory page to learn more
+1. Optionally, supply a `logo path` for this provider (eg. `img/openidconnect.png`). Check this [section](./passport.md#about-logo-images) of the introductory page to learn more
 
 1. Check `Is enabled` (unless there is a reason to leave this provider integration temporarily disabled)
 
@@ -212,7 +212,7 @@ The following are the steps required to offer social login in an OIDC applicatio
     
     It is recommended to create mappings based on existing mapping files. Make a copy of any file listed in the table above (see directory `/opt/gluu/node/passport/server/mappings` in Gluu chroot) and name it appropriately. Enter the name (without file extension) in the form field. The [tutorial](../tutorials/passport-attributes-mapping.md) contains instructions on how to write attribute mappings. It is an easy task and generally does not demand programming skills.
     
-1. If the provider being added is present in the table above, enter `../../ext/resources/img/passport/<mapping>.png` (we already bundle images for the social sites supported out-of-the-box). Otherwise, check this [section](./passport.md#about-logo-images) of the introductory page.
+1. If the provider being added is present in the table above, enter `img/<mapping>.png` (we already bundle images for the social sites supported out-of-the-box). Otherwise, check this [section](./passport.md#about-logo-images) of the introductory page.
     
     ![oauth_provider](../img/user-authn/passport/oauth_provider.png) 
     
