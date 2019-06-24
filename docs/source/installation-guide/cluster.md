@@ -883,11 +883,12 @@ hostname = "loadbalancer.example.org"
 Gluu.Root # python keystore_Config.py
 ```
 
-- Restart Identity and oxAuth on all servers, then restart all your Gluu servers
+- [Restart](../operation/services.md#restart) the identity and oxauth services on all servers, 
+
+- Log out and restart all your Gluu servers
 
 ```
-Gluu.Root # service identity stop && service oxauth restart && service identity start
-Gluu.Root # logout
+logout
 service gluu-server-4.0 restart
 ```
 
