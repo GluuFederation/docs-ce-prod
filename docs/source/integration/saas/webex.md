@@ -133,9 +133,7 @@ We need to modify attributeDefinition for these attributes. Configuration is app
     p:attributeSourceIds="#{ {'webexnameid'} }" />
 ```
 
-  - Restart 'idp' and 'identity' services with: 
-    - service idp restart
-    - service identity restart
+  - [Restart](../../operation/services.md#restart) the 'idp' and 'identity' services
 
 ## Trust Relationship 
 
