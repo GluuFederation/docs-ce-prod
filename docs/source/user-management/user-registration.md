@@ -56,4 +56,4 @@ To change this setting, you need to make the following changes in both oxTrust a
     /opt/opendj/bin/dsconfig -h hostname -p 4444 -D "cn=directory manager" -w yourPassword -n set-plugin-prop --plugin-name "Unique mail address" --set enabled:true
     ```
     
-1. Restart OpenDJ: `service opendj restart`
+1. [Restart](../operation/services.md#restart) the opendj service
