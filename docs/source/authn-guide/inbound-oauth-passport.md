@@ -190,7 +190,7 @@ The following are the steps required to offer social login in an OIDC applicatio
     - Add the `node` executable to path: `export PATH=$PATH:/opt/node/bin`.
     - `cd` to the Passport application: `cd /opt/gluu/node/passport`. Recommended: back up this folder before proceeding
     - Ensure the VM has Internet access and install the strategy, eg. `npm install STRATEGY --save` where `STRATEGY` is the package to install, for instance, `passport-reddit`.
-    - Restart passport: `service passport restart`
+    - [Restart](../operation/services.md#restart) the `passport` service.
 
     Unfortunately, strategies do not follow any standardized naming convention, so it's not possible to autofill the "Passport.js strategy" field based on words previously entered in the provider's display name. Also, there are cases where several strategies are suitable for a given provider.
 
