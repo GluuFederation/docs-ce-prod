@@ -9,7 +9,7 @@ By using a Gluu Server as your IDP you can bypass the process of storing passwor
     
 ## Requirements
 
-- A Gluu Server with the Shibboleth IDP installed; Gluu Server v3.1.2. 
+- A Gluu Server with the Shibboleth IDP installed
 - An O365 account with administrative privilege.
 - ADFS which will act as 'Service Provider' to Gluu Server. O365 will be connected to ADFS. 
 
@@ -188,7 +188,7 @@ This is a 'persistent' type nameID; base attribute 'objectguid'. Follow the doc 
 </resolver:AttributeResolver>
 
 ```
- - Restart 'identity' service with `service identity restart`
+ - [Restart](../../operation/services.md#restart) the `identity` service
 
 
 ##### Configuration of 'saml-nameid.xml'
@@ -268,7 +268,7 @@ This is a 'persistent' type nameID; base attribute 'objectguid'. Follow the doc 
 
 </beans>
 ```
- - Restart 'idp' service with `service idp restart`
+ - [Restart](../../operation/services.md#restart) the `idp` service
 
 ### Trust relationship for O365
 
