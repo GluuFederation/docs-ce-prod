@@ -11,7 +11,7 @@ The new attribute screen should look like the screenshot below
 
 * The custom `nameid` needs to be defined in the `attribute-resolver` template file. Documentation is available [here](../../admin-guide/attribute.md#defining-nameid)
 
-* Restart `identity` and `idp` services
+* [Restart](../../operation/services.md#restart) the `identity` and `idp` services
 
 ### Trust Relationship
 Please refer [here](../../admin-guide/saml.md#outbound-saml-shibboleth) to create trust relationship and fill up the form with the following info
