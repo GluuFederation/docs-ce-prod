@@ -84,7 +84,7 @@ Edit the `/opt/gluu/jetty/identity/conf/shibboleth3/idp/saml-nameid.xml.vm` file
         <bean parent="shibboleth.SAML1AttributeSourcedGenerator"
             p:format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
             p:attributeSourceIds="#{ {'mail'} }" />
- ```               
+```               
 
 [Restart](../../operation/services.md#restart) the `identity` and `idp` services.
  
