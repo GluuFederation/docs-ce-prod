@@ -86,16 +86,15 @@ Edit the `/opt/gluu/jetty/identity/conf/shibboleth3/idp/saml-nameid.xml.vm` file
         <bean parent="shibboleth.SAML1AttributeSourcedGenerator"
             p:format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
             p:attributeSourceIds="#{ {'mail'} }" />
- ```               
+```
 
 Restart the `identity` and `idp` services.
  
-### Create a SAML Trust Relationship
-- Create Trust Relationship for Google Apps: 
+### Create a SAML Trust Relationship for Google Apps: 
 
-   - How to create a trust relationship can be found [here](../../admin-guide/saml.md#trust-relationship-requirements). We need to follow the "File" method for Google Apps trust relationship. Upload the metadata which we created couple of steps back. 
-    - Required attributes: 
-       - You need to release the following attribute: Email.
+- How to create a trust relationship can be found [here](../../admin-guide/saml.md#trust-relationship-requirements). We need to follow the "File" method for Google Apps trust relationship. Upload the metadata which we created couple of steps back. 
+- Required attributes: 
+  - You need to release the following attribute: Email.
  
 ## Test 
   
