@@ -56,13 +56,13 @@ Edit the file `httpd.conf`, and do the following changes:
 
 * Set `UseCanonicalName On`.
 
-* Restart the httpd service using the command `service httpd restart`.
+* [Restart](../../operation/services.md#restart] the `httpd` service.
 
-#### Httpd Testing
+#### httpd Testing
 
 * Create an `index.html` file inside the directory `/var/www/html`.
 
-* Restart the httpd service using the command `service httpd restart`.
+* [Restart](../../operation/services.md#restart] the `httpd` service.
 
 * Check from your browser if the file `index.html` is visible.
 
@@ -125,12 +125,7 @@ This section describes how to configure the file `shibboleth2.xml`.
 
 	* Set both the Metadata Provider, and the IDP: `MetadataProvider type="XML" uri="https://idp.gluu.org/idp/shibboleth"`
 
-* Restart both shibd and Apache2 using these lines:
-
-```
-service shibd restart
-service httpd restart
-```
+* [Restart](../../operation/services.md#restart] both the `shibd` and `apache2` services.
 
 * Create a Trust Relationship for this SP in your desired IdP.
 
@@ -158,21 +153,17 @@ These are the steps to configure your Apache webserver properly:
 # openssl req -new -key sp.key -out sp.csr
 # openssl x509 -req -days 365 -in sp.csr -signkey sp.key -out sp.crt
 # shib-metagen -c /etc/certs/sp.crt -h sp.gluu.info > /etc/shibboleth/SP-metadata.xml
-# service apache2 start
-# service shibd start
 ```
+Then, [start](../../operation/services.md#start] the `apache2` and `shibd` services.
 
-Download `SP-metadata.xml` to your machine. You will need this file
-later when you create the Trust Relationship in the Gluu Server.
-
+Download `SP-metadata.xml` to your machine. You will need this file later when you create the Trust Relationship in the Gluu Server.
 
 ```
 # mkdir /var/www/protected
 # touch /var/www/protected/printHeaders.py
 # chmod ugo+x /var/www/protected/printHeaders.py
 ```
-Edit `printHeaders.py`, and add this simple script. It will show you the
-HTTP headers:
+Edit `printHeaders.py`, and add this simple script. It will show you the HTTP headers:
 
 ```
 #!/usr/bin/python
@@ -192,10 +183,7 @@ for item in k:
 print "</BODY></HTML>"
 ```
 
-
-
-Edit the default site at `/etc/apache2/sites-available/default-ssl.conf`, 
-and add this part:
+Edit the default site at `/etc/apache2/sites-available/default-ssl.conf`, and add this part:
 
 ```
 ScriptAlias /protected/ /var/www/protected/
@@ -212,10 +200,7 @@ ScriptAlias /protected/ /var/www/protected/
 
 ## Configure the Shibboleth SP
 
-Use this for `shibboleth2.xml` and replace `sp.gluu.info` with the
-hostname of your SP, and `idp.gluu.info` with the hostname of your
-IDP.
-
+Use this for `shibboleth2.xml` and replace `sp.gluu.info` with the hostname of your SP, and `idp.gluu.info` with the hostname of your IDP.
 
 ```
 <SPConfig xmlns="urn:mace:shibboleth:2.0:native:sp:config"
@@ -319,12 +304,7 @@ Then, click to add the SAML2SSO profile:
 ![image](../../img/integration/saml_sso-profile.png)
 
 Then "Save" and "Update." Wait 5 minutes for the Shibboleth IDP to detect reload the metadata or
-stop and start Jetty.
-
-```
-service identity stop
-service identity start
-```
+[restart](../../operation/services.md#restart] the `identity` service.
 
 ## Test
 
@@ -414,22 +394,13 @@ initial admin password). The output will contain something like this:
     
 ## Troubleshooting 
 
- - Make sure you update your hosts file on the Gluu Server, Apache
-   server, and your workstation--this won't work with IP addresses,
-   only.
+ - Make sure you update your hosts file on the Gluu Server, Apache server, and your workstation--this won't work with IP addresses, only.
 
- - Check the Shibboleth log file `/opt/idp/logs/idp-process.log` if you
-   don't see the headers or REMOTE_USER environment variables. Also,
-   restart the Jetty service by `service identity restart` to 
-   make sure the new Shibboleth IDP xml files were loaded.
+ - Check the Shibboleth log file `/opt/idp/logs/idp-process.log` if you don't see the headers or REMOTE_USER environment variables. Also, [restart](../../operation/services.md#restart] the `identity` service to make sure the new Shibboleth IDP xml files were loaded.
 
- - Clear the cookies in your web browser for both the Apache site, and 
-   the Gluu Server if you are logging in and logging out a lot with 
-   lots of server restarts.
+ - Clear the cookies in your web browser for both the Apache site, and the Gluu Server if you are logging in and logging out with lots of server restarts.
    
- - If you do test in local environment and using proxies you may need  
-   to bypass proxy address checking by setting checkAddress="false" in
-   shibboleth2.xml configuration 
+ - If you do test in local environment and using proxies you may need to bypass proxy address checking by setting checkAddress="false" in shibboleth2.xml configuration 
     
 
 ## IIS SAML Configuration
@@ -450,7 +421,8 @@ initial admin password). The output will contain something like this:
 
 1. Open IIS Manager (Start --> Administrative Tools --> Internet Information Service/IIS Manager)
 
-2. Double click on "ISAPI and CGI Restrictions"
+2. Double click on "ISAPI and CGI Restrictions" 
+
 ![ISAPI and CGI](../../img/integration/admin_sp_isapicgi.png)
 
 3. Add a new Filter
@@ -495,6 +467,7 @@ initial admin password). The output will contain something like this:
   h. Check Status
 
   Check Status by typing in "http://127.0.0.1/Shibboleth.sso/Status" in the web browser. If it displays an XML document, then the Shibboleth SP Installation in Windows IIS7 in complete.
+  
 ![Status Check](../../img/integration/admin_sp_checkstatus.png)
 
 ## Shibboleth SP Setup in Windows 2008 R2 with IIS7
@@ -802,7 +775,7 @@ initial admin password). The output will contain something like this:
 
 ### Shibboleth SP Installation
 
-1. Download the MSI of Shibboleth-SP from [shibboleth Repository](http://shibboleth.net/downloads/service-provider/latest/)   
+1. Download the MSI of Shibboleth-SP from [shibboleth Repository](http://shibboleth.net/downloads/service-provider/latest/) 
 
 2. Start the installation
 
@@ -839,32 +812,25 @@ choose one.
 
 ## Apache Configuration
 
-1. Download the Apache HTTP server MSI Installer with OpenSSL:
-   http://httpd.apache.org/download.cgi#apache22 .
+1. Download the Apache HTTP server MSI Installer with OpenSSL: http://httpd.apache.org/download.cgi#apache22 .
 
     ![IMAGE](../../img/integration/admin_sp_apacheclick.png)
 
-2. Select the destination. You can keep the default destination for your
-local testing. But, make sure that there is no other “Apache Software
-Foundation” directory in your current “C:\Program Files\” location.
+2. Select the destination. You can keep the default destination for your local testing. But, make sure that there is no other “Apache Software Foundation” directory in your current “C:\Program Files\” location.
 
     ![IMAGE](../../img/integration/admin_sp_apachedestination.png)
 
-3. Provide the Server Information. For local testing you can use
-   `localdomain/localhost`.
+3. Provide the Server Information. For local testing you can use `localdomain/localhost`.
 
     ![IMAGE](../../img/integration/admin_sp_serverinfo.png)
 
-4. Test whether the Apache web server is installed or not. Open your web
-browser and use `localhost`. If you see something like the image shown
-below--you are done!
+4. Test whether the Apache web server is installed or not. Open your web browser and use `localhost`. If you see something like the image shown below--you are done!
 
     ![IMAGE](../../img/integration/admin_sp_apachetest.png)
 
 ### Shibboleth and Apache Configuration
 
-1. Change the permission of the Apache installation directory, and
-   provide “write” access.
+1. Change the permission of the Apache installation directory, and provide “write” access.
 
 2. `httpd.conf` configuration
 
@@ -884,13 +850,7 @@ below--you are done!
 
 ## Test SP Installation with Windows and Apache
 
-1. Open the web browser, and provide the address:
-   `localhost/Shibboleth.sso/Status`
-2. If you can see some XML page like the one shown below--you are done
-   with your SP installation in Windows through Apache2.
+1. Open the web browser, and provide the following address: `localhost/Shibboleth.sso/Status`
+2. If you can see some XML page like the one shown below--you are done with your SP installation in Windows through Apache2.
 
  ![IMAGE](../../img/integration/admin_sp_checkstatus.png)
-
-
-
-
