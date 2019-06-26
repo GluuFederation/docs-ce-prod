@@ -62,3 +62,14 @@ systemctl restart [service name]
 ``` tab="Other OS"
 service [service name] restart
 ```
+
+### Reload
+This command is used for the `apache2` and `httpd` services.
+
+``` tab="Ubuntu 18 or CentOS 7"
+systemctl reload [service name]
+```
+
+``` tab="Other OS"
+service [service name] reload
+```
