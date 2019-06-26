@@ -70,23 +70,16 @@ Sub-directories `custom/pages` have a special purpose. They enable overriding ex
 /opt/jetty-<VERSION>/temp/jetty-localhost-<PORT_NUMBER>-<COMPONENT_NAME>.war-_<COMPONENT_NAME>-any-<RANDOM_TAG>.dir/webapp/
 ```
 
-So, for example, the path to an exploded oxAuth's WAR archive directory may look like this 
-(and may be changed the next time the corresponding service is restarted):
+So, for example, the path to an exploded oxAuth's WAR archive directory may look like this (and may be changed the next time the corresponding service is restarted):
 
 ```
 /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/
 ```
 
-Thus, a modified `login.xhtml` page put under `custom/pages/` will be used instead of 
-`webapp/login.xhtml` file from the exploded archive. You can use files unpacked there 
-as a base for your own customized files.
+Thus, a modified `login.xhtml` page put under `custom/pages/` will be used instead of `webapp/login.xhtml` file from the exploded archive. You can use files unpacked there as a base for your own customized files.
 
 !!! Warning 
-    Jetty included in earlier Gluu 3.x packages is known to create duplicated 
-    directories under `/opt/jetty-<VERSION>/temp/` for each of its components. 
-    In case of encountering this issue, it's recommended to stop corresponding 
-    service and remove all subdirectories related to it from the `temp/` 
-    directory. After starting service again its WAR archive will be unpacked there again.
+    Jetty included in earlier Gluu 3.x packages is known to create duplicated directories under `/opt/jetty-<VERSION>/temp/` for each of its components. In case of encountering this issue, it's recommended to stop corresponding service and remove all subdirectories related to it from the `temp/` directory. After starting service again its WAR archive will be unpacked there again.
 
 Customized `libs` for oxAuth to use should be placed in the following directories:
 ```
@@ -94,9 +87,7 @@ Customized `libs` for oxAuth to use should be placed in the following directorie
 /opt/gluu/jetty/oxauth/custom/libs
 ```
 
-Custom CSS or images should be placed under `custom/static` directory. To avoid 
-collisions with static resources from WAR files, Gluu maps this folder 
-to URL's path like this: `/{oxauth|identity}/ext/resources`
+Custom CSS or images should be placed under `custom/static` directory. To avoid collisions with static resources from WAR files, Gluu maps this folder to URL's path like this: `/{oxauth|identity}/ext/resources`
 
 So, for example, CSS file placed at this path:
 
@@ -129,9 +120,7 @@ And all CSS are inside:
 
 ## Location of key webpage source files
 
-Default Gluu's public-facing pages can be a good base for your organization's customized 
-ones. Aside from extracting them directly from a corresponding WAR file, they can be found 
-at Jetty's temp directory to which they are unpacked each time a corresponding service starts.
+The default public-facing pages can be a good base for your organization's customized ones. Aside from extracting them directly from a corresponding WAR file, they can be found at Jetty's temp directory to which they are unpacked each time a corresponding service starts.
 
 ### oxAuth
 
@@ -163,16 +152,10 @@ Base directory:
 
 ## Applying changes
 
-The oxAuth and oxTrust services need to be restarted for customizations to be applied. The next commands will restart corresponding Jetty's JVMs inside container:
+To apply the customizations just set, [restart](./services.md#restart) the `oxauth` and `oxtrust` services. 
 
-```
-# service oxauth stop
-# service oxauth start
-# service identity stop
-# service identity start
-```
-
-**Note:** There is a 10 second delay on page modification reload.
+!!! Note
+    It'll take about ten seconds for page modifications to reload.
 
 ## An Example: Removing the Gluu copyright 
 
@@ -205,4 +188,4 @@ directory as well, and add some customizations to it:
 ```
 
 Don't forget to apply appropriate file system permissions if needed.
-Restarting oxAuth's service inside container will display the changes: `# service oxauth stop && service oxauth start`
+[Restart](./services.md#restart) the `oxauth` service inside the chroot.`
