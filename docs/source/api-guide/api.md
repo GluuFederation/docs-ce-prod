@@ -119,6 +119,7 @@ Sample request/response
 Status Code | Reason
 --- | ---
 400 | Bad request if request is malformed
+401 | Client authentication fails if client is invalid
 
 ## ID Generation API 
 This section will discuss a few APIs used in the Gluu Server for ID generation.
