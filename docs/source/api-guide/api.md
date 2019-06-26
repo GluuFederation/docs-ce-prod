@@ -18,15 +18,15 @@ Configuration properties:
 
 Client introspects OAuth 2 token.
 
-###### URL
+**URL**
     http://sample.com/restv1/introspection
 
-###### Parameters
+**Parameters**
 
 - token - REQUIRED.  The string value of the token.  For access tokens, this is the "access_token" value returned from the token endpoint.
 - response_as_jwt - OPTIONAL. Boolean value with default value false. If true, returns introspection response as JWT (signed based on client configuration used for authentication to Introspection Endpoint).
 
-###### Response
+**Response**
 
 Sample request/response
 
@@ -57,7 +57,7 @@ Content-Type: application/json
 }
 ```
 
-###### Errors
+**Errors**
 <table border="1">
     <tr>
         <th>Status Code</th>
@@ -72,6 +72,43 @@ Content-Type: application/json
             <td>Bad request if request is malformed.</td>
         </tr>
 </table>
+
+## Token Revocation
+
+This API defines a method for a client to notify an OAuth 2.0 authorization server that a previously obtained refresh or access token is no longer needed, allowing the server to clean up security credentials.
+
+When a token is revoked, all related tokens and the underlying authorization grant are also revoked. If the revoked token is a refresh token, the authorization server will also invalidate all access tokens based on the same authorization grant. If the revoked token is an access token, the server will also revoke the respective refresh token.
+
+### Path
+`oxauth/restv1/revoke`
+
+### revoke
+
+**GET** or **POST**
+
+`oxauth/restv1/revoke`
+
+Client introspects OAuth 2 token.
+
+**URL**
+    http://sample.com/oxauth/restv1/revoke
+
+**Parameters**
+
+- token - REQUIRED - The token that the client wants to get revoked
+- token_type_hint - OPTIONAL - A hint about the type of the token submitted for revocation. Passing this parameter can help the authorization server optimize the token lookup. May be one of the following:
+  - access_token
+  - refresh_token
+
+**Response**
+
+Sample request/response
+
+
+
+**Errors**
+
+
 
 ## ID Generation API 
 This section will discuss a few APIs used in the Gluu Server for ID generation.
