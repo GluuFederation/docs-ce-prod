@@ -8,9 +8,9 @@ This tutorial offers a step-by-step guide for setting up a basic proof-of-concep
 
 For the sake of illustration we'll use the following three abstract servers:
 
- - `[passport_dns_name]` is the host where Gluu Server v3.1.4 with Shibboleth IDP and Passport components is installed
+ - `[passport_dns_name]` is the host where Gluu Server v4.0 with Shibboleth IDP and Passport components is installed
  
- - `[remote_idp_dns_name]` is another Gluu Server v3.1.4 instance with Shibboleth IDP installed which will serve as remote IDP in this example
+ - `[remote_idp_dns_name]` is another Gluu Server v4.0 instance with Shibboleth IDP installed which will serve as remote IDP in this example
  
  - `[sp_dns_name]` is the remote SP Gluu Server with the Shibboleth SP v2.6.1 installed
 
@@ -34,13 +34,13 @@ We'll need Shibboleth SP v3.x and Apache running on the `[sp_dns_name]` machine 
 
 #### Installation
 
-Run these commands to install required packages:
+Install the required package:
 
 ```
-# yum install httpd mod_ssl
-# service httpd start
-# service iptables stop
+yum install httpd mod_ssl
 ```
+
+[Start](../operation/services.md#start) the `httpd` service and [stop](../operation/services.md#stop) the `iptables` service.
 
 #### Configuration
 
@@ -92,8 +92,7 @@ Run these commands to install required packages:
       </VirtualHost>
     ```
     
-1. Restart the httpd service: `# service httpd restart`
-
+1. [Restart](../operation/services.md#restart) the `httpd` service
 
 #### Testing
 
@@ -126,8 +125,8 @@ Edit `/etc/shibboleth/shibboleth2.xml`:
                 backingFilePath="[passport_dns_name].metadata.xml"
                 maxRefreshDelay="7200"/>
     ```
-  - Restart `shibd` service: `# service shibd restart`
-  - Make sure it's started with no critical issues by checking `/var/log/shibboleth/shibd.log` and running `# service shibd status`
+  - [Restart](../operation/services.md#restart) the `shibd` service
+  - Make sure it's started with no critical issues by checking `/var/log/shibboleth/shibd.log` and running the [status](../operation/services.md#status) command on the `shibd` service
 
 #### Testing combined Apache + Shibboleth SP setup
 
@@ -202,9 +201,7 @@ Copy the default file into a safe location in case you need it later, clear its 
 To acquire the value for the "cert" property in the structure above, SSH into `[remote_idp_dns_name]` host, move into the Gluu Server's container and execute this command: `# cat /etc/certs/idp-signing.crt | grep -v '^---' | tr -d '\n'; echo`
 It will return a single-string representation of the remote IDP's signing certificate you need.
 
-Now restart Passport's service and make sure it starts with no errors and is running:
-  - `# service passport restart`
-  - `# service passport status`
+Now [restart](../operation/services.md#restart) the `passport` service and check its [status](../operation/services.md#status) to make sure it starts with no errors and is running.
 
 Once configuration is successfully validated, Passport will automatically generate SAML SP metadata for the single IDP listed in `passport-saml-config.json` under `/opt/gluu/node/passport/server/idp-metadata/` and will publish it at a URL like `https://[passport_dns_name]/passport/auth/meta/idp/idp1` - you'll need this metadata for one of the next steps. This IDP will also be displayed on the selector pane located at the right on Passport's login page.
 
