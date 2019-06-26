@@ -103,16 +103,25 @@ http://sample.com/oxauth/restv1/revoke
 
 **Response**
 
-Sample request/response
+Sample Request
 
 ```
-     POST /revoke HTTP/1.1
-     Host: server.example.com
-     Content-Type: application/x-www-form-urlencoded
-     Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW
-
-     token=45ghiukldjahdnhzdauz&token_type_hint=refresh_token
+POST /restv1/revoke HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Host: ce.gluu.info
+Authorization: Basic JTQwJTIxOTBDQy4yRTM4Ljc3NEMuNjEwQiUyMTAwMDElMjFGRDNCLkIwQTAlMjEwMDA4JTIxMjc5MC40NzIwLjU3NUQuQTRBRjpjNzJiMjNiZC1lMjQ5LTRkZTktODBlMS02YTk1NGY1MTBiOGM=
+token=0e175b7e-3ee8-4981-b32d-427f11f3d0d9&token_type_hint=access_token
 ```     
+
+Sample Response
+
+```
+HTTP/1.1 200
+Cache-Control: no-store
+Content-Length: 0
+Pragma: no-cache
+Server: Jetty(9.4.11.v20180605)
+```
 
 **Errors**
 
