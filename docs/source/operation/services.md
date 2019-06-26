@@ -26,7 +26,7 @@ The following list of services included with the Gluu Server may differ from dep
 ### Start
 
 ``` tab="Ubuntu 18 or CentOS 7"
-systemctl [service name] start
+systemctl start [service name]
 ```
 
 ``` tab="Other OS"
@@ -36,7 +36,7 @@ service [service name] start
 ### Stop
 
 ``` tab="Ubuntu 18 or CentOS 7"
-systemctl [service name] stop
+systemctl stop [service name]
 ```
 
 ``` tab="Other OS"
@@ -46,7 +46,7 @@ service [service name] stop
 ### Status
 
 ``` tab="Ubuntu 18 or CentOS 7"
-systemctl [service name] status
+systemctl status [service name]
 ```
 
 ``` tab="Other OS"
@@ -56,7 +56,7 @@ service [service name] status
 ### Restart
 
 ``` tab="Ubuntu 18 or CentOS 7"
-systemctl [service name] restart
+systemctl restart [service name]
 ```
 
 ``` tab="Other OS"
