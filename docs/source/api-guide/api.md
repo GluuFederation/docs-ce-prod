@@ -12,7 +12,7 @@ Configuration properties:
 
 ### introspect
 
-**GET** or **POST**
+**GET** or **POST**  
 
 `/restv1/introspection`
 
@@ -57,7 +57,7 @@ Content-Type: application/json
 }
 ```
 
-**Errors**
+**Errors**  
 <table border="1">
     <tr>
         <th>Status Code</th>
@@ -79,19 +79,20 @@ This API defines a method for a client to notify an OAuth 2.0 authorization serv
 
 When a token is revoked, all related tokens and the underlying authorization grant are also revoked. If the revoked token is a refresh token, the authorization server will also invalidate all access tokens based on the same authorization grant. If the revoked token is an access token, the server will also revoke the respective refresh token.
 
-### Path
+### Path  
 `oxauth/restv1/revoke`
 
 ### revoke
 
-**POST**
+**POST**  
 
 `oxauth/restv1/revoke`
 
 Client introspects OAuth 2 token.
 
-**URL**
-    http://sample.com/oxauth/restv1/revoke
+**URL**  
+
+http://sample.com/oxauth/restv1/revoke
 
 **Parameters**
 
@@ -115,7 +116,9 @@ Sample request/response
 
 **Errors**
 
-
+Status Code | Reason
+--- | ---
+400 | Bad request if request is malformed
 
 ## ID Generation API 
 This section will discuss a few APIs used in the Gluu Server for ID generation.
