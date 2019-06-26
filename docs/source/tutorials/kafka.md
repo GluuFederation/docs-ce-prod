@@ -44,10 +44,10 @@ This tutorial offers a step-by-step guide to enable [Apache Kafka log aggregatio
         
 1. Add "-dlog4j.configurationfile=resources/log4j2.xml" to `java_options` in both `/etc/default/oxauth` and `/etc/default/identity`
 
-1. Restart systemd, oxAuth, and Identity
+1. [Restart](../operation/services.md#restart) the `oxauth` and `identity` services
+
+1. Log out of the chroot and reload systemd with the following command:
 
     ```
-    # service oxauth restart && service identity restart
-    # logout
-    # systemctl daemon-reload
+    systemctl daemon-reload
     ```
