@@ -214,10 +214,10 @@ the values, and can be a combination of `code`, `token`, and/or `id_token`.
                         The ID Token is a security token that contains Claims about the 
                         Authentication of an End-User by an Authorization Server when using a 
                         Client, and potentially other requested Claims. The ID Token is represented 
-                        as a JSON Web Token (JWT). The intended purpose of the id_token is that it 
-                        MUST provide an assertion of the identity of the Resource Owner as understood 
-                        by the Authorization Server. The assertion MUST specify a targeted audience, 
-                        e.g. the requesting Client.
+                        as a JSON Web Token (JWT) and includes security provisions such as state hashes.
+			The intended purpose of the id_token is that it MUST provide an assertion of
+			the identity of the Resource Owner as understood by the Authorization Server.
+			The assertion MUST specify a targeted audience, e.g. the requesting Client.
                     </td>
             </tr>
            <tr>
