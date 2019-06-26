@@ -114,7 +114,7 @@ metricReporterEnabled                              | Boolean value specifying wh
 pairwiseIdType                                     | the pairwise ID type
 pairwiseCalculationKey                             | Key to calculate algorithmic pairwise IDs
 pairwiseCalculationSalt                            | Salt to calculate algorithmic pairwise IDs
-shareSubjectIdBetweenClientWithSameSectorId        | Choose if clients with the same Sector ID also share Subject ID
+shareSubjectIdBetweenClientWithSameSectorId        | When `true`, clients with the same Sector ID also share the same Subject ID.
 webKeysStorage                                     | Web Key Storage Type
 dnName                                             | DN of certificate issuer
 keyStoreFile                                       | The Key Store File (JKS)
