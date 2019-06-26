@@ -84,7 +84,7 @@ When a token is revoked, all related tokens and the underlying authorization gra
 
 ### revoke
 
-**GET** or **POST**
+**POST**
 
 `oxauth/restv1/revoke`
 
@@ -104,7 +104,14 @@ Client introspects OAuth 2 token.
 
 Sample request/response
 
+```
+     POST /revoke HTTP/1.1
+     Host: server.example.com
+     Content-Type: application/x-www-form-urlencoded
+     Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW
 
+     token=45ghiukldjahdnhzdauz&token_type_hint=refresh_token
+```     
 
 **Errors**
 
