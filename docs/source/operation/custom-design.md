@@ -9,7 +9,7 @@ Public pages include:
   - Password Recovery  
   - Error Pages  
 
-!!! Warning: 
+!!! Warning 
     Customizations should only be made by people with a solid understanding of web development. Before changing any files, we recommend creating backups to easily revert your instance to its original state.
 
 ## Overview
@@ -26,8 +26,8 @@ A typical example would be customizing oxAuth's login page. There are two ways t
 
 ## Directory structure and mappings
 
-!!! Note:
-        Log into the Gluu Server chroot before working on design customizations for any pages.
+!!! Note
+        Log in to the Gluu Server chroot before working on design customizations for any pages.
 
 New directories trees have been added inside the Gluu Server `chroot` to make page customizations easier. 
 Each such tree is placed in the configuration directory of the corresponding Gluu component (only 
@@ -81,7 +81,7 @@ Thus, a modified `login.xhtml` page put under `custom/pages/` will be used inste
 `webapp/login.xhtml` file from the exploded archive. You can use files unpacked there 
 as a base for your own customized files.
 
-!!! Warning: 
+!!! Warning 
     Jetty included in earlier Gluu 3.x packages is known to create duplicated 
     directories under `/opt/jetty-<VERSION>/temp/` for each of its components. 
     In case of encountering this issue, it's recommended to stop corresponding 
@@ -120,7 +120,7 @@ All images should be placed under:
 
 `/opt/gluu/jetty/oxauth/custom/static/img`
 
-!!! Note:
+!!! Note
     You can change the logo on every public-facing page here. Place your image in `/static/img` and name it `logo.png`.
 
 And all CSS are inside:
