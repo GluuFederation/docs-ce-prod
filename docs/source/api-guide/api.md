@@ -98,8 +98,8 @@ http://sample.com/oxauth/restv1/revoke
 
 - token - REQUIRED - The token that the client wants to get revoked
 - token_type_hint - OPTIONAL - A hint about the type of the token submitted for revocation. Passing this parameter can help the authorization server optimize the token lookup. May be one of the following:
-  - access_token
-  - refresh_token
+    - access_token
+    - refresh_token
 
 **Response**
 
