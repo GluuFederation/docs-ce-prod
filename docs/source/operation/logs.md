@@ -241,7 +241,7 @@ If troubleshooting SAML issues, it may be necessary to adjust the Shibboleth log
     ```
     
 1. Replace `INFO` with `DEBUG` to get more logging info
-1. Restart the `idp` service with `service idp stop/start`
+1. [Restart](./services.md#restart) the `idp` service
 1. Navigate to `/opt/shibboleth-idp/logs/`
 1. After the issue is resolved, be sure to set the level back to `WARN` for `idp.loglevel.ldap` and `INFO` for the other logs in the production server.
 
