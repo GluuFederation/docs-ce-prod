@@ -54,19 +54,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
     service gluu-server-4.0 login
     ```
 
-    - Stop Identity, oxAuth, and OpenDJ services:
-
-    ```bash
-    service identity stop
-    ```
-
-    ```bash
-    service oxauth stop
-    ```
-
-    ```bash
-    /opt/opendj/bin/stop-ds
-    ```
+    - [Stop](./services.md#stop) the `identity`, `oxauth` and `opendj` services
 
     - If you are moving to a new LDAP, copy over your schema files from the following directory. Otherwise simply copy it for backup:
 
@@ -102,11 +90,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
     Take note of all indexes that need to be rebuilt. **If no indexing is needed, move on to step 4.**
 
-    - Start OpenDJ to build backend index :
-
-    ```bash
-    /opt/opendj/bin/start-ds
-    ```
+    - [Start](./services.md#start) the `opendj` service
 
     - Build backend index for all indexes that need it accoring to previous status command, change passoword `-w` and index name accordingly. This command has to be run for every index separately: 
 
@@ -114,11 +98,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
     /opt/opendj/bin/dsconfig create-backend-index --port 4444 --hostname localhost --bindDN "cn=directory manager" -w password --backend-name userRoot --index-name iname --set index-type:equality --set index-entry-limit:4000 --trustAll --no-prompt
     ```
 
-    - Stop OpenDJ:
-
-    ```bash
-    /opt/opendj/bin/stop-ds
-    ```
+    - [Stop](./services.md#stop) the `opendj` service
 
     - Rebuild the indexes as needed, here are examples : 
 
@@ -149,25 +129,13 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
     /opt/opendj/bin/import-ldif -n userRoot -l yourdata_withoutoxAuthGrantId.ldif
     ```
     
-    If you moved to a new LDAP, copy back your schema files to this directory:
+  If you moved to a new LDAP, copy back your schema files to this directory:
 
     ```bash
     /opt/opendj/config/schema/
     ```
     
-1. Start Identity, oxAuth, and OpenDJ services:
-
-    ```bash
-    /opt/opendj/bin/start-ds
-    ```
-
-    ```bash
-    service identity start
-    ```
-
-    ```bash
-    service oxauth start
-    ```
+1. [Start](./services.md#start) the `identity`, `oxauth` and `opendj` services
 
 1. Finally, verify the cache entries have been removed:
 
