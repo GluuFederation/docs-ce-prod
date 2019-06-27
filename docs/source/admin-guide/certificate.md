@@ -113,24 +113,13 @@ Please follow these steps shown below to update the Apache SSL cert:
        `/opt/jdkx.x.x.x/jre/bin/keytool -delete -alias <hostname_of_your_Gluu_Server>_httpd -keystore /opt/jdkx.x.x.x/jre/lib/security/cacerts -storepass changeit`
     - Import certificate in to Java Keystore(cacerts):
     <br/> `/opt/jdkx.x.x.x/jre/bin/keytool -importcert -file httpd.der -keystore /opt/jdkx.x.x.x/jre/lib/security/cacerts -alias <hostname_of_your_Gluu_Server>_httpd -storepass changeit`
-- Restart LDAP server, apache2/httpd and Identity Services.
-```
-service opendj stop
-service apache2/httpd stop
-service oxauth stop
-service identity stop
-:
-service opendj start
-service apache2/httpd start
-service oxauth start
-service identity start
-```
+- [Restart](../operation/services.md#restart) `opendj`, `apache2/httpd`, `oxauth` and `identity` services.
 
 ## Install Intermediate Certificates
 Please follow the steps below to install intermediate certificates:
 
-1. Log into your Gluu Server container.
+1. Log in to your Gluu Server container.
 2. Keep your intermediate certificate in the file `/etc/certs/`.
 3. Modify `/etc/httpd/conf.d/https_gluu.conf`, and add<br/>
   `SSLCertificateChainFile /etc/certs/name_of_your_interm_root_cert.crt`.
-4. Restart the service of the httpd server.
+4. [Restart](../operation/services.md#restart) the `httpd` service.
