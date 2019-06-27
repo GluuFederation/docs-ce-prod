@@ -9,7 +9,7 @@ The Gluu Server has a built-in service to clean up unused or expired files. Ther
 - `cleanServiceBaseDns` - list of additional `base dns` under which the server will look for expired entities (the server also looks for expired entries under the built-in `base dns`).
 - `cleanServiceBatchChunkSize` - each clean up iteration fetches a chunk of expired data per `base dn` and removes it from storage. The default value is 100. Adjust it according to server load.
 
-The `oxauth` service must be restarted with `service oxauth restart` for any configuration changes to take effect.
+[Restart](./services.md#restart) the `oxauth` service for the configuration changes to take effect.
 
 ## Log output
 
