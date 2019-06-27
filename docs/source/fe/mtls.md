@@ -201,19 +201,15 @@ SSLCertificateKeyFile /etc/pki/tls/example.key
 SSLCACertificateFile /etc/pki/tls/example-ca.crt
 ```
 
-Once changes are done, reload apache configuration by running:
+Once changes are done, reload the Apache configuration by doing the following:
 
-RHEL or CentOS 6 or below:
-`service apache2 reload`
+If using RHEL 6, [reload](../operation/services.md#reload) the `apache2` service
 
-Debian 8, Ubuntu 14 or lower
-`service httpd reload`
+If using Debian 8, [reload](../operation/services.md#reload) the `httpd` service
 
-RHEL or CentOS 7:
-`systemctl restart httpd`
+If using RHEL or CentOS 7, [restart](../operation/services.md#restart) the `httpd` service
 
-Debian 9, Ubuntu 16 or newer:
-`systemctl restart apache2`
+For other OS, [restart](../operation/services.md#restart) the `apache2` service
 
 To check if SSL cert on apache works:
 `Openssl s_client -connect sample.example.com:443`
@@ -320,7 +316,5 @@ In Chrome Menu ---> Advanced ---> Privacy and security ---> Manage Certificates 
 ### How to verify if the client certificate is actually requested by Apache
 
 The line `RequestHeader set X-ClientCert %{SSL_CLIENT_CERT}s` in apache config is responsible for that. Simply if you install php and create a sample file test.php with the content: `phpinfo();`, the variable name **$_SERVER['HTTP_X_CLIENTCERT']**_ under `php variables` heading shows the clent certificate. You can use other methods of your preference as well.
-
-
 
 [MTLS spec](https://tools.ietf.org/html/draft-ietf-oauth-mtls-12)
