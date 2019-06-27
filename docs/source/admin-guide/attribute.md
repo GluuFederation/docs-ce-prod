@@ -49,7 +49,7 @@ objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
 !!! Warning
     You cannot have line spaces between `attributeTypes:` or `objectClasses:`. This will cause failure in schema. Please check the error logs in /opt/opendj/logs/errors if you are experiencing issues with adding custom schema. This will help guide you on where there may be syntax errors.
     
- - Restart OpenDJ with `service opendj restart`
+ - [Restart](../operation/services.md#restart) the `opendj` service.
  
 This creates the attribute in the local LDAP server. 
 
