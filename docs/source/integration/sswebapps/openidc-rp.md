@@ -8,12 +8,7 @@ Before you can install mod_auth_openidc, you need to have an Apache HTTPD server
 
 It is assumed that all the hostnames will be DNS resolvable. If not, then add the entries in `/etc/hosts` file on both the web server and Gluu Server. 
 
-If you don't have the Apache HTTPD server installed, use apt-get to install the Ubuntu standard distribution:
-
-``` text
-# apt-get install apache2
-# service apache2 start
-```
+If you don't have the Apache HTTPD server installed, use apt-get to install the Ubuntu standard distribution, then [start](../operation/services.md#start) the `apache2` service.
 
 ### SSL Configuration
 The SSL Module is necessary for the Apache OpenID Connect Module. Please use the following commands to activate the `ssl module`.
@@ -48,7 +43,7 @@ This section will guide you through the steps to configure apache to use the SSL
 1. Open the `default-ssl.conf` file
 
 ``` text
-# vim /etc/apache2/sites-available/default-ssl.conf
+vim /etc/apache2/sites-available/default-ssl.conf
 
 ```
 
@@ -57,11 +52,11 @@ This section will guide you through the steps to configure apache to use the SSL
 3. Activate the SSL Virtual Host and CGI
 
 ``` text
-# a2ensite default-ssl.conf
-# a2enmod cgid
-# service apache2 restart
-
+a2ensite default-ssl.conf
+a2enmod cgid
 ```
+
+4. [Restart](../operation/services.md#restart) the `apache2` service
 
 At this point, its a good time to test to make sure SSL and CGI are working. Point your browser at https://www.mydomain.com/cgi-bin/printHeaders.cgi You should see a list of current environment variables. 
 
@@ -83,7 +78,7 @@ You'll also need the mod_auth_openidc and libjose packages which can be download
 
 For example, at this time the current release for mod_auth_openidc is 2.3.3 and for libjose is 2.3.0, so the command would be:
 
-For ubuntu 16.04
+For Ubuntu 16.04
 
 ``` text
 # wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.0/libcjose0_0.5.1-1.xenial.1_amd64.deb
@@ -101,10 +96,10 @@ Note, if you like to build from source, you can clone the project at [Github Pag
 Now you can enable the module
 
 ``` text
-# sudo a2enmod auth_openidc
-# sudo service apache2 restart
-
+sudo a2enmod auth_openidc
 ```
+
+Then, [restart](../operation/services.md#restart) the `apache2` service
 
 ### Client Registration
 
@@ -198,12 +193,7 @@ OIDCPassIDTokenAs payload
 
 ```
 
-Then restart Apache to effect the changes
-
-``` text
-# service apache2 restart
-
-```
+Then [restart](../operation/services.md#restart) the `apache2` service
 
 The most confusing part here is the `OIDCRedirectURI`--don't set this to a path used by your server. The apache-filter uses the redirect_uri to process the response from the OpenID Provider (Gluu Server). 
 
@@ -270,11 +260,7 @@ The important part of the configuration is to enter the path to the created SSL 
     ServerName gluu.org
 ```
 
-Restart Apache Server and you are done configuring the SSL Module. Use the command below to restart the Apache Server.
-
-```
-# service httpd restart
-```
+[Restart](../operation/services.md#restart) the `httpd` service.
 
 ### Authentication Module (mod_auth_openidc)
 
@@ -391,11 +377,7 @@ OIDCPassIDTokenAs payload
 !!! Warning
     Please remember to populate the `OIDCRedirectURI` with a value that is not used by the server. The apache-filter uses the redirect_uri to process the response from the OpenID Provider (Gluu Server).
 
-Please restart the HTTPD server for the changes to take effect
-
-```text
-# service httpd restart
-```
+[Restart](../operation/services.md#restart) the `httpd` service for the changes to take effect
 
 Now you're ready to test. Open your web browser, and point it at https://www.mydomain.com/cgi-bin/printHeaders.cgi
 
