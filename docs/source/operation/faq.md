@@ -85,11 +85,7 @@ JAVA_OPTIONS="
 
 The important bit is the last line starting with `-Xrunjdwp`. 
 
-Then restart the `identity` process:
-
-```
-# /etc/init.d/identity restart
-```
+[Restart](./services.md#restart) the `identity` service
 
 Do the same in `/etc/default/oxauth`, but choose a different port for the debugger to connect to:
 
@@ -97,11 +93,7 @@ Do the same in `/etc/default/oxauth`, but choose a different port for the debugg
 -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"
 ```
 
-Then restart `oxauth`:
-
-```
-# /etc/init.d/oxauth restart
-```
+[Restart](./services.md#restart) the `oxauth` service.
 
 Now, if you're running the gluu system inside a virtual machine (or just a different machine than your host machine), forward the ports `6005` and `5005` to your local machine. Type this command on your local machine, where you forward these two ports as you `ssh` into the Gluu machine:
 
@@ -185,16 +177,12 @@ In oxTrust navigate to the Manage Authentication tab within the Configuration se
 
 ![change2mail](../img/admin-guide/faq/change2mail.png)
 
-Now you will want to update your IDP login page to display `Email Address` as the requested identifier. In order to do that you need to modify the `login.xhtm    l` file, which is located in `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp`. Insert `Email Address` as the value for `outputLabel`; this snippet is under the `dialog` class. S    ee the screenshot below. Alternative solution is to put customized `login.xhtml` into /opt/gluu/jetty/oxauth/custom/pages and restart `oxauth` service after that:
-
-```
-# service oxauth restart
-``` 
+Now you will want to update your IDP login page to display `Email Address` as the requested identifier. In order to do that you need to modify the `login.xhtm    l` file, which is located in `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp`. Insert `Email Address` as the value for `outputLabel`; this snippet is under the `dialog` class. S    ee the screenshot below. Alternative solution is to put customized `login.xhtml` into /opt/gluu/jetty/oxauth/custom/pages and [restart](./services.md#restart) `oxauth` service.
 
 ![update-login](../img/admin-guide/faq/update-login.png)
 
 !!! Warning
-    oxTrust is a tool for administrators and it must nto be used as a user facing application.
+    oxTrust is a tool for administrators and it must not be used as a user facing application.
 
 ## Installing a patch
 Follow the documentation for [updating a .war file](../upgrade/index.md#updating-war-and-schema-manually). 
@@ -207,7 +195,7 @@ Please follow these steps to restore your Gluu admin account (you will probably 
 1) Log in to Gluu's chroot environment with the command below:
 
 ```
-# service gluu-server login
+# service gluu-server-4.0 login
 ```
 
 2) Run this command:
@@ -268,8 +256,7 @@ Again, please note the strings' segment marked with bold: you will have to subst
 # /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/add_2_group.ldif
 ```
 
-This will add tempadmin user to the IdP managers group and you can then
-login and assign another user to act as admin.
+This will add tempadmin user to the IdP managers group and you can then login and assign another user to act as admin.
 
 ## DNS errors
 It is possible that even after configuring everything there is a `DNS` resolve error in Gluu Server.
@@ -387,7 +374,7 @@ Once the LDIF looks right, run this to grant your account admin rights in Gluu:
 /opt/opendj/bin/ldapmodify -h localhost -p 1636 -D "cn=directory manager" -j ~/.pw -Z -X -f addManagers.ldif
 ```
 
-Log into the web interface and pick up where you left off.
+Log in to the web interface and pick up where you left off.
 
 ## How do I present a different login page depending on where the user came from (i.e. based on the SP/RP)?
 
@@ -402,22 +389,15 @@ By default, when you hit your Gluu Server hostname it will redirect to `<hostnam
 1. Open: `/etc/apache2/sites-enabled/https_gluu.conf`
 1. Search for: `RedirectMatch ^(/)$ /identity/`
 1. Change `/identity/` to a different URL
-1. Run the command: `service apache2 reload`
+1. [Reload](./services.md#reload) the `apache2` service
 
 **CentOS / RHEL:** 
 
 1. Open: `/etc/httpd/conf.d/https_gluu.conf`
 1. Search for: `RedirectMatch ^(/)$ /identity/`
 1. Change `/identity/` to a different URL
-1. Run the command: `service httpd reload`
+1. [Reload](./services.md#reload) the `httpd` service
 
 ## Concurrent login of the same user (same session). Got `retry` error.
 
 When user is trying to login to multiple RP but do not finish login process then `retry` error can be returned which indicates that RP has to re-send authorization request. 
-
- 
-
-
-
-
-
