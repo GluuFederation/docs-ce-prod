@@ -82,6 +82,9 @@ nav:
             - 'Basics of Inbound Identity': 'authn-guide/passport.md'
             - 'Inbound OAuth & OpenID Connect': 'authn-guide/inbound-oauth-passport.md'
             - 'Inbound SAML': 'authn-guide/inbound-saml-passport.md'
+        - 'Radius Server':
+            - 'Gluu Radius': 'admin-guide/radius-server/gluu-radius.md'
+            - 'Gluu Radiator': 'admin-guide/radius-server/gluu-radiator.md'
         - 'Attributes': 'admin-guide/attribute.md'
         - 'SAML IDP': 'admin-guide/saml.md'
         - 'OpenID Connect Provider (OP)': 'admin-guide/openid-connect.md'
