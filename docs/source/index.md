@@ -1,4 +1,8 @@
-# Gluu Server Community Edition (CE) 4.0 Documentation
+# Gluu Server Community Edition (CE) 4.0 Beta Documentation
+
+!!! Attention
+    Gluu Server CE version 4.0 is currently in open Beta. Any questions or feedback can be directed to the [Gluu support portal](https://support.gluu.org).
+
 ## Introduction
 The Gluu Server is a container distribution of free open source software (FOSS) for identity and access management (IAM). SaaS, custom, open source and commercial web and mobile applications can leverage a Gluu Server for user authentication, identity information, and policy decisions.
 
