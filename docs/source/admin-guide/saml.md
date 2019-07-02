@@ -5,7 +5,7 @@ The Gluu Server can be deployed with the [Shibboleth SAML identity provider (IDP
 In a standard outbound SAML transaction, a website or application (a.k.a. Service Provider, or "SP") redirects a user to a designated IDP for authentication and authorization. The IDP will authenticate the user and upon successful authentication, the user is sent back to the SP with an active session. 
 
 !!! Note 
-    To support an external SAML IDP for authentication, for instance the IDP of a customer or partner, review the [inbound SAML authentication guide](../authn-guide/inbound-saml-passport.md).
+    To support an external SAML IDP for authentication, for instance the IDP of a customer or partner, review the [inbound SAML docs](../authn-guide/inbound-saml-passport.md) in the authentication guide. 
 
 ## Pre-requisites 
 
