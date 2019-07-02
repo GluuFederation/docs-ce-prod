@@ -128,15 +128,9 @@ oxTrust allows you to tweak a limited subset of profiles mentioned in the Shibbo
 | SAML2AttributeQuery | [https://wiki.shibboleth.net/confluence/display/IDP30/SAML2AttributeQueryConfiguration](https://wiki.shibboleth.net/confluence/display/IDP30/SAML2AttributeQueryConfiguration) |
 | SAML2ArtifactResolution | [https://wiki.shibboleth.net/confluence/display/IDP30/SAML2ArtifactResolutionConfiguration](https://wiki.shibboleth.net/confluence/display/IDP30/SAML2ArtifactResolutionConfiguration) |
 
-## Force Authentication
+## SAML Single Logout
 
-The Gluu Server supports the SAML force authentication paramter out-of-the-box. Including `ForceAuthn=true` in the initial SAML request from the SP signals to the IDP that the user must be reauthenticated, even if they already have a valid session at the server. This feature can be used to verify the user's identity prior to granting them access to highly protected resources.
-
-Upon receiving the SAML request with this flag, the IDP will invalidate its session for the user, then will issue a new OpenID Connect (OIDC) authorization request to oxAuth, including the `prompt=login` parameter. This parameter forces oxAuth to invalidate its session as well. The user will then follow the full authentication procedure.
-
-### SAML Single Logout
-
-Gluu Server supports SAML2 single logout if enabled by the administrator. To enable, create a SAML2Logout RP profile with the following configuration:
+Gluu Server supports SAML2 single logout (SLO) if enabled by the administrator. To enable, create a SAML2Logout RP profile with the following configuration:
 
 ![SAML2 SLO configuration](../img/saml/saml_slo.png)
 
@@ -145,7 +139,13 @@ Once enabled, the user can be directed to `https://[hostname]/idp/Authn/oxAuth/l
 ![SAML2 SLO logout confirmation page](../img/saml/saml_slo_confirm.png)
 
 If the user clicks `Yes` or just waits a few seconds, the session will be killed and the user will be logged out.
-    
+
+## Force Authentication
+
+The Gluu Server supports the SAML force authentication paramter out-of-the-box. Including `ForceAuthn=true` in the initial SAML request from the SP signals to the IDP that the user must be reauthenticated, even if they already have a valid session at the server. This feature can be used to verify the user's identity prior to granting them access to highly protected resources.
+
+Upon receiving the SAML request with this flag, the IDP will invalidate its session for the user, then will issue a new OpenID Connect (OIDC) authorization request to oxAuth, including the `prompt=login` parameter. This parameter forces oxAuth to invalidate its session as well. The user will then follow the full authentication procedure.
+
 ## Federation Configuration     
 If the SP is part of an identity federation such as [InCommon](https://www.incommon.org/participants/), the Gluu administrator has option to establish a Trust Relationship with it based on the federation's metadata. To achieve this he must add TR for the federation in the Gluu Server first. This will enable the administrator to more easily create TRs with SPs in the federation. 
 
