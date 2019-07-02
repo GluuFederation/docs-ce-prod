@@ -1,16 +1,24 @@
 # SAML IDP 
 ## Overview
-The Gluu Server bundles the free open source [Shibboleth SAML IDP](https://www.shibboleth.net/products/identity-provider/) to support outbound SAML single sign-on (SSO). To include Shibboleth in any Gluu Server deployment, opt in when prompted during Gluu Server installation. 
+The Gluu Server can be deployed with the [Shibboleth SAML identity provider (IDP)](https://www.shibboleth.net/products/identity-provider/) to enable SAML single sign-on (SSO). 
 
-In an outbound SAML SSO transaction a website or application (known as a Service Provider, or "SP") redirects a user to a designated identity provider (IDP) for authentication and authorization. The IDP will authenticate the user and upon successful authentication, the user is sent back to the SP with an active session. 
-
-Trust must be pre-established between the IDP (Gluu Server) and SP (target application) in order for the transaction to work. The following section of the docs cover how to configure the Gluu SAML IDP for SSO. 
+In a standard outbound SAML transaction, a website or application (a.k.a. Service Provider, or "SP") redirects a user to a designated IDP for authentication and authorization. The IDP will authenticate the user and upon successful authentication, the user is sent back to the SP with an active session. 
 
 !!! Note 
-    If you need to support inbound SAML to integrate with external partner or customer IDPs, review the [inbound SAML authentication guide](../authn-guide/inbound-saml-passport.md).
+    To support an external SAML IDP for authentication, for instance the IDP of a customer or partner, review the [inbound SAML authentication guide](../authn-guide/inbound-saml-passport.md).
+
+## Pre-requisites 
+
+In order to support SAML SSO, the Gluu Server must include the Shibboleth SAML IDP. 
+
+- During a fresh Gluu Server installation, simply opt in when prompted for Shibboleth. 
+
+- To add Shibboleth to an existing Gluu Server deployment, follow [these instructions](../operation/faq.md/#adding-passportjs-andor-shibboleth-idp-post-installation). 
 
 ## Trust Relationship Requirements     
-In the Gluu Server, the SAML IDPs SSO configuration is called a Trust Relationship (TR). Each TR requires the infomation listed below.
+In the Gluu Server, the SAML IDP's SSO configuration is called a Trust Relationship (TR). Trust must be pre-established between the Gluu Server and each target SP. 
+
+Each TR requires the following infomation:
 
 ### Metadata of the SP             
 Metadata is an XML file which has configuration data used to establish trust between the website (SP) and IDP (Gluu Server). Websites (SP) can provide metadata via a URL or as a separate file. Metadata can change, so a static URL typically requires the least amount of ongoing maintenance. 
@@ -21,11 +29,41 @@ The Gluu Server's SAML metadata may be needed from time to time. It can be found
 ### Attribute Release      
 Each SP may require one or more user attributes from the IDP in order to grant a person access to a protected resource. Required attributes vary depending on the application, and should be explicitly specified in the target application's documentation. The administrator can use the oxTrust interface to release the necessary attributes to the SP as described [below](#create-a-trust-relationship-in-the-gluu-server). 
 
-## Configure NameID
+## Create a Trust Relationship
+Follow these instructions to create a SAML TR in your Gluu Server: 
 
-A NameID or Name Identifier is used to identity the 'subject' of a SAML assertion. The format of nameID can be anything but is typically `emailAddress`.
+1. Go to `SAML` > `Trust Relationships`    
+2. Click on `Add Trust Relationship`     
+3. A new page will appear where you can provide all the required information to create a Trust Relationship(TR).     
 
-### oxTrust GUI
+![newTR](../img/saml/samlfederationTR.png)
+
+A description of each field follows:
+
+- **Display Name**: Name of the Trust Relationship (it should be unique for every TR)       
+- **Description**: Purpose of the TR and an SSO link can be added here         
+- **Entity Type**: You have two options to choose for entity type.
+    - *Single SP*
+    - *Federation/Aggregate*
+- **Metadata Type**: There are four available options to choose from. The correct Type depends on how the SP is delivering Metadata to your IDP.      
+
+    - *File*: Choose `File` if the SP has provided an uploadable metadata document in XML format.
+    - *URI*: Chose `URI` if the SP metadata is hosted on a URI that is accessible from the Internet. 
+    - *Federation*: Choose this option if the target application (SP) is affiliated with a federation service (e.g. InCommon, NJEdge etc.). Federtion's TR must be created first for it to appear in this list. Learn more about working with a federation [below](#federation-configuration).   
+      
+- **Released**: The SPs required attributes must be added to this panel. The required attributes can be selected from the menu on the left with the heading “Release Additional Attributes”.     
+
+- **Entity Type**: You have two options to choose for entity type.
+    - *Single SP*: 
+    - *Federation/Aggregate* 
+    
+The Trust Relationship (TR) can be added by clicking the `Add` button located in the lower left side of the page.     
+
+## NameID
+
+A Name Identifier or NameID is sent by the IDP to the SP to identify the "subject" of a SAML assertion, i.e. who is the person attempting to gain access. The format of nameID can be anything, but is typically `emailAddress`.
+
+### Configure NameID in oxTrust
 
 Here is how to configure NameID in oxTrust: 
 
@@ -68,42 +106,6 @@ The example below adds `customTest`, which we [created earlier here](https://glu
 ```
 * [Restart](../operation/services.md#restart) the `identity` and `idp` services.
 
-## Force Authentication
-
-The Gluu Server supports force authentication out-of-the-box. Including `ForceAuthn=true` in the initial SAML request from the SP signals to the IDP that the user must reauthenticate, even if they already have a valid session at the server. This feature can be used to verify the user's identity prior to granting them access to highly protected resources.
-
-Upon receiving the SAML request with this flag, the IDP will invalidate its session for the user, then will issue a new OpenID Connect (OIDC) authorization request to oxAuth, including the `prompt=login` parameter. This parameter forces oxAuth to invalidate its session as well. The user will then follow the full authentication procedure.
-
-## Create a Trust Relationship
-Follow these instructions to create a SAML TR in your Gluu Server: 
-
-1. Go to `SAML` > `Trust Relationships`    
-2. Click on `Add Trust Relationship`     
-3. A new page will appear where you can provide all the required information to create a Trust Relationship(TR).     
-
-![newTR](../img/saml/samlfederationTR.png)
-
-A description of each field follows:
-
-- **Display Name**: Name of the Trust Relationship (it should be unique for every TR)       
-- **Description**: Purpose of the TR and an SSO link can be added here         
-- **Entity Type**: You have two options to choose for entity type.
-    - *Single SP*
-    - *Federation/Aggregate*
-- **Metadata Type**: There are four available options to choose from. The correct Type depends on how the SP is delivering Metadata to your IDP.      
-
-    - *File*: Choose `File` if the SP has provided an uploadable metadata document in XML format.
-    - *URI*: Chose `URI` if the SP metadata is hosted on a URI that is accessible from the Internet. 
-    - *Federation*: Choose this option if the target application (SP) is affiliated with a federation service (e.g. InCommon, NJEdge etc.). Federtion's TR must be created first for it to appear in this list. Learn more about working with a federation [below](#federation-configuration).   
-      
-- **Released**: The SPs required attributes must be added to this panel. The required attributes can be selected from the menu on the left with the heading “Release Additional Attributes”.     
-
-- **Entity Type**: You have two options to choose for entity type.
-    - *Single SP*: 
-    - *Federation/Aggregate* 
-    
-The Trust Relationship (TR) can be added by clicking the `Add` button located in the lower left side of the page.     
-
 ## Relying Party Configuration     
 Through the Relying Party configuration you can customize how different IDP profiles will respond to requests received from the SP, including encryption and digital signature options. The underlying IDPs functionality is described in [the Shibboleth wiki](https://wiki.shibboleth.net/confluence/display/IDP30/RelyingPartyConfiguration). 
 
@@ -123,6 +125,12 @@ oxTrust allows you to tweak a limited subset of profiles mentioned in the Shibbo
 | SAML2Logout | [https://wiki.shibboleth.net/confluence/display/IDP30/SAML2LogoutConfiguration](https://wiki.shibboleth.net/confluence/display/IDP30/SAML2LogoutConfiguration) |
 | SAML2AttributeQuery | [https://wiki.shibboleth.net/confluence/display/IDP30/SAML2AttributeQueryConfiguration](https://wiki.shibboleth.net/confluence/display/IDP30/SAML2AttributeQueryConfiguration) |
 | SAML2ArtifactResolution | [https://wiki.shibboleth.net/confluence/display/IDP30/SAML2ArtifactResolutionConfiguration](https://wiki.shibboleth.net/confluence/display/IDP30/SAML2ArtifactResolutionConfiguration) |
+
+## Force Authentication
+
+The Gluu Server supports the SAML force authentication paramter out-of-the-box. Including `ForceAuthn=true` in the initial SAML request from the SP signals to the IDP that the user must be reauthenticated, even if they already have a valid session at the server. This feature can be used to verify the user's identity prior to granting them access to highly protected resources.
+
+Upon receiving the SAML request with this flag, the IDP will invalidate its session for the user, then will issue a new OpenID Connect (OIDC) authorization request to oxAuth, including the `prompt=login` parameter. This parameter forces oxAuth to invalidate its session as well. The user will then follow the full authentication procedure.
 
 ### SAML Single Logout
 
@@ -149,6 +157,6 @@ In the example below we are creating a TR for the 'Internet2 Wiki', which is an 
 
 ![Incommon_affiliated_SP_Trust.png](../img/saml/InCommon_affiliated_SP_Trust.png)
 
-## SAML SP
-If your target application (SP) does not already support SAML, we recommend using the [Shibboleth SP](../integration/sswebapps/saml-sp.md) web server filter to secure and integrate the application with your Gluu SAML IDP. 
+## SAML SP Software
+If the target application (SP) does not already support SAML, we recommend using the [Shibboleth SP](../integration/sswebapps/saml-sp.md) web server filter to secure and integrate the application with your Gluu SAML IDP. 
 
