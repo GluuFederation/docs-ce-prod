@@ -15,7 +15,7 @@ In order to support SAML SSO, the Gluu Server must include the Shibboleth SAML I
 
 - To add Shibboleth to an existing Gluu Server deployment, follow [these instructions](../operation/faq.md/#adding-passportjs-andor-shibboleth-idp-post-installation). 
 
-In addition, the target application should support SAML. If the app doesn't alread support SAML, see the section below about [SAML SP software](#saml-sp). 
+In addition, the target application must also support SAML. If the app doesn't already support SAML, see the section below about [SAML SP software](#saml-sp). 
 
 ## Trust Relationship Requirements     
 In the Gluu Server, the SAML IDP's SSO configuration is called a Trust Relationship (TR). Trust must be pre-established between the Gluu Server and each target SP. 
