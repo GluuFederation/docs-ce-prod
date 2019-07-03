@@ -159,6 +159,16 @@ In the example below we are creating a TR for the 'Internet2 Wiki', which is an 
 
 ![Incommon_affiliated_SP_Trust.png](../img/saml/InCommon_affiliated_SP_Trust.png)
 
+## Customizing IDP pages
+
+Many organizations will want to edit and customize the look and feel of IDP pages to match their own corporate branding. The Gluu Server includes a custom folder that will override existing IDP pages. The IDP pages use the `vm` file type. To customize the pages, follow these steps:
+
+1. Copy and edit the desired file. If using Shibboleth, the applicable files can be found [here](https://github.com/GluuFederation/oxShibboleth/tree/master/static/src/main/resources/shibboleth-idp/views).
+1. Log in to the chroot
+1. Move the file to `/opt/gluu/jetty/idp/custom/pages`
+
+Now, the customized page will override the default one.
+
 ## SAML SP
 If the target application (SP) does not already support SAML, we recommend using the [Shibboleth SP](../integration/sswebapps/saml-sp.md) web server filter to secure and integrate the application with your Gluu SAML IDP. 
 
