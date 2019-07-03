@@ -1,4 +1,8 @@
-# Gluu Server Community Edition (CE) 4.0 Documentation
+# Gluu Server Community Edition (CE) 4.0 Beta Documentation
+
+!!! Attention
+    Gluu Server CE version 4.0 is currently in open Beta. Any questions or feedback can be directed to the [Gluu support portal](https://support.gluu.org).
+
 ## Introduction
 The Gluu Server is a container distribution of free open source software (FOSS) for identity and access management (IAM). SaaS, custom, open source and commercial web and mobile applications can leverage a Gluu Server for user authentication, identity information, and policy decisions.
 
@@ -81,9 +85,7 @@ The license for each software component included in the container is listed belo
 |	oxTrust      | [MIT License](http://opensource.org/licenses/MIT)|
 |	Shibboleth IDP      | [Apache2](http://www.apache.org/licenses/LICENSE-2.0)|
 |   OpenDJ              | [CDDL](https://opensource.org/licenses/CDDL-1.0)
-|	OpenLDAP	        | [OpenLDAP Public License](http://www.openldap.org/software/release/license.html)|
 | Passport-JS           | [MIT License](https://github.com/jaredhanson/passport/blob/master/LICENSE) |
 |  UnboundID LDAP SDK	| [UnboundID LDAP SDK Free Use License](https://github.com/UnboundID/ldapsdk/blob/master/LICENSE-UnboundID-LDAPSDK.txt)|
 | Jetty / Apache HTTPD  | [Apache2](http://www.apache.org/licenses/LICENSE-2.0)|
 |JCE 1.8 | [Oracle Binary License Agreement](http://www.oracle.com/technetwork/java/javase/terms/license/index.html)|
-|	Asimba		        | [GNU APGL 3.0](http://www.gnu.org/licenses/agpl-3.0.html)|

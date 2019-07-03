@@ -127,7 +127,7 @@ OAuth 2.0 allows providers to prompt users for consent before releasing their pe
 
 Consent Gathering can be enabled via oxTrust UI as shown below 
 
-![consent](../img/admin-guide/consentgathering.png)
+![consent](../img/admin-guide/consentgatheringv4.png)
 
 Users will be prompted for consent as below.
 
@@ -324,7 +324,7 @@ To enable this feature, SCIM script needs to be enabled from the SCIM tab:
 
 1. Click on `update` at the bottom of the page
 
-![SCIM](../img/admin-guide/scimscript.png)
+![SCIM](../img/admin-guide/scimscriptv4.png)
 
 More on SCIM can be found [here](../user-management/scim2.md)
 
