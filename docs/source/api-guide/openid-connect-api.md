@@ -1079,6 +1079,9 @@ Registers new dynamic client in oxAuth.
 |initiate_login_uri|URI using the https scheme that a third party can use to initiate a login by the RP. The URI must accept requests via both GET and POST. The Client must understand the login_hint and iss parameters and should support the target_link_uri parameter.|
 |request_uris|request_uri values that are pre-registered by the RP for use at the OP. The Servers cache the contents of the files referenced by these URIs and not retrieve them at the time they are used in a request. OPs can require that request_uri values used be pre-registered with the require_request_uri_registration discovery parameter. If the contents of the request file could ever change, these URI values should include the base64url encoded SHA-256 hash value of the file contents referenced by the URI as the value of the URI fragment. If the fragment value used for a URI changes, that signals the server that its cached value for that URI with the old fragment value is no longer valid.|
 |tls_client_auth_subject_dn|An string representation of the expected subject distinguished name of the certificate, which the OAuth client will use in mutual TLS authentication.|
+|access_token_as_jwt|Boolean controlling whether to return the `access_token` as a JWT. It is false by default.|
+|access_token_signing_alg|signing algorithm that has to be used during JWT signing. If it's not specified, then the default OP signing algorithm will be used (specified via `defaultSignatureAlgorithm` oxAuth configuration property).|
+|run_introspection_script_before_access_token_as_jwt_creation_and_include_claims|Boolean value with default value false. If true and `access_token_as_jwt=true` then run introspection script and transfer claims into JWT.|
 
 #### Response
 

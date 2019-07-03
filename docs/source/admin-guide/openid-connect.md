@@ -299,7 +299,7 @@ userinfo, and end_session.
 Access token usually is random string, but it's possible to return the access token as a JWT. It can be controlled per client.
 There are two client properties:
 
- - `access_token_as_jwt` - Boolean controlling whether to return the `access_token` as a JWT. It is false by default.     
+- `access_token_as_jwt` - Boolean controlling whether to return the `access_token` as a JWT. It is false by default.     
 - `access_token_signing_alg` - signing algorithm that has to be used during JWT signing. If it's not specified, then the default OP signing algorithm will be used (specified via `defaultSignatureAlgorithm` oxAuth configuration property).          
  
  JWT will contain following claims:
@@ -312,6 +312,8 @@ There are two client properties:
  - `sub` - Subject of the token, as defined in JWT [RFC7519]. Usually a machine-readable identifier of the resource owner who authorized this token.     
  - `aud` - Service-specific string identifier or list of string identifiers representing the intended audience for this token, as defined in JWT [RFC7519].     
  - `iss` - String representing the issuer of this token, as defined in JWT [RFC7519].     
+
+Also it is possible to run introspection script before JWT creation and transfer claims from script response into JWT. Read more about introspection script [here](custom-script/#introspection)
 
 <!-- Commented out due to lack of browser support.
 ### Token Binding

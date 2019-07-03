@@ -354,6 +354,9 @@ Snippet
 
 Full version of introspection script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_4.0/static/extension/introspection/introspection.py). 
 
+It is also possible to run introspection script during `access_token` creation as JWT. It can be controlled by `run_introspection_script_before_access_token_as_jwt_creation_and_include_claims` client property which is set to false by default.
+
+If `run_introspection_script_before_access_token_as_jwt_creation_and_include_claims` set to true and `access_token_as_jwt` set to true then introspection script will be run before JWT (`access_token`) is created and all json values will be transfered to JWT. Also `context` inside script has additional method which allows to cancel transfering of claims if needed `context.setTranferIntrospectionPropertiesIntoJwtClaims(false)` 
 
 ## Resource Owner Password Credentials
 
