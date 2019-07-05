@@ -87,7 +87,7 @@ It's also possible to configure `NameID` through configuration file / velocity t
 
 ```
     <bean parent="shibboleth.SAML2AttributeSourcedGenerator" 
-          p:format="urn:oasis:names:tc:SAML:2.0:nameid-format:email"
+          p:format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
           p:attributeSourceIds="#{ {'mail'} }"/>
 ```
 * [Restart](../operation/services.md#restart) the `identity` and `idp` services.
