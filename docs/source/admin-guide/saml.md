@@ -72,12 +72,12 @@ Here is how to configure NameID in oxTrust:
  - Create your custom attribute by following [this guide](./attribute.md#custom-attributes). 
  - Go to SAML -> 'Configure Custom NameID'
 ![name_id](../img/saml/name_id.png)
-   - 'Enable' `Create NameID`
-   - 'Attribute Base': Attribute value to calculate name Identifier. 
-   - 'Attribute Name': Custom attribute name which we created [earlier here.](https://gluu.org/docs/ce/admin-guide/attribute/#custom-attributes)
-   - 'Attribute Type': Type of name identifier. 
+   - 'Enabled' `Create NameID`
+   - 'Source Attribute': Attribute value to calculate name Identifier. 
+   - 'Name': Custom attribute name which we created [earlier here.](https://gluu.org/docs/ce/admin-guide/attribute/#custom-attributes)
+   - 'NameId Type': Type of name identifier (urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified is deprecated by shibboleth, so not supported) 
  - [Restart](../operation/services.md#restart) the `identity` and `idp` services 
- - Note: If idp and identity services are on same host [i.e. non-cluster mode], retstart is not be required.
+ Note: If idp and identity services are on same host [i.e. non-cluster mode], restart may not be required.
  
 ### Manual Configuration
 It's also possible to configure `NameID` through configuration file / velocity templates. The template file for `NameID` definitions are located in the `attribute-resolver.xml.vm` file under `/opt/gluu/jetty/identity/conf/shibboleth3/idp/`.
