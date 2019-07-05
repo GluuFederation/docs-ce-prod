@@ -76,7 +76,8 @@ Here is how to configure NameID in oxTrust:
    - 'Attribute Base': Attribute value to calculate name Identifier. 
    - 'Attribute Name': Custom attribute name which we created [earlier here.](https://gluu.org/docs/ce/admin-guide/attribute/#custom-attributes)
    - 'Attribute Type': Type of name identifier. 
- - [Restart](../operation/services.md#restart) the `identity` and `idp` services.
+ - [Restart](../operation/services.md#restart) the `identity` and `idp` services 
+ - Note: If idp and identity services are on same host [i.e. non-cluster mode], retstart is not be required.
  
 ### Manual Configuration
 It's also possible to configure `NameID` through configuration file / velocity templates. The template file for `NameID` definitions are located in the `attribute-resolver.xml.vm` file under `/opt/gluu/jetty/identity/conf/shibboleth3/idp/`.
