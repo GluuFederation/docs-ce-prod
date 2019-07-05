@@ -69,7 +69,6 @@ A Name Identifier or NameID is sent by the IDP to the SP to identify the "subjec
 
 Here is how to configure NameID in oxTrust: 
 
- - Create your custom attribute by following [this guide](./attribute.md#custom-attributes). 
  - Go to SAML -> 'Configure Custom NameID'
 ![name_id](../img/saml/name_id.png)
    - 'Enabled' `Create NameID`
@@ -80,32 +79,14 @@ Here is how to configure NameID in oxTrust:
  Note: If idp and identity services are on same host [i.e. non-cluster mode], restart may not be required.
  
 ### Manual Configuration
-It's also possible to configure `NameID` through configuration file / velocity templates. The template file for `NameID` definitions are located in the `attribute-resolver.xml.vm` file under `/opt/gluu/jetty/identity/conf/shibboleth3/idp/`.
+It's also possible to configure `NameID` through configuration file / velocity templates. 
 
-The example below adds `customTest`, which we [created earlier here](https://gluu.org/docs/ce/admin-guide/attribute/#custom-attributes), as `NameID` based on UID attribute. The following are put into the `attribute-resolver.xml.vm` file.
-
-  * Add declaration for the new attribute
-  ```
-  #if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('persistentId') or $attribute.name.equals('customTest') ) )
-  ```
-  * Add definition for the new attribute
-```
- <resolver:AttributeDefinition id="customTest" xsi:type="Simple"
-                              xmlns="urn:mace:shibboleth:2.0:resolver:ad"
-                              sourceAttributeID="mail">
-
-        <resolver:Dependency ref="siteLDAP"/>
-        <resolver:AttributeEncoder xsi:type="SAML2StringNameID"
-                                xmlns="urn:mace:shibboleth:2.0:attribute:encoder"
-                                nameFormat="urn:oasis:names:tc:SAML:2.0:nameid-format:email" />
-</resolver:AttributeDefinition> 
-```
 * Update /opt/shibboleth-idp/conf/saml-nameid.xml to generate SAML 2 NameID content
 
 ```
     <bean parent="shibboleth.SAML2AttributeSourcedGenerator" 
           p:format="urn:oasis:names:tc:SAML:2.0:nameid-format:email"
-          p:attributeSourceIds="#{ {'customTest'} }"/>
+          p:attributeSourceIds="#{ {'mail'} }"/>
 ```
 * [Restart](../operation/services.md#restart) the `identity` and `idp` services.
 
