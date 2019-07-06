@@ -92,6 +92,52 @@ It's also possible to configure `NameID` through configuration file / velocity t
 ```
 * [Restart](../operation/services.md#restart) the `identity` and `idp` services.
 
+## AuthnContextClassRef Support
+
+The Gluu Server supports AuthnContextClassRef out-of-the-box. Including <saml:AuthnContextClassRef> tag in the initial SAML request from the SP signals to the IDP that the user must reauthenticate with specified authentication scheme/method.
+
+    <samlp:AuthnRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" ID="ONELOGIN_809707f0030a5d00620c9d9df97f627afe9dcc24" Version="2.0" ProviderName="SP test" IssueInstant="2014-07-16T23:52:45Z" Destination="http://idp.example.com/SSOService.php" ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" AssertionConsumerServiceURL="http://sp.example.com/demo1/index.php?acs">
+      <saml:Issuer>http://sp.example.com/demo1/metadata.php</saml:Issuer>
+      <samlp:NameIDPolicy Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress" AllowCreate="true"/>
+      <samlp:RequestedAuthnContext Comparison="exact">
+        <saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</saml:AuthnContextClassRef>
+      </samlp:RequestedAuthnContext>
+    </samlp:AuthnRequest>
+
+Note: Allowed values must be defined under conf/authn/general-authn.xml under authn/oxAuth bean
+
+    <bean id="authn/oxAuth" parent="shibboleth.AuthenticationFlow"
+    		p:forcedAuthenticationSupported="true"
+    		p:nonBrowserSupported="false" >
+    	<property name="supportedPrincipals">
+    		<list>
+    			<bean parent="shibboleth.SAML2AuthnContextClassRef"
+    				c:classRef="urn:oasis:names:tc:SAML:2.0:ac:classes:Password" />
+    			<bean parent="shibboleth.SAML2AuthnContextClassRef"
+    				c:classRef="urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport" />
+    			<bean parent="shibboleth.SAML2AuthnContextClassRef"
+    				c:classRef="urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol" />
+    		</list>
+    	</property>
+    </bean>
+
+### AuthnContextClassRef Extension
+User can define custom AuthnContextClassRef attribute values as well, recommeded format for values is either urn or uri.
+example formats
+
+    urn:oasis:names:tc:SAML:2.0:ac:classes:X509
+    urn:oasis:names:tc:SAML:2.0:ac:classes:TLSClient
+    urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport
+    urn:oasis:names:tc:SAML:2.0:ac:classes:Password
+    urn:oasis:names:tc:SAML:2.0:ac:classes:Kerberos
+    urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol
+    https://refeds.org/profile/mfa
+    https://refeds.org/profile/sfa
+
+### Enable AuthnContextClassRef in oxTrust
+
+Gluu Authentication Schemes (basic, fido, mfa, ldap etc.) needs to be associated with AuthnContextClassRef values (one-to-one), This can be achieved by updating ACR attribute under Person Authentication.
+
 ## Relying Party Configuration     
 Through the Relying Party configuration you can customize how different IDP profiles will respond to requests received from the SP, including encryption and digital signature options. The underlying IDPs functionality is described in [the Shibboleth wiki](https://wiki.shibboleth.net/confluence/display/IDP30/RelyingPartyConfiguration). 
 
