@@ -136,7 +136,7 @@ example formats
 
 ### Enable AuthnContextClassRef in oxTrust
 
-Gluu Authentication Schemes (basic, fido, mfa, ldap etc.) needs to be associated with AuthnContextClassRef values (one-to-one), This can be achieved by updating ACR attribute under Person Authentication.
+Gluu Authentication Schemes (basic, fido, mfa, ldap etc.) needs to be associated with AuthnContextClassRef values (one-to-one), This can be achieved by associating SAML ACRS attribute under Person Authentication.
 
 ![saml_authctxref](../img/saml/saml_authctxref.PNG)
 
