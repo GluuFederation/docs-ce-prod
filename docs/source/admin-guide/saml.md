@@ -138,6 +138,8 @@ example formats
 
 Gluu Authentication Schemes (basic, fido, mfa, ldap etc.) needs to be associated with AuthnContextClassRef values (one-to-one), This can be achieved by updating ACR attribute under Person Authentication.
 
+![saml_authctxref](../img/saml/saml_authctxref.PNG)
+
 ## Relying Party Configuration     
 Through the Relying Party configuration you can customize how different IDP profiles will respond to requests received from the SP, including encryption and digital signature options. The underlying IDPs functionality is described in [the Shibboleth wiki](https://wiki.shibboleth.net/confluence/display/IDP30/RelyingPartyConfiguration). 
 
