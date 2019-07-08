@@ -73,9 +73,8 @@ Follow these instructions to configure NameID in oxTrust:
 ![name_id](../img/saml/name_id.png)
    - Check the box for `Enabled`
    - Source Attribute: Choose the attribute value to calculate the Name Identifier. 
-   - Name: Choose the previously created [custom attribute](https://gluu.org/docs/ce/admin-guide/attribute/#custom-attributes)
    - NameId Type: Choose the type of Name Identifier (Note: `urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified` is deprecated) 
- - [Restart](../operation/services.md#restart) the `identity` and `idp` services
+ - [Restart](../operation/services.md#restart) the `identity` and `idp` services    
 
     !!! Note 
         If IDP and identity services are on the same host (non-cluster mode), then restart may not be required.
