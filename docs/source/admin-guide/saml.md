@@ -67,7 +67,7 @@ A Name Identifier or NameID is sent by the IDP to the SP to identify the "subjec
 
 ### Configure NameID in oxTrust
 
-Here is how to configure NameID in oxTrust: 
+Follow these instructions to configure NameID in oxTrust: 
 
  - Go to SAML -> 'Configure Custom NameID'
 ![name_id](../img/saml/name_id.png)
@@ -135,7 +135,7 @@ Custom `AuthnContextClassRef` attribute values can be defined as well. The recom
 
 ### Enable AuthnContextClassRef in oxTrust
 
-Gluu Authentication Schemes (basic, fido, mfa, ldap etc.) needs to be associated with AuthnContextClassRef values (one-to-one), This can be achieved by associating SAML ACRS attribute under Person Authentication.
+AuthnContextClassRef values need to be associated (one-to-one) with Gluu authentication interception scripts (e.g. basic, fido, ldap, etc.). This can be achieved by associating the SAML ACRS attribute under Person Authentication.
 
 ![saml_authctxref](../img/saml/saml_authctxref.PNG)
 
