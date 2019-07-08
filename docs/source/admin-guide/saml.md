@@ -35,31 +35,26 @@ Each SP may require one or more user attributes from the IDP in order to grant a
 Follow these instructions to create a SAML TR in your Gluu Server: 
 
 1. Go to `SAML` > `Trust Relationships`    
-2. Click on `Add Trust Relationship`     
-3. A new page will appear where you can provide all the required information.     
+1. Click on `Add Trust Relationship`     
+1. Add the required information in the new form     
+1. Click the `Add` button in the lower left side of the page to add the TR.     
 
 ![newTR](../img/saml/samlfederationTR.png)
 
-A description of each field follows:
+A description follows for each field in the Add TR form:
 
-- **Display Name**: Name of the Trust Relationship (it should be unique for every TR)       
-- **Description**: Purpose of the TR can be added here         
-- **Entity Type**: There are two options for entity type:
-    - *Single SP*: A single SAML website or application
-    - *Federation/Aggregate*: A federation like InCommon
-- **Metadata Type**: There are four available options to choose from. The correct Type depends on how the SP is delivering Metadata to your IDP.      
-
-    - *File*: Choose `File` if the SP has provided an uploadable metadata document in XML format.
-    - *URI*: Chose `URI` if the SP metadata is hosted on a URI that is accessible from the Internet. 
-    - *Federation*: Choose this option if the target application (SP) is affiliated with a federation service (e.g. InCommon, NJEdge etc.). Federtion's TR must be created first for it to appear in this list. Learn more about working with a federation [below](#federation-configuration).   
+- **Display Name**: Name of the Trust Relationship (it should be unique for every TR)         
+- **Description**: Purpose of the TR can be added here          
+- **Entity Type**: There are two options for entity type:    
+    - *Single SP*: A single SAML website or application    
+    - *Federation/Aggregate*: A federation like InCommon    
+- **Metadata Type**: There are three available options. The correct option depends on how the SP is delivering Metadata to your IDP.       
+    - *File*: Choose `File` if the SP has provided an uploadable metadata document in XML format.      
+    - *URI*: Chose `URI` if the SP metadata is hosted on a URI that is accessible from the Internet.       
+    - *Federation*: Choose `Federation` if the target application (SP) is affiliated with a federation service (e.g. InCommon, NJEdge etc.). A TR for the federation must be created first before it will appear in this list as an available option. Learn more about working with a federation [below](#federation-configuration).     
       
-- **Released**: The SPs required attributes must be added to this panel. The required attributes can be selected from the menu on the left with the heading “Release Additional Attributes”.     
+- **Released**: The SP's required user attributes must be added to this panel. Select attributes from the column on the left with the heading “Release Additional Attributes”.     
 
-- **Entity Type**: You have two options to choose for entity type.
-    - *Single SP*: 
-    - *Federation/Aggregate* 
-    
-Click the `Add` button in the lower left side of the page to add the TR.     
 
 ## NameID
 
