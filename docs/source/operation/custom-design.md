@@ -157,6 +157,16 @@ To apply the customizations just set, [restart](./services.md#restart) the `oxau
 !!! Note
     It'll take about ten seconds for page modifications to reload.
 
+## Customizing SAML IDP pages
+
+Many organizations will want to edit and customize the look and feel of IDP pages to match their own corporate branding. The Gluu Server includes a custom folder that will override existing IDP pages. The IDP pages use the `vm` file type. To customize the pages, follow these steps:
+
+1. Copy and edit the desired file. Applicable files can be found [here](https://github.com/GluuFederation/oxShibboleth/tree/master/static/src/main/resources/shibboleth-idp/views).
+1. Log in to the chroot
+1. Move the file to `/opt/gluu/jetty/idp/custom/pages`
+
+Now, the customized page will override the default one.    
+
 ## An Example: Removing the Gluu copyright 
 
 For a good practical example, let's consider a task of removing the Gluu copyright 
