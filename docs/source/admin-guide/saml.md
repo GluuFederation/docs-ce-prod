@@ -69,16 +69,16 @@ A Name Identifier or NameID is sent by the IDP to the SP to identify the "subjec
 
 Follow these instructions to configure NameID in oxTrust: 
 
- - Go to SAML -> 'Configure Custom NameID'
+ - Navigate to `SAML` > `Configure Custom NameID`
 ![name_id](../img/saml/name_id.png)
-   - 'Enabled' `Create NameID`
-   - 'Source Attribute': Attribute value to calculate name Identifier. 
-   - 'Name': Custom attribute name which we created [earlier here.](https://gluu.org/docs/ce/admin-guide/attribute/#custom-attributes)
-   - 'NameId Type': Type of name identifier (urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified is deprecated by shibboleth, so not supported) 
+   - Check the box for `Enabled`
+   - Source Attribute: Choose the attribute value to calculate the Name Identifier. 
+   - Name: Choose the previously created [custom attribute](https://gluu.org/docs/ce/admin-guide/attribute/#custom-attributes)
+   - NameId Type: Choose the type of Name Identifier (Note: `urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified` is deprecated) 
  - [Restart](../operation/services.md#restart) the `identity` and `idp` services
 
 !!! Note 
-    If idp and identity services are on same host (non-cluster mode), then restart may not be required.
+    If IDP and identity services are on the same host (non-cluster mode), then restart may not be required.
  
 ### Manual Configuration
 It's also possible to configure `NameID` through configuration file / velocity templates. 
@@ -94,7 +94,7 @@ It's also possible to configure `NameID` through configuration file / velocity t
 
 ## AuthnContextClassRef Support
 
-Gluu offers out-of-the-box support for the SAML parameter `AuthnContextClassRef`. Including `<saml:AuthnContextClassRef>` tag in the initial SAML request from the SP signals to the IDP that the user must reauthenticate with the specified authentication scheme/method.
+Gluu offers out-of-the-box support for the SAML parameter `AuthnContextClassRef`. Including `<saml:AuthnContextClassRef>` tag in the initial SAML request from the SP signals to the IDP that the user must reauthenticate with the specified authentication method.
 
     <samlp:AuthnRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" ID="ONELOGIN_809707f0030a5d00620c9d9df97f627afe9dcc24" Version="2.0" ProviderName="SP test" IssueInstant="2014-07-16T23:52:45Z" Destination="http://idp.example.com/SSOService.php" ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" AssertionConsumerServiceURL="http://sp.example.com/demo1/index.php?acs">
       <saml:Issuer>http://sp.example.com/demo1/metadata.php</saml:Issuer>
@@ -104,7 +104,8 @@ Gluu offers out-of-the-box support for the SAML parameter `AuthnContextClassRef`
       </samlp:RequestedAuthnContext>
     </samlp:AuthnRequest>
 
-Note: Allowed values must be defined under conf/authn/general-authn.xml under authn/oxAuth bean
+!!! Note
+    Allowed values must be defined under `conf/authn/general-authn.xml` under authn/oxAuth bean
 
     <bean id="authn/oxAuth" parent="shibboleth.AuthenticationFlow"
     		p:forcedAuthenticationSupported="true"
@@ -135,7 +136,7 @@ Custom `AuthnContextClassRef` attribute values can be defined as well. The recom
 
 ### Enable AuthnContextClassRef in oxTrust
 
-AuthnContextClassRef values need to be associated (one-to-one) with Gluu authentication interception scripts (e.g. basic, fido, ldap, etc.). This can be achieved by associating the SAML ACRS attribute under Person Authentication.
+`AuthnContextClassRef` values need to be associated (one-to-one) with Gluu authentication interception scripts (e.g. basic, fido, ldap, etc.). This can be achieved by associating the SAML ACRS attribute field included in a specific Person Authentication script.
 
 ![saml_authctxref](../img/saml/saml_authctxref.PNG)
 
