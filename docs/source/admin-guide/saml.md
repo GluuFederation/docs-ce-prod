@@ -77,8 +77,8 @@ Follow these instructions to configure NameID in oxTrust:
    - NameId Type: Choose the type of Name Identifier (Note: `urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified` is deprecated) 
  - [Restart](../operation/services.md#restart) the `identity` and `idp` services
 
-!!! Note 
-    If IDP and identity services are on the same host (non-cluster mode), then restart may not be required.
+    !!! Note 
+        If IDP and identity services are on the same host (non-cluster mode), then restart may not be required.
  
 ### Manual Configuration
 It's also possible to configure `NameID` through configuration file / velocity templates. 
