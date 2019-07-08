@@ -1,7 +1,7 @@
 # Clean up server
 
 ## Overview
-The Gluu Server has a built-in service to clean up unused or expired files. It runs periodically out-of-the-box, but has several customizable properties.
+The Gluu Server has a built-in service to clean up unused or expired files. It runs out-of-the-box, but has several customizable properties.
 
 ## Properties
 
