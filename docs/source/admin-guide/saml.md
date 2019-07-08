@@ -7,7 +7,7 @@ In a standard outbound SAML transaction, a website or application (a.k.a. Servic
 !!! Note 
     To support an external SAML IDP for authentication, for instance the IDP of a customer or partner, review the [inbound SAML docs](../authn-guide/inbound-saml-passport.md) in the authentication guide. 
 
-## Pre-requisites 
+## Prerequisites 
 
 In order to support SAML SSO, the Gluu Server must include the Shibboleth SAML IDP. 
 
