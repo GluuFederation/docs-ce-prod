@@ -36,17 +36,17 @@ Follow these instructions to create a SAML TR in your Gluu Server:
 
 1. Go to `SAML` > `Trust Relationships`    
 2. Click on `Add Trust Relationship`     
-3. A new page will appear where you can provide all the required information to create a Trust Relationship(TR).     
+3. A new page will appear where you can provide all the required information.     
 
 ![newTR](../img/saml/samlfederationTR.png)
 
 A description of each field follows:
 
 - **Display Name**: Name of the Trust Relationship (it should be unique for every TR)       
-- **Description**: Purpose of the TR and an SSO link can be added here         
-- **Entity Type**: You have two options to choose for entity type.
-    - *Single SP*
-    - *Federation/Aggregate*
+- **Description**: Purpose of the TR can be added here         
+- **Entity Type**: There are two options for entity type:
+    - *Single SP*: A single SAML website or application
+    - *Federation/Aggregate*: A federation like InCommon
 - **Metadata Type**: There are four available options to choose from. The correct Type depends on how the SP is delivering Metadata to your IDP.      
 
     - *File*: Choose `File` if the SP has provided an uploadable metadata document in XML format.
@@ -59,7 +59,7 @@ A description of each field follows:
     - *Single SP*: 
     - *Federation/Aggregate* 
     
-The Trust Relationship (TR) can be added by clicking the `Add` button located in the lower left side of the page.     
+Click the `Add` button in the lower left side of the page to add the TR.     
 
 ## NameID
 
