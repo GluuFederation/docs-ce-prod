@@ -94,7 +94,7 @@ It's also possible to configure `NameID` through configuration file / velocity t
 
 ## AuthnContextClassRef Support
 
-The Gluu Server supports AuthnContextClassRef out-of-the-box. Including <saml:AuthnContextClassRef> tag in the initial SAML request from the SP signals to the IDP that the user must reauthenticate with specified authentication scheme/method.
+Gluu offers out-of-the-box support for the SAML parameter `AuthnContextClassRef`. Including `<saml:AuthnContextClassRef>` tag in the initial SAML request from the SP signals to the IDP that the user must reauthenticate with the specified authentication scheme/method.
 
     <samlp:AuthnRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" ID="ONELOGIN_809707f0030a5d00620c9d9df97f627afe9dcc24" Version="2.0" ProviderName="SP test" IssueInstant="2014-07-16T23:52:45Z" Destination="http://idp.example.com/SSOService.php" ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" AssertionConsumerServiceURL="http://sp.example.com/demo1/index.php?acs">
       <saml:Issuer>http://sp.example.com/demo1/metadata.php</saml:Issuer>
@@ -122,8 +122,7 @@ Note: Allowed values must be defined under conf/authn/general-authn.xml under au
     </bean>
 
 ### AuthnContextClassRef Extension
-User can define custom AuthnContextClassRef attribute values as well, recommeded format for values is either urn or uri.
-example formats
+Custom `AuthnContextClassRef` attribute values can be defined as well. The recommeded format is either urn or uri. For example: 
 
     urn:oasis:names:tc:SAML:2.0:ac:classes:X509
     urn:oasis:names:tc:SAML:2.0:ac:classes:TLSClient
