@@ -90,7 +90,7 @@ The designs are being rendered from the [Super Gluu xhtml page](https://github.c
 ## Using Super Gluu
 The below instructions provide basic information about using Super Gluu. Review the [Super Gluu User Guide](https://gluu.org/docs/supergluu/user-guide/) for full user documentation. 
 
-### Device Enrollment
+### First-time Device Enrollment
 
 Super Gluu device enrollment happens during the first authentication attempt. The initial enrollment page displays a QR code that needs to be scanned with the Super Gluu app. 
 
@@ -99,6 +99,11 @@ If you use the default Super Gluu interception script, all subsequent authentica
 
 ### Credential Management
 
+#### Self-Service
+
+To offer end-users a portal where they can manage their own account security preferences, including two-factor authentication credentials like Super Gluu, check out our new app, [Gluu Casa](https://casa.gluu.org). 
+
+#### Manual Removal 
 A user's Super Gluu device(s) can be removed by a Gluu administrator either via the oxTrust UI in `Users` > `Manage People`, or in LDAP under the user entry:  
     
 1. Find the `DN` of the user in LDAP 
@@ -138,6 +143,3 @@ Now the old device is gone and the user can enroll a new device following the ab
 ## U2F SCIM APIs
 See the [SCIM documentation](../user-management/scim2.md#fido-devices) for a discussion on how to manage FIDO devices, including Super Gluu, using the SCIM protocol. 
 
-## Self-service account security
-
-To offer end-users a portal where they can manage their own account security preferences, including two-factor authentication credentials like Super Gluu, check out our new app, [Gluu Casa](https://casa.gluu.org). 
