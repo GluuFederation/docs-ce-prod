@@ -1,34 +1,26 @@
 # Super Gluu
 ## Overview
-[Super Gluu](https://super.gluu.org) is a free two-factor authentication (2FA) mobile app built to work with the Gluu Server, a free open source Identity & Access Management (IAM) platform. 
+[Super Gluu](https://super.gluu.org) is a two-factor authentication (2FA) mobile app built to work with the Gluu Server. Super Gluu leverages mobile push notifications for ease-of-use, and [FIDO authentication](https://fidoalliance.org/specifications/overview/) for security. 
 
-This document explains how to configure the Gluu Server for two-factor authentication (2FA) with username / password as the first step, and Super Gluu as the second step. 
-
-A User Guide and Developer Guide can be found on the [Super Gluu docs site](https://gluu.org/docs/supergluu). 
-
-### U2F Security
+### FIDO Security
 Super Gluu uses public/private key encryption as specified in the [FIDO U2F authentication standard](https://fidoalliance.org/specifications/overview/). Super Gluu enrolls its public key against the Gluu Server's U2F endpoints, and when authentication happens, there is a challenge response to ensure that the device has the corresponding private key. 
 
-### Open Source 
-Super Gluu is based on the free open source [oxPush 3](https://github.com/GluuFederation/oxPush3) source code. 
+### User Guide and Developer Guide
+A User Guide and Developer Guide can be found on the [Super Gluu docs site](https://gluu.org/docs/supergluu). 
 
 ## Prerequisites 
 - An Internet accessible (non-internal or localhost) Gluu Server with DNS pointing at the public Internet address of the server ([installation instructions](../installation-guide/index.md))
+
 - [Super Gluu interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/super_gluu/SuperGluuExternalAuthenticator.py) (included in the default Gluu Server distribution)
+
 - An Android or iOS device with Super Gluu installed 
+    - [Super Gluu for iOS](https://itunes.apple.com/us/app/super-gluu/id1093479646?mt=8)     
+    - [Super Gluu for Android](https://play.google.com/store/apps/details?id=gluu.org.super.gluu)   
+
 - If the Gluu Server is using a self-signed certificate, `Trust All` **must** be enabled in Super Gluu (open the app, navigate to `Menu` > `Trust all (SSL)` and enable)
 
-### Development Mode
-
-The Gluu Server and Super Gluu can work in the same network, without a DNS server hostname and with a self-signed certificate. There is only one limitation: both components should belong to the same network.
-
-Instead of assigning a hostname during Gluu Server installation, an IP address can be specified. In the Super Gluu mobile app, enable `Trust all (SSL)`.
-
-### Download Super Gluu
-Super Gluu is available on the iOS and Android app marketplaces:
-
-- [Super Gluu for iOS](https://itunes.apple.com/us/app/super-gluu/id1093479646?mt=8)     
-- [Super Gluu for Android](https://play.google.com/store/apps/details?id=gluu.org.super.gluu)       
+        !!! Note
+            The Gluu Server and Super Gluu can work in the same network, without a DNS server hostname and with a self-signed certificate. There is only one limitation: both components should belong to the same network. Instead of assigning a hostname during Gluu Server installation, an IP address can be specified. In the Super Gluu mobile app, enable `Trust all (SSL)`.    
 
 ## Properties
 The Super Gluu authentication script has the following properties: 
@@ -62,7 +54,7 @@ Now, Super Gluu is an available authentication mechanism for your Gluu Server. T
 
 ## Make Super Gluu the Default
 
-If Super Gluu should be the default authentication mechanism, follow these instructions: 
+If Super Gluu should be the default authentication mechanism for all authentication events, follow these instructions: 
 
 1. Navigate to `Configuration` > `Manage Authentication` 
 
@@ -80,7 +72,7 @@ If Super Gluu should be the default authentication mechanism for all access, cha
 
 ## Super Gluu Login Pages
 
-The Gluu Server includes two default login pages for Super Gluu:
+The Gluu Server includes two default public-facing pages for Super Gluu:
 
 1. An **enrollment** page that is displayed the first time a user is prompted for Super Gluu authentication
 ![super-gluu-enrollment](../img/user-authn/super-gluu-enrollment.png)                  
@@ -90,18 +82,19 @@ The Gluu Server includes two default login pages for Super Gluu:
 
 The designs are being rendered from the [Super Gluu xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/super-gluu/login.xhtml). To customize the look and feel of the pages, follow the [customization guide](../operation/custom-design.md). 
  
-## Using Super Gluu
-The below instructions provide basic information about using Super Gluu. Review the [Super Gluu User Guide](https://gluu.org/docs/supergluu/user-guide/) for full user documentation. 
-
-### Device Enrollment
+## First-time Device Enrollment
 
 Super Gluu device enrollment happens during the first authentication attempt. The initial enrollment page displays a QR code that needs to be scanned with the Super Gluu app. 
 
-### Subsequent Logins
+## Subsequent Logins
 If you use the default Super Gluu interception script, all subsequent authentications will trigger a push notification to the enrolled device, which can be approved or denied as needed. 
 
-### Credential Management
+## Credential Management
 
+### Self-service 
+To offer end-users a portal where they can manage their own account security preferences, including two-factor authentication credentials like Super Gluu, check out our new app, [Gluu Casa](https://casa.gluu.org). 
+
+### Manual Device Management
 A user's Super Gluu device(s) can be removed by a Gluu administrator either via the oxTrust UI in `Users` > `Manage People`, or in LDAP under the user entry:  
     
 1. Find the `DN` of the user in LDAP 
@@ -141,6 +134,5 @@ Now the old device is gone and the user can enroll a new device following the ab
 ## U2F SCIM APIs
 See the [SCIM documentation](../user-management/scim2.md#fido-devices) for a discussion on how to manage FIDO devices, including Super Gluu, using the SCIM protocol. 
 
-## Self-service account security
 
-To offer end-users a portal where they can manage their own account security preferences, including two-factor authentication credentials like Super Gluu, check out our new app, [Gluu Casa](https://casa.gluu.org). 
+
