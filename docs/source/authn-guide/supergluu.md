@@ -19,8 +19,8 @@ A User Guide and Developer Guide can be found on the [Super Gluu docs site](http
 
 - If the Gluu Server is using a self-signed certificate, `Trust All` **must** be enabled in Super Gluu (open the app, navigate to `Menu` > `Trust all (SSL)` and enable)
 
-        !!! Note
-            The Gluu Server and Super Gluu can work in the same network, without a DNS server hostname and with a self-signed certificate. There is only one limitation: both components should belong to the same network. Instead of assigning a hostname during Gluu Server installation, an IP address can be specified. In the Super Gluu mobile app, enable `Trust all (SSL)`.    
+!!! Note
+    The Gluu Server and Super Gluu can work in the same network, without a DNS server hostname and with a self-signed certificate. There is only one limitation: both components should belong to the same network. Instead of assigning a hostname during Gluu Server installation, an IP address can be specified. In the Super Gluu mobile app, enable `Trust all (SSL)`.    
 
 ## Properties
 The Super Gluu authentication script has the following properties: 
