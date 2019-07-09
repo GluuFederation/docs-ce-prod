@@ -30,7 +30,6 @@ The script has the following properties
 
 |	Property	|	Description		|	Example	|
 |-----------------------|-------------------------------|---------------|
-|u2f_application_id		|Unique Identifer, normally url of IDP		|`https://idp.mycompany.com`|
 |u2f_server_uri		|URL of the oxAuth U2F server|`https://idp.mycompany.com`|
 
 ## Enable U2F
