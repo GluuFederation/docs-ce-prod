@@ -22,6 +22,10 @@ User and Developer Guides can be found on the [Super Gluu docs site](https://glu
 !!! Note
     The Gluu Server and Super Gluu can work in the same network, without a DNS server hostname and with a self-signed certificate. There is only one limitation: both components should belong to the same network. Instead of assigning a hostname during Gluu Server installation, an IP address can be specified. In the Super Gluu mobile app, enable `Trust all (SSL)`.    
 
+## Authentication Workflows
+The authentication workflow for Super Gluu is defined in the Super Gluu interception script linked above in the [prerequisites](#prerequisites). By default, users are put through a two-step, two-factor authentication process with username and password first, and then push notification via Super Gluu second. Alternative authentication worklows, for instance passwordless authentication, can be configured by adjusting the script as needed. 
+
+
 ## Properties
 The Super Gluu authentication script has the following properties: 
 
