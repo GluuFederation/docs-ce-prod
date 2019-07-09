@@ -88,6 +88,8 @@ To add a client manually in oxTrust, navigate to `OpenID Connect` > `Client` and
 
 ![add-client2](../img/openid/add_client_encryption.png)
 
+![add-client3](../img/openid/add_client_attributes.png)
+
 There are many client configuration parameters. Most are specified in the [Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html#ClientRegistration) section of the OpenID Connect specification. The Client Secret field features a `Lock Secret Field` button to prevent accidental edits or autofill. 
 
 There are two configurations parameters that can only be configured via oxTrust by an administrator. These include:
