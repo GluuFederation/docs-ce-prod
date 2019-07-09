@@ -219,14 +219,13 @@ Follow these steps to add a sector identifier:
 ![Sector](../img/admin-guide/openid/sectoridentifier.png)
 
 1. Click `Add Sector Identifier`.
-![sector1](../img/admin-guide/openid/sectoridentifier1.png)
-![sector2](../img/admin-guide/openid/sectoridentifier2.png)
+![add sector id](../img/admin-guide/openid/addsectoridentifier.png)
 
 1. Add redirect URIs to the `Sector Identifier`.
-![sector3](../img/admin-guide/openid/sectoridentifier3.png)
+![add redirect uris](../img/admin-guide/openid/sectoridentifieraddurl.png)
 
 1. Add clients that uses the `Sector Identifier`.
-![sector4](../img/admin-guide/openid/sectoridentifier4.png)
+![add client](../img/admin-guide/openid/sectoridentifieraddclient.png)
 
 
 ## Authentication
