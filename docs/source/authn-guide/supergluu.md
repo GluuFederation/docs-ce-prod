@@ -9,9 +9,6 @@ A User Guide and Developer Guide can be found on the [Super Gluu docs site](http
 ### U2F Security
 Super Gluu uses public/private key encryption as specified in the [FIDO U2F authentication standard](https://fidoalliance.org/specifications/overview/). Super Gluu enrolls its public key against the Gluu Server's U2F endpoints, and when authentication happens, there is a challenge response to ensure that the device has the corresponding private key. 
 
-### Open Source 
-Super Gluu is based on the free open source [oxPush 3](https://github.com/GluuFederation/oxPush3) source code. 
-
 ## Prerequisites 
 - An Internet accessible (non-internal or localhost) Gluu Server with DNS pointing at the public Internet address of the server ([installation instructions](../installation-guide/index.md))
 - [Super Gluu interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/super_gluu/SuperGluuExternalAuthenticator.py) (included in the default Gluu Server distribution)
