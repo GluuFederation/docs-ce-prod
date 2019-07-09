@@ -22,6 +22,7 @@ The script has the following properties:
 |	Property	|	Description		|	Example	|
 |-----------------------|-------------------------------|---------------|
 |Name		|Name of the authentication module		|basic|
+|SAML ACRs | Name of the associated [`AuthnContextClassRef`](../admin-guide/saml/#enable-authncontextclassref-in-oxtrust) value |urn:oasis:names:tc:SAML:2.0:ac:classes:Password|
 |Description		|Description of the purpose of this script|Basic AuthN Script|
 |Programming Language|Script Developed with Python|Python|
 |Location type|Where this script is located inside Gluu Server|Ldap|
