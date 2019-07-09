@@ -5,8 +5,8 @@
 ### FIDO Security
 Super Gluu uses public/private key encryption as specified in the [FIDO U2F authentication standard](https://fidoalliance.org/specifications/overview/). Super Gluu enrolls its public key against the Gluu Server's U2F endpoints, and when authentication happens, there is a challenge response to ensure that the device has the corresponding private key. 
 
-### User Guide and Developer Guide
-A User Guide and Developer Guide can be found on the [Super Gluu docs site](https://gluu.org/docs/supergluu). 
+### User and Developer Guides
+User and Developer Guides can be found on the [Super Gluu docs site](https://gluu.org/docs/supergluu). 
 
 ## Prerequisites 
 - An Internet accessible (non-internal or localhost) Gluu Server with DNS pointing at the public Internet address of the server ([installation instructions](../installation-guide/index.md))
