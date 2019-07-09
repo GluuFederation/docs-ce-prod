@@ -1,6 +1,6 @@
 # Super Gluu
 ## Overview
-[Super Gluu](https://super.gluu.org) is a two-factor authentication (2FA) mobile app built to work with the Gluu Server. Super Gluu leverages mobile push notifications for ease-of-use, and [FIDO authentication](https://fidoalliance.org/specifications/overview/) for security. 
+[Super Gluu](https://super.gluu.org) is a two-factor authentication (2FA) mobile app built to work with the Gluu Server. Super Gluu leverages mobile push notifications for ease-of-use, and FIDO authentication for security. 
 
 ### FIDO Security
 Super Gluu uses public/private key encryption as specified in the [FIDO U2F authentication standard](https://fidoalliance.org/specifications/overview/). Super Gluu enrolls its public key against the Gluu Server's U2F endpoints, and when authentication happens, there is a challenge response to ensure that the device has the corresponding private key. 
