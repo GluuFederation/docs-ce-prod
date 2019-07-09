@@ -131,7 +131,7 @@ The Gluu Server admin will do the following:
 
 Now the old device is gone and the user can enroll a new device following the above instructions for [registering a new device](#device-enrollment). 
  
-## U2F SCIM APIs
+### Using SCIM
 See the [SCIM documentation](../user-management/scim2.md#fido-devices) for a discussion on how to manage FIDO devices, including Super Gluu, using the SCIM protocol. 
 
 
