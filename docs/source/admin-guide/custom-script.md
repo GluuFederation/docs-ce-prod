@@ -6,7 +6,7 @@ Interception scripts allow custom business logic to be implemented in a way that
 The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scripts`.
 
 ### Jython   
-Interception scripts are written in [Jython](http://www.jython.org), which enables Java or Python classes to be imported for use in the script. 
+Interception scripts are written in [Jython](http://www.jython.org), enabling Java or Python classes to be imported.
 
 While the syntax of the script requires Python, most of the functionality can be written in Java. If Python classes are imported, they must be "pure python." For example, a class that wraps C libraries can not be imported.
 
