@@ -4,10 +4,11 @@ Most organizations will want to edit and customize the look and feel of public-f
 The following documentation provides the file locations of public facing pages, as well as instructions for adding custom HTML, CSS, and Javascript files to your Gluu Server. 
 
 Public pages include:  
-  - All included sign-in pages  
-  - Registration  
-  - Password Recovery  
-  - Error Pages  
+
+- All included sign-in pages     
+- Registration    
+- Password Recovery   
+- Error Pages    
 
 !!! Warning 
     Customizations should only be made by people with a solid understanding of web development. Before changing any files, we recommend creating backups to easily revert your instance to its original state.
@@ -22,7 +23,7 @@ A typical example would be customizing oxAuth's login page. There are two ways t
 
 1. Un-pack the needed files from `/opt/gluu/jetty/oxauth/webapps/oxauth.war` with a tool like `jar`, update them and add them back to the archive with all required dependencies (**not recommended**);
 
-2. Put changed files under `/opt/gluu/jetty/oxauth/custom/` directory, so they could be used instead of the standard files in `oxauth.war`. (Note: the same approach will work for oxTrust if files are placed under `/opt/gluu/jetty/identity/custom/`). The benefit of using this method is that your customizations won't be disturbed by any changes to `oxauth.war` or `identity.war` later on (for example, in case this Gluu instance will be patched or updated, and a component's WAR archive will get overwritten). More on this method below. 
+1. Put changed files under `/opt/gluu/jetty/oxauth/custom/` directory, so they could be used instead of the standard files in `oxauth.war`. (Note: the same approach will work for oxTrust if files are placed under `/opt/gluu/jetty/identity/custom/`). The benefit of using this method is that your customizations won't be disturbed by any changes to `oxauth.war` or `identity.war` later on (for example, in case this Gluu instance will be patched or updated, and a component's WAR archive will get overwritten). More on this method below. 
 
 ## Directory structure and mappings
 
@@ -172,30 +173,29 @@ Now, the customized page will override the default one.
 For a good practical example, let's consider a task of removing the Gluu copyright 
 at the bottom of oxAuth's login page. You can follow these steps to achieve this:
 
-1. Log into the Gluu container: `# service gluu-server-4.0 login`
+1. Log into the Gluu container: `# service gluu-server-4.0 login`   
 
-2. Create a new directory structure under `custom/pages/` to accomodate new customized page: `# mkdir -p /opt/gluu/jetty/oxauth/custom/pages/WEB-INF/incl/layout/`
+1. Create a new directory structure under `custom/pages/` to accomodate new customized page: `# mkdir -p /opt/gluu/jetty/oxauth/custom/pages/WEB-INF/incl/layout/`    
 
-3. Get a default template page from the exploded WAR archive and put it in the path under `custom/pages` directory, which will allow it to override the original page (your path to the exploded WAR will differ from the one used here): `# cp /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/WEB-INF/incl/layout/template.xhtml /opt/gluu/jetty/oxauth/custom/pages/WEB-INF/incl/layout/template.xhtml`
+1. Get a default template page from the exploded WAR archive and put it in the path under `custom/pages` directory, which will allow it to override the original page (your path to the exploded WAR will differ from the one used here): `# cp /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/WEB-INF/incl/layout/template.xhtml /opt/gluu/jetty/oxauth/custom/pages/WEB-INF/incl/layout/template.xhtml`   
 
-4. Modify the new file by removing or editing the following snippet in it:
+1. Modify the new file by removing or editing the following snippet in it:
 
-```
-<s:fragment rendered="#{not isLogin}">
-    <div class="footer">
-        <p>Copyright <a href="http://www.gluu.org">Gluu</a> All rights reserved.</p>
-    </div>
-</s:fragment>
-```
+    ```
+    <s:fragment rendered="#{not isLogin}">
+        <div class="footer">
+            <p>Copyright <a href="http://www.gluu.org">Gluu</a> All rights reserved.</p>
+        </div>
+    </s:fragment>
+    ```
 
-5. Assign appropriate permissions to new directories and files: `# chown -R jetty:jetty /opt/gluu/jetty/oxauth/custom/pages/ && chmod -R a-x+rX /opt/gluu/jetty/oxauth/custom/pages/`
+1. Assign appropriate permissions to new directories and files: `# chown -R jetty:jetty /opt/gluu/jetty/oxauth/custom/pages/ && chmod -R a-x+rX /opt/gluu/jetty/oxauth/custom/pages/`    
 
-You may opt to copy the default oxAuth login page (`login.xhtml`) to the custom files 
-directory as well, and add some customizations to it:
+  You may opt to copy the default oxAuth login page (`login.xhtml`) to the custom files 
+directory as well, and add some customizations to it:    
 
-```
-# cp /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/login.xhtml /opt/gluu/jetty/oxauth/custom/pages/
-```
+    ```
+    # cp /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/login.xhtml  /opt/gluu/jetty/oxauth/custom/pages/
+    ```
 
-Don't forget to apply appropriate file system permissions if needed.
-[Restart](./services.md#restart) the `oxauth` service inside the chroot.`
+  Don't forget to apply appropriate file system permissions if needed. [Restart](./services.md#restart) the `oxauth` service inside the chroot.`   
