@@ -45,7 +45,10 @@ The script manager reloads scripts automatically without needing to
 restart the application once `oxRevision` is increased.
 
 ### Script Naming
-New custom scripts should be given a descriptive `displayName`, as that is how they are listed in oxTrust. The `displayName` is limited to 60 characters.  
+New custom scripts should be given a descriptive `displayName`, as that is how they are listed in oxTrust. The `displayName` is limited to 60 characters. 
+
+!!! Note
+    The name given to each [Person Authentication script](#person-authentication) is also used as its OpenID Connect `ac_value`. Learn more about ACRs in the [OpenID Connect docs](./openid-connect.md/#authentication).   
 
 ### Logs
 The log files regarding interception scripts are stored in the
