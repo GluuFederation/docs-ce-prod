@@ -1,11 +1,7 @@
 # Interception Scripts
 
 ## Overview
-Interception scripts allow you to implement custom business logic without having to fork the code. Each type of interception script is described by an interface (i.e. which methods are required). These scripts give you quite a bit of flexibility to do things that are specific to your organizational requirements in a way that is upgrade-proof. 
-
-One of the most most commonly used interception scripts is for person authentication.  These scripts enable you to implement a complex multi-step authentication workflow. You can call external API's, or adapt the number of steps based on the risk of the authentication event. For example, if you call a fraud detection API in step one that indicates unacceptable risk, you could add a second step (i.e. present another page that asks for a stronger authentication credential). 
-
-In addition to person authentication, many interception scripts are available. Forking the code makes your instance hard to upgrade. If you need to fork the code to accomplish something, you should open a support ticket and suggest an interception script which would help you avoid the fork.  
+Interception scripts allow you to implement custom business logic without having to fork the Gluu Server code. Each type of interception script is described by an interface (i.e. which methods are required). These scripts offer flexibility for implementing organizational requirements in a way that is upgrade-proof. 
 
 The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scripts`.
 
@@ -70,9 +66,12 @@ the interception scripts or following the workflow of the script.
 
 More details about Logs can be found in the [Log Management](../operation/logs.md) portion of the docs.
 
+### Debugging
+As scripts are developed, they need to be debugged. Check the [debugging tutorial](../developer-guide/script-debugging.md) to learn more. 
+
 ## Person Authentication     
-An authentication script enables you to customize the user experience for authentication. For example, you can write a script that
-enables a two-factor authentication mechanism like Duo Security or FIDO U2F tokens. Or you could call external security services like fraud detection or DDoS protection.  
+
+Authentication scripts enable the implementation of complex multi-step, multi-factor authentication workflows. In the script axternal API's can be called and code can be added to adjust the number of authentication steps based on the perceived risk of the authentication event. For example, if you call a fraud detection API in step one that indicates unacceptable risk, you could add a second step (i.e. present another page that asks for a stronger authentication credential). 
 
 The authentication interception script extends the base script type with the `init`, `destroy` and `getApiVersion` methods but also adds the following methods:
 
