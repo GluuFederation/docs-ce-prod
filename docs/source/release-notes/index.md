@@ -449,7 +449,3 @@ documentation and administrative guide.
 - [#26](https://github.com/GluuFederation/SCIM-Client/issues/26) Validate locale attribute
 
 - [#25](https://github.com/GluuFederation/SCIM-Client/issues/25) Validate timezone attribute
-
-### [GluuFederation/gluu-asimba](https://github.com/GluuFederation/gluu-asimba/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
-
-No changes
