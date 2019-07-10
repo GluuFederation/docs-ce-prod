@@ -76,7 +76,7 @@ Authentication scripts can be used to implement complex multi-step, multi-factor
 
 In each script, authentication steps and mechanisms are defined, external API's can be called, and user experience can be adjusted dynamically based on contextual factors. For example, a fraud detection API can be called in step one. If it indicates unacceptable risk, a second step can be added to prompt the user for a stronger authentication credential. 
 
-The authentication interception script extends the base script type with the `init`, `destroy` and `getApiVersion` methods but also adds the following methods:
+The authentication interception script extends the base script type with methods for `init`, `destroy` and `getApiVersion`, and also adds the following:
 
 |Method|`isValidAuthenticationMethod(self, usageType, configurationAttributes)`|
 |---|---|
