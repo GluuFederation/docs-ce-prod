@@ -72,7 +72,9 @@ As scripts are developed, they need to be debugged. Check the [debugging tutoria
 
 ## Person Authentication     
 
-Authentication scripts enable the implementation of complex multi-step, multi-factor authentication workflows. In the script, external API's can be called and code can be added to adjust the number of authentication steps based on the perceived risk of the authentication event. For example, if a fraud detection API is called in step one of the authentication that indicates unacceptable risk, a second step could be added to increase assurance (i.e. present another page that asks for a stronger authentication credential). 
+Authentication scripts enable the implementation of complex multi-step, multi-factor authentication workflows. 
+
+In the script, external API's can be called and code can be added to adjust the number of authentication steps based on the perceived risk of the authentication event. For example, if a fraud detection API is called in step one and it indicates unacceptable risk, a second step could be added to increase assurance (i.e. present another page that asks for a stronger authentication credential). 
 
 The authentication interception script extends the base script type with the `init`, `destroy` and `getApiVersion` methods but also adds the following methods:
 
