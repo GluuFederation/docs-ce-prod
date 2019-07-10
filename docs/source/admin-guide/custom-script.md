@@ -74,7 +74,7 @@ As scripts are developed, they need to be debugged. Check the [debugging tutoria
 
 Authentication scripts can be used to implement complex multi-step, multi-factor authentication workflows. 
 
-In each script, authentication steps and mechanisms are defined, external API's can be called, and user experience can be adjusted dynamically based on contextual factors. For example, a fraud detection API can be called in step one, and if it indicates unacceptable risk, a second step can be added to increase assurance (e.g. present the user with another page that prompts for a stronger authentication credential). 
+In each script, authentication steps and mechanisms are defined, external API's can be called, and user experience can be adjusted dynamically based on contextual factors. For example, a fraud detection API can be called in step one. If it indicates unacceptable risk, a second step can be added to prompt the user for a stronger authentication credential. 
 
 The authentication interception script extends the base script type with the `init`, `destroy` and `getApiVersion` methods but also adds the following methods:
 
