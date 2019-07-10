@@ -1,16 +1,10 @@
 # Interception Scripts
 
-## Overview
-Interception scripts allow you to implement custom business logic without having to fork the Gluu Server code. Each type of interception script is described by an interface (i.e. which methods are required). These scripts offer flexibility for implementing organizational requirements in a way that is upgrade-proof. 
+## Overview  
+Interception scripts allow custom business logic to be implemented in a way that is upgrade-proof and doesn't require forking the Gluu Server code. Each type of script is described by a java interface -- i.e. which methods are required. The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scripts`.
 
-The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scripts`.
-
-### Jython
-Interception scripts are written in [Jython](http://www.jython.org).  An interpreted language was chosen because it's easier for system administrators to understand and modify. Java can be a black box for administrators--scripts help make the business logic more visible, which aids in troubleshooting. 
-
-Jython enables developers to import either Java or Python classes. So if you really hate writing Python, while the syntax of the script requires Python, you can write most of the functionality in Java, keeping the Python code to a minimum. 
-
-If you import Python classes, they must be "pure python." For example, you couldn't import a class that wraps C libraries.
+### Jython   
+Interception scripts are written in [Jython](http://www.jython.org), which enables Java or Python classes to be imported for use in the script. While the syntax of the script requires Python, most of the functionality can be written in Java. If Python classes are imported, they must be "pure python." For example, a class that wraps C libraries can not be imported.
 
 ### Methods
 There are three methods that inherit a base interface:
@@ -71,7 +65,7 @@ As scripts are developed, they need to be debugged. Check the [debugging tutoria
 
 ## Person Authentication     
 
-Authentication scripts enable the implementation of complex multi-step, multi-factor authentication workflows. In the script axternal API's can be called and code can be added to adjust the number of authentication steps based on the perceived risk of the authentication event. For example, if you call a fraud detection API in step one that indicates unacceptable risk, you could add a second step (i.e. present another page that asks for a stronger authentication credential). 
+Authentication scripts enable the implementation of complex multi-step, multi-factor authentication workflows. In the script, external API's can be called and code can be added to adjust the number of authentication steps based on the perceived risk of the authentication event. For example, if a fraud detection API is called in step one of the authentication that indicates unacceptable risk, a second step could be added to increase assurance (i.e. present another page that asks for a stronger authentication credential). 
 
 The authentication interception script extends the base script type with the `init`, `destroy` and `getApiVersion` methods but also adds the following methods:
 
