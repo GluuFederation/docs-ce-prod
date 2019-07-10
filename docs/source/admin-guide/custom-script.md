@@ -1,9 +1,9 @@
 # Interception Scripts
 
 ## Overview  
-Interception scripts allow custom business logic to be implemented in a way that is upgrade-proof and doesn't require forking the Gluu Server code. 
+Interception scripts allow custom business logic to be implemented in a way that is upgrade-proof and doesn't require forking the Gluu Server code. Each type of script is described by a java interface -- i.e. which methods are required. 
 
-Each type of script is described by a java interface -- i.e. which methods are required. The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scripts`.
+The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scripts`.
 
 ### Jython   
 Interception scripts are written in [Jython](http://www.jython.org), which enables Java or Python classes to be imported for use in the script. 
