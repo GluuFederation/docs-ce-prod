@@ -46,6 +46,46 @@ documentation and administrative guide.
 
 ### [GluuFederation/oxAuth](https://github.com/GluuFederation/oxAuth/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
 
+- [#1116](https://github.com/GluuFederation/oxAuth/issues/1116) Logo and favicon customization in oxAuth
+
+- [#1115](https://github.com/GluuFederation/oxAuth/issues/1115) Show response_modes_supported metadata in the Configuration Endpoint
+
+- [#1114](https://github.com/GluuFederation/oxAuth/issues/1114) Adjust fido2 domain verifier to better handle origin
+
+- [#1112](https://github.com/GluuFederation/oxAuth/issues/1112) Prevent oxauth crash due to increasing size of oxauth-keys.jks (rare case)
+
+- [#1109](https://github.com/GluuFederation/oxAuth/issues/1109) oxauth does not take care of requested scopes while creating client dynamically
+
+- [#1107](https://github.com/GluuFederation/oxAuth/issues/1107) Cleaner for couchbase: re-use TTL
+
+- [#1106](https://github.com/GluuFederation/oxAuth/issues/1106) Store tokens under ou=tokens
+
+- [#1103](https://github.com/GluuFederation/oxAuth/issues/1103) NPE when Resource Owner Password Credentials is not loaded properly
+
+- [#1098](https://github.com/GluuFederation/oxAuth/issues/1098) Run introspection script before access token as JWT is created and transfer claims
+
+- [#1097](https://github.com/GluuFederation/oxAuth/issues/1097) Remove tokens update on authorization grant list update
+
+- [#1093](https://github.com/GluuFederation/oxAuth/issues/1093) Passport login page not populating the configured providers
+
+- [#1088](https://github.com/GluuFederation/oxAuth/issues/1088) id_token contains wrong hash of access_token for RS512 (and possibly other algorithms)
+
+- [#1083](https://github.com/GluuFederation/oxAuth/issues/1083) `invalidateSessionCookiesAfterAuthorizationFlow=true` leads to authorization failure
+
+- [#1082](https://github.com/GluuFederation/oxAuth/issues/1082) Update JS libs
+
+- [#1081](https://github.com/GluuFederation/oxAuth/issues/1081) Review error messages which that are shown but don't cause errors
+
+- [#1080](https://github.com/GluuFederation/oxAuth/issues/1080) Session API should log error message only on real error
+
+- [#1078](https://github.com/GluuFederation/oxAuth/issues/1078) Check expiration of JWT encoded profile used in passport flows
+
+- [#1071](https://github.com/GluuFederation/oxAuth/issues/1071) Userinfo - Expired token must return 4.01 instead of 400 error code
+
+- [#1066](https://github.com/GluuFederation/oxAuth/issues/1066) Check if oxauth-client 4.0 JSON is compatible with oxauth-server 3.1.x
+
+- [#1063](https://github.com/GluuFederation/oxAuth/issues/1063) Add a config value to allow to share the same sub between two Clients with the same sector identifier
+
 - [#1058](https://github.com/GluuFederation/oxAuth/issues/1058) URL-Encoding problem when retrieving value of custom param of authz request
 
 - [#1057](https://github.com/GluuFederation/oxAuth/issues/1057) Reported by GG: No permissions associated with ticket
