@@ -29,15 +29,13 @@ documentation and administrative guide.
 
 ## Available components in Gluu Server 4.0
 - oxAuth, oxTrust, oxCore v4.0
-- Gluu OpenLDAP v2.4.44-5
-- Gluu OpenDJ v3.0
-- Shibboleth v3.2.1
-- Asimba forked from v1.3.0 + v1.3.1 snapshot changes (v1.3.1 was never released)
-- Passport v0.3.2
+- Gluu OpenDJ v3.0.1
+- Shibboleth v3.3.3
+- Passport v4.0
 - Java v1.8.0_112
-- Node.js v6.9.1
-- Jetty-distribution-9.3.15.v20161220
-- Jython v2.7.0
+- Node.js v9.9.0
+- Jetty-distribution-9.4.12.v20180830
+- Jython v2.7.2a
 - Weld 3.0.0
 - FluentD 3.5
 - Redis
