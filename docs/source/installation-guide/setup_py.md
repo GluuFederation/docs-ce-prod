@@ -62,6 +62,8 @@ The administrator can use the following command line options to include addition
 * __--remote-ldap__ Enables using remote LDAP server. For further information see https://github.com/GluuFederation/support-docs/blob/master/howto/4.0/setup_remote_LDAP.md
 * __--remote-couchbase__ Enables using remote couchbase server. For further information see https://github.com/GluuFederation/support-docs/blob/master/howto/4.0/CE_with_remote_CB.md
 
+Example Command: `# ./setup.py -ps` This command will install Gluu Server with Passport and Shibboleth IDP.
+
 #### Coucbase Server Setup (Experimental)
 Starting from CE-4.0, Gluu Server supports Couchbase Server as DB backend. To install with Couchbase, you need to download OS specific Couchbase package from https://www.couchbase.com/downloads (Enterprise version only), and save to `/opt/dist/couchbase`. For example, for Ubuntu-18,
 
@@ -69,8 +71,6 @@ Starting from CE-4.0, Gluu Server supports Couchbase Server as DB backend. To in
 # ls /opt/dist/couchbase
 couchbase-server-enterprise_6.0.1-ubuntu18.04_amd64.deb
 ```
-
-Example Command: `# ./setup.py -ps` This command will install Gluu Server with Passport and Shibboleth IDP.
 
 If both couchbase and ldap (either locally or remote) are available, you will be asked if you want to use hybrid backends:
 
