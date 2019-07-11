@@ -1,7 +1,7 @@
 # Interception Scripts
 
 ## Overview  
-Interception scripts allow custom business logic to be implemented in a way that is upgrade-proof and doesn't require forking the Gluu Server code. Each type of script is described by a java interface -- i.e. which methods are required. 
+Interception scripts can be used to implement custom business logic for authentication, authorization and more in a way that is upgrade-proof and doesn't require forking the Gluu Server code. Each type of script is described by a java interface -- i.e. which methods are required. 
 
 The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scripts`.
 
