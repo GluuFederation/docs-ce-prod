@@ -285,7 +285,7 @@ Sometimes things go wrong! It can be difficult to troubleshoot issues if the ste
 
 ## Uninstallation
 
-###  Ubuntu Server 18.04.x
+###  Uninstall Ubuntu Server 18.04.x
 
 ```
 /sbin/gluu-serverd-4.0 disable
@@ -303,7 +303,7 @@ apt-get remove gluu-server-4.0
 rm -fr /opt/gluu-server.save
 ```
 
-### Ubuntu Server 16.4.x, Debian 8 (Jessie) and Debian 9 (Stretch):
+### Uninstall Ubuntu Server 16.4.x, Debian 8 (Jessie) or Debian 9 (Stretch):
 
 ```
 service gluu-server-4.0 stop
@@ -317,7 +317,7 @@ apt-get remove gluu-server-4.0
 rm -rf /opt/gluu-server-4.0.save
 ```
 
-### Red Hat 6.x 
+### Uninstall Red Hat 6.x 
 
 ```
 service gluu-server-4.0 stop
@@ -331,7 +331,7 @@ yum remove gluu-server-4.0
 rm -rf /opt/gluu-server-4.0.save
 ```
 
-### Centos 7.x and Red Hat 7.x
+### Uninstall Centos 7.x and Red Hat 7.x
 
 ```
 /sbin/gluu-serverd-4.0 disable
