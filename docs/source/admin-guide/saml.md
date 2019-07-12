@@ -2,7 +2,7 @@
 ## Overview
 The Gluu Server can be deployed with the [Shibboleth SAML identity provider (IDP)](https://www.shibboleth.net/products/identity-provider/) to enable SAML single sign-on (SSO). 
 
-In a standard outbound SAML transaction, a website or application (a.k.a. Service Provider, or "SP") redirects a user to a designated IDP for authentication and authorization. The IDP will authenticate the user and upon successful authentication, the user is sent back to the SP with an active session. 
+In a standard outbound SAML transaction, a website or application (a.k.a. Service Provider, or "SP") redirects a user to a designated IDP for authentication and authorization. The IDP authenticates the user, and upon successful authentication, the user is sent back to the SP with user attributes and an SSO session. 
 
 !!! Note 
     To support an external SAML IDP for authentication, for instance the IDP of a customer or partner, review the [inbound SAML docs](../authn-guide/inbound-saml-passport.md) in the authentication guide. 
@@ -88,7 +88,7 @@ It's also possible to configure `NameID` through configuration file / velocity t
 
 ## AuthnContextClassRef Support
 
-Gluu offers out-of-the-box support for the SAML parameter `AuthnContextClassRef`. Including `<saml:AuthnContextClassRef>` tag in the initial SAML request from the SP signals to the IDP that the user must reauthenticate with the specified authentication method.
+Gluu offers out-of-the-box support for the SAML parameter `AuthnContextClassRef` (ACRS). Including `<saml:AuthnContextClassRef>` tag in the initial SAML request from the SP signals to the IDP that the user must authenticate with the specified authentication method.
 
     <samlp:AuthnRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" ID="ONELOGIN_809707f0030a5d00620c9d9df97f627afe9dcc24" Version="2.0" ProviderName="SP test" IssueInstant="2014-07-16T23:52:45Z" Destination="http://idp.example.com/SSOService.php" ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" AssertionConsumerServiceURL="http://sp.example.com/demo1/index.php?acs">
       <saml:Issuer>http://sp.example.com/demo1/metadata.php</saml:Issuer>
@@ -130,7 +130,7 @@ Custom `AuthnContextClassRef` attribute values can be defined as well. The recom
 
 ### Enable AuthnContextClassRef in oxTrust
 
-`AuthnContextClassRef` values need to be associated (one-to-one) with Gluu authentication interception scripts (e.g. basic, fido, ldap, etc.). This can be achieved by associating the SAML ACRS attribute field included in a specific Person Authentication script.
+ACRS values need to be associated (one-to-one) with Gluu authentication interception scripts (e.g. basic, fido, ldap, etc.). This can be achieved by setting the SAML ACRS attribute field included in a specific Person Authentication script to the desired value.
 
 ![saml_authctxref](../img/saml/saml_authctxref.PNG)
 
