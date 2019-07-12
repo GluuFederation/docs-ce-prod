@@ -110,16 +110,25 @@ The Gluu Server is a chroot container, which must be started to proceed.
 For Red Hat 6.x, Ubuntu 16, and Debian 8, run the following commands:
 
 ```
-# service gluu-server-4.0 start
-# service gluu-server-4.0 login
+service gluu-server-4.0 start
+```
+
+```
+service gluu-server-4.0 login
 ```
 
 For Centos 7.x, Red Hat 7.x <!--, Ubuntu 18--> and Debian 9, run the following commands: 
 
 ```
-# /sbin/gluu-serverd-4.0 enable
-# /sbin/gluu-serverd-4.0 start
-# /sbin/gluu-serverd-4.0 login
+/sbin/gluu-serverd-4.0 enable
+```
+
+```
+/sbin/gluu-serverd-4.0 start
+```
+
+```
+/sbin/gluu-serverd-4.0 login
 ```
 
 !!! Note
@@ -204,29 +213,70 @@ For Ubuntu/Debian:
 Sometimes things go wrong! It can be difficult to troubleshoot issues if the steps to reproduce the issue are not clearly documented. This is why we **always** recommend creating [backups of your Gluu Server](../operation/backup.md). 
 
 ## Uninstallation
+
+For Ubuntu 18:
+
+```
+/sbin/gluu-serverd-4.0 disable
+```
+
+```
+/sbin/gluu-serverd-4.0 stop
+```
+
+```
+apt-get remove gluu-server-4.0
+```
+
+```
+rm -fr /opt/gluu-server.save
+```
+
+
 For Ubuntu 16, and Debian 8:
 
 ```
-# service gluu-server-4.0 stop
-# apt-get remove gluu-server-4.0
-# rm -rf /opt/gluu-server-4.0.save
+service gluu-server-4.0 stop
+```
+
+```
+apt-get remove gluu-server-4.0
+```
+
+```
+rm -rf /opt/gluu-server-4.0.save
 ```
 
 For Red Hat 6.x: 
 
 ```
-# service gluu-server-4.0 stop
-# yum remove gluu-server-4.0
-# rm -rf /opt/gluu-server-4.0.save
+service gluu-server-4.0 stop
+```
+
+```
+yum remove gluu-server-4.0
+```
+
+```
+rm -rf /opt/gluu-server-4.0.save
 ```
 
 For Centos 7.x and Red Hat 7.x:
 
 ```
-# /sbin/gluu-serverd-4.0 disable
-# /sbin/gluu-serverd-4.0 stop
-# yum remove gluu-server-4.0 
-# rm -rf /opt/gluu-server-4.0.save
+/sbin/gluu-serverd-4.0 disable
+```
+
+```
+/sbin/gluu-serverd-4.0 stop
+```
+
+```
+yum remove gluu-server-4.0 
+```
+
+```
+rm -rf /opt/gluu-server-4.0.save
 ```
 
 !!! Note
