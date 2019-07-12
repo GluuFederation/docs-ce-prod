@@ -30,7 +30,7 @@ documentation and administrative guide.
 ## Available components in Gluu Server 4.0
 - oxAuth, oxTrust, oxCore v4.0
 - Gluu OpenDJ v3.0.1
-- Shibboleth v3.3.3
+- Shibboleth v3.4.4
 - Passport v4.0
 - Java v1.8.0_112
 - Node.js v9.9.0
@@ -334,6 +334,14 @@ documentation and administrative guide.
 
 ### [GluuFederation/oxShibboleth](https://github.com/GluuFederation/oxShibboleth/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
 
+- [#60](https://github.com/GluuFederation/oxShibboleth/issues/60) Update to latest IDP 3.4.4 and generate patches with our changes
+
+- [#59](https://github.com/GluuFederation/oxShibboleth/issues/59) Couchbase Support
+
+- [#53](https://github.com/GluuFederation/oxShibboleth/issues/53) Enable IDP in CE 4.0 with Couchbase
+
+- [#51](https://github.com/GluuFederation/oxShibboleth/issues/51) Add support for folder with customized .vm views
+
 - [#35](https://github.com/GluuFederation/oxShibboleth/issues/35) Create authentication flow to replace RemoteUser flow 
 
 - [#30](https://github.com/GluuFederation/oxShibboleth/issues/30) SAML metadata is not processing properly 
@@ -348,6 +356,14 @@ documentation and administrative guide.
 
 ### [GluuFederation/gluu-passport](https://github.com/GluuFederation/gluu-passport/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
 
+- [#66](https://github.com/GluuFederation/gluu-passport/issues/66) Sending data other than profile data from passport to custom script?
+
+- [#64](https://github.com/GluuFederation/gluu-passport/issues/64) Support additional request params for building authz requests in idp-initiated flow
+
+- [#62](https://github.com/GluuFederation/gluu-passport/issues/62) Verify linkedIn integration is working properly
+
+- [#61](https://github.com/GluuFederation/gluu-passport/issues/61) Add console log mode for starting passport configuration
+
 - [#60](https://github.com/GluuFederation/gluu-passport/issues/60) Add a cache provider when inResponseTo validation is used in a clustered environment
 
 - [#46](https://github.com/GluuFederation/gluu-passport/issues/46) More verbose and explicit error message than "Go back and register!" on failures
@@ -357,6 +373,20 @@ documentation and administrative guide.
 - [#4](https://github.com/GluuFederation/gluu-passport/issues/4) Rename repo to oxPassport
 
 ### [GluuFederation/community-edition-setup](https://github.com/GluuFederation/community-edition-setup/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
+
+- [#550](https://github.com/GluuFederation/community-edition-setup/issues/550) Try to minimize exposing information in token endpoint error message 
+
+- [#537](https://github.com/GluuFederation/community-edition-setup/issues/537) Enable IDP installation with Couchbase
+
+- [#536](https://github.com/GluuFederation/community-edition-setup/issues/536) All attributes metadata should have filled gluuSAML1URI and gluuSAML2URI
+
+- [#535](https://github.com/GluuFederation/community-edition-setup/issues/535) Move generic properties to gluu-properties
+
+- [#533](https://github.com/GluuFederation/community-edition-setup/issues/533) Include RADIUS server as optional component during setup.py
+
+- [#532](https://github.com/GluuFederation/community-edition-setup/issues/532) Move all service startup scripts to systemd on CentOS7
+
+- [#530](https://github.com/GluuFederation/community-edition-setup/issues/530) Update casa client registration script
 
 - [#529](https://github.com/GluuFederation/community-edition-setup/issues/529) Fix Couchbase indexes creation
 
