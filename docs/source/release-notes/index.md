@@ -164,15 +164,47 @@ documentation and administrative guide.
 
 ### [GluuFederation/oxTrust](https://github.com/GluuFederation/oxTrust/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
 
+- [#1712](https://github.com/GluuFederation/oxTrust/issues/1712) Logo and favicon customization in oxTrust
+
+- [#1707](https://github.com/GluuFederation/oxTrust/issues/1707) Remove Name field from nameid screen
+
+- [#1688](https://github.com/GluuFederation/oxTrust/issues/1688) Support additional OIDC params in idp-initiated passport form
+
+- [#1687](https://github.com/GluuFederation/oxTrust/issues/1687) Prompt for confirmation before deleting auth method from user profile
+
+- [#1675](https://github.com/GluuFederation/oxTrust/issues/1675) Profile link is broken
+
+- [#1672](https://github.com/GluuFederation/oxTrust/issues/1672) UMA Scope Oops message error
+
+- [#1671](https://github.com/GluuFederation/oxTrust/issues/1671) Unified and externalize logo and favicon
+
+- [#1670](https://github.com/GluuFederation/oxTrust/issues/1670) Fix scim filter grammar defect
+
+- [#1664](https://github.com/GluuFederation/oxTrust/issues/1664) SAML NameID Updates- should be applied without idp and identity services restart (when on same host and non-cluster/container mode)
+
+- [#1660](https://github.com/GluuFederation/oxTrust/issues/1660) Missing saml-nameid.properties.vm template
+
+- [#1655](https://github.com/GluuFederation/oxTrust/issues/1655) Remove usage of codehaus serialization in SCIM and associated resteasy provider
+
+- [#1654](https://github.com/GluuFederation/oxTrust/issues/1654) Display FIDO2 credentials in users profile form
+
+- [#1651](https://github.com/GluuFederation/oxTrust/issues/1651) Gluu Server SAML NameID enhancement
+
+- [#1647](https://github.com/GluuFederation/oxTrust/issues/1647) Cache Refresh triggers activation on all nodes when no custom cache refresh script is enabled
+
+- [#1639](https://github.com/GluuFederation/oxTrust/issues/1639) Review and fix breadcrumb in all pages
+
+- [#1638](https://github.com/GluuFederation/oxTrust/issues/1638) Menu and forms are out of sync in some places
+
+- [#1637](https://github.com/GluuFederation/oxTrust/issues/1637) Gluu Radius oxTrust Integration
+
+- [#1620](https://github.com/GluuFederation/oxTrust/issues/1620) Add SAML acr field to person authentication form
+
+- [#1617](https://github.com/GluuFederation/oxTrust/issues/1617) Change name field title for LDAP auth
+
 - [#1616](https://github.com/GluuFederation/oxTrust/issues/1616) Adapt oxTrust to oxAuth scope changes
 
 - [#1612](https://github.com/GluuFederation/oxTrust/issues/1612) Calendar popup for Date type attributes
-
-- [#1611](https://github.com/GluuFederation/oxTrust/issues/1611) Couchbase: can't access OpenId Scopes and Clients page
-
-- [#1610](https://github.com/GluuFederation/oxTrust/issues/1610) Couchbase & LDAP: Can't access passport pages
-
-- [#1608](https://github.com/GluuFederation/oxTrust/issues/1608) Attribute disappears from the list if administrator is forbidden to edit it
 
 - [#1605](https://github.com/GluuFederation/oxTrust/issues/1605) oxTrust RS code (passport, scim, oxtrust-api) must set scopes for protection
 
@@ -182,25 +214,17 @@ documentation and administrative guide.
 
 - [#1599](https://github.com/GluuFederation/oxTrust/issues/1599) OIDC revamp
 
-- [#1598](https://github.com/GluuFederation/oxTrust/issues/1598) gluu4 build -24, redundant/typo on client -> encryption/signing tab
-
 - [#1597](https://github.com/GluuFederation/oxTrust/issues/1597) viewing new client opens to last tab viewed of previous client
 
 - [#1596](https://github.com/GluuFederation/oxTrust/issues/1596) OIDC client view screen squished with long redirect URIs
 
-- [#1594](https://github.com/GluuFederation/oxTrust/issues/1594) 4.0 QA: Error in User Registration
-
 - [#1582](https://github.com/GluuFederation/oxTrust/issues/1582) Email Validation Wrong Message Displayed
-
-- [#1579](https://github.com/GluuFederation/oxTrust/issues/1579) Password/Confirm Password Validation shown for all mandatory fields
 
 - [#1576](https://github.com/GluuFederation/oxTrust/issues/1576) Add new clean configuration properties in oxTrust
 
 - [#1574](https://github.com/GluuFederation/oxTrust/issues/1574) Remove deprecated linktrack code and pages
 
 - [#1573](https://github.com/GluuFederation/oxTrust/issues/1573) Oops error when showing an UMA resource with associated client deleted
-
-- [#1572](https://github.com/GluuFederation/oxTrust/issues/1572) When displaying a sector identifier check if the clients assign to it are still present in LDAP
 
 - [#1562](https://github.com/GluuFederation/oxTrust/issues/1562) Move some log line from INFO level to DEBUG level
 
@@ -209,10 +233,6 @@ documentation and administrative guide.
 - [#1558](https://github.com/GluuFederation/oxTrust/issues/1558) Merge some 3.1.6 commit manually into master
 
 - [#1552](https://github.com/GluuFederation/oxTrust/issues/1552) Remove Asimba GUI and API 
-
-- [#1538](https://github.com/GluuFederation/oxTrust/issues/1538) Move existing api code into master
-
-- [#1536](https://github.com/GluuFederation/oxTrust/issues/1536) Create a module for oxtrust_api
 
 - [#1534](https://github.com/GluuFederation/oxTrust/issues/1534) Add form for IDP-initiating flow configuration
 
@@ -230,19 +250,9 @@ documentation and administrative guide.
 
 - [#1490](https://github.com/GluuFederation/oxTrust/issues/1490) Improvements in sector identifier and redirect uri assignment in oxTrust UI
 
-- [#1483](https://github.com/GluuFederation/oxTrust/issues/1483) Fix security issue
-
 - [#1481](https://github.com/GluuFederation/oxTrust/issues/1481) Move to Java 1.8
 
-- [#1471](https://github.com/GluuFederation/oxTrust/issues/1471) OIDC clients get deleted by cleanUp services
-
-- [#1470](https://github.com/GluuFederation/oxTrust/issues/1470) Fix Password Reset
-
-- [#1469](https://github.com/GluuFederation/oxTrust/issues/1469) Fix certificates issue
-
 - [#1468](https://github.com/GluuFederation/oxTrust/issues/1468) Error while adding TR
-
-- [#1467](https://github.com/GluuFederation/oxTrust/issues/1467) Error while adding OIDC scope
 
 - [#1466](https://github.com/GluuFederation/oxTrust/issues/1466) Regular expression never evaluate on attribute named userPassword
 
@@ -251,8 +261,6 @@ documentation and administrative guide.
 - [#1332](https://github.com/GluuFederation/oxTrust/issues/1332) Should localhost be allowed in redirect uri for clients?
 
 - [#1291](https://github.com/GluuFederation/oxTrust/issues/1291) Show All Attributes shows error page
-
-- [#1290](https://github.com/GluuFederation/oxTrust/issues/1290) Impossible to add new TR
 
 - [#1289](https://github.com/GluuFederation/oxTrust/issues/1289) Impossible to add new User
 
