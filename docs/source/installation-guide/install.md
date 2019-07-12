@@ -33,12 +33,21 @@ The Gluu Server will create its file system under `/root/` and will be installed
 
 #### Ubuntu Server 18.04.x
 
-|  Command Description    |               Xenial Commands         |
-|-------------------------|---------------------------------------|
-| Add Gluu Repository     | `# echo "deb https://repo.gluu.org/ubuntu/ bionic main" > /etc/apt/sources.list.d/gluu-repo.list` |
-| Add Gluu GPG Key        | `# curl https://repo.gluu.org/ubuntu/gluu-apt.key | apt-key add -` |
-| Update/Clean Repo       | `# apt-get update`                         |
-| Install Gluu Server     | `# apt-get install gluu-server-4.0`      |
+```
+echo "deb https://repo.gluu.org/ubuntu/ bionic main" > /etc/apt/sources.list.d/gluu-repo.list
+```
+
+```
+curl https://repo.gluu.org/ubuntu/gluu-apt.key | apt-key add -
+```
+
+```
+apt-get update
+```
+
+```
+apt-get install gluu-server-4.0
+```
 
 !!! Note  
     If you use the server version of Ubuntu 18, you need to add the Ubuntu Universe repositories as well. Use these commands: `# echo "deb http://archive.ubuntu.com/ubuntu bionic universe" >> /etc/apt/sources.list` and `# echo "deb http://archive.ubuntu.com/ubuntu bionic-updates universe" >> /etc/apt/sources.list` 
@@ -46,62 +55,124 @@ The Gluu Server will create its file system under `/root/` and will be installed
 
 #### Ubuntu Server 16.04.x
 
-|  Command Description    |               Xenial Commands         |
-|-------------------------|---------------------------------------|
-| Add Gluu Repository     | `# echo "deb https://repo.gluu.org/ubuntu/ xenial main" > /etc/apt/sources.list.d/gluu-repo.list` |
-| Add Gluu GPG Key        | `# curl https://repo.gluu.org/ubuntu/gluu-apt.key | apt-key add -` |
-| Update/Clean Repo       | `# apt-get update`                         |
-| Install Gluu Server     | `# apt-get install gluu-server-4.0`      |
+```
+echo "deb https://repo.gluu.org/ubuntu/ xenial main" > /etc/apt/sources.list.d/gluu-repo.list
+```
+
+```
+curl https://repo.gluu.org/ubuntu/gluu-apt.key | apt-key add -
+```
+
+```
+apt-get update
+```
+
+```
+apt-get install gluu-server-4.0
+```
 
 #### CentOS 7.x
 
-| Command Description     |               CentOS 7.2              |
-|-------------------------|---------------------------------------|
-| Add Gluu Repository     | `# wget https://repo.gluu.org/centos/Gluu-centos7.repo -O /etc/yum.repos.d/Gluu.repo` |
-| Add Gluu GPG Key        | `# wget https://repo.gluu.org/centos/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU`|
-| Import GPG Key          | `# rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU` |
-| Update/Clean Repo       | `# yum clean all`                          |
-| Install Gluu Server     | `# yum install gluu-server-4.0`          |
+```
+wget https://repo.gluu.org/centos/Gluu-centos7.repo -O /etc/yum.repos.d/Gluu.repo
+```
+
+```
+wget https://repo.gluu.org/centos/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU
+```
+
+```
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU
+```
+
+```
+yum clean all
+```
+
+```
+yum install gluu-server-4.0
+```
+
 
 #### RHEL 6.x
 
-| Command Description     |               RHEL 6.x              |
-|-------------------------------|---------------------------------------|
-| Add Gluu Repository     | `# wget https://repo.gluu.org/rhel/Gluu-rhel6.repo -O /etc/yum.repos.d/Gluu.repo` |
-| Add Gluu GPG Key        | `# wget https://repo.gluu.org/centos/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU`|
-| Import GPG Key          | `# rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU` |
-| Update/Clean Repo       | `# yum clean all`                          |
-| Install Gluu Server     | `# yum install gluu-server-4.0`          |
+```
+wget https://repo.gluu.org/rhel/Gluu-rhel6.repo -O /etc/yum.repos.d/Gluu.repo
+```
+
+```
+wget https://repo.gluu.org/centos/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU
+```
+
+```
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU
+```
+
+```
+yum clean all
+```
+
+```
+yum install gluu-server-4.0
+```
 
 #### RHEL 7.x
 
-| Command Description     |               RHEL 7                  |
-|-------------------------|---------------------------------------|
-| Add Gluu Repository     | `# wget https://repo.gluu.org/rhel/Gluu-rhel7.repo -O /etc/yum.repos.d/Gluu.repo` |
-| Add Gluu GPG Key        | `# wget https://repo.gluu.org/rhel/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU`|
-| Import GPG Key          | `# rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU` |
-| Update/Clean Repo       | `# yum clean all`                          |
-| Install Gluu Server     | `# yum install gluu-server-4.0`          |
+```
+wget https://repo.gluu.org/rhel/Gluu-rhel7.repo -O /etc/yum.repos.d/Gluu.repo
+```
 
-#### Debian 8 (Jessie)
+```
+wget https://repo.gluu.org/rhel/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU
+```
 
-| Command Description     |               Jessie Commands         |
-|-------------------------|---------------------------------------|
-| Add Gluu Repository     | `# echo "deb https://repo.gluu.org/debian/ stable main" > /etc/apt/sources.list.d/gluu-repo.list`|
-| Add Gluu GPG Key        | `# curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -` |
-| Update/Clean Repo       | `# apt-get update`                         |
-| Install Gluu Server     | `# apt-get install gluu-server-4.0`      |
+```
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU
+```
 
+```
+yum clean all
+```
+
+```
+yum install gluu-server-4.0
+```
 
 #### Debian 9 (Stretch)
 
-| Command Description     |              Stretch Commands         |
-|-------------------------|---------------------------------------|
-| Add Gluu Repository     | `# echo "deb https://repo.gluu.org/debian/ stretch-stable main" > /etc/apt/sources.list.d/gluu-repo.list`|
-| Add Gluu GPG Key        | `# curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -` |
-| Update/Clean Repo       | `# apt-get update`                         |
-| Install Gluu Server     | `# apt-get install gluu-server-4.0`      |
+```
+echo "deb https://repo.gluu.org/debian/ stretch-stable main" > /etc/apt/sources.list.d/gluu-repo.list
+```
 
+```
+# curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -
+```
+
+```
+apt-get update
+```
+
+```
+apt-get install gluu-server-4.0
+```
+
+#### Debian 8 (Jessie)
+
+```
+echo "deb https://repo.gluu.org/debian/ stable main" > /etc/apt/sources.list.d/gluu-repo.list
+```
+
+```
+curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -
+```
+
+```
+apt-get update
+```
+
+```
+apt-get install gluu-server-4.0
+```
 
 ### Start the server and log in
 
@@ -117,7 +188,7 @@ service gluu-server-4.0 start
 service gluu-server-4.0 login
 ```
 
-For Centos 7.x, Red Hat 7.x <!--, Ubuntu 18--> and Debian 9, run the following commands: 
+For Centos 7.x, Red Hat 7.x, Ubuntu 18 and Debian 9, run the following commands: 
 
 ```
 /sbin/gluu-serverd-4.0 enable
@@ -214,7 +285,7 @@ Sometimes things go wrong! It can be difficult to troubleshoot issues if the ste
 
 ## Uninstallation
 
-For Ubuntu 18:
+###  Ubuntu Server 18.04.x
 
 ```
 /sbin/gluu-serverd-4.0 disable
@@ -232,8 +303,7 @@ apt-get remove gluu-server-4.0
 rm -fr /opt/gluu-server.save
 ```
 
-
-For Ubuntu 16, and Debian 8:
+### Ubuntu Server 16.4.x, Debian 8 (Jessie) and Debian 9 (Stretch):
 
 ```
 service gluu-server-4.0 stop
@@ -247,7 +317,7 @@ apt-get remove gluu-server-4.0
 rm -rf /opt/gluu-server-4.0.save
 ```
 
-For Red Hat 6.x: 
+### Red Hat 6.x 
 
 ```
 service gluu-server-4.0 stop
@@ -261,7 +331,7 @@ yum remove gluu-server-4.0
 rm -rf /opt/gluu-server-4.0.save
 ```
 
-For Centos 7.x and Red Hat 7.x:
+### Centos 7.x and Red Hat 7.x
 
 ```
 /sbin/gluu-serverd-4.0 disable
