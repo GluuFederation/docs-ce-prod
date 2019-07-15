@@ -2,6 +2,10 @@
 
 This repo is holds all versions of CE docs and includes scripts to publish.  All docs are processed using mkdocs. This Repo is organized with branches for each version of the documentation.
 
+## Documentation styleguide 
+
+When contributing documentation, please refer to the [styleguide](https://github.com/GluuFederation/docs-style-guide) to align with existing formatting. 
+
 ## Making changes
 Fork, clone, and make a pull request
 
