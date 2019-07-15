@@ -68,15 +68,15 @@ From the oxTrust UI , go to `Radius` > `Radius Clients`. A list of Radius / Nas 
 ### Adding/Updating A Radius Client 
 From the oxTrust UI, go to 'Radius > Radius Clients' , then click on `Add Radius Client` and specify the following:
 
-  - `Client Name`. An easy mnemonic to recognize the client. 
+  - `Client Name`: An easy mnemonic to recognize the client. 
 
-  - `Ip Address/Network`. You can either specify an IPv4 address here (xxx.xxx.xxx.xxx) or a CIDR subnet
+  - `Ip Address/Network`: Specify either an IPv4 address here (xxx.xxx.xxx.xxx) or a CIDR subnet
     (xxx.xxx.xxx.xxx/xxx). The CIDR notation will match all Radius/NAS clients originating from that network. 
   
-  - `Client Secret`. The Radius Client's secret.
+  - `Client Secret`: The Radius Client's secret.
   
-  - `Priority` . Radius clients are matched by the gluu-radius not only by Ip Address/Network  but also by priority, 
-     so, if two entries _may_ match for one client (Ip Address/Network) , the entry with the highest priority will be selected. 
+  - `Priority`: Radius clients are matched by the gluu-radius not only by Ip Address/Network but also by priority. 
+     So, if two entries _may_ match for one client (Ip Address/Network), the entry with the highest priority will be selected. 
 
 ![gluu-radius-add-client](../../img/admin-guide/radius-server/gluu-radius-add-client.png)
 
