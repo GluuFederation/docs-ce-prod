@@ -83,11 +83,11 @@ From the oxTrust UI, go to 'Radius > Radius Clients' , then click on `Add Radius
 ## Advanced Topics 
 This section covers advanced configuration topics. They are optional and can be skipped.
 
-### The Gluu Radius configuration File 
+### Gluu Radius config file 
  The Gluu Radius configuration file can be found under `/etc/gluu/conf/radius/gluu-radius.properties` 
 in the linux container. There are a couple things you can change from the configuration file.
 
-#### Changing the algorithm used for JWT authentication
+#### Algorithm for JWT authentication
 By default `RS512` (RSASSA-PKCS1-v1_5 using SHA-512) is the algorithm used by Gluu Radius for authentication.
 First, from the oxTrust UI , go to the configuration settings for the OpenID client used by Gluu Radius
 (see `OpenId Configuration` in this document) and go to the `Encryption/Signing` Tab.
@@ -101,7 +101,7 @@ radius.jwt.auth.keyId = <kid>
 ```
 Once you are done , restart `gluu-radius`.
 
-#### Using an external jwks 
+#### External jwks 
 Using an external jwks requires you pasting the contents of the jwks into the `JWKS` section in the `Encryption/Signing` tab
 of the OpenID client used by `gluu-radius` for authentication.
 You also need to provide a keystore , which contains all of the keys , with each entry name having the corresponding `kid`
@@ -115,11 +115,11 @@ radius.jwt.auth.keyStorePin = <encrypted pin for the keystore>
 You can use the utility `/opt/gluu/bin/encode.py` to encrypt the plaintext keyStore password.
 
 
-### Constraints on using a custom OpenID client and/or a custom authentication script 
+### Custom OpenID clients and/or authentication scripts 
 There are a couple of constraints if you will like to use your own OpenID client or custom script to authenticate
 using `gluu-radius`.
 
-#### Constraints on using a custom OpenID client 
+#### Custom OpenID client 
 1. The client *must* support private key JWT authentication.
 1. The client *must* have the `super_gluu_ro_session` scope or any scope which will add a `__session_id`
    claim containing an authenticated session id to the idtoken for `password` token grant requests.
@@ -129,7 +129,7 @@ using `gluu-radius`.
    to them as specified in the [section above](./gluu-radius.md#using-an-external-jwks).
 You can take a look at the default OpenID client that ships with Gluu Radius to have an idea.
 
-#### Constraints on using a custom authentication script
+#### Custom authentication script
 1. The script must be of type `Resource Owner Password Credentials` 
 1. The script *must* accept and process a `__password` http post parameter containing the user's password and not the `password`
    http post parameter.
