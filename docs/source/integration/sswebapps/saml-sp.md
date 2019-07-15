@@ -56,13 +56,13 @@ Edit the file `httpd.conf`, and do the following changes:
 
 * Set `UseCanonicalName On`.
 
-* [Restart](../../operation/services.md#restart] the `httpd` service.
+* [Restart](../../operation/services.md#restart) the `httpd` service.
 
 #### httpd Testing
 
 * Create an `index.html` file inside the directory `/var/www/html`.
 
-* [Restart](../../operation/services.md#restart] the `httpd` service.
+* [Restart](../../operation/services.md#restart) the `httpd` service.
 
 * Check from your browser if the file `index.html` is visible.
 
@@ -125,7 +125,7 @@ This section describes how to configure the file `shibboleth2.xml`.
 
 	* Set both the Metadata Provider, and the IDP: `MetadataProvider type="XML" uri="https://idp.gluu.org/idp/shibboleth"`
 
-* [Restart](../../operation/services.md#restart] both the `shibd` and `apache2` services.
+* [Restart](../../operation/services.md#restart) both the `shibd` and `apache2` services.
 
 * Create a Trust Relationship for this SP in your desired IdP.
 
@@ -154,7 +154,7 @@ These are the steps to configure your Apache webserver properly:
 # openssl x509 -req -days 365 -in sp.csr -signkey sp.key -out sp.crt
 # shib-metagen -c /etc/certs/sp.crt -h sp.gluu.info > /etc/shibboleth/SP-metadata.xml
 ```
-Then, [start](../../operation/services.md#start] the `apache2` and `shibd` services.
+Then, [start](../../operation/services.md#start) the `apache2` and `shibd` services.
 
 Download `SP-metadata.xml` to your machine. You will need this file later when you create the Trust Relationship in the Gluu Server.
 
@@ -304,7 +304,7 @@ Then, click to add the SAML2SSO profile:
 ![image](../../img/integration/saml_sso-profile.png)
 
 Then "Save" and "Update." Wait 5 minutes for the Shibboleth IDP to detect reload the metadata or
-[restart](../../operation/services.md#restart] the `identity` service.
+[restart](../../operation/services.md#restart) the `identity` service.
 
 ## Test
 
@@ -396,7 +396,7 @@ initial admin password). The output will contain something like this:
 
  - Make sure you update your hosts file on the Gluu Server, Apache server, and your workstation--this won't work with IP addresses, only.
 
- - Check the Shibboleth log file `/opt/idp/logs/idp-process.log` if you don't see the headers or REMOTE_USER environment variables. Also, [restart](../../operation/services.md#restart] the `identity` service to make sure the new Shibboleth IDP xml files were loaded.
+ - Check the Shibboleth log file `/opt/idp/logs/idp-process.log` if you don't see the headers or REMOTE_USER environment variables. Also, [restart](../../operation/services.md#restart) the `identity` service to make sure the new Shibboleth IDP xml files were loaded.
 
  - Clear the cookies in your web browser for both the Apache site, and the Gluu Server if you are logging in and logging out with lots of server restarts.
    
