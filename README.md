@@ -19,3 +19,6 @@ Fork, clone, and make a pull request.
 $ ./update-site-local-sh
 ```
 
+## Documentation styleguide 
+
+When contributing documentation to the project, please refer to the [styleguide](https://github.com/GluuFederation/docs-style-guide) to align with our existing formatting practices. 
