@@ -1,12 +1,12 @@
-# Clean up server
+# Server clean up
 
 ## Overview
-The Gluu Server has a built-in service to clean up unused or expired files. There are a few configuration properties.
+The Gluu Server has a built-in service to remove unused and expired files. It runs out-of-the-box, but has several customizable properties as detailed below. 
 
 ## Properties
 
-- `cleanServiceInterval` - defines how often to run the clean up service in seconds. It must be a positive number, setting a negative number turns off the service..
-- `cleanServiceBaseDns` - list of additional `base dns` under which the server will look for expired entities (the server also looks for expired entries under the built-in `base dns`).
+- `cleanServiceInterval` - defines how often to run the clean up service in seconds. It must be a positive number. To turn off the service, set the interval to a negative number.
+- `cleanServiceBaseDns` - list of `base dns` under which the server will look for expired entities and entries in addition to the built-in `base dn`
 - `cleanServiceBatchChunkSize` - each clean up iteration fetches a chunk of expired data per `base dn` and removes it from storage. The default value is 100. Adjust it according to server load.
 
 [Restart](./services.md#restart) the `oxauth` service for the configuration changes to take effect.
@@ -36,4 +36,4 @@ The clean up filter is in the following format:
 
 By default, the clean up timer is turned on. To turn it off, set the `cleanServiceInterval` property to a negative value (server restart is required).
 
-If clean up work is externalized (such as through an external python script), it is recommended to turn off the internal server clean up
+If the clean up task is performed externally, such as through an external Python script, turn off the internal server clean up.

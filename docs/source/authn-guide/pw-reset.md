@@ -7,7 +7,7 @@ This feature gives users the ability to reset their password.
 Below are the steps to configure that feature:
 
 1. Provide the SMTP Server configuration
-1. Enable password reset on OxTrust adminUI
+1. Enable password reset on oxTrust adminUI
 1. Test
 
 ## Prerequisites

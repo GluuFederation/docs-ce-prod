@@ -97,19 +97,11 @@ The Gluu Server needs a mail server in order to send notifications. All fields i
 | Requires SSL | This checkbox enables the SSL |
 | SMTP Port | Port number of the SMTP server |
      
-#### oxTrust Settings  
+#### Organization Settings  
 
-![OxTrust Settings](../img/admin-guide/oxtrust/oxtrust-settingsv4.png)
+![Organization Settings](../img/admin-guide/oxtrust/organization-settingsv4.png)
 
-From the oxTrust Settings page, the administrator can find the oxTrust build date and number, and manage the organization name, logo, and favicon. 
-This page also contains the name of the Gluu Server administrator group. 
-Users added to this group will have administrator access to the Gluu Server.
-
-#### oxAuth Settings
-
-oxAuth Settings allow you to designate the oxAuth server IP.
-
-![oxauth-settings](../img/admin-guide/oxtrust/oxauth-settings.png)
+From the Organization Settings page, the administrator can manage the organization name, logo, and favicon. This page also contains the name of the Gluu Server manager group. Users added to this group will have administrator access to the Gluu Server.
 
 ## JSON Configuration      
 The following tabs are included in the `JSON Configuration` menu:

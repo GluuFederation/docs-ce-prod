@@ -19,17 +19,6 @@ The certificates for `Passport` authentication are `passport-rp.jks, passport-rp
 
 The SCIM certificate is named `scim-rs.jks` and the OTP certificate is named `otp_configuration.json`.
 
-### Certificates for Deprecated Services
-
-|ASIMBA		    |OPENLDAP         |
-|---------------|--------------- |
-|asimba.crt   	|openldap.crt	   |
-|asimba.csr 	|openldap.csr	   |
-|asimba.key 	|openldap.key	   |
-|asimba.key.orig|openldap.key.orig|
-|asimba.pkcs12	|openldap.pem	   |
-|asimbaIDP.jks	|	           |
-
 ### Custom Script JSON Files
 
 Additionally the following `json` files are available which are used in different custom scripts for multi-factor authentication.

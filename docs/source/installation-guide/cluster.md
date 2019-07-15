@@ -156,7 +156,6 @@ sysemProfile=/etc/profile
 ldap_setup_properties=./templates/opendj-setup.properties
 default_openid_jks_dn_name=CN\=oxAuth CA Certificates
 oxtrust_config_json=./output/oxtrust-config.json
-openldapTLSCACert=/etc/certs/openldap.pem
 installJce=True
 ldapPassFn=/home/ldap/.pw
 ...
@@ -570,15 +569,6 @@ http {
     }
     location /cas {
         proxy_pass https://backend/cas;
-        proxy_redirect          off;
-        proxy_next_upstream     error timeout invalid_header http_500;
-        proxy_connect_timeout   2;
-        proxy_set_header        Host            $host;
-        proxy_set_header        X-Real-IP       $remote_addr;
-        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-    }
-    location /asimba {
-        proxy_pass https://backend/asimba;
         proxy_redirect          off;
         proxy_next_upstream     error timeout invalid_header http_500;
         proxy_connect_timeout   2;

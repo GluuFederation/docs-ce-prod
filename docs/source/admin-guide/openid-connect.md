@@ -88,6 +88,8 @@ To add a client manually in oxTrust, navigate to `OpenID Connect` > `Client` and
 
 ![add-client2](../img/openid/add_client_encryption.png)
 
+![add-client3](../img/openid/add_client_attributes.png)
+
 There are many client configuration parameters. Most are specified in the [Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html#ClientRegistration) section of the OpenID Connect specification. The Client Secret field features a `Lock Secret Field` button to prevent accidental edits or autofill. 
 
 There are two configurations parameters that can only be configured via oxTrust by an administrator. These include:
@@ -219,14 +221,13 @@ Follow these steps to add a sector identifier:
 ![Sector](../img/admin-guide/openid/sectoridentifier.png)
 
 1. Click `Add Sector Identifier`.
-![sector1](../img/admin-guide/openid/sectoridentifier1.png)
-![sector2](../img/admin-guide/openid/sectoridentifier2.png)
+![add sector id](../img/admin-guide/openid/addsectoridentifier.png)
 
 1. Add redirect URIs to the `Sector Identifier`.
-![sector3](../img/admin-guide/openid/sectoridentifier3.png)
+![add redirect uris](../img/admin-guide/openid/sectoridentifieraddurl.png)
 
 1. Add clients that uses the `Sector Identifier`.
-![sector4](../img/admin-guide/openid/sectoridentifier4.png)
+![add client](../img/admin-guide/openid/sectoridentifieraddclient.png)
 
 
 ## Authentication
@@ -299,7 +300,7 @@ userinfo, and end_session.
 Access token usually is random string, but it's possible to return the access token as a JWT. It can be controlled per client.
 There are two client properties:
 
- - `access_token_as_jwt` - Boolean controlling whether to return the `access_token` as a JWT. It is false by default.     
+- `access_token_as_jwt` - Boolean controlling whether to return the `access_token` as a JWT. It is false by default.     
 - `access_token_signing_alg` - signing algorithm that has to be used during JWT signing. If it's not specified, then the default OP signing algorithm will be used (specified via `defaultSignatureAlgorithm` oxAuth configuration property).          
  
  JWT will contain following claims:
@@ -312,6 +313,8 @@ There are two client properties:
  - `sub` - Subject of the token, as defined in JWT [RFC7519]. Usually a machine-readable identifier of the resource owner who authorized this token.     
  - `aud` - Service-specific string identifier or list of string identifiers representing the intended audience for this token, as defined in JWT [RFC7519].     
  - `iss` - String representing the issuer of this token, as defined in JWT [RFC7519].     
+
+Also it is possible to run introspection script before JWT creation and transfer claims from script response into JWT. Read more about introspection script [here](custom-script/#introspection)
 
 <!-- Commented out due to lack of browser support.
 ### Token Binding
