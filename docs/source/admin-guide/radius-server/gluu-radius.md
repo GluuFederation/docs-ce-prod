@@ -1,111 +1,83 @@
 # Gluu Radius
 
-## Gluu Radius Overview
-  The Gluu Server now ships with a [radius](https://en.wikipedia.org/wiki/RADIUS) server called
+## Overview
+The Gluu Server now ships with a [radius](https://en.wikipedia.org/wiki/RADIUS) server called
 Gluu Radius. It is based on the [tinyradius](http://tinyradius.sourceforge.net/) java library. 
 It supports radius authentication, but does not provide radius accounting support. Radius accounting 
 packets are simply ignored.
 
-## Installing Gluu Radius 
-  Gluu Radius ships with Gluu CE as from version 4.0. Installation is straightforward. 
-During the Gluu Server 4.0 CE installation , while [running setup.py](../../installation-guide/install.md#run-setuppy),
-simply select `Y` when you are asked to install Gluu Radius.
+## Installation  
+Gluu Radius is an available component from version 4.0. During installation , while [running setup.py](../../installation-guide/install.md#run-setuppy), simply select `Y` when you are asked to install Gluu Radius.
 
 ## Performance Considerations 
-As said before, the Gluu Radius server is based on the tinyradius java library. 
-The library uses a single threaded, synchronous model to handle requests. 
-This implies significant performance  degradation when handling a large volume of requests, or 
-long lived requests. That said , Gluu Radius *should not be used in a production setting*. 
-If you are interested in handling a large volume radius requests in production , consider purchasing 
-[radiator](https://radiatorsoftware.com/products/radiator/) and using [our plugin](./gluu-radiator.md)
-for authentication.
+As mentioned above, Gluu Radius is based on the tinyradius java library. The library uses a single threaded, synchronous model to handle requests. This implies significant performance degradation when handling a large volume of requests, or 
+long lived requests. To handle larger volumes, we recommend purchasing [Radiator](https://radiatorsoftware.com/products/radiator/) and using [our plugin](./gluu-radiator.md) for authentication.
 
-
-## The Gluu Radius Service 
-Gluu Radius basically runs as a service from within the 
-linux container. There are some configuration settings which require a service restart,
-which is why we're mentioning the service here and the commands to start/stop it.
-The service name is `gluu-radius` and you will have to be logged into the gluu container 
-in order to start/stop it. 
-
-### Starting the service 
-Below are the commands to start the Gluu Radius Service for various platforms.
-
-#### Ubuntu Server 16.x.x and 18.x.x
-```
-# service gluu-radius start
-```
-
-#### CentOS 7.x and RedHat 7.x
-```
-# systemctl start gluu-radius
-```
-
-### Stopping the service 
-Below are the commands to stop the Gluu Radius Service for various platforms.
-
-#### Ubuntu Server 16.x.x and 18.x.x
-```
-# service gluu-radius stop
-```
-
-#### CentOS 7.x and RedHat 7.x
-```
-# systemctl stop gluu-radius
-```
+## Gluu Radius Service 
+Gluu Radius runs as a service from within the Linux container. Certain configuration settings will require a service restart. View the [Services Commands](../../operation/services.md) doc for commands for the OS in use. 
 
 ## Gluu Radius Configuration 
- Installing Gluu Radius will give you access to a sidebar menu item on the oxTrust UI called `Radius` which 
-can be used to perform the following operations:
-  * Configure the running instance of gluu-radius 
-  * Add/Edit/Remove NAS/Radius clients .
+With Gluu Radius installed, a sidebar menu item called `Radius` will appear in the oxTrust UI which can be used to perform the following operations:
+
+  - Configure the running instance of gluu-radius   
+  - Add/Edit/Remove NAS/Radius clients    
 
 ### Basic Configuration 
- From the oxTrust UI , go to `Radius > Server` Configuration and select the `Basic Configuration` tab.
+ In oxTrust, navigate to `Radius` > `Server` Configuration and select the `Basic Configuration` tab.
+ 
  You can configure the following:
-   - `Authentication Listen Port`. This is the port on which the server listens for authentication requests.
-   - `Accounting Listen Port`. This is the port on which the server listens list accounting requests. As we 
-      said before , currently , the server simply ignores accounting packets.
-   - `Authentication Timeout` , This is the maximum amount of time in milliseconds between when an authentication
-     request is initiated and the user approves authentication. This applies only for long lived two-factor 
+ 
+   - `Authentication Listen Port`: This is the port on which the server listens for authentication requests.
+   
+   - `Accounting Listen Port`: This is the port on which the server listens for accounting requests. Currently, the server simply ignores accounting packets.
+   
+   - `Authentication Timeout`: This is the maximum amount of time in milliseconds between when an authentication
+     request is initiated and the user approving authentication. This applies only for long lived two-factor 
      authentication based requests (e.g. Super-Gluu).
   
-> Note: A change to any of these configuration parameters will require a restart of the `gluu-radius`
-> service for the changes to take effect.
-> Also , make sure that the ports you select for authentication and accounting are actually open.
+!!! Note: 
+    A change to any of these configuration parameters will require a restart of the `gluu-radius` service. Make sure the ports selected for authentication and accounting are open.
 
 ![gluu-radius-basic-config](../../img/admin-guide/radius-server/gluu-radius-basic-config.png).
 
 ### OpenID Configuration 
- From the oxTrust UI , go to `Radius > Server Configuration` and select the `OpenID Configuration` tab. 
- You can configure the following:
-   - `Acr Value`. Gluu Radius relies on a custom script of type `Resource Owner Password Credentials`
-     You can select another script of the same type that can be used for authentication within certain
-     constraints which will be given later.
-   - `OpenID Client`. Gluu Radius relies on an OpenID client for authentication. You may specify another
-     client here,  but this is also possible within certain constraints which will be given later.
-   - `OpenID Scopes`. These are the scopes used during the password grant token request. For proper operation, 
-      the scope list *must* contain the `openid` scope.
-> Note : A change to any of these configuration parameters will require a restart of the `gluu-radius`
-> service for the changes to take effect.
+In oxTrust, navigate to `Radius` > `Server Configuration` and select the `OpenID Configuration` tab. Configure the following:
+ 
+   - `Acr Value`: Gluu Radius relies on a custom script of type `Resource Owner Password Credentials`. Select another script of the same type that can be used for authentication within certain constraints which will be given later.
+ 
+   - `OpenID Client`: Gluu Radius relies on an OpenID client for authentication. You may specify another client here,  but this is also possible within certain constraints which will be given later.
+   
+   - `OpenID Scopes`: These are the scopes used during the password grant token request. For proper operation, the scope list *must* contain the `openid` scope.
+
+!!! Note 
+    A change to any of these configuration parameters will require a restart of the `gluu-radius` service.
+    
 ![gluu-radius-openid-config](../../img/admin-guide/radius-server/gluu-radius-openid-config.png)
 
 ### Radius Clients 
- From the oxTrust UI , go to `Radius > Radius Clients`. You will be greeted with a list of Radius / Nas Clients
- which are authorized to authenticate via the radius server.
- Clicking on `Add Radius Client` will allow you to add a new Radius Client. 
- Clicking on an existing client's name will allow you to edit the client's details.
- You can also select one or more radius clients and delete them.
+From the oxTrust UI , go to `Radius` > `Radius Clients`. A list of Radius / Nas Clients will appear which are authorized to authenticate via the radius server.
+
+- To add a new Radius Client, click `Add Radius Client`. 
+
+- To edit an existing client's details, click on an existing client's name.
+
+- To delete multiple clients at the same time, bulk select one or more radius clients to delete many.
+
 ![gluu-radius-clients](../../img/admin-guide/radius-server/gluu-radius-clients.png)
 
 ### Adding/Updating A Radius Client 
 From the oxTrust UI, go to 'Radius > Radius Clients' , then click on `Add Radius Client` and specify the following:
+
   - `Client Name`. An easy mnemonic to recognize the client. 
+
   - `Ip Address/Network`. You can either specify an IPv4 address here (xxx.xxx.xxx.xxx) or a CIDR subnet
     (xxx.xxx.xxx.xxx/xxx). The CIDR notation will match all Radius/NAS clients originating from that network. 
+  
   - `Client Secret`. The Radius Client's secret.
+  
   - `Priority` . Radius clients are matched by the gluu-radius not only by Ip Address/Network  but also by priority, 
      so, if two entries _may_ match for one client (Ip Address/Network) , the entry with the highest priority will be selected. 
+
 ![gluu-radius-add-client](../../img/admin-guide/radius-server/gluu-radius-add-client.png)
 
 ## Advanced Topics 
