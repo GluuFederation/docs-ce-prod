@@ -25,7 +25,7 @@ The following list of services included with the Gluu Server may differ from dep
 
 ### Start
 
-``` tab="Ubuntu 18 or CentOS 7"
+``` tab="Ubuntu 18, RHEL 7, Debian 9, or CentOS 7"
 systemctl start [service name]
 ```
 
@@ -35,7 +35,7 @@ service [service name] start
 
 ### Stop
 
-``` tab="Ubuntu 18 or CentOS 7"
+``` tab="Ubuntu 18, RHEL 7, Debian 9, or CentOS 7"
 systemctl stop [service name]
 ```
 
@@ -45,7 +45,7 @@ service [service name] stop
 
 ### Status
 
-``` tab="Ubuntu 18 or CentOS 7"
+``` tab="Ubuntu 18, RHEL 7, Debian 9, or CentOS 7"
 systemctl status [service name]
 ```
 
@@ -55,7 +55,7 @@ service [service name] status
 
 ### Restart
 
-``` tab="Ubuntu 18 or CentOS 7"
+``` tab="Ubuntu 18, RHEL 7, Debian 9, or CentOS 7"
 systemctl restart [service name]
 ```
 
@@ -66,7 +66,7 @@ service [service name] restart
 ### Reload
 This command is used for the `apache2` and `httpd` services.
 
-``` tab="Ubuntu 18 or CentOS 7"
+``` tab="Ubuntu 18, RHEL 7, Debian 9, or CentOS 7"
 systemctl reload [service name]
 ```
 
