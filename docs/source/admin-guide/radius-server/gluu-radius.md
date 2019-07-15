@@ -149,22 +149,22 @@ using `gluu-radius`.
 
 #### Constraints on using a custom OpenID client 
 1. The client *must* support private key JWT authentication.
-2. The client *must* have the `super_gluu_ro_session` scope or any scope which will add a `__session_id`
+1. The client *must* have the `super_gluu_ro_session` scope or any scope which will add a `__session_id`
    claim containing an authenticated session id to the idtoken for `password` token grant requests.
-3. The client *must* have the `password` grant type 
-4. The client *must* be enabled to include claims in the Id Token.
-5. The keys used in the jwks for the client need to be saved in a keystore and have `gluu-radius` point 
+1. The client *must* have the `password` grant type 
+1. The client *must* be enabled to include claims in the Id Token.
+1. The keys used in the jwks for the client need to be saved in a keystore and have `gluu-radius` point 
    to them as specified in the [section above](./gluu-radius.md#using-an-external-jwks).
 You can take a look at the default OpenID client that ships with Gluu Radius to have an idea.
 
 #### Constraints on using a custom authentication script
 1. The script must be of type `Resource Owner Password Credentials` 
-2. The script *must* accept and process a `__password` http post parameter containing the user's password and not the `password`
+1. The script *must* accept and process a `__password` http post parameter containing the user's password and not the `password`
    http post parameter.
-3. The script *must* accept and process a `__step` http post parameter.
+1. The script *must* accept and process a `__step` http post parameter.
    1. When `__step` is equal to `initiate_auth` , the custom script *must* authenticate the user using the provided credentials      and *must* create a session on the server (authenticated or not) and return the session id in the idtoken with a claim
       name of `__session_id`. If the user can't be authenticated, the script must return false. 
-   2. When `__step` is equal to `verify_auth`, the custom script *must* get the http post parameter called `__session_id`
+   1. When `__step` is equal to `verify_auth`, the custom script *must* get the http post parameter called `__session_id`
       and verify if the associated session is authenticated. If it's not authenticated , the script *must* return `false`.
 You can take a look at the default Custom Script that ships with gluu radius to have an idea.
 
