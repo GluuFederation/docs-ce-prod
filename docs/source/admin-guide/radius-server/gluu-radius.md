@@ -59,9 +59,9 @@ From the oxTrust UI , go to `Radius` > `Radius Clients`. A list of Radius / Nas 
 
 - To add a new Radius Client, click `Add Radius Client`. 
 
-- To edit an existing client's details, click on an existing client's name.
+- To edit an existing client's details, click an existing client's name.
 
-- To delete multiple clients at the same time, bulk select one or more radius clients to delete many.
+- To delete multiple clients at the same time, bulk select one or more radius clients and click `Delete`.
 
 ![gluu-radius-clients](../../img/admin-guide/radius-server/gluu-radius-clients.png)
 
