@@ -1,41 +1,26 @@
-Dev repo for 2.4.4 docs upgrade -- merged from 2.4.4 docs
+# docs-ce-prod
 
+**Each branch represents a version of CE**   
 
-# Gluu Server Documentation
+This repo holds all versions of CE docs and includes scripts to publish. All docs are processed using mkdocs. This repo is organized with branches for each version of the documentation.
 
-Install /virtualenv/ if necessary.
-```
-$ sudo pip install virtualenv
-```
-Create a local python environment and install the version of mkdocs we used to make our custom theme:
-```
-$ virtualenv env
-$ env/bin/pip install -r requirements.txt
-```
+## Documentation styleguide 
 
-For more information, please visit the [mkdocs website](http://www.mkdocs.org)
+When contributing documentation, please refer to the [styleguide](https://github.com/GluuFederation/docs-style-guide) to align with existing formatting. 
 
-To generate the documentation 
-```
-$ env/bin/mkdocs build
-```
-This will create a directory called 'site' which has the 'index.html' for viewing in your browser.
+## Making changes
+Fork, clone, and make a pull request.
 
-To run the server locally
-```
-$ env/bin/mkdocs serve
-```
-The home repository for this project is:
-- https://github.com/GluuFederation/docs
+**Note: "Master" is the branch for editing this `README.md`.  You will not see documentation files until you check out the specific branch.**
 
-If you would like to contribute documentation, please post a message on [Gluu Support](http://support.gluu.org)
+## Check out the docs
 
-## License
-> Copyright © 2014 Gluu, Inc.
-> 
-> Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-> 
-> The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-> 
-> THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+`$ git checkout <branchname>`
+
+## Update (for those who have privileges)
+
+```
+/path/to/repo/branchname (branchname)
+$ ./update-site-local-sh
+```
 
