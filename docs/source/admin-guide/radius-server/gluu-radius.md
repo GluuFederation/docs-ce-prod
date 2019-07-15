@@ -13,10 +13,10 @@ Gluu Radius is an available component from version 4.0. During installation , wh
 As mentioned above, Gluu Radius is based on the tinyradius java library. The library uses a single threaded, synchronous model to handle requests. This implies significant performance degradation when handling a large volume of requests, or 
 long lived requests. To handle larger volumes, we recommend purchasing [Radiator](https://radiatorsoftware.com/products/radiator/) and using [our plugin](./gluu-radiator.md) for authentication.
 
-## Gluu Radius Service 
+## Service 
 Gluu Radius runs as a service from within the Linux container. Certain configuration settings will require a service restart. View the [Services Commands](../../operation/services.md) doc for commands for the OS in use. 
 
-## Gluu Radius Configuration 
+## Configuration 
 With Gluu Radius installed, a sidebar menu item called `Radius` will appear in the oxTrust UI which can be used to perform the following operations:
 
   - Configure the running instance of gluu-radius   
@@ -83,11 +83,11 @@ From the oxTrust UI, go to 'Radius > Radius Clients' , then click on `Add Radius
 ## Advanced Topics 
 This section covers advanced configuration topics. They are optional and can be skipped.
 
-### Gluu Radius config file 
+### Config file 
  The Gluu Radius configuration file can be found under `/etc/gluu/conf/radius/gluu-radius.properties` 
 in the linux container. There are a couple things you can change from the configuration file.
 
-#### Algorithm for JWT authentication
+#### JWT authentication algorithm
 By default `RS512` (RSASSA-PKCS1-v1_5 using SHA-512) is the algorithm used by Gluu Radius for authentication.
 First, from the oxTrust UI , go to the configuration settings for the OpenID client used by Gluu Radius
 (see `OpenId Configuration` in this document) and go to the `Encryption/Signing` Tab.
@@ -115,7 +115,7 @@ radius.jwt.auth.keyStorePin = <encrypted pin for the keystore>
 You can use the utility `/opt/gluu/bin/encode.py` to encrypt the plaintext keyStore password.
 
 
-### Custom OpenID clients and/or authentication scripts 
+### Customization Constraints 
 There are a couple of constraints if you will like to use your own OpenID client or custom script to authenticate
 using `gluu-radius`.
 
