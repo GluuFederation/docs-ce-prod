@@ -31,6 +31,8 @@ Follow these steps to integrate an external IDP for inbound SAML:
 
 1. Click on `Add new provider`
 
+1. Enter an identifier for this provider (letters, digits, and underscore characters allowed). Check [here](./passport.md#identifiers) to learn more about identifiers usage
+
 1. Enter a display name for the IDP
 
 1. In `type`, choose "saml"
@@ -132,17 +134,13 @@ The following diagram depicts the flow:
 
 ### About the Assertion Consumer Service (ACS) URL
 
-Unsolicited SAML responses can be posted to:
+Unsolicited SAML responses can be posted to the URL shown in the field labeled "Callback URL" (see the provider's detail form). The URL looks like
 
 ```
 https://<your-gluu-host>/passport/auth/saml/<PROVIDER-ID>/callback
 ```
 
-where `PROVIDER-ID` is the identifier assigned to the given IDP. In oxTrust, just visit `Passport` > `Providers` and see the ID column in the providers table. 
-
-![summary_table](../img/user-authn/passport/summary_table.png)
-
-This is the same endpoint used in the regular flow where SAML requests are previously sent to the IDP.
+where `PROVIDER-ID` is the identifier assigned to the given IDP. This is the same endpoint used in the regular flow where SAML requests are preliminary sent to the IDP.
 
 ### Configuring the flow
 
@@ -158,7 +156,6 @@ To enable IDP-initiated inbound capabilities for an existing IDP, follow these s
 - Click the `Add` button
 - Choose the IDP you want to enable usage of IDP-initiated flow
 - Accept the defaults and click on `Save`
-- Click on `Update` at the bottom
 
 ![IDP-initiated config for an IDP](../img/user-authn/passport/ii_choose_provider.png)
 

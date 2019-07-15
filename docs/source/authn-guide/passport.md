@@ -52,6 +52,10 @@ Out of the box, the following external identity providers can be integrated:
 
 A typical usage of OAuth inbound identity is for supporting social login, ie. making your users log in to your application by using their existing accounts at popular sites like Facebook, Twitter, Github, etc.
 
+### Identifiers
+
+When adding a provider, administrators will be asked to assign an ID to it. Instead of automatically generate one, we decided to let admins enter a value explicitly. This is for convenience since IDs end up being part of URLs and even ldap data such as the `oxExternalUid` attribute used to correlate external accounts with local accounts. Ideally IDs should be short, compact, and self explanatory instead of random obscure strings.
+
 ### Strategies
 
 Gluu Passport is built upon the popular authentication middleware [Passport.js](http://www.passportjs.org/), which supports plugins (AKA "*Strategies*") that allow integration of identity providers easily. There are hundreds of strategies available in [npm](https://www.npmjs.com/) (the Node.js Package Registry). You can integrate any strategy as long as it is under the OAuth umbrella.

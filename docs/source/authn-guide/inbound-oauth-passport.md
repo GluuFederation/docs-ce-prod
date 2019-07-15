@@ -41,6 +41,8 @@ Follow these steps to integrate an external OP for login to an OIDC application:
 
 1. Click on `Add new provider`
 
+1. Enter an identifier for this provider (letters, digits, and underscore characters allowed). Check [here](./passport.md#identifiers) to learn more about identifiers usage
+
 1. Enter a display name for the provider  (e.g "My ADFS", "MITREid Connect", etc.)
 
 1. In `type`, choose "openidconnect" (if you are using Gluu oxd as a mediator with an OP, check [this](#using-oxd-as-mediator) section)
@@ -63,15 +65,13 @@ To learn more about how mappings work, check the [tutorial](../tutorials/passpor
 
 The procedure for registering a client at the external provider may vary. In some setups, the OP may support dynamic registration of clients. Check the product documentation or inquire the administrator of the provider to integrate.
 
-When prompted for the redirect URI enter the following:
+When prompted for the redirect URI enter the URL shown in the field labeled "Callback URL" of provider's form. The URL looks like
 
 ```
 https://your-gluu-host/passport/auth/<PROVIDER-ID>/callback
 ```
 
-where `PROVIDER-ID` is the identifier assigned to the recently added provider. This can be seen in the summary table of providers (ID column). In oxTrust, navigate to `Passport` > `Providers`.
-
-![summary_table](../img/user-authn/passport/summary_table.png)
+where `PROVIDER-ID` is the identifier assigned to the recently added provider.
 
 After the process is finished, you should be given a client ID and a client Secret.
 
@@ -163,6 +163,8 @@ The following are the steps required to offer social login in an OIDC applicatio
 
 1. Click on `Add new provider`
 
+1. Enter an identifier for this provider (letters, digits, and underscore characters allowed). Check [here](./passport.md#identifiers) to learn more about identifiers usage
+
 1. Enter a display name for the provider (e.g "Yahoo!", "Windows Live", "Foursquare", etc.)
 
 1. In `type` choose "oauth"
@@ -238,15 +240,13 @@ Every provider has its own procedure for issuing client credentials (AKA client 
 - [Twitter](https://apps.twitter.com)   
 - [Facebook](https://developers.facebook.com)       
 
-To create an application, you will need to provide information like an application name or ID, domain name of your application, and authorization callback URLs. The callback URL is in the following format:
+To create an application, you will need to provide information like an application name or ID, domain name of your application, and authorization callback URLs. The callback URL is shown in the field labeled "Callback URL" of provider's form. The URL looks like
 
 ```
 https://your-gluu-host/passport/auth/<PROVIDER-ID>/callback
 ```
 
-where `PROVIDER-ID` is the identifier assigned to the provider recently added. This can be seen in the summary table of providers (ID column). In oxTrust, navigate to `Passport` > `Providers`.
-
-![summary_table](../img/user-authn/passport/summary_table.png)
+where `PROVIDER-ID` is the identifier assigned to the recently added provider.
 
 Once the application is created, you will be given two pieces of data: client ID and client secret. Terminology varies depending on provider; sometimes it is called consumer key and consumer secret, or app ID and app secret, etc. For instance, [this is how it looks on Facebook](../img/user-authn/passport/fb-addurl.png).    
 
