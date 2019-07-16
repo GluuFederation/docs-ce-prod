@@ -111,7 +111,7 @@ The following tabs are included in the `JSON Configuration` menu:
 * [Cache Provider Configuration](#cache-provider-configuration)
 * [oxTrust Import Configuration](#oxtrust-import-configuration)
 
-![json-config-head](../img/admin-guide/oxtrust/json-config-head.png "JSON Configuration Headers")
+![JSON Configuration Headers](../img/admin-guide/oxtrust/json-config-head.png)
 
 ### oxTrust Configuration
 From this tab, you can access and edit the oxTrust JSON configuration file. 
@@ -138,6 +138,8 @@ This page also contains the supported response, grants, and algorithms.
 The Gluu Server administrator can manage oxAuth sessions by adding the desired session time in seconds as the value for the `sessionIdUnusedLifetime` field. Check the [session management](../admin-guide/session.md) section of the documentation to learn more.
 
 ### Cache Provider Configuration
+
+![Cache Provider Configuration](../img/admin-guide/oxtrust/cache-provider-configv4.png)
 
 The following cache providers are now supported and can be selected via the `cacheProviderType` combo box field:
 
