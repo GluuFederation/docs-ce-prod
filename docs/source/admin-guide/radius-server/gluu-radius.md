@@ -6,12 +6,13 @@ Gluu Radius. It is based on the [tinyradius](http://tinyradius.sourceforge.net/)
 It supports radius authentication, but does not provide radius accounting support. Radius accounting 
 packets are simply ignored.
 
-## Installation  
-Gluu Radius is an available component from version 4.0. During installation , while [running setup.py](../../installation-guide/install.md#run-setuppy), simply select `Y` when you are asked to install Gluu Radius.
-
-## Performance Considerations 
+### Performance Considerations 
 As mentioned above, Gluu Radius is based on the tinyradius java library. The library uses a single threaded, synchronous model to handle requests. This implies significant performance degradation when handling a large volume of requests, or 
 long lived requests. To handle larger volumes, we recommend purchasing [Radiator](https://radiatorsoftware.com/products/radiator/) and using [our plugin](./gluu-radiator.md) for authentication.
+
+
+## Installation  
+Gluu Radius is an available component from version 4.0. During installation , while [running setup.py](../../installation-guide/install.md#run-setuppy), simply select `Y` when you are asked to install Gluu Radius.
 
 ## Service 
 Gluu Radius runs as a service from within the Linux container. Certain configuration settings will require a service restart. View the [Services Commands](../../operation/services.md) doc for commands for the OS in use. 
