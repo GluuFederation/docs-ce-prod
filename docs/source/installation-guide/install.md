@@ -115,28 +115,6 @@ yum clean all
 yum install gluu-server-4.0
 ```
 
-#### RHEL 6.x
-
-```
-wget https://repo.gluu.org/rhel/Gluu-rhel6.repo -O /etc/yum.repos.d/Gluu.repo
-```
-
-```
-wget https://repo.gluu.org/centos/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU
-```
-
-```
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU
-```
-
-```
-yum clean all
-```
-
-```
-yum install gluu-server-4.0
-```
-
 #### Debian 9 (Stretch)
 
 ```
@@ -177,7 +155,7 @@ apt-get install gluu-server-4.0
 
 The Gluu Server is a chroot container, which must be started to proceed. 
 
-For Red Hat 6.x, Ubuntu 16, and Debian 8, run the following commands:
+For Ubuntu 16, and Debian 8, run the following commands:
 
 ```
 service gluu-server-4.0 start
@@ -331,20 +309,6 @@ rm -rf /opt/gluu-server-4.0.save
 
 ```
 yum remove gluu-server-4.0 
-```
-
-```
-rm -rf /opt/gluu-server-4.0.save
-```
-
-### Uninstall Red Hat 6.x 
-
-```
-service gluu-server-4.0 stop
-```
-
-```
-yum remove gluu-server-4.0
 ```
 
 ```
