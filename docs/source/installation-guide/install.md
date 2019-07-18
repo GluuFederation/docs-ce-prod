@@ -93,15 +93,14 @@ yum clean all
 yum install gluu-server-4.0
 ```
 
-
-#### RHEL 6.x
-
-```
-wget https://repo.gluu.org/rhel/Gluu-rhel6.repo -O /etc/yum.repos.d/Gluu.repo
-```
+#### RHEL 7.x
 
 ```
-wget https://repo.gluu.org/centos/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU
+wget https://repo.gluu.org/rhel/Gluu-rhel7.repo -O /etc/yum.repos.d/Gluu.repo
+```
+
+```
+wget https://repo.gluu.org/rhel/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU
 ```
 
 ```
@@ -116,14 +115,14 @@ yum clean all
 yum install gluu-server-4.0
 ```
 
-#### RHEL 7.x
+#### RHEL 6.x
 
 ```
-wget https://repo.gluu.org/rhel/Gluu-rhel7.repo -O /etc/yum.repos.d/Gluu.repo
+wget https://repo.gluu.org/rhel/Gluu-rhel6.repo -O /etc/yum.repos.d/Gluu.repo
 ```
 
 ```
-wget https://repo.gluu.org/rhel/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU
+wget https://repo.gluu.org/centos/RPM-GPG-KEY-GLUU -O /etc/pki/rpm-gpg/RPM-GPG-KEY-GLUU
 ```
 
 ```
@@ -317,20 +316,6 @@ apt-get remove gluu-server-4.0
 rm -rf /opt/gluu-server-4.0.save
 ```
 
-### Uninstall Red Hat 6.x 
-
-```
-service gluu-server-4.0 stop
-```
-
-```
-yum remove gluu-server-4.0
-```
-
-```
-rm -rf /opt/gluu-server-4.0.save
-```
-
 ### Uninstall Centos 7.x and Red Hat 7.x
 
 ```
@@ -343,6 +328,20 @@ rm -rf /opt/gluu-server-4.0.save
 
 ```
 yum remove gluu-server-4.0 
+```
+
+```
+rm -rf /opt/gluu-server-4.0.save
+```
+
+### Uninstall Red Hat 6.x 
+
+```
+service gluu-server-4.0 stop
+```
+
+```
+yum remove gluu-server-4.0
 ```
 
 ```
