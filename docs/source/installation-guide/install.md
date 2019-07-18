@@ -133,37 +133,9 @@ apt-get update
 apt-get install gluu-server-4.0
 ```
 
-#### Debian 8 (Jessie)
-
-```
-echo "deb https://repo.gluu.org/debian/ stable main" > /etc/apt/sources.list.d/gluu-repo.list
-```
-
-```
-curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -
-```
-
-```
-apt-get update
-```
-
-```
-apt-get install gluu-server-4.0
-```
-
 ### Start the server and log in
 
 The Gluu Server is a chroot container, which must be started to proceed. 
-
-For Ubuntu 16, and Debian 8, run the following commands:
-
-```
-service gluu-server-4.0 start
-```
-
-```
-service gluu-server-4.0 login
-```
 
 For Centos 7.x, Red Hat 7.x, Ubuntu 18 and Debian 9, run the following commands: 
 
@@ -181,6 +153,16 @@ For Centos 7.x, Red Hat 7.x, Ubuntu 18 and Debian 9, run the following commands:
 
 !!! Note
     Only use `enable` the first time you start the Gluu Server.
+
+For Ubuntu 16, run the following commands:
+
+```
+service gluu-server-4.0 start
+```
+
+```
+service gluu-server-4.0 login
+```
 
 ### Run `setup.py`
 
@@ -283,7 +265,7 @@ apt-get remove gluu-server-4.0
 rm -fr /opt/gluu-server.save
 ```
 
-### Uninstall Ubuntu Server 16.4.x, Debian 8 (Jessie) or Debian 9 (Stretch):
+### Uninstall Ubuntu Server 16.4.x or Debian 9 (Stretch):
 
 ```
 service gluu-server-4.0 stop
