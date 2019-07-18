@@ -16,7 +16,12 @@ The Gluu Server has a built-in service to remove unused and expired files. It ru
 A list of built-in base DNs is printed upon server startup (the log level must be set to `debug`). This is an example of the log output:
 
 ```
-[org.xdi.oxauth.service.CleanerTimer] (CleanerTimer.java:201) - Built-in base dns: [ou=registration_requests,ou=u2f,o=@!2128.9AFB.B310.EB30!0001!690B.5F8F,o=gluu, ou=resources,ou=uma,o=@!2128.9AFB.B310.EB30!0001!690B.5F8F,o=gluu, ou=clients,o=@!2128.9AFB.B310.EB30!0001!690B.5F8F,o=gluu, ou=people,o=@!2128.9AFB.B310.EB30!0001!690B.5F8F,o=gluu, ou=pct,ou=uma,o=@!2128.9AFB.B310.EB30!0001!690B.5F8F,o=gluu, o=@!2128.9AFB.B310.EB30!0001!690B.5F8F,o=gluu, ou=registered_devices,ou=u2f,o=@!2128.9AFB.B310.EB30!0001!690B.5F8F,o=gluu, ou=metric,o=@!2128.9AFB.B310.EB30!0001!690B.5F8F,o=gluu]
+[org.xdi.oxauth.service.CleanerTimer] (CleanerTimer.java:201) - Built-in base dns:  
+[ou=registration_requests,ou=u2f,o=@!2128.9AFB.B310.EB30!0001!690B.5F8F,o=gluu,   
+ou=resources,ou=uma,o=@!2128.9AFB.B310.EB30!0001!690B.5F8F,o=gluu, ou=clients,o=@!2128.9AFB.B310.EB30!0001!690B.5F8F,o=gluu,  
+ou=people,o=@!2128.9AFB.B310.EB30!0001!690B.5F8F,o=gluu, ou=pct,ou=uma,o=@!2128.9AFB.B310.EB30!0001!690B.5F8F,o=gluu,  
+o=@!2128.9AFB.B310.EB30!0001!690B.5F8F,o=gluu, ou=registered_devices,ou=u2f,o=@!2128.9AFB.B310.EB30!0001!690B.5F8F,o=gluu,  
+ou=metric,o=@!2128.9AFB.B310.EB30!0001!690B.5F8F,o=gluu]
 ```
 
 ## Affected attributes
