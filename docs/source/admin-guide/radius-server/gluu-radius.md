@@ -3,8 +3,10 @@
 ## Overview
 The Gluu Server now ships with a [RADIUS](https://en.wikipedia.org/wiki/RADIUS) server called Gluu Radius. It is based on the [TinyRadius](http://tinyradius.sourceforge.net/) Java library. It supports RADIUS authentication, but does not provide RADIUS accounting support. RADIUS accounting packets are simply ignored.
 
+<!--
 ### Performance Considerations 
 As mentioned above, Gluu Radius is based on the TinyRadius Java library. The library uses a single-threaded, synchronous model to handle requests. This implies significant performance degradation when handling a large volume of requests, or long lived requests. To handle larger volumes, we recommend purchasing [Radiator](https://radiatorsoftware.com/products/radiator/) and using [our plugin](./gluu-radiator.md) for authentication.
+-->
 
 ## Installation  
 Gluu Radius is an available component from version 4.0. During installation, while [running setup.py](../../installation-guide/install.md#run-setuppy), simply select `Y` when you are asked to install Gluu Radius.
