@@ -209,8 +209,11 @@ For Centos 7.x, Red Hat 7.x, Ubuntu 18 and Debian 9, run the following commands:
 Configuration is completed by running `setup.py` from inside the chroot container. This generates certificates, salt values, and renders configuration files. 
 
 ```
-# cd /install/community-edition-setup
-# ./setup.py
+cd /install/community-edition-setup
+```
+
+```
+./setup.py
 ```   
 
 A prompt will appear to answer a few questions about the deployment. Hit `Enter` to accept the default values. 
