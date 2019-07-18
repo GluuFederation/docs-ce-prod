@@ -6,12 +6,6 @@ Many organizations need to cluster their Gluu Server in order to provide failove
 
 The instructions below provide detailed steps for manually configuring HA across multuple instances of the Gluu Server. Although we provide instructions, clustering for production scenarios is not a simple task, and is **outside the scope** of free community support.  
 
-Instead, we offer two alternative supported strategies for HA, both of which require a [Gluu VIP Subscription](https://gluu.org/pricing/#vip) *or* a support agreement with one of our OEM partners. 
-
-1. [Cluster Manager (CM)](https://gluu.org/docs/cm), our GUI tool for automating many of the complicated steps below. 
-
-1. [Docker Edition (DE)](https://gluu.org/docs/de), which provides assets, recipes, and examples for running all Gluu Services in their own Linux containers. DE not only enables HA, but also provides operational, performance, and security advantages over traditional VM-based deployments of Gluu.
-
 For more details about supported options for HA, [schedule a call](https://gluu.org/booking). 
 
 ## Concept
