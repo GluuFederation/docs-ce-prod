@@ -4,10 +4,14 @@ This page explains the Cache Provider configuration that can be accessed by navi
 
 The following cache providers are now supported and can be selected via the cacheProviderType combo box field (see screenshot below):
 
-[In Memory](#in-memory-configuration) - recommended for small deployments only   
-[Memcached](#memcached-configuration) - recommended for single cache server deployment  
-[Redis](#redis-configuration) - recommended for cluster deployments  
-[Native Persistence](#native-persistence-configuration) - recommended to avoid additional components installation. All cache entries are saved in persistence layers.  
+- [In Memory](#in-memory-configuration): recommended for small deployments only        
+
+- [Memcached](#memcached-configuration): recommended for single cache server deployment
+
+- [Redis](#redis-configuration): recommended for cluster deployments  
+
+- [Native Persistence](#native-persistence-configuration): recommended to avoid additional components installation. All cache entries are saved in persistence layers.  
+
 
 ## Cache Provider Properties
 ![image](../img/reference/config-cacheprovider.png)
