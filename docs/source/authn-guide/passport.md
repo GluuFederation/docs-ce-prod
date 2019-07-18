@@ -6,7 +6,7 @@ The Gluu Server bundles the Passport authentication middleware to enable inbound
 
 Passport consists of a Node.js application and a couple of oxAuth custom interception scripts and custom pages, which together coordinate the flows required for an inbound identity solution.
 
-Starting with Gluu Server CE 4.0, all actions required to configure the inbound identity environment can be achieved via the oxTrust admin UI.
+Starting with Gluu Server CE 4.0, all configuration for the inbound identity environment takes place in the oxTrust admin UI.
  
 ## Passport setup
 
