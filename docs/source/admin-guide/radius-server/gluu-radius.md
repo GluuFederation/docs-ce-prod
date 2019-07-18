@@ -20,6 +20,8 @@ With Gluu Radius installed, a sidebar menu item called `Radius` will appear in t
   - Configure the running instance of gluu-radius   
   - Add/Edit/Remove NAS/Radius clients    
 
+In addition, the Gluu Radius config file can be found in the Linux container under: `/etc/gluu/conf/radius/gluu-radius.properties`
+
 ### Basic Configuration 
  In oxTrust, navigate to `Radius` > `Server` Configuration and select the `Basic Configuration` tab.
  
@@ -75,22 +77,32 @@ From the oxTrust UI, go to 'Radius > Radius Clients' , then click on `Add Radius
 ![gluu-radius-add-client](../../img/admin-guide/radius-server/gluu-radius-add-client.png)
 
 ## Advanced Topics 
-This section covers advanced configuration topics. They are optional and can be skipped.
+This section covers optional advanced configuration topics. 
 
-### Config file 
- The Gluu Radius configuration file can be found under `/etc/gluu/conf/radius/gluu-radius.properties` in the Linux container. There are a couple things you can change from the configuration file.
+### Change JWT authentication algorithm
+By default, the algorithm used by Gluu Radius for authentication is `RS512` (RSASSA-PKCS1-v1_5 using SHA-512). 
 
-#### JWT authentication algorithm
-By default `RS512` (RSASSA-PKCS1-v1_5 using SHA-512) is the algorithm used by Gluu Radius for authentication. First, from the oxTrust UI , go to the configuration settings for the OpenID client used by Gluu Radius (see `OpenId Configuration` in this document) and go to the `Encryption/Signing` Tab. Change the option `JWS alg Algorithm for Authentication Method to Token Endpoint` to the algorithm of your choice. The algorithm *must* be a keypair algorithm. In the JWKS section (or in your jwks if you provided a URL), copy the `kid` corresponding to the algorithm you selected, and change the following line in the Gluu Radius configuration file.
+To change the algorithm, follow these steps: 
 
-```
-radius.jwt.auth.keyId = <kid>
-```
+- In oxTrust, navigate to the configuration settings for the OpenID client used by Gluu Radius (see [OpenID Configuration](#openid-configuration)) and tab over to `Encryption/Signing`. 
 
-Once you are done , [restart](../../operation/services.md) the `gluu-radius` service.
+- Change the option `JWS alg Algorithm for Authentication Method to Token Endpoint` to the algorithm of your choice. 
 
-#### External jwks 
-Using an external jwks requires you pasting the contents of the jwks into the `JWKS` section in the `Encryption/Signing` tab of the OpenID client used by `gluu-radius` for authentication. You also need to provide a keystore , which contains all of the keys , with each entry name having the corresponding `kid` for each JWKS entry. Generation of a keystore file and/or a `JWKS` is outside the scope of this document. You will need to change the following in the configuration file.
+    !!! Note
+        The algorithm *must* be a keypair algorithm. 
+    
+- Now, in the JWKS section (or in your jwks if you provided a URL), copy the `kid` corresponding to the algorithm you selected, and change the following line in the Gluu Radius configuration file:
+
+    ```
+    radius.jwt.auth.keyId = <kid>
+    ```
+
+- Once complete, [restart](../../operation/services.md) the `gluu-radius` service.
+
+### External jwks 
+Using an external jwks requires the contents of the jwks to be pasted into the `JWKS` section in the `Encryption/Signing` tab of the OpenID client used by `gluu-radius` for authentication. 
+
+A keystore must also be provided, which contains all of the keys, with each entry name having the corresponding `kid` for each JWKS entry. Generation of a keystore file and/or a `JWKS` is outside the scope of this document. Change the following in the configuration file:
 
 ```
 radius.jwt.keyStoreFile = <location of keystore file>
@@ -98,7 +110,7 @@ radius.jwt.auth.keyId = <kid of public key used for authentication>
 radius.jwt.auth.keyStorePin = <encrypted pin for the keystore>
 ```
 
-You can use the utility `/opt/gluu/bin/encode.py` to encrypt the plaintext keyStore password.
+Use the utility `/opt/gluu/bin/encode.py` to encrypt the plaintext keyStore password.
 
 ### Customization Constraints 
 There are a couple of constraints if you will like to use your own OpenID client or custom script to authenticate
