@@ -112,11 +112,11 @@ radius.jwt.auth.keyStorePin = <encrypted pin for the keystore>
 
 Use the utility `/opt/gluu/bin/encode.py` to encrypt the plaintext keyStore password.
 
-### Customization Constraints 
-There are a couple of constraints if you will like to use your own OpenID client or custom script to authenticate
-using `gluu-radius`.
 
-#### Custom OpenID client 
+### Custom OpenID client 
+
+There are a few constraints if a custom OpenID client is in use: 
+
 1. The client *must* support private key JWT authentication.
 1. The client *must* have the `super_gluu_ro_session` scope or any scope which will add a `__session_id`
    claim containing an authenticated session id to the idtoken for `password` token grant requests.
@@ -125,9 +125,12 @@ using `gluu-radius`.
 1. The keys used in the jwks for the client need to be saved in a keystore and have `gluu-radius` point 
    to them as specified in the [section above](#using-an-external-jwks).
    
-You can take a look at the default OpenID client that ships with Gluu Radius to see an example
+To see an example, review the default OpenID Client that ships with Gluu Radius. 
 
-#### Custom authentication script
+### Custom authentication script
+
+Likewise, there are a few additional constraints if a custom authentication script is in use: 
+
 1. The script must be of type `Resource Owner Password Credentials` 
 1. The script *must* accept and process a `__password` http post parameter containing the user's password and not the `password`
    http post parameter.
@@ -135,4 +138,4 @@ You can take a look at the default OpenID client that ships with Gluu Radius to 
    1. When `__step` is equal to `initiate_auth` , the custom script *must* authenticate the user using the provided credentials      and *must* create a session on the server (authenticated or not) and return the session id in the idtoken with a claim name of `__session_id`. If the user can't be authenticated, the script must return false. 
    1. When `__step` is equal to `verify_auth`, the custom script *must* get the http post parameter called `__session_id` and verify if the associated session is authenticated. If it's not authenticated , the script *must* return `false`.
    
-You can take a look at the default Custom Script that ships with Gluu Radius to see an example.
+To see an example, review the default Custom Script that ships with Gluu Radius.
