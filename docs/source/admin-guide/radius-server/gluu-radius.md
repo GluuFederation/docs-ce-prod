@@ -138,4 +138,4 @@ Likewise, there are a few additional constraints if a custom authentication scri
    1. When `__step` is equal to `initiate_auth` , the custom script *must* authenticate the user using the provided credentials      and *must* create a session on the server (authenticated or not) and return the session id in the idtoken with a claim name of `__session_id`. If the user can't be authenticated, the script must return false. 
    1. When `__step` is equal to `verify_auth`, the custom script *must* get the http post parameter called `__session_id` and verify if the associated session is authenticated. If it's not authenticated , the script *must* return `false`.
    
-To see an example, review the default Custom Script that ships with Gluu Radius.
+To see an example, review the default authentication script that ships with Gluu Radius.
