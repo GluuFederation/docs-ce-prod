@@ -18,7 +18,7 @@ There are a few system specific notes to follow:
 
 - **CentOS**: selinux must be set to permissive in /etc/selinux/config
 
-- **Debian 8**: make sure the `apt-transport-https` package is already installed on the target system before the `gluu-repo.list` is added. Otherwise the installation might be hindered.
+- **Debian**: make sure the `apt-transport-https` package is already installed on the target system before the `gluu-repo.list` is added. Otherwise the installation might be hindered.
 
 - **Linux containers (e.g. Docker)**: This guide does not support installation via Linux containers. See [Gluu Server Docker Edition (DE)](https://gluu.org/docs/de) documentation for detailed instructions.
   
