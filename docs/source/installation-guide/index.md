@@ -26,15 +26,14 @@ A few additional notes about system requirements:
 - Gluu must be deployed on a server or VM with a static IP Address. The static IP address should resolve to a computer hostname which can be achieved by adding an entry to the DNS server or in `/etc/hosts`.     
 
 - If setting up a VM locally, we recommend using VM Player (**not** Virtual Box).
-
     
 ## Supported Operating Systems
 Deploy Gluu on a server or VM with one of the following supported operating systems:
 
 - Ubuntu 16, 18
 - CentOS 7.x
-- RHEL 6.x, 7.x
-- Debian 8
+- RHEL 7.x
+- Debian 8, 9
 
 ## Ports
 
