@@ -154,13 +154,16 @@ Full configuration options can be found at the [Cache Provider Reference doc](..
 
 ![oxtrustimport](../img/admin-guide/oxtrust/oxtrust-importv4.png)
 
-The oxTrust Import Person Configuration page contains the configuration for the file method of importing users into the Gluu Server. The administrator can import users from an `xls` file which must be defined in this tab to import data in the LDAP attributes. The default format should contain the following fields: 
+The oxTrust Import Person Configuration page contains attribute values that are available for import via file. If importing users via file, all attributes included in the file should be specified in this table. 
 
-- givenname
-- sn
-- uid
-- firstname, 
-etc..
+Each attribute should include values the following fields: 
+
+- ldapName       
+- displayName      
+- dataType   
+- required       
+
+Learn how to import users via file in the [User Management guide](../user-management/local-user-management.md#import-people-in-oxtrust)
 
 ## Manage Authentication
 
