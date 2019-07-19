@@ -101,7 +101,7 @@ Gluu administrators can import users from an excel file by navigating to `Users`
 
 ### File structure
 
-The excel file needs to contain the following default fields from which user data will be pulled:  
+The excel file needs to contain the following default fields:  
 
 - Username   
 
@@ -111,13 +111,10 @@ The excel file needs to contain the following default fields from which user dat
 
 - Email   
 
-!!! Note
+!!! Note 
     Make sure to use the *exact* spelling as shown above. 
 
-Gluu administrators can define additionals supported fields for import by navigating to:  
+!!! Note
+    If `User Status` is not included, the default is set to Inactive 
 
-- Log into Gluu Admin UI   
-   
-- Navigate to `Organization Configuration` > `JSON Configuration`   
-   
-- Select `oxTrust Import Configuration` tab   
+Additional fields can be defined for import in oxTrust by navigating to `Organization Configuration` > `JSON Configuration` and selecting the tab for `oxTrust Import Configuration`. 
