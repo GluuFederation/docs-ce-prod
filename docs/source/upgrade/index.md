@@ -1,4 +1,4 @@
-# Upgrade to Gluu Server 4.0
+# Upgrade to Gluu Server 4.0 Beta
 
 ## Overview
 The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will need to either use our in-place upgrade script or explicitly install the new version and export/import your data. Find your existing version below for upgrade instructions to Gluu Server 4.0. 
