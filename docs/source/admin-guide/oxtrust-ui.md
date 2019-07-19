@@ -1,7 +1,7 @@
 # oxTrust Administrative Graphical User Interface (GUI)
 
 ## Overview 
-This section covers various features associated with managing your federation service via the Gluu Server interface ("oxTrust"). There is a corresponding page in the Gluu Server user interface for each of the sections below. When necessary, this document will link to dedicated sections within the docs where additional operational details are provided.
+This section covers various features associated with managing your federation service via the Gluu Server interface ("oxTrust"). There is a corresponding page in the Gluu Server user interface for most of the sections below. When necessary, this document will link to dedicated sections within the docs where additional operational details are provided.
 
 ## Accessing the UI
 The Gluu Server administration interface is accessible by navigating to `https://hostname` (the one you provided during setup). When you first complete an installation, the default username is `admin` and the password is the same as the `LDAP superuser` password. 
@@ -13,7 +13,7 @@ After successful authentication, the administrator is taken to the Dashboard. So
 
 ## Localization of oxTrust UI
 
-The oxTrust UI can be customized to your preferred language. The default language is English. To change it to your preferred language, you have to edit a few properties file, found within `identity.war`. The path for `identity.war` is `/opt/gluu/jetty/identity`, which can be found in the `chroot` container.
+The oxTrust UI supports localization. The default language is English. To set a new preferred language, edit a few properties file, found within `identity.war`. The path for `identity.war` is `/opt/gluu/jetty/identity`, which can be found in the `chroot` container.
 
 oxAuth contains the following resource bundles:   
 - [messages_en.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.0/Server/src/main/resources/oxauth_en.properties)       
@@ -50,8 +50,7 @@ oxTrust UI can be used to change the language once oxtrust_[language_code].prope
 ![localization](../img/admin-guide/oxtrust/localization.png)
 
 ## Configuration   
-From the configuration tab, the Gluu Server administrator can manage 
-certain non-protocol related tasks.
+From the configuration tab, the Gluu Server administrator can manage certain non-protocol related tasks.
 
 ### Organization Configuration
 
@@ -233,7 +232,7 @@ When a [custom authentication script](../authn-guide/customauthn.md) is enabled,
 -->
 
 ## Manage Custom Scripts
-The Gluu Server exposes interception scripts in places where it is common for organizations to implement custom workflows, or changes to the look and feel of the Gluu Server. The most commonly used scripts are for authentication, authorization, and identity synchronization. Each type of script has its own interface--in other words, what methods are available. For more information, see the reference page detailing each type of [interception script](./custom-script.md).
+The Gluu Server exposes interception scripts for organizations to implement custom workflows. The most commonly used scripts are for authentication, authorization, and identity synchronization. For more information, see the [interception script](./custom-script.md) documentation.
 
 ![Manage Custom Scripts](../img/admin-guide/oxtrust/managecustomscriptsv4.png)
 
