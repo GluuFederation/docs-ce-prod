@@ -101,17 +101,21 @@ Users can be imported from an excel file by navigating to `Users` > `Import Peop
 
 ### File structure
 
-The excel file *must* contain the following default fields (with spelling matching exactly as below):  
+The excel file can contain the following default fields (with spelling matching exactly as below):  
 
-- Username   
+- Username (*required*)    
 
-- First Name   
+- First Name (*required*)
 
-- Last Name   
+- Last Name (*required*)
 
-- Email   
+- Email (*required*)
+
+- Password
+
+- User Status
 
 !!! Note
-    If `User Status` is not included, the default is set to Inactive 
+    If `User Status` is not included, the default is set to Inactive. 
 
 Additional fields can be defined for import by navigating to `Organization Configuration` > `JSON Configuration` and selecting the tab for `oxTrust Import Configuration`. [Read the docs](../admin-guide/oxtrust-ui.md#oxtrust-import-configuration).    
