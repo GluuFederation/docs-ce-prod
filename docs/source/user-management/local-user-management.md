@@ -116,6 +116,6 @@ The excel file can contain the following default fields (with spelling matching 
 - User Status
 
 !!! Note
-    If `User Status` is not included, the default is set to Inactive. 
+    If `User Status` is not included, the user(s) will be set to Inactive. 
 
 Additional fields can be defined for import by navigating to `Organization Configuration` > `JSON Configuration` and selecting the tab for `oxTrust Import Configuration`. [Read the docs](../admin-guide/oxtrust-ui.md#oxtrust-import-configuration).    
