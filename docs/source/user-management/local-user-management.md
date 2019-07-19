@@ -87,37 +87,37 @@ Gluu administrators can import users from an excel file by navigating to `Users`
 
 ![image](../img/admin-guide/user/import-people_add.png)
 
-* Click the `Add` button to select the file from which the users will be imported. The supported excel formats are `xls` and `xlsx`.
+- Click the `Add` button to select the file from which the users will be imported. The supported excel formats are `xls` and `xlsx`.
 
-* If one field should contain multiple values, provide them in the same cell separated by semicolons, as in column H in the following example:
+- If one field should contain multiple values, provide them in the same cell separated by semicolons, as in column H in the following example:
 
 ![Image showing multiple attributes in the same cell](../img/admin-guide/user/multiattributes.png)
 
-* Click the `Validate` button to validate the user list.   
+- Click the `Validate` button to validate the user list.   
 
-![image](../img/admin-guide/user/import-people_validate.png)
+    ![image](../img/admin-guide/user/import-people_validate.png)
 
-* Click `Import` to complete the import of users.     
+- Click `Import` to complete the import of users.     
 
 ### File structure
 
 The excel file needs to contain the following default fields from which user data will be pulled:  
 
-* Username   
+- Username   
 
-* First Name   
+- First Name   
 
-* Last Name   
+- Last Name   
 
-* Email   
+- Email   
 
 !!! Note
     Make sure to use the *exact* spelling as shown above. 
 
 Gluu administrators can define additionals supported fields for import by navigating to:  
 
-   * Log into Gluu Admin UI   
+- Log into Gluu Admin UI   
    
-   * Navigate to `Organization Configuration` > `JSON Configuration`   
+- Navigate to `Organization Configuration` > `JSON Configuration`   
    
-   * Select `oxTrust Import Configuration` tab   
+- Select `oxTrust Import Configuration` tab   
