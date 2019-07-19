@@ -114,4 +114,4 @@ The excel file *must* contain the following default fields (with spelling matchi
 !!! Note
     If `User Status` is not included, the default is set to Inactive 
 
-Additional fields can be defined for import in oxTrust by navigating to `Organization Configuration` > `JSON Configuration` and selecting the tab for `oxTrust Import Configuration`. 
+Additional fields can be defined for import by navigating to `Organization Configuration` > `JSON Configuration` and selecting the tab for `oxTrust Import Configuration`. [Read the docs](../admin-guide/oxtrust-ui.md#oxtrust-import-configuration).    
