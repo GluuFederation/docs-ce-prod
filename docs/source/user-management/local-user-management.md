@@ -83,13 +83,13 @@ If any member of the Organization is required to be added in any specific group,
 
 ## Import People in oxTrust
 
-Gluu administrators can import users from an excel file by navigating to `Users` > `Import People`.
+Users can be imported from an excel file by navigating to `Users` > `Import People`.
 
 ![image](../img/admin-guide/user/import-people_add.png)
 
-- Click the `Add` button to select the file from which the users will be imported. The supported excel formats are `xls` and `xlsx`.
+- Click the `Add` button to select the file for import. Supported file formats are `xls` and `xlsx`.
 
-- If one field should contain multiple values, provide them in the same cell separated by semicolons, as in column H in the following example:
+- If one field contains multiple values, provide them in the same cell separated by semicolons, as shown in column H in the following example:
 
 ![Image showing multiple attributes in the same cell](../img/admin-guide/user/multiattributes.png)
 
@@ -101,7 +101,7 @@ Gluu administrators can import users from an excel file by navigating to `Users`
 
 ### File structure
 
-The excel file needs to contain the following default fields:  
+The excel file *must* contain the following default fields (with spelling matching exactly as below):  
 
 - Username   
 
@@ -110,9 +110,6 @@ The excel file needs to contain the following default fields:
 - Last Name   
 
 - Email   
-
-!!! Note 
-    Make sure to use the *exact* spelling as shown above. 
 
 !!! Note
     If `User Status` is not included, the default is set to Inactive 
