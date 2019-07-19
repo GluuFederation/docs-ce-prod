@@ -1,5 +1,5 @@
 # Project information
-site_name: Gluu Server 4.0 Docs
+site_name: Gluu Server 4.0 Beta Docs
 site_description: Documentation for Gluu Server Community Edition
 
 # Copyright
@@ -34,7 +34,7 @@ markdown_extensions:
 # Navigation
 nav:
 - 'Versions':
-    - '4.0': 'https://gluu.org/docs/ce/4.0/'
+    - '4.0 Beta': 'https://gluu.org/docs/ce/4.0/'
     - '3.1.6': 'https://gluu.org/docs/ce/3.1.6/'
     - '3.1.5': 'https://gluu.org/docs/ce/3.1.5/'
     - '3.1.4': 'https://gluu.org/docs/ce/3.1.4/'
