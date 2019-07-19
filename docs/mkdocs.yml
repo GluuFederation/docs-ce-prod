@@ -133,7 +133,7 @@ nav:
             - 'LDAP Schema': 'reference/schema.md'
 - Operation Guide:
         - 'Service Commands': 'operation/services.md'
-        - 'Upgrades': 'upgrade/index.md'
+#        - 'Upgrades': 'upgrade/index.md'
         - 'Patches': 'upgrade/patches.md'
         - 'Backups': 'operation/backup.md'
         - 'Security tips': 'operation/security.md'
