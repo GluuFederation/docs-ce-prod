@@ -34,7 +34,7 @@ The Gluu Server will create its file system under `/root/` and will be installed
 #### Ubuntu Server 18.04.x
 
 ```
-echo "deb https://repo.gluu.org/ubuntu/ bionic main" > /etc/apt/sources.list.d/gluu-repo.list
+echo "deb https://repo.gluu.org/ubuntu/ bionic-devel main" > /etc/apt/sources.list.d/gluu-repo.list
 ```
 
 ```
@@ -56,7 +56,7 @@ apt-get install gluu-server-4.0
 #### Ubuntu Server 16.04.x
 
 ```
-echo "deb https://repo.gluu.org/ubuntu/ xenial main" > /etc/apt/sources.list.d/gluu-repo.list
+echo "deb https://repo.gluu.org/ubuntu/ xenial-devel main" > /etc/apt/sources.list.d/gluu-repo.list
 ```
 
 ```
@@ -74,7 +74,7 @@ apt-get install gluu-server-4.0
 #### CentOS 7.x
 
 ```
-wget https://repo.gluu.org/centos/Gluu-centos7.repo -O /etc/yum.repos.d/Gluu.repo
+wget https://repo.gluu.org/centos/Gluu-centos-7-testing.repo -O /etc/yum.repos.d/Gluu.repo
 ```
 
 ```
@@ -96,7 +96,7 @@ yum install gluu-server-4.0
 #### RHEL 7.x
 
 ```
-wget https://repo.gluu.org/rhel/Gluu-rhel7.repo -O /etc/yum.repos.d/Gluu.repo
+wget https://repo.gluu.org/rhel/Gluu-rhel-7-testing.repo -O /etc/yum.repos.d/Gluu.repo
 ```
 
 ```
@@ -118,7 +118,7 @@ yum install gluu-server-4.0
 #### Debian 9 (Stretch)
 
 ```
-echo "deb https://repo.gluu.org/debian/ stretch-stable main" > /etc/apt/sources.list.d/gluu-repo.list
+echo "deb https://repo.gluu.org/debian/ stretch-testing main" > /etc/apt/sources.list.d/gluu-repo.list
 ```
 
 ```
