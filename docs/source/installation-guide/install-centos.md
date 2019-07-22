@@ -109,7 +109,7 @@ Wait about 10 minutes in total for the server to restart and finalize its config
 
 To prevent involuntary overwrites of the currently deployed instance (in case a newer version of the same package is found during regular OS updates), disable the previously added Gluu repositories after initial installation.
 
-`/etc/yum.repos.d/Gluu.repo` needs to be edited so that the `enabled=1` clause is changed to `enabled=0`        
+Edit `/etc/yum.repos.d/Gluu.repo` so that the `enabled=1` clause is changed to `enabled=0`        
 
 !!! Note
     The Gluu Server does **not** support package updates/upgrades via Linux package management (i.e. using commands like `# yum update` or `# apt-get update`). For upgrade instructions, see the [upgrade docs](../upgrade/index.md).
