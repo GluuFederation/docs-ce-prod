@@ -1,6 +1,6 @@
 # Session Management
 
-The Gluu Server OP stores user session data in its cache, whether it's in-memory, redis, memcached, or LDAP, depending on the `cacheProviderType` configuration property. 
+The Gluu Server OP stores user session data in its cache, whether it's in-memory, redis, memcached or the databse, depending on the `cacheProviderType` configuration property. 
 
 The OP session can have one of two states:
 
