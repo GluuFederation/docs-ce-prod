@@ -20,13 +20,14 @@ There are a few system specific notes to follow:
 
 - **Linux containers (e.g. Docker)**: This guide does not support installation via Linux containers. See [Gluu Server Docker Edition (DE)](https://gluu.org/docs/de) documentation for detailed instructions.
   
-
 ## Instructions
 
 ### Install the package
 
 Installation of the Gluu server will be done under `/root`. 
 The Gluu Server will create its file system under `/root/` and will be installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) remain the same as the host.
+
+Gluu Server CE 4.0 supports CentOS 7. Enter the following commands to install:
 
 ```
 wget https://repo.gluu.org/centos/Gluu-centos-7-testing.repo -O /etc/yum.repos.d/Gluu.repo
