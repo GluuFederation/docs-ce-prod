@@ -64,15 +64,15 @@ The administrator can use the following command line options to include addition
 
 Example Command: `# ./setup.py -ps` This command will install Gluu Server with Passport and Shibboleth IDP.
 
-#### Coucbase Server Setup (Experimental)
-Starting from CE-4.0, Gluu Server supports Couchbase Server as DB backend. To install with Couchbase, you need to download OS specific Couchbase package from https://www.couchbase.com/downloads (Enterprise version only), and save to `/opt/dist/couchbase`. For example, for Ubuntu-18,
+#### Couchbase Server Setup (Experimental)
+Starting in CE 4.0, Gluu Server supports Couchbase Server as a database backend. To install with Couchbase, you need to download the OS-specific Couchbase package from https://www.couchbase.com/downloads (Enterprise version only), and save to `/opt/dist/couchbase`. For example, for Ubuntu 18,
 
 ```
 # ls /opt/dist/couchbase
 couchbase-server-enterprise_6.0.1-ubuntu18.04_amd64.deb
 ```
 
-If both couchbase and ldap (either locally or remote) are available, you will be asked if you want to use hybrid backends:
+If both Couchbase and LDAP (either locally or remote) are available, you will be asked if you want to use hybrid backends:
 
 ```
 Install (1) Gluu OpenDj (2) Couchbase (3) Hybrid [1|2|3] [1] : 3
