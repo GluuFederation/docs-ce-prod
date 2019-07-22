@@ -109,19 +109,6 @@ cd /install/community-edition-setup
 
 See the [Setup Script Documentation](./setup_py.md#setup-prompt) for more detail on setup script options.
 
-#### Avoiding common issues
-
-Avoid setup issues by acknowledging the following:         
-
-- IP Address: Do **not** use `localhost` for either the IP address or hostname.     
-
-- Hostname:     
-     - Make sure to choose the hostname carefully. Changing the hostname after installation is not a simple task.   
-     - Use a real hostname--this can always be managed via host file entries if adding a DNS entry is too much work for testing.   
-     - For clustered deployments, use the hostname of the cluster that will be used by applications connecting to Gluu.   
-
-- Only run setup.py **one time**. Running the command twice will break the instance.
-
 ### Sign in via browser
 
 Wait about 10 minutes in total for the server to restart and finalize its configuration. After that period, sign in via a web browser. The username will be `admin` and your password will be the `ldap_password` you provided during installation. 
