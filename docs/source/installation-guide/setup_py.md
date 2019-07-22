@@ -34,15 +34,28 @@ After 5-10 minutes the following success message will appear:
 !!! Login
     Log in using the username `admin` and the password from the setup script prompt e.g `hlE3vzf0hMdD` or the password entered
 
+### Avoiding common issues
+
+Avoid setup issues by acknowledging the following:         
+
+- IP Address: Do **not** use `localhost` for either the IP address or hostname.     
+
+- Hostname:     
+     - Make sure to choose the hostname carefully. Changing the hostname after installation is not a simple task.   
+     - Use a real hostname--this can always be managed via host file entries if adding a DNS entry is too much work for testing.   
+     - For clustered deployments, use the hostname of the cluster that will be used by applications connecting to Gluu.   
+     
+!!! Warning
+    Use a FQDN (fully qualified domain name) as hostname and refrain from using 127.0.0.1 as IP address or usage of private IP is not supported and not recommended.
+    
+- Only run setup.py **one time**. Running the command twice will break the instance.
+
 If a resolvable DNS host is not used, then it must be added to the hostname of the Operating System hosts file on the server running the browser.
 
 !!! Warning
-    Please remove or encrypt the setup.properties.last file as it contains the clear text passwords for *LDAP, admin user, keystores, and 3DES salt*.
+    Remove or encrypt the setup.properties.last file as it contains the clear text passwords for *LDAP, admin user, keystores, and 3DES salt*.
 
-The errors can be found the the `setup_errors.log` file and a detailed step by step installation is found in the `setup.log` file under the `/install/community-edition-setup` folder.
-
-!!! Warning
-    Use a FQDN (fully qualified domain name) as hostname and refrain from using 127.0.0.1 as IP address or usage of private IP is not supported and not recommended.
+Errors can be found the the `setup_errors.log` file and a detailed step by step installation is found in the `setup.log` file under the `/install/community-edition-setup` folder.
 
 ### Script Command Line Options
 The `setup.py` script can be used to configure your Gluu Server and to add initial data for oxAuth and oxTrust to start. If `setup.properties` is found in this folder, these properties will automatically be used instead of the interactive setup.
