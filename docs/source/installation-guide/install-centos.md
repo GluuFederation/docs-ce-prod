@@ -28,8 +28,6 @@ There are a few system specific notes to follow:
 Installation of the Gluu server will be done under `/root`. 
 The Gluu Server will create its file system under `/root/` and will be installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) remain the same as the host.
 
-#### CentOS 7.x
-
 ```
 wget https://repo.gluu.org/centos/Gluu-centos-7-testing.repo -O /etc/yum.repos.d/Gluu.repo
 ```
@@ -73,7 +71,7 @@ Run the following commands:
 
 ### Run `setup.py`
 
-Configuration is completed by running `setup.py` from inside the chroot container. This generates certificates, salt values, and renders configuration files.
+Configuration is completed by running `setup.py` from inside the chroot container. This generates certificates, salt values, and renders configuration files. Run the following commands:
 
 ```
 cd /install/community-edition-setup
@@ -84,19 +82,6 @@ cd /install/community-edition-setup
 ```   
 
 See the [Setup Script Documentation](./setup_py.md#setup-prompt) for more detail on setup script options.
-
-#### Avoiding common issues
-
-Avoid setup issues by acknowledging the following:         
-
-- IP Address: Do **not** use `localhost` for either the IP address or hostname.     
-
-- Hostname:     
-     - Make sure to choose the hostname carefully. Changing the hostname after installation is not a simple task.   
-     - Use a real hostname--this can always be managed via host file entries if adding a DNS entry is too much work for testing.   
-     - For clustered deployments, use the hostname of the cluster that will be used by applications connecting to Gluu.   
-
-- Only run setup.py **one time**. Running the command twice will break the instance.
 
 ### Sign in via browser
 
@@ -119,7 +104,7 @@ Sometimes things go wrong! It can be difficult to troubleshoot issues if the ste
 
 ## Uninstallation
 
-### Uninstall Centos 7.x
+Run the following commands:
 
 ```
 /sbin/gluu-serverd-4.0 disable
