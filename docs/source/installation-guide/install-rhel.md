@@ -26,7 +26,7 @@ There are a few system specific notes to follow:
 Installation of the Gluu server will be done under `/root`. 
 The Gluu Server will create its file system under `/root/` and will be installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) remain the same as the host.
 
-Run the following commands:
+Gluu Server CE 4.0 supports RHEL 7. Enter the following commands to install:
 
 ```
 wget https://repo.gluu.org/rhel/Gluu-rhel-7-testing.repo -O /etc/yum.repos.d/Gluu.repo
