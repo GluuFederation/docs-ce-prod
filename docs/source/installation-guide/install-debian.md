@@ -27,7 +27,7 @@ There are a few system specific notes to follow:
 Installation of the Gluu server will be done under `/root`. 
 The Gluu Server will create its file system under `/root/` and will be installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) remain the same as the host.
 
-Gluu Server 4.0 supports **Debian 9 (Stretch)**. To install, follow these commands:
+Gluu Server CE 4.0 supports **Debian 9 (Stretch)**. Enter these commands to install:
 
 ```
 echo "deb https://repo.gluu.org/debian/ stretch-testing main" > /etc/apt/sources.list.d/gluu-repo.list
