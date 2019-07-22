@@ -1,34 +1,42 @@
-### Setup Prompt
-The `setup.py` script will bring up a prompt to provide information for 
-certificate as well as the IP Address and the hostname for the Gluu Server. 
-The prompt with example values is provided below.
+# Setup Script
 
-```
-Do you acknowledge that use of the Gluu Server is under the MIT license? [N|y] : y
-Enter IP Address [192.168.122.60] :
-Enter hostname [localhost] : e.g. idp.mydomain.info
-Enter your city or locality : 
-Enter your state or province two letter code : 
-Enter two letter Country Code : 
-Enter Organization Name : MyOrg
-Enter email address for support at your organization : e.g. support@mydomain.com
-Enter maximum RAM for applications in MB [3072] :
-Optional: enter password for oxTrust and LDAP superuser [hlE3vzf0hMdD] :
-Install oxAuth OAuth2 Authorization Server? [Yes] : 
-Install oxTrust Admin UI? [Yes] : 
-Install Backend DB Server? [Yes] : 
-Install Apache HTTPD Server [Yes] : 
-Install Shibboleth SAML IDP? [No] : 
-Install oxAuth RP? [No] : 
-Install Passport? [No] : 
-Install Gluu Radius? [No] : 
-```
+## Setup Prompt
+
+The `setup.py` script will bring up a prompt to provide information for certificate as well as the IP Address and the hostname for the Gluu Server.  Hit `Enter` to accept the default values. 
+
+Refer to the following table for details about available setup options:    
+
+| Setup Option                |  Explanation                               |
+|-------------------------|--------------------------------------------|
+| Enter IP Address | Used primarily by Apache httpd for the [Listen](https://httpd.apache.org/docs/2.4/bind.html) directive. **Use an IP address assigned to one of this server's network interfaces (usage of addresses assigned to loopback interfaces is not supported)**|
+| Enter hostname | Internet-facing FQDN that is used to generate certificates and metadata. **Do not use an IP address or localhost.** |
+| Enter your city or locality | Used to generate X.509 certificates. |
+| Enter your state or province two letter code | Used to generate X.509 certificates. |
+| Enter two letter Country Code | Used to generate X.509 certificates. |
+| Enter Organization Name | Used to generate X.509 certificates. |
+| Enter email address for support at your organization | Used to generate X.509 certificates. | 
+| Optional: enter password for oxTrust and LDAP superuser | Used as the LDAP directory manager password, and for the default admin user for oxTrust. |
+| Install oxAuth OAuth2 Authorization Server | Required. Includes Gluu's OpenID Connect provider (OP) and UMA authorization server (AS) implementations.|
+| Install oxTrust Admin UI | Required. This is the Gluu server admin dashboard. |
+| Install Backend DB Server | Required. Installs OpenDJ, used to store user info and configuration data. |
+| Install Apache 2 web server | Required |
+| Install Shibboleth SAML IDP | Optional. Only install if a SAML identity provider (IDP) is needed. |
+| Install oxAuth RP | Optional. OpenID Connect test client: useful for test environments, for more details see [here](../admin-guide/openid-connect/#oxauth-rp) |
+| Install Passport |  Optional. Install if you want to support external IDP, for instance to offer users social login. |
+| Install Gluu Radius | Optional. Installs Radius server. More information is available [here](../admin-guide/radius-server/gluu-radius.md)
+
+When complete, `setup.py` will show the selections and prompt for confirmation. If everything looks OK, select Y to finish installation. 
+
+After 5-10 minutes the following success message will appear: 
+
+`Gluu Server installation successful! Point your browser to [hostname].`
+
 !!! Login
-    Please log in using the username `admin` and the password from the setup script prompt e.g `hlE3vzf0hMdD` or the password entered
+    Log in using the username `admin` and the password from the setup script prompt e.g `hlE3vzf0hMdD` or the password entered
 
 If a resolvable DNS host is not used, then it must be added to the hostname of the Operating System hosts file on the server running the browser.
 
-!!! warning
+!!! Warning
     Please remove or encrypt the setup.properties.last file as it contains the clear text passwords for *LDAP, admin user, keystores, and 3DES salt*.
 
 The errors can be found the the `setup_errors.log` file and a detailed step by step installation is found in the `setup.log` file under the `/install/community-edition-setup` folder.
@@ -37,10 +45,7 @@ The errors can be found the the `setup_errors.log` file and a detailed step by s
     Use a FQDN (fully qualified domain name) as hostname and refrain from using 127.0.0.1 as IP address or usage of private IP is not supported and not recommended.
 
 ### Script Command Line Options
-The `setup.py` script can be used to configure your Gluu Server and to add initial data
-for oxAuth and oxTrust to start. If `setup.properties` is found
-in this folder, these properties will automatically be used instead of
-the interactive setup.
+The `setup.py` script can be used to configure your Gluu Server and to add initial data for oxAuth and oxTrust to start. If `setup.properties` is found in this folder, these properties will automatically be used instead of the interactive setup.
 
 The administrator can use the following command line options to include additional components:
 
