@@ -64,6 +64,7 @@ The administrator can use the following command line options to include addition
 
 Example Command: `# ./setup.py -ps` This command will install Gluu Server with Passport and Shibboleth IDP.
 
+<!-- 
 #### Couchbase Server Setup (Experimental)
 Starting in CE 4.0, Gluu Server supports Couchbase Server as a database backend. To install with Couchbase, you need to download the OS-specific Couchbase package from https://www.couchbase.com/downloads (Enterprise version only), and save to `/opt/dist/couchbase`. For example, for Ubuntu 18,
 
@@ -87,3 +88,4 @@ Use Gluu OpenDj to store (1) default (2) user (3) cache (4) statistic (5) site :
 
 In this example, both OpenDJ and Couchbase will be used for storing data. Default storage (system configurations, attributes, clients, etc.) will be OpenDJ and also metric data (statistic) will be stored in OpenDJ. Other data will be stored in Couchbase server.
 
+-->
