@@ -179,10 +179,10 @@ A regular outbound SAML flow starts at an SP. The user is redirected to an IDP w
 The Gluu Server is configured to support this SAML flow out-of-the-box. To employ it, follow these steps:
 
 1. Add a TR for the SP using the standard procedure described [above](#create-a-trust-relationship). Wait until the updated configuration is re-loaded by the IDP.   
-1. Craft a url like this: `https://idp.gluu.host.loc/idp/profile/SAML2/Unsolicited/SSO?providerId=https%3A%2F%2Fsphost-shib.site%3a8443%2Fshibboleth`, where: 
+1. Craft a URL like this: `https://idp.gluu.host.loc/idp/profile/SAML2/Unsolicited/SSO?providerId=https%3A%2F%2Fsphost-shib.site%3a8443%2Fshibboleth`, where: 
     1. `idp.gluu.host.loc` is the DNS name of the target Gluu Server   
-    1. `providerId` url query parameter contains `entityid` of the target SP   
-1. Send the user to the composed url (e.g. via redirection by on-page JS, an action triggered by a button, etc.)
+    1. `providerId` URL query parameter contains `entityid` of the target SP   
+1. Send the user to the composed URL (e.g. via redirection by on-page JS, an action triggered by a button, etc.)
 
 ## Federation Configuration     
 If the SP is part of an identity federation such as [InCommon](https://www.incommon.org/participants/), the Gluu administrator has option to establish a Trust Relationship with it based on the federation's metadata. To achieve this he must add TR for the federation in the Gluu Server first. This will enable the administrator to more easily create TRs with SPs in the federation. 
