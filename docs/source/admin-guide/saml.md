@@ -123,7 +123,19 @@ The "Configure Relying Party" checkbox is accessible on the TR creation page and
 Setting the checkbox will result in a link which, if clicked, will summon a list of profiles currently available for customization. Each entry in the list has a brief description of its purpose and a selection of settings for which custom values may be chosen, as can be seen on image below.     
 
 ![tr-relying-party](../img/saml/tr-relying-party.png)     
-    
+
+## IDP-initiated outbound SAML flow
+
+A regular SAML flow starts at SP - user is redirected to IDP with a SAML request by it, and then sent by IDP to ACS endpoint of the SP with a SAML response. A shortened version of this flow exists and is called IDP-initiated flow (or "unsolicited" in Shibboleth own documentation); it starts with IDP sending SAML response with no prior SAML request step.
+
+Shibboleth IDP in Gluu Server is configured to support this feature out of the box. To employ it, next steps need to be followed:
+
+1. Add a TR for your SP using the standard procedure described [above](#create-a-trust-relationship) and wait until the updated configuration is re-loaded by the IDP
+2. Craft a url similar to the next one: `https://idp.gluu.host.loc/idp/profile/SAML2/Unsolicited/SSO?providerId=https%3A%2F%2Fsphost-shib.site%3a8443%2Fshibboleth`, where
+  - `idp.gluu.host.loc` is DNS name of your Gluu Server's host
+  - `providerId` url query parameter contains `entityid` of the target SP
+3. Send your user to the composed url using whatever method you prefer (a redirection by on-page JS script, an action triggered by a button etc)
+
 ## Federation Configuration     
 If the SP is part of an identity federation such as [InCommon](https://www.incommon.org/participants/), the Gluu administrator has option to establish a Trust Relationship with it based on the federation's metadata. To achieve this he must add TR for the federation in the Gluu Server first. This will enable the administrator to more easily create TRs with SPs in the federation. 
 
