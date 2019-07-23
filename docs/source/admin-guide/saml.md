@@ -180,8 +180,8 @@ The Gluu Server is configured to support this SAML flow out-of-the-box. To emplo
 
 1. Add a TR for the SP using the standard procedure described [above](#create-a-trust-relationship). Wait until the updated configuration is re-loaded by the IDP.   
 1. Craft a url similar like this: `https://idp.gluu.host.loc/idp/profile/SAML2/Unsolicited/SSO?providerId=https%3A%2F%2Fsphost-shib.site%3a8443%2Fshibboleth`, where: 
-    - `idp.gluu.host.loc` is the DNS name of the target Gluu Server   
-    - `providerId` url query parameter contains `entityid` of the target SP   
+    1. `idp.gluu.host.loc` is the DNS name of the target Gluu Server   
+    1. `providerId` url query parameter contains `entityid` of the target SP   
 1. Send the user to the composed url (e.g. via redirection by on-page JS, an action triggered by a button, etc.)
 
 ## Federation Configuration     
