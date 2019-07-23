@@ -57,7 +57,7 @@ If a resolvable DNS host is not used, then it must be added to the hostname of t
 
 Errors can be found the the `setup_errors.log` file and a detailed step by step installation is found in the `setup.log` file under the `/install/community-edition-setup` folder.
 
-### Script Command Line Options
+## Script Command Line Options
 The `setup.py` script can be used to configure your Gluu Server and to add initial data for oxAuth and oxTrust to start. If `setup.properties` is found in this folder, these properties will automatically be used instead of the interactive setup.
 
 The administrator can use the following command line options to include additional components:
@@ -77,8 +77,8 @@ The administrator can use the following command line options to include addition
 * __--import-ldif=custom-ldif-dir__ Render ldif templates from custom-ldif-dir and import them in LDAP
 * __--listen_all_interfaces__ Allow the LDAP server to listen on all server interfaces. This is required for clustered installations to replicate between LDAP servers. If not enabled, the LDAP server listens only to localhost
 * __---allow-pre-released-features__ Enable options to install experimental features, not yet officially supported.
-* __--remote-ldap__ Enables using remote LDAP server. For further information see https://github.com/GluuFederation/support-docs/blob/master/howto/4.0/setup_remote_LDAP.md
-* __--remote-couchbase__ Enables using remote couchbase server. For further information see https://github.com/GluuFederation/support-docs/blob/master/howto/4.0/CE_with_remote_CB.md
+* __--remote-ldap__ Allows use of a LDAP server. <!-- For further information see https://github.com/GluuFederation/support-docs/blob/master/howto/4.0/setup_remote_LDAP.md -->
+* __--remote-couchbase__ Allows use of a remote Couchbase server. <!-- For further information see https://github.com/GluuFederation/support-docs/blob/master/howto/4.0/CE_with_remote_CB.md -->
 
 Example Command: `# ./setup.py -ps` This command will install Gluu Server with Passport and Shibboleth IDP.
 
