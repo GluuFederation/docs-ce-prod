@@ -53,8 +53,8 @@ nav:
 - Installation Guide:
         - 'VM Preparation': 'installation-guide/index.md'
         - 'Installation': 
-            - 'Start here': 'installation-guide/install.md'
-#            - 'Test Drive': 'installation-guide/test-drive.md'
+#            - 'Start here': 'installation-guide/install.md'
+            - 'Test Drive': 'installation-guide/test-drive.md'
             - 'Ubuntu Installation': 'installation-guide/install-ubuntu.md'
             - 'CentOS Installation': 'installation-guide/install-centos.md'
             - 'RHEL Installation': 'installation-guide/install-rhel.md'
