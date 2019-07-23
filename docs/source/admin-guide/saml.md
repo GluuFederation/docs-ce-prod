@@ -82,6 +82,7 @@ The Gluu Server supports force authentication out-of-the-box. Including `ForceAu
 Upon receiving the SAML request with this flag, the IDP will invalidate its session for the user, then will issue a new OpenID Connect (OIDC) authorization request to oxAuth, including the `prompt=login` parameter. This parameter forces oxAuth to invalidate its session as well. The user will then follow the full authentication procedure.
 
 ## Create a Trust Relationship
+
 Follow these instructions to create a SAML TR in your Gluu Server: 
 
 1. Go to `SAML` > `Trust Relationships`    
@@ -106,7 +107,7 @@ A description of each field follows:
     
 The Trust Relationship (TR) can be added by clicking the `Add` button located in the lower left side of the page.     
 
-## IDP-initiated SAML flow
+## IDP-initiated outbound SAML flow
 
 A regular SAML flow starts at SP - user is redirected to IDP with a SAML request by it, and then sent by IDP to ACS endpoint of the SP with a SAML response. A shortened version of this flow exists and is called IDP-initiated flow (or "unsolicited" in Shibboleth own documentation); it starts with IDP sending SAML response with no prior SAML request step.
 
