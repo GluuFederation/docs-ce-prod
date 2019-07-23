@@ -58,7 +58,7 @@ nav:
             - 'Ubuntu Installation': 'installation-guide/install-ubuntu.md'
             - 'CentOS Installation': 'installation-guide/install-centos.md'
             - 'RHEL Installation': 'installation-guide/install-rhel.md'
-            - 'Debian Installation': 'installation-guide-install-debian.md'
+            - 'Debian Installation': 'installation-guide/install-debian.md'
         - 'Setup Script Options': 'installation-guide/setup_py.md'
         - 'Clustering': 'installation-guide/cluster.md'
 - Administration Guide:
