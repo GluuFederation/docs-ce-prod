@@ -174,7 +174,7 @@ Upon receiving the SAML request with this flag, the IDP will invalidate its sess
 
 ## IDP-initiated outbound SAML flow
 
-A regular outbound SAML flow starts at an SP. The user is redirected to an IDP with a SAML request, and is then sent by the IDP to the ACS endpoint of the SP with a SAML response. A shortened version of this flow exists and is called IDP-initiated flow (or "unsolicited" in Shibboleth's documentation). It starts with the IDP sending a SAML response, with no prior SAML request being made.
+A regular outbound SAML flow starts at an SP. The user is redirected to an IDP with a SAML request, and is then sent by the IDP to the ACS endpoint of the SP with a SAML response. A shortened version of this flow is called "IDP-initiated" (or "unsolicited" in Shibboleth's documentation). It starts with the IDP sending a SAML response to the SP, when no prior SAML request was made.
 
 The Gluu Server is configured to support this SAML flow out-of-the-box. To employ it, follow these steps:
 
