@@ -52,7 +52,13 @@ nav:
 - Whats new in v4: '4.x-intro.md'
 - Installation Guide:
         - 'VM Preparation': 'installation-guide/index.md'
-        - 'Installation': 'installation-guide/install.md'
+        - 'Installation': 
+            - 'Start here': 'installation-guide/install.md'
+#            - 'Test Drive': 'installation-guide/test-drive.md'
+            - 'Ubuntu Installation': 'installation-guide/install-ubuntu.md'
+            - 'CentOS Installation': 'installation-guide/install-centos.md'
+            - 'RHEL Installation': 'installation-guide/install-rhel.md'
+            - 'Debian Installation': 'installation-guide-install-debian.md'
         - 'Setup Script Options': 'installation-guide/setup_py.md'
         - 'Clustering': 'installation-guide/cluster.md'
 - Administration Guide:
