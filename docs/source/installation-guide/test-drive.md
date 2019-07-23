@@ -1,4 +1,4 @@
-# Gluu Server Test Drive  
+# Gluu Server Test Drive Demo
 
 ## Overview
 
@@ -128,7 +128,7 @@ All other containers in the docker-compose file are connected to that same netwo
 
 - **What is the launch process for the containers?**
 
-There are a couple of containers which have to be launched first to successfully launch dependent Gluu Server containers.
+There are a couple of containers which have to be launched first to successfully launch dependent Gluu Server containers. The installation script handles this.
 
 First: [consul](https://www.consul.io/), which is our key value store, as well as service discovery container.
 
@@ -153,20 +153,14 @@ Currently all images, with the exception of the `consul` and `registrator` conta
 
 ```
 # docker exec -ti ldap /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -b "o=gluu" -s base -T "objectClass=*"
-
 ```
 
-- **Locked out of your gluu demo? This is how Vault can be manually unlocked**
+- **Locked out of your Gluu demo? This is how Vault can be manually unlocked**
 
    1. Get Unseal key from `vault_key_token.txt`
    
-   1. log into vault container: `docker exec -it vault sh`
+   1. Log into vault container: `docker exec -it vault sh`
    
    1. Run this command : `vault operator unseal`
    
    1. Wait for about 10 mins for the containers to get back to work. 
-
-## Documentation
-
-Please refer to the [Gluu Server Enterprise Edition Documentation](https://gluu.org/docs/de/4.0.0) for further reading on Docker image implementations.
-    
