@@ -2,14 +2,14 @@
 
 ## Overview
 
-Follow the instructions below to set up a fresh Gluu Server for testing and POC purposes. This guide will walk through setting up a single host Docker Edition demo on a single VM using a bash script. This server can be used to test the Gluu Server's capabilities quickly.
+Follow the instructions below to set up a fresh Gluu Server for testing and proof of concept purposes. This guide will walk through setting up a single host Docker Edition demo on a single VM using a bash script. This server can be used to test the Gluu Server's capabilities quickly.
 
 !!! Warning
     This installation process is not suitable for production deployments. To install a production-ready Gluu Server, follow the formal installation document. 
 
 ## Requirements:
 
-1. Install Docker by either following the [Docker installation instructions](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository) or using the [convenient installation script](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script)
+1. Install Docker by either following the [Docker installation instructions](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository) or using the [convenient installation script](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script).
 
 1.  Install [docker-compose](https://docs.docker.com/compose/install/#install-compose).
 
@@ -43,7 +43,7 @@ Follow the instructions below to set up a fresh Gluu Server for testing and POC 
     ./run_all.sh
     ```
     
-    Do not be alarmed for the `warning` alerts that may show up. Wait until it prompts you for information or loads the previous configuration found. If this is a fresh install, the output will look like this :
+    Do not be alarmed about the `warning` alerts that may show up. Wait until it prompts you for information or loads the previous configuration found. If this is a fresh install, the output will look like this :
 
         ./run_all.sh
         [I] Determining OS Type and Attempting to Gather External IP Address
@@ -110,21 +110,24 @@ In this script, it launches consul using the `docker-compose up consul` command,
 
 All other containers in the docker-compose file are connected to that same network as well. The only container not included in the `docker-compose.yaml` file is the `config-init`. We left them disconnected as it must finish loading the necessary configuration files into consul before any other container can launch. As can be seen in the following `docker run` command, it connects to the same network as consul with the `--network container:consul` option.
 
-        docker run --rm \
-            --network container:consul \
-            -e GLUU_CONFIG_ADAPTER=consul \
-            -e GLUU_CONSUL_HOST=consul \
-            gluufederation/config-init:4.0.0_dev \
-            generate \
-            --ldap-type "${GLUU_LDAP_TYPE}" \
-            --domain $domain \
-            --admin-pw $adminPw \
-            --org-name "$orgName" \
-            --email $email \
-            --country-code $countryCode \
-            --state $state \
-            --city $city
-    - Note this command is to create the initial configuration and is slightly different than the `load` or `dump` option of config-init.
+    ```
+    docker run --rm \
+        --network container:consul \
+        -e GLUU_CONFIG_ADAPTER=consul \
+        -e GLUU_CONSUL_HOST=consul \
+        gluufederation/config-init:4.0.0_dev \
+        generate \
+        --ldap-type "${GLUU_LDAP_TYPE}" \
+        --domain $domain \
+        --admin-pw $adminPw \
+        --org-name "$orgName" \
+        --email $email \
+        --country-code $countryCode \
+        --state $state \
+        --city $city
+    ```
+    
+- Note this command is to create the initial configuration and is slightly different than the `load` or `dump` option of config-init.
 
 - **What is the launch process for the containers?**
 
@@ -143,16 +146,17 @@ Currently all images, with the exception of the `consul` and `registrator` conta
 - **How do I stop and start the containers without uninstalling them?**
 
 ```
-# docker stop $(docker ps -aq)
+docker stop $(docker ps -aq)
+```
 
-# docker start $(docker ps -aq)
-
+```
+docker start $(docker ps -aq)
 ```
 
 - **How to use ldapsearch**
 
 ```
-# docker exec -ti ldap /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -b "o=gluu" -s base -T "objectClass=*"
+docker exec -ti ldap /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -b "o=gluu" -s base -T "objectClass=*"
 ```
 
 - **Locked out of your Gluu demo? This is how Vault can be manually unlocked**
