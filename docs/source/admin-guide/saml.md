@@ -109,15 +109,16 @@ The Trust Relationship (TR) can be added by clicking the `Add` button located in
 
 ## IDP-initiated outbound SAML flow
 
-A regular SAML flow starts at SP - user is redirected to IDP with a SAML request by it, and then sent by IDP to ACS endpoint of the SP with a SAML response. A shortened version of this flow exists and is called IDP-initiated flow (or "unsolicited" in Shibboleth own documentation); it starts with IDP sending SAML response with no prior SAML request step.
+A regular outbound SAML flow starts at an SP. The user is redirected to an IDP with a SAML request, and is then sent by the IDP to the ACS endpoint of the SP with a SAML response. A shortened version of this flow is called "IDP-initiated" (or "unsolicited" in Shibboleth's documentation). It starts with the IDP sending a SAML response to the SP, when no prior SAML request was made.
 
-Shibboleth IDP in Gluu Server is configured to support this feature out of the box. To employ it, next steps need to be followed:
+The Gluu Server is configured to support this SAML flow out-of-the-box. To employ it, follow these steps:
 
-1. Add a TR for your SP using the standard procedure described [above](#create-a-trust-relationship) and wait until the updated configuration is re-loaded by the IDP
-2. Craft a url similar to the next one: `https://idp.gluu.host.loc/idp/profile/SAML2/Unsolicited/SSO?providerId=https%3A%2F%2Fsphost-shib.site%3a8443%2Fshibboleth`, where
-  - `idp.gluu.host.loc` is DNS name of your Gluu Server's host
-  - `providerId` url query parameter contains `entityid` of the target SP
-3. Send your user to the composed url using whatever method you prefer (a redirection by on-page JS script, an action triggered by a button etc)
+1. Add a TR for the SP using the standard procedure described [above](#create-a-trust-relationship). Wait until the updated configuration is re-loaded by the IDP.   
+1. Craft a URL like this: `https://idp.gluu.host.loc/idp/profile/SAML2/Unsolicited/SSO?providerId=https%3A%2F%2Fsphost-shib.site%3a8443%2Fshibboleth`, where: 
+    1. `idp.gluu.host.loc` is the DNS name of the target Gluu Server   
+    1. `providerId` URL query parameter contains `entityid` of the target SP   
+1. Send the user to the composed URL (e.g. via redirection by on-page JS, an action triggered by a button, etc.)
+
 
 ## Relying Party Configuration     
 Through the Relying Party configuration you can customize how different IDP profiles will respond to requests received from the SP, including encryption and digital signature options. The underlying IDPs functionality is described in [the Shibboleth wiki](https://wiki.shibboleth.net/confluence/display/IDP30/RelyingPartyConfiguration).  
