@@ -4,19 +4,21 @@
 
 The [introductory page](./passport.md) provides a quick overview of key concepts to get the most out of inbound identity with Gluu Passport. Ensure the Gluu Server installation already has [Passport component installed](./passport.md#passport-setup). Follow theses steps to enable it:
 
-### Enable the custom script
+1. Enable the custom script
 
-- In oxTrust, navigate to `Configuration` > `Custom scripts`          
-- Navigate to the `Person Authentication` tab, expand the script labelled `passport_saml`, check `enabled`, and click `Update`    ![Enable passport_saml](../img/user-authn/passport/enable-passport_saml.png)     
-- Navigate to the `UMA RPT Policies` tab, expand the script labelled `scim_access_policy`, check `enabled`, and click `Update`       
+    - In oxTrust, navigate to `Configuration` > `Custom scripts`          
+    - Navigate to the `Person Authentication` tab, expand the script labelled `passport_saml`, check `enabled`, and click `Update`    ![Enable passport_saml](../img/user-authn/passport/enable-passport_saml.png)     
+    - Navigate to the `UMA RPT Policies` tab, expand the script labelled `scim_access_policy`, check `enabled`, and click `Update`       
       
-### Enable Passport support 
+1. Enable Passport support 
 
-- In oxTrust navigate to `Configuration` > `Organization configuration` > `System configuration`
-- In `Passport support` choose `Enabled`    
-- Click `Update`    
+    - In oxTrust navigate to `Configuration` > `Organization configuration` > `System configuration`    
+    - In `Passport support` choose `Enabled`    
+    - Click `Update`    
 
-![enable passport](../img/user-authn/passport/enable_passport.png) 
+    ![enable passport](../img/user-authn/passport/enable_passport.png) 
+
+Once the steps above are performed, the TCP port 8090 appears ready to accept connections.
 
 ## Integrate IDPs for inbound SAML
 

@@ -19,6 +19,8 @@ The [introductory page](./passport.md) provides a quick overview of key concepts
 
     ![enable passport](../img/user-authn/passport/enable_passport.png) 
 
+Once the steps above are performed, the TCP port 8090 appears ready to accept connections.
+
 ## Integrate OpenID Connect providers
 
 Follow these steps to integrate an external OP for login to an OIDC application:
