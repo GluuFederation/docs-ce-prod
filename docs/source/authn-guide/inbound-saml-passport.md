@@ -71,9 +71,9 @@ Add other properties you might consider relevant. For details on this topic you 
 |decryptionPvk|/etc/certs/passport-sp.key|Private key that will be used to attempt to decrypt any encrypted assertions received|
 |decryptionCert|/etc/certs/passport-sp.crt|Public certificate matching `decryptionPvk`|
 
-To be more precise, `decryptionPvk` and `decryptionCert` correspond to `Passport SP Decryption cert` and `Passport SP Decryption Private key` values found in the basic configuration. In oxTrust visit `Passport` > `Basic Configuration` to see these values.
+To be more precise, `decryptionPvk` and `decryptionCert` correspond to items `Passport SP Decryption cert` and `Passport SP Decryption Private key` found in the basic configuration page. In oxTrust visit `Passport` > `Basic Configuration` to see these values.
 
-In case you are interested in signing the authentication requests, you supply `privateCert` (a RSA-SHA1 PEM private key). More details [here](https://github.com/bergie/passport-saml/#security-and-signatures).
+In case you are interested in signing the authentication requests, you can supply `privateCert` (a RSA-SHA1 PEM private key). More details [here](https://github.com/bergie/passport-saml/#security-and-signatures).
 
 #### Cache Provider configuration
 
@@ -165,8 +165,8 @@ To enable IDP-initiated inbound capabilities for an existing IDP, follow these s
 
 From here on, if the IDP sends an unsolicited response to Passport ACS, an OIDC authorization request will be issued using the client that appears selected on the top of the form (by default the "Passport IDP-initiated flow Client"). After the user is authenticated in Gluu, a redirection will be made to `https://<your-gluu-host>/oxauth/auth/passport/sample-redirector.htm` that will simply change the browser's location to the value of the `relayState` (which is assummed to be a valid URL).
 
-!!! Note:
-    The authorization request generated can be customized by supplying values for parameters `response_type`, `scope`, and more by clicking on `Add` under the `Additional params` panel (fill name/value in the left and right fields respectively).
+!!! Note
+    The authorization request generated can be customized by supplying values for parameters `response_type`, `scope`, and more by clicking on `Add` under the `Additional params` panel (fill name/value in the left/right fields respectively).
 
 ### Customization
 
