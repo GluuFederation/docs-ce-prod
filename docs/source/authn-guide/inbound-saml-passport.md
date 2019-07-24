@@ -54,22 +54,24 @@ By default, only a small set of parameters for a working setup are shown in the 
 - `cert`: The IDP's public PEM-encoded X.509 certificate used to validate incoming SAML responses. Include only the body of the certificate: suppress the `BEGIN CERTIFICATE` and `END CERTIFICATE` lines, any whitespace, and all line breaking characters (new line/carriage return).
 
 !!! Note 
-    The certificate supplied for `cert` is the one intended for signing. For example, if you are using Shibboleth bundled in a Gluu Server instance, visit `https://<remote-gluu-host>/idp/shibboleth` and see the contents of XML tag `KeyDescriptor` where `use="signing"` inside `IDPSSODescriptor` tag.
+    Regarding the value of `cert`, if you are using Shibboleth bundled in a Gluu Server instance, visit `https://<remote-gluu-host>/idp/shibboleth` and see the contents of XML tag `KeyDescriptor` where `use="signing"` inside `IDPSSODescriptor` tag.
 
 ![saml_provider](../img/user-authn/passport/saml_provider.png)
 
 #### Supply extra properties if needed
 
-Add other properties you might consider relevant. For details on this topic you can check `passport-saml` repo [documentation](https://github.com/bergie/passport-saml/#config-parameter-details). If not specified, the following properties are added by default:
+Add other properties you might consider relevant. For details on this topic you can check `passport-saml` repo [documentation](https://github.com/bergie/passport-saml/#config-parameter-details). If not specified, the following properties will be added by default:
 
-|Property|Value|
-|-|-|
-|validateInResponseTo|true|
-|requestIdExpirationPeriodMs|3600000|
-|decryptionPvk|/etc/certs/passport-sp.key|
-|decryptionCert|/etc/certs/passport-sp.crt|
+|Property|Value|Description|
+|-|-|-|
+|validateInResponseTo|true|More info [here](https://github.com/bergie/passport-saml/#config-parameter-details)|
+|requestIdExpirationPeriodMs|3600000|More info [here](https://github.com/bergie/passport-saml/#config-parameter-details)|
+|decryptionPvk|/etc/certs/passport-sp.key|Private key that will be used to attempt to decrypt any encrypted assertions received|
+|decryptionCert|/etc/certs/passport-sp.crt|Public certificate matching `decryptionPvk`|
 
-To be more precise, `decryptionPvk` and `decryptionCert` are filled with the `SP TLS cert` and `SP TLS key` values found in the basic configuration. In oxTrust visit `Passport` > `Basic Configuration` to see these values.
+To be more precise, `decryptionPvk` and `decryptionCert` correspond to `Passport SP Decryption cert` and `Passport SP Decryption Private key` values found in the basic configuration. In oxTrust visit `Passport` > `Basic Configuration` to see these values.
+
+In case you are interested in signing the authentication requests, you supply `privateCert` (a RSA-SHA1 PEM private key). More details [here](https://github.com/bergie/passport-saml/#security-and-signatures).
 
 #### Cache Provider configuration
 
