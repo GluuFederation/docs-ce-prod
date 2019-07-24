@@ -6,7 +6,18 @@ There are two main ways to install a Community Edition deployment, one suitable 
 
 ## Install a test deployment
 
+1. Set up a virtual machine with the same [minimum requirements](./index.md#system-requirements) as a production deployment.
+1. Follow the [Test Drive installation guide](./test-drive.md)
+
 ## Install a production-ready deployment
+
+1. [Set up the server or virtual machine](./index.md)
+1. Follow in the installation guide for the operating system in use:
+    - [Ubuntu 16 or 18](./install-ubuntu.md)
+    - [CentOS 7](./install-centos.md)
+    - [RHEL 7](./install-rhel.md)
+    - [Debian 9](./install-debian.md)
+1. Run the [setup script](./setup_py.md)    
 
 ## Support
 Please review the [Gluu support portal](https://support.gluu.org). There are many existing tickets about troubleshooting installation issues. If there is no similar existing public issue, register for an account and open a new ticket. 
