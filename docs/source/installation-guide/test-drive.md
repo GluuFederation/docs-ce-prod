@@ -5,7 +5,7 @@
 Follow the instructions below to set up a fresh Gluu Server for testing and proof of concept purposes. This guide will walk through setting up a single host Docker Edition demo on a single VM using a bash script. This server can be used to test the Gluu Server's capabilities quickly.
 
 !!! Warning
-    This installation process is not suitable for production deployments. To install a production-ready Gluu Server, follow the formal installation document. 
+    This installation process is not suitable for production deployments. To install a production-ready Gluu Server, follow the formal installation document for the operating system in use. 
 
 ## Requirements:
 
