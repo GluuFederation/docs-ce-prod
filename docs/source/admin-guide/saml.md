@@ -55,7 +55,6 @@ A description follows for each field in the Add TR form:
       
 - **Released**: The SP's required user attributes must be added to this panel. Select attributes from the column on the left with the heading “Release Additional Attributes”.     
 
-
 ## NameID
 
 A Name Identifier or NameID is sent by the IDP to the SP to identify the "subject" of a SAML assertion, i.e. who is the person attempting to gain access. The format of nameID can be anything, but is typically `emailAddress`.
@@ -117,7 +116,7 @@ Gluu offers out-of-the-box support for the SAML parameter `AuthnContextClassRef`
     </bean>
 
 ### AuthnContextClassRef Extension
-Custom `AuthnContextClassRef` attribute values can be defined as well. The recommeded format is either urn or uri. For example: 
+Custom `AuthnContextClassRef` attribute values can be defined as well. The recommended format is either `urn` or `uri`. For example: 
 
     urn:oasis:names:tc:SAML:2.0:ac:classes:X509
     urn:oasis:names:tc:SAML:2.0:ac:classes:TLSClient
@@ -130,7 +129,7 @@ Custom `AuthnContextClassRef` attribute values can be defined as well. The recom
 
 ### Enable AuthnContextClassRef in oxTrust
 
-ACRS values need to be associated (one-to-one) with Gluu authentication interception scripts (e.g. basic, fido, ldap, etc.). This can be achieved by setting the SAML ACRS attribute field included in a specific Person Authentication script to the desired value, e.g. `urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport`.   
+ACR values need to be associated (one-to-one) with Gluu authentication interception scripts (e.g. basic, fido, ldap, etc.). This can be achieved by setting the SAML ACRS attribute field included in a specific Person Authentication script to the desired value, e.g. `urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport`.   
 
 ![saml_authctxref](../img/saml/saml_authctxref.PNG)
 
@@ -168,7 +167,7 @@ If the user clicks `Yes` or just waits a few seconds, the session will be killed
 
 ## Force Authentication
 
-The Gluu Server supports the SAML force authentication paramter out-of-the-box. Including `ForceAuthn=true` in the initial SAML request from the SP signals to the IDP that the user must be reauthenticated, even if they already have a valid session at the server. This feature can be used to verify the user's identity prior to granting them access to highly protected resources.
+The Gluu Server supports the SAML force authentication parameter out-of-the-box. Including `ForceAuthn=true` in the initial SAML request from the SP signals to the IDP that the user must be reauthenticated, even if they already have a valid session at the server. This feature can be used to verify the user's identity prior to granting them access to highly protected resources.
 
 Upon receiving the SAML request with this flag, the IDP will invalidate its session for the user, then will issue a new OpenID Connect (OIDC) authorization request to oxAuth, including the `prompt=login` parameter. This parameter forces oxAuth to invalidate its session as well. The user will then follow the full authentication procedure.
 
