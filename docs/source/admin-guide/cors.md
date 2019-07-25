@@ -51,7 +51,7 @@ CORS Filter supports following initialization parameters:
 
 | Attribute | Description |
 | ----------| ------------|
-| corsAllowedOrigins | AA list of origins that are allowed to access the resource. A `*` can be specified to enable access to resource from any origin. Otherwise, a whitelist of comma separated origins can be provided. Eg: `http://www.w3.org, https://www.apache.org.` Defaults: `*` (Any origin is allowed to access the resource). |
+| corsAllowedOrigins | A list of origins that are allowed to access the resource. A `*` can be specified to enable access to resource from any origin. Otherwise, a whitelist of comma separated origins can be provided. Eg: `http://www.w3.org, https://www.apache.org.` Defaults: `*` (Any origin is allowed to access the resource). |
 | corsAllowedMethods | A comma separated list of HTTP methods that can be used to access the resource, using cross-origin requests. These are the methods which will also be included as part of Access-Control-Allow-Methods header in pre-flight response. Eg: `GET, POST`. Defaults: `GET, POST, HEAD, OPTIONS` |
 | corsExposedHeaders | A comma separated list of request headers that can be used when making an actual request. These headers will also be returned as part of Access-Control-Allow-Headers header in a pre-flight response. Eg: `Origin,Accept`. Defaults: `Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers` |
 | corsSupportCredentials | A flag that indicates whether the resource supports user credentials. This flag is exposed as part of `Access-Control-Allow-Credentials` header in a pre-flight response. It helps browser determine whether or not an actual request can be made using credentials. Defaults: `true` |
