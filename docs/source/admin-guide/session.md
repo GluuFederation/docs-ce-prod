@@ -51,7 +51,7 @@ The OP updates `lastUsedAt` property of the OP session object:
 It is important to note that the OP session `lastUsedAt` property is not updated during RP usage.
 
 A list of oxAuth Properties for reference can be found in 
-[OxAuth JSON Properties](../reference/JSON-oxauth-prop.md)
+[oxAuth JSON Properties](../reference/JSON-oxauth-prop.md)
 
 ## FAQ
 
