@@ -3,17 +3,11 @@
 ## CORS Filter Overview
 
 CORS Filter is an implementation of W3C's CORS  (Cross-Origin Resource Sharing) [specification](http://www.w3.org/TR/cors/).
-CORS is a mechanism which enables cross-origin requests.
-CORS Filter work by adding required `Access-Control-*` headers to HttpServletResponse object. 
-The filter also protects against HTTP response splitting. If request is invalid, or is not permitted, then request is rejected with HTTP status code 403 (Forbidden). 
-A flowchart that demonstrates request processing by this filter.
+CORS is a mechanism which enables cross-origin requests. CORS Filter work by adding required `Access-Control-*` headers to HttpServletResponse object. The filter also protects against HTTP response splitting. If request is invalid, or is not permitted, then request is rejected with HTTP status code 403 (Forbidden). A flowchart that demonstrates request processing by this filter.
+
 ![flowchart](../img/admin-guide/cors/cors-flowchart.png) 
 
-The minimal configuration required to use CORS Filter is as below which is 
-already added to the web.xml in oxauth.war. Below is only for reference and no additional 
-action is required, and configuration steps are defined below. CORS Filter reads the 
-configurations from LDAP and therefore configuration can be done in oxTrust UI directly.
-Filter Name for CORS Filter in Gluu CE will be `org.xdi.oxauth.filter.CorsFilter`.
+The minimal configuration required to use CORS Filter is as below which is already added to the web.xml in oxauth.war. Below is only for reference and no additional action is required, and configuration steps are defined below. CORS Filter reads the configurations from the database and therefore configuration can be done in oxTrust UI directly. Filter Name for CORS Filter in Gluu CE will be `org.xdi.oxauth.filter.CorsFilter`.
 
 ```
     <filter>
@@ -54,7 +48,6 @@ CORS can be configured with ease using Gluu CE oxTrust UI. Below are the steps
 ### Parameters supported by CORS Filters
 
 CORS Filter supports following initialization parameters:
-
 
 | Attribute | Description |
 | ----------| ------------|
