@@ -1,7 +1,7 @@
 # Interception Scripts
 
 ## Overview
-Interception scripts can be used to implement custom business logic for authentication, authorization and more in a way that is upgrade-proof and doesn't require forking the Gluu Server code. Each type of script is described by a java interface -- i.e. which methods are required.
+Interception scripts can be used to implement custom business logic for authentication, authorization and more in a way that is upgrade-proof and doesn't require forking the Gluu Server code. Each type of script is described by a Java interface -- i.e. which methods are required.
 
 The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scripts`.
 
@@ -21,10 +21,7 @@ There are three methods that inherit a base interface:
 
 The `configurationAttributes` parameter is `java.util.Map<String, SimpleCustomProperty>` with properties specified in `oxConfigurationProperty` attributes.
 
-The script manager only loads enabled scripts. Hence, after enabling or disabling a
-script, the script manager should trigger an event to either load or
-destroy a script, respectively. All scripts are stored in LDAP in the
-`ou=scripts,o=<org_inum>,o=gluu` branch.
+The script manager only loads enabled scripts. Hence, after enabling or disabling a script, the script manager should trigger an event to either load or destroy a script, respectively. All scripts are stored in LDAP in the `ou=scripts,o=<org_inum>,o=gluu` branch.
 
 Here is a sample entry:
 
@@ -45,8 +42,7 @@ Here is a sample entry:
     programmingLanguage: python
 ```
 
-The script manager reloads scripts automatically without needing to
-restart the application once `oxRevision` is increased.
+The script manager reloads scripts automatically without needing to restart the application once `oxRevision` is increased.
 
 ### Script Naming
 New custom scripts should be given a descriptive `displayName`, as that is how they are listed in oxTrust. The `displayName` is limited to 60 characters.  
@@ -55,12 +51,7 @@ New custom scripts should be given a descriptive `displayName`, as that is how t
     The name given to each [Person Authentication script](#person-authentication) is also used as its OpenID Connect `acr_value`. Learn more in the [OpenID Connect docs](./openid-connect.md#authentication).   
 
 ### Logs
-The log files regarding interception scripts are stored in the
-`oxauth.log` file. The logs are separated according to the module they
-affect. The oxAuth custom script logs are stored in `oxauth_script.log`
-and the oxTrust custom script logs are stored in the
-`oxtrust_script.log`. Please refer to these log files to troubleshoot errors in
-the interception scripts or following the workflow of the script.
+The log files regarding interception scripts are stored in the `oxauth.log` file. The logs are separated according to the module they affect. The oxAuth custom script logs are stored in `oxauth_script.log` and the oxTrust custom script logs are stored in the `oxtrust_script.log`. Please refer to these log files to troubleshoot errors in the interception scripts or following the workflow of the script.
 
 !!! Note 
     A `print` statement may not work on some environments if the `PYTHON_HOME` environment variable is not set. Make sure it points to a valid python installation.
@@ -174,26 +165,13 @@ The methods are executed in the following order:
 |Second|`preRegistration()`|True/False|
 |Third|`postRegistration()`|True/False|
 
-First oxTrust executes the `initRegistration` method to do an initial
-user entry update. The `preRegistration` method is called before storing
-the user entry in LDAP. Hence in this script it is possible to validate
-the user entry. The `postRegistration` method is called after
-successfully storing the user entry in LDAP. In this method, for
-example, the script can send an e-mail or send notifications to other
-organization systems about the new user entry.
+First oxTrust executes the `initRegistration` method to do an initial user entry update. The `preRegistration` method is called before storing the user entry in LDAP. Hence in this script it is possible to validate the user entry. The `postRegistration` method is called after successfully storing the user entry in LDAP. In this method, for example, the script can send an e-mail or send notifications to other organization systems about the new user entry.
 
 - [Sample User Registration Script](./sample-user-registration-script.py)
 
 ## Client Registration      
 
-oxAuth implements the [OpenID Connect dynamic client
-registration](https://openid.net/specs/openid-connect-registration-1_0.html)
-specification. All new clients have the same default access scopes and
-attributes except password and client ID. The Client Registration script
-allows an admin to modify this limitation. In this script it is possible
-to get a registration request, analyze it, and apply customizations to
-registered clients. For example, a script can give access to specified
-scopes if `redirect_uri` belongs to a specified service or domain.
+oxAuth implements the [OpenID Connect dynamic client registration](https://openid.net/specs/openid-connect-registration-1_0.html) specification. All new clients have the same default access scopes and attributes except password and client ID. The Client Registration script allows an admin to modify this limitation. In this script it is possible to get a registration request, analyze it, and apply customizations to registered clients. For example, a script can give access to specified scopes if `redirect_uri` belongs to a specified service or domain.
 
 This script type adds only one method to the base script type:
 
@@ -207,7 +185,7 @@ This script can be used in an oxAuth application only.
 
 
 ## Dynamic Scopes      
-The dynamic scope custom script allows to generate list of claims (and their values) on the fly, depending on cirtumstances like id of client requesting it, logged user's session parameters, values of other user's attributes, results of some caclucations implementing specific buisness logic and/or requests to remote APIs or databases. Claims are then returned the usual way in a response to a call to the `userinfo endpoint`. 
+The dynamic scope custom script allows to generate list of claims (and their values) on the fly, depending on cirtumstances like id of client requesting it, logged user's session parameters, values of other user's attributes, results of some calculations implementing specific buisness logic and/or requests to remote APIs or databases. Claims are then returned the usual way in a response to a call to the `userinfo endpoint`. 
 
 Two parameters are passed to the script:
 
@@ -220,7 +198,7 @@ In order to configure a dynamic scope next steps are required:
 - A scope has to be defined at the "OpenID Connect -> Scopes" page
   - Scope's type must be set to "Dynamic"
   - Corresponding dynamic script must be linked to that scope (Add dynamic script button)
-- The scope must be added to the client which will be using it at the "OpenID Connect -> Clients" page (using the "Add Scope" button), and the scope must be included by the client in "scope=" url query parameter
+- The scope must be added to the client which will be using it at the "OpenID Connect -> Clients" page (using the "Add Scope" button), and the scope must be included by the client in "scope=" URL query parameter
 
 More detailed explanation about adding scopes can be found under Openid [scopes](../admin-guide/openid-connect/#scopes)
 
@@ -228,14 +206,11 @@ More detailed explanation about adding scopes can be found under Openid [scopes]
 
 ## ID Generator       
 
-By default oxAuth/oxTrust uses an internal method to generate unique
-identifiers for new person/client, etc. entries. In most cases the
-format of the ID is:
+By default oxAuth/oxTrust uses an internal method to generate unique identifiers for new person/client, etc. entries. In most cases the format of the ID is:
 
 `'!' + idType.getInum() + '!' + four_random_HEX_characters + '.' + four_random_HEX_characters.`
 
-The ID generation script enables an admin to implement custom ID
-generation rules.
+The ID generation script enables an admin to implement custom ID generation rules.
 
 This script type adds only one method to the base script type:
 
@@ -249,10 +224,7 @@ This script can be used in an oxTrust application only.
 
 ## Cache Refresh       
 
-In order to integrate your Gluu instance with backend LDAP servers handling authentication in your existing network environment, oxTrust provides a mechanism called [Cache Refresh](../user-management/ldap-sync.md#ldap-synchronization) to copy user data to the Gluu Server's local LDAP server. During this process it is possible
-to specify key attribute(s) and specify attribute name transformations.
-There are also cases when it can be used to overwrite attribute values
-or to add new attributes based on other attribute values.
+In order to integrate your Gluu instance with backend LDAP servers handling authentication in your existing network environment, oxTrust provides a mechanism called [Cache Refresh](../user-management/ldap-sync.md#ldap-synchronization) to copy user data to the Gluu Server's local LDAP server. During this process it is possible to specify key attribute(s) and specify attribute name transformations. There are also cases when it can be used to overwrite attribute values or to add new attributes based on other attribute values.
 
 This script type adds only one method to the base script type:
 
@@ -263,15 +235,10 @@ This script type adds only one method to the base script type:
 This script can be used in an oxTrust application only.
 
 - [Sample Cache Refresh Script](./sample-cache-refresh-script.py)
-
  
 ## UMA 2 RPT Authorization Policies     
 
-This is a special script for UMA. It allows an admin to protect UMA
-scopes with policies. It is possible to add more than one UMA policy to
-an UMA scope. On requesting access to a specified resource, the
-application should call specified UMA policies in order to grant or deny
-access.
+This is a special script for UMA. It allows an admin to protect UMA scopes with policies. It is possible to add more than one UMA policy to an UMA scope. On requesting access to a specified resource, the application should call specified UMA policies in order to grant or deny access.
 
 This script type adds only one method to the base script type:
 
@@ -291,14 +258,9 @@ This script can be used in an oxAuth application only.
 
 - [Sample UMA2 Claims-Gathering Script](./sample-uma-claims-gathering.py)
 
-
 ## Application Session Management      
 
-This script allows an admin to notify 3rd party systems about requests
-to end an OAuth session. This method is triggered by an oxAuth call to
-the `end_session` endpoint. It's possible to add multiple scripts with
-this type. The application should call all of them according to the
-level.
+This script allows an admin to notify 3rd party systems about requests to end an OAuth session. This method is triggered by an oxAuth call to the `end_session` endpoint. It's possible to add multiple scripts with this type. The application should call all of them according to the level.
 
 This script type adds only one method to the base script type:
 
@@ -314,8 +276,7 @@ This script can be used in an oxAuth application only.
 
 ## SCIM
 
-SCIM script allows you to execute custom logic when certain SCIM API operations are invoked. Particularly for create, update, and delete 
- users and groups, custom code can be called just before and after data is persisted to LDAP.
+SCIM script allows you to execute custom logic when certain SCIM API operations are invoked. Particularly for create, update, and delete users and groups, custom code can be called just before and after data is persisted to LDAP.
 
 To enable this feature, SCIM script needs to be enabled from the SCIM tab:
 
@@ -357,7 +318,7 @@ Full version of introspection script example can be found [here](https://github.
 
 It is also possible to run introspection script during `access_token` creation as JWT. It can be controlled by `run_introspection_script_before_access_token_as_jwt_creation_and_include_claims` client property which is set to false by default.
 
-If `run_introspection_script_before_access_token_as_jwt_creation_and_include_claims` set to true and `access_token_as_jwt` set to true then introspection script will be run before JWT (`access_token`) is created and all json values will be transfered to JWT. Also `context` inside script has additional method which allows to cancel transfering of claims if needed `context.setTranferIntrospectionPropertiesIntoJwtClaims(false)` 
+If `run_introspection_script_before_access_token_as_jwt_creation_and_include_claims` set to true and `access_token_as_jwt` set to true then introspection script will be run before JWT (`access_token`) is created and all JSON values will be transfered to JWT. Also `context` inside script has additional method which allows to cancel transfering of claims if needed `context.setTranferIntrospectionPropertiesIntoJwtClaims(false)` 
 
 ## Resource Owner Password Credentials
 
@@ -383,4 +344,4 @@ Snippet
         return False
 ```
 
-Full version of script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_4.0/static/extension/resource_owner_password_credentials/resource_owner_password_credentials.py). 
+Full version of the script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_4.0/static/extension/resource_owner_password_credentials/resource_owner_password_credentials.py). 
