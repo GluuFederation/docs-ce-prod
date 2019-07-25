@@ -131,7 +131,7 @@ Users will be prompted for consent as below.
 
 ## Update User     
 
-oxTrust allows an admin to add and modify users which belong to groups. In order to simplify this process and apply repeating actions, oxTrust supports an Update User script. In this script it is possible to modify a person entry before it is stored in LDAP.
+oxTrust allows an admin to add and modify users which belong to groups. In order to simplify this process and apply repeating actions, oxTrust supports an Update User script. In this script it is possible to modify a person entry before it is stored in the database.
 
 This script type adds only one method to the base script type:
 
@@ -165,7 +165,7 @@ The methods are executed in the following order:
 |Second|`preRegistration()`|True/False|
 |Third|`postRegistration()`|True/False|
 
-First oxTrust executes the `initRegistration` method to do an initial user entry update. The `preRegistration` method is called before storing the user entry in LDAP. Hence in this script it is possible to validate the user entry. The `postRegistration` method is called after successfully storing the user entry in LDAP. In this method, for example, the script can send an e-mail or send notifications to other organization systems about the new user entry.
+First oxTrust executes the `initRegistration` method to do an initial user entry update. The `preRegistration` method is called before storing the user entry in the database. Hence in this script it is possible to validate the user entry. The `postRegistration` method is called after successfully storing the user entry in the database. In this method, for example, the script can send an e-mail or send notifications to other organization systems about the new user entry.
 
 - [Sample User Registration Script](./sample-user-registration-script.py)
 
@@ -276,7 +276,7 @@ This script can be used in an oxAuth application only.
 
 ## SCIM
 
-SCIM script allows you to execute custom logic when certain SCIM API operations are invoked. Particularly for create, update, and delete users and groups, custom code can be called just before and after data is persisted to LDAP.
+SCIM script allows you to execute custom logic when certain SCIM API operations are invoked. Particularly for create, update, and delete users and groups, custom code can be called just before and after data is persisted to the database.
 
 To enable this feature, SCIM script needs to be enabled from the SCIM tab:
 
