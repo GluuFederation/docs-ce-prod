@@ -15,13 +15,13 @@ Follow the instructions below to set up a fresh Gluu Server for testing and proo
 
 ## Steps
 
-1. Log in as root
+1. Log in as root:
 
     ```
     sudo su -
     ```
 
-1. Create a directory for the bash script
+1. Create a directory for the bash script. For example:
 
     ```
     mkdir gluu-demo
@@ -37,7 +37,7 @@ Follow the instructions below to set up a fresh Gluu Server for testing and proo
     wget https://raw.githubusercontent.com/GluuFederation/enterprise-edition/4.0.0/test-drive/single-host/run_all.sh && chmod +x run_all.sh
     ```
     
-1.  Run the following command inside the `/path/to/docker-gluu-server/` directory and follow the prompts:
+1.  Run the following command inside the `gluu-demo` directory and follow the prompts:
 
     ```
     ./run_all.sh
