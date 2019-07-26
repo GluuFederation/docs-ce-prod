@@ -129,7 +129,7 @@ Custom `AuthnContextClassRef` attribute values can be defined as well. The recom
 
 ### Enable AuthnContextClassRef in oxTrust
 
-ACR values need to be associated (one-to-one) with Gluu authentication interception scripts (e.g. basic, fido, ldap, etc.). This can be achieved by setting the SAML ACRS attribute field included in a specific Person Authentication script to the desired value, e.g. `urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport`.   
+ACRS values need to be associated (one-to-one) with Gluu authentication interception scripts (e.g. basic, fido, ldap, etc.). This can be achieved by setting the SAML ACRS attribute field included in a specific Person Authentication script to the desired value, e.g. `urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport`.   
 
 ![saml_authctxref](../img/saml/saml_authctxref.PNG)
 
