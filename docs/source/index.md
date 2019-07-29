@@ -1,4 +1,4 @@
-!!! Note
+!!! Attention
     Gluu Server 4.0 is now in public beta. Take a [test drive](https://gluu.org/docs/ce/4.0/installation-guide/test-drive/) today! 
     
 # Gluu Server Community Edition (CE) 3.1.6 Documentation
