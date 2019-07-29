@@ -1,9 +1,9 @@
+!!! Note
+    Gluu Server 4.0 is now in public beta. Take a [test drive](https://gluu.org/docs/ce/4.0/installation-guide/test-drive/) today! 
+
 # Preparing VM for Gluu Server Installation
 ## Overview
-
-Thank you for your interest in the Gluu Server! 
-
-This document will provide instructions for preparing a VM  for a standard Gluu Server deployment (i.e. **not** Docker). Once the server is ready, move on to the [installation instructions](../installation-guide/install.md). 
+This document provides instructions for preparing a VM for a standard Gluu Server deployment. Once the server is ready, move on to the [installation instructions](../installation-guide/install.md). 
 
 Good luck and welcome to the community!
 
