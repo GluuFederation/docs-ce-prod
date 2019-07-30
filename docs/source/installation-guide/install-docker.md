@@ -1,16 +1,16 @@
 # Docker Installation
 
-This is an example of running Gluu Server Community Edition on a single node VM using docker.
+This guide provides instructions for running Gluu Server CE on a single node VM using Docker.
 
 ## Requirements:
 
-1)  Follow the [Docker installation instructions](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository) or use the [convenient installation script](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script)
+1. Follow the [Docker installation instructions](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository) or use the [installation script](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script)
 
-1)  [docker-compose](https://docs.docker.com/compose/install/#install-compose).
+1. [docker-compose](https://docs.docker.com/compose/install/#install-compose).
 
-1)  Obtain Google Cloud Platform KMS credentials JSON file, save it as `gcp_kms_creds.json`.
+1. Obtain Google Cloud Platform KMS credentials JSON file, save it as `gcp_kms_creds.json`.
 
-1)  Create `gcp_kms_stanza.hcl`:
+1. Create `gcp_kms_stanza.hcl`:
 
         seal "gcpckms" {
             credentials = "/vault/config/creds.json"
@@ -20,7 +20,7 @@ This is an example of running Gluu Server Community Edition on a single node VM 
             crypto_key  = "<KEY_NAME>"
         }
 
-1)  Obtain files for deployment:
+1. Obtain files for deployment:
 
         mkdir docker-gluu-server
         cd docker-gluu-server
@@ -30,7 +30,7 @@ This is an example of running Gluu Server Community Edition on a single node VM 
         wget https://raw.githubusercontent.com/GluuFederation/enterprise-edition/4.0.0/examples/single-host/vault_gluu_policy.hcl
         chmod +x run_all.sh
 
-1)  After you decidae how you want to configure your setup as shown above run the following command inside the `/path/to/docker-gluu-server/` directory and follow the prompts:
+1. After you decidae how you want to configure your setup as shown above run the following command inside the `/path/to/docker-gluu-server/` directory and follow the prompts:
 
         ./run_all.sh
 
@@ -75,11 +75,11 @@ This is an example of running Gluu Server Community Edition on a single node VM 
 
         docker-compose logs -f
 
-1)  On initial deployment, since Vault has not been configured yet, the `run_all.sh` will generate root token and key to interact with Vault API, saved as `vault_key_token.txt`. Secure this file as it contains recovery key and root token.
+1. On initial deployment, since Vault has not been configured yet, the `run_all.sh` will generate root token and key to interact with Vault API, saved as `vault_key_token.txt`. Secure this file as it contains recovery key and root token.
 
 ## FAQ
 
-1) What network is Gluu Server Enterprise Edition running on?
+1. What network is Gluu Server Enterprise Edition running on?
 
     In this script, it launches consul using the `docker-compose up consul` command, where docker-compose creates a custom bridge network, based on the name of your current directory. So, for example, the network would be named `dockergluuserver_bridge`. You can assign a custom network in the `docker-compose.yaml`. Please see [the Docker-compose official documentation](https://docs.docker.com/compose/networking/#specify-custom-networks) for further understanding.
 
@@ -101,7 +101,7 @@ This is an example of running Gluu Server Community Edition on a single node VM 
             --city $city
     - Note this command is to create the initial configuration and is slightly different than the `load` or `dump` option of config-init.
 
-1) What is the launch process for the containers?
+1. What is the launch process for the containers?
 
     There are a couple containers which have to be launched first to successfully launch the dependent Gluu Server containers.
 
