@@ -55,7 +55,7 @@ nav:
         - 'Installation': 
 #            - 'Start here': 'installation-guide/install.md'
             - 'Test Drive': 'installation-guide/test-drive.md'
-            - 'Docker': 'installation-guide/docker-install.md'
+            - 'Docker': 'installation-guide/install-docker.md'
             - 'Ubuntu Installation': 'installation-guide/install-ubuntu.md'
             - 'CentOS Installation': 'installation-guide/install-centos.md'
             - 'RHEL Installation': 'installation-guide/install-rhel.md'
