@@ -30,22 +30,6 @@ This is an example of running Gluu Server Community Edition on a single node VM 
         wget https://raw.githubusercontent.com/GluuFederation/enterprise-edition/4.0.0/examples/single-host/vault_gluu_policy.hcl
         chmod +x run_all.sh
 
-## There are three options at installation :
-
-   ### 1. LDAP only
-   
-   No changes required . This is the default setup.
-   
-   ### 2. Hybrid ( Couchbase + LDAP)
-   
-   Use both Couchbase and LDAP to split data and cache according to your preferance. This requires the change of all occurences of `GLUU_PERSISTENCE_TYPE=ldap`  in `docker-compose.yml` to `GLUU_PERSISTENCE_TYPE=hybrid` with changing `GLUU_PERSISTENCE_LDAP_MAPPING=default` if needed to one of the following options `default/user/site/cache/statistic`. 
-
-   ### 3. Couchbase only
-   
-   Use only Couchbase as your persistence layer by changing all occurences of `GLUU_PERSISTENCE_TYPE=ldap` to `GLUU_PERSISTENCE_TYPE=couchbase` in `docker-compose.yml`.
-   
----
-
 1)  After you decidae how you want to configure your setup as shown above run the following command inside the `/path/to/docker-gluu-server/` directory and follow the prompts:
 
         ./run_all.sh
