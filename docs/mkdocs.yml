@@ -54,7 +54,7 @@ nav:
         - 'VM Preparation': 'installation-guide/index.md'
         - 'Installation': 
 #            - 'Start here': 'installation-guide/install.md'
-            - 'Test Drive': 'installation-guide/test-drive.md'
+#            - 'Test Drive': 'installation-guide/test-drive.md'
             - 'Docker': 'installation-guide/install-docker.md'
             - 'Ubuntu': 'installation-guide/install-ubuntu.md'
             - 'CentOS': 'installation-guide/install-centos.md'
