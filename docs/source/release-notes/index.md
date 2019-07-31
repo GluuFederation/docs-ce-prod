@@ -1,3 +1,5 @@
+# Release Notes
+
 ## Notice
 
 This document, also known as the Gluu Release Note, 
