@@ -34,7 +34,7 @@ This quickstart guide provides instructions for setting up a single-host Gluu Se
 1.  Obtain bash script for Gluu single host installation:
 
     ```
-    wget https://raw.githubusercontent.com/GluuFederation/enterprise-edition/4.0.0/test-drive/single-host/run_all.sh && chmod +x run_all.sh
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-containers/blob/4.0.0/test-drive/single-host/run_all.sh && chmod +x run_all.sh
     ```
     
 1.  Run the following command inside the `gluu-demo` directory and follow the prompts:
