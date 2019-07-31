@@ -2,7 +2,7 @@
 
 This guide provides instructions for running Gluu Server CE on a single node VM using Docker.
 
-## Requirements:
+## Requirements
 
 1. Follow the [Docker installation instructions](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository) or use the [installation script](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script)
 
@@ -27,10 +27,10 @@ This guide provides instructions for running Gluu Server CE on a single node VM 
     ```
     mkdir docker-gluu-server
     cd docker-gluu-server
-    wget https://raw.githubusercontent.com/GluuFederation/enterprise-edition/4.0.0/examples/single-host/run_all.sh
-    wget https://raw.githubusercontent.com/GluuFederation/enterprise-edition/4.0.0/examples/single-host/docker-compose.yml
-    wget https://raw.githubusercontent.com/GluuFederation/enterprise-edition/4.0.0/examples/single-host/docker-compose.override.yml
-    wget https://raw.githubusercontent.com/GluuFederation/enterprise-edition/4.0.0/examples/single-host/vault_gluu_policy.hcl
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-containers/4.0.0/examples/single-host/run_all.sh
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-containers/4.0.0/examples/single-host/docker-compose.yml
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-containers/4.0.0/examples/single-host/docker-compose.override.yml
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-containers/4.0.0/examples/single-host/vault_gluu_policy.hcl
     chmod +x run_all.sh
     ```
     
