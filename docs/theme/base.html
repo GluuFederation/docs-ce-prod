@@ -8,7 +8,6 @@
     {% block site_meta %}
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta name="robots" content="noindex, nofollow">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       {% if page and page.meta and page.meta.description %}
         <meta name="description" content="{{ page.meta.description }}">
@@ -163,6 +162,9 @@
                 {% if not "\x3ch1" in page.content %}
                   <h1>{{ page.title | default(config.site_name, true)}}</h1>
                 {% endif %}
+                <div>
+                <p> CE 4.0 is currently in open Beta. Questions and feedback can be directed to <a href="https://support.gluu.org"> Gluu support</a>. View <a href="https://ox.gluu.org/reports/read_issues.php">known issues</a>. </p>
+                </div>
                 {{ page.content }}
                 {% block source %}
                   {% if page and page.meta and page.meta.source %}
