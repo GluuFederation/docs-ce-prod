@@ -43,13 +43,13 @@ In the example below, access is only allowed from one specific private range IP 
 
 ### Configure 2FA 
 
-Consider enforcing 2FA for access to oxTrust. Gluu supports an assortment of 2FA methods out-of-the-box, including [Duo Security](https://gluu.org/docs/ce/3.1.3/authn-guide/duo/), [Super Gluu](https://gluu.org/docs/ce/3.1.3/authn-guide/supergluu/) or [FIDO U2F](https://gluu.org/docs/ce/3.1.3/authn-guide/U2F/).
+Consider enforcing 2FA for access to oxTrust. Gluu supports an assortment of 2FA methods out-of-the-box, including [Duo Security](https://gluu.org/docs/ce/authn-guide/duo/), [Super Gluu](https://gluu.org/docs/ce/authn-guide/supergluu/) or [FIDO U2F](https://gluu.org/docs/ce/authn-guide/U2F/).
 
 ## Enabled extensions
 
 `Configuration` > `Organization configuration` page contains several controls which may impact security of the instance if left enabled. Consider disabling the following settings unless otherwise required:   
 
-- "SCIM Support" - enables [SCIM protocol](https://gluu.org/docs/ce/3.1.4/user-management/scim2/) implementation which allows remote clients to conduct reads and writes of user data stored locally at the instance. Being a powerful tool for conducting user management-related batch jobs, it could become a powerful tool for destruction in the wrong hands.
+- "SCIM Support" - enables [SCIM protocol](https://gluu.org/docs/ce/user-management/scim2/) implementation which allows remote clients to conduct reads and writes of user data stored locally at the instance. Being a powerful tool for conducting user management-related batch jobs, it could become a powerful tool for destruction in the wrong hands.
 
 - "Passport Support" - Passport enables many new user authentication methods, like social login, but also increases the surface area for security issues. Any time a new authentication method is added, its security should be thoroughly tested for both positive and negative scenarios.  
 
@@ -78,7 +78,7 @@ oxAuth is the core auth engine for the Gluu Server. Its security is paramount fo
 
 Make sure no services are listening on external interfaces except for those that are absolutely required. 
 
-In a standalone instance of Gluu Server 3.1.4, only Apache's listener at TCP port 443 is required to be open to the world. 
+In a standalone Gluu Server instance, only Apache's listener at TCP port 443 is required to be open to the world. 
 
 A list of current listeners can be obtained with `# netstat nlpt` (for TCP) and `# netstat -nlpu` (for UDP). In particular, make sure the internal LDAP server used by Gluu to store all its configuration data listens only at loopback interface.
 
@@ -100,7 +100,7 @@ In case this feature must be enabled, next controls must be re-visited to minimi
 
 ## UMA
 
-[User Managed Access](https://gluu.org/docs/ce/3.1.4/admin-guide/uma/) allows adopters to designate the task of making access authorization decisions for an resource to a dedicated 3rd party service capable of automatically handling requests to access a resource even without its owner being present online, following a set of rules defined for it. Needless to say such feature-rich framework can provide a lot of attack vectors for those seeking unauthorized access.
+[User Managed Access](https://gluu.org/docs/ce/admin-guide/uma/) allows adopters to designate the task of making access authorization decisions for an resource to a dedicated 3rd party service capable of automatically handling requests to access a resource even without its owner being present online, following a set of rules defined for it. Needless to say such feature-rich framework can provide a lot of attack vectors for those seeking unauthorized access.
 
 Next controls allow you to fine-tune Gluu's UMA implementation's behaviour, resulting in more secure interactions:
 
@@ -110,10 +110,10 @@ Next controls allow you to fine-tune Gluu's UMA implementation's behaviour, resu
 
 ## Upgrades
 
-Needless to say, keeping your instance up to date is paramount for maintaining its security. List of the latest vulnerabilities in the Gluu Server suite itself and corresponding patches can be found [here](https://gluu.org/docs/ce/3.1.4/upgrade/patches/). In addition,  updates should be conducted for all system components both inside and outside of container on regular basis.
+Needless to say, keeping your instance up to date is paramount for maintaining its security. List of the latest vulnerabilities in the Gluu Server suite itself and corresponding patches can be found [here](https://gluu.org/docs/ce/upgrade/patches/). In addition,  updates should be conducted for all system components both inside and outside of container on regular basis.
 
 !!! Warning
-    Gluu's repository must be disabled before any attempt to update packages outside of container as described [here](https://gluu.org/docs/ce/3.1.3/installation-guide/install/#5-disable-gluu-repositories)):
+    Gluu's repository must be disabled before any attempt to update packages outside of container as described [here](https://gluu.org/docs/ce/installation-guide/install/#5-disable-gluu-repositories)):
 
   - For RHEL/CentOS distros, use `# yum update` inside and outside of container
   
