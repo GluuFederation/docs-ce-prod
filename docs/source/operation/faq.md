@@ -6,8 +6,8 @@ When it comes to troubleshooting issues in the Gluu Server--from service hiccups
 See what's going on by tailing the `identity` and `oxauth` logs:
 
 ```
-$ tail -f /opt/gluu-server-4.0/opt/gluu/jetty/identity/logs/* \
-          /opt/gluu-server-4.0/opt/gluu/jetty/oxauth/logs/*
+tail -f /opt/gluu-server-4.0/opt/gluu/jetty/identity/logs/* \
+        /opt/gluu-server-4.0/opt/gluu/jetty/oxauth/logs/*
 ```       
 
 Logs can be lengthy and difficult to search. As needed, all logs inside the container can be cleared by using the clear-log feature explained in [clear-logs](./logs.md#clearing-logs).
@@ -17,9 +17,9 @@ Logs can be lengthy and difficult to search. As needed, all logs inside the cont
 Run the following commands if you find your instance running out of disk space:
 
 ```
-# /etc/init.d/gluu-server-4.0 stop
-# rm -rf /opt/gluu-server-4.0/opt/jetty-9.3/temp/*
-# /etc/init.d/gluu-server-4.0 start
+/etc/init.d/gluu-server-4.0 stop
+rm -rf /opt/gluu-server-4.0/opt/jetty-9.3/temp/*
+/etc/init.d/gluu-server-4.0 start
 ```
 
 ## Adding Passport.js and/or Shibboleth IDP post installation
@@ -30,19 +30,19 @@ The `post-setup-add-components.py` script enables you to install the Shibboleth 
 1. Change working directory to `/install/community-edition-setup/`: 
 
     ```
-    # cd /install/community-edition-setup/
+    cd /install/community-edition-setup/
     ```
           
 1. Download the script:     
 
     ```
-    # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/post-setup-add-components.py
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/post-setup-add-components.py
     ```
           
 1. Run the script with arguments either `-addshib` or `-addpassport`  
 
     ```
-    # python post-setup-add-components.py -addshib -addpassport
+    python post-setup-add-components.py -addshib -addpassport
     ```
 
 ## Connect a remote debugger
@@ -53,8 +53,8 @@ Connecting your local debugger up to Gluu can help with troubleshooting.
 Change the configuration of the `init.d` scripts for the `identity` and `oxauth` processes:
 
 ```
-# /etc/init.d/gluu-server-4.0 login
-# vim /etc/default/identity
+/etc/init.d/gluu-server-4.0 login
+vim /etc/default/identity
 ```
 
 Change:
@@ -98,7 +98,7 @@ Do the same in `/etc/default/oxauth`, but choose a different port for the debugg
 Now, if you're running the gluu system inside a virtual machine (or just a different machine than your host machine), forward the ports `6005` and `5005` to your local machine. Type this command on your local machine, where you forward these two ports as you `ssh` into the Gluu machine:
 
 ```
-$ ssh -L 5005:localhost:5005 -L6005:localhost:6005 user@gluu
+ssh -L 5005:localhost:5005 -L6005:localhost:6005 user@gluu
 ```
 
 As long as you keep this `ssh` connection open, you can access the debug ports `5005` and `6005` as if they were running locally.
@@ -111,17 +111,17 @@ For remote debugging to make sense, you must have the source code checked out lo
 For `oxAuth`:
 
 ```
-$ git clone https://github.com/GluuFederation/oxAuth.git
-$ cd oxAuth
-$ git checkout version_4.0
+git clone https://github.com/GluuFederation/oxAuth.git
+cd oxAuth
+git checkout version_4.0
 ```
 
 For `identity`:
 
 ```
-$ git clone https://github.com/GluuFederation/oxTrust.git
-$ cd oxTrust
-$ git checkout version_4.0
+git clone https://github.com/GluuFederation/oxTrust.git
+cd oxTrust
+git checkout version_4.0
 ```
 
 ## Find your Gluu Server version
@@ -133,7 +133,7 @@ The Gluu Server version can be found in the oxTrust dashboard. Alternatively:
 
     a. Use the below command
     
-     `# service gluu-server-4.0 login`
+     `service gluu-server-4.0 login`
      
 3. To find oxTrust version
 
@@ -192,69 +192,69 @@ Follow the documentation for [updating a .war file](../upgrade/index.md#updating
 
 Please follow these steps to restore your Gluu admin account (you will probably need to substitute actual port, bind names and hostnames with ones used by your installation):
 
-1) Log in to Gluu's chroot environment with the command below:
+1. Log in to Gluu's chroot environment with the command below:
 
-```
-# service gluu-server-4.0 login
-```
+    ```
+    service gluu-server-4.0 login
+    ```
 
-2) Run this command:
+1. Run this command:
 
-```
-#/opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -b o=gluu gluuGroupType=gluuManagerGroup 1.1
-```
+    ```
+    /opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -b o=gluu gluuGroupType=gluuManagerGroup 1.1
+    ```
 
-and remember the displayed dn of the Gluu Manager Group for future use.
+    and remember the displayed dn of the Gluu Manager Group for future use.
 
-3) Run this command:
+1. Run this command:
 
-```
-# /opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -b o=gluu ou=people 1.1
-```
+    ```
+    /opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -b o=gluu ou=people 1.1
+    ```
 
-and remember the displayed dn of the People ou for future use.
+    and remember the displayed dn of the People ou for future use.
 
-4) While staying in the chrooted environment, create the file `~/add_user.ldif` using your favorite text editor, and copy the following lines to it:
+1. While staying in the chrooted environment, create the file `~/add_user.ldif` using your favorite text editor, and copy the following lines to it:
 
-```
-dn: inum=tempadmin,ou=people,o=@!F9CC.D762.4778.1032!0001!2C72.BB87,o=gluu
-changetype: add
-uid: tempadmin
-objectClass: gluuPerson
-objectClass: top
-givenName: tempadmin
-sn: tempadmin
-inum: tempadmin
-gluuStatus: active
-userPassword: 1q2w3e
-```
+    ```
+    dn: inum=tempadmin,ou=people,o=@!F9CC.D762.4778.1032!0001!2C72.BB87,o=gluu
+    changetype: add
+    uid: tempadmin
+    objectClass: gluuPerson
+    objectClass: top
+    givenName: tempadmin
+    sn: tempadmin
+    inum: tempadmin
+    gluuStatus: active
+    userPassword: 1q2w3e
+    ```
 
-Please note the string's segment marked with bold: you will have to substitute it with dn of your own People ou which you've acquired in step 3).
+    Please note the string's segment marked with bold: you will have to substitute it with dn of your own People ou which you've acquired in step 3.
 
-5) Run this command:
+1. Run this command:
 
-```
-# /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/add_user.ldif
-```
+    ```
+    /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/add_user.ldif
+    ```
 
-This will create new user tempadmin with attributes provided via file created in step 4).
+    This will create new user tempadmin with attributes provided via file created in step 4).
 
-6) Now create file `add_2_group.ldif` in your home ("~/") directory and copy the following lines to it:
+1. Now create file `add_2_group.ldif` in your home ("~/") directory and copy the following lines to it:
 
-```
-dn: inum=@!F9CC.D762.4778.1032!0001!2C72.BB87!0003!60B7,ou=groups,o=@!f9cc.d762.4778.1032!0001!2c72.bb87,o=gluu
-changetype: modify
-add: member
-member: inum=tempadmin,ou=people,o=@!f9cc.d762.4778.1032!0001!2c72.bb87,o=gluu
-```
+    ```
+    dn: inum=@!F9CC.D762.4778.1032!0001!2C72.BB87!0003!60B7,ou=groups,o=@!f9cc.d762.4778.1032!0001!2c72.bb87,o=gluu
+    changetype: modify
+    add: member
+    member: inum=tempadmin,ou=people,o=@!f9cc.d762.4778.1032!0001!2c72.bb87,o=gluu
+    ```
 
-Again, please note the strings' segment marked with bold: you will have to substitute contents of the "dn:" string with dn of your own Gluu Manager Group which you've acquired in step 2), and for "member:" string you will have to use the dn of tempadmin user (the one you already specified in the 1st line of the file in step 4).
+    Again, please note the strings' segment marked with bold: you will have to substitute contents of the "dn:" string with dn of your own Gluu Manager Group which you've acquired in step 2, and for "member:" string you will have to use the dn of tempadmin user (the one you already specified in the 1st line of the file in step 4).
 
-7) Run this command:
+1. Run this command:
 
-```
-# /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/add_2_group.ldif
-```
+    ```
+    /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/add_2_group.ldif
+    ```
 
 This will add tempadmin user to the IdP managers group and you can then login and assign another user to act as admin.
 
@@ -270,7 +270,7 @@ The Gluu Server stores the admin password in the file `/install/community-editio
 property `ldapPass`. Retrieve the data using the following command:
 
 ```
-# grep ldapPass= /install/community-edition-setup/*.last
+grep ldapPass= /install/community-edition-setup/*.last
 ```
 
 !!! Warning
@@ -288,7 +288,7 @@ This method rely on ldif file to change the authentication mode in LDAP server d
 - Run the following command to collect the `inum` for the Gluu Server installation:   
     
     ```
-    $/opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w 'yourPassword' -b "ou=appliances,o=gluu" -s one "objectclass=*" dn
+    /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w 'yourPassword' -b "ou=appliances,o=gluu" -s one "objectclass=*" dn
     ```
     
 - Create an `LDIF` file with the contents below:
@@ -309,7 +309,7 @@ This method rely on ldif file to change the authentication mode in LDAP server d
 - Replace the authentication mode using `ldapmodify` command.
 
     ```
-    root@gluu3-ubuntu:/opt/symas/bin# ./ldapmodify -h localhost -p 1636 -D "cn=directory manager" -w "{password provided during setup}" -f revert.ldif
+    ./ldapmodify -h localhost -p 1636 -D "cn=directory manager" -w "{password provided during setup}" -f revert.ldif
     ```
     
 ### Graphical method:
