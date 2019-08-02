@@ -29,25 +29,25 @@ Now we are ready to perform script development and debugging. Here is a quick ov
 
 1. After the import section, add:   
   
-        ```
-        REMOTE_DEBUG = True
-  
-        if REMOTE_DEBUG:
-            try:
-                import sys
-                sys.path.append('/opt/libs/pydevd')
-                import pydevd
-            except ImportError as ex:
-                print "Failed to import pydevd: %s" % ex
-                raise
-        ```     
+    ```
+    REMOTE_DEBUG = True
+    
+    if REMOTE_DEBUG:
+        try:
+            import sys
+            sys.path.append('/opt/libs/pydevd')
+            import pydevd
+        except ImportError as ex:
+            print "Failed to import pydevd: %s" % ex
+            raise
+    ```     
       
 1. Add the following lines wherever breakpoints are needed:   
   
-        ```
-        if REMOTE_DEBUG:
-            pydevd.settrace('localhost', port=5678, stdoutToServer=True, stderrToServer=True)
-        ```
+    ```
+    if REMOTE_DEBUG:
+        pydevd.settrace('localhost', port=5678, stdoutToServer=True, stderrToServer=True)
+    ```
 
 ## Sample Scenario
 
