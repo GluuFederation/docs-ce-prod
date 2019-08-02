@@ -194,8 +194,8 @@ at the bottom of oxAuth's login page. You can follow these steps to achieve this
   You may opt to copy the default oxAuth login page (`login.xhtml`) to the custom files 
 directory as well, and add some customizations to it:    
 
-    ```
-    # cp /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/login.xhtml  /opt/gluu/jetty/oxauth/custom/pages/
-    ```
+```
+cp /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/login.xhtml  /opt/gluu/jetty/oxauth/custom/pages/
+```
 
   Don't forget to apply appropriate file system permissions if needed. [Restart](./services.md#restart) the `oxauth` service inside the chroot.`   
