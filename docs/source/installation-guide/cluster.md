@@ -2,7 +2,7 @@
 # Clustering for HA
 
 ## Introduction
-The tutorial below provides detailed steps for configuring HA across multiple instances of the Gluu Server. However, clustering for production scenarios is not a simple task, and individual environments should *always* be benchmarked, tested, and documented in order to ensure organizational requirements for uptime are met. 
+The tutorial below offers detailed steps for configuring HA across multiple instances of the Gluu Server. However, clustering for production scenarios is not a simple task, and individual environments should *always* be benchmarked, tested, and documented in order to ensure organizational requirements for uptime are met. 
 
 !!! Note
     Clustering is outside the scope of free community support. For more details about supported options for HA, [schedule a call](https://gluu.org/booking). 
