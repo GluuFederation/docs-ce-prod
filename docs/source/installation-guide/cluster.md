@@ -2,21 +2,15 @@
 # Clustering for HA
 
 ## Introduction
-Many organizations need to cluster their Gluu Server in order to provide failover and high availability (HA). 
+The tutorial below provides detailed steps for configuring HA across multiple instances of the Gluu Server. However, clustering for production scenarios is not a simple task, and individual environments should *always* be benchmarked, tested, and documented in order to ensure organizational requirements for uptime are met. 
 
-The instructions below provide detailed steps for manually configuring HA across multuple instances of the Gluu Server. Although we provide instructions, clustering for production scenarios is not a simple task, and is **outside the scope** of free community support.  
-
-Instead, we offer two alternative supported strategies for HA, both of which require a [Gluu VIP Subscription](https://gluu.org/pricing/#vip) *or* a support agreement with one of our OEM partners. 
-
-1. [Cluster Manager (CM)](https://gluu.org/docs/cm), our GUI tool for automating many of the complicated steps below. 
-
-1. [Docker Edition (DE)](https://gluu.org/docs/de), which provides assets, recipes, and examples for running all Gluu Services in their own Linux containers. DE not only enables HA, but also provides operational, performance, and security advantages over traditional VM-based deployments of Gluu.
-
-For more details about supported options for HA, [schedule a call](https://gluu.org/booking). 
+!!! Note
+    Clustering is outside the scope of free community support. For more details about supported options for HA, [schedule a call](https://gluu.org/booking). 
 
 ## Concept
+The web tier of the Gluu Server (i.e. oxAuth) is stateless and can be scaled horizontally. The local LDAP server included in all Gluu Server deployments (i.e. Gluu LDAP) supports multi-master replication. Any instance can be written to and changes are propagated to other instances.
 
-Clustering uses OpenDJ replication and configuration changes to greatly improve Gluu Server availability, via a proxy.
+Clustering uses OpenDJ multi-master replication to greatly improve Gluu Server availability, via a proxy.
 
 ![cluster manager diagram](../img/cluster/cluster-manager-diagram.png)
 
