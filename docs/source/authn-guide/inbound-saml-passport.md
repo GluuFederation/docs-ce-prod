@@ -68,8 +68,8 @@ Add other properties you might consider relevant. For details on this topic you 
 |-|-|-|
 |validateInResponseTo|true|More info [here](https://github.com/bergie/passport-saml/#config-parameter-details)|
 |requestIdExpirationPeriodMs|3600000|More info [here](https://github.com/bergie/passport-saml/#config-parameter-details)|
-|decryptionPvk|/etc/certs/passport-sp.key|Private key that will be used to attempt to decrypt any encrypted assertions received|
-|decryptionCert|/etc/certs/passport-sp.crt|Public certificate matching `decryptionPvk`|
+|decryptionPvk|Contents of /etc/certs/passport-sp.key|Private key that will be used to attempt to decrypt any encrypted assertions received|
+|decryptionCert|Contents of /etc/certs/passport-sp.crt|Public certificate matching `decryptionPvk`|
 
 To be more precise, `decryptionPvk` and `decryptionCert` correspond to items `Passport SP Decryption cert` and `Passport SP Decryption Private key` found in the basic configuration page. In oxTrust visit `Passport` > `Basic Configuration` to see these values.
 
