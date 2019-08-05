@@ -35,7 +35,7 @@ service gluu-server-3.1.6 restart
 ## Upgrade from 3.1.x to 3.1.6
 
 !!! Note 
-    It is assumed that `/install/community-edition-setup/setup.properties.last` is available. Upgrade script uses information in this file to perform upgrade.
+    The upgrade script requires the `/install/community-edition-setup/setup.properties.last` to be available. Information in this file is used in the upgrade process.
 
 To perform an in-place upgrade to Gluu Server 3.1.6, download and run our in-place upgrade script, following these instructions:
 
