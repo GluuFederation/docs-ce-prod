@@ -13,37 +13,37 @@ Find your existing version below for instructions to upgrade to the latest versi
 
 ### Additional notes
 
-- Scripts and directories outside the Chroot will still reflect the version from which you upgraded. For example, if you started with version 3.1.3, the directory will still be gluu-server-3.1.3, even after upgrading to 3.1.6.
+- Scripts and directories outside the Chroot will still reflect the version from which you upgraded. For example, if you started with version 3.1.3, the directory will still be gluu-server-3.1.3, even after upgrading to 3.1.7.
 
-## Upgrade from 3.1.6 to 3.1.6.sp1
+## Upgrade from 3.1.7 to 3.1.7
 
-To perform an in-place upgrade from Gluu Server 3.1.6 to 3.1.6.sp1, download and run our in-place upgrade script, following these instructions:
+To perform an in-place upgrade from Gluu Server 3.1.7 to 3.1.7, download and run our in-place upgrade script, following these instructions:
 
-1. Log in to your server with `service gluu-server-3.1.6 login`
+1. Log in to your server with `service gluu-server-3.1.7 login`
 
-1. Download the upgrade script with `wget https://repo.gluu.org/upd/3-1-6-sp1-upg.sh`
+1. Download the upgrade script with `wget https://repo.gluu.org/upd/3.1.7-upg.sh`
 
-1. Run the script with `sh 3-1-6-sp1-upg.sh`
+1. Run the script with `sh 3.1.7-upg.sh`
 
 1. When the script has finished, restart your server:
 
 ```
 logout
-service gluu-server-3.1.6 restart
+service gluu-server-3.1.7 restart
 ```
 
-## Upgrade from 3.1.x to 3.1.6
+## Upgrade from 3.1.x to 3.1.7
 
 !!! Note 
     It is assumed that `/install/community-edition-setup/setup.properties.last` is available. Upgrade script uses information in this file to perform upgrade.
 
-To perform an in-place upgrade to Gluu Server 3.1.6, download and run our in-place upgrade script, following these instructions:
+To perform an in-place upgrade to Gluu Server 3.1.7, download and run our in-place upgrade script, following these instructions:
 
 1. Log in to your server with `service gluu-server-3.1.x login`
 
-1. Download the upgrade script with `wget https://repo.gluu.org/upd/3-1-6-upg.sh`
+1. Download the upgrade script with `wget https://repo.gluu.org/upd/3.1.7-upg.sh`
 
-1. Run the script with `sh 3-1-6-upg.sh`
+1. Run the script with `sh 3.1.7-upg.sh`
 
 1. When the script has finished, restart your server:
 
@@ -52,7 +52,7 @@ logout
 service gluu-server-3.1.x restart
 ```
 
-## Upgrade from 3.0.x to 3.1.6
+## Upgrade from 3.0.x to 3.1.7
 
 
 Upgrading generally involves the following steps:
@@ -78,7 +78,7 @@ Gluu provides the necessary [scripts](https://github.com/GluuFederation/communit
 
 # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/export3031.py
 
-# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.6/ldif.py
+# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.7/ldif.py
 ```
 
 Install the `python-pip` package.
@@ -110,14 +110,14 @@ Stop the current version of the Gluu Server.
 # service gluu-server-3.0.x stop
 ```
 
-Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.1.6`, execute the following commands:
+Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.1.7`, execute the following commands:
 
 ```
-# cp -r /opt/gluu-server-3.0.x/root/backup_3031/ /opt/gluu-server-3.1.6/root/
+# cp -r /opt/gluu-server-3.0.x/root/backup_3031/ /opt/gluu-server-3.1.7/root/
 
-# service gluu-server-3.1.6 start
+# service gluu-server-3.1.7 start
 
-# service gluu-server-3.1.6 login
+# service gluu-server-3.1.7 login
 
 # cd
 
@@ -184,7 +184,7 @@ Now run the import script:
 
 Any errors or warnings will be displayed in the terminal and can be reviewed in the import log. Now you should be able to log into the oxTrust web UI using the old admin credentials and you should see all previous data in place. 
 
-## Upgrade from 2.x.x to 3.1.6
+## Upgrade from 2.x.x to 3.1.7
 
 !!! Warning
     Before proceeding with an upgrade, make sure to [back up](../operation/backup.md) the Gluu container or LDAP LDIF before proceeding with the upgrade. 
@@ -230,7 +230,7 @@ After migration is done you should be able to log in as the temporary admin user
 
 # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/export2431.py
 
-# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.6/ldif.py
+# wget -c https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.7/ldif.py
 
 ```
 
@@ -260,14 +260,14 @@ Stop the current version of the Gluu Server.
 # service gluu-server-2.4.x stop
 ```
 
-Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.1.6`, then follow the next steps to prepare :
+Review the [installation docs](../installation-guide/install.md) to install the Gluu Server using the package manager. Once the package manager has installed version `3.1.7`, then follow the next steps to prepare :
 
 ```
-# cp -r /opt/gluu-server-2.4.x/root/backup_2431/ /opt/gluu-server-3.1.6/root/
+# cp -r /opt/gluu-server-2.4.x/root/backup_2431/ /opt/gluu-server-3.1.7/root/
 
-# service gluu-server-3.1.6 start
+# service gluu-server-3.1.7 start
 
-# service gluu-server-3.1.6 login
+# service gluu-server-3.1.7 login
 
 # cd
 

@@ -16,11 +16,11 @@ Snaphots should be taken for all Gluu environments (e.g. Prod, Dev, QA, etc.) an
 ## Tarball Method
 All Gluu Server files live in a single folder: `/opt`. The entire Gluu Server CE `chroot` folder can be archived using the `tar` command: 
 
-1. Stop the server: `# service gluu-server-3.1.6 stop`
+1. Stop the server: `# service gluu-server-3.1.7 stop`
 	
-1. Use `tar` to take a backup: `# tar cvf gluu316-backup.tar /opt/gluu-server-3.1.6/`
+1. Use `tar` to take a backup: `# tar cvf gluu316-backup.tar /opt/gluu-server-3.1.7/`
 	
-1. Start the server again: `# service gluu-server-3.1.6 start`
+1. Start the server again: `# service gluu-server-3.1.7 start`
 	
 
 ## LDIF Data Backup
@@ -298,7 +298,7 @@ You should be done and everything should be working perfectly. You may notice yo
 ## Script Method
 
 1. Log in to Gluu chroot
-	a. # service gluu-server-3.1.6 login
+	a. # service gluu-server-3.1.7 login
 2. Fetch export script from Gluu 
 	b. wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/static/scripts/export24.py
 3. Change permission of the script

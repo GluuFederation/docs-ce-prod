@@ -41,13 +41,13 @@ The steps below apply to **all** affected Gluu Server versions.
     - For Centos 6.x, Red Hat 6.x, Ubuntu 14/16, and Debian 8:
     
     ```
-    # service gluu-server-3.1.6 login
+    # service gluu-server-3.1.7 login
     ```
     
     - For Centos 7.x, Red Hat 7.x and Debian 9:
     
     ```
-    # /sbin/gluu-serverd-3.1.6 login
+    # /sbin/gluu-serverd-3.1.7 login
     ```
 
 - Download the patch script:

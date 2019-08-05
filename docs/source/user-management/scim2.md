@@ -442,7 +442,7 @@ Please verify changes were applied whether by inspecting LDAP or issuing a GET. 
 
 With patching, you can be very precise about the modifications you want to apply. Patching syntax follows JSON Patch spec (RFC 6902) closely. While it's not a must to read the RFC to learn how patch works, see section 3.5.2 of SCIM protocol (RFC 7644) to get the grasp.
 
-If you prefer reading code, [patch test cases](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.6/scim-client2/src/test/java/gluu/scim2/client/patch) found in the Java SCIM-Client project are worth to look at.
+If you prefer reading code, [patch test cases](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.7/scim-client2/src/test/java/gluu/scim2/client/patch) found in the Java SCIM-Client project are worth to look at.
 
 The following is a simple example that illustrates the kind of modifications developers can achieve via PATCH. Overwrite your `input.json` with the following:
 
@@ -585,7 +585,7 @@ Create a project in your favorite IDE, and if using Maven, add the following sni
 
 ```
 <properties>
-	<scim.client.version>3.1.6.Final</scim.client.version>
+	<scim.client.version>3.1.7.Final</scim.client.version>
 </properties>
 ...
 <repositories>
@@ -603,7 +603,7 @@ Create a project in your favorite IDE, and if using Maven, add the following sni
 </dependency>
 ```
 
-Ideally, the SCIM-Client you use should match your Gluu version. For example, if you are running Gluu Server CE v3.1.6, you should also use SCIM-Client v3.1.6.
+Ideally, the SCIM-Client you use should match your Gluu version. For example, if you are running Gluu Server CE v3.1.7, you should also use SCIM-Client v3.1.7.
 
 If you don't want to use Maven, you can download the jar file for SCIM-Client here: [https://ox.gluu.org/maven/gluu/scim/client/SCIM-Client](https://ox.gluu.org/maven/gluu/scim/client/SCIM-Client). This may require you to add other libraries (jar files dependencies) manually.
 
@@ -751,7 +751,7 @@ Create a project in your favorite IDE, and if using maven add the following snip
 
 ```
 <properties>
-	<scim.client.version>3.1.6.Final</scim.client.version>
+	<scim.client.version>3.1.7.Final</scim.client.version>
 </properties>
 ...
 <repositories>
@@ -769,7 +769,7 @@ Create a project in your favorite IDE, and if using maven add the following snip
 </dependency>
 ```
 
-Ideally the SCIM-Client you use should match your Gluu version. For example, if you are running Gluu Server CE v3.1.6, you should also use SCIM-Client v3.1.6.
+Ideally the SCIM-Client you use should match your Gluu version. For example, if you are running Gluu Server CE v3.1.7, you should also use SCIM-Client v3.1.7.
 
 If you don't want to use Maven, you can download the jar file for SCIM-Client here: [https://ox.gluu.org/maven/gluu/scim/client/SCIM-Client](https://ox.gluu.org/maven/gluu/scim/client/SCIM-Client). This may require you to add other libraries (jar files dependencies) manually.
 
@@ -944,7 +944,7 @@ assertEquals(Response.Status.NO_CONTENT.getStatusCode(), response.getStatus());
 
 Coding service interactions when SCIM endpoints are being protected by UMA is more involved than using test mode. If you are planning to code for a SCIM service protected by UMA, it is advisable to check the flow depicted in section 3 of the [UMA 2.0 spec](https://docs.kantarainitiative.org/uma/wg/rec-oauth-uma-grant-2.0.html). Focus only on the interactions of client vs. another party (resource server or authorization server). In a previous [section](#actors-involved-in-protection), we talked about the actors involved in UMA protection; this will save you time when reading the specification.
 
-As a guideline for your own implementation, you can take ideas from the Java class [UmaScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.6/scim-client2/src/main/java/gluu/scim2/client/UmaScimClient.java) found in SCIM-Client. Starting at the `authorize` method, you will see how steps in the spec flow are being followed there.
+As a guideline for your own implementation, you can take ideas from the Java class [UmaScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.7/scim-client2/src/main/java/gluu/scim2/client/UmaScimClient.java) found in SCIM-Client. Starting at the `authorize` method, you will see how steps in the spec flow are being followed there.
 
 Check the metadata URL of UMA 2 to discover the oxAuth endpoint that issues tokens. Visit `https://<host-name>/.well-known/uma2-configuration`.
 
@@ -981,11 +981,11 @@ To access the name/values of custom attributes please use the `getCustomAttribut
 
 The following test cases contain illustrative examples:
 
-* [FullUserTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.6/scim-client2/src/test/java/gluu/scim2/client/singleresource/FullUserTest.java)
+* [FullUserTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.7/scim-client2/src/test/java/gluu/scim2/client/singleresource/FullUserTest.java)
 
-* [QueryParamCreateUpdateTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.6/scim-client2/src/test/java/gluu/scim2/client/singleresource/QueryParamCreateUpdateTest.java)
+* [QueryParamCreateUpdateTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.7/scim-client2/src/test/java/gluu/scim2/client/singleresource/QueryParamCreateUpdateTest.java)
 
-* [PatchUserExtTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.6/scim-client2/src/test/java/gluu/scim2/client/patch/PatchUserExtTest.java)
+* [PatchUserExtTest](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.7/scim-client2/src/test/java/gluu/scim2/client/patch/PatchUserExtTest.java)
 
 
 ## Error Handling
@@ -1248,9 +1248,9 @@ In previous sections, we covered thoroughly what needs to be done for test mode 
 
 If you are unsure of how to code a particular step, take a look at the Java client. These two classes do the job:
 
-- [TestModeScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.6/scim-client2/src/main/java/gluu/scim2/client/TestModeScimClient.java)
+- [TestModeScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.7/scim-client2/src/main/java/gluu/scim2/client/TestModeScimClient.java)
 
-- [UmaScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.6/scim-client2/src/main/java/gluu/scim2/client/UmaScimClient.java)
+- [UmaScimClient](https://github.com/GluuFederation/SCIM-Client/blob/version_3.1.7/scim-client2/src/main/java/gluu/scim2/client/UmaScimClient.java)
 
 To test your authorization code, use a simple GET retrieval request.
 

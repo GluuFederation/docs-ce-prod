@@ -1,7 +1,7 @@
 ## Notice
 
 This document, also known as the Gluu Release Note, 
-relates to the Gluu Server Release versioned 3.1.6. The work is licensed under “The MIT License” 
+relates to the Gluu Server Release versioned 3.1.7. The work is licensed under “The MIT License” 
 allowing the use, copy, modify, merge, publish, distribute, sub-license and sale without 
 limitation and liability. This document extends only to the aforementioned release version 
 in the heading.
@@ -14,7 +14,7 @@ OR USING THE RELEASE.
 
 ## Purpose
 
-The document is released with the Version 3.1.6 of the Gluu Software. The purpose of this document is to provide the changes made/new features included in this release of the Gluu Software. The list is not exhaustive and there might be some omission of negligible issues, but the noteworthy features, enhancements and fixes are covered. 
+The document is released with the Version 3.1.7 of the Gluu Software. The purpose of this document is to provide the changes made/new features included in this release of the Gluu Software. The list is not exhaustive and there might be some omission of negligible issues, but the noteworthy features, enhancements and fixes are covered. 
 
 ## Background
 
@@ -27,8 +27,8 @@ The most common use cases for the Gluu Server include single sign-on (SSO), mobi
 Please visit the [Gluu Documentation Page](http://www.gluu.org/docs/ce) for the complete 
 documentation and administrative guide. 
 
-## Available components in Gluu Server 3.1.6
-- oxAuth, oxTrust, oxCore v3.1.6
+## Available components in Gluu Server 3.1.7
+- oxAuth, oxTrust, oxCore v3.1.7
 - Gluu OpenLDAP v2.4.44-5
 - Gluu OpenDJ v3.0
 - Shibboleth v3.2.1
@@ -42,26 +42,26 @@ documentation and administrative guide.
 - FluentD 3.5
 - Redis
 
-## 3.1.6.sp1 Changes
+## 3.1.7 Changes
 
-### [GluuFederation/oxAuth](https://github.com/GluuFederation/oxAuth/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
+### [GluuFederation/oxAuth](https://github.com/GluuFederation/oxAuth/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.7+)
 
 - [#1063](https://github.com/GluuFederation/oxAuth/issues/1063) Add a config value to allow to share the same subject identifier between two Clients with the same sector identifier
 - [#1047](https://github.com/GluuFederation/oxAuth/issues/1047) Add option to KeyGenerator to specify `expiration_hours`
 - [#1076](https://github.com/GluuFederation/oxAuth/issues/1076) authorization.xhtml page no longer requires session
 
-### [GluuFederation/oxTrust](https://github.com/GluuFederation/oxTrust/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
+### [GluuFederation/oxTrust](https://github.com/GluuFederation/oxTrust/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.7+)
 
 - [#1646](https://github.com/GluuFederation/oxTrust/pull/1646) Add a config value to allow to share the same subject identifier between two Clients with the same sector identifier
 - Removed finishlogin.xhtml
 
-### [GluuFederation/community-edition-setup](https://github.com/GluuFederation/community-edition-setup/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
+### [GluuFederation/community-edition-setup](https://github.com/GluuFederation/community-edition-setup/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.7+)
 
 - [#534](https://github.com/GluuFederation/community-edition-setup/pull/534) Add a config value to allow to share the same subject identifier between two Clients with the same sector identifier
 
-## 3.1.6 Changes
+## 3.1.7 Changes
 
-### [GluuFederation/oxAuth](https://github.com/GluuFederation/oxAuth/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
+### [GluuFederation/oxAuth](https://github.com/GluuFederation/oxAuth/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.7+)
 
 - [#1030](https://github.com/GluuFederation/oxAuth/issues/1030) Server does not track clients that take part in SSO if ACR is changed
 
@@ -105,7 +105,7 @@ documentation and administrative guide.
 
 - [#589](https://github.com/GluuFederation/oxAuth/issues/589) Phone number verification message for Twilio
 
-### [GluuFederation/oxTrust](https://github.com/GluuFederation/oxTrust/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
+### [GluuFederation/oxTrust](https://github.com/GluuFederation/oxTrust/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.7+)
 
 - [#1567](https://github.com/GluuFederation/oxTrust/issues/1567) Fix system information issue on CentOS 6 and Rhel 6
 
@@ -167,18 +167,18 @@ documentation and administrative guide.
 
 - [#1456](https://github.com/GluuFederation/oxTrust/issues/1456) Force required permissions in jsf pages
 
-### [GluuFederation/community-edition-setup](https://github.com/GluuFederation/community-edition-setup/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
+### [GluuFederation/community-edition-setup](https://github.com/GluuFederation/community-edition-setup/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.7+)
 
 No changes
 
-### [GluuFederation/oxshibboleth](https://github.com/GluuFederation/oxShibboleth/issues?utf8=?&3Aissue+milestone%3A3.1.6+)
+### [GluuFederation/oxshibboleth](https://github.com/GluuFederation/oxShibboleth/issues?utf8=?&3Aissue+milestone%3A3.1.7+)
 
 - [#10](https://github.com/GluuFederation/oxShibboleth/issues/10) Support ForceAuth = true
 
-### [GluuFederation/oxcore](https://github.com/GluuFederation/oxcore/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
+### [GluuFederation/oxcore](https://github.com/GluuFederation/oxcore/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.7+)
 
 - [#107](https://github.com/GluuFederation/oxCore/issues/107) Log all LDAP operation times to a separate log
 
-### [GluuFederation/gluu-passport](https://github.com/GluuFederation/gluu-passport/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.6+)
+### [GluuFederation/gluu-passport](https://github.com/GluuFederation/gluu-passport/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.7+)
 
 No changes

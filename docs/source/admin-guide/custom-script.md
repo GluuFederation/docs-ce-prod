@@ -365,7 +365,7 @@ Snippet
         return True
 ```
 
-Full version of introspection script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_3.1.6/static/extension/introspection/introspection.py). 
+Full version of introspection script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_3.1.7/static/extension/introspection/introspection.py). 
 
 
 ## Resource Owner Password Credentials
@@ -393,4 +393,4 @@ Snippet
         return False
 ```
 
-Full version of script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_3.1.6/static/extension/resource_owner_password_credentials/resource_owner_password_credentials.py). 
+Full version of script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_3.1.7/static/extension/resource_owner_password_credentials/resource_owner_password_credentials.py). 

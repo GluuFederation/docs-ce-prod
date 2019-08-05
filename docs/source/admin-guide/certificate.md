@@ -50,7 +50,7 @@ to create new cryptographic keys if needed.
 To get KeyGenerator, run the following command inside the Chroot:
 
 ```
-wget https://ox.gluu.org/maven/org/xdi/oxauth-client/3.1.6.sp1/oxauth-client-3.1.6.sp1-jar-with-dependencies.jar -O oxauth-client.jar
+wget https://ox.gluu.org/maven/org/xdi/oxauth-client/3.1.7/oxauth-client-3.1.7-jar-with-dependencies.jar -O oxauth-client.jar
 ```
 
 Then, run KeyGenerator with the following command:

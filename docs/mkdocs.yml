@@ -1,5 +1,5 @@
 # Project information
-site_name: Gluu Server 3.1.6 Docs
+site_name: Gluu Server 3.1.7 Docs
 site_description: Documentation for Gluu Server Community Edition
 
 # Copyright
@@ -9,7 +9,7 @@ copyright: Copyright &copy; 2019, Gluu, Inc.
 docs_dir: source
 repo_name: GluuFederation/docs-ce-prod
 repo_url: https://github.com/GluuFederation/docs-ce-prod/
-edit_uri: edit/3.1.6/docs/source
+edit_uri: edit/3.1.7/docs/source
 
 # Configuration
 theme: 
@@ -21,7 +21,7 @@ theme:
     logo: 'gluu.jpg'
     favicon: 'favicon.ico'
 extra:
-    version: '3.1.6'
+    version: '3.1.7'
     
 # Extensions
 markdown_extensions:
@@ -34,8 +34,9 @@ markdown_extensions:
 # Navigation
 nav:
 - 'Versions':
-    - '3.1.6': 'https://gluu.org/docs/ce/3.1.6/'
+    - '3.1.7': 'https://gluu.org/docs/ce/3.1.7/'
     - '4.0 Beta': 'https://gluu.org/docs/ce/4.0/'
+    - '3.1.6': 'https://gluu.org/docs/ce/3.1.6/'
     - '3.1.5': 'https://gluu.org/docs/ce/3.1.5/'
     - '3.1.4': 'https://gluu.org/docs/ce/3.1.4/'
     - '3.1.3.1': 'https://gluu.org/docs/ce/3.1.3.1/'
