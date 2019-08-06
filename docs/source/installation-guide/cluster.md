@@ -2,7 +2,7 @@
 # Clustering for HA
 
 ## Introduction
-The tutorial below offers detailed steps for configuring HA across multiple instances of the Gluu Server. 
+The tutorial below offers detailed steps for configuring high availability (HA) across multiple instances of the Gluu Server. 
 
 Clustering for production scenarios is not a simple task. Individual environments should *always* be benchmarked, tested, and documented in order to ensure organizational requirements for uptime are met. 
 
