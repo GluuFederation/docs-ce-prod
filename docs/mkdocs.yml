@@ -58,9 +58,9 @@ nav:
             - 'Test Drive': 'installation-guide/test-drive.md'
             - 'Docker': 'installation-guide/install-docker.md'
             - 'Ubuntu': 'installation-guide/install-ubuntu.md'
-            - 'CentOS': 'installation-guide/install-centos.md'
-            - 'RHEL': 'installation-guide/install-rhel.md'
             - 'Debian': 'installation-guide/install-debian.md'
+            - 'RHEL': 'installation-guide/install-rhel.md'
+            - 'CentOS': 'installation-guide/install-centos.md'
         - 'Setup Script Options': 'installation-guide/setup_py.md'
         - 'Clustering': 'installation-guide/cluster.md'
 - Administration Guide:
