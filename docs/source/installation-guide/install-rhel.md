@@ -11,6 +11,10 @@ Single-node Gluu Server Linux packages are available for Ubuntu, CentOS, RHEL an
 ## Prerequisites
 
 - Make sure the target server or VM meets **all minimum requirements** specified in the [VM Preparation Guide](../installation-guide/index.md).   
+
+- SELinux must be set to permissive in /etc/selinux/config
+
+
   
 ## Instructions
 
