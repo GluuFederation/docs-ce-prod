@@ -2,15 +2,13 @@
 # Clustering for HA
 
 ## Introduction
-Many organizations need to cluster their Gluu Server in order to provide failover and high availability (HA). 
+The tutorial below offers detailed steps for configuring HA across multiple instances of the Gluu Server. 
 
-The instructions below provide detailed steps for manually configuring HA across multuple instances of the Gluu Server. Although we provide instructions, clustering for production scenarios is not a simple task, and is **outside the scope** of free community support.  
-
-For more details about supported options for HA, [schedule a call](https://gluu.org/booking). 
+Clustering for production scenarios is not a simple task. Individual environments should *always* be benchmarked, tested, and documented in order to ensure organizational requirements for uptime are met. 
 
 ## Concept
 
-Clustering uses OpenDJ replication and configuration changes to greatly improve Gluu Server availability, via a proxy.
+The web tier of the Gluu Server (i.e. oxAuth) is stateless and can be scaled horizontally. The local LDAP server included in all Gluu Server deployments (i.e. Gluu LDAP) supports multi-master replication (MMR). Any instance can be written to and changes are propagated to other instances.
 
 ![cluster manager diagram](../img/cluster/cluster-manager-diagram.png)
 
@@ -877,3 +875,6 @@ service gluu-server-4.0 restart
 ```
 
 - Now, the administrator web UI and oxAuth have some failover redundancy. There is obviously more configuration necessary on the network layer of the topology for true HA failover, but that is outside of the scope of this documentation.          
+
+## Support
+Clustering is outside the scope of free community support. For more details about supported options for HA, [schedule a call](https://gluu.org/booking). 
