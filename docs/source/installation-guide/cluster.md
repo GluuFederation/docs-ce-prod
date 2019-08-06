@@ -4,7 +4,7 @@
 ## Introduction
 The tutorial below offers detailed steps for configuring HA across multiple instances of the Gluu Server. 
 
-It's important to note, however, that clustering for production scenarios is not a simple task, and individual environments should *always* be benchmarked, tested, and documented in order to ensure organizational requirements for uptime are met. 
+Clustering for production scenarios is not a simple task. Individual environments should *always* be benchmarked, tested, and documented in order to ensure organizational requirements for uptime are met. 
 
 ## Concept
 The web tier of the Gluu Server (i.e. oxAuth) is stateless and can be scaled horizontally. The local LDAP server included in all Gluu Server deployments (i.e. Gluu LDAP) supports multi-master replication (MMR). Any instance can be written to and changes are propagated to other instances.
