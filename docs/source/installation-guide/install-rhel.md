@@ -13,11 +13,7 @@ There are Gluu Server Linux packages for Ubuntu, CentOS, RHEL and Debian operati
 
 ## Prerequisites
 
-Make sure the target server or VM meets **all minimum requirements** as specified in the [VM Preparation Guide](../installation-guide/index.md).   
-
-There are a few system specific notes to follow:  
-
-- **Linux containers (e.g. Docker)**: This guide does not support installation via Linux containers. See [Gluu Server Docker Edition (DE)](https://gluu.org/docs/de) documentation for detailed instructions.
+- Make sure the target server or VM meets **all minimum requirements** specified in the [VM Preparation Guide](../installation-guide/index.md).   
   
 ## Instructions
 
