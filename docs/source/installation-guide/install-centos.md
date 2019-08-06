@@ -21,7 +21,7 @@ Single-node Gluu Server Linux packages are available for Ubuntu, CentOS, RHEL an
 Installation of the Gluu server will be done under `/root`. 
 The Gluu Server will create its file system under `/root/` and will be installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) remain the same as the host.
 
-Gluu Server CE 4.0 supports CentOS 7. Enter the following commands to install:
+Gluu Server CE 4.0 supports **CentOS 7**. Enter the following commands to install:
 
 ```
 wget https://repo.gluu.org/centos/Gluu-centos-7-testing.repo -O /etc/yum.repos.d/Gluu.repo
