@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document provides instructions for preparing a VM for a standard Gluu Server deployment. Once the server is ready, move on to the [installation instructions](../installation-guide/install.md). 
+This document provides instructions for preparing a VM for a standard, single-node Gluu Server deployment. Once the server is ready, move on to the [installation instructions](../installation-guide/install.md). 
 
 Good luck and welcome to the community!
 
