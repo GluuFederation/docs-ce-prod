@@ -1,4 +1,4 @@
-# Installation 
+# CentOS Installation 
 ## Overview
 There are Gluu Server Linux packages for Ubuntu, CentOS, RHEL and Debian operating systems. The installation procedure is similar across all distributions: 
 
