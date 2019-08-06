@@ -15,7 +15,7 @@ There are Gluu Server Linux packages for Ubuntu, CentOS, RHEL and Debian operati
 
 - Make sure the target server or VM meets **all minimum requirements** specified in the [VM Preparation Guide](../installation-guide/index.md).   
 
-- In addition, SELinux must be set to permissive in `/etc/selinux/config`
+- SELinux must be set to permissive in `/etc/selinux/config`
   
 ## Instructions
 
