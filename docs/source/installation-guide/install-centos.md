@@ -12,13 +12,10 @@ There are Gluu Server Linux packages for Ubuntu, CentOS, RHEL and Debian operati
     The below instructions are intended for single server Gluu deployments. If you intend to cluster your Gluu Server to achieve fail-over and high availability, please refer to the [cluster documentation](./cluster.md)
 
 ## Prerequisites
-Make sure the target server or VM meets **all minimum requirements** as specified in the [VM Preparation Guide](../installation-guide/index.md).   
 
-There are a few system specific notes to follow:  
+- Make sure the target server or VM meets **all minimum requirements** specified in the [VM Preparation Guide](../installation-guide/index.md).   
 
-- **CentOS**: selinux must be set to permissive in /etc/selinux/config
-
-- **Linux containers (e.g. Docker)**: This guide does not support installation via Linux containers. See [Gluu Server Docker Edition (DE)](https://gluu.org/docs/de) documentation for detailed instructions.
+- In addition, SELinux must be set to permissive in `/etc/selinux/config`
   
 ## Instructions
 
