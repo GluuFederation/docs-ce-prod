@@ -1,4 +1,4 @@
-# Gluu Server VM Prepartion Guide
+# Gluu Server VM Preparation Guide
 
 ## Overview
 
