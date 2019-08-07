@@ -50,6 +50,8 @@ documentation and administrative guide.
 
 - [#1078](https://github.com/GluuFederation/oxAuth/issues/1078) Check expiration of JWT encoded profile used in passport flows
 
+- [#1003](https://github.com/GluuFederation/oxAuth/issues/1003) Allow to refresh 'ID Token' with grant_type refresh_token
+
 ### [GluuFederation/oxTrust](https://github.com/GluuFederation/oxTrust/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.7+)
 
 - [#1646](https://github.com/GluuFederation/oxTrust/pull/1646) Add a config value to allow to share the same subject identifier between two Clients with the same sector identifier
