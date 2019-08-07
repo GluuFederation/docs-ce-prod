@@ -2,7 +2,7 @@
 
 This guide provides instructions for running Gluu Server CE on a single node VM using Docker.
 
-## Requirements
+## Instructions
 
 1. Follow the [Docker installation instructions](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository) or use the [installation script](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script)
 
