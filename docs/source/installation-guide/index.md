@@ -5,7 +5,9 @@ This document provides instructions for preparing a VM for a standard Gluu Serve
 Good luck and welcome to the community!
 
 !!! Note 
-    Prefer a quick start Docker container? Check out [Gluu Server 4.0 Beta Test Drive](https://gluu.org/docs/ce/4.0/installation-guide/test-drive/)# System Requirements
+    Prefer a quick start Docker container? Check out [Gluu Server 4.0 Beta Test Drive](https://gluu.org/docs/ce/4.0/installation-guide/test-drive/)
+
+## System Requirements
 
 Setup a server or VM with the following **minimum** requirements: 
 
