@@ -2,7 +2,10 @@
 
 ## Overview
 
-Follow the instructions below to quickly deploy a single-node Gluu Server demo using Docker. "Test drive" is perfect for testing the Gluu Server, but **not** suitable for production deployments. For production deployments, follow instructions for your [OS of choice](./index.md#supported-operating-systems), e.g. [Docker Installation](./install-docker.md).  
+Follow the instructions below to quickly deploy a single-node Gluu Server demo using Docker. 
+
+!!! Note
+    "Test drive" is perfect for testing the Gluu Server, but **not** suitable for production deployments. For production deployments, follow instructions for your [OS of choice](./index.md#supported-operating-systems), e.g. [Docker Installation](./install-docker.md).  
 
 ## Requirements:
 
