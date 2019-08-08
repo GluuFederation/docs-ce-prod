@@ -4,11 +4,6 @@
 
 This document provides instructions for preparing a VM for a standard, single-node Gluu Server deployment. Once the server is ready, install Gluu on one of the [supported operating systems](#supported-operating-systems). 
 
-Good luck and welcome to the community!
-
-!!! Note
-    To learn more about software licenses, use cases, and more, visit the [docs homepage](../index.md)    
-    
 ## System Requirements
 
 Set up a server or VM with the following **minimum** requirements: 
