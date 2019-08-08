@@ -2,7 +2,7 @@
 
 ## Overview
 
-This quickstart guide provides instructions for setting up a single-host Gluu Server demo using Docker and a bash script. It's a good way to test the Gluu Server, but is **not** suitable for production deployments. 
+Follow the instructions below to quickly deploy a single-node Gluu Server demo using Docker. "Test drive" is perfect for testing the Gluu Server, but **not** suitable for production deployments. For production deployments, follow instructions for your [OS of choice](./index.md#supported-operating-systems), e.g. [Docker Installation](./install-docker.md).  
 
 ## Requirements:
 
