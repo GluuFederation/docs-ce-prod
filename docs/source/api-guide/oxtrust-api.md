@@ -11,122 +11,120 @@ This page is a work in progress. While it's being constructed, temporary API doc
 
 | API | Description |
 | --- | ----------- |
-| [addClientToUmaResource](#addclienttoumaresource) | |
-| [addGroupMember](#addgroupmember)| |
-| [addClientToUmaResource](#addclienttoumaresource)  | |
-| [addGroupMember](#addgroupmember) | |
-| [addRadiusClient](#addradiusclient) | |
-| [addScopeToClient](#addscopetoclient) | |
-| [addScopeToUmaResource](#addscopetoumaresource) | |
-| [create](#create) | |
-| [createAttribute](#createattribute) | |
-| [createClient](#createclient) | |
-| [createCustomScript](#createcustomscript) | |
-| [createGroup](#creategroup) | |
-| [createPassportProvider](#createpassportprovider) | |
-| [createPerson](#createperson) | |
-| [createScope](#createscope) | |
-| [createSectorIdentifier](#createsectoridentifier) | |
-| [createUmaResource](#createumaresource) | |
-| [createUmaScope](#createumascope) | |
-| [delete](#delete) | |
-| [deleteAllProviders](#deleteallproviders) | |
-| [deleteAllUmaScopes](#deleteallumascopes) | |
-| [deleteAttribute](#deleteattribute) | |
-| [deleteAttributes](#deleteattributes) | |
-| [deleteClient](#deleteclient) | |
-| [deleteClientScopes](#deleteclientscopes) | |
-| [deleteClients](#deleteclients) | |
-| [deleteCustomScript](#deletecustomscript) | |
-| [deleteGroup](#deletegroup) | |
-| [deleteGroupMembers](#deletegroupmembers) | |
-| [deleteGroups](#deletegroups) | |
-| [deletePeople](#deletepeople) | |
-| [deletePerson](#deleteperson) | |
-| [deleteProvider](#deleteprovider) | |
-| [deleteRadiusClient](#deleteradiusclient) | |
-| [deleteScope](#deletescope) | |
-| [deleteScopes](#deletescopes) | |
-| [deleteSectorIdentifier](#deletesectoridentifier) | |
-| [deleteUmaResource](#deleteumaresource) | |
-| [deleteUmaScope](#deleteumascope) | |
-| [getAllActivesAttributes](#getallactivesattributes) | |
-| [getAllAttributes](#getallattributes) | |
-| [getAllInActivesAttributes](#getallinactivesattributes) | |
-| [getAllScopes](#getallscopes) | |
-| [getAllSectorIdentifiers](#getallsectoridentifiers) | |
-| [getAttributeByInum](#getattributebyinum) | |
-| [getCasConfig](#getcasconfig) | |
-| [getClientByInum](#getclientbyinum) | |
-| [getClientScope](#getclientscope) | |
-| [getConfiguration](#getconfiguration) | |
-| [getCurrentAuthentication](#getcurrentauthentication) | |
-| [getCustomScriptsByInum](#getcustomscriptsbyinum) | |
-| [getGroupByInum](#getgroupbyinum) | |
-| [getGroupMembers](#getgroupmembers) | |
-| [getOxAuthJsonSettings](#getoxauthjsonsettings) | |
-| [getOxtrustJsonSettings](#getoxtrustjsonsettings) | |
-| [getOxtrustSettings](#getoxtrustsettings) | |
-| [getPassportBasicConfig](#getpassportbasicconfig) | |
-| [getPersonByInum](#getpersonbyinum) | |
-| [getProviderById](#getproviderbyid) | |
-| [getRadiusClient](#getradiusclient) | |
-| [getScopeByInum](#getscopebyinum) | |
-| [getScopeClaims](#getscopeclaims) | |
-| [getSectorIdentifierById](#getsectoridentifierbyid) | |
-| [getServerConfig](#getserverconfig) | |
-| [getServerStatus](#getserverstatus) | |
-| [getSmtpServerConfiguration](#getsmtpserverconfiguration) | |
-| [getUmaResourceById](#getumaresourcebyid) | |
-| [getUmaResourceClients](#getumaresourceclients) | |
-| [getUmaResourceScopes](#getumaresourcescopes) | |
-| [getUmaScopeByInum](#getumascopebyinum) | |
-| [listCertificates](#listcertificates) | |
-| [listClients](#listclients) | |
-| [listCustomScripts](#listcustomscripts) | |
-| [listCustomScriptsByType](#listcustomscriptsbytype) | |
-| [listGroups](#listgroups) | |
-| [listPeople](#listpeople) | |
-| [listProviders](#listproviders) | |
-| [listRadiusClients](#listradiusclients) | |
-| [listUmaResources](#listumaresources) | |
-| [listUmaScopes](#listumascopes) | |
-| [read](#read) | |
-| [removeClientToUmaResource](#removeclienttoumaresource) | |
-| [removeGroupMember](#removegroupmember) | |
-| [removeScopeToClient](#removescopetoclient) | |
-| [removeScopeToUmaResource](#removescopetoumaresource) | |
-| [searchAttributes](#searchattributes) | |
-| [searchGroups](#searchgroups) | |
-| [searchGroups1](#searchgroups1) | |
-| [searchGroups2](#searchgroups2) | |
-| [searchScope](#searchscope) | |
-| [searchSectorIdentifier](#searchsectoridentifier) | |
-| [searchUmaResources](#searchumaresources) | |
-| [searchUmaScopes](#searchumascopes) | |
-| [status](#status) | |
-| [status1](#status1) | |
-| [testSmtpConfiguration](#testsmtpconfiguration) | |
-| [update](#update) | |
-| [update1](#update1) | |
-| [updateAttribute](#updateattribute) | | 
-| [updateAuthenticationMethod](#updateauthenticationmethod) | | 
-| [updateClient](#updateclient) | | 
-| [updateCustomScript](#updatecustomscript) | | 
-| [updateGroup](#updategroup) | |
-| [updateGroup1](#updategroup1) | |
-| [updateOxauthJsonSetting](#updateoxauthjsonsetting) | | 
-| [updateOxtrustJsonSetting](#updateoxtrustjsonsetting) | |
-| [updateOxtrustSetting](#updateoxtrustsetting) | |
-| [updatePassportBasicConfig](#updatepassportbasicconfig) | |
-| [updatePassportProvider](#updatepassportprovider) | |
-| [updateRadiusClient](#updateradiusclient) | |
-| [updateScope](#updatescope) | |
-| [updateSectorIdentifier](#updatesectoridentifier) | | 
-| [updateServerConfiguration](#updateserverconfiguration) | |
-| [updateSmtpConfiguration](#updatesmtpconfiguration) | |
-| [updateUmaResource](#updateumaresource) | |
-| [updateUmaScope](#updateumascope)| |
+| [addClientToUmaResource](#addclienttoumaresource) | Add client to an UMA resource |
+| [addGroupMember](#addgroupmember)| Add a group member |
+| [addRadiusClient](#addradiusclient) | Add a new RADIUS client |
+| [addScopeToClient](#addscopetoclient) | Add a scope to an OIDC client|
+| [addScopeToUmaResource](#addscopetoumaresource) | Add a scope to an UMA resource |
+| [create](#create) | Create a new configuration |
+| [createAttribute](#createattribute) | Add a new attribute |
+| [createClient](#createclient) | Add a new OpenID Connect client |
+| [createCustomScript](#createcustomscript) | Add a new custom script |
+| [createGroup](#creategroup) | Add a new group |
+| [createPassportProvider](#createpassportprovider) | Add a new passport provider |
+| [createPerson](#createperson) | Add a new person |
+| [createScope](#createscope) | Add a new OpenID Connect scope |
+| [createSectorIdentifier](#createsectoridentifier) | Add a new sector identifier |
+| [createUmaResource](#createumaresource) | Add a new UMA resource|
+| [createUmaScope](#createumascope) | Add a new UMA scope |
+| [delete](#delete) | Delete an existing configuration |
+| [deleteAllProviders](#deleteallproviders) | Delete all providers |
+| [deleteAllUmaScopes](#deleteallumascopes) | Delete all UMA scopes |
+| [deleteAttribute](#deleteattribute) | Delete an attribute |
+| [deleteAttributes](#deleteattributes) | Delete all attributes |
+| [deleteClient](#deleteclient) | Delete an OpenID Connect client |
+| [deleteClientScopes](#deleteclientscopes) | Delete the scopes in an OpenID Connect Client |
+| [deleteClients](#deleteclients) | Delete all clients|
+| [deleteCustomScript](#deletecustomscript) | Delete a custom script |
+| [deleteGroup](#deletegroup) | Delete a group |
+| [deleteGroupMembers](#deletegroupmembers) | Delete the members of a group |
+| [deleteGroups](#deletegroups) | Delete all groups |
+| [deletePeople](#deletepeople) | Delete all people |
+| [deletePerson](#deleteperson) | Delete a person |
+| [deleteProvider](#deleteprovider) | Delete a passport provider|
+| [deleteRadiusClient](#deleteradiusclient) | Delete a RADIUS client |
+| [deleteScope](#deletescope) | Delete an OpenID Connect scope|
+| [deleteScopes](#deletescopes) | Delete all OpenID Connect scopes |
+| [deleteSectorIdentifier](#deletesectoridentifier) | Delete a Sector Identifier |
+| [deleteUmaResource](#deleteumaresource) | Delete an UMA resource |
+| [deleteUmaScope](#deleteumascope) | Delete an UMA scope |
+| [getAllActivesAttributes](#getallactivesattributes) | Get all active attributes |
+| [getAllAttributes](#getallattributes) | Get all attributes |
+| [getAllInActivesAttributes](#getallinactivesattributes) | Get all inactive attributes |
+| [getAllScopes](#getallscopes) | Get all scopes |
+| [getAllSectorIdentifiers](#getallsectoridentifiers) | Get all sector identifiers |
+| [getAttributeByInum](#getattributebyinum) | Get a specific attribute |
+| [getCasConfig](#getcasconfig) | Get the existing configuration |
+| [getClientByInum](#getclientbyinum) | Get a specific OpenID Connect client |
+| [getClientScope](#getclientscope) | Get scopes assigned to an OpenID client |
+| [getConfiguration](#getconfiguration) | Get Gluu configuration |
+| [getCurrentAuthentication](#getcurrentauthentication) | Get current authentication methods |
+| [getCustomScriptsByInum](#getcustomscriptsbyinum) | Get specific custom scripts |
+| [getGroupByInum](#getgroupbyinum) | Get a specific group|
+| [getGroupMembers](#getgroupmembers) | Get members of a specific group |
+| [getOxAuthJsonSettings](#getoxauthjsonsettings) | Get oxAuth JSON configuration settings |
+| [getOxtrustJsonSettings](#getoxtrustjsonsettings) | Get oxTrust JSON configuration settings |
+| [getOxtrustSettings](#getoxtrustsettings) | get oxTrust configuration settings |
+| [getPassportBasicConfig](#getpassportbasicconfig) | Get Passport's basic configuration |
+| [getPersonByInum](#getpersonbyinum) | Get a specific person |
+| [getProviderById](#getproviderbyid) | Get a specific Passport provider |
+| [getRadiusClient](#getradiusclient) | Get a specific RADIUS client |
+| [getScopeByInum](#getscopebyinum) | Get a specific OpenID Connect scope |
+| [getScopeClaims](#getscopeclaims) | List all claims for a scope |
+| [getSectorIdentifierById](#getsectoridentifierbyid) | Get a specific Sector Identifier |
+| [getServerConfig](#getserverconfig) | Get RADIUS server configuration |
+| [getServerStatus](#getserverstatus) | Get current server status|
+| [getSmtpServerConfiguration](#getsmtpserverconfiguration) | Get SMTP server configuration|
+| [getUmaResourceById](#getumaresourcebyid) | Get a specific UMA resource |
+| [getUmaResourceClients](#getumaresourceclients) | Get the clients for a specific UMA resource |
+| [getUmaResourceScopes](#getumaresourcescopes) | Get the scopes for a specific UMA resource |
+| [getUmaScopeByInum](#getumascopebyinum) | Get a specific UMA scope |
+| [listCertificates](#listcertificates) | List descriptions of the Gluu Server's certificates |
+| [listClients](#listclients) | List all OpenID Connect clients |
+| [listCustomScripts](#listcustomscripts) | List all custom scripts |
+| [listCustomScriptsByType](#listcustomscriptsbytype) | List all person authentication scripts |
+| [listGroups](#listgroups) | List all groups |
+| [listPeople](#listpeople) | List all people |
+| [listProviders](#listproviders) | List all Passport providers |
+| [listRadiusClients](#listradiusclients) | List all RADIUS clients |
+| [listUmaResources](#listumaresources) | List all UMA resources |
+| [listUmaScopes](#listumascopes) | List UMA scopes |
+| [read](#read) | Get the existing configuration |
+| [removeClientToUmaResource](#removeclienttoumaresource) | Remove a client from an UMA resource |
+| [removeGroupMember](#removegroupmember) | Remove a member from a group |
+| [removeScopeToClient](#removescopetoclient) | Remove an existing scope from a client |
+| [removeScopeToUmaResource](#removescopetoumaresource) | Remove a scope from an UMA resource |
+| [searchAttributes](#searchattributes) | Search attributes |
+| [searchGroups](#searchgroups) | Search OpenID Connect clients |
+| [searchGroups1](#searchgroups1) | Search groups |
+| [searchGroups2](#searchgroups2) | Search person |
+| [searchScope](#searchscope) | Search OpenID Connect scopes |
+| [searchSectorIdentifier](#searchsectoridentifier) | Search sector identifiers |
+| [searchUmaResources](#searchumaresources) | Search UMA resources |
+| [searchUmaScopes](#searchumascopes) | Search UMA scopes |
+| [status](#status) | Check the status of a configuration |
+| [status1](#status1) | Check the status of an existing configuration |
+| [testSmtpConfiguration](#testsmtpconfiguration) | Test the SMTP configuration |
+| [update](#update) | Update the configuration |
+| [update1](#update1) | Update an existing configuration |
+| [updateAttribute](#updateattribute) | Update a new attribute | 
+| [updateAuthenticationMethod](#updateauthenticationmethod) | Update the authentication methods | 
+| [updateClient](#updateclient) | Update an OpenID Connect client | 
+| [updateCustomScript](#updatecustomscript) | Update a custom script | 
+| [updateGroup](#updategroup) | Update a group |
+| [updateGroup1](#updategroup1) | Update a person |
+| [updateOxauthJsonSetting](#updateoxauthjsonsetting) | Update an oxAuth JSON configuration setting | 
+| [updateOxtrustJsonSetting](#updateoxtrustjsonsetting) | Update an oxTrust JSON configuration setting |
+| [updateOxtrustSetting](#updateoxtrustsetting) | Update oxTrust settings |
+| [updatePassportBasicConfig](#updatepassportbasicconfig) | Update Passport basic configuration |
+| [updatePassportProvider](#updatepassportprovider) | Update a Passport provider |
+| [updateRadiusClient](#updateradiusclient) | Update RADIUS client |
+| [updateScope](#updatescope) | Update an OpenID Connect scope|
+| [updateSectorIdentifier](#updatesectoridentifier) | Update a sector identifier | 
+| [updateServerConfiguration](#updateserverconfiguration) | Update the RADIUS server configuration |
+| [updateSmtpConfiguration](#updatesmtpconfiguration) | Update the SMTP configuration |
+| [updateUmaResource](#updateumaresource) | Update an UMA Resource |
+| [updateUmaScope](#updateumascope)| Update an UMA scope |
 
 
 ## API References
