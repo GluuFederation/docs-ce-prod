@@ -4,9 +4,6 @@
 
 This quickstart guide provides instructions for setting up a single-host Gluu Server demo using Docker and a bash script. It's a good way to test the Gluu Server, but is **not** suitable for production deployments. 
 
-!!! Note
-    For production deployments, [follow the VM preparation guide](./index.md). 
-
 ## Requirements:
 
 1. Install Docker by either following the [Docker installation instructions](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository) or using the [installation script](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script).
