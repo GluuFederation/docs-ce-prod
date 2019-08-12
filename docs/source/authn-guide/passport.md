@@ -11,7 +11,13 @@ The integration consists of the Passport Node.js application and a couple of cus
  
 ## Passport setup
 
-Passport is available as an optional component during [Gluu Server installation](https://gluu.org/docs/ce/installation-guide/). After installation, Passport can be added to an existing Gluu Server installation by performing the following actions (requires Internet access):
+Passport can either be included in a new Gluu installation, or added to an existing deployment. 
+
+### During Gluu installation 
+For new Gluu Server deployments, simply opt-in during setup to include Passport.
+
+### Post Gluu installation
+Alternatively, Passport can be added to an existing Gluu Server deployment by performing the following actions (requires Internet access):
 
 1. Log in to the Gluu Server chroot
 
