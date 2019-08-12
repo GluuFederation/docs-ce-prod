@@ -89,7 +89,7 @@ The default settings can be used in most environments.
 
 ### Couchbase
 
-This is new 4.0 persistence layer. Data model in it is very similar to LDAP layer. Hence existing DB can be converted from ldif to Couchbase. Here is sample data entry with key `scopes_10B2`:
+[Couchbase](https://www.couchbase.com/) is a newly supported persistence layer option introduced in CE 4.0. Its data model is very similar to the LDAP layer, so an existing DB can be converted from LDIF to Couchbase. Here is sample data entry with key `scopes_10B2`:
 
 ```
 {
@@ -108,8 +108,9 @@ This is new 4.0 persistence layer. Data model in it is very similar to LDAP laye
 
 ![Couchbase Buckets list](../img/admin-guide/installation-guide/couchbase_buckets.png)
     
-The list of buckets is not hardcoded and can be changed via configuration file `gluu-couchbase.properties`
-Here is default mapping configuration:
+The list of buckets is not hardcoded and can be changed via the `gluu-couchbase.properties` configuration file.
+
+The following is an example of the default mapping configuration:
 
 ```
 buckets: gluu, gluu_client, gluu_cache, gluu_site, gluu_token, gluu_authorization, gluu_user, gluu_statistic
@@ -124,11 +125,11 @@ bucket.gluu_token.mapping: tokens
 bucket.gluu_client.mapping: clients
 ```
 
-There are 2 mandatory keys in this configuration `buckets` and `bucket.default`. `buckets` provides information about all available buckets. `bucket.default` is the main bucket which applications should use if other mapping rules were not applied.
+There are two mandatory keys in this configuration, `buckets` and `bucket.default`. `buckets` provides information about all available buckets. `bucket.default` is the main bucket that applications should use if other mapping rules were not applied.
 
-Third type of lines `bucket.<>.mapping: <comma_separated_second_level_names>` gives applications information in which bucket store specified entry. The value here is the RDN value of second level in LDAP tree.
+The optional third type of line, `bucket.<>.mapping: <comma_separated_second_level_names>` gives instructions for which bucket should store specified entries. The value here is the RDN value of the second level in the LDAP tree.
 
-Table below specify list of entry types which applications store in buckets:
+The table below specifies the list of entry types which applications store in buckets:
 
 | Bucket | Entry Type |
 | --- | --- |
@@ -161,9 +162,9 @@ Table below specify list of entry types which applications store in buckets:
 | | oxFido2RegistrationEntry |
 | gluu_statistic | oxMetric |
 
-Both LDAP and Couchbase persistence layers uses Gluu Filter API (https://github.com/GluuFederation/oxCore/blob/master/persistence-filter/src/main/java/org/gluu/search/filter/Filter.java) in order to minimize CE dependency on specific DB. At runtime Couchbase persistence layer convert them to N1QL query language.
+Both LDAP and Couchbase persistence layers use the [Gluu Filter API](https://github.com/GluuFederation/oxCore/blob/master/persistence-filter/src/main/java/org/gluu/search/filter/Filter.java) in order to minimize the Gluu Server's dependency on a specific DB. At runtime, the Couchbase persistence layer converts them to the N1QL query language.
 
-This module uses configuration specified in `/etc/gluu/conf/gluu-couchbase.properties`:
+This module uses the configuration specified in `/etc/gluu/conf/gluu-couchbase.properties`:
 
 ```
 servers: <hostname>
@@ -210,14 +211,14 @@ certificateAttributes=userCertificate
 
 ### Hybrid
 
-This is meta-DB persistence layer. The main role of it to add abstraction layer to help split data between DBs. It can be used to resolve for example next issue:
+The hybrid persistence mechanism is a meta-DB persistence layer. The main role of it is to add an abstraction layer to help split data between DBs. For example, it could be used to resolve these issues:
 
-1. Store expired entries in another DB to reduce main DB size. Example id_token which need for end_session endpoint
-1. Store modifications history
+1. Store expired entries in a separate DB to reduce the main DB's size. For example, an id_token needed for the end_session endpoint
+1. Store modification history
 1. Use LDAP to store users data
-1. Etc.
+1. and numerous other needs.
 
-This module combines other persistence layers. Hence all used layers should have right configuration. This module uses configuration specified in `/etc/gluu/conf/gluu-hybrid.properties`. Here is sample file:
+This module combines other persistence layers. Hence all used layers should be correctly configured. This module uses the configuration specified in `/etc/gluu/conf/gluu-hybrid.properties`. The following is a sample file:
 
 ```
 storages: couchbase, ldap
@@ -226,13 +227,13 @@ storage.ldap.mapping: people, groups
 storage.couchbase.mapping: clients, cache, site, tokens, statistic, authorization
 ```
 
-In this example CE applications will use LDAP for `ou=people` and `ou=groups`. All other data will we stored in Couchbase DB.
+In this example, CE applications will use LDAP for `ou=people` and `ou=groups`. All other data will be stored in Couchbase DB.
 
 ## Generic configuration properties
 
-In 4. file which provides base configuration details is `/etc/gluu/conf/gluu.properties.
+In 4.0, the base configuration details is stored in the `/etc/gluu/conf/gluu.properties` file.
 
-Here is self-explanatory sample configuration:
+The following is a self-explanatory sample configuration:
 
 ```
 persistence.type=couchbase
