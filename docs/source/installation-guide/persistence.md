@@ -37,24 +37,24 @@ This diagram shows the EntryManager dependencies and type resolutions based on p
 
 ### LDAP
 
-This module uses LDAP server to store data. The module code is in project oxcore-persistence-ldap (https://github.com/GluuFederation/oxCore/tree/master/persistence-ldap).
+This module uses an LDAP server to store data. The module code is in the [oxcore-persistence-ldap](https://github.com/GluuFederation/oxCore/tree/master/persistence-ldap) project.
 
-There are few major data structure changes in 4.0 data model:
+There are few major data structure changes in the 4.0 data model:
 
 - Dropped `o=<inumOrg>` sub level
 - Dropped `ou=appliances` sub level
 - Moved configuration to `ou=configuration,o=gluu`
 - Moved `ou=tokens` and `ou=authoriztions` from client sub-entries to `o=gluu`
 
-In 4.0 there is migrator which can migrate existing data set to new model.
-Here is typical LDAP tree after CE installation.
+In CE 4.0, there is migrator to convert an existing data set to the new model.
+
+The following is an example of a typical LDAP tree after CE installation:
 
 ![LDAP Data tree structure](../img/admin-guide/installation-guide/ldap_data_tree.png)
 
 This module uses configuration specified in `/etc/gluu/conf/gluu-ldap.properties`:
 
 ```
-
 bindDN: <ldap_binddn>
 bindPassword: <encoded_ ldap_pw>
 servers: <ldap_hostname>:<ldaps_port>
@@ -83,10 +83,9 @@ connection-pool.health-check.max-response-time-millis=20000
 
 binaryAttributes=objectGUID
 certificateAttributes=userCertificate
-
 ```
 
-Default setting can be used in most number of environments
+The default settings can be used in most environments.
 
 ### Couchbase
 
