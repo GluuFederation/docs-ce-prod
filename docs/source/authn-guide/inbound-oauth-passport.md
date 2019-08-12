@@ -147,9 +147,9 @@ In this section, we provide specific steps on how to configure a Gluu Server ins
    
    - `userInfoURL`: `https://<remote-gluu-server>/oxauth/restv1/userinfo`
 
-## Setting up social login
+## Setting up Social Login
 
-The following are the steps required to offer social login in an OIDC application:
+Follow these steps to configure your Gluu Server for Social Login:
 
 1. Add the provider in the admin UI
 1. Obtain client credentials
