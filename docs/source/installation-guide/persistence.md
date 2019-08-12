@@ -6,9 +6,12 @@
 ## Overview
 
 Starting from first version CE uses LDAP layer to store data. 4.0 uses reviewed and extended persistence mechanism with new functionalities:
-    1. There is no dependency on specific DB persistence module.
-    2. It’s possible to add new persistence plugins.
-    3. It’s possible to split data between few persistence modules.
+
+1. There is no dependency on specific DB persistence module.
+
+1. It’s possible to add new persistence plugins.
+
+1. It’s possible to split data between few persistence modules.
 
 In 4.0 CE has 3 persistence modules:
 
@@ -20,7 +23,7 @@ In 4.0 CE has 3 persistence modules:
 
 Internal data model is the same for all persistence modules. This consistency is based on generic annotations, filters API, persistence API, entry type (objectClass) and persistence key (Domain Name). Here is sample persistence bean:
 
-<image link>
+![Entry definitions](../img/admin-guide/installation-guide/entry_definition.png)
     
 Persistence entry manager API provides CRUID operations which work with persistence beans. The base API defined in PersistenceEntryManager (https://github.com/GluuFederation/oxCore/blob/master/persistence-core/src/main/java/org/gluu/persist/PersistenceEntryManager.java) in oxcore-persistence-core library.
 
@@ -29,7 +32,7 @@ Persistence entry manager API provides CRUID operations which work with persiste
 
 This diagram shows EntryManager dependencies and it type resolution based on persistence.type specified in gluu.properties
 
-<image link>
+![Dependency Chart](../img/admin-guide/installation-guide/persistence_dependencies.png)
 
 ## Persistence Layers
 
@@ -46,7 +49,7 @@ There are few major data structure changes in 4.0 data model:
 In 4.0 there is migrator which can migrate existing data set to new model.
 Here is typical LDAP tree after CE installation.
 
-<image link>
+![LDAP Data tree structure](../img/admin-guide/installation-guide/ldap_data_tree.png)
 
 This module uses configuration specified in `/etc/gluu/conf/gluu-ldap.properties`:
 
@@ -104,7 +107,7 @@ This is new 4.0 persistence layer. Data model in it is very similar to LDAP laye
 }
 ```
 
-<image link>
+![Couchbase Buckets list](../img/admin-guide/installation-guide/couchbase_buckets.png)
     
 The list of buckets is not hardcoded and can be changed via configuration file `gluu-couchbase.properties`
 Here is default mapping configuration:
