@@ -185,9 +185,9 @@ The following are the steps required to offer social login in an OIDC applicatio
     |Windows Live|passport-windowslive|
     |Yahoo!|passport-yahoo-oauth2|
 
-    If the provider of interest is not listed, it is necessary to find a proper [node package](https://www.npmjs.com/) for that provider and install it. That the package **has to be** a Passport.js strategy based on OAuth 1.0 or OAuth 2.0.
+    If the provider of interest is not listed, find the proper [node package](https://www.npmjs.com/) for that provider and install it. The package **must be** a Passport.js strategy based on OAuth 1.0 or OAuth 2.0.
 
-    Installation can be performed the following way:
+    Packages can be installed in the following way:
 
     - Log in to Gluu Server chroot.
     - Switch to `node` user: `su - node`.
@@ -196,7 +196,7 @@ The following are the steps required to offer social login in an OIDC applicatio
     - Ensure the VM has Internet access and install the strategy, eg. `npm install STRATEGY --save` where `STRATEGY` is the package to install, for instance, `passport-reddit`.
     - [Restart](../operation/services.md#restart) the `passport` service.
 
-    Unfortunately, strategies do not follow any standardized naming convention, so it's not possible to autofill the "Passport.js strategy" field based on words previously entered in the provider's display name. Also, there are cases where several strategies are suitable for a given provider.
+    Strategies do not follow any standardized naming convention, so it's not possible to autofill the "Passport.js strategy" field based on words previously entered in the provider's display name. Also, there are cases where several strategies are suitable for a given provider.
 
 1. Fill the name of the applicable mapping. Use the following table as reference:
 
@@ -212,9 +212,9 @@ The following are the steps required to offer social login in an OIDC applicatio
     |Windows Live|windowslive|
     |Yahoo!|yahoo|
 
-    If the provider of interest is not listed, it is necessary to create a mapping file. A mapping is a mechanism that defines how the profile data released by the external provider is saved to local Gluu LDAP. 
+    If the provider of interest is not listed, a mapping file must be created. A mapping is a mechanism that defines how the profile data released by the external provider will be saved locally by Gluu. 
     
-    It is recommended to create mappings based on existing mapping files. Make a copy of any file listed in the table above (see directory `/opt/gluu/node/passport/server/mappings` in Gluu chroot) and name it appropriately. Enter the name (without file extension) in the form field. The [tutorial](../tutorials/passport-attributes-mapping.md) contains instructions on how to write attribute mappings. It is an easy task and generally does not demand programming skills.
+    It is recommended to create mappings based on existing mapping files. Make a copy of any file listed in the table above (see directory `/opt/gluu/node/passport/server/mappings` in Gluu chroot) and name it appropriately. Enter the name (without file extension) in the form field. The [tutorial](../tutorials/passport-attributes-mapping.md) contains instructions on how to write attribute mappings. It is an easy task and generally does not require programming skills.
     
 1. If the provider being added is present in the table above, enter `img/<mapping>.png` (we already bundle images for the social sites supported out-of-the-box). Otherwise, check this [section](./passport.md#about-logo-images) of the introductory page.
     
