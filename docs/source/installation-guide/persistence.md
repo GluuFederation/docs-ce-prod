@@ -5,40 +5,40 @@
 
 ## Overview
 
-Starting from first version CE uses LDAP layer to store data. 4.0 uses reviewed and extended persistence mechanism with new functionalities:
+In previous versions, the Gluu Server used LDAP for its persistence layer. In CE 4.0, the persistence mechanism has been reviewed and extended new functionalities:
 
-1. There is no dependency on specific DB persistence module.
+1. The Gluu Server no longer has a dependency on specific DB persistence module.
 
-1. It’s possible to add new persistence plugins.
+1. New persistence plugins can be added.
 
-1. It’s possible to split data between few persistence modules.
+1. Data can be split between multiple persistence modules.
 
 In 4.0 CE has 3 persistence modules:
 
-1. LDAP persistence module (https://github.com/GluuFederation/oxCore/tree/master/persistence-ldap). It’s default persistence method in CE.
+1. [LDAP](https://github.com/GluuFederation/oxCore/tree/master/persistence-ldap), the default persistence method in CE.
 
-1. Couchbase persistence module (https://github.com/GluuFederation/oxCore/tree/master/persistence-couchbase). Setup supports local Couchbase and remote installation with pre-installed Couchbase server.
+1. [Couchbase](https://github.com/GluuFederation/oxCore/tree/master/persistence-couchbase), supporting either local or remote installation with a pre-installed Couchbase server.
  
-1. Hybrid persistence module (https://github.com/GluuFederation/oxCore/tree/master/persistence-hybrid) This meta module allows to map data to different persistence modules. For example company can use LDAP for users/groups entrees and other layer to store rests of the entries.
+1. [Hybrid](https://github.com/GluuFederation/oxCore/tree/master/persistence-hybrid), a meta module that allows mapping data to different persistence modules. For example, a company can use LDAP for users and groups entries, but a different layer to store all other entries.
 
-Internal data model is the same for all persistence modules. This consistency is based on generic annotations, filters API, persistence API, entry type (objectClass) and persistence key (Domain Name). Here is sample persistence bean:
+The internal data model is the same for all persistence modules. This consistency is based on generic annotations, the filters API, the persistence API, entry type (objectClass) and persistence key (Domain Name). Here is a sample persistence bean:
 
 ![Entry definitions](../img/admin-guide/installation-guide/entry_definition.png)
     
-Persistence entry manager API provides CRUID operations which work with persistence beans. The base API defined in PersistenceEntryManager (https://github.com/GluuFederation/oxCore/blob/master/persistence-core/src/main/java/org/gluu/persist/PersistenceEntryManager.java) in oxcore-persistence-core library.
-
+The persistence entry manager API provides CRUID operations, which works with persistence beans. The base API is defined in [PersistenceEntryManager](https://github.com/GluuFederation/oxCore/blob/master/persistence-core/src/main/java/org/gluu/persist/PersistenceEntryManager.java) in the oxcore-persistence-core library.
 
 ## Persistence Layer Dependencies
 
-This diagram shows EntryManager dependencies and it type resolution based on persistence.type specified in gluu.properties
+This diagram shows the EntryManager dependencies and type resolutions based on persistence.type specified in gluu.properties
 
 ![Dependency Chart](../img/admin-guide/installation-guide/persistence_dependencies.png)
 
-## Persistence Layers
+## Persistence Layer Modules
 
 ### LDAP
 
 This module uses LDAP server to store data. The module code is in project oxcore-persistence-ldap (https://github.com/GluuFederation/oxCore/tree/master/persistence-ldap).
+
 There are few major data structure changes in 4.0 data model:
 
 - Dropped `o=<inumOrg>` sub level
