@@ -14,8 +14,7 @@ Single-node Gluu Server Linux packages are available for Ubuntu 18.04.x and 16.0
 ## Instructions
 
 ### Install the package
-
-The Gluu server will be installed under `/root`. The Gluu Server will create its file system under `/root/` and will be installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) remain the same as the host.
+The Gluu Server will create its file system under `/root/` and will be installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) remain the same as the host.
 
 
 For **Ubuntu 18.04.x** run the following commands: 
