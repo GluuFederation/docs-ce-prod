@@ -52,7 +52,7 @@ The following is an example of a typical LDAP tree after CE installation:
 
 ![LDAP Data tree structure](../img/admin-guide/installation-guide/ldap_data_tree.png)
 
-This module uses configuration specified in `/etc/gluu/conf/gluu-ldap.properties`:
+This module uses the configuration specified in `/etc/gluu/conf/gluu-ldap.properties`:
 
 ```
 bindDN: <ldap_binddn>
@@ -85,7 +85,7 @@ binaryAttributes=objectGUID
 certificateAttributes=userCertificate
 ```
 
-The default settings can be used in most environments.
+The default settings are suitable for most environments.
 
 ### Couchbase
 
@@ -129,7 +129,7 @@ There are two mandatory keys in this configuration, `buckets` and `bucket.defaul
 
 The optional third type of line, `bucket.<>.mapping: <comma_separated_second_level_names>` gives instructions for which bucket should store specified entries. The value here is the RDN value of the second level in the LDAP tree.
 
-The table below specifies the list of entry types which applications store in buckets:
+The table below specifies the list of entry types that applications store in buckets:
 
 | Bucket | Entry Type |
 | --- | --- |
@@ -162,7 +162,7 @@ The table below specifies the list of entry types which applications store in bu
 | | oxFido2RegistrationEntry |
 | gluu_statistic | oxMetric |
 
-Both LDAP and Couchbase persistence layers use the [Gluu Filter API](https://github.com/GluuFederation/oxCore/blob/master/persistence-filter/src/main/java/org/gluu/search/filter/Filter.java) in order to minimize the Gluu Server's dependency on a specific DB. At runtime, the Couchbase persistence layer converts them to the N1QL query language.
+Both LDAP and Couchbase persistence layers use the [Gluu Filter API](https://github.com/GluuFederation/oxCore/blob/master/persistence-filter/src/main/java/org/gluu/search/filter/Filter.java) to minimize the Gluu Server's dependency on a specific DB. At runtime, the Couchbase persistence layer converts them to the N1QL query language.
 
 This module uses the configuration specified in `/etc/gluu/conf/gluu-couchbase.properties`:
 
@@ -227,7 +227,7 @@ storage.ldap.mapping: people, groups
 storage.couchbase.mapping: clients, cache, site, tokens, statistic, authorization
 ```
 
-In this example, CE applications will use LDAP for `ou=people` and `ou=groups`. All other data will be stored in Couchbase DB.
+In this example, CE applications will use LDAP for `ou=people` and `ou=groups`. All other data will be stored in the Couchbase DB.
 
 ## Generic configuration properties
 
