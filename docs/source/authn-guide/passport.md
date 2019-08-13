@@ -65,8 +65,7 @@ When adding a provider, administrators will be asked to assign an ID to it. Inst
 
 ### Strategies
 
-Gluu Passport is built upon the popular authentication middleware [Passport.js](http://www.passportjs.org/), which supports plugins (AKA "*Strategies*") that allow integration of identity providers easily. There are hundreds of strategies available in [npm](https://www.npmjs.com/) (the Node.js Package Registry). You can integrate any strategy as long as it is under the OAuth umbrella.
-
+Gluu Passport is built upon the popular authentication middleware [Passport.js](http://www.passportjs.org/), which supports plugins (AKA "*Strategies*") that allow integration of identity providers easily. There are hundreds of strategies available in the Node.js Package Registry: [npm](https://www.npmjs.com/). Any OAuth strategy can be supported.
 
 ## Passport configuration
 
