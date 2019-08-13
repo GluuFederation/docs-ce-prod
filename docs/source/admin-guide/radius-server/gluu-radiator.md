@@ -156,7 +156,7 @@ http. Default is 1 second
 ## Testing 
 1. Create a user or use an existing user on Gluu Server and make sure it has at least one enrolled Super Gluu Device
 
-1.. Run radiator (see Radiator documentation on how to run it)
+1. Run radiator (see Radiator documentation on how to run it)
 
 1. Using a radius client (e.g. `NTRadPing`) attempt to authenticate. An authentication prompt should appear on the user's 
 device. Selecting `Accept` should authenticate the user and radiator should shortly thereafter return an `Access-Accept`
