@@ -1,6 +1,6 @@
 # Ubuntu Installation 
 ## Overview
-Single-node Gluu Server Linux packages are available for Ubuntu, CentOS, RHEL and Debian operating systems. The installation procedure is similar across all distributions: 
+Single-node Gluu Server Linux packages are available for Ubuntu 18.04.x and 16.04.x. Follow the instructions below: 
 
 1. [Install the Linux package](#install-the-package)
 2. [Start the Server and log in to the container](#start-the-server-and-log-in)
@@ -15,11 +15,10 @@ Single-node Gluu Server Linux packages are available for Ubuntu, CentOS, RHEL an
 
 ### Install the package
 
-Installation of the Gluu server will be done under `/root`. 
-The Gluu Server will create its file system under `/root/` and will be installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) remain the same as the host.
+The Gluu server will be installed under `/root`. The Gluu Server will create its file system under `/root/` and will be installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) remain the same as the host.
 
 
-#### Ubuntu Server 18.04.x
+For **Ubuntu 18.04.x** run the following commands: 
 
 ```
 echo "deb https://repo.gluu.org/ubuntu/ bionic-devel main" > /etc/apt/sources.list.d/gluu-repo.list
@@ -38,10 +37,10 @@ apt-get install gluu-server-4.0
 ```
 
 !!! Note  
-    If you use the server version of Ubuntu 18, you need to add the Ubuntu Universe repositories as well. Use these commands: `# echo "deb http://archive.ubuntu.com/ubuntu bionic universe" >> /etc/apt/sources.list` and `# echo "deb http://archive.ubuntu.com/ubuntu bionic-updates universe" >> /etc/apt/sources.list` 
+    If you use the server version of Ubuntu 18, add the Ubuntu Universe repositories as well. Use these commands: `# echo "deb http://archive.ubuntu.com/ubuntu bionic universe" >> /etc/apt/sources.list` and `# echo "deb http://archive.ubuntu.com/ubuntu bionic-updates universe" >> /etc/apt/sources.list` 
   
 
-#### Ubuntu Server 16.04.x
+For **Ubuntu 16.04.x** run the following commands:  
 
 ```
 echo "deb https://repo.gluu.org/ubuntu/ xenial-devel main" > /etc/apt/sources.list.d/gluu-repo.list
@@ -63,7 +62,7 @@ apt-get install gluu-server-4.0
 
 The Gluu Server is a chroot container, which must be started to proceed. 
 
-For Ubuntu 18 run the following commands: 
+For **Ubuntu 18.04.x** run the following commands: 
 
 ```
 /sbin/gluu-serverd-4.0 enable
@@ -77,10 +76,7 @@ For Ubuntu 18 run the following commands:
 /sbin/gluu-serverd-4.0 login
 ```
 
-!!! Note
-    Only use `enable` the first time you start the Gluu Server.
-
-For Ubuntu 16, run the following commands:
+For **Ubuntu 16.04.x**, run the following commands:
 
 ```
 service gluu-server-4.0 start
@@ -125,7 +121,7 @@ Sometimes things go wrong! It can be difficult to troubleshoot issues if the ste
 
 ## Uninstallation
 
-###  Uninstall Ubuntu Server 18.04.x
+For **Ubuntu Server 18.04.x**, run the following commands:
 
 ```
 /sbin/gluu-serverd-4.0 disable
@@ -143,7 +139,7 @@ apt-get remove gluu-server-4.0
 rm -fr /opt/gluu-server.save
 ```
 
-### Uninstall Ubuntu Server 16.4.x:
+For **Ubuntu Server 16.04.x**, run the following commands:
 
 ```
 service gluu-server-4.0 stop
@@ -159,7 +155,7 @@ rm -rf /opt/gluu-server-4.0.save
 
 
 !!! Note
-    `apt-get purge gluu-server-4.0` or `apt-get remove --purge gluu-server-4.0` can also be used to uninstall and remove all the folders and services of the Gluu Server. Make sure to back up ALL directories of `/opt` into other direction (tmp or root directory itself) before running the purge command.
+    `apt-get purge gluu-server-4.0` or `apt-get remove --purge gluu-server-4.0` can also be used to uninstall and remove all the folders and services of the Gluu Server. Make sure to backup **ALL** directories of `/opt` into another directory (tmp or root directory itself) before running the purge command.
 
 ## Support
 Please review the [Gluu support portal](https://support.gluu.org). There are many existing tickets about troubleshooting installation issues. If there is no similar existing public issue, register for an account and open a new ticket. 
