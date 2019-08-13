@@ -1,6 +1,6 @@
 # RHEL Installation 
 ## Overview
-Single-node Gluu Server Linux packages are available for Ubuntu, CentOS, RHEL and Debian operating systems. The installation procedure is similar across all distributions: 
+Single-node Gluu Server Linux packages are available for RHEL 7. Follow the instructions below:
 
 1. [Install the Linux package](#install-the-package)
 2. [Start the Server and log in to the container](#start-the-server-and-log-in)
@@ -14,16 +14,13 @@ Single-node Gluu Server Linux packages are available for Ubuntu, CentOS, RHEL an
 
 - SELinux must be set to permissive in /etc/selinux/config
 
-
-  
 ## Instructions
 
 ### Install the package
 
-Installation of the Gluu server will be done under `/root`. 
 The Gluu Server will create its file system under `/root/` and will be installed under `/opt`. File size and [minimum requirements](../installation-guide/index.md) remain the same as the host.
 
-Gluu Server CE 4.0 supports **RHEL 7**. Enter the following commands to install:
+For **RHEL 7**, run the following commands:
 
 ```
 wget https://repo.gluu.org/rhel/Gluu-rhel-7-testing.repo -O /etc/yum.repos.d/Gluu.repo
@@ -62,9 +59,6 @@ Run the following commands:
 ```
 /sbin/gluu-serverd-4.0 login
 ```
-
-!!! Note
-    Only use `enable` the first time you start the Gluu Server.
 
 ### Run `setup.py`
 
