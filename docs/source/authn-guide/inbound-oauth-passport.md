@@ -1,8 +1,11 @@
-# Inbound OAuth & OpenID Connect using Passport
+# Inbound OAuth & OpenID Connect
+
+## Overview
+This document provides instructions for configuring the Gluu Server to support user authentication at at one or more external OAuth or OpenID Connect Providers (a.k.a. inbound OAuth / OpenID). For a quick overview of key concepts associated with "inbound identity", visit the [introductory page](./passport.md). 
 
 ## Enable Passport
 
-The [introductory page](./passport.md) provides a quick overview of key concepts to get the most out of inbound identity with Gluu Passport. Ensure your installation already has the [Passport component installed](./passport.md#passport-setup). Follow these steps to enable it:
+Make sure the Gluu Server installation already has [Passport installed](./passport.md#passport-setup). Then perform the following:
 
 1. Enable the custom script
 
