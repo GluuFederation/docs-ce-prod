@@ -156,13 +156,11 @@ marked as failed
 
 ## Testing 
 
-1. Create a user or use an existing user on Gluu Server and make sure it has at least one enrolled Super Gluu Device
+1. Create a user or use an existing user on Gluu Server. Make sure the user has at least one enrolled [Super Gluu](https://super.gluu.org) device associated with their account.    
 
-1. Run Radiator (see Radiator documentation on how to run it)
+1. Run Radiator (see Radiator documentation)    
 
-1. Use a RADIUS client (e.g. `NTRadPing`) to attempt to authenticate. An authentication prompt should appear on the user's 
-device. Selecting `Accept` should authenticate the user and Radiator should shortly thereafter return an `Access-Accept`
-response.
+1. Use a RADIUS client (e.g. `NTRadPing`) to attempt to authenticate. A Super Gluu authentication prompt should appear on the user's device. Tap `Approve` to proceed with authentication. Radiator will then return an `Access-Accept`response.
 
 
 
