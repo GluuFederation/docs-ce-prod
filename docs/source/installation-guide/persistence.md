@@ -7,13 +7,13 @@
 
 In previous versions, the Gluu Server used LDAP for its persistence layer. In CE 4.0, the persistence mechanism has been reviewed and extended new functionalities:
 
-1. The Gluu Server no longer has a dependency on specific DB persistence module.
+- The Gluu Server no longer has a dependency on specific DB persistence module.
 
-1. New persistence plugins can be added.
+- New persistence plugins can be added.
 
-1. Data can be split between multiple persistence modules.
+- Data can be split between multiple persistence modules.
 
-In 4.0 CE has 3 persistence modules:
+In 4.0, CE comes with three persistence modules:
 
 1. [LDAP](https://github.com/GluuFederation/oxCore/tree/master/persistence-ldap), the default persistence method in CE.
 
@@ -29,7 +29,7 @@ The persistence entry manager API provides CRUID operations, which works with pe
 
 ## Persistence Layer Dependencies
 
-This diagram shows the EntryManager dependencies and type resolutions based on persistence.type specified in gluu.properties
+This diagram shows the EntryManager dependencies and type resolutions based on persistence.type specified in gluu.properties:
 
 ![Dependency Chart](../img/admin-guide/installation-guide/persistence_dependencies.png)
 
@@ -46,7 +46,9 @@ There are few major data structure changes in the 4.0 data model:
 - Moved configuration to `ou=configuration,o=gluu`
 - Moved `ou=tokens` and `ou=authoriztions` from client sub-entries to `o=gluu`
 
-In CE 4.0, there is migrator to convert an existing data set to the new model.
+In CE 4.0, there is a migrator to convert an existing data set to the new model.
+
+<!-- More detail on the migrator to come -->
 
 The following is an example of a typical LDAP tree after CE installation:
 
@@ -211,14 +213,13 @@ certificateAttributes=userCertificate
 
 ### Hybrid
 
-The hybrid persistence mechanism is a meta-DB persistence layer. The main role of it is to add an abstraction layer to help split data between DBs. For example, it could be used to resolve these issues:
+The hybrid persistence mechanism is a meta-DB persistence layer. Its main role is to add an abstraction layer to help split data between DBs. For example, it could be used to resolve these and other issues:
 
-1. Store expired entries in a separate DB to reduce the main DB's size. For example, an id_token needed for the end_session endpoint
+1. Store expired entries separately to reduce the main DB's size. For example, an id_token needed for the end_session endpoint
 1. Store modification history
 1. Use LDAP to store users data
-1. and numerous other needs.
 
-This module combines other persistence layers. Hence all used layers should be correctly configured. This module uses the configuration specified in `/etc/gluu/conf/gluu-hybrid.properties`. The following is a sample file:
+This module combines other persistence layers, so all layers used should be correctly configured. This module uses the configuration specified in `/etc/gluu/conf/gluu-hybrid.properties`. The following is a sample file:
 
 ```
 storages: couchbase, ldap
