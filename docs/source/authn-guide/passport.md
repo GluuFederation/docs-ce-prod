@@ -1,12 +1,12 @@
-# Inbound identity using Passport
+# Inbound identity
 
 ## Overview
 
-Gluu bundles the [Passport.js authentication middleware](https://passportjs.org) project to support "inbound identity" from external SAML, OAuth, and OpenID Connect providers. With inbound identity, users can be sent from the Gluu Server to external identity providers (where they presumably already have user accounts) for authentication and dynamic registration. 
+Gluu bundles the [Passport.js authentication middleware](https://passportjs.org) project to support user authentication at external SAML, OAuth, and OpenID Connect providers (a.k.a. "inbound identity"). 
 
-The integration consists of the Passport Node.js application and a couple of custom interception scripts and pages for oxAuth, which together coordinate the flows and interfaces required to configure the Gluu Server to support inbound identity with a range of external providers.
+The integration consists of custom authentication scripts and web pages for oxAuth, and the Passport Node.js application. Together, these assets coordinate the flows and interfaces required to configure the Gluu Server to support inbound identity with a range of external providers.
 
-!!! Note
+!!! Attention
     From Gluu Server CE 4.0 onwards, all inbound identity configurations can be made in the oxTrust admin UI.
  
 ## Passport setup
