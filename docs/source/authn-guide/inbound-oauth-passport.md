@@ -1,7 +1,7 @@
 # Inbound OAuth & OpenID Connect
 
 ## Overview
-This document provides instructions for configuring the Gluu Server to support user authentication at at one or more external OAuth or OpenID Connect Providers (a.k.a. inbound OAuth / OpenID). For a quick overview of key concepts associated with "inbound identity", visit the [introductory page](./passport.md). 
+This document provides instructions for configuring the Gluu Server to support user authentication at one or more external OAuth or OpenID Connect Providers (a.k.a. inbound OAuth / OpenID). For a quick overview of key concepts associated with "inbound identity", visit the [introductory page](./passport.md). 
 
 ## Enable Passport
 
