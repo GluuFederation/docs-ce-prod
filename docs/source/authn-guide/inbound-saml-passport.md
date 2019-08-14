@@ -1,4 +1,4 @@
-# Inbound SAML using Passport
+# Inbound SAML
 
 ## Overview
 This document provides instructions for configuring the Gluu Server to support user authentication at at one or more external SAML IDPs (a.k.a. inbound SAML). For a quick overview of key concepts associated with "inbound identity", visit the [introductory page](./passport.md). 
