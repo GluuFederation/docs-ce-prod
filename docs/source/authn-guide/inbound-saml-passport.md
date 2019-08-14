@@ -1,8 +1,11 @@
 # Inbound SAML using Passport
 
+## Overview
+This document provides instructions for configuring the Gluu Server to support user authentication at at one or more external SAML IDPs (a.k.a. inbound SAML). For a quick overview of key concepts associated with "inbound identity", visit the [introductory page](./passport.md). 
+
 ## Enable Passport
 
-The [introductory page](./passport.md) provides a quick overview of key concepts to get the most out of inbound identity with Gluu Passport. Ensure the Gluu Server installation already has [Passport component installed](./passport.md#passport-setup). Follow theses steps to enable it:
+Make sure the Gluu Server installation already has [Passport installed](./passport.md#passport-setup). Then follow these steps to enable it:
 
 1. Enable the custom script
 
