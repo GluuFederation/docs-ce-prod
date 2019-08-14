@@ -5,7 +5,7 @@ This document provides instructions for configuring the Gluu Server to support u
 
 ## Enable Passport
 
-Make sure the Gluu Server installation already has [Passport installed](./passport.md#passport-setup). Then follow these steps to enable it:
+Make sure the Gluu Server installation already has [Passport installed](./passport.md#passport-setup). Then perform the following:
 
 1. Enable the custom script
 
