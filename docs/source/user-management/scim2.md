@@ -333,7 +333,7 @@ Please note that SCIM will only allow you to create users with HTTP POST verb.
 
 One of the simplest ways to test retrieval is querying all information about a single user. Check in your LDAP the `inum` for Average Joe and do the following request with `curl` passing, as usual, your access token in the headers:
 
-`curl -G -H 'Authorization: Bearer ...access token...' 'https://<host-name>/identity/seam/resource/restv1/scim/v2/Users/<user-inum>'`
+`curl -G -H 'Authorization: Bearer ...access token...' 'https://<host-name>/identity/restv1/scim/v2/Users/<user-inum>'`
 
 !!! Note
     In the Gluu Server, `inums` are long strings consisting of alphanumeric characters and typically start with @!, include these two characters as well. Note that the URL was surrounded with single quotes: bang characters might be misleading to your command line interpreter.
@@ -557,7 +557,7 @@ No input file is used in this case. A delete request could be the following:
 
 ```
 $ curl -X DELETE -H 'Authorization: Bearer ...access token...'
-        'https://<host-name>/identity/seam/resource/restv1/scim/v2/Users/<user-inum>'
+        'https://<host-name>/identity/restv1/scim/v2/Users/<user-inum>'
 ```
 
 Use the `inum` of our dummy user, Average Joe.
@@ -1114,7 +1114,7 @@ operating system is **iOS**. In a setting of test mode, we may issue a query lik
 
 ```
 curl -G -H 'Authorization: Bearer ...access token...' --data-urlencode 'filter=deviceData co "ios"' 
--d count=10 -o output.json https://<host-name>/identity/seam/resource/restv1/scim/v2/FidoDevices/
+-d count=10 -o output.json https://<host-name>/identity/restv1/scim/v2/FidoDevices/
 ```
 
 Your result list might look like this:
