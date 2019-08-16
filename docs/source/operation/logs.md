@@ -278,44 +278,6 @@ Remember the initial `GET` request will hit the Apache server first, and then be
         [Thu Jul 14 23:49:20 2016] [error] ajp_read_header: ajp_ilink_receive failed
         [Thu Jul 14 23:49:20 2016] [error] (70007)The timeout specified has expired: proxy: read response failed from (null) (localhost)
 
-## OpenLDAP Logs
-
-OpenLDAP logs are enabled by default. And OpenLDAP by is configured to capture logs by syslog from the operating system. However, if one has to disable logging (which we dont recommend), are done in sladp.conf stored under following directory.  
-For more details on OpenLDAP slapd configuration view [here](http://www.openldap.org/doc/admin24/slapdconfig.html)  
-
-`/opt/symas/etc/openldap/slapd.conf file`
-
-The logs for OpenLDAP are stored under the below directory.
-
-`/var/log/openldap/ldap.log`
-
-!!! Note
-    OpenLDAP logs are not populated within Gluu container, its stored and generated under the host system
-
-### OpenLDAP Log Level
-
-By default Log Level of OpenLDAP is set to `stats sync`. If one has to change the log level, it could be performed by modifying the slapd.conf file under the above mentioned directory. 
-
-`loglevel stats sync`
-
-|Level|Keyword|Description|
-|-----|-------|-----------|
-|-1 | any | enable all debugging  |
-|0 | *blank* |no debugging  |
-|1 |trace|  trace function calls  |
-|2  |packets | debug packet handling  |
-|4  | args| heavy trace debugging  |
-|8  | conns| connection management  |
-|16 |  BER | print out packets sent and received  |
-|32 |  filter|  search filter processing  |
-|64 |  config|  configuration processing  |
-|128 | ACL | access control list processing  |
-|256 | stats|  stats log connections/operations/results  |
-|512 |  stats2 | stats log entries sent  |
-|1024|   shell | print communication with shell backends  |
-|2048|  parse | print entry parsing debugging  |
-|16384|  sync|  syncrepl consumer processing  |
-|32768 |  none|  only messages that get logged whatever log level is set  |
 
 ## Clearing Logs
 
