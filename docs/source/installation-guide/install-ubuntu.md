@@ -32,7 +32,7 @@ apt-get update
 ```
 
 ```
-apt-get install gluu-server-4.0
+apt-get install gluu-server
 ```
 
 !!! Note  
@@ -54,7 +54,7 @@ apt-get update
 ```
 
 ```
-apt-get install gluu-server-4.0
+apt-get install gluu-server
 ```
 
 ### Start the server and log in
@@ -64,25 +64,25 @@ The Gluu Server is a chroot container, which must be started to proceed.
 For **Ubuntu 18.04.x** run the following commands: 
 
 ```
-/sbin/gluu-serverd-4.0 enable
+/sbin/gluu-serverd enable
 ```
 
 ```
-/sbin/gluu-serverd-4.0 start
+/sbin/gluu-serverd start
 ```
 
 ```
-/sbin/gluu-serverd-4.0 login
+/sbin/gluu-serverd login
 ```
 
 For **Ubuntu 16.04.x**, run the following commands:
 
 ```
-service gluu-server-4.0 start
+service gluu-server start
 ```
 
 ```
-service gluu-server-4.0 login
+service gluu-server login
 ```
 
 ### Run `setup.py`
@@ -123,15 +123,15 @@ Sometimes things go wrong! It can be difficult to troubleshoot issues if the ste
 For **Ubuntu Server 18.04.x**, run the following commands:
 
 ```
-/sbin/gluu-serverd-4.0 disable
+/sbin/gluu-serverd disable
 ```
 
 ```
-/sbin/gluu-serverd-4.0 stop
+/sbin/gluu-serverd stop
 ```
 
 ```
-apt-get remove gluu-server-4.0
+apt-get remove gluu-server
 ```
 
 ```
@@ -141,20 +141,20 @@ rm -fr /opt/gluu-server.save
 For **Ubuntu Server 16.04.x**, run the following commands:
 
 ```
-service gluu-server-4.0 stop
+service gluu-server stop
 ```
 
 ```
-apt-get remove gluu-server-4.0
+apt-get remove gluu-server
 ```
 
 ```
-rm -rf /opt/gluu-server-4.0.save
+rm -rf /opt/gluu-server.save
 ```
 
 
 !!! Note
-    `apt-get purge gluu-server-4.0` or `apt-get remove --purge gluu-server-4.0` can also be used to uninstall and remove all the folders and services of the Gluu Server. Make sure to backup **ALL** directories of `/opt` into another directory (tmp or root directory itself) before running the purge command.
+    `apt-get purge gluu-server` or `apt-get remove --purge gluu-server` can also be used to uninstall and remove all the folders and services of the Gluu Server. Make sure to backup **ALL** directories of `/opt` into another directory (tmp or root directory itself) before running the purge command.
 
 ## Support
 Please review the [Gluu support portal](https://support.gluu.org). There are many existing tickets about troubleshooting installation issues. If there is no similar existing public issue, register for an account and open a new ticket. 
