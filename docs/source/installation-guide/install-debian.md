@@ -35,7 +35,7 @@ apt-get update
 ```
 
 ```
-apt-get install gluu-server-4.0
+apt-get install gluu-server
 ```
 
 ### Start the server and log in
@@ -45,15 +45,15 @@ The Gluu Server is a chroot container, which must be started to proceed.
 Run the following commands: 
 
 ```
-/sbin/gluu-serverd-4.0 enable
+/sbin/gluu-serverd enable
 ```
 
 ```
-/sbin/gluu-serverd-4.0 start
+/sbin/gluu-serverd start
 ```
 
 ```
-/sbin/gluu-serverd-4.0 login
+/sbin/gluu-serverd login
 ```
 
 ### Run `setup.py`
@@ -94,19 +94,19 @@ Sometimes things go wrong! It can be difficult to troubleshoot issues if the ste
 Run the following commands:
 
 ```
-service gluu-server-4.0 stop
+service gluu-server stop
 ```
 
 ```
-apt-get remove gluu-server-4.0
+apt-get remove gluu-server
 ```
 
 ```
-rm -rf /opt/gluu-server-4.0.save
+rm -rf /opt/gluu-server.save
 ```
 
 !!! Note
-    `apt-get purge gluu-server-4.0` or `apt-get remove --purge gluu-server-4.0` can also be used to uninstall and remove all the folders and services of the Gluu Server. Make sure to back up ALL directories of `/opt` into other direction (tmp or root directory itself) before running the purge command.
+    `apt-get purge gluu-server` or `apt-get remove --purge gluu-server` can also be used to uninstall and remove all the folders and services of the Gluu Server. Make sure to back up ALL directories of `/opt` into other direction (tmp or root directory itself) before running the purge command.
 
 ## Support
 Please review the [Gluu support portal](https://support.gluu.org). There are many existing tickets about troubleshooting installation issues. If there is no similar existing public issue, register for an account and open a new ticket. 
