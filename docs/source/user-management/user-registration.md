@@ -45,11 +45,3 @@ To change this setting, you need to make the following changes in both oxTrust a
 1. If you want to re-enable the email uniqueness plugin, run this command:  
     `/opt/opendj/bin/dsconfig -h hostname -p 4444 -D "cn=directory manager" -w yourPassword -n set-plugin-prop --plugin-name "Unique mail address" --set enabled:true`
 1. Restart OpenDJ: service opendj restart
-
-### OpenLDAP
-1. Log in to the Gluu container with `service gluu-server-3.1.6 login`
-1. Open `/opt/symas/etc/openldap/slapd.conf` in a text editor
-1. To disable email uniqueness, comment out the following line:  
-    `unique_uri    ldap:///?mail?sub?(objectClass=gluuPerson)`
-1. If you want to re-enable email uniqueness, uncomment the above line
-1. Restart the SOL Server with `service solserver restart`
