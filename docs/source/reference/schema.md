@@ -5,8 +5,8 @@
 
 Below are the schemes for OpenDJ and OpenLDAP. The OpenDJ schema should work for 389DS, too:
 
- * [OpenDJ](https://github.com/GluuFederation/community-edition-setup/tree/master/static/opendj)
- * [OpenLDAP](https://github.com/GluuFederation/community-edition-setup/tree/master/static/openldap)
+ * [OpenDJ](https://github.com/GluuFederation/community-edition-setup/tree/version_2.4.4/static/opendj)
+ * [OpenLDAP](https://github.com/GluuFederation/community-edition-setup/tree/version_2.4.4/static/openldap)
 
 !!!Note:
     This section of the documentation is for reference and Schemas should not be manually edited.
