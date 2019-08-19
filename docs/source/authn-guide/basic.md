@@ -79,7 +79,7 @@ If passwords are stored locally, Gluu admins can reset a user's password in two 
    - Set the new password      
 
 1. Using LDAP:    
-   - Access the local LDAP following [these instructions](https://gluu.org/docs/ce/user-management/local-user-management/#manage-users-in-gluu-openldap)     
+   - Access the local LDAP following [these instructions](https://gluu.org/docs/ce/user-management/local-user-management/#manage-data-in-gluu-ldap)     
    - Search for user with 'uid' or 'mail' attribute    
    - Password attribute ( userPassword ) can be changed using ldapmodify commands      
 
