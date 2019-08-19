@@ -145,7 +145,6 @@ sysemProfile=/etc/profile
 ldap_setup_properties=./templates/opendj-setup.properties
 default_openid_jks_dn_name=CN\=oxAuth CA Certificates
 oxtrust_config_json=./output/oxtrust-config.json
-openldapTLSCACert=/etc/certs/openldap.pem
 installJce=True
 ldapPassFn=/home/ldap/.pw
 ...
