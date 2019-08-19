@@ -143,7 +143,7 @@ nav:
         - 'Change IP Address': 'operation/changeip.md'
         - 'Replacing Expired JKS Files': 'operation/replace-expired-jks-scim.md'
 - Developer Guide:
-        - 'Build oxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'
+#        - 'Build oxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'
         - 'Localization': 'developer-guide/localization.md'
         - 'Script Debugging': 'developer-guide/script-debugging.md'
 - Tutorials:
