@@ -1,6 +1,6 @@
 # Gluu LDAP Schema
 
-Below is the schema for OpenDJ, which should work for 389DS, too:
+Below is the schema for Gluu OpenDJ:
 
  * [OpenDJ](https://github.com/GluuFederation/community-edition-setup/tree/version_3.1.6/static/opendj)
 
