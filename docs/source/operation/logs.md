@@ -138,7 +138,6 @@ The available log files for Gluu Server Community Edition inside the `chroot` en
 |_/opt/gluu/jetty/identity/logs_/**oxtrust_cache_refresh.log**| Logs events relating to cache refresh|
 |_/opt/gluu/jetty/identity/logs_/**oxtrust_velocity.log** | Log events related to the Apache Velocity template engine |
 | _/opt/gluu/jetty/identity/logs_/**oxtrust_cleaner.log** | Logs information about the oxTrust clean-up services |
-|_/var/log/openldap_/**ldap.log**|OpenLDAP Log, contains everything related to OpenLDAP|
 
 ### oxAuth logs
 The oxAuth logs contain the information about oxAuth authentication process and errors.  
