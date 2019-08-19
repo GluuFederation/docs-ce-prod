@@ -5,7 +5,7 @@ Below is the schema for Gluu OpenDJ:
  * [OpenDJ](https://github.com/GluuFederation/community-edition-setup/tree/version_3.1.6/static/opendj)
 
 !!! Note
-    This section of the documentation is for reference and Schemas should not be manually edited.
+    This section of the documentation is for reference only. Schemas should not be manually edited.
 
 Below objectclasses and attributes are extracted from Gluu Specific Schemas.
 
