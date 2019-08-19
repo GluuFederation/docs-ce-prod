@@ -1,11 +1,11 @@
 # Gluu LDAP Schema
 
-Below are the schemes for OpenDJ and OpenLDAP. The OpenDJ schema should work for 389DS, too:
+Below are the schemas for OpenDJ and OpenLDAP. The OpenDJ schema should work for 389DS, too:
 
- * [OpenDJ](https://github.com/GluuFederation/community-edition-setup/tree/master/static/opendj)
- * [OpenLDAP](https://github.com/GluuFederation/community-edition-setup/tree/master/static/openldap)
+ * [OpenDJ](https://github.com/GluuFederation/community-edition-setup/tree/version_3.1.4/static/opendj)
+ * [OpenLDAP](https://github.com/GluuFederation/community-edition-setup/tree/version_3.1.4/static/openldap)
 
-!!!Note:
+!!!Note
     This section of the documentation is for reference and Schemas should not be manually edited.
 
 Below objectclasses and attributes are extracted from Gluu Specific Schemas.
