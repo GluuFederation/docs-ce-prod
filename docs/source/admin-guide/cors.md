@@ -1,18 +1,15 @@
-# CORS Filter in Gluu CE
+# CORS Filter 
 
-## CORS Filter Overview
+## Overview
 
-CORS Filter is an implementation of W3C's CORS  (Cross-Origin Resource Sharing) [specification](http://www.w3.org/TR/cors/).
-CORS is a mechanism which enables cross-origin requests.
-CORS Filter work by adding required `Access-Control-*` headers to HttpServletResponse object. 
-The filter also protects against HTTP response splitting. If request is invalid, or is not permitted, then request is rejected with HTTP status code 403 (Forbidden). 
-A flowchart that demonstrates request processing by this filter.
+CORS Filter is an implementation of the [W3C's Cross-Origin Resource Sharing (CORS) specification](http://www.w3.org/TR/cors/).
+CORS is a mechanism which enables cross-origin requests. The CORS Filter works by adding required `Access-Control-*` headers to the `HttpServletResponse` object. 
+
+The filter also protects against HTTP response splitting. If a request is invalid, or is not permitted, the request is rejected with HTTP status code 403 (Forbidden). This flowchart demonstrates request processing by this filter:
+
 ![flowchart](../img/admin-guide/cors/cors-flowchart.png) 
 
-The minimal configuration required to use CORS Filter is as below which is 
-already added to the web.xml in oxauth.war. Below is only for reference and no additional 
-action is required, and configuration steps are defined below. CORS Filter reads the 
-configurations from LDAP and therefore configuration can be done in oxTrust UI directly.
+The minimal configuration required to use the CORS Filter is shown below, which is already added to the `web.xml` in `oxauth.war`. Below is only for reference and no additional action is required. Configuration steps are defined below. CORS Filter reads the configurations from LDAP and therefore configuration can be done in oxTrust UI directly.
 Filter Name for CORS Filter in Gluu CE will be `org.xdi.oxauth.filter.CorsFilter`.
 
 ```
