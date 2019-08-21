@@ -51,9 +51,9 @@ troubleshooting.
 Gluu Server logs use the log4j2 logging levels which can be changed in the `log4j2.xml` file.  
 `log4j2.xml` can be found in below path
 
-`/opt/jetty-9.3/temp/jetty-localhost-8082-identity.war-_identity-any-8516765662711672787.dir`
+`/opt/jetty-9.4/temp/jetty-localhost-8082-identity.war-_identity-any-8516765662711672787.dir`
 
-And also the same file can be found in all incorporated Gluu apps, i.e oxAuth, Asimba, IDP, oxAuth-RP and Identity
+And also the same file can be found in all incorporated Gluu apps, i.e oxAuth, IDP, oxAuth-RP and Identity
 
 The available logging levels are :
 
@@ -80,7 +80,7 @@ The following files define the log levels in Gluu Server. Please edit the file w
         <priority value="TRACE" />
     </category>
 
-    <!- ############### opnexdi ################# ->
+    <!- ############### openxdi ################# ->
     <category name="org.openxdi">
         <priority value="TRACE" />
     </category>
@@ -117,7 +117,7 @@ The available log files for Gluu Server Community Edition inside the `chroot` en
 |Log File| Component|
 |-----|-----|
 |_/install/community-edition-setup_/**setup.log**|Setup detail log|
-|/install/community-edition-setup_/**setup_error.log**|Setup error log|
+|_/install/community-edition-setup_/**setup_error.log**|Setup error log|
 |_/opt/gluu/jetty/idp/logs_/**start.log**|Logs time-stamp when IDP starts|
 |_/opt/shibboleth-idp/logs_/**idp-warn.log**<br/>_/opt/shibboleth-idp/logs_/**idp-process.log**|IDP diagonostic log [Read more..](https://wiki.shibboleth.net/confluence/display/IDP30/LoggingConfiguration)|
 |_/opt/shibboleth-idp/logs_/**idp-audit.log**|General audit log [Read more..](https://wiki.shibboleth.net/confluence/display/IDP30/LoggingConfiguration)|
