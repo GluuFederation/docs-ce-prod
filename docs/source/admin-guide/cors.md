@@ -60,7 +60,7 @@ CORS Filter supports following initialization parameters:
         </tr>
         <tr>
             <th>corsAllowedOrigins</th>
-            <td>AA list of origins that are allowed to access the resource. 
+            <td>A list of origins that are allowed to access the resource. 
             A <mark>*</mark> can be specified to enable access to resource from any origin. 
             Otherwise, a whitelist of comma separated origins can be provided. 
             Eg:  <mark>http://www.w3.org, https://www.apache.org. </mark>
