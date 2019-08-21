@@ -10,8 +10,7 @@ This flowchart demonstrates request processing by this filter:
 
 ![flowchart](../img/admin-guide/cors/cors-flowchart.png) 
 
-The minimal configuration required to use the CORS Filter is shown below, which is already added to the `web.xml` in `oxauth.war`. Below is only for reference and no additional action is required. Configuration steps are defined below. CORS Filter reads the configurations from LDAP and therefore configuration can be done in oxTrust UI directly.
-Filter Name for CORS Filter in Gluu CE will be `org.xdi.oxauth.filter.CorsFilter`.
+The minimal configuration required to use the CORS Filter is shown below, and is already added to the `web.xml` in `oxauth.war`. The filter name is `org.xdi.oxauth.filter.CorsFilter`.
 
 ```
     <filter>
