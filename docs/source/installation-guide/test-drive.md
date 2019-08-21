@@ -1,4 +1,4 @@
-# Gluu Server Test Drive Demo
+# Test Drive Demo
 
 ## Overview
 
