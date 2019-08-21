@@ -7,12 +7,12 @@ CORS is a mechanism which enables cross-origin requests. CORS Filter work by add
 
 ![flowchart](../img/admin-guide/cors/cors-flowchart.png) 
 
-The minimal configuration required to use CORS Filter is as below which is already added to the web.xml in oxauth.war. Below is only for reference and no additional action is required, and configuration steps are defined below. CORS Filter reads the configurations from the database and therefore configuration can be done in oxTrust UI directly. Filter Name for CORS Filter in Gluu CE will be `org.xdi.oxauth.filter.CorsFilter`.
+The minimal configuration required to use CORS Filter is as below which is already added to the web.xml in oxauth.war. Below is only for reference and no additional action is required, and configuration steps are defined below. CORS Filter reads the configurations from the database and therefore configuration can be done in oxTrust UI directly. Filter Name for CORS Filter in Gluu CE will be `org.gluu.oxauth.filter.CorsFilter`.
 
 ```
     <filter>
         <filter-name>CorsFilter</filter-name>
-        <filter-class>org.xdi.oxauth.filter.CorsFilter</filter-class>
+        <filter-class>org.gluu.oxauth.filter.CorsFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>CorsFilter</filter-name>

@@ -1,5 +1,5 @@
-from org.xdi.model.custom.script.type.session import ApplicationSessionType
-from org.xdi.util import StringHelper, ArrayHelper
+from org.gluu.model.custom.script.type.session import ApplicationSessionType
+from org.gluu.util import StringHelper, ArrayHelper
 from java.util import Arrays, ArrayList
 
 import java
@@ -24,7 +24,7 @@ class ApplicationSession(ApplicationSessionType):
 
     # Application calls it at end session request to allow notify 3rd part systems
     #   httpRequest is javax.servlet.http.HttpServletRequest
-    #   authorizationGrant is org.xdi.oxauth.model.common.AuthorizationGrant
+    #   authorizationGrant is org.gluu.oxauth.model.common.AuthorizationGrant
     #   configurationAttributes is java.util.Map<String, SimpleCustomProperty>
     def endSession(self, httpRequest, authorizationGrant, configurationAttributes):
         print "Application session. Starting external session end"

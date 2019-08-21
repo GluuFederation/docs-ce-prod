@@ -38,7 +38,7 @@ The Gluu Server is compatible with the [Java KeyGenerator](https://docs.oracle.c
 To get KeyGenerator, run the following command inside the chroot:
 
 ```
-wget https://ox.gluu.org/maven/org/xdi/oxauth-client/4.0.sp1/oxauth-client-4.0-jar-with-dependencies.jar -O oxauth-client.jar
+wget https://ox.gluu.org/maven/org.gluu/oxauth-client/4.0.sp1/oxauth-client-4.0-jar-with-dependencies.jar -O oxauth-client.jar
 ```
 
 Then, run KeyGenerator with the following command:

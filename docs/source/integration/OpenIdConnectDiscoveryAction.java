@@ -4,7 +4,7 @@
  * Copyright (c) 2014, Gluu
  */
 
-package org.xdi.oxauth.action;
+package org.gluu.oxauth.action;
 
 import org.apache.http.client.HttpClient;
 import org.jboss.resteasy.client.ClientExecutor;
@@ -12,13 +12,13 @@ import org.jboss.resteasy.client.core.executors.ApacheHttpClient4Executor;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.*;
 import org.jboss.seam.log.Log;
-import org.xdi.net.SslDefaultHttpClient;
-import org.xdi.net.TrustAllTrustManager;
-import org.xdi.oxauth.client.*;
+import org.gluu.net.SslDefaultHttpClient;
+import org.gluu.net.TrustAllTrustManager;
+import org.gluu.oxauth.client.*;
 
 import java.net.URISyntaxException;
 
-import static org.xdi.oxauth.model.discovery.WebFingerParam.REL_VALUE;
+import static org.gluu.oxauth.model.discovery.WebFingerParam.REL_VALUE;
 
 /**
  * @author Javier Rojas Blum

@@ -1,6 +1,6 @@
-from org.xdi.model.custom.script.type.client import ClientRegistrationType
-from org.xdi.util import StringHelper, ArrayHelper
-from org.xdi.oxauth.service import ScopeService
+from org.gluu.model.custom.script.type.client import ClientRegistrationType
+from org.gluu.util import StringHelper, ArrayHelper
+from org.gluu.oxauth.service import ScopeService
 from java.util import Arrays, ArrayList
 
 import java
@@ -24,8 +24,8 @@ class ClientRegistration(ClientRegistrationType):
         return True   
 
     # Update client entry before persistent it
-    #   registerRequest is org.xdi.oxauth.client.RegisterRequest
-    #   client is org.xdi.oxauth.model.registration.Client
+    #   registerRequest is org.gluu.oxauth.client.RegisterRequest
+    #   client is org.gluu.oxauth.model.registration.Client
     #   configurationAttributes is java.util.Map<String, SimpleCustomProperty>
     def updateClient(self, registerRequest, client, configurationAttributes):
         print "Client registration. UpdateClient method"

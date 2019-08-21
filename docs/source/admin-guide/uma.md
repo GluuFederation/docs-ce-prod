@@ -128,8 +128,8 @@ Sample script
 # 4. authorize() method is called if all required claims are provided.
 # 5. destroy()
 
-from org.xdi.model.custom.script.type.uma import UmaRptPolicyType
-from org.xdi.model.uma import ClaimDefinitionBuilder
+from org.gluu.model.custom.script.type.uma import UmaRptPolicyType
+from org.gluu.model.uma import ClaimDefinitionBuilder
 from java.lang import String
 
 class UmaRptPolicy(UmaRptPolicyType):
@@ -155,7 +155,7 @@ class UmaRptPolicy(UmaRptPolicyType):
     # Return empty array `[]` if no claims should be gathered.
     # Note : name in both places must match.
     # %1$s - placeholder for issuer. It uses standard Java Formatter, docs : https://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html
-    def getRequiredClaims(self, context): # context is reference of org.xdi.oxauth.uma.authorization.UmaAuthorizationContext
+    def getRequiredClaims(self, context): # context is reference of org.gluu.oxauth.uma.authorization.UmaAuthorizationContext
         json = """[
         {
             "issuer" : [ "%1$s" ],
@@ -176,7 +176,7 @@ class UmaRptPolicy(UmaRptPolicyType):
         return ClaimDefinitionBuilder.build(String.format(json, context.getIssuer()))
 
     # Main authorization method. Must return True or False.
-    def authorize(self, context): # context is reference of org.xdi.oxauth.uma.authorization.UmaAuthorizationContext
+    def authorize(self, context): # context is reference of org.gluu.oxauth.uma.authorization.UmaAuthorizationContext
         print "RPT Policy. Authorizing ..."
 
         if context.getClaim("country") == 'US' and context.getClaim("city") == 'NY':
@@ -186,7 +186,7 @@ class UmaRptPolicy(UmaRptPolicyType):
         return False
 
     # Returns name of the Claims-Gathering script which will be invoked if need_info error is returned. Return blank/empty string if claims gathering flow is not involved.
-    def getClaimsGatheringScriptName(self, context): # context is reference of org.xdi.oxauth.uma.authorization.UmaAuthorizationContext
+    def getClaimsGatheringScriptName(self, context): # context is reference of org.gluu.oxauth.uma.authorization.UmaAuthorizationContext
         context.addRedirectUserParam("customUserParam2", "value2") # pass some custom parameters to need_info uri. It can be removed if you don't need custom parameters.
         return "sampleClaimsGathering"
 ```
@@ -199,7 +199,7 @@ Sometimes RPT Authorization Policy may require additional claims that has to be 
 
 Sample script
 ```
-from org.xdi.model.custom.script.type.uma import UmaClaimsGatheringType
+from org.gluu.model.custom.script.type.uma import UmaClaimsGatheringType
 
 class UmaClaimsGathering(UmaClaimsGatheringType):
 
@@ -224,7 +224,7 @@ class UmaClaimsGathering(UmaClaimsGatheringType):
     # Main gather method. Must return True (if gathering performed successfully) or False (if fail).
     # Method must set claim into context (via context.putClaim('name', value)) in order to persist it (otherwise it will be lost).
     # All user entered values can be access via Map<String, String> context.getPageClaims()
-    def gather(self, step, context): # context is reference of org.xdi.oxauth.uma.authorization.UmaGatherContext
+    def gather(self, step, context): # context is reference of org.gluu.oxauth.uma.authorization.UmaGatherContext
         print "Claims-Gathering. Gathering ..."
 
         if step == 1:

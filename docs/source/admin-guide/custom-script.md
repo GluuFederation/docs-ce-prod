@@ -71,12 +71,12 @@ The authentication interception script extends the base script type with methods
 |Method|`isValidAuthenticationMethod(self, usageType, configurationAttributes)`|
 |---|---|
 |**Description**|This method is used to check if the authentication method is in a valid state. For example we can check there if a 3rd party mechanism is available to authenticate users. As a result it should either return `True` or `False`|
-|Method Parameter|`usageType` is `org.xdi.model.AuthenticationScriptUsageType`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
+|Method Parameter|`usageType` is `org.gluu.model.AuthenticationScriptUsageType`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
 
 |Method|`def getAlternativeAuthenticationMethod(self, usageType, configurationAttributes)`|
 |---|---|
 |**Description**|This method is called only if the current authentication method is in an invalid state. Hence authenticator calls it only if `isValidAuthenticationMethod` returns False. As a result it should return the reserved authentication method name|
-|Method Parameter|`uageType` is `org.xdi.model.AuthenticationScriptUsageType`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
+|Method Parameter|`uageType` is `org.gluu.model.AuthenticationScriptUsageType`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
 
 |Method|`def authenticate(self, configurationAttributes, requestParameters, step)`|
 |---|---|
@@ -177,7 +177,7 @@ This script type adds only one method to the base script type:
 
 |Method|`def updateClient(self, registerRequest, client, configurationAttributes)`|
 |---|---|
-|**Method Parameter**|`registerRequest` is `org.xdi.oxauth.client.RegisterRequest`<br/>`client` is `org.xdi.oxauth.model.registration.Client`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
+|**Method Parameter**|`registerRequest` is `org.gluu.oxauth.client.RegisterRequest`<br/>`client` is `org.gluu.oxauth.model.registration.Client`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
 
 This script can be used in an oxAuth application only.
 
@@ -189,7 +189,7 @@ The dynamic scope custom script allows to generate list of claims (and their val
 
 Two parameters are passed to the script:
 
-- `dynamicScopeContext` is [org.xdi.oxauth.service.external.context.DynamicScopeExternalContext class](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/java/org/xdi/oxauth/service/external/context/DynamicScopeExternalContext.java) 
+- `dynamicScopeContext` is [org.gluu.oxauth.service.external.context.DynamicScopeExternalContext class](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/java/org.gluu/oxauth/service/external/context/DynamicScopeExternalContext.java) 
 - `configurationAttributes` is java.util.Map<String, SimpleCustomProperty> dictionary carring script's custom properties
 
 In order to configure a dynamic scope next steps are required:
@@ -244,7 +244,7 @@ This script type adds only one method to the base script type:
 
 |Method|`def authorize(self, authorizationContext, configurationAttributes)`|
 |---|---|
-|**Method Parameter**|`authorizationContext` is `org.xdi.oxauth.service.uma.authorization.AuthorizationContext`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
+|**Method Parameter**|`authorizationContext` is `org.gluu.oxauth.service.uma.authorization.AuthorizationContext`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
 
 This script can be used in an oxAuth application only.
 
@@ -266,7 +266,7 @@ This script type adds only one method to the base script type:
 
 |Method|`def endSession(self, httpRequest, authorizationGrant, configurationAttributes)`|
 |---|---|
-|**Method Parameter**|`httpRequest` is `javax.servlet.http.HttpServletRequest`<br/>`authorizationGrant` is `org.xdi.oxauth.model.common.AuthorizationGrant`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
+|**Method Parameter**|`httpRequest` is `javax.servlet.http.HttpServletRequest`<br/>`authorizationGrant` is `org.gluu.oxauth.model.common.AuthorizationGrant`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
 
 This script can be used in an oxAuth application only.
 
@@ -300,7 +300,7 @@ The introspection interception script extends the base script type with the `ini
 
 |Method|`def modifyResponse(self, responseAsJsonObject, context)`|
 |---|---|
-|**Method Parameter**|`responseAsJsonObject` is `org.codehaus.jettison.json.JSONObject`<br/>`context` is ` org.xdi.oxauth.service.external.context.ExternalIntrospectionContext`|
+|**Method Parameter**|`responseAsJsonObject` is `org.codehaus.jettison.json.JSONObject`<br/>`context` is ` org.gluu.oxauth.service.external.context.ExternalIntrospectionContext`|
 
 Snippet
 ```
@@ -308,7 +308,7 @@ Snippet
     # This method is called after introspection response is ready. This method can modify introspection response.
     # Note :
     # responseAsJsonObject - is org.codehaus.jettison.json.JSONObject, you can use any method to manipulate json
-    # context is reference of org.xdi.oxauth.service.external.context.ExternalIntrospectionContext (in https://github.com/GluuFederation/oxauth project, )
+    # context is reference of org.gluu.oxauth.service.external.context.ExternalIntrospectionContext (in https://github.com/GluuFederation/oxauth project, )
     def modifyResponse(self, responseAsJsonObject, context):
         responseAsJsonObject.put("key_from_script", "value_from_script")
         return True
@@ -330,14 +330,14 @@ The script extends the base script type with the `init`, `destroy` and `getApiVe
 
 |Method|`def authenticate(self, context)`|
 |---|---|
-|**Method Parameter**|`context` is `org.xdi.oxauth.service.external.context.ExternalResourceOwnerPasswordCredentialsContext`|
+|**Method Parameter**|`context` is `org.gluu.oxauth.service.external.context.ExternalResourceOwnerPasswordCredentialsContext`|
 
 Snippet
 ```
     # Returns boolean, true - authenticate user, false - ignore script and do not authenticate user.
     # This method is called after normal ROPC authentication. This method can cancel normal authentication if it returns false and sets `context.setUser(null)`.
     # Note :
-    # context is reference of org.xdi.oxauth.service.external.context.ExternalResourceOwnerPasswordCredentialsContext#ExternalResourceOwnerPasswordCredentialsContext (in https://github.com/GluuFederation/oxauth project, )
+    # context is reference of org.gluu.oxauth.service.external.context.ExternalResourceOwnerPasswordCredentialsContext#ExternalResourceOwnerPasswordCredentialsContext (in https://github.com/GluuFederation/oxauth project, )
     def authenticate(self, context):
         if (context.getHttpRequest().getParameterValues("device_id")[0] == "device_id_1"):
             return True

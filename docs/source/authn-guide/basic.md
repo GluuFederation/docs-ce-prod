@@ -41,8 +41,8 @@ Basic authentication should be enabled out-of-the-box. In case it needs to be re
    - You can tail `oxauth_script.log` to check successful initialization of this script
 ```
 GLUU.[root@gluu logs]# tail -f oxauth_script.log
-2018-01-10 10:39:16,847 INFO  [oxAuthScheduler_Worker-5] [org.xdi.service.PythonService$PythonLoggerOutputStream] (PythonService.java:209) - Basic. Initialization
-2018-01-10 10:39:16,853 INFO  [oxAuthScheduler_Worker-5] [org.xdi.service.PythonService$PythonLoggerOutputStream] (PythonService.java:209) - Basic. Initialized successfully
+2018-01-10 10:39:16,847 INFO  [oxAuthScheduler_Worker-5] [org.gluu.service.PythonService$PythonLoggerOutputStream] (PythonService.java:209) - Basic. Initialization
+2018-01-10 10:39:16,853 INFO  [oxAuthScheduler_Worker-5] [org.gluu.service.PythonService$PythonLoggerOutputStream] (PythonService.java:209) - Basic. Initialized successfully
 ```
  
 ### Backend AD/LDAP 

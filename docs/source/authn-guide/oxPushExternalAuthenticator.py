@@ -8,12 +8,12 @@ from org.jboss.seam.contexts import Context, Contexts
 from org.jboss.seam.security import Identity
 from org.jboss.seam import Component
 from javax.faces.context import FacesContext
-from org.xdi.model.custom.script.type.auth import PersonAuthenticationType
-from org.xdi.oxauth.service import UserService
-from org.xdi.util import StringHelper
-from org.xdi.util import ArrayHelper
+from org.gluu.model.custom.script.type.auth import PersonAuthenticationType
+from org.gluu.oxauth.service import UserService
+from org.gluu.util import StringHelper
+from org.gluu.util import ArrayHelper
 from java.util import Arrays
-from org.xdi.oxpush import OxPushClient
+from org.gluu.oxpush import OxPushClient
 
 import java
 
