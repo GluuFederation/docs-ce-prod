@@ -4,7 +4,7 @@
 
 CORS Filter is an implementation of the [W3C's Cross-Origin Resource Sharing (CORS) specification](http://www.w3.org/TR/cors/).
 
-The CORS Filter works by adding required `Access-Control-*` headers to the `HttpServletResponse` object. The filter also protects against HTTP response splitting. If a request is invalid, or is not permitted, the request is rejected with HTTP status code 403 (Forbidden). 
+The CORS Filter works by adding required `Access-Control-*` headers to the `HttpServletResponse` object. The filter also protects against HTTP response splitting. If a request is invalid or not permitted, the request is rejected with HTTP status code 403 (Forbidden). 
 
 This flowchart demonstrates request processing by this filter:
 
