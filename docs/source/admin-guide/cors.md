@@ -48,6 +48,7 @@ CORS can be configured in oxTrust. Follow these steps:
 
 1. Defined and configure the parameters
 1. Click `save` at the bottom of the page.
+1. Restart the `oxauth` service with `service oxauth restart`.
 
 ### Supported Parameters
 
