@@ -6,7 +6,7 @@ Tuning consists of:
 - OS Tuning   
 - Memory and infrastructure   
 - LDAP Server (Gluu OpenDJ)      
-- Web Application Container (Tomcat, Jetty, JBoss)   
+- Web Application Container (Jetty, JBoss)   
 - Gluu Server configuration Tuning    
 
 ## OS Tuning
