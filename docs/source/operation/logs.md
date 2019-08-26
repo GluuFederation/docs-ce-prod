@@ -100,7 +100,7 @@ The following files define the log levels in Gluu Server. Please edit the file w
 
 ```
 
-Please restart the specific service after any change in log levels to allow the changes to take effect. Use the following command to restart Tomcat:
+Please restart the specific service after any change in log levels to allow the changes to take effect.
 
 !!! Note
     It is recommended to use oxTrust UI to change the logging levels.
