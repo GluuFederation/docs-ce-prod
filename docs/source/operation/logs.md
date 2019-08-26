@@ -48,14 +48,20 @@ troubleshooting.
 
 **Changing Log Levels using log4j2.xml**
 
-Gluu Server logs use the log4j2 logging levels which can be changed in the `log4j2.xml` file.  
-`log4j2.xml` can be found in below path
+!!! Note
+    It is recommended to use oxTrust UI to change the logging levels.
+    
+Gluu Server logs use the log4j2 logging levels, which can be changed in a copy of the `log4j2.xml` configuration file designated in the JSON configuration. 
+
+The original `log4j2.xml` can be found in the following path:
 
 `/opt/jetty-9.4/temp/jetty-localhost-8082-identity.war-_identity-any-8516765662711672787.dir`
 
-And also the same file can be found in all incorporated Gluu apps, i.e oxAuth, IDP, oxAuth-RP and Identity
+Move a copy of `log4j2.xml` to any location outside the `temp` directory, then specify the new filepath in the `externalLoggerConfiguration` oxAuth JSON setting.
 
-The available logging levels are :
+The same file can be found in all incorporated Gluu apps, i.e oxAuth, IDP, oxAuth-RP and Identity.
+
+The available logging levels are:
 
 | Log Level | Messages Logged |  
 |---------- |------------                  |  
@@ -100,10 +106,7 @@ The following files define the log levels in Gluu Server. Please edit the file w
 
 ```
 
-Please restart the specific service after any change in log levels to allow the changes to take effect.
-
-!!! Note
-    It is recommended to use oxTrust UI to change the logging levels.
+[Restart](./services.md) any changed services to allow the changes to take effect.
     
 ## Setup Logs
 The setup logs are stored inside the `/install/community-edition-setup/` folder. There are two logs available, one detailing the setup process and the other documenting the errors:
