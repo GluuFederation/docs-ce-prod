@@ -67,7 +67,7 @@ If Super Gluu should be the default authentication mechanism, follow these instr
 
 1. In the Default Authentication Method window you will see two options: `Default acr` and `oxTrust acr` 
 
-![u2f](../img/admin-guide/multi-factor/u2f.png)
+![supergluu](../img/admin-guide/multi-factor/supergluu.png)
 
  - `oxTrust acr` sets the authentication mechanism for accessing the oxTrust dashboard GUI (only managers should have acccess to oxTrust)    
 
