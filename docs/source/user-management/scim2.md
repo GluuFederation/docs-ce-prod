@@ -984,7 +984,7 @@ In the JSON response, your new added attribute will appear.
 
 ### Handling Custom Attributes
 
-A resource with custom attributes set looks like:
+The following is an example of a user resource with custom attributes set:
 
 ```
 {
@@ -1006,7 +1006,7 @@ A resource with custom attributes set looks like:
 }
 ```
 
-The above means, the same syntax should be used in order to supply values for modifications in the case of PUT. This [file](https://github.com/GluuFederation/SCIM-Client/blob/master/src/test/resources/single/patch/user_patch_ext.json) contains an example of patches being performed upon custom attributes.
+Thus, a similar syntax should be used in order to supply values for modifications in the case of update (PUT) operations. On the other hand this [file](https://github.com/GluuFederation/SCIM-Client/blob/master/src/test/resources/single/patch/user_patch_ext.json) contains an example of patches being performed upon custom attributes.
 
 A retrieval using a filter where extended attributes are involved may look like:
 
