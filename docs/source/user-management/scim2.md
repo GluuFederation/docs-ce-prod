@@ -646,7 +646,7 @@ public class TestScimClient {
 
         logger.info("Length of results list is: {}", resources.size());
         UserResource admin=(UserResource) resources.get(0);
-        logger.info("First user in the list is: {}" + admin.getDisplayName());
+        logger.info("First user in the list is: {}", admin.getDisplayName());
         
         client.close();
 
@@ -981,6 +981,42 @@ Once you submit this form, your attribute will be part of the User Extension. Yo
 ![image](../img/admin-guide/user/scim-custom-first.png)
 
 In the JSON response, your new added attribute will appear.
+
+### Handling Custom Attributes
+
+A resource with custom attributes set looks like:
+
+```
+{
+  "schemas": [
+    "urn:ietf:params:scim:schemas:core:2.0:User",
+    "urn:ietf:params:scim:schemas:extension:gluu:2.0:User"
+  ],
+  "urn:ietf:params:scim:schemas:extension:gluu:2.0:User": {
+    "customAttr1": "String single-valued",
+    "customAttr2": [
+      "2016-02-23T15:35:22Z"
+    ],
+    "customAttr3": 3000,
+    ...
+  },
+  ...
+  core attributes here
+  ...
+}
+```
+
+The above means, the same syntax should be used in order to supply values for modifications in the case of PUT. This [file](https://github.com/GluuFederation/SCIM-Client/blob/master/src/test/resources/single/patch/user_patch_ext.json) contains an example of patches being performed upon custom attributes.
+
+A retrieval using a filter where extended attributes are involved may look like:
+
+```
+$ curl -G -H 'Authorization: Bearer ...access token...'  -o output.json 
+      --data-urlencode 'filter=urn:ietf:params:scim:schemas:extension:gluu:2.0:User:customAttr3 gt 2000' 
+      https://<host-name>/identity/restv1/scim/v2/Users
+```
+
+which queries all users whose extended attribute `customAttr3` is greater than 2000 (this accounts the attribute was properly configured as numeric). Note how the attribute is prefixed with the schema URN of the user extension followed by a colon.
 
 ### Handling Custom Attributes in SCIM-Client
 
