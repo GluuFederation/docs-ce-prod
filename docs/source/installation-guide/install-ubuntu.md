@@ -10,6 +10,7 @@ Single-node Gluu Server Linux packages are available for Ubuntu 18.04.x and 16.0
 
 ## Prerequisites
 - Make sure the target server or VM meets **all minimum requirements** specified in the [VM Preparation Guide](../installation-guide/index.md). 
+- **Ubuntu 18** The Universe repository must be enabled.
 
 ## Instructions
 
@@ -34,10 +35,6 @@ apt-get update
 ```
 apt-get install gluu-server
 ```
-
-!!! Note  
-    If you use the server version of Ubuntu 18, add the Ubuntu Universe repositories as well. Use these commands: `# echo "deb http://archive.ubuntu.com/ubuntu bionic universe" >> /etc/apt/sources.list` and `# echo "deb http://archive.ubuntu.com/ubuntu bionic-updates universe" >> /etc/apt/sources.list` 
-  
 
 For **Ubuntu 16.04.x** run the following commands:  
 
