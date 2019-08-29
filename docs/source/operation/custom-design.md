@@ -33,7 +33,7 @@ Directory trees are included inside the Gluu Server `chroot` to make page custom
 
 The directory structure can be illustrated as follows (only directories related to this feature are shown for clarity):
 
-### oxAuth
+### oxAuth directory 
 
 ```
 /opt/gluu/jetty/oxauth/
@@ -44,7 +44,7 @@ The directory structure can be illustrated as follows (only directories related 
 |   `-- static
 ```
 
-### oxTrust
+### oxTrust directory 
 
 ```
 /opt/gluu/jetty/identity/
@@ -157,7 +157,7 @@ and
 
 Default Gluu's public-facing pages can be a good base for your organization's customized ones. Aside from extracting them directly from a corresponding WAR file, they can be found at Jetty's temp directory to which they are unpacked each time a corresponding service starts.
 
-### oxAuth
+### oxAuth webpages
 
 oxAuth is the core Gluu CE component, handling all authentication in the framework and implementing OpenID Connect and UMA flows. Most of the web UI pages displayed to end users belong to oxAuth (login/logout/authorization flows).
 
@@ -175,7 +175,7 @@ Base directory:
 - Custom authentication scripts; XHTML files under:
     `./webapp/auth/`
 
-### oxTrust
+### oxTrust webpages
 
 oxTrust is responsible for displaying the Gluu Server's default registration page, as well as the administrator web UI's pages. 
 
