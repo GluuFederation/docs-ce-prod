@@ -19,8 +19,8 @@ To enable user registration via the Gluu Server, follow these steps:
 
 1. To add an email activation sequence, also enable the script: `user_confirm_registration`   
    
-   !!! Note 
-       If email activation is enabled, also [configure SMTP](https://gluu.org/docs/ce/admin-guide/oxtrust-ui/#smtp-server-configuration).
+!!! Note 
+    If email activation is enabled, also [configure SMTP](https://gluu.org/docs/ce/admin-guide/oxtrust-ui/#smtp-server-configuration).
 
 1. Click the `Update` button at the bottom of the page   
 
