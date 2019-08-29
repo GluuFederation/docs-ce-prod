@@ -14,11 +14,16 @@ The Gluu Server includes two custom scripts to support a self-service user regis
 To enable user registration via the Gluu Server, follow these steps:  
 
 1. Navigate to `Manage Custom Scripts` and select the `User Registration` tab   
+
 1. Enable the script: `user_registration`   
+
 1. To add an email activation sequence, also enable the script: `user_confirm_registration`   
+   
    !!! Note 
-       If email activation is enabled, follow the doc to [configure SMTP](https://gluu.org/docs/ce/admin-guide/oxtrust-ui/#smtp-server-configuration).
+       If email activation is enabled, also [configure SMTP](https://gluu.org/docs/ce/admin-guide/oxtrust-ui/#smtp-server-configuration).
+
 1. Click the `Update` button at the bottom of the page   
+
 1. New users will now be able to register for accounts at: `https://<hostname>/identity/register`     
 
 ## Adding Attributes to Registration  
