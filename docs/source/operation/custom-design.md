@@ -1,6 +1,6 @@
 # Customizing Public Pages
 
-Most organizations will want to edit and customize the look and feel of public-facing Gluu Server pages to match their corporate branding. The following documentation provides file locations of public facing pages and instructions for adding custom HTML, CSS, and Javascript files to your Gluu Server. 
+The look and feel of public pages can be edited and customized as needed. The following documentation provides file locations and instructions for adding custom HTML, CSS, and Javascript. 
 
 Public pages include:  
 
@@ -11,7 +11,7 @@ Public pages include:
   - Logout pages
 
 !!! Warning 
-    Customizations should be made by people with a solid understanding of web development. Before changing files, we strongly recommend creating backups.
+    Before changing any default files, we recommend creating backups!
 
 ## Overview
 
@@ -139,7 +139,7 @@ and
 ```
 
 !!! Note
-    You can change the logo on every public-facing page here. Place your image in `/static/img` and name it `logo.png`.
+    Add your logo here to be displayed on every public facing page. Place your image in `/static/img` and name it `logo.png`.
 
 And all CSS are inside:
 
