@@ -1,15 +1,18 @@
 ## User Registration 
-The Gluu Server is shipped with a user registration script that implements a very basic user registration process. 
+The Gluu Server is shipped with two custom scripts for user registration:
+- user_registration: This script implements a very basic user registration process without email notification. 
+- user_confirm_registration: This script is a complement for the firt one, it is used to send registration mail to user. Hence this script requires a working SMTP server, the STMP configuration can be provide using the corresponding doc [here](https://gluu.org/docs/ce/3.1.6/admin-guide/oxtrust-ui/#smtp-server-configuration). 
 
 In most situations, we recommend writing a custom registraton app and then using Gluu's [SCIM 2.0 endpoints](./scim2.md#supporting-a-user-registration-process-with-scim) to send the identity data to Gluu. Using SCIM will give you more control and flexibility over the registration process. Also, since oxTrust is frequently not Internet facing, the registration page (`https://<hostname>/identity/register`) may not be available to a user on the web.  
 
-Instructions for using Gluu's user registration functionality follows:  
+Instructions for using Gluu's users registration functionality follows:  
 
 ### Enable User Registration  
 To enable user registration via the Gluu Server, follow these steps:  
 
-1. Navigate to `Custom Scripts` and select the `User Registration` tab;  
-1. Find the `Enabled` field and check the box;  
+1. Navigate to `Manage Custom Scripts` and select the `User Registration` tab;  
+1. Enable the script name **user_registration**;
+1. Enable the script name **user_confirm_registration**(only if you want to send email to user upon registration);  
 1. Click the `Update` button at the bottom of the page;  
 1. New users will now be able to register for accounts at: `https://<hostname>/identity/register`.  
 
