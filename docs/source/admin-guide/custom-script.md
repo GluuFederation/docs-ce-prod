@@ -176,7 +176,7 @@ This script type adds three methods to the base script type:
 |**Description**|This method enables/disables user account based on the custom property's value|
 |Method Parameters|`user` is `org.gluu.oxtrust.model.GluuCustomPerson`<br/>`requestParameters` is `java.util.Map<String, String[]>`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
 |Custom Property|`enable_user`--> defaults to `false`|
-|Description|It controls whether or not this user account will be ready for loggin into the Gluu Server CE instance|
+|Description|It controls whether or not this user account will be ready for logging into the Gluu Server CE instance|
 
 The methods are executed in the following order:
 
