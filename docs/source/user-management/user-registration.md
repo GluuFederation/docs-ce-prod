@@ -13,15 +13,15 @@ The Gluu Server includes two custom scripts to support a self-service user regis
 ## Enable User Registration  
 To enable user registration via the Gluu Server, follow these steps:  
 
-1. Navigate to `Manage Custom Scripts` and select the `User Registration` tab   
+1. Navigate to `Manage Custom Scripts` and select the `User Registration` category.   
 
-1. Enable the `user_registration` script  
+1. Enable the `user_registration` script and press save.
 
-1. To add an email activation sequence, also enable the `user_confirm_registration` script and [configure SMTP](https://gluu.org/docs/ce/admin-guide/oxtrust-ui/#smtp-server-configuration).
+    ![user registration script](../img/admin-guide/user/user_registration_script.png)
+    
+1. To add an email activation sequence, also enable the `user_confirm_registration` script and [configure SMTP](https://gluu.org/docs/ce/admin-guide/oxtrust-ui/#smtp-server-configuration).   
 
-1. Click the `Update` button at the bottom of the page   
-
-1. New users will now be able to register for accounts at: `https://<hostname>/identity/register`     
+1. New users will now be able to register for accounts at: `https://<hostname>/identity/register`.     
 
 ## Adding Attributes to Registration  
 A limited number of attributes are present in the default registration form. More attributes can be added as needed by following the doc for [adding attributes](../admin-guide/oxtrust-ui.md#manage-registration).  
@@ -52,7 +52,7 @@ Administrators can choose whether all email addresses should be unique. By defau
     `/opt/opendj/bin/dsconfig -h hostname -p 4444 -D "cn=directory manager" -w yourPassword -n set-plugin-prop --plugin-name "Unique mail address" --set enabled:false`
 1. If you want to re-enable the email uniqueness plugin, run this command:  
     `/opt/opendj/bin/dsconfig -h hostname -p 4444 -D "cn=directory manager" -w yourPassword -n set-plugin-prop --plugin-name "Unique mail address" --set enabled:true`
-1. [Restart](../operation/services.md#restart) the `opendj` service
+1. [Restart](../operation/services.md#restart) the `opendj` service.
 
 ## Design customizations  
 To modify the look and feel of the registration page, follow the [customization doc](https://gluu.org/docs/ce/operation/custom-design/). 
