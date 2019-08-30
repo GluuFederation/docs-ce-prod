@@ -5,7 +5,7 @@ This guide provides instructions for deploying the Gluu Server on a single node 
 
 ## Prerequisites
 
-For Docker deployments, provision a server with: 
+For Docker deployments, provision a VM with: 
 
 - The minimum system requirements, as described in the [VM Preparation Guide](../installation-guide/index.md#system-requirements). 
 
