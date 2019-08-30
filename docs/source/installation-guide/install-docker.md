@@ -39,13 +39,13 @@ For Docker deployments, you simply need a server with:
     chmod +x run_all.sh
     ```
     
-1. After you decide how you want to configure your setup as shown above, run the following command inside the `/path/to/docker-gluu-server/` directory and follow the prompts:
+1. After deciding how to configure your setup (as shown above), run the following command inside the `/path/to/docker-gluu-server/` directory and follow the prompts:
 
     ```
     ./run_all.sh
     ```
     
-    Do not be alarmed about any `warning` alerts that may show up unless the script fails. Wait until it prompts you for information or loads the previous configuration found. If this is a fresh install, you may see something like this:
+    Do not be alarmed by any `warning` alerts that may show up unless the script fails. Wait until it prompts you for information or loads the previous configuration found. If this is a fresh install, you may see something like this:
   
     ```
     ./run_all.sh
