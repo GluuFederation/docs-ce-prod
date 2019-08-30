@@ -1,12 +1,17 @@
 # Docker Installation
 
-This guide provides instructions for running Gluu Server CE on a single node VM using Docker.
+## Overview
+This guide provides instructions for deploying the Gluu Server on a single node VM using Docker.
+
+## Prerequisites
+
+For Docker deployments, you simply need a server with: 
+
+- The minimum system requirements, as described in the [VM Preparation Guide](../installation-guide/index.md#system-requirements). 
+
+- Both [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script) and [Docker Compose](https://docs.docker.com/compose/install/#install-compose) installed. 
 
 ## Instructions
-
-1. Follow the [Docker installation instructions](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository) or use the [installation script](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script)
-
-1. Install [docker-compose](https://docs.docker.com/compose/install/#install-compose).
 
 1. Obtain a Google Cloud Platform KMS credentials JSON file, save it as `gcp_kms_creds.json`.
 
