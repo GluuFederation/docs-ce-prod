@@ -12,7 +12,7 @@ The Gluu Server has a stateless architecture and scales quite well out-of-the-bo
 The Gluu Server is designed for Linux. Therefore, the following can be tuned as needed:   
 
 !!! Note
-    Most of the configurations below can be tuned in `/etc/security/limits.conf`, however it may depend on OS. 
+    Most configurations below can be tuned in `/etc/security/limits.conf`, however it may depend on OS. 
 
 1. Increase TCP Buffer Sizes
    ```
