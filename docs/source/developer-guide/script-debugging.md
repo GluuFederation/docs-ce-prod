@@ -7,7 +7,7 @@ The following instructions assume Gluu Server 4.0 is already installed and avail
 
 1. Install `https://repo.gluu.org/tools/tools-install.sh`
 1. Log out of CE
-1. Run `/opt/gluu-server-4.0/opt/gluu/bin/prepare-dev-tools.py`
+1. Run `/opt/gluu-server/opt/gluu/bin/prepare-dev-tools.py`
 1. Log in to CE
 1. Run `/opt/gluu/bin/eclipse.sh`
 
@@ -110,7 +110,7 @@ Now we are ready to perform script development and debugging. Here is a quick ov
 - [Remote debugger](http://www.pydev.org/manual_adv_remote_debugger.html)
 
 ## X Server troubleshooting
-Running `/opt/gluu-server-4.0/opt/gluu/bin/prepare-dev-tools.py` allows Eclipse to access X server. 
+Running `/opt/gluu-server/opt/gluu/bin/prepare-dev-tools.py` allows Eclipse to access X server. 
 
 It runs the following commands:
 
@@ -122,7 +122,7 @@ xauth -f /root/.Xauthority-gluu generate :0 . trusted 2>1 >> /root/prepare-dev-t
 xauth -f /root/.Xauthority-gluu add ${HOST}:0 . $(xxd -l 16 -p /dev/urandom)
 
 # Copy result key to chroot
-cp -f /root/.Xauthority-gluu /opt/gluu-server-4.0/root/.Xauthority
+cp -f /root/.Xauthority-gluu /opt/gluu-server/root/.Xauthority
 
 # Allow to access local server X11   
 sudo su $(logname) -c "xhost +local:
