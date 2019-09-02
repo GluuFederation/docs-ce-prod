@@ -85,6 +85,16 @@ It's also possible to configure `NameID` through configuration file / velocity t
 ```
 * [Restart](../operation/services.md#restart) the `identity` and `idp` services.
 
+### urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified Support
+Though deprecated, But just to cater specfic requiremnets, Under Relying Party Configuration > SAML 2 SSO Profile, perform following settings
+
+1. Select/Check **Support Unspecified NameID Format**
+2. Make sure urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified is under** Selected NamedId Formats(in order of preference)** list
+
+![saml_relying_party_sso_profile_unspecified.png](../img/saml/saml_relying_party_sso_profile_unspecified.png)     
+
+Note!!! You need to explicily choose all supported formats, As ** Selected NamedId Formats(in order of preference)**option limits options to selected set only
+
 ## AuthnContextClassRef Support
 
 Gluu offers out-of-the-box support for the SAML parameter `AuthnContextClassRef` (ACRS). Including the `<saml:AuthnContextClassRef>` tag in the initial SAML request from the SP signals to the IDP that the user must authenticate with the specified authentication method.
