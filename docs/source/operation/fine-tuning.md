@@ -9,7 +9,7 @@ The Gluu Server has a stateless architecture and scales quite well out-of-the-bo
 
 ## OS Tuning
 
-The Gluu Server is designed to work on Linux. Therefore, the following can be tuned as needed:   
+The Gluu Server is designed for Linux. Therefore, the following can be tuned as needed:   
 
 !!! Note
     Most of the configurations below can be tuned in `/etc/security/limits.conf`, however it may depend on OS. 
