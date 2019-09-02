@@ -69,6 +69,12 @@ put "on hold" and waits. To avoid delays it's recommended to provide expected ma
    dsconfig -n set-backend-prop --backend-name userRoot --set db-cache-percent:50
    ```
 
+### LDAP performance resources
+
+- [OpenDJ Performance Tuning](https://backstage.forgerock.com/#!/docs/opendj/2.6.0/admin-guide/chap-tuning)
+- [OpenDJ Global configuration](http://opendj.forgerock.org/opendj-server/configref/global.html#max-allowed-client-connections)
+
+
 ## Jetty
 
 By default jetty task queue is not limited. If it's expected get high load then it make sense to limit it. Also configuration may depend for each particular example.
@@ -103,16 +109,3 @@ Example configuration:
 In `Configuration -> JSON Configuration -> oxAuth Configuration` set `loggingLevel: OFF`. Check log files whether logging is really off.
  
 - Turn off metrics. Login to oxTrust and in `Configuration -> JSON Configuration -> oxAuth Configuration` set `metricReporterEnabled: false`.
-
-## Gluu Server Benchmark
-
-Single CE node performance depends on cache provider. 
-
-- IN MEMORY - average performance 120req/s 
-- MEMCACHED - 120 req/s with thread count lower 100. If load with more then 100 threads, rejections start to appear. ~120 threads - ~1% of rejections, with ~400 threads - 20% of rejections.
-- REDIS - 130 req/s, around 1% of errors (20000 requests processed). The nature of errors is under investigation, we will update this page once we figure out the reason of this 1% of errors.
-
-# Useful Links
-
-- [OpenDJ Performance Tuning](https://backstage.forgerock.com/#!/docs/opendj/2.6.0/admin-guide/chap-tuning)
-- [OpenDJ Global configuration](http://opendj.forgerock.org/opendj-server/configref/global.html#max-allowed-client-connections)
