@@ -66,8 +66,8 @@ Make sure there is enough memory for each Gluu Server component (e.g. LDAP, Jett
 
 1. Additional LDAP performance resources can be found in the dollowing docs:    
 
-    - [OpenDJ Performance Tuning](https://backstage.forgerock.com/#!/docs/opendj/2.6.0/admin-guide/chap-tuning)     
-    - [OpenDJ Global configuration](http://opendj.forgerock.org/opendj-server/configref/global.html#max-allowed-client-connections).    
+    - [OpenDJ performance tuning](https://backstage.forgerock.com/#!/docs/opendj/2.6.0/admin-guide/chap-tuning)     
+    - [OpenDJ global configuration](http://opendj.forgerock.org/opendj-server/configref/global.html#max-allowed-client-connections)      
 
 
 ## Jetty
