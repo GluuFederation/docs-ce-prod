@@ -1,4 +1,5 @@
-# Fine Tuning Gluu Server
+# Performance Tuning  
+
 The Gluu Server has a stateless architecture and scales quite well out-of-the-box. However, to achieve maximum performance, the following server components must be tuned accordingly: 
 
 - Operating System (OS)    
