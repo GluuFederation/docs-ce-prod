@@ -21,14 +21,14 @@ To customize any files used by a component, they need to be changed either at th
 
 A typical example would be customizing oxAuth's login page. There are two ways to achieve this:
 
-1. Un-pack the needed files from `/opt/gluu/jetty/oxauth/webapps/oxauth.war` with a tool like `jar`, update them and add them back to the archive with all required dependencies (**not recommended**);
+1. Unpack the needed files from `/opt/gluu/jetty/oxauth/webapps/oxauth.war` with a tool like `jar`, update them and add them back to the archive with all required dependencies (**not recommended**);
 
 1. Put changed files under `/opt/gluu/jetty/oxauth/custom/` directory, so they could be used instead of the standard files in `oxauth.war`. (Note: the same approach will work for oxTrust if files are placed under `/opt/gluu/jetty/identity/custom/`). The benefit of using this method is that your customizations won't be disturbed by any changes to `oxauth.war` or `identity.war` later on (for example, in case this Gluu instance will be patched or updated, and a component's WAR archive will get overwritten). More on this method below. 
 
 ## Directory structure and mappings
 
 !!! Note
-        Log in to the Gluu Server chroot before working on design customizations for any pages.
+    Log in to the Gluu Server chroot before working on design customizations for any pages.
 
 New directories trees have been added inside the Gluu Server `chroot` to make page customizations easier. 
 Each such tree is placed in the configuration directory of the corresponding Gluu component (only 
@@ -58,6 +58,7 @@ The new directory structure can be illustrated as follows (only directories rela
 ```
 
 ### Subdirectories 
+
 Customized `i18n` should be placed in the following directories:
 ```
 /opt/gluu/jetty/identity/custom/i18n
@@ -173,9 +174,13 @@ Now, the customized page will override the default one.
 For a good practical example, let's consider a task of removing the Gluu copyright 
 at the bottom of oxAuth's login page. You can follow these steps to achieve this:
 
-1. Log into the Gluu container: `# service gluu-server-4.0 login`   
+1. Log in to the Gluu container   
 
-1. Create a new directory structure under `custom/pages/` to accomodate new customized page: `# mkdir -p /opt/gluu/jetty/oxauth/custom/pages/WEB-INF/incl/layout/`    
+1. Create a new directory structure under `custom/pages/` to accomodate new customized page:
+
+    ```
+    # mkdir -p /opt/gluu/jetty/oxauth/custom/pages/WEB-INF/incl/layout/`    
+    ```
 
 1. Get a default template page from the exploded WAR archive and put it in the path under `custom/pages` directory, which will allow it to override the original page (your path to the exploded WAR will differ from the one used here): `# cp /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/WEB-INF/incl/layout/template.xhtml /opt/gluu/jetty/oxauth/custom/pages/WEB-INF/incl/layout/template.xhtml`   
 
