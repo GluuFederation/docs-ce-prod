@@ -8,7 +8,7 @@ The Gluu Server has a stateless architecture and scales quite well out-of-the-bo
 - Web application container (Jetty, JBoss)   
 - Gluu Server configurations    
 
-## OS Tuning
+## Operating System
 
 The Gluu Server is designed for Linux. Therefore, the following can be tuned as needed:   
 
@@ -47,7 +47,7 @@ The Gluu Server is designed for Linux. Therefore, the following can be tuned as 
 
 Make sure there is enough memory for each Gluu Server component (e.g. LDAP, Jetty). For high load systems, it can be helpful to have each component on separate machine.   
 
-## LDAP Server
+## LDAP 
 
 !!! Note
     For convenience, all samples are for Gluu OpenDJ. However, these are general recommendations that should apply for other LDAP Servers too.
@@ -93,7 +93,7 @@ Example configuration:
 </Configure>
 ```
 
-## Gluu Server
+## Gluu configurations
 
 - oxauth-ldap.properties: Increase the LDAP connection pool size, e.g.: 
 
