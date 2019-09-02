@@ -6,8 +6,8 @@ When it comes to troubleshooting issues in the Gluu Server--from service hiccups
 See what's going on by tailing the `identity` and `oxauth` logs:
 
 ```
-tail -f /opt/gluu-server-4.0/opt/gluu/jetty/identity/logs/* \
-        /opt/gluu-server-4.0/opt/gluu/jetty/oxauth/logs/*
+tail -f /opt/gluu-server/opt/gluu/jetty/identity/logs/* \
+        /opt/gluu-server/opt/gluu/jetty/oxauth/logs/*
 ```       
 
 Logs can be lengthy and difficult to search. As needed, all logs inside the container can be cleared by using the clear-log feature explained in [clear-logs](./logs.md#clearing-logs).
@@ -17,9 +17,9 @@ Logs can be lengthy and difficult to search. As needed, all logs inside the cont
 Run the following commands if you find your instance running out of disk space:
 
 ```
-/etc/init.d/gluu-server-4.0 stop
-rm -rf /opt/gluu-server-4.0/opt/jetty-9.3/temp/*
-/etc/init.d/gluu-server-4.0 start
+/etc/init.d/gluu-server stop
+rm -rf /opt/gluu-server/opt/jetty-9.3/temp/*
+/etc/init.d/gluu-server start
 ```
 
 ## Adding Passport.js and/or Shibboleth IDP post installation
@@ -53,7 +53,7 @@ Connecting your local debugger up to Gluu can help with troubleshooting.
 Change the configuration of the `init.d` scripts for the `identity` and `oxauth` processes:
 
 ```
-/etc/init.d/gluu-server-4.0 login
+/etc/init.d/gluu-server login
 vim /etc/default/identity
 ```
 
@@ -133,7 +133,7 @@ The Gluu Server version can be found in the oxTrust dashboard. Alternatively:
 
     a. Use the below command
     
-     `service gluu-server-4.0 login`
+     `service gluu-server login`
      
 3. To find oxTrust version
 
@@ -149,7 +149,7 @@ Version numbers for included software like IDP, oxAuth-rp, etc., can be viewed i
 
 Sooner or later you will probably want to peek at what is stored in the Gluu Server's local LDAP. This means connecting something like Apache Directory Studio to the `ldap` process running inside the chroot container.
 
-You can find the configuration you need in `/opt/gluu-server-4.0/etc/gluu/conf/ox-ldap.properties`, e.g.:
+You can find the configuration you need in `/opt/gluu-server/etc/gluu/conf/ox-ldap.properties`, e.g.:
 
 ```
 bindDN: cn=directory manager
@@ -195,7 +195,7 @@ Please follow these steps to restore your Gluu admin account (you will probably 
 1. Log in to Gluu's chroot environment with the command below:
 
     ```
-    service gluu-server-4.0 login
+    service gluu-server login
     ```
 
 1. Run this command:
@@ -283,7 +283,7 @@ In such a situation, you can use the following methods to revert back to the pre
 
 ### Manual Method: 
 
-This method rely on ldif file to change the authentication mode in LDAP server directly.
+This method relies on an LDIF file to change the authentication mode in LDAP directly.
 
 - Run the following command to collect the `inum` for the Gluu Server installation:   
     
@@ -299,7 +299,7 @@ This method rely on ldif file to change the authentication mode in LDAP server d
     
     `replace: oxAuthenticationMode` (Add `replace: oxAuthenticationMode` if you move to change oxTrust login method)
     
-    `oxAuthenticaitonMode: auth_ldap_server` (Add `oxTrustAuthenticaitonMode: auth_ldap_server` if you move to change oxTrust login method)
+    `oxAuthenticationMode: auth_ldap_server` (Add `oxTrustAuthenticaitonMode: auth_ldap_server` if you move to change oxTrust login method)
     
     As an example, we shall call this file `changeAuth.ldif`.
     
@@ -314,7 +314,7 @@ This method rely on ldif file to change the authentication mode in LDAP server d
     
 ### Graphical method:
 
-The idea here is to use an LDAP browser, hence this method is much more simple.
+Alternatively, this can be accomplished in an LDAP browser.
 
 You have to update one or both oxAuthenticationMode and OxTrustAuthenticationMode values to match the desired authentication method value. For example for ldap which is the default authentication mode for Gluu, the value is `auth_ldap_server`. Below are the steps:
 
@@ -328,8 +328,8 @@ You have to update one or both oxAuthenticationMode and OxTrustAuthenticationMod
 
 One more option, InPrivate or Incognito or Private Browser from various Browsers can be used.
 
-    
 ## No admin access after Cache Refresh?
+
 Add the password for your admin account to `~/.pw` and then use the commands below to add yourself as an admin.
 
 ```bash
