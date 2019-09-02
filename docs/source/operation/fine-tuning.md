@@ -14,7 +14,7 @@ Tuning consists of:
 CE is designed to work on Linux, therefore it's recommended to tune the following:
 
 !!! Note
-    Most of below configs can be tuned in `/etc/security/limits.conf`, however it may depend on OS. 
+    Most ofthe below configuration can be tuned in `/etc/security/limits.conf`, however it may depend on OS. 
 
 1. Increase TCP Buffer Sizes
    ```
@@ -54,15 +54,26 @@ Make sure there is enough memory for each Gluu Server component (e.g. LDAP Serve
 !!! Note
     For convenience all samples stick to Gluu OpenDJ, however general recommendations are the same for other LDAP Servers.
 
-1. Maximum number of allowed connections: If there are not enough connections to serve the client, a connection is put "on hold" and waits. To avoid delays it's recommended to provide expected maximum allowed connections, e.g. 
+1. Maximum number of allowed connections: If there are not enough connections to serve the client, a connection is
+put "on hold" and waits. To avoid delays it's recommended to provide expected maximum allowed connections, e.g. 
+
     ```
     max-allowed-client-connections=1000
     ```
-1. Provide enough resources to LDAP Server: For example OpenDJ uses JVM for running, for high performance it's recommended to give enough memory via JVM system properties.
+    
+1. Provide enough resources to LDAP Server: For example OpenDJ uses JVM for running, for high performance it's
+    recommended to give enough memory via JVM system properties.
 1. Allow LDAP Server use cache as much as possible.
+
    ```
    dsconfig -n set-backend-prop --backend-name userRoot --set db-cache-percent:50
    ```
+
+### LDAP performance resources
+
+- [OpenDJ Performance Tuning](https://backstage.forgerock.com/#!/docs/opendj/2.6.0/admin-guide/chap-tuning)
+- [OpenDJ Global configuration](http://opendj.forgerock.org/opendj-server/configref/global.html#max-allowed-client-connections)
+
 
 ## Jetty
 
@@ -99,15 +110,3 @@ In `Configuration -> JSON Configuration -> oxAuth Configuration` set `loggingLev
  
 - Turn off metrics. Login to oxTrust and in `Configuration -> JSON Configuration -> oxAuth Configuration` set `metricReporterEnabled: false`.
 
-## Gluu Server Benchmark
-
-Single CE node performance depends on cache provider. 
-
-- IN MEMORY - average performance 120req/s 
-- MEMCACHED - 120 req/s with thread count lower 100. If load with more then 100 threads, rejections start to appear. ~120 threads - ~1% of rejections, with ~400 threads - 20% of rejections.
-- REDIS - 130 req/s, around 1% of errors (20000 requests processed). The nature of errors is under investigation, we will update this page once we figure out the reason of this 1% of errors.
-
-# Useful Links
-
-- [OpenDJ Performance Tuning](https://backstage.forgerock.com/#!/docs/opendj/2.6.0/admin-guide/chap-tuning)
-- [OpenDJ Global configuration](http://opendj.forgerock.org/opendj-server/configref/global.html#max-allowed-client-connections)
