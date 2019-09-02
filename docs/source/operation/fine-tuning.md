@@ -48,7 +48,7 @@ The Gluu Server is designed for Linux. Therefore, the following can be tuned as 
 
 ## Memory and infrastructure
 
-Make sure there is enough memory for each Gluu Server component (e.g. LDAP Server, Jetty). For high load systems, it can be helpful to have each component on separate machine.   
+Make sure there is enough memory for each Gluu Server component (e.g. LDAP, Jetty). For high load systems, it can be helpful to have each component on separate machine.   
 
 ## LDAP Server
 
