@@ -97,26 +97,17 @@ Gluu offers out-of-the-box support for the SAML parameter `AuthnContextClassRef`
       </samlp:RequestedAuthnContext>
     </samlp:AuthnRequest>
 
-!!! Note
-    Allowed values must be defined under `conf/authn/general-authn.xml` under authn/oxAuth bean
+### AuthnContextClassRef - Default Supported Values 
+Gluu offers out-of-the-box support for following
 
-    <bean id="authn/oxAuth" parent="shibboleth.AuthenticationFlow"
-    		p:forcedAuthenticationSupported="true"
-    		p:nonBrowserSupported="false" >
-    	<property name="supportedPrincipals">
-    		<list>
-    			<bean parent="shibboleth.SAML2AuthnContextClassRef"
-    				c:classRef="urn:oasis:names:tc:SAML:2.0:ac:classes:Password" />
-    			<bean parent="shibboleth.SAML2AuthnContextClassRef"
-    				c:classRef="urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport" />
-    			<bean parent="shibboleth.SAML2AuthnContextClassRef"
-    				c:classRef="urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol" />
-    		</list>
-    	</property>
-    </bean>
+    urn:oasis:names:tc:SAML:2.0:ac:classes:Password
+    urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport
+    urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol
 
 ### AuthnContextClassRef Extension
-Custom `AuthnContextClassRef` attribute values can be defined as well. The recommended format is either `urn` or `uri`. For example: 
+Custom `AuthnContextClassRef` attribute values can be defined under Configuration > Manage SAML ACRs 
+
+The recommended format is either `urn` or `uri`. For example: 
 
     urn:oasis:names:tc:SAML:2.0:ac:classes:X509
     urn:oasis:names:tc:SAML:2.0:ac:classes:TLSClient
