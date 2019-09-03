@@ -4,7 +4,7 @@ Single-node Gluu Server Linux packages are available for RHEL 7. Follow the inst
 
 1. [Install the Linux package](#install-the-package)
 2. [Start the Server and log in to the container](#start-the-server-and-log-in)
-3. [Run `setup.py`](#run-setuppy)
+3. [Run the setup script](#run-the-setup-script)
 4. [Sign in via browser](#sign-in-via-browser)
 5. [Disable Gluu repositories](#disable-gluu-repositories)
 
@@ -60,16 +60,12 @@ Run the following commands:
 /sbin/gluu-serverd login
 ```
 
-### Run `setup.py`
+### Run the setup script
 
-Configuration is completed by running `setup.py` from inside the chroot container. This generates certificates, salt values, and renders configuration files.
-
-```
-cd /install/community-edition-setup
-```
+Configuration is completed by running the setup script from inside the chroot container. This generates certificates, salt values, and renders configuration files. Run the script with the following command:
 
 ```
-./setup.py
+/opt/gluu/bin/install.py -o
 ```   
 
 See the [Setup Script Documentation](./setup_py.md#setup-prompt) for more detail on setup script options.
