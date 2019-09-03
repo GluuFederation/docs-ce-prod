@@ -4,7 +4,7 @@ Single-node Gluu Server Linux packages are available for Ubuntu 18.04.x and 16.0
 
 1. [Install the Linux package](#install-the-package)
 2. [Start the Server and log in to the container](#start-the-server-and-log-in)
-3. [Run `install.py`](#run-installpy)
+3. [Run the setup script](#run-the-setup-script)
 4. [Sign in via browser](#sign-in-via-browser)
 5. [Disable Gluu repositories](#disable-gluu-repositories)
 
@@ -82,9 +82,9 @@ service gluu-server start
 service gluu-server login
 ```
 
-### Run `install.py`
+### Run the setup script
 
-Configuration is completed by running `install.py` from inside the chroot container. This generates certificates, salt values, and renders configuration files. Run `install.py` with the following command:
+Configuration is completed by running the setup script from inside the chroot container. This generates certificates, salt values, and renders configuration files. Run the script with the following command:
 
 ```
 /opt/gluu/bin/install.py -o
