@@ -74,26 +74,31 @@ Follow these instructions to configure NameID in oxTrust:
         Restart not required if IDP and oxTrust are on the same host (i.e. non-cluster mode).
  
 ### Manual Configuration
+
 It's also possible to configure `NameID` through configuration file / velocity templates. 
 
-* Update /opt/shibboleth-idp/conf/saml-nameid.xml to generate SAML 2 NameID content
+- Update /opt/shibboleth-idp/conf/saml-nameid.xml to generate SAML 2 NameID content
 
-```
+    ```
     <bean parent="shibboleth.SAML2AttributeSourcedGenerator" 
           p:format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
           p:attributeSourceIds="#{ {'mail'} }"/>
-```
-* [Restart](../operation/services.md#restart) the `identity` and `idp` services.
+    ```
 
-### urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified Support
-Though deprecated, But just to cater specfic requiremnets, Under Relying Party Configuration > SAML 2 SSO Profile, perform following settings
+- [Restart](../operation/services.md#restart) the `identity` and `idp` services.
 
-1. Select/Check **Support Unspecified NameID Format**
-2. Make sure urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified is under** Selected NamedId Formats(in order of preference)** list
+###  Support unspecified nameID format
+
+Though this feature is now deprecated, NameIDs with an unspecified format can still be accepted if required. Follow these steps:
+
+1. Navigate to `Relying Party Configuration > SAML 2 SSO Profile`
+1. Select/Check `Support Unspecified NameID Format`
+1. Make sure `urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified` is in the `Selected NameId Formats(in order of preference)` list
 
 ![saml_relying_party_sso_profile_unspecified.png](../img/saml/saml_relying_party_sso_profile_unspecified.png)     
 
-Note!!! You need to explicily choose all supported formats, As ** Selected NamedId Formats(in order of preference)**option limits options to selected set only
+!!! Note
+    You need to explicitly choose all supported formats.
 
 ## AuthnContextClassRef Support
 
@@ -108,11 +113,12 @@ Gluu offers out-of-the-box support for the SAML parameter `AuthnContextClassRef`
     </samlp:AuthnRequest>
 
 ### AuthnContextClassRef - Default Supported Values 
-Gluu offers out-of-the-box support for following
 
-    urn:oasis:names:tc:SAML:2.0:ac:classes:Password
-    urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport
-    urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol
+Gluu offers out-of-the-box support for following:
+
+- `urn:oasis:names:tc:SAML:2.0:ac:classes:Password`
+- `urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport`
+- `urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol`
 
 ### AuthnContextClassRef Extension
 Custom `AuthnContextClassRef` attribute values can be defined under Configuration > Manage SAML ACRs 
