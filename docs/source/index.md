@@ -16,7 +16,7 @@ Common use cases include:
 The Gluu Server is a FOSS platform for IAM. Learn more about software licenses [below](#license)
 
 ### Open Web Standards
-Gluu supports open web standards for authentication, authorization, federated identity, and identity management, including:
+The Gluu Server can be deployed to support the following open standards for authentication, authorization, federated identity, and identity management:
 
 - OAuth 2.0    
 - OpenID Connect    
@@ -26,6 +26,7 @@ Gluu supports open web standards for authentication, authorization, federated id
 - FIDO Universal 2nd Factor (U2F)
 - FIDO 2.0 / WebAuthn
 - Lightweight Directory Access Protocol (LDAP)   
+- Remote Authentication Dial-In User Service (RADIUS) 
 
 ## Installation
 Linux packages are available for Ubuntu, CentOS, RHEL and Debian operating systems. Follow our [VM preparation guide](./installation-guide/index.md) to get started. Gluu also supports installation via [Docker containers](https://gluu.org/de).
