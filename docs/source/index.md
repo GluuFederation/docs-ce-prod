@@ -83,6 +83,7 @@ The license for each software component included in the container is listed belo
 |	Shibboleth IDP      | [Apache2](http://www.apache.org/licenses/LICENSE-2.0)|
 |   OpenDJ              | [CDDL](https://opensource.org/licenses/CDDL-1.0)
 | Passport-JS           | [MIT License](https://github.com/jaredhanson/passport/blob/master/LICENSE) |
+| TinyRADIUS           | [LGPL v2.1](https://opensource.org/licenses/LGPL-2.1) |
 |  UnboundID LDAP SDK	| [UnboundID LDAP SDK Free Use License](https://github.com/UnboundID/ldapsdk/blob/master/LICENSE-UnboundID-LDAPSDK.txt)|
 | Jetty / Apache HTTPD  | [Apache2](http://www.apache.org/licenses/LICENSE-2.0)|
 |Amazon Corretto | [GNU v2 with the Classpath Exception](https://openjdk.java.net/legal/gplv2+ce.html)|   
