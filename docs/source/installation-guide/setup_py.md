@@ -48,7 +48,7 @@ Avoid setup issues by acknowledging the following:
 !!! Warning
     Use a FQDN (fully qualified domain name) as hostname and refrain from using 127.0.0.1 as IP address or usage of private IP is not supported and not recommended.
     
-- Only run setup.py **one time**. Running the command twice will break the instance.
+- Only run the setup script **one time**. Running the command twice will break the instance.
 
 If a resolvable DNS host is not used, then it must be added to the hostname of the Operating System hosts file on the server running the browser.
 
