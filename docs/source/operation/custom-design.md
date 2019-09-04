@@ -64,9 +64,13 @@ Customized `i18n` should be placed in the following directories:
 /opt/gluu/jetty/identity/custom/i18n
 /opt/gluu/jetty/oxauth/custom/i18n
 ```
-Resources from this folder will be loaded at next service restart.
 
-Sub-directories `custom/pages` have a special purpose. They enable overriding exploded `xhtml` pages from the unpacked WAR archive. The path to exploded war conforms to following scheme:
+Resources from this folder will be loaded at the next service restart.
+
+!!! Note
+    This can only customize oxAuth/Identity resources. New messages bundles applications not read automatically.
+
+Sub-directory `custom/pages` have a special purpose. They enable overriding exploded `xhtml` pages from the unpacked WAR archive. The path to the exploded WAR conforms to following scheme:
 
 ```
 /opt/jetty-<VERSION>/temp/jetty-localhost-<PORT_NUMBER>-<COMPONENT_NAME>.war-_<COMPONENT_NAME>-any-<RANDOM_TAG>.dir/webapp/
@@ -75,23 +79,29 @@ Sub-directories `custom/pages` have a special purpose. They enable overriding ex
 So, for example, the path to an exploded oxAuth's WAR archive directory may look like this (and may be changed the next time the corresponding service is restarted):
 
 ```
-/opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/
+/opt/jetty-9.4/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463235631.dir/webapp/
 ```
 
-Thus, a modified `login.xhtml` page put under `custom/pages/` will be used instead of `webapp/login.xhtml` file from the exploded archive. You can use files unpacked there as a base for your own customized files.
+Thus, a modified `login.xhtml` page put under `custom/pages/` will be used instead of the `webapp/login.xhtml` file from the exploded archive. You can use files unpacked there as a base for your own customized files.
 
 !!! Warning 
     Jetty included in earlier Gluu 3.x packages is known to create duplicated directories under `/opt/jetty-<VERSION>/temp/` for each of its components. In case of encountering this issue, it's recommended to stop corresponding service and remove all subdirectories related to it from the `temp/` directory. After starting service again its WAR archive will be unpacked there again.
 
-Customized `libs` for oxAuth to use should be placed in the following directories:
+!!! Note
+    This approach is for XHTML pages only. Other resources like `faces-config.xml` cannot be overridden with this method.
+
+Customized `libs` used by oxAuth should be placed in the following directories:
+
 ```
 /opt/gluu/jetty/identity/custom/libs
 /opt/gluu/jetty/oxauth/custom/libs
 ```
 
-Custom CSS or images should be placed under `custom/static` directory. To avoid collisions with static resources from WAR files, Gluu maps this folder to URL's path like this: `/{oxauth|identity}/ext/resources`
+Additional libs/plugins should be registered in `/opt/gluu/jetty/oxauth/webapps/oxauth.xml` or `/opt/gluu/jetty/identity/webapps/identity.xml` in attribute `<Set name="extraClasspath"></Set>`
 
-So, for example, CSS file placed at this path:
+Custom CSS or images should be placed under `custom/static` directory. To avoid collisions with static resources from WAR files, Gluu maps this folder to the URL's path like this: `/{oxauth|identity}/ext/resources`
+
+So, for example, a CSS file placed at this path:
 
 ```
 /opt/gluu/jetty/oxauth/custom/static/stylesheet/theme.css
@@ -119,6 +129,25 @@ All images should be placed under:
 And all CSS are inside:
 
 `/opt/gluu/jetty/oxauth/custom/static/stylesheet`
+
+### Full customization
+
+If the above customization approach does not help to resolve customization issues, it's possible to explode WAR files and instruct Jetty to use the exploded folder instead of a WAR file. The following is a sample for oxAuth:
+
+1. Unpack oxauth.war into `/opt/gluu/jetty/oxauth/webapps/oxauth` folder
+1. Put updated `/opt/gluu/jetty/oxauth/webapps/oxauth.xml` with next content:
+
+    ```
+    <Configure class="org.eclipse.jetty.webapp.WebAppContext">
+            <Set name="contextPath">/oxauth</Set>
+            <Set name="war">
+                    <Property name="jetty.webapps" default="." />/oxauth/
+            </Set>
+    </Configure>
+    ```
+
+!!! Warning 
+    Upgrade will not apply any changes to the exploded `/opt/gluu/jetty/oxauth/webapps/oxauth` folder. After installing an upgrade package, the administrator should reapply changes manually.
 
 ## Location of key webpage source files
 
