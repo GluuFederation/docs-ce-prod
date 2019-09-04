@@ -2,7 +2,7 @@
 
 ## Setup Prompt
 
-The `setup.py` script will bring up a prompt to provide information for certificate as well as the IP Address and the hostname for the Gluu Server.  Hit `Enter` to accept the default values. 
+The setup script will bring up a prompt to provide information for certificate as well as the IP Address and the hostname for the Gluu Server.  Hit `Enter` to accept the default values. 
 
 Refer to the following table for details about available setup options:    
 
@@ -25,7 +25,7 @@ Refer to the following table for details about available setup options:
 | Install Passport |  Optional. Install if you want to support external IDP, for instance to offer users social login. |
 | Install Gluu Radius | Optional. Installs Radius server. More information is available [here](../admin-guide/radius-server/gluu-radius.md)
 
-When complete, `setup.py` will show the selections and prompt for confirmation. If everything looks OK, select Y to finish installation. 
+When complete, the setup script will show the selections and prompt for confirmation. If everything looks OK, select Y to finish installation. 
 
 After 5-10 minutes the following success message will appear: 
 
@@ -58,7 +58,7 @@ If a resolvable DNS host is not used, then it must be added to the hostname of t
 Errors can be found the the `setup_errors.log` file and a detailed step by step installation is found in the `setup.log` file under the `/install/community-edition-setup` folder.
 
 ## Script Command Line Options
-The `setup.py` script can be used to configure your Gluu Server and to add initial data for oxAuth and oxTrust to start. If `setup.properties` is found in this folder, these properties will automatically be used instead of the interactive setup.
+The setup script can be used to configure your Gluu Server and to add initial data for oxAuth and oxTrust to start. If `setup.properties` is found in this folder, these properties will automatically be used instead of the interactive setup.
 
 The administrator can use the following command line options to include additional components:
 
