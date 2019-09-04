@@ -87,7 +87,7 @@ Thus, a modified `login.xhtml` page put under `custom/pages/` will be used inste
     Jetty included in earlier Gluu 3.x packages is known to create duplicated directories under `/opt/jetty-<VERSION>/temp/` for each of its components. In case of encountering this issue, it's recommended to stop corresponding service and remove all subdirectories related to it from the `temp/` directory. After starting service again its WAR archive will be unpacked there again.
 
 !!! Note
-    This approach is for XHTML pages only. Other resources customizations like `faces-config.xml` isn't possible to override through this method.
+    This approach is for XHTML pages only. Other resources like `faces-config.xml` isn't possible to override through this method.
 
 Customized `libs` for oxAuth to use should be placed in the following directories:
 ```
@@ -130,7 +130,7 @@ And all CSS are inside:
 
 ### Full cusotomizations
 
-If customization approach from points above not help to resolve cusomization issues it's possible to explode war files and instruct jetty to use exploded folder instead of war file. Here is sample for oxauth:
+If customizations approach from points above not help to resolve customization issues it's possible to explode war files and instruct jetty to use exploded folder instead of war file. Here is sample for oxauth:
 
 1. Unpack oxauth.war into `/opt/gluu/jetty/oxauth/webapps/oxauth` folder
 2. Put updated `/opt/gluu/jetty/oxauth/webapps/oxauth.xml` with next content:
