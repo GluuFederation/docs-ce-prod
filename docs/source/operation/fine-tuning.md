@@ -16,6 +16,7 @@ The Gluu Server is designed for Linux. Therefore, the following can be tuned as 
     Most configurations below can be tuned in `/etc/security/limits.conf`, however it may depend on OS. 
 
 1. Increase TCP Buffer Sizes
+
    ```
    sysctl -w net.core.rmem_max=16777216
    sysctl -w net.core.wmem_max=16777216
@@ -24,6 +25,7 @@ The Gluu Server is designed for Linux. Therefore, the following can be tuned as 
    ```
 
 1. Increase connection listening size
+
    ```
    sysctl -w net.core.somaxconn=4096
    sysctl -w net.core.netdev_max_backlog=16384
@@ -50,9 +52,10 @@ Make sure there is enough memory for each Gluu Server component (e.g. LDAP, Jett
 ## LDAP 
 
 !!! Note
-    For convenience, all samples are for Gluu OpenDJ. However, these are general recommendations that should apply for other LDAP Servers too.
+    For convenience, all samples are for Gluu OpenDJ. However, these are general recommendations that should apply for other persistence mechanisms.
 
 1. Maximum allowed connections: If there are not enough connections to serve the client, a connection is put "on hold". To avoid delays, provide the expected maximum allowed connections, e.g.:
+
     ```
     max-allowed-client-connections=1000
     ```
@@ -60,6 +63,7 @@ Make sure there is enough memory for each Gluu Server component (e.g. LDAP, Jett
 1. LDAP Server resources: Make sure to provide enough resources to LDAP. For example, OpenDJ uses JVM for running. For high performance, make sure enough memory is provided via the JVM system properties.
     
 1. Use cache as much as possible. For example: 
+
    ```
    dsconfig -n set-backend-prop --backend-name userRoot --set db-cache-percent:50
    ```
@@ -72,7 +76,7 @@ Make sure there is enough memory for each Gluu Server component (e.g. LDAP, Jett
 
 ## Jetty
 
-By default, jetty's task queue is unlimited. If load is expected to be high, limit the task queue. Configuration may vary for each particular scenario.
+By default, Jetty's task queue is unlimited. If the load is expected to be high, limit the task queue. Configuration may vary for each particular scenario.
 
 Example configuration:
 
