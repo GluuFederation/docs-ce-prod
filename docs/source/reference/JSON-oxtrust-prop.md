@@ -178,8 +178,6 @@ This list details the blacklisted client redirection URIs
 [uma]: https://en.wikipedia.org/wiki/User-Managed_Access "User-Managed Access"
 
 
-### Description of OxTrust Properties
+### Description of oxTrust properties
 
-Description of OxTrust Properties can be viewed [here](../reference/oxtrust-prop.json)
-
-Oxtrust import JSON description [here](../reference/oxtrust-import-person.json)
+Descriptions for oxTrust properties can be viewed [here](../reference/oxtrust-prop.json) and the oxTrust import JSON description is [here](../reference/oxtrust-import-person.json)
