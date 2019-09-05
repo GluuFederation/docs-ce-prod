@@ -56,7 +56,7 @@ The following table summarizes the available endpoints in Gluu implementation of
 |[/ResourceTypes](#identityrestv1scimv2resourcetypes)||GET|Retrieve supported resource types|
 |[/Schemas](#identityrestv1scimv2schemas)||GET|Retrieve supported schemas info|
 
-!!! Note:
+!!! Note
     Actual endpoint URLs are prefixed accordingly with the root URL of SCIM API. As an example, the user's endpoint URL to use in your applications should be `https://your.gluu-host.com/identity/restv1/scim/v2/Users`.
 
 SCIM 2.0 is governed by the [SCIM:Core Schema](https://tools.ietf.org/html/rfc7643) and [SCIM:Protocol](https://tools.ietf.org/html/rfc7644) spec docs. The latter contains full details about the API structure, so use it as a reference in your development tasks. 
@@ -701,7 +701,7 @@ Status code 200 is returned for a successful response.
 
 ## `/identity/restv1/scim/v2/FidoDevices/.search`
 
-Search fido devices based on filter criteria (see [section 3.4.3](https://tools.ietf.org/html/rfc7644#section-3.4.3) of RFC 7644). 
+Search FIDO devices based on filter criteria (see [section 3.4.3](https://tools.ietf.org/html/rfc7644#section-3.4.3) of RFC 7644). 
 
 ### POST
 
