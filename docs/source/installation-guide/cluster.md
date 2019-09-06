@@ -112,26 +112,26 @@ apt-get install openssh-client
 Otherwise, continue to the following command changing `myuser@138.197.65.243` to the login credentials for each Gluu node your sending it to :
 
 ```bash
-scp /opt/gluu-server-4.0/install/community-edition-setup/setup.properties.last myuser@138.197.65.243:/opt/gluu-server-4.0/install/community-edition-setup/setup.properties
+scp /opt/gluu-server/install/community-edition-setup/setup.properties.last myuser@138.197.65.243:/opt/gluu-server/install/community-edition-setup/setup.properties
 ```
 
 If this throws a `Permission denied` error, that means the user, here `myuser`, does not have permission to write in the directory. Use the following command at the node you are trying to send the file to, here that is `138.197.65.243`. Change `<user>` to the user used in the command above, here `myuser`.
 
 ```bash
-chown <user> /opt/gluu-server-4.0/install/community-edition-setup/
+chown <user> /opt/gluu-server/install/community-edition-setup/
 ```
 
 For security, the `<user>` should always be set back to `root`, so after finishing the file transfer, run the command again with `root` as `<user>`.
 
 ```bash
-chown root /opt/gluu-server-4.0/install/community-edition-setup/
+chown root /opt/gluu-server/install/community-edition-setup/
 ```
 
 - If the Gluu server has not been started, start it and log in. Once the `setup.properties` file is in place on the **other** node(s), modify the IP to the current node. In the example, there is only one, so we changed our `ip=159.203.126.10` of node 1 to the IP of node 2 server which is `ip=138.197.65.243.
 
 ```bash
-service gluu-server-4.0 start
-service gluu-server-4.0 login
+service gluu-server start
+service gluu-server login
 Gluu.Root # vi /install/community-edition-setup/setup.properties
 setup.properties
 
@@ -312,7 +312,7 @@ tar -cf opendj_crts.tar keystore keystore.pin truststore
 Transfer it to the other nodes. The `scp` command will most likely not be installed in the Gluu container, so exit out by typing `exit`. Then transfer `opendj_crts.tar` to all the other nodes.  
    
 ```bash
-scp /opt/gluu-server-4.0/opt/opendj/config/opendj_crts.tar  myuser@138.197.65.243:/opt/gluu-server-4.0/opt/opendj/config/
+scp /opt/gluu-server/opt/opendj/config/opendj_crts.tar  myuser@138.197.65.243:/opt/gluu-server/opt/opendj/config/
 ```
    
 !!! Note
@@ -371,13 +371,13 @@ host 159.203.126.10;
 host 138.197.65.243;
  
 key /etc/csync2.key;
-include /opt/gluu-server-4.0/opt/gluu/jetty/identity/conf/shibboleth3/idp/;
-include /opt/gluu-server-4.0/opt/gluu/jetty/identity/conf/shibboleth3/sp/;
-include /opt/gluu-server-4.0/opt/shibboleth-idp/conf;
-include /opt/gluu-server-4.0/opt/shibboleth-idp/metadata/;
-include /opt/gluu-server-4.0/opt/shibboleth-idp/sp/;
-include /opt/gluu-server-4.0/opt/shibboleth-idp/temp_metadata/;
-include /opt/gluu-server-4.0/etc/gluu/conf/;
+include /opt/gluu-server/opt/gluu/jetty/identity/conf/shibboleth3/idp/;
+include /opt/gluu-server/opt/gluu/jetty/identity/conf/shibboleth3/sp/;
+include /opt/gluu-server/opt/shibboleth-idp/conf;
+include /opt/gluu-server/opt/shibboleth-idp/metadata/;
+include /opt/gluu-server/opt/shibboleth-idp/sp/;
+include /opt/gluu-server/opt/shibboleth-idp/temp_metadata/;
+include /opt/gluu-server/etc/gluu/conf/;
  
 exclude *~ .*;
 }
@@ -483,8 +483,8 @@ mkdir /etc/nginx/ssl/
   - From the first Gluu Server installed, do the following:
 
 ```bash
-scp /opt/gluu-server-4.0/etc/certs/httpd.key user@loadbalancer.example.org:/etc/nginx/ssl/
-scp /opt/gluu-server-4.0/etc/certs/httpd.crt user@loadbalancer.example.org:/etc/nginx/ssl/
+scp /opt/gluu-server/etc/certs/httpd.key user@loadbalancer.example.org:/etc/nginx/ssl/
+scp /opt/gluu-server/etc/certs/httpd.crt user@loadbalancer.example.org:/etc/nginx/ssl/
 ```
 
   - On the NGINX server in any editor, open `nginx.conf` and edit:
@@ -828,7 +828,7 @@ Transfer certificates from the first server to the other servers. To do so:
 - From the primary server:
 
 ```
-scp /opt/gluu-server-4.0/etc/certs/* root@138.197.65.243:/opt/gluu-server-4.0/etc/certs/
+scp /opt/gluu-server/etc/certs/* root@138.197.65.243:/opt/gluu-server/etc/certs/
 ```
 
 - Change ownership of the certificates to Gluu, with the exception of `oxauth-keys.j*` which need to be owned by Jetty
@@ -871,7 +871,7 @@ Gluu.Root # python keystore_Config.py
 
 ```
 logout
-service gluu-server-4.0 restart
+service gluu-server restart
 ```
 
 - Now, the administrator web UI and oxAuth have some failover redundancy. There is obviously more configuration necessary on the network layer of the topology for true HA failover, but that is outside of the scope of this documentation.          
