@@ -50,7 +50,7 @@ Let's start by configuring a very basic CAS setup which only returns user's id t
 
 1. Move into the Gluu CE container: 
 
-    `service gluu-server-4.0 login`
+    `service gluu-server login` or `sbin/gluu-serverd login`
     
 2. Edit `/opt/gluu/jetty/identity/conf/shibboleth3/idp/cas-protocol.xml.vm` template file by putting a `ServiceDefinition` bean inside pre-existing `reloadableServiceRegistry` bean as exemplified below. You must use a regexp defining your application instead of `"https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*"`. Pattern like `".*"` may be used as a wildcard to create an "allow-all" definition for a test setup.
    
@@ -120,7 +120,7 @@ Currently the only way to tweak attribute release is to edit corresponding templ
 
 1. Move into the Gluu CE container: 
 
-    `# service gluu-server-4.0 login`
+    `service gluu-server login` or `/sbin/gluu-serverd login`
     
 2. Edit `/opt/gluu/jetty/identity/conf/shibboleth3/idp/attribute-filter.xml.vm` template file by putting an `AttributeFilterPolicy` bean provided below right before the closing `</AttributeFilterPolicyGroup>` tag at the end of it. Properties named `attributeID` you can see there are ids assigned to corresponding attributes in `/opt/shibboleth-idp/conf/attribute-resolver.xml` file (those are "internal names" which don't always correspond to names displayed in web UI); you can also learn them by checking the "Name" field when viewing attribute's properties in web UI (`Configuration` -> `Attributes` page). When placing the bean, be careful not to put it within some Velocity's loop there (note the control words startings with `"#"`). You must use a regexp defining your application instead of `"https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*"`. Pattern like `".*"` may be used as a wildcard to create an "allow-all" definition for a test setup. If adding several CAS filtering policies, make sure their `id` properties differ.
 
