@@ -62,11 +62,16 @@ Run the following commands:
 
 ### Run the setup script
 
-Configuration is completed by running the setup script from inside the chroot container. This generates certificates, salt values, and renders configuration files. Run the script with the following command:
+Configuration is completed by running the setup script from inside the chroot container. This generates certificates, salt values, and renders configuration files. Run the script with the following commands:
 
 ```
-/opt/gluu/bin/install.py -o
+cd /install/community-edition-setup
 ```   
+
+```
+./setup.py
+```
+
 
 See the [Setup Script Documentation](./setup_py.md#setup-prompt) for more detail on setup script options.
 
