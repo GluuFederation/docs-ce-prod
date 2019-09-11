@@ -48,7 +48,7 @@ Follow these steps to integrate an external OP for login to an OIDC application:
 
 1. Enter an identifier for this provider (letters, digits, and underscore characters allowed). Check [here](./passport.md#identifiers) to learn more about identifiers usage
 
-1. Enter a display name for the provider  (e.g "My ADFS", "MITREid Connect", etc.)
+1. Enter a display name for the provider  (e.g "Partner 1", "Customer 1", etc.)
 
 1. In `type`, choose "openidconnect" (if you are using Gluu oxd as a mediator with an OP, check [this](#using-oxd-as-mediator) section)
 
