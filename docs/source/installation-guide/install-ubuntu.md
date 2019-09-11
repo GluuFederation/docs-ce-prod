@@ -10,7 +10,7 @@ Single-node Gluu Server Linux packages are available for Ubuntu 18.04.x and 16.0
 
 ## Prerequisites
 - Make sure the target server or VM meets **all minimum requirements** specified in the [VM Preparation Guide](../installation-guide/index.md). 
-- **Ubuntu 18** The Universe repository must be enabled.
+- **Ubuntu 18**: The Universe repository must be enabled.
 
 ## Instructions
 
