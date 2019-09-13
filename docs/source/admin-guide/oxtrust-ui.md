@@ -231,6 +231,12 @@ When a [custom authentication script](../authn-guide/customauthn.md) is enabled,
 ### CAS Protocol
 -->
 
+## Manage SAML ACRS
+
+Gluu offers out-of-the-box support for the SAML parameter AuthnContextClassRef (ACRS). For mor information, see the [SAML ACRS](./saml.md#authncontextclassref-support) documentation.
+
+![Manage SAML ACRS](../img/admin-guide/oxtrust/manage_saml_acrs.png)
+
 ## Manage Custom Scripts
 The Gluu Server exposes interception scripts for organizations to implement custom workflows. The most commonly used scripts are for authentication, authorization, and identity synchronization. For more information, see the [interception script](./custom-script.md) documentation.
 
