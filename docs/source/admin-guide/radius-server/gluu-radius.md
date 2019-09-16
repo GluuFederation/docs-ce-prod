@@ -9,7 +9,7 @@ As mentioned above, Gluu Radius is based on the TinyRadius Java library. The lib
 -->
 
 ## Installation  
-Gluu Radius is an available component from version 4.0. During installation, while [running setup.py](../../installation-guide/install.md#run-setuppy), simply select `Y` when you are asked to install Gluu Radius.
+Gluu Radius is an available component from version 4.0. During installation, while [running setup.py](../../installation-guide/setup-py.md), simply select `Y` when you are asked to install Gluu Radius.
 
 ## Service 
 Gluu Radius runs as a service from within the Linux container. Certain configuration settings will require a service restart. View the [Services Commands](../../operation/services.md) doc for commands for the OS in use. 
@@ -33,7 +33,7 @@ In addition, the Gluu Radius config file can be found in the Linux container und
    
    - `Authentication Timeout`: This is the maximum amount of time in milliseconds between when an authentication request is initiated and the user approving authentication. This applies only for long lived two-factor authentication based requests (e.g. Super-Gluu).
   
-!!! Note: 
+!!! Note   
     Any change to any of these configuration parameters will require a [restart](../../operation/services.md) of the `gluu-radius` service. Make sure the ports selected for authentication and accounting are open.
 
 ![gluu-radius-basic-config](../../img/admin-guide/radius-server/gluu-radius-basic-config.png).
@@ -88,8 +88,8 @@ To change the algorithm, follow these steps:
 
 - Change the option `JWS alg Algorithm for Authentication Method to Token Endpoint` to the algorithm of your choice. 
 
-    !!! Note
-        The algorithm *must* be a keypair algorithm. 
+!!! Note  
+    The algorithm *must* be a keypair algorithm. 
     
 - Now, in the JWKS section (or in your jwks if you provided a URL), copy the `kid` corresponding to the algorithm you selected, and change the following line in the Gluu Radius configuration file:
 
