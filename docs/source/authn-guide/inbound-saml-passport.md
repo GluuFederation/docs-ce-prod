@@ -255,7 +255,7 @@ Follow the guidelines below to run the Demo app in your Gluu Server host:
 
 1. After logging in at the IDP, you will be redirected back to Gluu Server, where you might be prompted to authorize release of your personal data to the Demo app.
 
-   ![](../img/user-authn/passport/demo_2.png)
+    ![](../img/user-authn/passport/demo_2.png)
    
 1. After consenting to release the requested claims, you'll be sent to the Demo app with an authorization code that is needed for retrieving your personal data.
 
