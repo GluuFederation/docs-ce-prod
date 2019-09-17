@@ -227,13 +227,14 @@ When a [custom authentication script](../authn-guide/customauthn.md) is enabled,
 !!! Warning
     If **both** default authentication methods are set to "Default", oxAuth will use basic LDAP bind authentication, but only until the moment some custom authentication script becomes enabled. In case there are enabled custom auth scripts, it will use the one with the lowest priority level (defined by "Level" setting) to authenticate all users automatically, even if you don't set it as default authentication mode explicitly. So if this script hasn't yet been properly configured you may lose access to your instance's web UI. Please ensure that you set at least "auth_ldap_server" method for "Authentication mode" before trying to explore other advanced authentication methods. 
     
-<!-- Coming soon, pending more info
 ### CAS Protocol
--->
+The Gluu Server leverages the Shibboleth IDP to provide support for legacy systems still using CAS. For more information, see the [CAS](./cas.md) documentation.
+
+![CAS Protocol](../img/admin-guide/oxtrust/cas-protocol.png)
 
 ## Manage SAML ACRS
 
-Gluu offers out-of-the-box support for the SAML parameter AuthnContextClassRef (ACRS). For mor information, see the [SAML ACRS](./saml.md#authncontextclassref-support) documentation.
+Gluu offers out-of-the-box support for the SAML parameter AuthnContextClassRef (ACRS). For more information, see the [SAML ACRS](./saml.md#authncontextclassref-support) documentation.
 
 ![Manage SAML ACRS](../img/admin-guide/oxtrust/manage_saml_acrs.png)
 
