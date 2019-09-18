@@ -168,7 +168,7 @@ The startup process may take some time. You can keep track of the deployment by 
 ./run_all.sh logs -f
 ```
     
-1. On initial deployment, since Vault has not been configured yet, the `run_all.sh` will generate a root token and key to interact with Vault API, saved as `vault_key_token.txt`. Secure this file, as it contains the recovery key and root token.
+On initial deployment, since Vault has not been configured yet, the `run_all.sh` will generate a root token and key to interact with Vault API, saved as `vault_key_token.txt`. Secure this file, as it contains the recovery key and root token.
 
 ## Uninstalling the Gluu Server
 
