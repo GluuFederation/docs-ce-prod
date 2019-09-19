@@ -7,13 +7,21 @@ Follow the instructions below to quickly deploy a single-node Gluu Server demo u
 !!! Note
     "Test drive" is perfect for *testing* the Gluu Server. For production deployments, follow instructions for your [OS of choice](./index.md#supported-operating-systems), e.g. [Docker](./install-docker.md).  
 
-## Prerequisites
+## Requirements
+
+### Linux Requirements
 
 For Docker deployments, provision a VM with: 
 
 - The minimum system requirements, as described in the [VM Preparation Guide](../installation-guide/index.md#system-requirements). 
 
 - Both [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script) and [Docker Compose](https://docs.docker.com/compose/install/#install-compose) installed. 
+
+### OS X (Mac) Requirements
+
+1)  Meet the [system requirements](https://docs.docker.com/docker-for-mac/install/)
+
+1)  Install [Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac)
 
 ## Instructions
 
