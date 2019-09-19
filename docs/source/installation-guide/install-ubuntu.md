@@ -21,7 +21,7 @@ The Gluu Server will create its file system under `/root/` and will be installed
 For **Ubuntu 18.04.x** run the following commands: 
 
 ```
-echo "deb https://repo.gluu.org/ubuntu/ bionic-devel main" > /etc/apt/sources.list.d/gluu-repo.list
+echo "deb https://repo.gluu.org/ubuntu/ bionic-beta main" > /etc/apt/sources.list.d/gluu-repo.list
 ```
 
 ```
@@ -39,7 +39,7 @@ apt-get install gluu-server
 For **Ubuntu 16.04.x** run the following commands:  
 
 ```
-echo "deb https://repo.gluu.org/ubuntu/ xenial-devel main" > /etc/apt/sources.list.d/gluu-repo.list
+echo "deb https://repo.gluu.org/ubuntu/ xenial-beta main" > /etc/apt/sources.list.d/gluu-repo.list
 ```
 
 ```
