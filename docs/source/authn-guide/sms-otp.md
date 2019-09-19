@@ -57,7 +57,9 @@ Follow the steps below to enable U2F authentication:
 
 1. Click on the `Person Authentication` tab       
 
-1. Find the twilio_sms script.
+1. Find the `twilio_sms` script.
+
+    ![twilio_sms](../img/admin-guide/multi-factor/twilio-custom-script.png)
 
 1. Populate the properties table with the details from your Twilio account:    
 
