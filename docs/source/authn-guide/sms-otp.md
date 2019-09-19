@@ -29,9 +29,14 @@ Twilio trial accounts only allow sending messages to mobile numbers already link
 
 ## Add Twilio library to oxAuth
 
-- Copy the Twilio jar file to the following oxAuth folder inside the Gluu Server chroot: `/opt/gluu/jetty/oxauth/custom/libs`  
-- Modify the file oxauth.xml file located at : `/opt/gluu/jetty/oxauth/webapps/oxauth.xml`  
-- Define <Set name="extraClasspath">/opt/gluu/jetty/oxauth/custom/libs/twilio.jar</Set>
+- Copy the Twilio jar file to the following oxAuth folder inside the Gluu Server chroot: `/opt/gluu/jetty/oxauth/custom/libs` 
+
+- Edit `/opt/gluu/jetty/oxauth/webapps/oxauth.xml` and add the following line:
+
+    ```
+    <Set name="extraClasspath">/opt/gluu/jetty/oxauth/custom/libs/twilio.jar</Set>
+    ```
+    
 - [Restart](../operation/services.md#restart) the `oxauth` service     
     
 ## Properties
