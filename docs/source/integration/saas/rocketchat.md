@@ -11,7 +11,7 @@ This doc will guide you on how to setup a Gluu Server as your identity provider 
 
 ## Note
  
-When adding the Gluu Server OAuth client to Rocket Chat (described [below](#rocket-chat-configuration), the server title is converted to lowercase and hyphens, spaces, etc. are removed. So for example, `Gluu Server` or `Gluu-Server` will be converted to `gluuserver`. And then at the top of the page, the following message is generated:
+When adding the Gluu Server OAuth client to Rocket Chat (described [below](#rocket-chat-configuration)), the server title is converted to lowercase, and hyphens, spaces, etc. are removed. So for example, `Gluu Server` or `Gluu-Server` will be converted to `gluuserver`. And then at the top of the page, the following message is generated:
 
 > When setting up your OAuth Provider, you'll have to inform a Callback URL. Use `https://{your_rocketchat_url_accessible_from_gluu_server}/_oauth/gluuserver`
 
