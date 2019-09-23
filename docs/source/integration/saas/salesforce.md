@@ -8,7 +8,7 @@ we are presenting a very simple SP-initiated SSO steps with Salesforce
 and Gluu Server. Still, you can go for IDP-initiated SSO if you prefer.
 Further documentation is available at the Salesforce.com site.
 
-## Prepare Salesforce.com
+## Configure Salesforce.com
 
 - Log into Salesforce.com with your administrative account.
 - Click on _Setup_ in the right upper corner of the page.
@@ -50,7 +50,7 @@ Further documentation is available at the Salesforce.com site.
 
      ![image](../../img/integration/Final_setup1.png)
 
-## Prepare Gluu Server
+## Configure Gluu Server
 
 * How to create SAML trust relationship is available [here](../../admin-guide/saml.md). 
 * Grab Salesforce.com metadata from the Salesforce.com website. There is
