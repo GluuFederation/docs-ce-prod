@@ -19,7 +19,7 @@ During creation of your client in the Gluu Server, this URL is used as the `Redi
 
 ## Gluu Server Configuration
 
-In oxTrust, navigate to `OpenID Connect` > `Client` and click `Add Client`. You'll see the following form to create the client, 
+In oxTrust, navigate to `OpenID Connect` > `Client` and click `Add Client`. You'll see the following form to create the client for Rocket Chat:  
 
 ![image](img/gri_blank_client_creation_form.png)
 
