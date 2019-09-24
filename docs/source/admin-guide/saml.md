@@ -75,12 +75,6 @@ The example below adds `customTest`, which we [created earlier here](https://glu
 
 `service identity/idp start`
 
-## Force Authentication
-
-The Gluu Server supports force authentication out-of-the-box. Including `ForceAuthn=true` in the initial SAML request from the SP signals to the IDP that the user must reauthenticate, even if they already have a valid session at the server. This feature can be used to verify the user's identity prior to granting them access to highly protected resources.
-
-Upon receiving the SAML request with this flag, the IDP will invalidate its session for the user, then will issue a new OpenID Connect (OIDC) authorization request to oxAuth, including the `prompt=login` parameter. This parameter forces oxAuth to invalidate its session as well. The user will then follow the full authentication procedure.
-
 ## Create a Trust Relationship
 
 Follow these instructions to create a SAML TR in your Gluu Server: 
@@ -121,7 +115,6 @@ The Gluu Server is configured to support this SAML flow out-of-the-box. To emplo
     1. `providerId` URL query parameter contains `entityid` of the target SP   
 1. Send the user to the composed URL (e.g. via redirection by on-page JS, an action triggered by a button, etc.)
 
-
 ## Relying Party Configuration     
 Through the Relying Party configuration you can customize how different IDP profiles will respond to requests received from the SP, including encryption and digital signature options. The underlying IDPs functionality is described in [the Shibboleth wiki](https://wiki.shibboleth.net/confluence/display/IDP30/RelyingPartyConfiguration).  
 
@@ -153,7 +146,7 @@ Once enabled, the user can be directed to `https://[hostname]/idp/Authn/oxAuth/l
 ![SAML2 SLO logout confirmation page](../img/saml/saml_slo_confirm.png)
 
 If the user clicks `Yes` or just waits a few seconds, the session will be killed and the user will be logged out.
-    
+
 ## Federation Configuration     
 If the SP is part of an identity federation such as [InCommon](https://www.incommon.org/participants/), the Gluu administrator has option to establish a Trust Relationship with it based on the federation's metadata. To achieve this he must add TR for the federation in the Gluu Server first. This will enable the administrator to more easily create TRs with SPs in the federation. 
 
@@ -167,6 +160,11 @@ In the example below we are creating a TR for the 'Internet2 Wiki', which is an 
 
 ![Incommon_affiliated_SP_Trust.png](../img/saml/InCommon_affiliated_SP_Trust.png)
 
+## Force Authentication
+
+The Gluu Server supports force authentication out-of-the-box. Including `ForceAuthn=true` in the initial SAML request from the SP signals to the IDP that the user must reauthenticate, even if they already have a valid session at the server. This feature can be used to verify the user's identity prior to granting them access to highly protected resources.
+
+Upon receiving the SAML request with this flag, the IDP will invalidate its session for the user, then will issue a new OpenID Connect (OIDC) authorization request to oxAuth, including the `prompt=login` parameter. This parameter forces oxAuth to invalidate its session as well. The user will then follow the full authentication procedure.
+
 ## SAML SP
 If your target application (SP) does not already support SAML, we recommend using the [Shibboleth SP](../integration/sswebapps/saml-sp.md) web server filter to secure and integrate the application with your Gluu SAML IDP. 
-
