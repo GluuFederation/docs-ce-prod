@@ -92,7 +92,7 @@ A description of each field follows:
 - **Description**: Purpose of the TR and an SSO link can be added here       
 - **Entity Type**: You have two options to choose for entity type.
     - *Single SP*: A "Single SP" is one specific target SAML SP.  
-    - *Federation/Aggregate*: A "Federation/Aggrate" is a trusted network of SP's, like [InCommon](https://www.incommon.org/federation/).  
+    - *Federation/Aggregate*: A "Federation/Aggrate" is a trusted network of SP's, like [InCommon](https://www.incommon.org/federation/). Described in more detail [below](#federation-configuration).  
 - **Metadata Location**: There are four available options to choose from. The correct Type depends on how the SP is delivering Metadata to your IDP      
     - *File*: Choose `File` if the SP has provided an uploadable metadata document in XML format.
     - *URI*: Chose `URI` if the SP metadata is hosted on a URI that is accessible from the Internet.
