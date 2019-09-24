@@ -108,15 +108,17 @@ A description of each TR creation field follows:
 
 ## IDP-initiated outbound SAML flow
 
-A regular outbound SAML flow starts at an SP. The user is redirected to an IDP with a SAML request, and is then sent by the IDP to the ACS endpoint of the SP with a SAML response. A shortened version of this flow is called "IDP-initiated" (or "unsolicited" in Shibboleth's documentation). It starts with the IDP sending a SAML response to the SP, when no prior SAML request was made.
+A regular outbound SAML flow starts at an SP. The user is redirected to an IDP with a SAML request, and is then sent by the IDP to the SP's ACS endpoint with a SAML response. A shortened version of this flow is called "IDP-initiated" (or "unsolicited"). It starts with the IDP sending a SAML response to the SP when no prior SAML request was made.
 
-The Gluu Server is configured to support this SAML flow out-of-the-box. To employ it, follow these steps:
+To configure this SAML flow, follow these steps:
 
 1. Add a TR for the SP using the standard procedure described [above](#create-a-trust-relationship). Wait until the updated configuration is re-loaded by the IDP.   
 1. Craft a URL like this: `https://idp.gluu.host.loc/idp/profile/SAML2/Unsolicited/SSO?providerId=https%3A%2F%2Fsphost-shib.site%3a8443%2Fshibboleth`, where: 
     1. `idp.gluu.host.loc` is the DNS name of the target Gluu Server   
-    1. `providerId` URL query parameter contains `entityid` of the target SP   
+    1. `providerId` URL query parameter contains the `entityid` of the target SP   
 1. Send the user to the composed URL (e.g. via redirection by on-page JS, an action triggered by a button, etc.)
+
+The user should gain immediate access to the protected resource, with no further redirects or authentication. 
 
 ## Relying Party Configuration     
 Through the Relying Party configuration you can customize how different IDP profiles will respond to requests received from the SP, including encryption and digital signature options. The underlying IDPs functionality is described in [the Shibboleth wiki](https://wiki.shibboleth.net/confluence/display/IDP30/RelyingPartyConfiguration).  
