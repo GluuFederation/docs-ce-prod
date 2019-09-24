@@ -10,20 +10,22 @@ The following section of the docs explains how to configure the Gluu SAML IDP fo
     To support an inbound SAML workflow, where users are redirected to an external IDP for authentication (e.g. Social Login), review the [inbound SAML authentication guide](../authn-guide/inbound-saml-passport.md).
 
 ## Trust Relationship Requirements     
-In the Gluu Server, the SAML IDPs SSO configuration is called a Trust Relationship (TR). Each TR requires the infomation listed below.
+The Gluu Server SAML IDP configuration for SSO is called a Trust Relationship (TR). Each TR requires the following infomation: 
 
 ### Metadata of the SP             
-Metadata is an XML file which has configuration data used to establish trust between the website (SP) and IDP (Gluu Server). Websites (SP) can provide metadata via a URL or as a separate file. Metadata can change, so a static URL typically requires the least amount of ongoing maintenance. 
+Metadata is an XML file which has configuration data used to establish trust between the website (SP) and IDP (Gluu Server). Metadata can be provided via a URL or as a separate file. Metadata can change, so a static URL typically requires the least amount of ongoing maintenance. 
 
 ### Metadata of the Gluu Server       
-The Gluu Server's SAML metadata may be needed from time to time. It can be found at `https://hostname/idp/shibboleth`.
+The Gluu Server's SAML metadata may be needed by the SP. It can be found at: `https://hostname/idp/shibboleth`.
   
 ### Attribute Release      
-Each SP may require one or more user attributes from the IDP in order to grant a person access to a protected resource. Required attributes vary depending on the application, and should be explicitly specified in the target application's documentation. The administrator can use the oxTrust interface to release the necessary attributes to the SP as described [below](#create-a-trust-relationship-in-the-gluu-server). 
+In order to grant access to a protected resource, each SP may require one or more user attributes from the IDP. Required attributes should be specified in the SP's documentation. Attributes can be chosen for release during the creation of each TR, as described [below](#create-a-trust-relationship). 
 
 ## Configure NameID
 
-A NameID or Name Identifier is used to identity the 'subject' of a SAML assertion. The format of nameID can be anything but is typically `emailAddress`.
+A NameID or Name Identifier is used to identity the "subject" of a SAML assertion. Some SAML SP's expect a specific SAML NameID Format. The format of NameID can be anything but is typically `emailAddress`. 
+
+There are two ways to create the NameID in Gluu:
 
 ### oxTrust GUI
 
