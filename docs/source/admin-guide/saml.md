@@ -98,8 +98,9 @@ A description of each field follows:
     - *URI*: Chose `URI` if the SP metadata is hosted on a URI that is accessible from the Internet.
     - *Federation*: Choose this option if the target application (SP) is affiliated with a federation service (e.g. InCommon, NJEdge etc.). Fedeartion's TR must be created first for it to appear in this list. Learn more about working with a federation [below](#federation-configuration).
 - **Released**: The SPs required attributes must be added to this panel. The required attributes can be selected from the menu on the left with the heading “Release Additional Attributes”.     
-        !!! Warning
-            If the `Entity Type` is `Federation/Aggregate`, all selected attributes will be released to *every* SP that relies on the Federation. Therefore, attributes should only be released to Federations when absolutely required.  
+
+!!! Warning
+    If the `Entity Type` is `Federation/Aggregate`, all selected attributes will be released to *every* SP that relies on the Federation. Therefore, attributes should only be released to Federations when absolutely required.  
         
 Click the `Add` button located in the lower left side of the page to save the TR.     
 
