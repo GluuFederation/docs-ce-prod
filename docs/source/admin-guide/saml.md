@@ -1,13 +1,13 @@
 # SAML IDP 
 ## Overview
-The Gluu Server bundles the free open source [Shibboleth SAML IDP](https://www.shibboleth.net/products/identity-provider/) to support outbound SAML single sign-on (SSO). To include Shibboleth in any Gluu Server deployment, opt in when prompted during Gluu Server installation. 
+The Gluu Server acts as a SAML identity provider (IDP) to support outbound SAML single sign-on (SSO). 
 
-In an outbound SAML SSO transaction a website or application (known as a Service Provider, or "SP") redirects a user to a designated identity provider (IDP) for authentication and authorization. The IDP will authenticate the user and upon successful authentication, the user is sent back to the SP with an active session. 
+In outbound SAML SSO transactions, external websites or applications (known as a Service Provider, or "SP") redirect users to the Gluu Server for authentication and authorization. Upon successful authentication, the user is redirected back to the SP with personal attributes and an active SSO session. 
 
-Trust must be pre-established between the IDP (Gluu Server) and SP (target application) in order for the transaction to work. The following section of the docs cover how to configure the Gluu SAML IDP for SSO. 
+Trust must be pre-established between the SP and Gluu. The following section of the docs covers how to configure the Gluu SAML IDP for SSO. 
 
 !!! Note 
-    If you need to support inbound SAML to integrate with external partner or customer IDPs, review the [inbound SAML authentication guide](../authn-guide/inbound-saml-passport.md).
+    To support an inbound SAML workflow, where users are redirected to an external IDP for authentication (e.g. Social Login), review the [inbound SAML authentication guide](../authn-guide/inbound-saml-passport.md).
 
 ## Trust Relationship Requirements     
 In the Gluu Server, the SAML IDPs SSO configuration is called a Trust Relationship (TR). Each TR requires the infomation listed below.
