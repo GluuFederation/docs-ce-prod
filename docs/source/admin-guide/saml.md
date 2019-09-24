@@ -4,7 +4,7 @@ The Gluu Server acts as a SAML identity provider (IDP) to support outbound SAML 
 
 In outbound SAML SSO transactions, external websites or applications (known as a Service Provider, or "SP") redirect users to the Gluu Server for authentication and authorization. Upon successful authentication, the user is redirected back to the SP with personal attributes and an active SSO session. 
 
-Trust must be pre-established between the SP and Gluu. The following section of the docs covers how to configure the Gluu SAML IDP for SSO. 
+The following section of the docs explains how to configure the Gluu SAML IDP for SSO. 
 
 !!! Note 
     To support an inbound SAML workflow, where users are redirected to an external IDP for authentication (e.g. Social Login), review the [inbound SAML authentication guide](../authn-guide/inbound-saml-passport.md).
