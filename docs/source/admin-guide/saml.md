@@ -148,15 +148,15 @@ Once enabled, the user can be directed to `https://[hostname]/idp/Authn/oxAuth/l
 If the user clicks `Yes` or just waits a few seconds, the session will be killed and the user will be logged out.
 
 ## Federation Configuration     
-If the SP is part of an identity federation such as [InCommon](https://www.incommon.org/participants/), the Gluu administrator has option to establish a Trust Relationship with it based on the federation's metadata. To achieve this he must add TR for the federation in the Gluu Server first. This will enable the administrator to more easily create TRs with SPs in the federation. 
+If your target SP is part of a federation like [InCommon](https://www.incommon.org/federation/), a TR can be created for the SP using the federation's metadata. To achieve this, add a TR for the federation in the Gluu Server first, then create TRs for each target SP in the federation. 
 
-The example below shows how an administrator would add a TR for the InCommon Federation.
+The example below shows how to add a TR for InCommon.
 
 ![adding_fed_tr.png](../img/saml/adding_fed_tr.png)
 
-Once a TR has been established with the federation, the Gluu Server administrator can easily create TRs with any SP included in the federation by selecting the federation from the `Federation Name` drop down menu and selecting the entity-id for the SP. 
+Once a TR has been established with the federation, TR's can be configured for any SP in the federation by selecting the federation from the `Federation Name`, then selecting the entity-id for the SP. 
 
-In the example below we are creating a TR for the 'Internet2 Wiki', which is an InCommon Federation affiliated SP (meaning, the SPs entityID is available in InCommon metadata). 
+In the example below, we are creating a TR for the 'Internet2 Wiki', which is an InCommon Federation affiliated SP (meaning, the SPs entityID is available in InCommon metadata). 
 
 ![Incommon_affiliated_SP_Trust.png](../img/saml/InCommon_affiliated_SP_Trust.png)
 
