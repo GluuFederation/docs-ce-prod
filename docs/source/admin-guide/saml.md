@@ -80,13 +80,14 @@ The example below adds `customTest`, which we [created earlier here](https://glu
 Follow these instructions to create a SAML TR in your Gluu Server: 
 
 1. Go to `SAML` > `Trust Relationships`    
-2. Click on `Add Trust Relationship`     
-3. A new page will appear where you can provide all the required information to create a Trust
-  Relationship(TR).     
+1. Click on `Add Trust Relationship`     
+1. A new form will appear where you can provide all required information to create a Trust
+  Relationship (TR).     
+1. Click the `Add` button in the lower left corner to save the TR.     
 
 ![newTR](../img/saml/samlfederationTR.png)
 
-A description of each field follows:
+A description of each TR creation field follows:
 
 - **Display Name**: Name of the Trust Relationship (it should be unique for every TR)       
 - **Description**: Purpose of the TR and an SSO link can be added here       
@@ -102,7 +103,6 @@ A description of each field follows:
 !!! Warning
     If the `Entity Type` is `Federation/Aggregate`, all selected attributes will be released to *every* SP that relies on the Federation. Therefore, attributes should only be released to Federations when absolutely required.  
         
-Click the `Add` button located in the lower left side of the page to save the TR.     
 
 ## IDP-initiated outbound SAML flow
 
