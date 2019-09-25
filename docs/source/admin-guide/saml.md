@@ -10,16 +10,16 @@ The following section of the docs explains how to configure the Gluu SAML IDP fo
     To support an inbound SAML workflow, where users are redirected to an external IDP for authentication (e.g. Social Login), review the [inbound SAML authentication guide](../authn-guide/inbound-saml-passport.md).
 
 ## Trust Relationship Requirements     
-The Gluu Server SAML IDP configuration for SSO is called a Trust Relationship (TR). Each TR requires the following infomation: 
+The Gluu Server SAML IDP configuration for SSO is called a Trust Relationship (TR). Each TR may require the following infomation: 
 
-### Metadata of the SP             
-Metadata is an XML file which has configuration data used to establish trust between the website (SP) and IDP (Gluu Server). Metadata can be provided via a URL or as a separate file. Metadata can change, so a static URL typically requires the least amount of ongoing maintenance. 
-
-### Metadata of the Gluu Server       
-The Gluu Server's SAML metadata may be needed by the SP. It can be found at: `https://hostname/idp/shibboleth`.
+### SP Metadata             
+Metadata is an XML file which has configuration data used to establish trust between the SP and IDP. The SP's metadata can be provided as a URL or a separate file. Metadata can change, so a static URL is typically preferred when available. 
   
 ### Attribute Release      
 In order to grant access to a protected resource, each SP may require one or more user attributes from the IDP. Required attributes should be specified in the SP's documentation. Attributes can be chosen for release during the creation of each TR, as described [below](#create-a-trust-relationship). 
+
+### IDP Metadata       
+The SP may need Gluu's SAML IDP metadata, which can be found at: `https://hostname/idp/shibboleth`.
 
 ## Configure NameID
 
