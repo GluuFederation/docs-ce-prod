@@ -94,7 +94,7 @@ Restart the `identity` and `idp` services.
 
 - How to create a trust relationship can be found [here](../../admin-guide/saml.md#trust-relationship-requirements). We need to follow the "File" method for Google Apps trust relationship. Upload the metadata which we created couple of steps back. 
 - Required attributes: 
-  - You need to release the following attribute: Email.
+     - You need to release the following attribute: Email.
  
 ## Test 
   
