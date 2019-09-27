@@ -42,7 +42,7 @@ By default, Salesforce suggests deployers implement IDP-initiated SSO. The initi
      * _Service Provider Initiated Request Binding_: HTTP-Redirect
      * Here is how our example setup looks like:
      
-     ![image](../../img/integration/Final_Setup1.png)
+     ![image](../../img/integration/Final_setup1.png)
 
 ## Configure Gluu Server
 
@@ -73,7 +73,7 @@ By default, Salesforce suggests deployers implement IDP-initiated SSO. The initi
   * `Update` the trust relationship
   * Here is how it looks like in our example setup:
 
-  ![image](../../img/Salesforce_TrustRelationship.png)
+  ![image](../../img/integration/Salesforce_TrustRelationship.png)
 
 
 ## Test SSO
@@ -83,7 +83,7 @@ By default, Salesforce suggests deployers implement IDP-initiated SSO. The initi
 - Click `Identity` > `Single Sign On Settings`
 - Enable `Federated Single Sign-On Using SAML`: 
 
-   - ![image](../../img/integration/Salesforce_Enable_Federation_2.PNG)
+    ![image](../../img/integration/Salesforce_Enable_Federation_2.PNG)
    
 - Go to `Company Settings` > `My Domain`
 - Configure `Authentication Configuration`
