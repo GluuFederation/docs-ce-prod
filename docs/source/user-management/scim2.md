@@ -304,10 +304,8 @@ $ curl -H 'Authorization: Bearer ...access token...' -H 'Content-Type: applicati
   -d @input.json -o output.json https://<host-name>/identity/restv1/scim/v2/Users`
 ```
 
-If your Gluu server is protected by a self-signed certificate (as in the default installation), add the following switch:
+If your Gluu server is protected by a self-signed certificate (as in the default installation), add the `-k` switch:
 
-`--cacert /opt/gluu-server-<glu-version>/etc/certs/httpd.crt`
- 
 After execution open the file `output.json`. You should see a response like this (some contents have been supressed for readability):
 
 ```
@@ -972,7 +970,7 @@ Please visit this [page](../admin-guide/attribute.md#custom-attributes) for a mo
 ![image](../img/admin-guide/user/scim-attribute.png)
 
 !!! Note
-    Only the following data types for extended attributes are supported in SCIM server implementation: `string`, `numeric`, and `date`.
+    Only the following data types for extended attributes are supported in SCIM server implementation: `string`, `numeric` (integer), `boolean`, and `date`.
 
 Once you submit this form, your attribute will be part of the User Extension. You can verify this by inspecting the `Schema` endpoint:
 
@@ -1061,7 +1059,6 @@ The following are sample response errors:
 	"status": "409"
 }
 ```
-
 
 ### Custom Error Handling using SCIM-Client
 
