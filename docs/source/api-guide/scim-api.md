@@ -84,18 +84,8 @@ The following table lists characteristics of SCIM protocol (see section 3 of RFC
 |"/me" URI alias|-|-|Not applicable: operations actually not executed on a user's behalf or other SCIM resource|
 |Resource versioning|-|-|Feature may be available upon explicit customer demand|
 
-### Known limitations with Couchbase as DB
-
-!!! Warning
-    **Attention Couchbase users**: there are a some minor behaviors that developers should account regarding SCIM searches.
- 
-- Non-deterministic order of results when no `sortBy` is specified: A query can return a different permutation of valid results every time is executed.
-
-- Search filters should not contain backslash characters in comparison values: This is a Couchbase issue. N1QL queries with backslashes can lead to unexpected results or even runtime errors. An example of this can be the filter `name.familyName co "\"`
-
-- Case sensitivity: Searching and sorting is by default case insensitive when in LDAP. In Couchbase setups the behavior is case sensitive with the only exception of equality/inequality filters (like `userName eq "JhonHoney"` or `userType ne "Employee"`). Recall case only matters for attributes of type string. This applies for both core and custom attributes.
-
-- Operators (`le`, `lt`, `gt`, `ge`, `co`, `ew`, `sw`, `eq`) are not applicable for attributes with more than one value. When used, no results will be returned. As an example, users with more than one telephone number will not be returned when using `phoneNumbers.value sw "555"` even if one or more of their phones start with "555".
+!!! Attention
+    If you are using Couchbase as your DB for Gluu, please also review our list of [SCIM Considerations when using CB](https://gluu.org/docs/cb/#scim-consideration). 
 
 ## `/identity/restv1/scim/v2/Users`
 
