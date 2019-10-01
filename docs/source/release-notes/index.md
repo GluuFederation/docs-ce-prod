@@ -46,15 +46,27 @@ documentation and administrative guide.
 
 ### [GluuFederation/oxAuth](https://github.com/GluuFederation/oxAuth/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.7+)
 
+- [#1153](https://github.com/GluuFederation/oxAuth/issues/1153) allowPostLogoutRedirectWithoutValidation oxAuth feature doesn't work
+
+-  [#1109](https://github.com/GluuFederation/oxAuth/issues/1109) oxauth does not take care requested scopes while creating client dynamically
+
+-  [#1088](https://github.com/GluuFederation/oxAuth/issues/1088) id_token contains wrong hash of access_token for RS512 (and possibly other algorithms)
+
+- [#1083](https://github.com/GluuFederation/oxAuth/issues/1083) `invalidateSessionCookiesAfterAuthorizationFlow=true` leads to authorization failure
+
 - [#1063](https://github.com/GluuFederation/oxAuth/issues/1063) Add a config value to allow to share the same subject identifier between two Clients with the same sector identifier
 
 - [#1078](https://github.com/GluuFederation/oxAuth/issues/1078) Check expiration of JWT encoded profile used in passport flows
+
+- [#1052](https://github.com/GluuFederation/oxAuth/issues/1052) Resource Owner Password Credential Grant Interception Script Buggy Logic
 
 - [#1003](https://github.com/GluuFederation/oxAuth/issues/1003) Allow to refresh 'ID Token' with grant_type refresh_token
 
 ### [GluuFederation/oxTrust](https://github.com/GluuFederation/oxTrust/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.7+)
 
 - [#1646](https://github.com/GluuFederation/oxTrust/pull/1646) Add a config value to allow to share the same subject identifier between two Clients with the same sector identifier
+
+- [#1061](https://github.com/GluuFederation/oxTrust/issues/1061) Add search box to attribute inventory
 
 ### [GluuFederation/community-edition-setup](https://github.com/GluuFederation/community-edition-setup/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.7+)
 
