@@ -16,16 +16,15 @@ servers: localhost:1636
 
 Since Gluu's LDAP port, 1636, is not exposed to the Internet, you need to establish a tunnel from your computer to the target Gluu Server's LDAP. 
 
-The below example shows how to connect and access the internal LDAP server:  
+The below example shows how to connect to and access the internal LDAP server:  
 
- - Create tunnel:   
-   - `ssh -L 5901:localhost:1636 root@[ip_of_Gluu_server]`
- - Open LDAP browser        
-   - Create new connection 
+ - Create a tunnel: `ssh -L 5901:localhost:1636 root@[ip_of_Gluu_server]`   
+ - Open an LDAP browser          
+ - Create a new connection   
 ![Screenshot](../img/users/user_management_ldap_browser_create_new_connection.png)       
-   - Perform authentication. 'Password' is the the password of 'admin' user.  
+ - Perform authentication. 'Password' is the the password of 'admin' user.    
 ![Screenshot](../img/users/user_management_ldap_browser_authentication_ldap.png)        
-   - Browse ldap and go to 'ou=people'.           
+ - Browse ldap and go to 'ou=people'.             
 ![Screenshot](../img/users/user_management_ldap_browser_user_info.png)            
 
 
