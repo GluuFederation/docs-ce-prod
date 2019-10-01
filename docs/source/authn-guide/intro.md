@@ -33,6 +33,8 @@ Depending on your requirements, you can set both fields to the same authenticati
 
 In addition, specific apps can request specific forms of authentication using the OpenID Connect `acr_value`. More on that topic [below](#multiple-authentication-mechanisms). 
 
+If a default ACR is not specified, oxAuth will determine it based on enabled scripts and the internal user/password ACR. This internal ACR, `simple_password_auth`, is set to level -1. This means that it has lower priority than any scripts, so oxAuth will use it only if no other authentication method is set.
+
 ## Basic Authentication
 
 Gluu will default to Basic Authentcation, which is username and password authentication against the local Gluu LDAP. If [LDAP synchronization](../user-management/ldap-sync.md) has been configured, an existing backend LDAP server can be used for authentication.
