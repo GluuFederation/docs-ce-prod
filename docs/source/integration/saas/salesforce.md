@@ -13,13 +13,13 @@ By default Salesforce suggest deployers to implement IDP-initiated SSO. The init
   - Wait for some time. Salesforce.com will register this domain name
   for you. As an example we use `test-gluu.my.salesforce.com` here.
 
-  ![image](../img/integration/Salesforce_myDomain.PNG)
+  ![image](../../img/integration/Salesforce_myDomain.png)
 
 * Register your Gluu Server information in Salesforce.com
    * Go to `Identity` > `Single Sign On Settings`
    * Click `New`
 
-  ![image](../img/integration/Salesforce_SSO_setting.PNG)
+  ![image](../../img/integration/Salesforce_SSO_setting.png)
 
    * Now you need to add the information of your Gluu Server here
      * _Name_: Anything, whichever is easier for you to recognize this
@@ -42,11 +42,11 @@ By default Salesforce suggest deployers to implement IDP-initiated SSO. The init
      * _Service Provider Initiated Request Binding_: HTTP-Redirect
      * Here is how our example setup looks like:
      
-     ![image](../img/integration/Salesforce_SSO_setting_2.PNG)
+     ![image](../../img/integration/Salesforce_SSO_setting_2.png)
 
   * After confirmation you should get a page like below
   
-     ![image](../img/integration/Salesforce_SSO_setting_3.PNG)
+     ![image](../../img/integration/Salesforce_SSO_setting_3.png)
      
      ********************************************************************************************
 
@@ -77,7 +77,7 @@ By default Salesforce suggest deployers to implement IDP-initiated SSO. The init
   
   * Here is how it looks like in our example setup:
 
-  ![image](../img/integration/Salesforce_TrustRelationship.PNG)
+  ![image](../../img/integration/Salesforce_TrustRelationship.png)
 
 
 ## Test SSO
@@ -86,7 +86,7 @@ By default Salesforce suggest deployers to implement IDP-initiated SSO. The init
 - Create a sample user. You need to make sure that this user is also available in Gluu Server. 
 - Click `Identity` > `Single Sign On Settings`
 - Enable `Federated Single Sign-On Using SAML`: 
-   - ![image](../img/integration/Salesforce_Enable_Federation_2.PNG)
+   - ![image](../../img/integration/Salesforce_Enable_Federation_2.png)
 - Go to `Company Settings` > `My Domain`
 - Configure `Authentication Configuration`
   - Hit `Edit`
@@ -94,7 +94,7 @@ By default Salesforce suggest deployers to implement IDP-initiated SSO. The init
   - Save it
   - Here is how the `Authentication Configuration` looks like:
   
-    ![image](../img/integration/Salesforce_Authentication_Configuration2.PNG)
+    ![image](../../img/integration/Salesforce_Authentication_Configuration2.png)
 
 !!! Note
      This is an SP-initiated SSO, so it needs to be initiated from Salesforce.com.
