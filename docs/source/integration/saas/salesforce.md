@@ -1,6 +1,6 @@
 # Single Sign-On (SSO) to Salesforce.com
 
-By default Salesforce suggest deployers to implement IDP-initiated SSO. The initialization of IDP-initiated SSO is little bit complex as it requires a big hostname which includes IDP's SSO link as well as SP's login uri. So we prefer SP-initiated SSO and here in this documentation we are presenting a very simple SP-initiated SSO steps with Salesforce and Gluu Server. Still, you can go for IDP-initiated SSO if you prefer. Further documentation is available at the Salesforce.com site.
+By default, Salesforce suggests deployers implement IDP-initiated SSO. The initialization of IDP-initiated SSO is complex and requires a long hostname which includes the IDP's SSO link, as well as the SP's login URI. For this reason, we recommend SP-initiated SSO. This documentation presents a very simple SP-initiated SSO integration with Salesforce and Gluu Server. If necessary, IDP-initiated SSO is also possible. Further documentation is available at the Salesforce.com site.
 
 ## Prepare Salesforce.com
 
