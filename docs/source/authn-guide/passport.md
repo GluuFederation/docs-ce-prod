@@ -364,7 +364,39 @@ Besides common social providers, external OpenID Connect Providers can also be s
 
 Integration of OIDC providers is achieved via `passport-openidconnect` Passport.js strategy which **only** supports the OpenID Connect code flow (not hybrid or implicit). Additionally, comunication with the token endpoint is carried out via POST only. No support for secretless clients (just confidential oauth clients).
 
-If you need to support a second OIDC provider, you have to duplicate the `openidconnect` strategy and proceed similarly as when [adding a new provider](#supporting-a-new-strategy).
+If you need to support a second OP, you have to proceed similarly as when [adding a new provider](#supporting-a-new-strategy). For example, to add "myprovider" you may:
+
+- Add a strategy named *myprovider* and set proper values for `issuer`, `authorizationURL`, `tokenURL`, `userInfoURL`, `clientID`, `clientSecret`, etc.
+- Add a new file `server/auth/myprovider.js` using the same contents of already existing `openidconnect.js`
+- Change the `callbackURL` there, for instance to `/passport/auth/myprovider/callback` and edit `userProfile` section (eg. `provider: "myprovider"` and other fields if required)
+- Configure `routes/index.js`:
+
+```
+var passportOIDC2 = require('../auth/myprovider').passport
+
+...
+router.get('/auth/myprovider/callback',
+        passportOIDC2.authenticate('openidconnect', {
+            failureRedirect: '/passport/login'
+        }),
+        callbackResponse);
+
+router.get('/auth/myprovider/:token',
+	validateToken,
+	passportOIDC2.authenticate('openidconnect'))
+```
+
+- Add code to ConfigureStrategies.js
+
+```
+var OIDCStrategy2 = require('./myprovider')
+
+...
+if (data.passportStrategies.myprovider) {
+    logger.log2('info', 'OIDC details received for my provider')
+    OIDCStrategy2.setCredentials(data.passportStrategies.myprovider)
+}
+```
 
 #### Using an external Gluu Server as OP
 
