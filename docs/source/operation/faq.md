@@ -33,7 +33,7 @@ The `post-setup-add-components.py` script enables you to install the Shibboleth 
           ```
 1. Download the script:     
           ```
-          # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/post-setup-add-components.py
+          # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.7/post-setup-add-components.py
           ```
 1. Run the script with arguments either `-addshib` or `-addpassport`     
           ```
