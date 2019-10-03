@@ -25,21 +25,6 @@ Each SP may require one or more user attributes from the IDP in order to grant a
 
 A NameID or Name Identifier is used to identity the 'subject' of a SAML assertion. The format of nameID can be anything but is typically `emailAddress`.
 
-### oxTrust GUI
-
-Here is how to configure NameID in oxTrust: 
-
- - Create your custom attribute by following [this guide](./attribute.md#custom-attributes). 
- - Go to SAML -> 'Configure Custom NameID'
-![name_id](../img/saml/name_id.png)
-   - 'Enable' `Create NameID`
-   - 'Attribute Base': Attribute value to calculate name Identifier. 
-   - 'Attribute Name': Custom attribute name which we created [earlier here.](https://gluu.org/docs/ce/admin-guide/attribute/#custom-attributes)
-   - 'Attribute Type': Type of name identifier. 
- - Restart `identity` and `idp` services by: 
-   - `service identity stop/start`
-   - `service idp stop/start`
- 
 ### Manual Configuration
 It's also possible to configure `NameID` through configuration file / velocity templates. The template file for `NameID` definitions are located in the `attribute-resolver.xml.vm` file under `/opt/gluu/jetty/identity/conf/shibboleth3/idp/`.
 
