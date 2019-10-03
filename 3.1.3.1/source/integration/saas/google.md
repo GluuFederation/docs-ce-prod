@@ -171,21 +171,7 @@ objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
 ```
 ...........
 ...........
-#foreach( $attribute in $attrParams.attributes )
-#if( ! ($attribute.name.equals('transientId') or $attribute.name.equals('persistentId') or $attribute.name.equals('googlenmid') ) )
-#if($attribute.name.equals('eppnForNIH'))
 
-    <resolver:AttributeDefinition id="eduPersonPrincipalName" xsi:type="ad:Scoped" scope="%{idp.scope}" sourceAttributeID="uid">
-        <resolver:Dependency ref="siteLDAP" />
-        <resolver:AttributeEncoder xsi:type="enc:SAML2ScopedString" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.6" friendlyName="eduPersonPrincipalName" encodeType="false" />
-    </resolver:AttributeDefinition>
-
-#else
-    <resolver:AttributeDefinition xsi:type="ad:Simple" id="$attribute.name" sourceAttributeID="$attribute.name">
-        <resolver:Dependency ref="siteLDAP" />
-        <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="$attrParams.attributeSAML2Strings.get($attribute.name)" friendlyName="$attribute.name" encodeType="false" />
-    </resolver:AttributeDefinition>
-#end
 #end
 #end
 
@@ -199,9 +185,12 @@ objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
                                 nameFormat="urn:oasis:names:tc:SAML:2.0:nameid-format:email" />
 </resolver:AttributeDefinition>
 
-#if( $resovlerParams.size() > 0 )
-.............
-.............
+    <!-- ========================================== -->
+    <!--      Data Connectors                       -->
+    <!-- ========================================== -->
+
+...........
+...........
 ```
  - Restart identity and idp services like below: 
    - service identity stop/start
