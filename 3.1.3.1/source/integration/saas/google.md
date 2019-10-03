@@ -145,8 +145,12 @@ objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
 ...........
 ```
 
-##### Update /opt/gluu/jetty/identity/conf/shibboleth3/idp/saml-nameid.xml.vm to generate SAML 2 NameID content
+##### Update template to generate SAML 2 NameID content
 
+ - File name: saml-nameid.xml.vm
+ - Location: /opt/gluu/jetty/identity/conf/shibboleth3/idp
+ - Configuration:
+ 
 ```
 .......
 .......
