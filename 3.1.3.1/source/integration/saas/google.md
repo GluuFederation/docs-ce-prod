@@ -189,6 +189,12 @@ objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
     - Required attributes: 
        - You need to release the following attribute: mail and googlenmid.
        - Relying Party Configuration: SAML2SSO should be configured. 
+ 
+ After creation the trust relationship looks like:
+ ![Image](../../img/integration/google_sso_tr_looks_like.png)
+ 
+ and in the list it should look something like:
+ ![Image](../../img/integration/google_sso_tr_list.png)
 
 ```
         * includeAttributeStatement: check
