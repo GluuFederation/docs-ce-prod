@@ -207,6 +207,19 @@ objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
    - service identity stop/start
    - service idp stop/start
 
+* Update /opt/shibboleth-idp/conf/saml-nameid.xml to generate SAML 2 NameID content
+
+```
+    <bean parent="shibboleth.SAML2AttributeSourcedGenerator" 
+          p:format="urn:oasis:names:tc:SAML:2.0:nameid-format:email"
+          p:attributeSourceIds="#{ {'customTest'} }"/>
+```
+* Restart identity and idp services using below command
+
+`service identity/idp stop`
+
+`service identity/idp start`
+
 ##### Create custom attribute with oxTrust
 
 'Register' this 'googlenmid' in your Gluu Server by following [this](https://gluu.org/docs/ce/3.1.2/admin-guide/attribute/#add-the-attribute-to-oxtrust) doc. 
