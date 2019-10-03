@@ -208,7 +208,7 @@ objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
 
 ##### Create custom attribute with oxTrust
 
-'Register' this 'googlenmid' in your Gluu Server by following [this](https://gluu.org/docs/ce/3.1.2/admin-guide/attribute/#add-the-attribute-to-oxtrust) doc. 
+'Register' this 'googlenmid' in your Gluu Server by following [this](https://gluu.org/docs/ce/3.1.3.1/admin-guide/attribute/#add-the-attribute-to-oxtrust) doc. 
 
 ### Create a SAML Trust Relationship
 - Create Trust Relationship for Google Apps: 
