@@ -86,54 +86,6 @@ Got the metadata? Great, we are ready to move forward.
 
 We are going to use 'googlenmid' as custom nameID which is 'email' Type and 'mail' attribute value will be this nameID's source attribute. 
 
-
-#### Configure Shibboleth to support `unspecified` nameId format required by G-Suite
-
-The `unspecified` mean the SP don't care about the nameID format. But in our case we know that Gsuite require an email(`user@yourdomain`) address. This is why we are going to configure shibboleth to support `email`.
-
-Edit the file `/opt/gluu/jetty/identity/conf/shibboleth3/idp/relying-party.xml.vm` and set the namedIDFormatPrecedence to `urn:oasis:names:tc:SAML:2.0:nameid-format:email`.
-
-Configuration should be something like below: 
-
-```
-....
-....
-#foreach( $trustRelationship in $trustParams.trusts )
-
-    <!-- TrustRelationship -->
-        #set ($profileConfigMap = $trustRelationship.profileConfigurations)
-        <!--#if(!$profileConfigMap.isEmpty())-->
-
-        #set($entityId = $trustParams.trustEntityIds.get($trustRelationship.inum).get(0))
-        #set($relyingPartyId = $StringHelper.removePunctuation($trustRelationship.inum))
-
-        <bean parent="RelyingPartyByName" id="$relyingPartyId" c:relyingPartyIds="$entityId">
-            <property name="profileConfigurations">
-                <list>
-            #if($trustRelationship.specificRelyingPartyConfig and (not $trustRelationship.isFederation()))
-                #foreach ($mapEntry in $profileConfigMap.entrySet())
-
-                    #set($profileConfig = $mapEntry.value)
-
-                    #if($mapEntry.key == "SAML2SSO")
-
-                    <bean parent="SAML2.SSO"
-                          p:includeAttributeStatement="$profileConfig.includeAttributeStatement"
-                          p:assertionLifetime="$profileConfig.assertionLifetime"
-                          p:nameIDFormatPrecedence="urn:oasis:names:tc:SAML:2.0:nameid-format:email"
-                        #if ($profileConfig.signResponses == 'conditional')
-                          p:signResponses-ref="SignNoIntegrity"
-                          ........
-                          ........
-
-```
-
-Restart `identity` and `idp` services with commands like: 
-
- - service identity stop/start
- - service idp stop/start
- 
-
 #### Configure custom nameID named 'googlenmid' 
 
 ##### Add 'googlenmid' in LDAP schema
@@ -193,12 +145,28 @@ objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
 ...........
 ```
 
-* Update /opt/shibboleth-idp/conf/saml-nameid.xml to generate SAML 2 NameID content
+##### Update /opt/gluu/jetty/identity/conf/shibboleth3/idp/saml-nameid.xml.vm to generate SAML 2 NameID content
 
 ```
-    <bean parent="shibboleth.SAML2AttributeSourcedGenerator" 
+.......
+.......
+        <!-- Uncommenting this bean requires configuration in saml-nameid.properties. -->
+        <!--
+        <ref bean="shibboleth.SAML2PersistentGenerator" />
+        -->
+        <bean parent="shibboleth.SAML2AttributeSourcedGenerator" 
           p:format="urn:oasis:names:tc:SAML:2.0:nameid-format:email"
           p:attributeSourceIds="#{ {'googlenmid'} }"/>
+
+        <!--
+        <bean parent="shibboleth.SAML2AttributeSourcedGenerator"
+            p:format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
+            p:attributeSourceIds="#{ {'mail'} }" />
+        -->
+
+    </util:list>
+.......
+.......
 ```
 
  - Restart identity and idp services like below: 
