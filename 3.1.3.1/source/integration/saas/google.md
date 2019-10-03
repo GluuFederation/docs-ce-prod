@@ -212,7 +212,7 @@ objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
 ```
     <bean parent="shibboleth.SAML2AttributeSourcedGenerator" 
           p:format="urn:oasis:names:tc:SAML:2.0:nameid-format:email"
-          p:attributeSourceIds="#{ {'customTest'} }"/>
+          p:attributeSourceIds="#{ {'googlenmid'} }"/>
 ```
 * Restart identity and idp services using below command
 
