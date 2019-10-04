@@ -1,4 +1,4 @@
-# Logout from Gluu Server
+# Logout
 
 ## OpenID Connect Single Log Out (SLO)
 
@@ -26,7 +26,7 @@ The workflow for single logout for two applications using OpenID Connect Front-C
 
 There are a few important points to note:
 
-1. `post_logout_redirect_uri` is not mandatory in the [OpenID Connect Session Management](https://openid.net/specs/openid-connect-session-1_0.html), but the registration specification says `The value MUST have been previously registered with the OP`. We have dual behavior description directly in specification. `oxauth` ends session successfully (if session is present in OP) independently from whether `post_logout_redirect_uri` is valid or not. If it's not valid (or not provided) `oxauth` will NOT perform redirect. If redirect is required, `post_logout_redirect_uri` MUST be provided. If it is not provided then the server returns 400 with message `Session is ended successfully but redirect to post logout redirect uri is not performed because it fails validation`, and error `post_logout_uri_not_associated_with_client`. `oxauth` considers end session without redirect as not proper behavior, however it's still up to each RP whether or not to use a redirect.
+1. `post_logout_redirect_uri` is not mandatory in the [OpenID Connect Session Management](https://openid.net/specs/openid-connect-session-1_0.html) specification, but the spec also says `The value MUST have been previously registered with the OP`. We have dual behavior description directly in specification. oxAuth ends session successfully (if session is present in OP) independently from whether `post_logout_redirect_uri` is valid or not. If it's not valid (or not provided) `oxauth` will NOT perform redirect. If redirect is required, `post_logout_redirect_uri` MUST be provided. If it is not provided then the server returns 400 with message `Session is ended successfully but redirect to post logout redirect uri is not performed because it fails validation`, and error `post_logout_uri_not_associated_with_client`. oxAuth considers end session without redirect as not proper behavior, however it's still up to each RP whether or not to use a redirect.
 
 1. `id_token_hint` and `session_id` parameters are optional. Therefore OP will end session successfully if these parameters are missed. However from other side if RP included them in request OP validates them and if any of those are invalid OP returns 400 (Bad Request) http code.
 
