@@ -25,14 +25,15 @@ This guide will follow these steps:
 ## Register an openId Client on the Gluu Server 
 
 You can follow [this](https://gluu.org/docs/ce/admin-guide/openid-connect/#client-registration-configuration) documentation to add an OpenID client on the Gluu Server. The following are the required fields and their respective values:
-   - Client Name: We use `AppAuthAndroidApp`, you can use whatever name you want here.
-   - Application Type: `Native` or `Web`
-   - Pre-Authorization: `False`
-   - Persist client Authorizations: `True`
-   - Authentication method for the Token Endpoint: `none`
-   - Redirect Login URIs: make sure the value provided here is a hierarchical and absolute URI. For example, if you declare a custom scheme, `myscheme`, and host, `client.example.com`, then the redirect URL will look like: `myscheme://client.example.com`. We use `appscheme://client.example.com` for our testing purpose
-   - Scopes: `openid`,`profile`,`email`
-   - Grant types: `authorization_code`
+
+   - Client Name: We use `AppAuthAndroidApp`, you can use whatever name you want here.  
+   - Application Type: `Native` or `Web`  
+   - Pre-Authorization: `False`  
+   - Persist client Authorizations: `True`  
+   - Authentication method for the Token Endpoint: `none`  
+   - Redirect Login URIs: make sure the value provided here is a hierarchical and absolute URI. For example, if you declare a custom scheme, `myscheme`, and host, `client.example.com`, then the redirect URL will look like: `myscheme://client.example.com`. We use `appscheme://client.example.com` for our testing purpose  
+   - Scopes: `openid`,`profile`,`email`  
+   - Grant types: `authorization_code`  
 
 !!! Note
     Take note of the `client_id` value after the registration. That value is required in the Android App Side and looks like this `@!ACCF.2BA5.0292.66A5!0001!6990.4C6C!0008!36B8.5CE5.24E2.91AD`.

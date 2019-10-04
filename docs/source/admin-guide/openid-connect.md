@@ -313,6 +313,8 @@ There are two client properties:
  - `aud` - Service-specific string identifier or list of string identifiers representing the intended audience for this token, as defined in JWT [RFC7519].     
  - `iss` - String representing the issuer of this token, as defined in JWT [RFC7519].     
 
+<!--
+
 ### Token Binding
 
 Gluu now supports Token Binding, per the [specification](https://openid.net/specs/openid-connect-token-bound-authentication-1_0.html).  
@@ -359,3 +361,5 @@ https://www.chromestatus.com/feature/5097603234529280
 
 !!! Note
     The [mod_auth_openidc Apache module](https://github.com/zmartzone/mod_auth_openidc) supports Token Binding. 
+    
+-->    

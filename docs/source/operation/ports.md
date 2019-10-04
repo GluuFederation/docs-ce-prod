@@ -13,7 +13,7 @@ The following ports are used by internal Gluu Server applications (i.e. oxAuth, 
 |8084| Asimba|
 
 !!! Note
-    If Gluu is being clusterered, more ports must be accessible from the clustered nodes. Follow the [cluster documentation](../installation-guide/cluster.md). 
+    If Gluu is being clustered, more ports must be accessible from the clustered nodes. Follow the [cluster documentation](../installation-guide/cluster.md). 
 
 ## Ports open to the Internet
 

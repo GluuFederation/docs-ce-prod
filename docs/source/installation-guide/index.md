@@ -1,15 +1,12 @@
 # Preparing VM for Gluu Server Installation
 ## Overview
-
-Thank you for your interest in the Gluu Server! 
-
-This document will provide instructions for preparing a VM  for a standard Gluu Server deployment (i.e. **not** Docker). Once the server is ready, move on to the [installation instructions](../installation-guide/install.md). 
+This document provides instructions for preparing a VM for a standard Gluu Server deployment. Once the server is ready, move on to the [installation instructions](../installation-guide/install.md). 
 
 Good luck and welcome to the community!
 
-!!! Note
-    To learn more about software licenses, use cases, and more, visit the [docs homepage](../index.md)    
-    
+!!! Note 
+    Prefer a quick start Docker container? Check out [Gluu Server 4.0 Beta Test Drive](https://gluu.org/docs/ce/4.0/installation-guide/test-drive/)
+
 ## System Requirements
 
 Setup a server or VM with the following **minimum** requirements: 

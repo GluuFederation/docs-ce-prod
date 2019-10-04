@@ -9,7 +9,7 @@ By using a Gluu Server as your IDP you can bypass the process of storing passwor
     
 ## Requirements
 
-- A Gluu Server with the Shibboleth IDP installed; Gluu Server v3.1.2. 
+- A Gluu Server with the Shibboleth IDP installed  
 - An O365 account with administrative privilege.
 - ADFS which will act as 'Service Provider' to Gluu Server. O365 will be connected to ADFS. 
 

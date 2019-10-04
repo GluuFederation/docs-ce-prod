@@ -1,16 +1,13 @@
 
-# Manual Gluu Server Clustering
+# Clustering for HA
 
 ## Introduction
-If you require high availability (HA) or failover, follow the instructions below to manually configure multi-master replication (MMR) across multiple Gluu Servers.
+The tutorial below offers detailed steps for configuring high availability (HA) across multiple instances of the Gluu Server. 
 
-!!! Note
-    To simplify setup and ongoing operations of Gluu in an HA environment, we offer a tool called [Cluster Manager](https://gluu.org/docs/cm) with the [Gluu VIP Subscription](https://gluu.org/pricing#vip).
-
+Clustering for production scenarios is not a simple task. Individual environments should *always* be benchmarked, tested, and documented in order to ensure organizational requirements for uptime are met. 
 
 ## Concept
-
-Clustering uses OpenDJ replication and configuration changes to greatly improve Gluu Server availability, via a proxy.
+The web tier of the Gluu Server (i.e. oxAuth) is stateless and can be scaled horizontally. The local LDAP server included in all Gluu Server deployments (i.e. Gluu LDAP) supports multi-master replication (MMR). Any instance can be written to and changes are propagated to other instances.
 
 ![cluster manager diagram](../img/cluster/cluster-manager-diagram.png)
 
@@ -43,8 +40,6 @@ All server nodes will have the same hostname
 Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:   
 
 - A minimum of four (4) servers or VMs: two (2) for Gluu Servers, one (1) for load balancing (in our example, NGINX), and one for redis.
-
-- A separate NGINX server is necessary because replicating a Gluu server to a different hostname breaks the functionality of the Gluu web page when using a hostname other than what is in the certificates. For example, if you use cluster.example.com as the host and copy that to a second server (e.g. 138.197.65.243), the process of accessing the site on cluster.example.com, even with replication, will fail authentication due to a hostname conflict. So if node 1 fails, you won't be able to use Gluu Server effectively.
 
 - To create the following instructions we used Ubuntu 16.04 ( Ubuntu 18.04 is supported)     
 
@@ -150,7 +145,6 @@ sysemProfile=/etc/profile
 ldap_setup_properties=./templates/opendj-setup.properties
 default_openid_jks_dn_name=CN\=oxAuth CA Certificates
 oxtrust_config_json=./output/oxtrust-config.json
-openldapTLSCACert=/etc/certs/openldap.pem
 installJce=True
 ldapPassFn=/home/ldap/.pw
 ...
@@ -892,3 +886,6 @@ service gluu-server-3.1.6 restart
 ```
 
 - Now, the administrator web UI and oxAuth have some failover redundancy. There is obviously more configuration necessary on the network layer of the topology for true HA failover, but that is outside of the scope of this documentation.          
+
+## Support
+Clustering is outside the scope of free community support. For more details about supported options for HA, [schedule a call](https://gluu.org/booking). 

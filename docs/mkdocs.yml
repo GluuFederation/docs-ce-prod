@@ -1,19 +1,53 @@
-site_name: Gluu Docs
+# Project information
+site_name: Gluu Server 3.1.6 Docs
 site_description: Documentation for Gluu Server Community Edition
-site_favicon: 'favicon.ico'
+
+# Copyright
 copyright: Copyright &copy; 2019, Gluu, Inc.
+
+# Repository
 docs_dir: source
-repo_url: https://github.com/GluuFederation/docs-ce-prod/tree/3.1.6/docs
-theme_dir: theme/material
+repo_name: GluuFederation/docs-ce-prod
+repo_url: https://github.com/GluuFederation/docs-ce-prod/
+edit_uri: edit/3.1.6/docs/source
+
+# Configuration
+theme: 
+    name: material
+    custom_dir: 'theme'
+    palette:
+        primary: 'green'
+        accent: 'green'
+    logo: 'gluu.jpg'
+    favicon: 'favicon.ico'
 extra:
     version: '3.1.6'
-    logo: 'gluu.png'
+    
+# Extensions
 markdown_extensions:
 - admonition
 - toc:
      permalink: '#'
+- codehilite     
 - pymdownx.superfences
-pages:
+
+# Navigation
+nav:
+- 'Versions':
+    - '3.1.6': 'https://gluu.org/docs/ce/3.1.6/'
+    - '4.0 Beta': 'https://gluu.org/docs/ce/4.0/'
+    - '3.1.5': 'https://gluu.org/docs/ce/3.1.5/'
+    - '3.1.4': 'https://gluu.org/docs/ce/3.1.4/'
+    - '3.1.3.1': 'https://gluu.org/docs/ce/3.1.3.1/'
+    - '3.1.3': 'https://gluu.org/docs/ce/3.1.3/'
+    - '3.1.2': 'https://gluu.org/docs/ce/3.1.2/'
+    - '3.1.1': 'https://gluu.org/docs/ce/3.1.1/'
+    - '3.1.0': 'https://gluu.org/docs/ce/3.1.0/'
+    - '3.0.2': 'https://gluu.org/docs/ce/3.0.2/'
+    - '3.0.1': 'https://gluu.org/docs/ce/3.0.1/'
+    - '2.4.4': 'https://gluu.org/docs/ce/2.4.4/'
+- ' ': 'https://gluu.org/docs'
+- ' ': 'https://gluu.org/docs'
 - Home: 'index.md'
 - Release Notes: 'release-notes/index.md'
 - Whats new in v3: '3.1.x-intro.md'
@@ -31,7 +65,6 @@ pages:
             - 'User Registration': 'user-management/user-registration.md'
             - 'SCIM 2.0 User Management': 'user-management/scim2.md'
             - 'SCIM new features': 'user-management/scim-new-features.md'
-            - 'Replacing Expired JKS Files': 'user-management/replace-expired-jks-scim.md'
         - User Authentication:
             - 'Introduction': 'authn-guide/intro.md'
             - 'Basic Authentication': 'authn-guide/basic.md'
@@ -83,7 +116,8 @@ pages:
             - 'GitHub Enterprise': 'integration/saas/github-enterprise.md'
             - 'Cisco WebEx': 'integration/saas/webex.md'
             - 'Amazon Web Services (AWS)': 'integration/saas/aws.md'
-            - 'TestShib2': 'integration/saas/testShib2.md'
+            - 'Rocket.Chat': 'integration/saas/rocketchat.md'
+            - 'SAMLTest.id': 'integration/saas/saml_test_id.md'
 - Reference:
         - Gluu API Guide:
             - 'Introspection & Custom ID Generation': 'api-guide/api.md'
@@ -108,12 +142,13 @@ pages:
         - 'Log Management' : 'operation/logs.md'
         - 'Customize Public Pages': 'operation/custom-design.md'
         - 'Change IP Address': 'operation/changeip.md'
-        #- 'Find your Gluu Version': 'operation/find-gluu-version.md'
+        - 'Replacing Expired JKS Files': 'operation/replace-expired-jks-scim.md'
 - Developer Guide:
-        - 'Build oxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'
+#        - 'Build oxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'
         - 'Localization': 'developer-guide/localization.md'
         - 'Script Debugging': 'developer-guide/script-debugging.md'
 - Tutorials:
         - 'Inbound SAML with Passport': 'tutorials/passport-inbound-flow.md'
         - 'Forgot PW': 'tutorials/forgot-pw.md'
+        - 'Kafka Logging': 'tutorials/kafka.md'
 - FAQ & Troubleshooting: 'operation/faq.md'

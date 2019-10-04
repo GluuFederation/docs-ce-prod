@@ -249,6 +249,14 @@ Follow the guidelines below to install the Demo app in your Gluu Server host:
     - Enter `preselectedExternalProvider`
     - Save the configuration
 
+1. Parameterize the Passport custom script to read the custom parameter
+
+    - Navigate to `Configuration` > `Custom scripts`   
+    - In `Person Authentication` tab, expand the script labelled `passport_saml`
+    - Click `Add new property` and enter `authz_req_param_provider` in the left field      
+    - In the right field, enter the name of the custom parameter (e.g. `preselectedExternalProvider`)
+    - Press `Update` at the bottom
+
 #### Console configuration steps
 
 1. Login to Gluu chroot container.

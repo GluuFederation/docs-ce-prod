@@ -1,19 +1,16 @@
-# CORS Filter in Gluu CE
+# CORS Filter 
 
-## CORS Filter Overview
+## Overview
 
-CORS Filter is an implementation of W3C's CORS  (Cross-Origin Resource Sharing) [specification](http://www.w3.org/TR/cors/).
-CORS is a mechanism which enables cross-origin requests.
-CORS Filter work by adding required `Access-Control-*` headers to HttpServletResponse object. 
-The filter also protects against HTTP response splitting. If request is invalid, or is not permitted, then request is rejected with HTTP status code 403 (Forbidden). 
-A flowchart that demonstrates request processing by this filter.
+CORS Filter is an implementation of the [W3C's Cross-Origin Resource Sharing (CORS) specification](http://www.w3.org/TR/cors/).
+
+The CORS Filter works by adding required `Access-Control-*` headers to the `HttpServletResponse` object. The filter also protects against HTTP response splitting. If a request is invalid or not permitted, the request is rejected with HTTP status code 403 (Forbidden). 
+
+This flowchart demonstrates request processing by this filter:
+
 ![flowchart](../img/admin-guide/cors/cors-flowchart.png) 
 
-The minimal configuration required to use CORS Filter is as below which is 
-already added to the web.xml in oxauth.war. Below is only for reference and no additional 
-action is required, and configuration steps are defined below. CORS Filter reads the 
-configurations from LDAP and therefore configuration can be done in oxTrust UI directly.
-Filter Name for CORS Filter in Gluu CE will be `org.xdi.oxauth.filter.CorsFilter`.
+The minimal configuration required to use the CORS Filter is shown below, and is already added to the `web.xml` in `oxauth.war`. The filter name is `org.xdi.oxauth.filter.CorsFilter`.
 
 ```
     <filter>
@@ -34,25 +31,26 @@ Filter Name for CORS Filter in Gluu CE will be `org.xdi.oxauth.filter.CorsFilter
     </filter-mapping>
 ```
 
-## Configuring CORS Filter in oxTrust UI
+## Configure CORS
 
-CORS can be configured with ease using Gluu CE oxTrust UI. Below are the steps 
+CORS can be configured in oxTrust. Follow these steps: 
 
-1. Login to oxTrust UI
-2. Click on `Configuration`
-3. Click on `JSON Configuration` 
-4. Click the `oxAuth Configuration` tab and scroll down to find `corsConfigurationFilters`
-5. If `corsConfigurationFilters` is hidden or collapsed, click on the arrow to be expand.
+1. Login to oxTrust
+1. Navigate to `Configuration` > `JSON Configuration` > `oxAuth Configuration`
+1. Scroll down to find `corsConfigurationFilters`
+1. If `corsConfigurationFilters` is hidden or collapsed, click the arrow to expand.
 
     ![cors enable](../img/admin-guide/cors/cors-enable.png)
 
-6. This will bring up the cors Configuration Filters parameters, as depicted below
+1. This will display the CORS Configuration Filters parameters, as shown below:
 
     ![cors](../img/admin-guide/cors/cors.png)
 
-7. Once all the parameters are defined and configured, click on the `save` button at the end of the page.
+1. Defined and configure the parameters
+1. Click `save` at the bottom of the page.
+1. Restart the `oxauth` service with `service oxauth restart`.
 
-### Parameters supported by CORS Filters
+### Supported Parameters
 
 CORS Filter supports following initialization parameters:
 
@@ -63,7 +61,7 @@ CORS Filter supports following initialization parameters:
         </tr>
         <tr>
             <th>corsAllowedOrigins</th>
-            <td>AA list of origins that are allowed to access the resource. 
+            <td>A list of origins that are allowed to access the resource. 
             A <mark>*</mark> can be specified to enable access to resource from any origin. 
             Otherwise, a whitelist of comma separated origins can be provided. 
             Eg:  <mark>http://www.w3.org, https://www.apache.org. </mark>

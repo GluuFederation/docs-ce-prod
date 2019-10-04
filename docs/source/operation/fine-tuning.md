@@ -1,20 +1,19 @@
-# Fine Tuning Gluu Server
-Gluu Server has a stateless architecture and scales quite easily. However to achieve high-performance, the server must be tuned accordingly.
+# Performance Tuning  
 
-Tuning consists of:
+The Gluu Server has a stateless architecture and scales quite well out-of-the-box. However, to achieve maximum performance, the following server components must be tuned accordingly: 
 
-- OS Tuning   
+- Operating System (OS)    
 - Memory and infrastructure   
-- LDAP Server (Gluu OpenDJ)      
-- Web Application Container (Tomcat, Jetty, JBoss)   
-- Gluu Server configuration Tuning    
+- LDAP        
+- Web application container (Jetty, JBoss)   
+- Gluu Server configurations    
 
-## OS Tunning
+## Operating System
 
-CE is designed to work on Linux, therefore it's recommended to tune the following:
+The Gluu Server is designed for Linux. Therefore, the following can be tuned as needed:   
 
 !!! Note
-    Most of below configs can be tuned in `/etc/security/limits.conf`, however it may depend on OS. 
+    Most configurations below can be tuned in `/etc/security/limits.conf`, however it may depend on OS. 
 
 1. Increase TCP Buffer Sizes
    ```
@@ -39,7 +38,6 @@ CE is designed to work on Linux, therefore it's recommended to tune the followin
    ```
 
 1. Increase file descriptors
-
    ```
    * soft nofile 65536
    * hard nofile 262144
@@ -47,30 +45,37 @@ CE is designed to work on Linux, therefore it's recommended to tune the followin
 
 ## Memory and infrastructure
 
-Make sure there is enough memory for each Gluu Server component (e.g. LDAP Server, Jetty). For high load systems, it can be helpful to have each component on separate machine.  
+Make sure there is enough memory for each Gluu Server component (e.g. LDAP, Jetty). For high load systems, it can be helpful to have each component on separate machine.   
 
-## LDAP Server
+## LDAP 
 
 !!! Note
-    For convenience all samples stick to Gluu OpenDJ, however general recommendations are the same for other LDAP Servers.
+    For convenience, all samples are for Gluu OpenDJ. However, these are general recommendations that should apply for other LDAP Servers too.
 
-1. Maximum number of allowed connections: If there are not enough connections to serve the client, a connection is
-put "on hold" and waits. To avoid delays it's recommended to provide expected maximum allowed connections, e.g. 
+1. Maximum allowed connections: If there are not enough connections to serve the client, a connection is put "on hold". To avoid delays, provide the expected maximum allowed connections, e.g.:
     ```
     max-allowed-client-connections=1000
     ```
-1. Provide enough resources to LDAP Server: For example OpenDJ uses JVM for running, for high performance it's
-    recommended to give enough memory via JVM system properties.
-1. Allow LDAP Server use cache as much as possible.
+    
+1. LDAP Server resources: Make sure to provide enough resources to LDAP. For example, OpenDJ uses JVM for running. For high performance, make sure enough memory is provided via the JVM system properties.
+    
+1. Use cache as much as possible. For example: 
    ```
    dsconfig -n set-backend-prop --backend-name userRoot --set db-cache-percent:50
    ```
 
+1. Additional LDAP performance resources can be found in the dollowing docs:    
+
+    - [OpenDJ performance tuning](https://backstage.forgerock.com/#!/docs/opendj/2.6.0/admin-guide/chap-tuning)     
+    - [OpenDJ global configuration](http://opendj.forgerock.org/opendj-server/configref/global.html#max-allowed-client-connections)      
+
+
 ## Jetty
 
-By default jetty task queue is not limited. If it's expected get high load then it make sense to limit it. Also configuration may depend for each particular example.
+By default, jetty's task queue is unlimited. If load is expected to be high, limit the task queue. Configuration may vary for each particular scenario.
 
 Example configuration:
+
 ```
 <Configure id="Server" class="org.eclipse.jetty.server.Server">
     <Set name="ThreadPool">
@@ -88,44 +93,15 @@ Example configuration:
     </Set>
 </Configure>
 ```
-<!--
-## Apache Tomcat
 
-1. Set maximum for parallel requests. Connector parameters in `server.xml`:
-      - maxThreads="10000"
-      - maxConnections="10000"
-     
-1. Set memory settings via JAVA_OPTS    
-    ```
-    set "JAVA_OPTS=-Xms1456m -Xmx7512m -XX:MaxPermSize=256m -XX:+DisableExplicitGC"
-    ```
-1. Operating time: Check via Tomcat monitor whether requests are handled or just "hangs" because there are not enough resources. Here is sample when processing time increase due to lack of resources:
+## Gluu Server configurations
 
-   ![tomcatStatus](../img/admin-guide/fine-tuning/tomcatStatus.png)
-   
--->
+- oxauth-ldap.properties: Increase the LDAP connection pool size, e.g.: 
 
-## Gluu Server
+        ```
+        maxconnections: 1000
+        ```
 
-- oxauth-ldap.properties - Increase ldap connection pool size
-```
-     maxconnections: 1000
-```
-
-- Make sure logging is completely OFF. Logging blocks threads and have very big impact on performance. First test CE with low load and then for high load turn off logging completely.
-In `Configuration -> JSON Configuration -> oxAuth Configuration` set `loggingLevel: OFF`. Check log files whether logging is really off.
+- Make sure logging is turned OFF. Logging blocks threads and has a significant impact on performance. First test with low load, then test for high load with logging completely off. To turn off logging, in oxTrust navigate to `Configuration -> JSON Configuration -> oxAuth Configuration` and set `loggingLevel:` to `OFF`. Check the log files to confirm logging is off.
  
-- Turn off metrics. Login to oxTrust and in `Configuration -> JSON Configuration -> oxAuth Configuration` set `metricReporterEnabled: false`.
-
-## Gluu Server Benchmark
-
-Single CE node performance depends on cache provider. 
-
-- IN MEMORY - average performance 120req/s 
-- MEMCACHED - 120 req/s with thread count lower 100. If load with more then 100 threads, rejections start to appear. ~120 threads - ~1% of rejections, with ~400 threads - 20% of rejections.
-- REDIS - 130 req/s, around 1% of errors (20000 requests processed). The nature of errors is under investigation, we will update this page once we figure out the reason of this 1% of errors.
-
-# Useful Links
-
-- [OpenDJ Performance Tuning](https://backstage.forgerock.com/#!/docs/opendj/2.6.0/admin-guide/chap-tuning)
-- [OpenDJ Global configuration](http://opendj.forgerock.org/opendj-server/configref/global.html#max-allowed-client-connections)
+- Turn off metrics. Gathering metrics also impacts performance. To turn metrics off, in oxTrust navigate to: `Configuration -> JSON Configuration -> oxAuth Configuration`, and set `metricReporterEnabled:` to `false`.

@@ -333,7 +333,7 @@ Please note that SCIM will only allow you to create users with HTTP POST verb.
 
 One of the simplest ways to test retrieval is querying all information about a single user. Check in your LDAP the `inum` for Average Joe and do the following request with `curl` passing, as usual, your access token in the headers:
 
-`curl -G -H 'Authorization: Bearer ...access token...' 'https://<host-name>/identity/seam/resource/restv1/scim/v2/Users/<user-inum>'`
+`curl -G -H 'Authorization: Bearer ...access token...' 'https://<host-name>/identity/restv1/scim/v2/Users/<user-inum>'`
 
 !!! Note
     In the Gluu Server, `inums` are long strings consisting of alphanumeric characters and typically start with @!, include these two characters as well. Note that the URL was surrounded with single quotes: bang characters might be misleading to your command line interpreter.
@@ -557,7 +557,7 @@ No input file is used in this case. A delete request could be the following:
 
 ```
 $ curl -X DELETE -H 'Authorization: Bearer ...access token...'
-        'https://<host-name>/identity/seam/resource/restv1/scim/v2/Users/<user-inum>'
+        'https://<host-name>/identity/restv1/scim/v2/Users/<user-inum>'
 ```
 
 Use the `inum` of our dummy user, Average Joe.
@@ -975,6 +975,42 @@ Once you submit this form, your attribute will be part of the User Extension. Yo
 
 In the JSON response, your new added attribute will appear.
 
+### Handling Custom Attributes
+
+The following is an example of a user resource with custom attributes set:
+
+```
+{
+  "schemas": [
+    "urn:ietf:params:scim:schemas:core:2.0:User",
+    "urn:ietf:params:scim:schemas:extension:gluu:2.0:User"
+  ],
+  "urn:ietf:params:scim:schemas:extension:gluu:2.0:User": {
+    "customAttr1": "String single-valued",
+    "customAttr2": [
+      "2016-02-23T15:35:22Z"
+    ],
+    "customAttr3": 3000,
+    ...
+  },
+  ...
+  core attributes here
+  ...
+}
+```
+
+Thus, a similar syntax should be used in order to supply values for modifications in the case of update (PUT) operations. On the other hand this [file](https://github.com/GluuFederation/SCIM-Client/blob/master/src/test/resources/single/patch/user_patch_ext.json) contains an example of patches being performed upon custom attributes.
+
+A retrieval using a filter where extended attributes are involved may look like:
+
+```
+$ curl -G -H 'Authorization: Bearer ...access token...'  -o output.json 
+      --data-urlencode 'filter=urn:ietf:params:scim:schemas:extension:gluu:2.0:User:customAttr3 gt 2000' 
+      https://<host-name>/identity/restv1/scim/v2/Users
+```
+
+which queries all users whose extended attribute `customAttr3` is greater than 2000 (this accounts the attribute was properly configured as numeric). Note how the attribute is prefixed with the schema URN of the user extension followed by a colon.
+
 ### Handling Custom Attributes in SCIM-Client
 
 To access the name/values of custom attributes please use the `getCustomAttributes` method of your SCIM resource and pass the `URI` of the extension that these custom attributes are associated to. Likewise, to set the values for your custom attributes, call the `addCustomAttributes` and pass a `CustomAttributes` instance. 
@@ -1114,7 +1150,7 @@ operating system is **iOS**. In a setting of test mode, we may issue a query lik
 
 ```
 curl -G -H 'Authorization: Bearer ...access token...' --data-urlencode 'filter=deviceData co "ios"' 
--d count=10 -o output.json https://<host-name>/identity/seam/resource/restv1/scim/v2/FidoDevices/
+-d count=10 -o output.json https://<host-name>/identity/restv1/scim/v2/FidoDevices/
 ```
 
 Your result list might look like this:

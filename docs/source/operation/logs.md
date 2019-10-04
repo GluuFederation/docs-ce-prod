@@ -1,18 +1,23 @@
 # Gluu Server Logs
 
+## Overview
+
 When it comes to troubleshooting issues in the Gluu Server-from service hiccups to outages-logs are the best place to start. 
 
 The Gluu Server administrator can investigate logs from the oxTrust [View Logs](../admin-guide/oxtrust-ui.md#view-log-file) feature or directly with SSH access to the Gluu-Server container. 
 
 ## View Log File
 
-The log files configured in the earlier section can be viewed using the **View log file** feature. This feature can be accessed through the configuration menu using **Configuration --> View Log File**.
+Previously configured log files can be viewed using the **View log file** feature. This feature can be accessed through the configuration menu using **Configuration --> View Log File**.
 
 ![view-log](../img/admin-guide/logs/view-log.png)
 
 The **Display last lines count** field contains the lines that will be displayed in the Web GUI. If the field contains the value **400**, then the Gluu Server will show the last 400 lines of the log in the GUI. The screenshot below shows an according example.
 
 ![tail-log](../img/admin-guide/logs/tail-log.png)
+
+!!! Note  
+    Logs can be set up for [Apache Kafka log aggregation](https://kafka.apache.org) using [this tutorial](../tutorials/kafka.md)
 
 ## Log Levels
 
@@ -98,7 +103,7 @@ The following files define the log levels in Gluu Server. Please edit the file w
 Please restart the specific service after any change in log levels to allow the changes to take effect. Use the following command to restart Tomcat:
 
 !!! Note
-    It is recommended to use OxTrust UI to change the logging levels.
+    It is recommended to use oxTrust UI to change the logging levels.
     
 ## Setup Logs
 The setup logs are stored inside the `/install/community-edition-setup/` folder. There are two logs available, one detailing the setup process and the other documenting the errors:
@@ -133,7 +138,6 @@ The available log files for Gluu Server Community Edition inside the `chroot` en
 |_/opt/gluu/jetty/identity/logs_/**oxtrust_cache_refresh.log**| Logs events relating to cache refresh|
 |_/opt/gluu/jetty/identity/logs_/**oxtrust_velocity.log** | Log events related to the Apache Velocity template engine |
 | _/opt/gluu/jetty/identity/logs_/**oxtrust_cleaner.log** | Logs information about the oxTrust clean-up services |
-|_/var/log/openldap_/**ldap.log**|OpenLDAP Log, contains everything related to OpenLDAP|
 
 ### oxAuth logs
 The oxAuth logs contain the information about oxAuth authentication process and errors.  
@@ -208,17 +212,39 @@ oxTrust configured to generate and view client_id and/or client_name logs. To co
 
 - For client_name to be populated and viewed in the logs set `logClientNameOnClientAuthentication` to `true`
 
-#### System logs 
+#### System log location
+
+These logs contain global system messages.
+
 - For Ubuntu: `/var/log/syslog`
 - For RPM based systems: `/var/log/messages`
 
-#### Web Server logs
+#### Web Server log location
 - For Debian: `/var/log/apache2/`
-- For RPM based systems: `/var/log/httpd/`
+- For RPM based systems: `/var/log/httpd/` 
 
-## System Logs
+### Adjust Shibboleth log level
 
-Sometimes it's worth checking system logs like `/var/log/messages`. These logs contain global system messages.
+If troubleshooting SAML issues, it may be necessary to adjust the Shibboleth log level temporarily. To do so, follow these steps.
+
+1. Navigate to `/opt/shibboleth-idp/conf/`
+1. Open `logback.xml` in an editor
+1. Find the following snippet:
+
+    ```
+    <!-- Logging level shortcuts. -->
+    <variable name="idp.loglevel.idp" value="INFO" />
+    <variable name="idp.loglevel.ldap" value="WARN" />
+    <variable name="idp.loglevel.messages" value="INFO" />
+    <variable name="idp.loglevel.encryption" value="INFO" />
+    <variable name="idp.loglevel.opensaml" value="INFO" />
+    <variable name="idp.loglevel.props" value="INFO" />
+    ```
+    
+1. Replace `INFO` with `DEBUG` to get more logging info
+1. Restart the `idp` service with `service idp stop/start`
+1. Navigate to `/opt/shibboleth-idp/logs/`
+1. After the issue is resolved, be sure to set the level back to `WARN` for `idp.loglevel.ldap` and `INFO` for the other logs in the production server.
 
 ## Web Server logs
 
@@ -250,45 +276,6 @@ Remember the initial `GET` request will hit the Apache server first, and then be
         [Thu Jul 14 23:49:20 2016] [error] (70007)The timeout specified has expired: ajp_ilink_receive() can't receive header
         [Thu Jul 14 23:49:20 2016] [error] ajp_read_header: ajp_ilink_receive failed
         [Thu Jul 14 23:49:20 2016] [error] (70007)The timeout specified has expired: proxy: read response failed from (null) (localhost)
-
-## OpenLDAP Logs
-
-OpenLDAP logs are enabled by default. And OpenLDAP by is configured to capture logs by syslog from the operating system. However, if one has to disable logging (which we dont recommend), are done in sladp.conf stored under following directory.  
-For more details on OpenLDAP slapd configuration view [here](http://www.openldap.org/doc/admin24/slapdconfig.html)  
-
-`/opt/symas/etc/openldap/slapd.conf file`
-
-The logs for OpenLDAP are stored under the below directory.
-
-`/var/log/openldap/ldap.log`
-
-!!! Note
-    OpenLDAP logs are not populated within Gluu container, its stored and generated under the host system
-
-### OpenLDAP Log Level
-
-By default Log Level of OpenLDAP is set to `stats sync`. If one has to change the log level, it could be performed by modifying the slapd.conf file under the above mentioned directory. 
-
-`loglevel stats sync`
-
-|Level|Keyword|Description|
-|-----|-------|-----------|
-|-1 | any | enable all debugging  |
-|0 | *blank* |no debugging  |
-|1 |trace|  trace function calls  |
-|2  |packets | debug packet handling  |
-|4  | args| heavy trace debugging  |
-|8  | conns| connection management  |
-|16 |  BER | print out packets sent and received  |
-|32 |  filter|  search filter processing  |
-|64 |  config|  configuration processing  |
-|128 | ACL | access control list processing  |
-|256 | stats|  stats log connections/operations/results  |
-|512 |  stats2 | stats log entries sent  |
-|1024|   shell | print communication with shell backends  |
-|2048|  parse | print entry parsing debugging  |
-|16384|  sync|  syncrepl consumer processing  |
-|32768 |  none|  only messages that get logged whatever log level is set  |
 
 
 ## Clearing Logs

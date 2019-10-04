@@ -1,20 +1,14 @@
 # Interception Scripts
 
-## Overview
-Interception scripts allow you to implement custom business logic without having to fork the code. Each type of interception script is described by an interface (i.e. which methods are required). These scripts give you quite a bit of flexibility to do things that are specific to your organizational requirements in a way that is upgrade-proof. 
-
-One of the most most commonly used interception scripts is for person authentication.  These scripts enable you to implement a complex multi-step authentication workflow. You can call external API's, or adapt the number of steps based on the risk of the authentication event. For example, if you call a fraud detection API in step one that indicates unacceptable risk, you could add a second step (i.e. present another page that asks for a stronger authentication credential). 
-
-In addition to person authentication, many interception scripts are available. Forking the code makes your instance hard to upgrade. If you need to fork the code to accomplish something, you should open a support ticket and suggest an interception script which would help you avoid the fork.  
+## Overview  
+Interception scripts can be used to implement custom business logic for authentication, authorization and more in a way that is upgrade-proof and doesn't require forking the Gluu Server code. Each type of script is described by a java interface -- i.e. which methods are required. 
 
 The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scripts`.
 
-### Jython
-Interception scripts are written in [Jython](http://www.jython.org).  An interpreted language was chosen because it's easier for system administrators to understand and modify. Java can be a black box for administrators--scripts help make the business logic more visible, which aids in troubleshooting. 
+### Jython   
+Interception scripts are written in [Jython](http://www.jython.org), enabling Java or Python classes to be imported.
 
-Jython enables developers to import either Java or Python classes. So if you really hate writing Python, while the syntax of the script requires Python, you can write most of the functionality in Java, keeping the Python code to a minimum. 
-
-If you import Python classes, they must be "pure python." For example, you couldn't import a class that wraps C libraries.
+While the syntax of the script requires Python, most of the functionality can be written in Java. If Python classes are imported, they must be "pure python." For example, a class that wraps C libraries can not be imported.
 
 ### Methods
 There are three methods that inherit a base interface:
@@ -55,7 +49,10 @@ The script manager reloads scripts automatically without needing to
 restart the application once `oxRevision` is increased.
 
 ### Script Naming
-New custom scripts should be given a descriptive `displayName`, as that is how they are listed in oxTrust. The `displayName` is limited to 60 characters.  
+New custom scripts should be given a descriptive `displayName`, as that is how they are listed in oxTrust. The `displayName` is limited to 60 characters. 
+
+!!! Note
+    The name given to each [Person Authentication script](#person-authentication) is also used as its OpenID Connect `acr_value`. Learn more in the [OpenID Connect docs](./openid-connect.md#authentication).   
 
 ### Logs
 The log files regarding interception scripts are stored in the
@@ -70,11 +67,16 @@ the interception scripts or following the workflow of the script.
 
 More details about Logs can be found in the [Log Management](../operation/logs.md) portion of the docs.
 
-## Person Authentication     
-An authentication script enables you to customize the user experience for authentication. For example, you can write a script that
-enables a two-factor authentication mechanism like Duo Security or FIDO U2F tokens. Or you could call external security services like fraud detection or DDoS protection.  
+### Debugging
+As scripts are developed, they need to be debugged. Check the [debugging tutorial](../developer-guide/script-debugging.md) to learn more. 
 
-The authentication interception script extends the base script type with the `init`, `destroy` and `getApiVersion` methods but also adds the following methods:
+## Person Authentication     
+
+Authentication scripts can be used to implement complex multi-step, multi-factor authentication workflows. 
+
+In each script, authentication steps and mechanisms are defined, external API's can be called, and user experience can be adjusted dynamically based on contextual factors. For example, a fraud detection API can be called in step one. If it indicates unacceptable risk, a second step can be added to prompt the user for a stronger authentication credential. 
+
+The authentication interception script extends the base script type with methods for `init`, `destroy` and `getApiVersion`, and also adds the following:
 
 |Method|`isValidAuthenticationMethod(self, usageType, configurationAttributes)`|
 |---|---|
@@ -174,7 +176,7 @@ This script type adds three methods to the base script type:
 |**Description**|This method enables/disables user account based on the custom property's value|
 |Method Parameters|`user` is `org.gluu.oxtrust.model.GluuCustomPerson`<br/>`requestParameters` is `java.util.Map<String, String[]>`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
 |Custom Property|`enable_user`--> defaults to `false`|
-|Description|It controls whether or not this user account will be ready for loggin into the Gluu Server CE instance|
+|Description|It controls whether or not this user account will be ready for logging into the Gluu Server CE instance|
 
 The methods are executed in the following order:
 
@@ -368,7 +370,7 @@ Full version of introspection script example can be found [here](https://github.
 
 ## Resource Owner Password Credentials
 
-Resource Owner Password Credentials script allows to modify behavior of Resource Owner Password Credentials Granth.
+Resource Owner Password Credentials script allows to modify behavior of Resource Owner Password Credentials Grant.
 
 Script is invoked after normal authentication and can either leave current result or change it 
 - authenticate if not authenticated - it should return `True` and optionally set user (via `context.setUser(user)`) 

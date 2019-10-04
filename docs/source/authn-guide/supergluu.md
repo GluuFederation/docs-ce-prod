@@ -9,9 +9,6 @@ A User Guide and Developer Guide can be found on the [Super Gluu docs site](http
 ### U2F Security
 Super Gluu uses public/private key encryption as specified in the [FIDO U2F authentication standard](https://fidoalliance.org/specifications/overview/). Super Gluu enrolls its public key against the Gluu Server's U2F endpoints, and when authentication happens, there is a challenge response to ensure that the device has the corresponding private key. 
 
-### Open Source 
-Super Gluu is based on the free open source [oxPush 3](https://github.com/GluuFederation/oxPush3) source code. 
-
 ## Prerequisites 
 - An Internet accessible (non-internal or localhost) Gluu Server with DNS pointing at the public Internet address of the server ([installation instructions](../installation-guide/index.md))
 - [Super Gluu interception script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/super_gluu/SuperGluuExternalAuthenticator.py) (included in the default Gluu Server distribution)
@@ -70,7 +67,7 @@ If Super Gluu should be the default authentication mechanism, follow these instr
 
 1. In the Default Authentication Method window you will see two options: `Default acr` and `oxTrust acr` 
 
-![u2f](../img/admin-guide/multi-factor/u2f.png)
+![u2f](../img/admin-guide/multi-factor/supergluu.png)
 
  - `oxTrust acr` sets the authentication mechanism for accessing the oxTrust dashboard GUI (only managers should have acccess to oxTrust)    
 
@@ -93,7 +90,7 @@ The designs are being rendered from the [Super Gluu xhtml page](https://github.c
 ## Using Super Gluu
 The below instructions provide basic information about using Super Gluu. Review the [Super Gluu User Guide](https://gluu.org/docs/supergluu/user-guide/) for full user documentation. 
 
-### Device Enrollment
+### First-time Device Enrollment
 
 Super Gluu device enrollment happens during the first authentication attempt. The initial enrollment page displays a QR code that needs to be scanned with the Super Gluu app. 
 
@@ -102,6 +99,11 @@ If you use the default Super Gluu interception script, all subsequent authentica
 
 ### Credential Management
 
+#### Self-Service
+
+To offer end-users a portal where they can manage their own account security preferences, including two-factor authentication credentials like Super Gluu, check out our new app, [Gluu Casa](https://casa.gluu.org). 
+
+#### Manual Removal 
 A user's Super Gluu device(s) can be removed by a Gluu administrator either via the oxTrust UI in `Users` > `Manage People`, or in LDAP under the user entry:  
     
 1. Find the `DN` of the user in LDAP 
@@ -141,6 +143,3 @@ Now the old device is gone and the user can enroll a new device following the ab
 ## U2F SCIM APIs
 See the [SCIM documentation](../user-management/scim2.md#fido-devices) for a discussion on how to manage FIDO devices, including Super Gluu, using the SCIM protocol. 
 
-## Self-service account security
-
-To offer end-users a portal where they can manage their own account security preferences, including two-factor authentication credentials like Super Gluu, check out our new app, [Gluu Casa](https://casa.gluu.org). 
