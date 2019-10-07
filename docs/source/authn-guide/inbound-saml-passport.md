@@ -32,7 +32,7 @@ Follow these steps to integrate an external IDP for inbound SAML:
 
 ### Add the IDP in the admin UI
 
-1. In oxTrust, navigate to `Configuration` > `Passport` > `Providers`
+1. In oxTrust, navigate to `Passport` > `Providers`
 
 1. Click on `Add new provider`
 
