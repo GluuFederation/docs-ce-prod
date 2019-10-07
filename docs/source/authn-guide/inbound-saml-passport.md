@@ -98,7 +98,7 @@ The following is an example for `redisCacheOptions` value. Note that keys are wr
 
 Passport will automatically generate SP metadata for every enabled IDP added through the admin UI. The next step is to register this metadata at every external IDP.
 
-Metadata can be accessed in a browser at `https://<your-gluu-host>/passport/auth/meta/idp/<PROVIDER-ID>.xml` where `PROVIDER-ID` is the identifier assigned to the IDP added. In oxTrust, navigate to `Passport` > `Providers` and see the ID column in the providers table. Metadata can also be found in the Gluu chroot under `/opt/gluu/node/passport/server/idp-metadata`. 
+Metadata can be accessed in a browser at `https://<your-gluu-host>/passport/auth/meta/idp/<PROVIDER-ID>` where `PROVIDER-ID` is the identifier assigned to the IDP added. In oxTrust, navigate to `Passport` > `Providers` and see the ID column in the providers table. Metadata can also be found in the Gluu chroot under `/opt/gluu/node/passport/server/idp-metadata`. 
 
 Registering metadata contents at remote IDPs is a process that may differ across IDP implementations. As an example, when the remote IDP is another Gluu Server, a [trust relationship](https://gluu.org/docs/ce/admin-guide/saml/#create-a-trust-relationship) should be created. Review the corresponding documentation for your IDPs. 
 
