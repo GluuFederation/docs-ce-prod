@@ -24,7 +24,7 @@ Make sure the Gluu Server installation already has [Passport installed](./passpo
 
 Once the steps above are performed, the TCP port 8090 appears ready to accept connections.
 
-## Integrate OpenID Connect providers
+## Integrate OpenID Connect Providers
 
 Follow these steps to integrate an external OP for login to an OIDC application:
 
@@ -150,7 +150,7 @@ In this section, we provide specific steps on how to configure a Gluu Server ins
    
    - `userInfoURL`: `https://<remote-gluu-server>/oxauth/restv1/userinfo`
 
-## Integrate OAuth/OAuth2 authorization servers
+## Integrate OAuth Authorization Servers
 
 Follow these steps to configure your Gluu Server for login with external OAuth servers:
 
