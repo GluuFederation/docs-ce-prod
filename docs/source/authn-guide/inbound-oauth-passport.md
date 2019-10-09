@@ -86,7 +86,7 @@ In the summary table, click on the name of the recently added provider and suppl
 
 ### Protect the OIDC application with `passport_social` authentication
 
-The same steps described for [Social Login](#protect-the-application-with-passport_social-authentication) can be followed in this case. If additional assistance is needed, open a ticket on [Gluu support](https://support.gluu.org).
+The same steps described for [OAuth Login](#protect-the-application-with-passport_social-authentication) can be followed in this case. If additional assistance is needed, open a ticket on [Gluu support](https://support.gluu.org).
 
 ### Using oxd as mediator
 
@@ -150,9 +150,9 @@ In this section, we provide specific steps on how to configure a Gluu Server ins
    
    - `userInfoURL`: `https://<remote-gluu-server>/oxauth/restv1/userinfo`
 
-## Setting up Social Login
+## Integrate OAuth/OAuth2 authorization servers
 
-Follow these steps to configure your Gluu Server for Social Login:
+Follow these steps to configure your Gluu Server for login with external OAuth servers:
 
 1. Add the provider in the admin UI
 1. Obtain client credentials
@@ -239,7 +239,7 @@ Follow these steps to configure your Gluu Server for Social Login:
 
 ### Obtain client credentials
 
-Every provider has its own procedure for issuing client credentials (AKA client ID and client secret). Check the developer docs of the specific social site for more information. The aim is to get to a page that allows creation of applications. Here are links for a few popular providers: 
+Every provider has its own procedure for issuing client credentials (AKA client ID and client secret). Check the developer docs of the specific social site (or OAuth provider) for more information. The aim is to get to a page that allows creation of applications. Here are links for a few popular providers: 
 
 - [GitHub](https://github.com/settings/applications/new)   
 - [Twitter](https://apps.twitter.com)   
