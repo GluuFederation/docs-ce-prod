@@ -11,6 +11,4 @@ The oxd server supports the OpenID Connect and UMA profiles of OAuth 2.0. OpenID
 
 [Read the oxd API docs](https://gluu.org/docs/oxd/api)
 
-## License
-oxd is commercially licensed software. You can obtain your license and a $50 credit to get started by signing up on the [oxd website](http://oxd.gluu.org). 
 
