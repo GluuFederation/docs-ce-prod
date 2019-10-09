@@ -109,7 +109,7 @@ Though this feature is now deprecated, NameIDs with an unspecified format can st
 
 ## AuthnContextClassRef Support
 
-Gluu offers out-of-the-box support for the SAML parameter `AuthnContextClassRef` (ACRS). Including the `<saml:AuthnContextClassRef>` tag in the initial SAML request from the SP signals to the IDP that the user must authenticate with the specified authentication method.
+Gluu offers out-of-the-box support for the SAML parameter `AuthnContextClassRef` (ACRS). Including the `<saml:AuthnContextClassRef>` tag in the initial SAML request from the SP signals to the IDP which authentication mechanism to present to the user.
 
     <samlp:AuthnRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" ID="ONELOGIN_809707f0030a5d00620c9d9df97f627afe9dcc24" Version="2.0" ProviderName="SP test" IssueInstant="2014-07-16T23:52:45Z" Destination="http://idp.example.com/SSOService.php" ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" AssertionConsumerServiceURL="http://sp.example.com/demo1/index.php?acs">
       <saml:Issuer>http://sp.example.com/demo1/metadata.php</saml:Issuer>
@@ -128,7 +128,7 @@ Gluu offers out-of-the-box support for following:
 - `urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol`
 
 ### AuthnContextClassRef Extension
-Custom `AuthnContextClassRef` attribute values can be defined under Configuration > Manage SAML ACRs 
+Custom `AuthnContextClassRef` attribute values can be defined under `Configuration` > `Manage SAML ACRs` 
 
 The recommended format is either `urn` or `uri`. For example: 
 
@@ -141,9 +141,9 @@ The recommended format is either `urn` or `uri`. For example:
     https://refeds.org/profile/mfa
     https://refeds.org/profile/sfa
 
-### Enable AuthnContextClassRef in oxTrust
+### Select AuthnContextClassRef in oxTrust
 
-ACRS values need to be associated (one-to-one) with Gluu authentication interception scripts (e.g. basic, fido, ldap, etc.). This can be achieved by setting the SAML ACRS attribute field included in a specific Person Authentication script to the desired value, e.g. `urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport`.   
+ACRS values require a one-to-one association with Gluu authentication interception scripts (e.g. basic, fido, ldap, etc.). In each applicable Person Authentication script, click the desired SAML ACRS attribute fields, e.g. `urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport`.   
 
 ![saml_authctxref](../img/saml/saml_authctxref.PNG)
 
