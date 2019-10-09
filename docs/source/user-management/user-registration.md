@@ -13,7 +13,7 @@ The Gluu Server includes two custom scripts to support a self-service user regis
 ## Enable User Registration  
 To enable user registration via the Gluu Server, follow these steps:  
 
-1. Navigate to `Manage Custom Scripts` and select the `User Registration` category.   
+1. Navigate to `Manage Custom Scripts` and select the `User Registration` tab.   
 
 1. Enable the `user_registration` script and press save.
 
