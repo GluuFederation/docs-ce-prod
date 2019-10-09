@@ -143,7 +143,7 @@ The recommended format is either `urn` or `uri`. For example:
 
 ### Select AuthnContextClassRef in oxTrust
 
-ACRS values require a one-to-one association with Gluu authentication interception scripts (e.g. basic, fido, ldap, etc.). In each applicable Person Authentication script, click the desired SAML ACRS attribute fields, e.g. `urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport`.   
+ACRS values require a one-to-one association with authentication scripts. In oxTrust, navigate to `Configuration` > `Manage Custom Scripts` > `Person Authentication` and, for each applicable script, select the desired SAML ACRS attribute fields, e.g. `urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport`.   
 
 ![saml_authctxref](../img/saml/saml_authctxref.PNG)
 
