@@ -29,15 +29,16 @@ The `post-setup-add-components.py` script enables you to install the Shibboleth 
 1. Login to your Gluu chroot container    
 1. Change working directory to `/install/community-edition-setup/`:     
           ```
-          # cd /install/community-edition-setup/
+          cd /install/community-edition-setup/
           ```
 1. Download the script:     
           ```
-          # wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.6/post-setup-add-components.py
+          wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.6/post-setup-add-components.py
+          
           ```
 1. Run the script with arguments either `-addshib` or `-addpassport`     
           ```
-          # python post-setup-add-components.py -addshib -addpassport
+          python post-setup-add-components.py -addshib -addpassport
           ```
 
 ## Connect a remote debugger
@@ -83,7 +84,7 @@ The important bit is the last line starting with `-Xrunjdwp`.
 Then restart the `identity` process:
 
 ```
-# /etc/init.d/identity restart
+/etc/init.d/identity restart
 ```
 
 Do the same in `/etc/default/oxauth`, but choose a different port for the debugger to connect to:
@@ -95,13 +96,13 @@ Do the same in `/etc/default/oxauth`, but choose a different port for the debugg
 Then restart `oxauth`:
 
 ```
-# /etc/init.d/oxauth restart
+/etc/init.d/oxauth restart
 ```
 
 Now, if you're running the gluu system inside a virtual machine (or just a different machine than your host machine), forward the ports `6005` and `5005` to your local machine. Type this command on your local machine, where you forward these two ports as you `ssh` into the Gluu machine:
 
 ```
-$ ssh -L 5005:localhost:5005 -L 6005:localhost:6005 user@gluu
+ssh -L 5005:localhost:5005 -L 6005:localhost:6005 user@gluu
 ```
 
 As long as you keep this `ssh` connection open, you can access the debug ports `5005` and `6005` as if they were running locally.
@@ -136,7 +137,7 @@ The Gluu Server version can be found in the oxTrust dashboard. Alternatively:
 
     a. Use the below command
     
-     `# service gluu-server-3.1.6 login`
+     `service gluu-server-3.1.6 login`
      
 3. To find oxTrust version
 
@@ -186,7 +187,7 @@ In oxTrust navigate to the Manage Authentication tab within the Configuration se
 Now you will want to update your IDP login page to display `Email Address` as the requested identifier. In order to do that you need to modify the `login.xhtm    l` file, which is located in `/opt/jetty-x.x/temp/jetty-localhost-xxxx-oxauth.war-_oxauth-any-1234.dir/webapp`. Insert `Email Address` as the value for `outputLabel`; this snippet is under the `dialog` class. S    ee the screenshot below. Alternative solution is to put customized `login.xhtml` into /opt/gluu/jetty/oxauth/custom/pages and restart `oxauth` service after that:
 
 ```
-# service oxauth restart
+service oxauth restart
 ``` 
 
 ![update-login](../img/admin-guide/faq/update-login.png)
@@ -207,13 +208,13 @@ ones used by your installation):
 1) Login into Gluu's chroot environment with the command below:
 
 ```
-# service gluu-server-3.1.6 login
+service gluu-server-3.1.6 login
 ```
 
 2) Run this command:
 
 ```
-#/opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -b o=gluu gluuGroupType=gluuManagerGroup 1.1
+/opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -b o=gluu gluuGroupType=gluuManagerGroup 1.1
 ```
 
 and remember the displayed dn of the Gluu Manager Group for future use.
@@ -221,7 +222,7 @@ and remember the displayed dn of the Gluu Manager Group for future use.
 3) Run this command:
 
 ```
-# /opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -b o=gluu ou=people 1.1
+/opt/opendj/bin/ldapsearch -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -b o=gluu ou=people 1.1
 ```
 
 and remember the displayed dn of the People ou for future use.
@@ -250,7 +251,7 @@ step 3).
 5) Run this command:
 
 ```
-# /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/add_user.ldif
+/opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/add_user.ldif
 ```
 
 This will create new user tempadmin with attributes provided via file
@@ -271,7 +272,7 @@ Again, please note the strings' segment marked with bold: you will have to subst
 7) Run this command:
 
 ```
-# /opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/add_2_group.ldif
+/opt/opendj/bin/ldapmodify -p 1636 -Z -X -D 'cn=directory manager' -w 'YOUR_BIND_PASSWORD' -f ~/add_2_group.ldif
 ```
 
 This will add tempadmin user to the IdP managers group and you can then login and assign another user to act as admin.
@@ -285,7 +286,7 @@ It is possible that even after configuring everything there is a `DNS` resolve e
 The Gluu Server stores the admin password in the file `/install/community-edition-setup/setup.properties.last` under the property `ldapPass`. Retrieve the data using the following command:
 
 ```
-# grep ldapPass= /install/community-edition-setup/*.last
+grep ldapPass= /install/community-edition-setup/*.last
 ```
 
 !!! Warning
@@ -303,7 +304,7 @@ This method rely on ldif file to change the authentication mode in LDAP server d
 - Run the following command to collect the `inum` for the Gluu Server installation:   
     
     ```
-    $/opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w 'yourPassword' -b "ou=appliances,o=gluu" -s one "objectclass=*" dn
+    /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w 'yourPassword' -b "ou=appliances,o=gluu" -s one "objectclass=*" dn
     ```
 
 - You need to prepare two LDIF files if you changed both methods; otherwise just one will do. ![dual_method](../img/integration/dual_changed.PNG)
