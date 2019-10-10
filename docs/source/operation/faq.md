@@ -27,14 +27,14 @@ Run the following commands if you find your instance running out of disk space:
 The `post-setup-add-components.py` script enables you to install the Shibboleth SAML IDP and Passport.js authentication middleware to your Gluu Server *post* installation. To add/install these components follow these steps:
 
 1. Login to your Gluu chroot container    
+
 1. Change working directory to `/install/community-edition-setup/`:     
           ```
           cd /install/community-edition-setup/
           ```
 1. Download the script:     
-          ```
-          wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.6/post-setup-add-components.py
-          
+          ```  
+          wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_3.1.6/post-setup-add-components.py 
           ```
 1. Run the script with arguments either `-addshib` or `-addpassport`     
           ```
