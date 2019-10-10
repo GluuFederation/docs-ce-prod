@@ -152,15 +152,15 @@ In this section, we provide specific steps on how to configure a Gluu Server ins
 
 ## Integrate OAuth Authorization Servers
 
+!!! Note
+    Only specific OAuth servers with an already existing [Passport.js strategy](./passport.md#strategies) can be integrated. Click [here](https://github.com/jaredhanson/passport/wiki/Strategies#providers) to learn more about supported providers.
+
 Follow these steps to configure your Gluu Server for login with external OAuth servers:
 
 1. Add the provider in the admin UI
 1. Obtain client credentials
 1. Supply strategy parameters
 1. Protect the application with `passport_social` authentication
-
-!!! Note
-    Ensure the machine(s) running Passport have access to the OAuth provider you are trying to connect to.
 
 ### Add the provider in the admin UI
 
@@ -299,7 +299,7 @@ For a concrete example, and as a means to quickly test the work so far, oxTrust 
 Open a separate browsing session (e.g incognito) and try accessing oxTrust. If your setup is correct, you'll be prompted for authentication at the external provider and, after successfully authenticating, will be redirected back to oxTrust as an authenticated user.
 
 !!! Note
-    Once you have supplied login credentials at an external provider, you won't be prompted for authentication again until your session expires or you explicitly log out of the external provider.
+    Ensure the machine(s) running Passport have access to the OAuth provider you are trying to connect to. Once you have supplied login credentials at an external provider, you won't be prompted for authentication again until your session expires or you explicitly log out of the external provider.
     
 If you get an error page like the one below, double check your configuration and Internet access from both your browser and VM. Also check the [logs](./passport.md#files-and-severity-level).
 
