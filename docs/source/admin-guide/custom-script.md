@@ -105,7 +105,9 @@ The authentication interception script extends the base script type with methods
 
 |Method|`def logout(self, configurationAttributes, requestParameters)`|
 |---|---|
-|**Description**|This method is not mandatory. It can be used in cases when you need to execute specific logout logic within the authentication script when oxAuth receives an end session request. Also, it allows oxAuth to stop processing the end session request workflow if it returns `False`. As a result it should either return `True` or `False`|
+|**Description**|This method is not mandatory. It can be used in cases when you need to execute specific logout logic within the authentication script when oxAuth receives an end session request. Also, it allows oxAuth to stop processing the end session request workflow if it returns `False`. As a result it should either return `True` or `False`
+
+If `getApiVersion()` returs "3" for this script, `logout()` function becomes able to call external end session API at 3rd party service before terminating sessions at Gluu Server. To employ this extension, `/oxauth/logout.htm` endpoint needs to be called instead of `/oxauth/end_session`, using the same set of parameters. `logout()` function will the call `getLogoutExternalUrl()` and will redirect user agent to url returned by the later (note that at this point Gluu's sessions are not yet killed). After the 3rd party service has completed its end session routines, it must re-direct user back to `/oxauth/logout.htm` again with empty url query string - that's enough for oxAuth to recognize it as a continuation of the extended logout flow, restore the original url query string send user to `/oxauth/end_session` to complete it |
 |Method Parameters|`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`<br/>`requestParameters` is `java.util.Map<String, String[]>`|
 
 Every deployment of the Gluu Server includes a number of pre-written authentication scripts out-of-the-box. Learn more in the [authentication guide](../authn-guide/intro.md). 
