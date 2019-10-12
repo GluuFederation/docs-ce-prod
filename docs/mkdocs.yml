@@ -14,7 +14,7 @@ edit_uri: edit/3.1.6/docs/source
 # Configuration
 theme: 
     name: material
-    custom_dir: 'theme'
+#    custom_dir: 'theme'
     palette:
         primary: 'green'
         accent: 'green'
