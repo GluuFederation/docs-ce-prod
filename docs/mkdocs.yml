@@ -123,6 +123,7 @@ nav:
             - 'GitHub Enterprise': 'integration/saas/github-enterprise.md'
             - 'Cisco WebEx': 'integration/saas/webex.md'
             - 'Amazon Web Services (AWS)': 'integration/saas/aws.md'
+            - 'Rocketchat': 'integration/saas/rocketchat.md'
             - 'SAMLtest.id': 'integration/saas/saml_test_id.md'
 - Reference:
         - Gluu API Guide:
@@ -140,7 +141,7 @@ nav:
             - 'LDAP Schema': 'reference/schema.md'
 - Operation Guide:
         - 'Service Commands': 'operation/services.md'
-#        - 'Upgrades': 'upgrade/index.md'
+        - 'Upgrades': 'upgrade/index.md'
         - 'Patches': 'upgrade/patches.md'
         - 'Backups': 'operation/backup.md'
         - 'Security tips': 'operation/security.md'
