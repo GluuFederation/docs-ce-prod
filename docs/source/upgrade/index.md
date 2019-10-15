@@ -8,9 +8,9 @@ The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will
 - Before upgrading, make sure to [back up](../operation/backup.md) the Gluu container or LDAP LDIF. 
 - Upgrades should always be thoroughly scoped and tested on a development environment *first*.
 
-### Upgrading from 3.1.6 to 4.0
+### Upgrading from 3.1.x to 4.0
 
-At this time, only Gluu Server version 3.1.6 can be upgraded to version 4.0 Beta. Upgrade script works on
+At this time, only Gluu Server version 3.1.x can be upgraded to version 4.0 Beta. Upgrade script works on
 CentOS 7, Ubuntu 16, and RedHat 7. Upgrade script performs the followings:
 - Upgrades Java to recent Amazon-Corretto. Extracts certificates from existing java keystore to `hostname_service.crt` to the upgrade directory, after upgrading Java, imports to keystore
 - Upgrades all Gluu war files, nodejs, passport components
