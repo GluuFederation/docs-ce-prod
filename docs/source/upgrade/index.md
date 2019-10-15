@@ -12,10 +12,10 @@ The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will
 
 At this time, only Gluu Server version 3.1.6 can be upgraded to version 4.0 Beta. Upgrade script works on
 CentOS 7, Ubuntu 16, and RedHat 7. Upgrade script performs the followings:
-- Upgrade Java to recent Amazon-Corretto. Extracts certificates from existing java keystore to `hostname_service.crt` to the upgrade directory, after upgrading Java, imports to keystore
+- Upgrades Java to recent Amazon-Corretto. Extracts certificates from existing java keystore to `hostname_service.crt` to the upgrade directory, after upgrading Java, imports to keystore
 - Upgrades all Gluu war files, nodejs, passport components
 - Dumps all data from ldap to `gluu.ldif` in upgrade directory
-- Upgrade to WrenDS. If you are currently running OpenLDAP, it will be removed and migrated to WrenDS
+- Upgrades to WrenDS. If you are currently running OpenLDAP, it will be removed and migrated to WrenDS
 - Process `gluu.ldif` to convert the existing data set to the new model.Remove all inums. Depending on your data
 size, this step will take some time. Writes resulting data to `gluu_noinum.ldif`. Your current passport configuration
 will be dumped to `gluuPassportConfiguration.json` for future reference
