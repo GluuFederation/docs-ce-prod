@@ -1,35 +1,28 @@
 # Persistence Mechanisms
 
-!!! Info
-    This page is under construction. There will be some formatting issues, broken links, and other mistakes while it's being finalized.
-
 ## Overview
 
-In previous versions, the Gluu Server used LDAP for its persistence layer. In CE 4.0, the persistence mechanism has been reviewed and extended new functionalities:
+In previous versions the Gluu Server was tightly bundled with LDAP for persistence. In 4.0, the persistence layer has been re-architected, and there is no longer a tight bundling with a specific DB (i.e. LDAP). Now, new persistence plugins can be added and data can be split between multiple persistence modules.
 
-- The Gluu Server no longer has a dependency on specific DB persistence module.
+Gluu 4.0 supports three persistence modules out-of-the-box:
 
-- New persistence plugins can be added.
+1. [LDAP](https://github.com/GluuFederation/oxCore/tree/master/persistence-ldap), which is still the default persistence method.
 
-- Data can be split between multiple persistence modules.
-
-In 4.0, CE comes with three persistence modules:
-
-1. [LDAP](https://github.com/GluuFederation/oxCore/tree/master/persistence-ldap), the default persistence method in CE.
-
-1. [Couchbase](https://github.com/GluuFederation/oxCore/tree/master/persistence-couchbase), supporting either local or remote installation with a pre-installed Couchbase server.
+1. [Couchbase Enterprise Edition](https://github.com/GluuFederation/oxCore/tree/master/persistence-couchbase), supporting both local (on the same server as Gluu) and remote Couchbase clusters. 
  
-1. [Hybrid](https://github.com/GluuFederation/oxCore/tree/master/persistence-hybrid), a meta module that allows mapping data to different persistence modules. For example, a company can use LDAP for users and groups entries, but a different layer to store all other entries.
+1. [Hybrid](https://github.com/GluuFederation/oxCore/tree/master/persistence-hybrid), a meta module allowing data to be mapped to different persistence modules. For example, user and group entries can be stored in LDAP, while all other entries are stored in Couchbase.  
 
-The internal data model is the same for all persistence modules. This consistency is based on generic annotations, the filters API, the persistence API, entry type (objectClass) and persistence key (Domain Name). Here is a sample persistence bean:
+The internal data model is the same for all persistence modules. This consistency is based on generic annotations, the filters API, the persistence API, entry type (objectClass) and persistence key (Domain Name). 
+
+Here is a sample persistence bean:
 
 ![Entry definitions](../img/admin-guide/installation-guide/entry_definition.png)
     
-The persistence entry manager API provides CRUID operations, which works with persistence beans. The base API is defined in [PersistenceEntryManager](https://github.com/GluuFederation/oxCore/blob/master/persistence-core/src/main/java/org/gluu/persist/PersistenceEntryManager.java) in the oxcore-persistence-core library.
+The persistence entry manager API supports CRUD operations, which work with the persistence beans. The base API is defined in the oxcore-persistence-core library, in the [PersistenceEntryManager](https://github.com/GluuFederation/oxCore/blob/master/persistence-core/src/main/java/org/gluu/persist/PersistenceEntryManager.java).
 
 ## Persistence Layer Dependencies
 
-This diagram shows the EntryManager dependencies and type resolutions based on persistence.type specified in gluu.properties:
+This diagram shows the EntryManager dependencies and type resolutions based on the persistence type specified in gluu.properties:
 
 ![Dependency Chart](../img/admin-guide/installation-guide/persistence_dependencies.png)
 
@@ -46,11 +39,11 @@ There are few major data structure changes in the 4.0 data model:
 - Moved configuration to `ou=configuration,o=gluu`
 - Moved `ou=tokens` and `ou=authoriztions` from client sub-entries to `o=gluu`
 
-In CE 4.0, there is a migrator to convert an existing data set to the new model.
+In Gluu 4.0, there is a migrator to convert an existing data set to the new model.
 
 <!-- More detail on the migrator to come -->
 
-The following is an example of a typical LDAP tree after CE installation:
+The following is an example of a typical LDAP tree after installation:
 
 ![LDAP Data tree structure](../img/admin-guide/installation-guide/ldap_data_tree.png)
 
@@ -91,7 +84,9 @@ The default settings are suitable for most environments.
 
 ### Couchbase
 
-[Couchbase](https://www.couchbase.com/) is a newly supported persistence layer option introduced in CE 4.0. Its data model is very similar to the LDAP layer, so an existing DB can be converted from LDIF to Couchbase. Here is sample data entry with key `scopes_10B2`:
+[Couchbase](https://www.couchbase.com/) is a newly supported persistence layer option introduced in 4.0. Its data model is very similar to LDAP, so an existing DB can be converted from LDIF to Couchbase. 
+
+Here is sample data entry with key `scopes_10B2`:
 
 ```
 {
