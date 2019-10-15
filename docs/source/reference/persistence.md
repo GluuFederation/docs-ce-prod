@@ -22,7 +22,7 @@ The persistence entry manager API supports CRUD operations, which work with the 
 
 ## Persistence Layer Dependencies
 
-This diagram shows the EntryManager dependencies and type resolutions based on the persistence type specified in gluu.properties:
+This diagram shows the EntryManager dependencies and type resolutions based on the `persistence.type` specified in `gluu.properties`:
 
 ![Dependency Chart](../img/admin-guide/installation-guide/persistence_dependencies.png)
 
