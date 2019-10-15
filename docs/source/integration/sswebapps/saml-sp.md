@@ -129,11 +129,13 @@ This section describes how to configure the file `shibboleth2.xml`.
 
 * Create a Trust Relationship for this SP in your desired IdP.
 
+<!--
 ## Super Quick Ubuntu Shib Apache Install
 
 Need to protect a test Apache folder using SAML on an Ubuntu server?
 Hate to read? This article is for you. Replace both `sp` and
 `sp.gluu.info` with your desired website hostname (SP hostname).
+-->
 
 ## Configure Apache
 
@@ -197,7 +199,7 @@ ScriptAlias /protected/ /var/www/protected/
 </Directory>
 ```
 
-
+<!--
 ## Configure the Shibboleth SP
 
 Use this for `shibboleth2.xml` and replace `sp.gluu.info` with the hostname of your SP, and `idp.gluu.info` with the hostname of your IDP.
@@ -305,6 +307,7 @@ Then, click to add the SAML2SSO profile:
 
 Then "Save" and "Update." Wait 5 minutes for the Shibboleth IDP to detect reload the metadata or
 [restart](../../operation/services.md#restart) the `identity` service.
+-->
 
 ## Test
 
