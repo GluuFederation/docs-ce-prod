@@ -15,7 +15,7 @@ At this time, only Gluu Server version 3.1.x can be upgraded to version 4.0 Beta
 - Upgrades Java to Amazon Corretto. Extracts certificates from the existing Java keystore to `hostname_service.crt` in the upgrade directory. After upgrading Java, imports to keystore
 - Upgrades all Gluu WAR files, NodeJS, and Passport components
 - Transfers all data from LDAP to `gluu.ldif` in the upgrade directory
-- Upgrades to WrenDS. If you are currently running OpenLDAP, it will be backed up and migrated to WrenDS
+- Upgrades to [WrenDS](https://github.com/WrenSecurity/wrends) (a community maintained fork of OpenDJ). If you are currently running OpenLDAP, it will be backed up and migrated to WrenDS
 - Processes `gluu.ldif` to convert the existing data set to the new model. Removes all inums. Depending on the data
 size, this step will take some time. Writes resulting data to `gluu_noinum.ldif`. Your current passport configuration
 will be moved to `gluuPassportConfiguration.json` for future reference
