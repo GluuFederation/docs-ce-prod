@@ -2,9 +2,9 @@
 
 ## Overview 
 
-GluuRadiator is an authentication plugin for [Radiator](https://radiatorsoftware.com/products/radiator/), a robust AAA server built for ISPs and carriers. With this plugin, the Gluu Server can be used for authentication and single sign-on (SSO) to RADIUS applications, such as VPN and Wi-fi.  
+Gluu Radiator is an authentication plugin for [Radiator](https://radiatorsoftware.com/products/radiator/), a robust AAA server built for ISPs and carriers. With this plugin, the Gluu Server can be used for authentication and single sign-on (SSO) to RADIUS applications like VPN and Wi-fi.  
 
-!!! Note 
+!!! Attention 
     This plugin does not handle RADIUS `Accounting-Request` packets, and simply returns `Access-Accept` for these packets.
 
 ## Prerequisites
@@ -49,7 +49,7 @@ Although not used in this case in its capacity as a RADIUS server, Gluu Radius, 
 
 Install Gluu Radius by following the instructions [here](./gluu-radius.md). 
 
-If Radiator and the Gluu Server will run on the same system, an additional step needs to be taken.  Configure Gluu Radius to use different listening ports than the ones Radiator will use. Instructions for that can be found [here](./gluu-radius.md#basic-configuration).
+If Radiator and the Gluu Server will run on the same system, one additional step needs to be taken: configure Gluu Radius to use different listening ports than the ones Radiator will use. Instructions can be found [here](./gluu-radius.md#basic-configuration).
 
 ### Authentication Keys Generation 
 
