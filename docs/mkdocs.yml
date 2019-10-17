@@ -91,7 +91,7 @@ nav:
             - 'Inbound SAML': 'authn-guide/inbound-saml-passport.md'
         - 'RADIUS':
             - 'Gluu Radius': 'admin-guide/radius-server/gluu-radius.md'
-            - 'Gluu Radiator': 'admin-guide/radius-server/gluu-radiator.md'
+            - 'Radiator Plugin': 'admin-guide/radius-server/gluu-radiator.md'
         - 'Attributes': 'admin-guide/attribute.md'
         - 'SAML IDP': 'admin-guide/saml.md'
         - 'OpenID Connect Provider (OP)': 'admin-guide/openid-connect.md'
