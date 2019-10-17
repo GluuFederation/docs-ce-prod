@@ -806,7 +806,7 @@ public class TestScimClient {
 
     private void simpleSearch() throws Exception {
 
-        ClientSideService client=ScimClientFactory.getClient(domain, umaAatClientId, umaAatClientJksPath, umaAatClientJksPassword, umaAatClientKeyId);
+        ClientSideService client=ScimClientFactory.getClient(domainURL, umaAatClientId, umaAatClientJksPath, umaAatClientJksPassword, umaAatClientKeyId);
         String filter = "userName eq \"admin\"";
 
         Response response = client.searchUsers(filter, 1, 1, null, null, null, null);
