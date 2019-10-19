@@ -189,8 +189,6 @@ This section allows the Gluu Server administrator to define how and where the se
 
 * _Use SSL:_ Enable SSL if the authentication server requires a secured port (e.g. 636)
 
-* _Enabled:_ This check-box is used to enable the keys that are inserted in their respective fields
-
 * _Activate:_ This button enables and disables corresponding remote LDAP server as an authentication option; please note that starting CE 4.0 clicking this button is mandatory step when setting LDAP authentication!
 
 * _Test LDAP Connection:_ Use this button to check whether the provided information is sufficient to connect to the authentication server. The scan is done in real time
