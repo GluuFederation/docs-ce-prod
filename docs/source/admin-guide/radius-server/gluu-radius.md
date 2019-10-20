@@ -25,7 +25,7 @@ With Gluu Radius installed, a sidebar menu item called `Radius` will appear in t
 ### Basic Configuration 
  In oxTrust, navigate to `Radius` > `Server` Configuration and select the `Basic Configuration` tab.
  
- You can configure the following:
+ The following settings can be configured:
  
    - `Authentication Listen Port`: This is the port on which the server listens for authentication requests.
    
@@ -86,6 +86,34 @@ This section covers advanced configuration topics. They are optional and can be 
 ### Gluu Radius config file 
  The Gluu Radius configuration file can be found under `/etc/gluu/conf/radius/gluu-radius.properties` 
 in the linux container. There are a couple things you can change from the configuration file.
+Any change to this file will take effect only after restarting the `gluu-radius` service.
+
+#### Turning on/off listening. 
+It is possible to turn listening on/off for the radius server. This feature is useful when using gluu-radius
+exclusively for key re-generation. 
+The configuration key can have two values,  `true` and `false` 
+```
+radius.listen.enable = true
+```
+
+#### Authentication Scheme 
+There are two available authentication schemes:
+- `onestep` as it's name suggests is the single step authentication scheme. Enabling it will have the 
+radius server authenticate the user and return the authentication status immediately.
+- `twostep` as it's name suggests is two-step (two factor authentication). This is the default. And in it's 
+current implementation , it performs two step authentication using super-gluu.
+```
+radius.auth.scheme = twostep
+```
+
+#### Key Re-generation interval 
+This configuration parameter controls how often the keys used for authentication are re-generated. 
+The value is in days. A value of 0 disables key re-generation.
+```
+# regenerates the keys every day 
+radius.jwt.keygen.interval = 1
+```
+
 
 #### Algorithm for JWT authentication
 By default `RS512` (RSASSA-PKCS1-v1_5 using SHA-512) is the algorithm used by Gluu Radius for authentication.
@@ -99,7 +127,6 @@ and change the following line in the gluu radius configuration file.
 ```
 radius.jwt.auth.keyId = <kid>
 ```
-Once you are done , restart `gluu-radius`.
 
 #### External jwks 
 Using an external jwks requires you pasting the contents of the jwks into the `JWKS` section in the `Encryption/Signing` tab
@@ -112,7 +139,8 @@ radius.jwt.keyStoreFile = <location of keystore file>
 radius.jwt.auth.keyId = <kid of public key used for authentication>
 radius.jwt.auth.keyStorePin = <encrypted pin for the keystore>
 ```
-You can use the utility `/opt/gluu/bin/encode.py` to encrypt the plaintext keyStore password.
+Use  the utility `/opt/gluu/bin/encode.py` to encrypt the plaintext keyStore password.
+
 
 
 ### Custom OpenID clients and/or authentication scripts 
@@ -138,7 +166,7 @@ You can take a look at the default OpenID client that ships with Gluu Radius to 
       name of `__session_id`. If the user can't be authenticated, the script must return false. 
    1. When `__step` is equal to `verify_auth`, the custom script *must* get the http post parameter called `__session_id`
       and verify if the associated session is authenticated. If it's not authenticated , the script *must* return `false`.
-You can take a look at the default Custom Script that ships with gluu radius to have an idea.
+Take a look at the default Custom Script that ships with gluu radius to have an idea.
 
 
 
