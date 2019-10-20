@@ -15,11 +15,11 @@ Snaphots should be taken for all Gluu environments (e.g. Prod, Dev, QA, etc.) an
 ## Tarball Method
 All Gluu Server files live in a single folder: `/opt`. The entire Gluu Server CE `chroot` folder can be archived using the `tar` command: 
 
-1. Stop the server: `# service gluu-server-4.0 stop`
+1. Stop the server: `service gluu-server stop` or `/sbin/gluu-serverd stop`
 	
-1. Use `tar` to take a backup: `# tar cvf gluu40-backup.tar /opt/gluu-server-4.0/`
+1. Use `tar` to take a backup: `tar cvf gluu40-backup.tar /opt/gluu-server/`
 	
-1. Start the server again: `# service gluu-server-4.0 start`
+1. Start the server again: `service gluu-server start` or `/sbin/gluu-serverd start`
 
 ## LDIF Data Backup
 From time to time (daily or weekly), the LDAP database should be exported in a standard LDIF format. Having the data in plain text offers some options for recovery that are not possible with a binary backup. 
@@ -51,7 +51,13 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
     - Log in to Gluu-Server-4.0:   
 
     ```bash
-    service gluu-server-4.0 login
+    service gluu-server login
+    ```
+    
+    or
+    
+    ```bash
+    /sbin/gluu-serverd login
     ```
 
     - [Stop](./services.md#stop) the `identity`, `oxauth` and `opendj` services
@@ -120,7 +126,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
     /opt/opendj/bin/verify-index --baseDN o=gluu --countErrors
     ```
 
-1. Next import your previously exported ldif. Here, we are importing without  `oxAuthGrantId` . 
+1. Next import your previously exported LDIF. Here, we are importing without  `oxAuthGrantId` . 
 	
 !!! Note
     You may import the exact export of your ldap `exactdatabackup_date.ldif`.Do not import your exact copy of your LDIF if you are following instructions to to clean your cache entries

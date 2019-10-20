@@ -9,24 +9,11 @@ The Gluu Server can be deployed with the Shibboleth IDP, which supports most of 
 
 ## Key CAS server's endpoints
 
-<table border="1">
-    <tr>
-        <th>Url</th>
-        <th>Description</th>
-    </tr>
-    <tr>
-        <td>https://your.gluu.host/idp/profile/cas/login</td>
-        <td>Start point of SSO flow</td>
-    </tr>
-    <tr>
-        <td>https://your.gluu.host/idp/profile/cas/serviceValidate</td>
-        <td>ticket validation endpoint (CAS)</td>
-    </tr>
-    <tr>
-        <td>https://your.gluu.host/idp/profile/cas/samlValidate</td>
-        <td>ticket validation endpoint (SAML)</td>
-    </tr>
-</table>
+URL | Description
+----|----
+https://your.gluu.host/idp/profile/cas/login | Start point of SSO flow
+https://your.gluu.host/idp/profile/cas/serviceValidate | Ticket validation endpoint (CAS)
+https://your.gluu.host/idp/profile/cas/samlValidate | Ticket validation endpoint (SAML
 
 ## Configuration
 
@@ -63,7 +50,7 @@ Let's start by configuring a very basic CAS setup which only returns user's id t
 
 1. Move into the Gluu CE container: 
 
-    `# service gluu-server-4.0 login`
+    `service gluu-server login` or `sbin/gluu-serverd login`
     
 2. Edit `/opt/gluu/jetty/identity/conf/shibboleth3/idp/cas-protocol.xml.vm` template file by putting a `ServiceDefinition` bean inside pre-existing `reloadableServiceRegistry` bean as exemplified below. You must use a regexp defining your application instead of `"https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*"`. Pattern like `".*"` may be used as a wildcard to create an "allow-all" definition for a test setup.
    
@@ -102,7 +89,7 @@ Let's start by configuring a very basic CAS setup which only returns user's id t
     </bean>
 ```
 
-At this point you should start getting a successful CAS ticket validation response from your Gluu server containing at least your user id (which is taken from `uid` attribute by default).
+At this point you should start getting a successful CAS ticket validation response from your Gluu server containing at least your user ID (which is taken from `uid` attribute by default).
 
 #### Enabling attributes you plan to release in Shibboleth IdP
 
@@ -133,7 +120,7 @@ Currently the only way to tweak attribute release is to edit corresponding templ
 
 1. Move into the Gluu CE container: 
 
-    `# service gluu-server-4.0 login`
+    `service gluu-server login` or `/sbin/gluu-serverd login`
     
 2. Edit `/opt/gluu/jetty/identity/conf/shibboleth3/idp/attribute-filter.xml.vm` template file by putting an `AttributeFilterPolicy` bean provided below right before the closing `</AttributeFilterPolicyGroup>` tag at the end of it. Properties named `attributeID` you can see there are ids assigned to corresponding attributes in `/opt/shibboleth-idp/conf/attribute-resolver.xml` file (those are "internal names" which don't always correspond to names displayed in web UI); you can also learn them by checking the "Name" field when viewing attribute's properties in web UI (`Configuration` -> `Attributes` page). When placing the bean, be careful not to put it within some Velocity's loop there (note the control words startings with `"#"`). You must use a regexp defining your application instead of `"https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*"`. Pattern like `".*"` may be used as a wildcard to create an "allow-all" definition for a test setup. If adding several CAS filtering policies, make sure their `id` properties differ.
 
@@ -188,7 +175,6 @@ In example below it's configured to use `eduPersonPrincipalName` attribute inste
 #### Ticket validation using SAML protocol
 
 CAS supports [SAML requests](https://apereo.github.io/cas/5.0.x/protocol/SAML-Protocol.html) during ticket validation step. Corresponding endpoint is located at `https://your.gluu.host/idp/profile/cas/samlValidate` URL and may be used instead of "native" CAS `/serviceValidate` if your CAS client supports it. Other steps of the general CAS flow stay the same.
-
 
 ## Logging
 

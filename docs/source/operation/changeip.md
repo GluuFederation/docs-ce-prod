@@ -3,7 +3,7 @@
 If your IP changes after initial setup, you need to change your Gluu Server's configuration.
 
 1. Start the Gluu Server
-1. Log into Gluu Server Chroot container
+1. Log in to Gluu Server Chroot container
 1. Update the Apache Configuration 
     - Navigate to `/etc/apache2/sites-available`
     - Open `https_gluu.conf` in a text editor

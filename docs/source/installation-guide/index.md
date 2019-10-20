@@ -1,15 +1,9 @@
-# Preparing VM for Gluu Server Installation
+# Gluu Server VM Preparation Guide
+
 ## Overview
 
-Thank you for your interest in the Gluu Server! 
+This document provides instructions for preparing a VM for a standard, single-node Gluu Server deployment. Once the server is ready, install Gluu on one of the [supported operating systems](#supported-operating-systems). 
 
-This document will provide instructions for preparing a VM  for a standard Gluu Server deployment (i.e. **not** Docker). Once the server is ready, move on to the [installation instructions](../installation-guide/install.md). 
-
-Good luck and welcome to the community!
-
-!!! Note
-    To learn more about software licenses, use cases, and more, visit the [docs homepage](../index.md)    
-    
 ## System Requirements
 
 Set up a server or VM with the following **minimum** requirements: 
@@ -26,15 +20,15 @@ A few additional notes about system requirements:
 - Gluu must be deployed on a server or VM with a static IP Address. The static IP address should resolve to a computer hostname which can be achieved by adding an entry to the DNS server or in `/etc/hosts`.     
 
 - If setting up a VM locally, we recommend using VM Player (**not** Virtual Box).
-
     
 ## Supported Operating Systems
 Deploy Gluu on a server or VM with one of the following supported operating systems:
 
-- Ubuntu 16, 18
-- CentOS 7.x
-- RHEL 6.x, 7.x
-- Debian 8
+- [Docker](./install-docker.md)
+- [Ubuntu 16, 18](./install-ubuntu.md)
+- [CentOS 7.x](./install-centos.md)
+- [RHEL 7.x](./install-rhel.md)
+- [Debian 8, 9](./install-debian.md)
 
 ## Ports
 

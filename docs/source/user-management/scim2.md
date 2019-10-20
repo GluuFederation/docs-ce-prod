@@ -304,10 +304,8 @@ $ curl -H 'Authorization: Bearer ...access token...' -H 'Content-Type: applicati
   -d @input.json -o output.json https://<host-name>/identity/restv1/scim/v2/Users`
 ```
 
-If your Gluu server is protected by a self-signed certificate (as in the default installation), add the following switch:
+If your Gluu server is protected by a self-signed certificate (as in the default installation), add the `-k` switch:
 
-`--cacert /opt/gluu-server-<glu-version>/etc/certs/httpd.crt`
- 
 After execution open the file `output.json`. You should see a response like this (some contents have been supressed for readability):
 
 ```
@@ -646,7 +644,7 @@ public class TestScimClient {
 
         logger.info("Length of results list is: {}", resources.size());
         UserResource admin=(UserResource) resources.get(0);
-        logger.info("First user in the list is: {}" + admin.getDisplayName());
+        logger.info("First user in the list is: {}", admin.getDisplayName());
         
         client.close();
 
@@ -808,7 +806,7 @@ public class TestScimClient {
 
     private void simpleSearch() throws Exception {
 
-        ClientSideService client=ScimClientFactory.getClient(domain, umaAatClientId, umaAatClientJksPath, umaAatClientJksPassword, umaAatClientKeyId);
+        ClientSideService client=ScimClientFactory.getClient(domainURL, umaAatClientId, umaAatClientJksPath, umaAatClientJksPassword, umaAatClientKeyId);
         String filter = "userName eq \"admin\"";
 
         Response response = client.searchUsers(filter, 1, 1, null, null, null, null);
@@ -972,7 +970,7 @@ Please visit this [page](../admin-guide/attribute.md#custom-attributes) for a mo
 ![image](../img/admin-guide/user/scim-attribute.png)
 
 !!! Note
-    Only the following data types for extended attributes are supported in SCIM server implementation: `string`, `numeric`, and `date`.
+    Only the following data types for extended attributes are supported in SCIM server implementation: `string`, `numeric` (integer), `boolean`, and `date`.
 
 Once you submit this form, your attribute will be part of the User Extension. You can verify this by inspecting the `Schema` endpoint:
 
@@ -981,6 +979,42 @@ Once you submit this form, your attribute will be part of the User Extension. Yo
 ![image](../img/admin-guide/user/scim-custom-first.png)
 
 In the JSON response, your new added attribute will appear.
+
+### Handling Custom Attributes
+
+The following is an example of a user resource with custom attributes set:
+
+```
+{
+  "schemas": [
+    "urn:ietf:params:scim:schemas:core:2.0:User",
+    "urn:ietf:params:scim:schemas:extension:gluu:2.0:User"
+  ],
+  "urn:ietf:params:scim:schemas:extension:gluu:2.0:User": {
+    "customAttr1": "String single-valued",
+    "customAttr2": [
+      "2016-02-23T15:35:22Z"
+    ],
+    "customAttr3": 3000,
+    ...
+  },
+  ...
+  core attributes here
+  ...
+}
+```
+
+Thus, a similar syntax should be used in order to supply values for modifications in the case of update (PUT) operations. On the other hand this [file](https://github.com/GluuFederation/SCIM-Client/blob/master/src/test/resources/single/patch/user_patch_ext.json) contains an example of patches being performed upon custom attributes.
+
+A retrieval using a filter where extended attributes are involved may look like:
+
+```
+$ curl -G -H 'Authorization: Bearer ...access token...'  -o output.json 
+      --data-urlencode 'filter=urn:ietf:params:scim:schemas:extension:gluu:2.0:User:customAttr3 gt 2000' 
+      https://<host-name>/identity/restv1/scim/v2/Users
+```
+
+which queries all users whose extended attribute `customAttr3` is greater than 2000 (this accounts the attribute was properly configured as numeric). Note how the attribute is prefixed with the schema URN of the user extension followed by a colon.
 
 ### Handling Custom Attributes in SCIM-Client
 
@@ -1025,7 +1059,6 @@ The following are sample response errors:
 	"status": "409"
 }
 ```
-
 
 ### Custom Error Handling using SCIM-Client
 

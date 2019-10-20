@@ -1,6 +1,6 @@
 # Certificates 
 
-## Certificates in  Chroot
+## Certificates in Chroot
 
 Gluu Server components have cryptographic keys and X.509 certificates that are stored inside the`chroot`. Details for certificates associated with each component are provided below. The following certificates are available in the `/etc/certs` folder.
 
@@ -33,13 +33,12 @@ Additionally the following `json` files are available which are used in differen
 
 ### Generating Cryptographic Keys
 
-The Gluu Server is compatible with the [Java KeyGenerator](https://docs.oracle.com/javase/7/docs/api/javax/crypto/KeyGenerator.html)
-to create new cryptographic keys if needed.
+The Gluu Server is compatible with the [Java KeyGenerator](https://docs.oracle.com/javase/7/docs/api/javax/crypto/KeyGenerator.html) to create new cryptographic keys if needed.
 
-To get KeyGenerator, run the following command inside the Chroot:
+To get KeyGenerator, run the following command inside the chroot:
 
 ```
-wget https://ox.gluu.org/maven/org/xdi/oxauth-client/4.0.sp1/oxauth-client-4.0-jar-with-dependencies.jar -O oxauth-client.jar
+wget https://ox.gluu.org/maven/org.gluu/oxauth-client/4.0.sp1/oxauth-client-4.0-jar-with-dependencies.jar -O oxauth-client.jar
 ```
 
 Then, run KeyGenerator with the following command:
@@ -48,7 +47,7 @@ Then, run KeyGenerator with the following command:
 java -jar oxauth-client.jar <arguments>
 ```
 
-Our implementation of KeyGenerator accepts the following arguments:
+The Gluu implementation of KeyGenerator accepts the following arguments:
 
 | Argument | Description |
 | --- | --- |
@@ -80,10 +79,7 @@ The following are available:
 
 The certificates must be manually updated from the `/etc/certs/` folder. 
     
-There are many tools that can be used to update and renew certificates. By default Gluu uses OpenSSL. 
-If you have questions about using other tools, like Let'sEncrypt, 
-check the [Gluu support portal](http://support.gluu.org) for existing threads. 
-If there is no existing information, sign up and open a ticket. 
+There are many tools that can be used to update and renew certificates. By default Gluu uses OpenSSL. If you have questions about using other tools, like Let'sEncrypt, check the [Gluu support portal](http://support.gluu.org) for existing threads. If there is no existing information, sign up and open a ticket. 
 
 !!! Warning
     The private key cannot be password protected, and the public key must be base64 X.509. 
@@ -95,20 +91,19 @@ Please follow these steps shown below to update the Apache SSL cert:
 
 - Save the latest SSL httpd key and certificate in the `/etc/certs` folder
 - Rename them to `httpd.key` and `httpd.crt` respectively
-- Import 'httpd.der' into the java keystore
+- Import 'httpd.der' into the Java Keystore
 / Convertion to DER, command:<br/> `openssl x509 -outform der -in httpd.crt -out httpd.der`
-    - Delete the existing certificate to avoid ambiguity due to presense of 2 different 
-    certificates for the same entity after importing the new one:
-       `/opt/jdkx.x.x.x/jre/bin/keytool -delete -alias <hostname_of_your_Gluu_Server>_httpd -keystore /opt/jdkx.x.x.x/jre/lib/security/cacerts -storepass changeit`
-    - Import certificate in to Java Keystore(cacerts):
-    <br/> `/opt/jdkx.x.x.x/jre/bin/keytool -importcert -file httpd.der -keystore /opt/jdkx.x.x.x/jre/lib/security/cacerts -alias <hostname_of_your_Gluu_Server>_httpd -storepass changeit`
+    - Delete the existing certificate to avoid ambiguity due to presence of 2 different certificates for the same entity after importing the new one: 
+    `/opt/jdkx.x.x.x/jre/bin/keytool -delete -alias <hostname_of_your_Gluu_Server>_httpd -keystore /opt/jdkx.x.x.x/jre/lib/security/cacerts -storepass changeit`
+    - Import certificate into the Java Keystore(cacerts):
+    `/opt/jdkx.x.x.x/jre/bin/keytool -importcert -file httpd.der -keystore /opt/jdkx.x.x.x/jre/lib/security/cacerts -alias <hostname_of_your_Gluu_Server>_httpd -storepass changeit`
 - [Restart](../operation/services.md#restart) `opendj`, `apache2/httpd`, `oxauth` and `identity` services.
 
 ## Install Intermediate Certificates
 Please follow the steps below to install intermediate certificates:
 
-1. Log in to your Gluu Server container.
+1. Log in to the Gluu Server container.
 2. Keep your intermediate certificate in the file `/etc/certs/`.
-3. Modify `/etc/httpd/conf.d/https_gluu.conf`, and add<br/>
+3. Modify `/etc/httpd/conf.d/https_gluu.conf`, and add  
   `SSLCertificateChainFile /etc/certs/name_of_your_interm_root_cert.crt`.
 4. [Restart](../operation/services.md#restart) the `httpd` service.

@@ -29,7 +29,7 @@ The following list of services included with the Gluu Server may differ from dep
 systemctl start [service name]
 ```
 
-``` tab="Other OS"
+``` tab="Ubuntu 16"
 service [service name] start
 ```
 
@@ -39,7 +39,7 @@ service [service name] start
 systemctl stop [service name]
 ```
 
-``` tab="Other OS"
+``` tab="Ubuntu 16"
 service [service name] stop
 ```
 
@@ -49,7 +49,7 @@ service [service name] stop
 systemctl status [service name]
 ```
 
-``` tab="Other OS"
+``` tab="Ubuntu 16"
 service [service name] status
 ```
 
@@ -59,7 +59,7 @@ service [service name] status
 systemctl restart [service name]
 ```
 
-``` tab="Other OS"
+``` tab="Ubuntu 16"
 service [service name] restart
 ```
 
@@ -70,6 +70,6 @@ This command is used for the `apache2` and `httpd` services.
 systemctl reload [service name]
 ```
 
-``` tab="Other OS"
+``` tab="Ubuntu 16"
 service [service name] reload
 ```

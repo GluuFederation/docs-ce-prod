@@ -1,7 +1,7 @@
 # Interception Scripts
 
 ## Overview
-Interception scripts can be used to implement custom business logic for authentication, authorization and more in a way that is upgrade-proof and doesn't require forking the Gluu Server code. Each type of script is described by a java interface -- i.e. which methods are required.
+Interception scripts can be used to implement custom business logic for authentication, authorization and more in a way that is upgrade-proof and doesn't require forking the Gluu Server code. Each type of script is described by a Java interface -- i.e. which methods are required.
 
 The web interface for Custom Scripts can be accessed by navigating to `Configuration` > `Manage Custom Scripts`.
 
@@ -21,10 +21,7 @@ There are three methods that inherit a base interface:
 
 The `configurationAttributes` parameter is `java.util.Map<String, SimpleCustomProperty>` with properties specified in `oxConfigurationProperty` attributes.
 
-The script manager only loads enabled scripts. Hence, after enabling or disabling a
-script, the script manager should trigger an event to either load or
-destroy a script, respectively. All scripts are stored in LDAP in the
-`ou=scripts,o=<org_inum>,o=gluu` branch.
+The script manager only loads enabled scripts. Hence, after enabling or disabling a script, the script manager should trigger an event to either load or destroy a script, respectively. All scripts are stored in LDAP in the `ou=scripts,o=<org_inum>,o=gluu` branch.
 
 Here is a sample entry:
 
@@ -45,8 +42,7 @@ Here is a sample entry:
     programmingLanguage: python
 ```
 
-The script manager reloads scripts automatically without needing to
-restart the application once `oxRevision` is increased.
+The script manager reloads scripts automatically without needing to restart the application once `oxRevision` is increased.
 
 ### Script Naming
 New custom scripts should be given a descriptive `displayName`, as that is how they are listed in oxTrust. The `displayName` is limited to 60 characters.  
@@ -55,12 +51,7 @@ New custom scripts should be given a descriptive `displayName`, as that is how t
     The name given to each [Person Authentication script](#person-authentication) is also used as its OpenID Connect `acr_value`. Learn more in the [OpenID Connect docs](./openid-connect.md#authentication).   
 
 ### Logs
-The log files regarding interception scripts are stored in the
-`oxauth.log` file. The logs are separated according to the module they
-affect. The oxAuth custom script logs are stored in `oxauth_script.log`
-and the oxTrust custom script logs are stored in the
-`oxtrust_script.log`. Please refer to these log files to troubleshoot errors in
-the interception scripts or following the workflow of the script.
+The log files regarding interception scripts are stored in the `oxauth.log` file. The logs are separated according to the module they affect. The oxAuth custom script logs are stored in `oxauth_script.log` and the oxTrust custom script logs are stored in the `oxtrust_script.log`. Please refer to these log files to troubleshoot errors in the interception scripts or following the workflow of the script.
 
 !!! Note 
     A `print` statement may not work on some environments if the `PYTHON_HOME` environment variable is not set. Make sure it points to a valid python installation.
@@ -80,12 +71,12 @@ The authentication interception script extends the base script type with methods
 |Method|`isValidAuthenticationMethod(self, usageType, configurationAttributes)`|
 |---|---|
 |**Description**|This method is used to check if the authentication method is in a valid state. For example we can check there if a 3rd party mechanism is available to authenticate users. As a result it should either return `True` or `False`|
-|Method Parameter|`usageType` is `org.xdi.model.AuthenticationScriptUsageType`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
+|Method Parameter|`usageType` is `org.gluu.model.AuthenticationScriptUsageType`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
 
 |Method|`def getAlternativeAuthenticationMethod(self, usageType, configurationAttributes)`|
 |---|---|
 |**Description**|This method is called only if the current authentication method is in an invalid state. Hence authenticator calls it only if `isValidAuthenticationMethod` returns False. As a result it should return the reserved authentication method name|
-|Method Parameter|`uageType` is `org.xdi.model.AuthenticationScriptUsageType`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
+|Method Parameter|`uageType` is `org.gluu.model.AuthenticationScriptUsageType`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
 
 |Method|`def authenticate(self, configurationAttributes, requestParameters, step)`|
 |---|---|
@@ -114,7 +105,7 @@ The authentication interception script extends the base script type with methods
 
 |Method|`def logout(self, configurationAttributes, requestParameters)`|
 |---|---|
-|**Description**|This method is not mandatory. It can be used in cases when you need to execute specific logout logic within the authentication script when oxAuth receives an end session request. Also, it allows oxAuth to stop processing the end session request workflow if it returns `False`. As a result it should either return `True` or `False`|
+|**Description**|This method is not mandatory. It can be used in cases when you need to execute specific logout logic within the authentication script when oxAuth receives an end session request. Also, it allows oxAuth to stop processing the end session request workflow if it returns `False`. As a result, it should either return `True` or `False` </br> </br> If `getApiVersion()` returns "3" for this script, `logout()` function becomes able to call external end session API at a 3rd party service before terminating sessions at Gluu Server. To employ this extension, the `/oxauth/logout.htm` endpoint needs to be called instead of `/oxauth/end_session`, using the same set of parameters. `logout()` function will then call `getLogoutExternalUrl()` and will redirect user agent to a URL returned by the latter (note that at this point Gluu's sessions are not yet killed). After the 3rd-party service has completed its end session routines, it must re-direct user back to `/oxauth/logout.htm` again with empty URL query string - that's enough for oxAuth to recognize it as a continuation of the extended logout flow, restore the original URL query string, and send user to `/oxauth/end_session` to complete it |
 |Method Parameters|`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`<br/>`requestParameters` is `java.util.Map<String, String[]>`|
 
 Every deployment of the Gluu Server includes a number of pre-written authentication scripts out-of-the-box. Learn more in the [authentication guide](../authn-guide/intro.md). 
@@ -140,7 +131,7 @@ Users will be prompted for consent as below.
 
 ## Update User     
 
-oxTrust allows an admin to add and modify users which belong to groups. In order to simplify this process and apply repeating actions, oxTrust supports an Update User script. In this script it is possible to modify a person entry before it is stored in LDAP.
+oxTrust allows an admin to add and modify users which belong to groups. In order to simplify this process and apply repeating actions, oxTrust supports an Update User script. In this script it is possible to modify a person entry before it is stored in the database.
 
 This script type adds only one method to the base script type:
 
@@ -174,32 +165,19 @@ The methods are executed in the following order:
 |Second|`preRegistration()`|True/False|
 |Third|`postRegistration()`|True/False|
 
-First oxTrust executes the `initRegistration` method to do an initial
-user entry update. The `preRegistration` method is called before storing
-the user entry in LDAP. Hence in this script it is possible to validate
-the user entry. The `postRegistration` method is called after
-successfully storing the user entry in LDAP. In this method, for
-example, the script can send an e-mail or send notifications to other
-organization systems about the new user entry.
+First oxTrust executes the `initRegistration` method to do an initial user entry update. The `preRegistration` method is called before storing the user entry in the database. Hence in this script it is possible to validate the user entry. The `postRegistration` method is called after successfully storing the user entry in the database. In this method, for example, the script can send an e-mail or send notifications to other organization systems about the new user entry.
 
 - [Sample User Registration Script](./sample-user-registration-script.py)
 
 ## Client Registration      
 
-oxAuth implements the [OpenID Connect dynamic client
-registration](https://openid.net/specs/openid-connect-registration-1_0.html)
-specification. All new clients have the same default access scopes and
-attributes except password and client ID. The Client Registration script
-allows an admin to modify this limitation. In this script it is possible
-to get a registration request, analyze it, and apply customizations to
-registered clients. For example, a script can give access to specified
-scopes if `redirect_uri` belongs to a specified service or domain.
+oxAuth implements the [OpenID Connect dynamic client registration](https://openid.net/specs/openid-connect-registration-1_0.html) specification. All new clients have the same default access scopes and attributes except password and client ID. The Client Registration script allows an admin to modify this limitation. In this script it is possible to get a registration request, analyze it, and apply customizations to registered clients. For example, a script can give access to specified scopes if `redirect_uri` belongs to a specified service or domain.
 
 This script type adds only one method to the base script type:
 
 |Method|`def updateClient(self, registerRequest, client, configurationAttributes)`|
 |---|---|
-|**Method Parameter**|`registerRequest` is `org.xdi.oxauth.client.RegisterRequest`<br/>`client` is `org.xdi.oxauth.model.registration.Client`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
+|**Method Parameter**|`registerRequest` is `org.gluu.oxauth.client.RegisterRequest`<br/>`client` is `org.gluu.oxauth.model.registration.Client`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
 
 This script can be used in an oxAuth application only.
 
@@ -207,11 +185,11 @@ This script can be used in an oxAuth application only.
 
 
 ## Dynamic Scopes      
-The dynamic scope custom script allows to generate list of claims (and their values) on the fly, depending on cirtumstances like id of client requesting it, logged user's session parameters, values of other user's attributes, results of some caclucations implementing specific buisness logic and/or requests to remote APIs or databases. Claims are then returned the usual way in a response to a call to the `userinfo endpoint`. 
+The dynamic scope custom script allows to generate list of claims (and their values) on the fly, depending on cirtumstances like id of client requesting it, logged user's session parameters, values of other user's attributes, results of some calculations implementing specific buisness logic and/or requests to remote APIs or databases. Claims are then returned the usual way in a response to a call to the `userinfo endpoint`. 
 
 Two parameters are passed to the script:
 
-- `dynamicScopeContext` is [org.xdi.oxauth.service.external.context.DynamicScopeExternalContext class](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/java/org/xdi/oxauth/service/external/context/DynamicScopeExternalContext.java) 
+- `dynamicScopeContext` is [org.gluu.oxauth.service.external.context.DynamicScopeExternalContext class](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/java/org.gluu/oxauth/service/external/context/DynamicScopeExternalContext.java) 
 - `configurationAttributes` is java.util.Map<String, SimpleCustomProperty> dictionary carring script's custom properties
 
 In order to configure a dynamic scope next steps are required:
@@ -220,7 +198,7 @@ In order to configure a dynamic scope next steps are required:
 - A scope has to be defined at the "OpenID Connect -> Scopes" page
   - Scope's type must be set to "Dynamic"
   - Corresponding dynamic script must be linked to that scope (Add dynamic script button)
-- The scope must be added to the client which will be using it at the "OpenID Connect -> Clients" page (using the "Add Scope" button), and the scope must be included by the client in "scope=" url query parameter
+- The scope must be added to the client which will be using it at the "OpenID Connect -> Clients" page (using the "Add Scope" button), and the scope must be included by the client in "scope=" URL query parameter
 
 More detailed explanation about adding scopes can be found under Openid [scopes](../admin-guide/openid-connect/#scopes)
 
@@ -228,14 +206,11 @@ More detailed explanation about adding scopes can be found under Openid [scopes]
 
 ## ID Generator       
 
-By default oxAuth/oxTrust uses an internal method to generate unique
-identifiers for new person/client, etc. entries. In most cases the
-format of the ID is:
+By default oxAuth/oxTrust uses an internal method to generate unique identifiers for new person/client, etc. entries. In most cases the format of the ID is:
 
 `'!' + idType.getInum() + '!' + four_random_HEX_characters + '.' + four_random_HEX_characters.`
 
-The ID generation script enables an admin to implement custom ID
-generation rules.
+The ID generation script enables an admin to implement custom ID generation rules.
 
 This script type adds only one method to the base script type:
 
@@ -249,10 +224,7 @@ This script can be used in an oxTrust application only.
 
 ## Cache Refresh       
 
-In order to integrate your Gluu instance with backend LDAP servers handling authentication in your existing network environment, oxTrust provides a mechanism called [Cache Refresh](../user-management/ldap-sync.md#ldap-synchronization) to copy user data to the Gluu Server's local LDAP server. During this process it is possible
-to specify key attribute(s) and specify attribute name transformations.
-There are also cases when it can be used to overwrite attribute values
-or to add new attributes based on other attribute values.
+In order to integrate your Gluu instance with backend LDAP servers handling authentication in your existing network environment, oxTrust provides a mechanism called [Cache Refresh](../user-management/ldap-sync.md#ldap-synchronization) to copy user data to the Gluu Server's local LDAP server. During this process it is possible to specify key attribute(s) and specify attribute name transformations. There are also cases when it can be used to overwrite attribute values or to add new attributes based on other attribute values.
 
 This script type adds only one method to the base script type:
 
@@ -263,21 +235,16 @@ This script type adds only one method to the base script type:
 This script can be used in an oxTrust application only.
 
 - [Sample Cache Refresh Script](./sample-cache-refresh-script.py)
-
  
 ## UMA 2 RPT Authorization Policies     
 
-This is a special script for UMA. It allows an admin to protect UMA
-scopes with policies. It is possible to add more than one UMA policy to
-an UMA scope. On requesting access to a specified resource, the
-application should call specified UMA policies in order to grant or deny
-access.
+This is a special script for UMA. It allows an admin to protect UMA scopes with policies. It is possible to add more than one UMA policy to an UMA scope. On requesting access to a specified resource, the application should call specified UMA policies in order to grant or deny access.
 
 This script type adds only one method to the base script type:
 
 |Method|`def authorize(self, authorizationContext, configurationAttributes)`|
 |---|---|
-|**Method Parameter**|`authorizationContext` is `org.xdi.oxauth.service.uma.authorization.AuthorizationContext`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
+|**Method Parameter**|`authorizationContext` is `org.gluu.oxauth.service.uma.authorization.AuthorizationContext`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
 
 This script can be used in an oxAuth application only.
 
@@ -291,20 +258,15 @@ This script can be used in an oxAuth application only.
 
 - [Sample UMA2 Claims-Gathering Script](./sample-uma-claims-gathering.py)
 
-
 ## Application Session Management      
 
-This script allows an admin to notify 3rd party systems about requests
-to end an OAuth session. This method is triggered by an oxAuth call to
-the `end_session` endpoint. It's possible to add multiple scripts with
-this type. The application should call all of them according to the
-level.
+This script allows an admin to notify 3rd party systems about requests to end an OAuth session. This method is triggered by an oxAuth call to the `end_session` endpoint. It's possible to add multiple scripts with this type. The application should call all of them according to the level.
 
 This script type adds only one method to the base script type:
 
 |Method|`def endSession(self, httpRequest, authorizationGrant, configurationAttributes)`|
 |---|---|
-|**Method Parameter**|`httpRequest` is `javax.servlet.http.HttpServletRequest`<br/>`authorizationGrant` is `org.xdi.oxauth.model.common.AuthorizationGrant`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
+|**Method Parameter**|`httpRequest` is `javax.servlet.http.HttpServletRequest`<br/>`authorizationGrant` is `org.gluu.oxauth.model.common.AuthorizationGrant`<br/>`configurationAttributes` is `java.util.Map<String, SimpleCustomProperty>`|
 
 This script can be used in an oxAuth application only.
 
@@ -314,8 +276,7 @@ This script can be used in an oxAuth application only.
 
 ## SCIM
 
-SCIM script allows you to execute custom logic when certain SCIM API operations are invoked. Particularly for create, update, and delete 
- users and groups, custom code can be called just before and after data is persisted to LDAP.
+SCIM script allows you to execute custom logic when certain SCIM API operations are invoked. Particularly for create, update, and delete users and groups, custom code can be called just before and after data is persisted to the database.
 
 To enable this feature, SCIM script needs to be enabled from the SCIM tab:
 
@@ -339,7 +300,7 @@ The introspection interception script extends the base script type with the `ini
 
 |Method|`def modifyResponse(self, responseAsJsonObject, context)`|
 |---|---|
-|**Method Parameter**|`responseAsJsonObject` is `org.codehaus.jettison.json.JSONObject`<br/>`context` is ` org.xdi.oxauth.service.external.context.ExternalIntrospectionContext`|
+|**Method Parameter**|`responseAsJsonObject` is `org.codehaus.jettison.json.JSONObject`<br/>`context` is ` org.gluu.oxauth.service.external.context.ExternalIntrospectionContext`|
 
 Snippet
 ```
@@ -347,7 +308,7 @@ Snippet
     # This method is called after introspection response is ready. This method can modify introspection response.
     # Note :
     # responseAsJsonObject - is org.codehaus.jettison.json.JSONObject, you can use any method to manipulate json
-    # context is reference of org.xdi.oxauth.service.external.context.ExternalIntrospectionContext (in https://github.com/GluuFederation/oxauth project, )
+    # context is reference of org.gluu.oxauth.service.external.context.ExternalIntrospectionContext (in https://github.com/GluuFederation/oxauth project, )
     def modifyResponse(self, responseAsJsonObject, context):
         responseAsJsonObject.put("key_from_script", "value_from_script")
         return True
@@ -357,7 +318,7 @@ Full version of introspection script example can be found [here](https://github.
 
 It is also possible to run introspection script during `access_token` creation as JWT. It can be controlled by `run_introspection_script_before_access_token_as_jwt_creation_and_include_claims` client property which is set to false by default.
 
-If `run_introspection_script_before_access_token_as_jwt_creation_and_include_claims` set to true and `access_token_as_jwt` set to true then introspection script will be run before JWT (`access_token`) is created and all json values will be transfered to JWT. Also `context` inside script has additional method which allows to cancel transfering of claims if needed `context.setTranferIntrospectionPropertiesIntoJwtClaims(false)` 
+If `run_introspection_script_before_access_token_as_jwt_creation_and_include_claims` set to true and `access_token_as_jwt` set to true then introspection script will be run before JWT (`access_token`) is created and all JSON values will be transfered to JWT. Also `context` inside script has additional method which allows to cancel transfering of claims if needed `context.setTranferIntrospectionPropertiesIntoJwtClaims(false)` 
 
 ## Resource Owner Password Credentials
 
@@ -369,18 +330,18 @@ The script extends the base script type with the `init`, `destroy` and `getApiVe
 
 |Method|`def authenticate(self, context)`|
 |---|---|
-|**Method Parameter**|`context` is `org.xdi.oxauth.service.external.context.ExternalResourceOwnerPasswordCredentialsContext`|
+|**Method Parameter**|`context` is `org.gluu.oxauth.service.external.context.ExternalResourceOwnerPasswordCredentialsContext`|
 
 Snippet
 ```
     # Returns boolean, true - authenticate user, false - ignore script and do not authenticate user.
     # This method is called after normal ROPC authentication. This method can cancel normal authentication if it returns false and sets `context.setUser(null)`.
     # Note :
-    # context is reference of org.xdi.oxauth.service.external.context.ExternalResourceOwnerPasswordCredentialsContext#ExternalResourceOwnerPasswordCredentialsContext (in https://github.com/GluuFederation/oxauth project, )
+    # context is reference of org.gluu.oxauth.service.external.context.ExternalResourceOwnerPasswordCredentialsContext#ExternalResourceOwnerPasswordCredentialsContext (in https://github.com/GluuFederation/oxauth project, )
     def authenticate(self, context):
         if (context.getHttpRequest().getParameterValues("device_id")[0] == "device_id_1"):
             return True
         return False
 ```
 
-Full version of script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_4.0/static/extension/resource_owner_password_credentials/resource_owner_password_credentials.py). 
+Full version of the script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_4.0/static/extension/resource_owner_password_credentials/resource_owner_password_credentials.py). 

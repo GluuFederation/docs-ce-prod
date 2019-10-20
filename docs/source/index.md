@@ -1,7 +1,4 @@
-# Gluu Server Community Edition (CE) 4.0 Beta Documentation
-
-!!! Attention
-    Gluu Server CE version 4.0 is currently in open Beta. Any questions or feedback can be directed to the [Gluu support portal](https://support.gluu.org).
+# Gluu Server Community Edition (CE) 4.0 Documentation
 
 ## Introduction
 The Gluu Server is a container distribution of free open source software (FOSS) for identity and access management (IAM). SaaS, custom, open source and commercial web and mobile applications can leverage a Gluu Server for user authentication, identity information, and policy decisions.
@@ -19,7 +16,7 @@ Common use cases include:
 The Gluu Server is a FOSS platform for IAM. Learn more about software licenses [below](#license)
 
 ### Open Web Standards
-Gluu supports open web standards for authentication, authorization, federated identity, and identity management, including:
+The Gluu Server can be deployed to support the following open standards for authentication, authorization, federated identity, and identity management:
 
 - OAuth 2.0    
 - OpenID Connect    
@@ -29,6 +26,7 @@ Gluu supports open web standards for authentication, authorization, federated id
 - FIDO Universal 2nd Factor (U2F)
 - FIDO 2.0 / WebAuthn
 - Lightweight Directory Access Protocol (LDAP)   
+- Remote Authentication Dial-In User Service (RADIUS) 
 
 ## Installation
 Linux packages are available for Ubuntu, CentOS, RHEL and Debian operating systems. Follow our [VM preparation guide](./installation-guide/index.md) to get started. Gluu also supports installation via [Docker containers](https://gluu.org/de).
@@ -86,6 +84,7 @@ The license for each software component included in the container is listed belo
 |	Shibboleth IDP      | [Apache2](http://www.apache.org/licenses/LICENSE-2.0)|
 |   OpenDJ              | [CDDL](https://opensource.org/licenses/CDDL-1.0)
 | Passport-JS           | [MIT License](https://github.com/jaredhanson/passport/blob/master/LICENSE) |
+| TinyRADIUS           | [LGPL v2.1](https://opensource.org/licenses/LGPL-2.1) |
 |  UnboundID LDAP SDK	| [UnboundID LDAP SDK Free Use License](https://github.com/UnboundID/ldapsdk/blob/master/LICENSE-UnboundID-LDAPSDK.txt)|
 | Jetty / Apache HTTPD  | [Apache2](http://www.apache.org/licenses/LICENSE-2.0)|
-|JCE 1.8 | [Oracle Binary License Agreement](http://www.oracle.com/technetwork/java/javase/terms/license/index.html)|
+|Amazon Corretto | [GNU v2 with the Classpath Exception](https://openjdk.java.net/legal/gplv2+ce.html)|   

@@ -14,7 +14,7 @@ edit_uri: edit/4.0/docs/source
 # Configuration
 theme: 
     name: material
-    custom_dir: theme
+#    custom_dir: 'theme'
     palette:
         primary: 'green'
         accent: 'green'
@@ -53,7 +53,14 @@ nav:
 - Whats new in v4: '4.x-intro.md'
 - Installation Guide:
         - 'VM Preparation': 'installation-guide/index.md'
-        - 'Installation': 'installation-guide/install.md'
+        - 'Installation': 
+#            - 'Start here': 'installation-guide/install.md'
+            - 'Test Drive': 'installation-guide/test-drive.md'
+            - 'Docker': 'installation-guide/install-docker.md'
+            - 'Ubuntu': 'installation-guide/install-ubuntu.md'
+            - 'Debian': 'installation-guide/install-debian.md'
+            - 'RHEL': 'installation-guide/install-rhel.md'
+            - 'CentOS': 'installation-guide/install-centos.md'
         - 'Setup Script Options': 'installation-guide/setup_py.md'
         - 'Clustering': 'installation-guide/cluster.md'
 - Administration Guide:
@@ -79,12 +86,12 @@ nav:
             - 'Forgot Password': 'authn-guide/pw-reset.md'
             - 'Custom Script Tutorial': 'authn-guide/customauthn.md'
         - Inbound Identity:
-            - 'Basics of Inbound Identity': 'authn-guide/passport.md'
+            - 'Introduction': 'authn-guide/passport.md'
             - 'Inbound OAuth & OpenID Connect': 'authn-guide/inbound-oauth-passport.md'
             - 'Inbound SAML': 'authn-guide/inbound-saml-passport.md'
-        - 'Radius Server':
+        - 'RADIUS':
             - 'Gluu Radius': 'admin-guide/radius-server/gluu-radius.md'
-            - 'Gluu Radiator': 'admin-guide/radius-server/gluu-radiator.md'
+            - 'Radiator Plugin': 'admin-guide/radius-server/gluu-radiator.md'
         - 'Attributes': 'admin-guide/attribute.md'
         - 'SAML IDP': 'admin-guide/saml.md'
         - 'OpenID Connect Provider (OP)': 'admin-guide/openid-connect.md'
@@ -116,6 +123,7 @@ nav:
             - 'GitHub Enterprise': 'integration/saas/github-enterprise.md'
             - 'Cisco WebEx': 'integration/saas/webex.md'
             - 'Amazon Web Services (AWS)': 'integration/saas/aws.md'
+            - 'Rocketchat': 'integration/saas/rocketchat.md'
             - 'SAMLtest.id': 'integration/saas/saml_test_id.md'
 - Reference:
         - Gluu API Guide:
@@ -127,7 +135,8 @@ nav:
             - 'oxTrust JSON Properties': 'reference/JSON-oxtrust-prop.md'
             - 'oxAuth JSON Properties': 'reference/JSON-oxauth-prop.md'
             - 'Cache Provider Configuration': 'reference/cache-provider-prop.md'
-        - 'Gluu LDAP Schema':
+        - 'Persistence Strategies':
+            - 'Persistence Mechanisms': 'reference/persistence.md'
             - 'oxLDAP Properties': 'reference/oxldap.md'
             - 'LDAP Schema': 'reference/schema.md'
 - Operation Guide:

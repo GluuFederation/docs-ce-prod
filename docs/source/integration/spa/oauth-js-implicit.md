@@ -22,7 +22,7 @@ The OpenID Connect Implicit Flow follows the following steps:
 To use this library, include the openidconnect.js dependency to your HTML page. You can get it from the Github CDN.
 
 ```html
-<script src="https://cdn.rawgit.com/GluuFederation/openid-implicit-client/master/openidconnect.js"></script>
+<script src="https://gitcdn.link/repo/GluuFederation/openid-implicit-client/master/openidconnect.js"></script>
 ```
 The next steps for the installation are:
 

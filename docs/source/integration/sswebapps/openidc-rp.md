@@ -13,7 +13,7 @@ If you don't have the Apache HTTPD server installed, use apt-get to install the 
 ### SSL Configuration
 The SSL Module is necessary for the Apache OpenID Connect Module. Please use the following commands to activate the `ssl module`.
 
-``` text
+```
 # a2enmod ssl
 ```
 
@@ -28,7 +28,7 @@ The next step is to create a self-signed SSL Certificate.
 
 * Answer the questions that are asked. A template is given below
 
-``` text
+```
 	Country Name (2 letter code) [AU]:US
 	State or Province Name (full name) [Some-State]:TX
 	Organization Name (eg, company) [Internet Widgits Pty Ltd]:Acme Inc.
@@ -42,21 +42,20 @@ This section will guide you through the steps to configure apache to use the SSL
 
 1. Open the `default-ssl.conf` file
 
-``` text
-vim /etc/apache2/sites-available/default-ssl.conf
+    ```
+    vim /etc/apache2/sites-available/default-ssl.conf
+    ```
 
-```
+1. Update the certificate locations with the newly created certificates `/etc/apache2/ssl/apache.key` and `/etc/apache2/ssl/apache.crt`
 
-2. Update the certificate locations with the newly created certificates `/etc/apache2/ssl/apache.key` and `/etc/apache2/ssl/apache.crt`
+1. Activate the SSL Virtual Host and CGI
 
-3. Activate the SSL Virtual Host and CGI
+    ```
+    a2ensite default-ssl.conf
+    a2enmod cgid
+    ```
 
-``` text
-a2ensite default-ssl.conf
-a2enmod cgid
-```
-
-4. [Restart](../../operation/services.md#restart) the `apache2` service
+1. [Restart](../../operation/services.md#restart) the `apache2` service
 
 At this point, its a good time to test to make sure SSL and CGI are working. Point your browser at https://www.mydomain.com/cgi-bin/printHeaders.cgi You should see a list of current environment variables. 
 
@@ -68,10 +67,9 @@ At this point, its a good time to test to make sure SSL and CGI are working. Poi
 
 For Ubuntu 16.04
 
-``` text
+```
 # apt-get install libjansson4 libhiredis0.13
 # apt-get install libcurl3
-
 ```
 
 You'll also need the mod_auth_openidc and libjose packages which can be downloaded from the [Releases Page](https://github.com/zmartzone/mod_auth_openidc/releases).

@@ -1,8 +1,11 @@
-# Inbound OAuth & OpenID Connect using Passport
+# Inbound OpenID Connect & OAuth
+
+## Overview
+This document provides instructions for configuring the Gluu Server to support user authentication at one or more external OAuth or OpenID Connect Providers (a.k.a. inbound OAuth / OpenID). For a quick overview of key concepts associated with "inbound identity", visit the [introductory page](./passport.md). 
 
 ## Enable Passport
 
-The [introductory page](./passport.md) provides a quick overview of key concepts to get the most out of inbound identity with Gluu Passport. Ensure your installation already has the [Passport component installed](./passport.md#passport-setup). Follow these steps to enable it:
+Make sure the Gluu Server installation already has [Passport installed](./passport.md#passport-setup). Then perform the following:
 
 1. Enable the custom script
 
@@ -19,7 +22,9 @@ The [introductory page](./passport.md) provides a quick overview of key concepts
 
     ![enable passport](../img/user-authn/passport/enable_passport.png) 
 
-## Integrate OpenID Connect providers
+Once the steps above are performed, the TCP port 8090 appears ready to accept connections.
+
+## Integrate OpenID Connect Providers
 
 Follow these steps to integrate an external OP for login to an OIDC application:
 
@@ -43,7 +48,7 @@ Follow these steps to integrate an external OP for login to an OIDC application:
 
 1. Enter an identifier for this provider (letters, digits, and underscore characters allowed). Check [here](./passport.md#identifiers) to learn more about identifiers usage
 
-1. Enter a display name for the provider  (e.g "My ADFS", "MITREid Connect", etc.)
+1. Enter a display name for the provider  (e.g "Partner 1", "Customer 1", etc.)
 
 1. In `type`, choose "openidconnect" (if you are using Gluu oxd as a mediator with an OP, check [this](#using-oxd-as-mediator) section)
 
@@ -81,7 +86,7 @@ In the summary table, click on the name of the recently added provider and suppl
 
 ### Protect the OIDC application with `passport_social` authentication
 
-The same steps described for [Social Login](#protect-the-application-with-passport_social-authentication) can be followed in this case. If additional assistance is needed, open a ticket on [Gluu support](https://support.gluu.org).
+The same steps described for [OAuth Login](#protect-the-application-with-passport_social-authentication) can be followed in this case. If additional assistance is needed, open a ticket on [Gluu support](https://support.gluu.org).
 
 ### Using oxd as mediator
 
@@ -145,17 +150,17 @@ In this section, we provide specific steps on how to configure a Gluu Server ins
    
    - `userInfoURL`: `https://<remote-gluu-server>/oxauth/restv1/userinfo`
 
-## Setting up social login
+## Integrate OAuth Authorization Servers
 
-The following are the steps required to offer social login in an OIDC application:
+!!! Note
+    Only specific OAuth servers with an already existing [Passport.js strategy](./passport.md#strategies) can be integrated. Click [here](https://github.com/jaredhanson/passport/wiki/Strategies#providers) to learn more about supported providers.
+
+Follow these steps to configure your Gluu Server for login with external OAuth servers:
 
 1. Add the provider in the admin UI
 1. Obtain client credentials
 1. Supply strategy parameters
 1. Protect the application with `passport_social` authentication
-
-!!! Note
-    Ensure the machine(s) running Passport have access to the OAuth provider you are trying to connect to.
 
 ### Add the provider in the admin UI
 
@@ -183,9 +188,9 @@ The following are the steps required to offer social login in an OIDC applicatio
     |Windows Live|passport-windowslive|
     |Yahoo!|passport-yahoo-oauth2|
 
-    If the provider of interest is not listed, it is necessary to find a proper [node package](https://www.npmjs.com/) for that provider and install it. That the package **has to be** a Passport.js strategy based on OAuth 1.0 or OAuth 2.0.
+    If the provider of interest is not listed, find the proper [node package](https://www.npmjs.com/) for that provider and install it. The package **must be** a Passport.js strategy based on OAuth 1.0 or OAuth 2.0.
 
-    Installation can be performed the following way:
+    Packages can be installed in the following way:
 
     - Log in to Gluu Server chroot.
     - Switch to `node` user: `su - node`.
@@ -194,7 +199,7 @@ The following are the steps required to offer social login in an OIDC applicatio
     - Ensure the VM has Internet access and install the strategy, eg. `npm install STRATEGY --save` where `STRATEGY` is the package to install, for instance, `passport-reddit`.
     - [Restart](../operation/services.md#restart) the `passport` service.
 
-    Unfortunately, strategies do not follow any standardized naming convention, so it's not possible to autofill the "Passport.js strategy" field based on words previously entered in the provider's display name. Also, there are cases where several strategies are suitable for a given provider.
+    Strategies do not follow any standardized naming convention, so it's not possible to autofill the "Passport.js strategy" field based on words previously entered in the provider's display name. Also, there are cases where several strategies are suitable for a given provider.
 
 1. Fill the name of the applicable mapping. Use the following table as reference:
 
@@ -210,9 +215,9 @@ The following are the steps required to offer social login in an OIDC applicatio
     |Windows Live|windowslive|
     |Yahoo!|yahoo|
 
-    If the provider of interest is not listed, it is necessary to create a mapping file. A mapping is a mechanism that defines how the profile data released by the external provider is saved to local Gluu LDAP. 
+    If the provider of interest is not listed, a mapping file must be created. A mapping is a mechanism that defines how the profile data released by the external provider will be saved locally by Gluu. 
     
-    It is recommended to create mappings based on existing mapping files. Make a copy of any file listed in the table above (see directory `/opt/gluu/node/passport/server/mappings` in Gluu chroot) and name it appropriately. Enter the name (without file extension) in the form field. The [tutorial](../tutorials/passport-attributes-mapping.md) contains instructions on how to write attribute mappings. It is an easy task and generally does not demand programming skills.
+    It is recommended to create mappings based on existing mapping files. Make a copy of any file listed in the table above (see directory `/opt/gluu/node/passport/server/mappings` in Gluu chroot) and name it appropriately. Enter the name (without file extension) in the form field. The [tutorial](../tutorials/passport-attributes-mapping.md) contains instructions on how to write attribute mappings. It is an easy task and generally does not require programming skills.
     
 1. If the provider being added is present in the table above, enter `img/<mapping>.png` (we already bundle images for the social sites supported out-of-the-box). Otherwise, check this [section](./passport.md#about-logo-images) of the introductory page.
     
@@ -234,7 +239,7 @@ The following are the steps required to offer social login in an OIDC applicatio
 
 ### Obtain client credentials
 
-Every provider has its own procedure for issuing client credentials (AKA client ID and client secret). Check the developer docs of the specific social site for more information. The aim is to get to a page that allows creation of applications. Here are links for a few popular providers: 
+Every provider has its own procedure for issuing client credentials (AKA client ID and client secret). Check the developer docs of the specific social site (or OAuth provider) for more information. The aim is to get to a page that allows creation of applications. Here are links for a few popular providers: 
 
 - [GitHub](https://github.com/settings/applications/new)   
 - [Twitter](https://apps.twitter.com)   
@@ -294,7 +299,7 @@ For a concrete example, and as a means to quickly test the work so far, oxTrust 
 Open a separate browsing session (e.g incognito) and try accessing oxTrust. If your setup is correct, you'll be prompted for authentication at the external provider and, after successfully authenticating, will be redirected back to oxTrust as an authenticated user.
 
 !!! Note
-    Once you have supplied login credentials at an external provider, you won't be prompted for authentication again until your session expires or you explicitly log out of the external provider.
+    Ensure the machine(s) running Passport have access to the OAuth provider you are trying to connect to. Once you have supplied login credentials at an external provider, you won't be prompted for authentication again until your session expires or you explicitly log out of the external provider.
     
 If you get an error page like the one below, double check your configuration and Internet access from both your browser and VM. Also check the [logs](./passport.md#files-and-severity-level).
 

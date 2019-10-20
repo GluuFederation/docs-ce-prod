@@ -41,14 +41,14 @@ Basic authentication should be enabled out-of-the-box. In case it needs to be re
    - You can tail `oxauth_script.log` to check successful initialization of this script
 ```
 GLUU.[root@gluu logs]# tail -f oxauth_script.log
-2018-01-10 10:39:16,847 INFO  [oxAuthScheduler_Worker-5] [org.xdi.service.PythonService$PythonLoggerOutputStream] (PythonService.java:209) - Basic. Initialization
-2018-01-10 10:39:16,853 INFO  [oxAuthScheduler_Worker-5] [org.xdi.service.PythonService$PythonLoggerOutputStream] (PythonService.java:209) - Basic. Initialized successfully
+2018-01-10 10:39:16,847 INFO  [oxAuthScheduler_Worker-5] [org.gluu.service.PythonService$PythonLoggerOutputStream] (PythonService.java:209) - Basic. Initialization
+2018-01-10 10:39:16,853 INFO  [oxAuthScheduler_Worker-5] [org.gluu.service.PythonService$PythonLoggerOutputStream] (PythonService.java:209) - Basic. Initialized successfully
 ```
  
 ### Backend AD/LDAP 
 If a backend AD or LDAP is being used to store passwords and authenticate users, navigate to: `Configuration` > `Manage authentication` > `Manage LDAP Authentication` and provide information on the backend directory, including bindDN, bindDN user password, Primary Key ( don't change local primary_key ), Server Name / IP along with port and BaseDN/s. 
 
-A more detailed description of each field can be found in the [Manage Authentication](../admin-guide/oxtrust-ui/#manage-authentication) section of the Gluu docs.
+A more detailed description of each field can be found in the [Manage Authentication](../admin-guide/oxtrust-ui.md#manage-authentication) section of the Gluu docs.
 
 ## Make 'Basic' the Default
 

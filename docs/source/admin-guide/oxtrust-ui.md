@@ -1,7 +1,7 @@
 # oxTrust Administrative Graphical User Interface (GUI)
 
 ## Overview 
-This section covers various features associated with managing your federation service via the Gluu Server interface ("oxTrust"). There is a corresponding page in the Gluu Server user interface for each of the sections below. When necessary, this document will link to dedicated sections within the docs where additional operational details are provided.
+This section covers various features associated with managing your federation service via the Gluu Server interface ("oxTrust"). There is a corresponding page in the Gluu Server user interface for most of the sections below. When necessary, this document will link to dedicated sections within the docs where additional operational details are provided.
 
 ## Accessing the UI
 The Gluu Server administration interface is accessible by navigating to `https://hostname` (the one you provided during setup). When you first complete an installation, the default username is `admin` and the password is the same as the `LDAP superuser` password. 
@@ -13,7 +13,7 @@ After successful authentication, the administrator is taken to the Dashboard. So
 
 ## Localization of oxTrust UI
 
-The oxTrust UI can be customized to your preferred language. The default language is English. To change it to your preferred language, you have to edit a few properties file, found within `identity.war`. The path for `identity.war` is `/opt/gluu/jetty/identity`, which can be found in the `chroot` container.
+The oxTrust UI supports localization. The default language is English. To set a new preferred language, edit a few properties file, found within `identity.war`. The path for `identity.war` is `/opt/gluu/jetty/identity`, which can be found in the `chroot` container.
 
 oxAuth contains the following resource bundles:   
 - [messages_en.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.0/Server/src/main/resources/oxauth_en.properties)       
@@ -50,8 +50,7 @@ oxTrust UI can be used to change the language once oxtrust_[language_code].prope
 ![localization](../img/admin-guide/oxtrust/localization.png)
 
 ## Configuration   
-From the configuration tab, the Gluu Server administrator can manage 
-certain non-protocol related tasks.
+From the configuration tab, the Gluu Server administrator can manage certain non-protocol related tasks.
 
 ### Organization Configuration
 
@@ -111,7 +110,7 @@ The following tabs are included in the `JSON Configuration` menu:
 * [Cache Provider Configuration](#cache-provider-configuration)
 * [oxTrust Import Configuration](#oxtrust-import-configuration)
 
-![json-config-head](../img/admin-guide/oxtrust/json-config-head.png "JSON Configuration Headers")
+![JSON Configuration Headers](../img/admin-guide/oxtrust/json-config-head.png)
 
 ### oxTrust Configuration
 From this tab, you can access and edit the oxTrust JSON configuration file. 
@@ -139,6 +138,8 @@ The Gluu Server administrator can manage oxAuth sessions by adding the desired s
 
 ### Cache Provider Configuration
 
+![Cache Provider Configuration](../img/admin-guide/oxtrust/cache-provider-configv4.png)
+
 The following cache providers are now supported and can be selected via the `cacheProviderType` combo box field:
 
 * [In Memory](../reference/cache-provider-prop.md#in-memory-configuration) - recommended for small deployments only
@@ -152,13 +153,16 @@ Full configuration options can be found at the [Cache Provider Reference doc](..
 
 ![oxtrustimport](../img/admin-guide/oxtrust/oxtrust-importv4.png)
 
-The oxTrust Import Person Configuration page contains the configuration for the file method of importing users into the Gluu Server. The administrator can import users from an `xls` file which must be defined in this tab to import data in the LDAP attributes. The default format should contain the following fields: 
+The oxTrust Import Person Configuration page contains attribute values that are available for import via file. If importing users via file, all attributes included in the file should be specified in this table. 
 
-- givenname
-- sn
-- uid
-- firstname, 
-etc..
+Each attribute should include values the following fields: 
+
+- ldapName       
+- displayName      
+- dataType   
+- required       
+
+Learn how to import users via file in the [User Management guide](../user-management/local-user-management.md#import-people-in-oxtrust)
 
 ## Manage Authentication
 
@@ -185,9 +189,7 @@ This section allows the Gluu Server administrator to define how and where the se
 
 * _Use SSL:_ Enable SSL if the authentication server requires a secured port (e.g. 636)
 
-* _Enabled:_ This check-box is used to enable the keys that are inserted in their respective fields
-
-* _Deactivate:_ This button *Deactivates/Activates* the Gluu Server accessibility for authentication
+* _Activate:_ This button enables and disables corresponding remote LDAP server as an authentication option; please note that starting CE 4.0 clicking this button is mandatory step when setting LDAP authentication!
 
 * _Test LDAP Connection:_ Use this button to check whether the provided information is sufficient to connect to the authentication server. The scan is done in real time
 
@@ -211,8 +213,8 @@ Gluu Server relies on its core component, called oxAuth, when authenticating use
 
 ![default](../img/admin-guide/oxtrust/defaultv4.png)
 
-* Default acr: This control defines method used for general authentication in oxAuth by default. It will also be applied to users accessing the oxTrust administrator interface, unless overriden by "oxTrust authentication mode". Remote applications may also specify desired authentication method explicitly by including "acr_values=" url query parameter during initial authorization request of OpenID Connect flows
-* oxTrust acr: This control defines authentication method used when user is accessing the oxTrust administrator interface. By setting "oxTrust authentication mode" to some other (possibly stricter, like Duo auth) method you may ensure administrator's tools are properly protected against malicious users
+* Default ACR: This control defines method used for general authentication in oxAuth by default. It will also be applied to users accessing the oxTrust administrator interface, unless overriden by "oxTrust authentication mode". Remote applications may also specify desired authentication method explicitly by including "acr_values=" url query parameter during initial authorization request of OpenID Connect flows
+* oxTrust ACR: This control defines authentication method used when user is accessing the oxTrust administrator interface. By setting "oxTrust authentication mode" to some other (possibly stricter, like Duo auth) method you may ensure administrator's tools are properly protected against malicious users
 
 The values are available for selection out-of-the-box: "basic", "super_gluu" and "auth_ldap_server". The latter instructs corresponding modules to use a [basic LDAP bind authentication](../authn-guide/basic.md) against the LDAP server configured on "Manage LDAP Authentication" tab of this page, which is by default a Gluu's internal LDAP directory. When "Default" is set for "oxTrust authentication mode", it will fall-back to the default method set for oxAuth.
 
@@ -223,12 +225,19 @@ When a [custom authentication script](../authn-guide/customauthn.md) is enabled,
 !!! Warning
     If **both** default authentication methods are set to "Default", oxAuth will use basic LDAP bind authentication, but only until the moment some custom authentication script becomes enabled. In case there are enabled custom auth scripts, it will use the one with the lowest priority level (defined by "Level" setting) to authenticate all users automatically, even if you don't set it as default authentication mode explicitly. So if this script hasn't yet been properly configured you may lose access to your instance's web UI. Please ensure that you set at least "auth_ldap_server" method for "Authentication mode" before trying to explore other advanced authentication methods. 
     
-<!-- Coming soon, pending more info
 ### CAS Protocol
--->
+The Gluu Server leverages the Shibboleth IDP to provide support for legacy systems still using CAS. For more information, see the [CAS](./cas.md) documentation.
+
+![CAS Protocol](../img/admin-guide/oxtrust/cas-protocol.png)
+
+## Manage SAML ACRS
+
+Gluu offers out-of-the-box support for the SAML parameter AuthnContextClassRef (ACRS). For more information, see the [SAML ACRS](./saml.md#authncontextclassref-support) documentation.
+
+![Manage SAML ACRS](../img/admin-guide/oxtrust/manage_saml_acrs.png)
 
 ## Manage Custom Scripts
-The Gluu Server exposes interception scripts in places where it is common for organizations to implement custom workflows, or changes to the look and feel of the Gluu Server. The most commonly used scripts are for authentication, authorization, and identity synchronization. Each type of script has its own interface--in other words, what methods are available. For more information, see the reference page detailing each type of [interception script](./custom-script.md).
+The Gluu Server exposes interception scripts for organizations to implement custom workflows. The most commonly used scripts are for authentication, authorization, and identity synchronization. For more information, see the [interception script](./custom-script.md) documentation.
 
 ![Manage Custom Scripts](../img/admin-guide/oxtrust/managecustomscriptsv4.png)
 

@@ -66,7 +66,7 @@ After collecting this information, the deployer can move forward with the Cache 
 * _Custom LDAP Filter:_ If there is any custom search required, this filtering mechanism can be used such as "sn=*" whereas the value of this field ensures that every user must contain an attribute named SN.
 
 ### Source Backend LDAP Servers
-![Source Backend](../img/admin-guide/user/admin_cache_sourcebackend312.png)
+![Source Backend](../img/admin-guide/user/admin_cache_sourcebackend.png)
 
 This section allows the Gluu Server to connect to the backend Active Directory/LDAP server of the organization.
 
@@ -91,7 +91,7 @@ If your organization has a multiple Active Directory/LDAP server, click on **Add
 
 ### Inum LDAP Server
 
-![Inum LDAP Server](../img/admin-guide/user/admin_cache_inum312.png)
+![Inum LDAP Server](../img/admin-guide/user/admin_cache_inum.png)
 
 This section of the application allows the server administrator to connect to the internal LDAP of the Gluu Server. As Gluu Server administrator, you do not need to insert anything here in this section as new Gluu Server versions automatically populates this for you (unlessyou try to manually configure it anyway).
 

@@ -35,32 +35,24 @@ Review the Gluu Server's OpenID Connect API endpoints in the [API Guide](../api-
 The Gluu Server supports all flows defined in the [OpenID Connect Core spec](http://openid.net/specs/openid-connect-core-1_0.html), including implicit, authorization code, and hybrid flows.
 
 ### Implicit Flow
-The implicit flow, where the token and id_token are returned from the authorization endpoint, should only
-be used for applications that run in the browser, like a Javascript client.
+The implicit flow, where the token and id_token are returned from the authorization endpoint, should only be used for applications that run in the browser, like a Javascript client.
 
 ### Authorization Code / Hybrid Flow
-The code flow or hybrid flow should be used for server side
-applications, where code on the web server can more securely call
-the token endpoint to obtain a token.
+The code flow or hybrid flow should be used for server side applications, where code on the web server can more securely call the token endpoint to obtain a token.
 
-The most useful response type for the hybrid flow is `code id_token`. Using this flow, you can verify
-the integrity of the code by inspecting the `c_hash` claim in the `id_token`.
+The most useful response type for the hybrid flow is `code id_token`. Using this flow, you can verify the integrity of the code by inspecting the `c_hash` claim in the `id_token`.
 
-If you are using the code flow, the response type should only be code.
-There is no point in using response type `code token id_token`--the extra
-tokens returned by the authorization endpoint will only create additional
-calls to the LDAP server and slow you down.
+If you are using the code flow, the response type should only be code. There is no point in using response type `code token id_token`--the extra tokens returned by the authorization endpoint will only create additional calls to the database server and slow you down.
 
-If you are going to trade the code at the token endpoint for a new token and `id_token`, you don't
-need them from the authorization endpoint too.
+If you are going to trade the code at the token endpoint for a new token and `id_token`, you don't need them from the authorization endpoint too.
 
 ### Flow Comparison Chart
 |Step   |  Authorization code flow 	| Implicit flow	 | Hybrid flow |
 |----------|----------|-------------------------------|----------------|
 |1|User accesses an application.|User accesses an application.|User accesses an application.|
-|2|The application/relaying party (RP) prepares an authentication request containing the desired request parameters and sends it to the OpenID Provider (Gluu Server). The `response_type requested` is `code`.|The application/replaying party (RP) prepares an authentication request containing the desired request parameters and sends it to the OpenID Provider (Gluu Server). The `response_type requested` is `id_token` or `id_token token`.|The application/replaying party (RP) prepares an authentication request containing the desired request parameters and sends it to the OpenID Provider (Gluu Server). The `response_type` requested is `code id_token`, `code token`, or `code id_token token`.|
+|2|The application/relying party (RP) prepares an authentication request containing the desired request parameters and sends it to the OpenID Provider (Gluu Server). The `response_type requested` is `code`.|The application/relying party (RP) prepares an authentication request containing the desired request parameters and sends it to the OpenID Provider (Gluu Server). The `response_type requested` is `id_token` or `id_token token`.|The application/relying party (RP) prepares an authentication request containing the desired request parameters and sends it to the OpenID Provider (Gluu Server). The `response_type` requested is `code id_token`, `code token`, or `code id_token token`.|
 |3|The OpenID Provider (Gluu Server) verifies the user’s identity and authenticates the user.|The OpenID Provider (Gluu Server) verifies the user’s identity and authenticates the user.|The OpenID Provider (Gluu Server) verifies the user’s identity and authenticates the user.|
-|4|The OpenID Provider (Gluu Server) sends the user back to the application with an authorization code.|The OpenID Provider (Gluu Server) sends the user back to the application with an ID Token (`id_token` or `id_token token`) and an Access Token (`token`).|The OpenID Provider (Gluu Server) sends the user back to the application with an authorizatio code (`code id_token`, `code token`, or `code id_token token`) and an Access Token (`token`).|
+|4|The OpenID Provider (Gluu Server) sends the user back to the application with an authorization code.|The OpenID Provider (Gluu Server) sends the user back to the application with an ID Token (`id_token` or `id_token token`) and an Access Token (`token`).|The OpenID Provider (Gluu Server) sends the user back to the application with an authorization code (`code id_token`, `code token`, or `code id_token token`) and an Access Token (`token`).|
 |5|The application sends the code to the Token Endpoint to receive an Access Token and ID Token in the response.|The application uses the ID Token to authorize the user. At this point the application/RP can access the `UserInfo endpoint` for claims.|The application sends the code to the Token Endpoint to receive an Access Token and ID Token in the response.|
 |6|The application uses the ID Token to authorize the user. At this point the application/RP can access the `UserInfo endpoint` for claims.||The application uses the ID Token to authorize the user. At this point the application/RP can access the `UserInfo endpoint` for claims.|
 
@@ -92,11 +84,11 @@ To add a client manually in oxTrust, navigate to `OpenID Connect` > `Client` and
 
 There are many client configuration parameters. Most are specified in the [Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html#ClientRegistration) section of the OpenID Connect specification. The Client Secret field features a `Lock Secret Field` button to prevent accidental edits or autofill. 
 
-There are two configurations parameters that can only be configured via oxTrust by an administrator. These include:
+There are two configuration parameters that can only be configured via oxTrust by an administrator. These include:
 
 1. Pre-Authorization: If the OAuth authorization prompt should not be displayed to end users, set this field to `True`. This is useful for SSO to internal clients (not third party) where there is no need to prompt the person to approve the release of information.
  
-1. Persist Client Authorizations: If end users should only be prompted for authorization the *first* time they access the client, set this field to `True`. All data will be persisted under the person's entry in the Gluu LDAP and the end user will not be prompted to release informationd during subsequent logins. This feature is automatically set to `True` if Pre-Authorization is enabled.
+1. Persist Client Authorizations: If end users should only be prompted for authorization the *first* time they access the client, set this field to `True`. All data will be persisted under the person's entry in the Gluu database and the end user will not be prompted to release informationd during subsequent logins. This feature is automatically set to `True` if Pre-Authorization is enabled.
 
 ### Dynamic client registration
 OpenID Connect defines a standard API for [Dynamic Client Registration](http://openid.net/specs/openid-connect-registration-1_0.html). The registration URL can be found at the configuration endpoint: `https://<hostname>/.well-known/openid-configuration`.
@@ -143,8 +135,7 @@ Each client's entry in oxTrust contains an at-a-glance summary page. All configu
 
 ## Scopes
 
-In OAuth, scopes are used to specify the extent of access. For an OpenID Connect sign-in flow, scopes correspond to the release of
-user claims. Out-of-the-box, Gluu supports the [standard scopes](http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims) defined in the OpenID Connect specification.
+In OAuth, scopes are used to specify the extent of access. For an OpenID Connect sign-in flow, scopes correspond to the release of user claims. Out-of-the-box, Gluu supports the [standard scopes](http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims) defined in the OpenID Connect specification.
 
 Custom scopes can be defined and mapped to any registered user attributes.
 
@@ -181,7 +172,6 @@ A Subject Identifier is a locally unique and never reassigned identifier within 
  
 ![Subject Types Supported](../img/admin-guide/openid/subjecttypessupported.png)
 
-
 ### Public Subject Identifier Type
 
 This provides the same `sub` (subject) value to all Clients. It is the default if the provider has no `subject_types_supported` element in its discovery document.
@@ -199,7 +189,7 @@ Sector identifiers provide a way to group clients from the same adminstrative do
 
 Gluu allows two types of pairwise implementations that can be configured:
 
-1. `PairwiseIdType.PERSISTENT`: oxauth creates a Unique Id (`java.util.UUID`) for the pair of Sector Identifier and local account Id and stores this value under:
+1. `PairwiseIdType.PERSISTENT`: oxauth creates a Unique ID (`java.util.UUID`) for the pair of Sector Identifier and local account Id and stores this value under:
 `dn: ou=pairwiseIdentifiers,inum=PEOPLE_INUM,ou=people,o=ORG_INUM,o=gluu`
 
 1. `PairwiseIdType.ALGORITHMIC`: The sub value is calculated as follows:
@@ -209,7 +199,7 @@ Key and salt are read from oxAuth configuration entries `pairwiseCalculationKey`
 
 ![Pairwise Algorithmic configuration](../img/admin-guide/openid/pairwiseconfiguration.png)
 
-A user's associated Pairwise IDs can be viewed and managed directly in LDAP, or more conveniently in their oxTrust user record. Check the [Manage People doc](../user-management/local-user-management.md#managing-associated-pairwise-ids) for more information. 
+A user's associated Pairwise IDs can be viewed and managed directly in the database, or more conveniently in their oxTrust user record. Check the [Manage People doc](../user-management/local-user-management.md#managing-associated-pairwise-ids) for more information. 
 
 ### Add Sector Identifier
 
@@ -252,7 +242,7 @@ The default distribution of the Gluu Server includes custom authentication scrip
 |  yubicloud	| Yubico cloud OTP verification service |
 |  uaf	| experimental support for the FIDO UAF protocol |
 |  basic_lock	| [Enables lockout after a certain number of failures](../authn-guide/intro.md#configuring-account-lockout) |
-|  basic	| [Sample script using local LDAP authentication](../authn-guide/basic.md/) |
+|  basic	| [Sample script using local database authentication](../authn-guide/basic.md/) |
 
 Clients can request any enabled authentication mechanism. To enable an authentication script in oxTrust, navigate to `Configuration` > `Manage Custom Scripts`, find the desired script, check the `Enabled` box, scroll to the bottom of the page and click `Update`.
 
@@ -275,8 +265,7 @@ To set the default `acr_value` for a client, follow these steps:
 
 The OpenID Connect [Session Management](http://openid.net/specs/openid-connect-session-1_0.html) specification is still marked as draft, and new mechanisms for logout are in the works. The current specification requires JavaScript to detect when a session has been ended in the browser. It works... unless the tab with the JavaScript happens to be closed when the logout event happens on another tab. Also, inserting JavaScript into every page is not feasible for some applications.
 
-The Gluu Server also support the draft for [Front Channel Logout](http://openid.net/specs/openid-connect-frontchannel-1_0.html). This
-is our **recommended** logout strategy. Using front channel logout, an html page is rendered which contains one iFrame for each application that needs to be notified of a logout event. The Gluu Server keeps track of which clients are associated with a session (i.e. your browser). 
+The Gluu Server also support the draft for [Front Channel Logout](http://openid.net/specs/openid-connect-frontchannel-1_0.html). This is our **recommended** logout strategy. Using front channel logout, an html page is rendered which contains one iFrame for each application that needs to be notified of a logout event. The Gluu Server keeps track of which clients are associated with a session (i.e. your browser). 
 
 Front channel logout is also not perfect. If the end user's web browser is blocking third party cookies, it may break front channel logout. Also, the Gluu Server has no record if the logout is successful--only the browser knows. This means that if the logout fails, it will not be logged or retried. The good thing about front channel logout is that the application can clear application cookies in the end user's browser. To use front channel logout, the client should register logout_uri's, or `frontchannel_logout_uri` for clients using the Dynamic Client Registration API.
 
@@ -284,7 +273,7 @@ Front channel logout is also not perfect. If the end user's web browser is block
 
 In order to leverage your Gluu Server OpenID Provider (OP) for central authentication, web and mobile apps will need to support OpenID Connect. In OpenID Connect jargon, your app will act as an OpenID Connect Relying Party (RP) or "client".
 
-There are many ways to go about supporting OpenID Connect in your apps. When possible, it is best to use existing client software implementations that have been verified to implement OpenID Connect properly (and securely!). A good OpenID Connect client will do much of the heavy lifting for you.
+There are many ways to go about supporting OpenID Connect in your apps. When possible, it is best to use existing client software implementations that have been verified to implement OpenID Connect properly (and securely!) A good OpenID Connect client will do much of the heavy lifting for you.
 
 Review the [SSO integration guide](../integration/index.md) to determine which software and strategy will be best for your target application(s).
 
@@ -292,13 +281,11 @@ Review the [SSO integration guide](../integration/index.md) to determine which s
 
 The Gluu Server ships with an optional OpenID Connect RP web application called oxauth-rp which is handy for testing. During Gluu Server setup you'll be asked if you want to install the oxauth-rp (it should be installed on a development environment). If you decide to install it, oxAuth RP will be deployed on `https://<hostname>/oxauth-rp`.
 
-Using the oxAuth RP you can exercise all of the OpenID Connect API's, including discovery, client registration, authorization, token,
-userinfo, and end_session.
+Using the oxAuth RP you can exercise all of the OpenID Connect APIs, including discovery, client registration, authorization, token, userinfo, and end_session.
 
 ### Access Token
 
-Access token usually is random string, but it's possible to return the access token as a JWT. It can be controlled per client.
-There are two client properties:
+Access token usually is random string, but it's possible to return the access token as a JWT. It can be controlled per client. There are two client properties:
 
 - `access_token_as_jwt` - Boolean controlling whether to return the `access_token` as a JWT. It is false by default.     
 - `access_token_signing_alg` - signing algorithm that has to be used during JWT signing. If it's not specified, then the default OP signing algorithm will be used (specified via `defaultSignatureAlgorithm` oxAuth configuration property).          

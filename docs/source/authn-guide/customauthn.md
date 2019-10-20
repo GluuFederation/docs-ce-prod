@@ -6,7 +6,7 @@
 
 This tutorial explains how to write an authentication interception script to implement a two-step out-of-band authentication using Twilio to send an SMS with a one-time password. At the end of this tutorial you should have a better understanding of how to write your own custom scripts. For reference, you can review the completed Twilio custom authentication script [here](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/twilio_sms/twilio2FA.py). 
 
-!!! Warning:
+!!! Warning
     Be aware that while testing authentication scripts you may lock yourself out of web the UI. It's always advised to test authentication scripts in a separate incognito browser. If you do find yourself locked out, follow [these steps](../operation/faq.md#revert-authentication-method) to revert the authentication method. 
     
 ## Suggested Development Environment
@@ -68,16 +68,16 @@ Steps to add a custom template and pass values between 2 steps of authentication
 [Twilio script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/twilio_sms/twilio2FA.py):
 
 1. Login to Gluu UI;
-2. Navigate to `Configuration` > `Manage Custom Scripts`;
-3. Scroll to the end of the page and click `Add custom script configuration`;
-4. Enter the Name, Description, and Programming Language (Python will be by default);
-5. Select the Level to set a security level;
-6. Select Location Type for the script;
-7. Select the Usage Type for the authentication;
-8. Define Custom property, which in our example is provided by Twilio;
-9. Click on Enabled to enable the script;
-10. Scroll down to the bottom of the form and click `submit`;
-11. After the custom script is added, navigate to `Configuration` > `Manage Authenticaion` > `Default Authentication Method` and change the oxTrust authentication mode to "Twilio" (or the custom name of your script). 
+1. Navigate to `Configuration` > `Manage Custom Scripts`;
+1. Scroll to the end of the page and click `Add custom script configuration`;
+1. Enter the Name, Description, and Programming Language (Python will be by default);
+1. Select the Level to set a security level;
+1. Select Location Type for the script;
+1. Select the Usage Type for the authentication;
+1. Define Custom property, which in our example is provided by Twilio;
+1. Click on Enabled to enable the script;
+1. Scroll down to the bottom of the form and click `submit`;
+1. After the custom script is added, navigate to `Configuration` > `Manage Authenticaion` > `Default Authentication Method` and change the oxTrust authentication mode to "Twilio" (or the custom name of your script). 
 
 **Note: All three below custom properties are mandatory for the Twilio Two-Factor Authentication script to work**     
 
@@ -135,8 +135,7 @@ Example: `abc = requestParameters.get("passcode")[0].strip()`
 Another method usually needed to implement is `getCountAuthenticationSteps`. This method normally just returns 1, 2, or 3. If implementing an adaptive authentication strategy, where the number of steps depends on the context. 
 
 !!! Note   
-	Check the [Duo script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/duo/DuoExternalAuthenticator.py) 
-	for a good example of how `getCountAuthenticationSteps` can be used to implement adaptive authentication. The Duo script is scripted so that two-factor authentication is only presented for users in the IT group. The script checks for group membership and dynamically adjusts the number of steps. This can be implemented to check for any logic or attribute during the authentication, like "country" or "region".
+    Check the [Duo script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/duo/DuoExternalAuthenticator.py) for a good example of how `getCountAuthenticationSteps` can be used to implement adaptive authentication. The Duo script is scripted so that two-factor authentication is only presented for users in the IT group. The script checks for group membership and dynamically adjusts the number of steps. This can be implemented to check for any logic or attribute during the authentication, like "country" or "region".
 
 **getExtraParametersForStep():**     
 If required to save session variables between steps, use the `getExtraParametersForStep` method. The Gluu Server persists
@@ -183,11 +182,11 @@ authentication he used during login.
 
 ## Saving and Passing Values 
  
-### Saving Values:
+### Saving Values
 
 **context.set** can be used to save values of the required key to an attribute temporarily and the created temporary attribute will be alive only for limited time and expires and gets removed, by that way, adding new attribute to the user is not messed up. And also the expired attribute kills the validity of the session and becomes invalid.       
 
-### Retriving and passing values between steps       
+### Retrieving and passing values between steps       
 
 Using **session_attribute.get()** method, stored session attribute can be retrieved anywhere between the authentication method, enabling values to be passed between multiple authentication methods for verification and validation. Generated code and the entered "code" in the form can be verified using a simple if and the "code" from the form can be obtained using the `requestParameters.get()` method or `serviceUtil.getFirstValue()` method.
 
@@ -210,7 +209,7 @@ It is possible to use the Context to return a message to the user, which could b
 Pure Python libraries can be added to `/opt/gluu/python/libs`, and jar files can be added to  `/opt/gluu/jetty/oxauth/lib/ext`.
 
 !!! Note
-	jar files should be added within chroot. 
+    jar files should be added within chroot. 
 
 ## Testing
 

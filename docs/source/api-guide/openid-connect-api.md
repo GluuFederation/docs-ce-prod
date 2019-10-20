@@ -1082,6 +1082,7 @@ Registers new dynamic client in oxAuth.
 |access_token_as_jwt|Boolean controlling whether to return the `access_token` as a JWT. It is false by default.|
 |access_token_signing_alg|signing algorithm that has to be used during JWT signing. If it's not specified, then the default OP signing algorithm will be used (specified via `defaultSignatureAlgorithm` oxAuth configuration property).|
 |run_introspection_script_before_access_token_as_jwt_creation_and_include_claims|Boolean value with default value false. If true and `access_token_as_jwt=true` then run introspection script and transfer claims into JWT.|
+|keep_client_authorization_after_expiration|Boolean value with default value false. If true then client authorization will not be removed afer expiration (expiration date is same as client's expiration that created it).|
 
 #### Response
 

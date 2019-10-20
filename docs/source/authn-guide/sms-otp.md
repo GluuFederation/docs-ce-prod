@@ -29,7 +29,14 @@ Twilio trial accounts only allow sending messages to mobile numbers already link
 
 ## Add Twilio library to oxAuth
 
-- Copy the Twilio jar file to the following oxAuth folder inside the Gluu Server chroot: `/opt/gluu/jetty/oxauth/custom/libs`     
+- Copy the Twilio jar file to the following oxAuth folder inside the Gluu Server chroot: `/opt/gluu/jetty/oxauth/custom/libs` 
+
+- Edit `/opt/gluu/jetty/oxauth/webapps/oxauth.xml` and add the following line:
+
+    ```
+    <Set name="extraClasspath">/opt/gluu/jetty/oxauth/custom/libs/twilio.jar</Set>
+    ```
+    
 - [Restart](../operation/services.md#restart) the `oxauth` service     
     
 ## Properties
@@ -50,7 +57,9 @@ Follow the steps below to enable U2F authentication:
 
 1. Click on the `Person Authentication` tab       
 
-1. Find the twilio_sms script.
+1. Find the `twilio_sms` script.
+
+    ![twilio_sms](../img/admin-guide/multi-factor/twilio-custom-script.png)
 
 1. Populate the properties table with the details from your Twilio account:    
 
@@ -76,7 +85,7 @@ If SMS OTP should be the default authentication mechanism, follow these instruct
 
 1. In the Default Authentication Method window you will see two options: `Default acr` and `oxTrust acr`. 
 
-![u2f](../img/admin-guide/multi-factor/u2f.png)
+![twilio_sms](../img/admin-guide/multi-factor/twilio-sms.png)
 
  - `oxTrust acr` sets the authentication mechanism for accessing the oxTrust dashboard GUI (only managers should have acccess to oxTrust).    
 

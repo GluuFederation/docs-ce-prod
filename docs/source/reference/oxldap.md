@@ -1,19 +1,12 @@
-#OX LDAP Properties
+# ox LDAP Properties
 
 ## Overview
 
-Ox-LDAP.properties file contains information required for the Gluu CE Server 
-to connect with LDAP for authenticating and authorizing the user/admin and also  
-provides the connection strings to various component's of Gluu CE or site to 
-fetch required information for the installed and configured components during 
-setup after installation. For setup/configuration detail, please refer to 
-[Setup Script Options](../installation-guide/setup_py.md) 
-ox-ldap.properties file will be stored under `/etc/gluu/conf/`
+The `ox-LDAP.properties` file contains information required for Gluu to connect with its local LDAP Server for user authentication and authorization, and also provides the connection strings to various component's of Gluu to fetch required information for components installed and configured during server setup. For setup/configuration details, please refer to [Setup Script Options](../installation-guide/setup_py.md). The `ox-ldap.properties` file is stored under `/etc/gluu/conf/`
 
-###Properties in Ox-LDAP
+### Properties
 
-Below are the properties that are written in ox-ldap.properties for the 
-Gluu CE server to connect with LDAP. 
+Below are the properties included in `ox-ldap.properties` for Gluu to connect with LDAP. 
 
 |Property|Description|
 |--------|-----------|
@@ -26,6 +19,6 @@ Gluu CE server to connect with LDAP.
 |confDir|Path of the configuration directory|
 |binaryAttributes|This property should be left to be default ObjectGUID|
 
-Below screenshot is an example of ox-ldap.properties
+Below screenshot is an example of `ox-ldap.properties`
 
 ![example](../img/reference/oxldapexample.png)

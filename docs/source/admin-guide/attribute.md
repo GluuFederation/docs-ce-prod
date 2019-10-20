@@ -5,15 +5,12 @@ Attributes are individual pieces of user data, like `uid` or `email`, that are r
 
 ![Attribute Menu](../img/admin-guide/attribute/admin_attribute_menu.png)
 
-The Gluu Server has a large LDAP tree which includes all standard
-attributes. It is not necessary for all of them to be *Active*. The
-active LDAP trees can be sorted using the *Show only Active Attributes*
-link.
+The Gluu Server has a large LDAP tree which includes all standard attributes. It is not necessary for all of them to be *Active*. The
+active LDAP trees can be sorted using the *Show only Active Attributes* link.
 
 ![Show Active Attribute](../img/admin-guide/attribute/admin_attribute_show.png)
 
-The Gluu Server administrator can make changes to attributes, such as changing their
-status to active/inactive, by clicking on a specific attribute.
+The Gluu Server administrator can make changes to attributes, such as changing their status to active/inactive, by clicking on a specific attribute.
 
 ![Attributes](../img/admin-guide/attribute/admin_attribute_attribute.png)
 
@@ -26,26 +23,29 @@ In order to create SSO to certain applications you may need to add custom attrib
 #### OpenDJ
 
  - In OpenDJ, add custom attributes to `/opt/opendj/config/schema/77-customAttributes.ldif`
- - In the below example, `customTest` is our custom attribute : 
-```
-attributeTypes: ( 1.3.6.1.4.1.48710.1.3.1400 NAME 'customTest'
-  DESC 'Custom Attribute' 
-  EQUALITY caseIgnoreMatch 
-  SUBSTR caseIgnoreSubstringsMatch 
-  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 
-  X-ORIGIN 'Gluu custom attribute' )
-```
+ - In the below example, `customTest` is our custom attribute :
+ 
+    ```
+    attributeTypes: ( 1.3.6.1.4.1.48710.1.3.1400 NAME 'customTest'
+      DESC 'Custom Attribute' 
+      EQUALITY caseIgnoreMatch 
+      SUBSTR caseIgnoreSubstringsMatch 
+      SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 
+      X-ORIGIN 'Gluu custom attribute' )
+    ```
+
 !!! Warning
     Spacing is extremely important here. There must be 2 spaces before and 1 after every entry (i.e. DESC), or your custom schema will fail to load properly.
 
   - Add custom attribute to the `gluuCustomPerson` objectClasses:
   
-```
-objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
- SUP ( top )
- AUXILIARY
- MAY ( customTest $ telephoneNumber $ mobile $ carLicense $ facsimileTelephoneNumber $ departmentNumber $ employeeType $ cn $ st $ manager $ street $ postOfficeBox $ employeeNumber $ preferredDeliveryMethod $ roomNumber $ secretary $ homePostalAddress $ l $ postalCode $ description $ title )
-```
+    ```
+    objectClasses: ( 1.3.6.1.4.1.48710.1.4.101 NAME 'gluuCustomPerson'
+     SUP ( top )
+     AUXILIARY
+     MAY ( customTest $ telephoneNumber $ mobile $ carLicense $ facsimileTelephoneNumber $ departmentNumber $ employeeType $ cn $ st $ manager $ street $ postOfficeBox $ employeeNumber $ preferredDeliveryMethod $ roomNumber $ secretary $ homePostalAddress $ l $ postalCode $ description $ title )
+    ```
+
 !!! Warning
     You cannot have line spaces between `attributeTypes:` or `objectClasses:`. This will cause failure in schema. Please check the error logs in /opt/opendj/logs/errors if you are experiencing issues with adding custom schema. This will help guide you on where there may be syntax errors.
     

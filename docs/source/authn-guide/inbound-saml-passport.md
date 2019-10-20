@@ -1,22 +1,27 @@
-# Inbound SAML using Passport
+# Inbound SAML
+
+## Overview
+This document provides instructions for configuring the Gluu Server to support user authentication at one or more external SAML IDPs (a.k.a. inbound SAML). For a quick overview of key concepts associated with "inbound identity", visit the [introductory page](./passport.md). 
 
 ## Enable Passport
 
-The [introductory page](./passport.md) provides a quick overview of key concepts to get the most out of inbound identity with Gluu Passport. Ensure the Gluu Server installation already has [Passport component installed](./passport.md#passport-setup). Follow theses steps to enable it:
+Make sure the Gluu Server installation already has [Passport installed](./passport.md#passport-setup). Then perform the following:
 
-### Enable the custom script
+1. Enable the custom script
 
-- In oxTrust, navigate to `Configuration` > `Custom scripts`          
-- Navigate to the `Person Authentication` tab, expand the script labelled `passport_saml`, check `enabled`, and click `Update`    ![Enable passport_saml](../img/user-authn/passport/enable-passport_saml.png)     
-- Navigate to the `UMA RPT Policies` tab, expand the script labelled `scim_access_policy`, check `enabled`, and click `Update`       
+    - In oxTrust, navigate to `Configuration` > `Manage Custom Scripts`          
+    - Navigate to the `Person Authentication` tab, expand the script labelled `passport_saml`, check `enabled`, and click `Update`    ![Enable passport_saml](../img/user-authn/passport/enable-passport_saml.png)     
+    - Navigate to the `UMA RPT Policies` tab, expand the script labelled `scim_access_policy`, check `enabled`, and click `Update`       
       
-### Enable Passport support 
+1. Enable Passport support 
 
-- In oxTrust navigate to `Configuration` > `Organization configuration` > `System configuration`
-- In `Passport support` choose `Enabled`    
-- Click `Update`    
+    - In oxTrust navigate to `Configuration` > `Organization configuration` > `System configuration`    
+    - In `Passport support` choose `Enabled`    
+    - Click `Update`    
 
-![enable passport](../img/user-authn/passport/enable_passport.png) 
+    ![enable passport](../img/user-authn/passport/enable_passport.png) 
+
+Once the steps above are performed, the TCP port 8090 appears ready to accept connections.
 
 ## Integrate IDPs for inbound SAML
 
@@ -27,7 +32,7 @@ Follow these steps to integrate an external IDP for inbound SAML:
 
 ### Add the IDP in the admin UI
 
-1. In oxTrust, navigate to `Configuration` > `Passport` > `Providers`
+1. In oxTrust, navigate to `Passport` > `Providers`
 
 1. Click on `Add new provider`
 
@@ -54,22 +59,24 @@ By default, only a small set of parameters for a working setup are shown in the 
 - `cert`: The IDP's public PEM-encoded X.509 certificate used to validate incoming SAML responses. Include only the body of the certificate: suppress the `BEGIN CERTIFICATE` and `END CERTIFICATE` lines, any whitespace, and all line breaking characters (new line/carriage return).
 
 !!! Note 
-    The certificate supplied for `cert` is the one intended for signing. For example, if you are using Shibboleth bundled in a Gluu Server instance, visit `https://<remote-gluu-host>/idp/shibboleth` and see the contents of XML tag `KeyDescriptor` where `use="signing"` inside `IDPSSODescriptor` tag.
+    Regarding the value of `cert`, if you are using Shibboleth bundled in a Gluu Server instance, visit `https://<remote-gluu-host>/idp/shibboleth` and see the contents of XML tag `KeyDescriptor` where `use="signing"` inside `IDPSSODescriptor` tag.
 
 ![saml_provider](../img/user-authn/passport/saml_provider.png)
 
 #### Supply extra properties if needed
 
-Add other properties you might consider relevant. For details on this topic you can check `passport-saml` repo [documentation](https://github.com/bergie/passport-saml/#config-parameter-details). If not specified, the following properties are added by default:
+Add other properties you might consider relevant. For details on this topic you can check `passport-saml` repo [documentation](https://github.com/bergie/passport-saml/#config-parameter-details). If not specified, the following properties will be added by default:
 
-|Property|Value|
-|-|-|
-|validateInResponseTo|true|
-|requestIdExpirationPeriodMs|3600000|
-|decryptionPvk|/etc/certs/passport-sp.key|
-|decryptionCert|/etc/certs/passport-sp.crt|
+|Property|Value|Description|
+|-|-|-|
+|validateInResponseTo|true|More info [here](https://github.com/bergie/passport-saml/#config-parameter-details)|
+|requestIdExpirationPeriodMs|3600000|More info [here](https://github.com/bergie/passport-saml/#config-parameter-details)|
+|decryptionPvk|Contents of /etc/certs/passport-sp.key|Private key that will be used to attempt to decrypt any encrypted assertions received|
+|decryptionCert|Contents of /etc/certs/passport-sp.crt|Public certificate matching `decryptionPvk`|
 
-To be more precise, `decryptionPvk` and `decryptionCert` are filled with the `SP TLS cert` and `SP TLS key` values found in the basic configuration. In oxTrust visit `Passport` > `Basic Configuration` to see these values.
+To be more precise, `decryptionPvk` and `decryptionCert` correspond to items `Passport SP Decryption cert` and `Passport SP Decryption Private key` found in the basic configuration page. In oxTrust visit `Passport` > `Basic Configuration` to see these values.
+
+In case you are interested in signing the authentication requests, you can supply `privateCert` (a RSA-SHA1 PEM private key). More details [here](https://github.com/bergie/passport-saml/#security-and-signatures).
 
 #### Cache Provider configuration
 
@@ -91,7 +98,7 @@ The following is an example for `redisCacheOptions` value. Note that keys are wr
 
 Passport will automatically generate SP metadata for every enabled IDP added through the admin UI. The next step is to register this metadata at every external IDP.
 
-Metadata can be accessed in a browser at `https://<your-gluu-host>/passport/auth/meta/idp/<PROVIDER-ID>.xml` where `PROVIDER-ID` is the identifier assigned to the IDP added. In oxTrust, navigate to `Passport` > `Providers` and see the ID column in the providers table. Metadata can also be found in the Gluu chroot under `/opt/gluu/node/passport/server/idp-metadata`. 
+Metadata can be accessed in a browser at `https://<your-gluu-host>/passport/auth/meta/idp/<PROVIDER-ID>` where `PROVIDER-ID` is the identifier assigned to the IDP added. In oxTrust, navigate to `Passport` > `Providers` and see the ID column in the providers table. Metadata can also be found in the Gluu chroot under `/opt/gluu/node/passport/server/idp-metadata`. 
 
 Registering metadata contents at remote IDPs is a process that may differ across IDP implementations. As an example, when the remote IDP is another Gluu Server, a [trust relationship](https://gluu.org/docs/ce/admin-guide/saml/#create-a-trust-relationship) should be created. Review the corresponding documentation for your IDPs. 
 
@@ -159,7 +166,10 @@ To enable IDP-initiated inbound capabilities for an existing IDP, follow these s
 
 ![IDP-initiated config for an IDP](../img/user-authn/passport/ii_choose_provider.png)
 
-From here on, if the IDP sends an unsolicited response to Passport ACS, an OIDC authorization request will be issued using the client that appears selected on the top of the form (by default the "Passport IDP-initiated flow Client"). After the user is authenticated in Gluu, a redirection will be made to `https://<your-gluu-host>/oxauth/auth/passport/sample-redirector.htm` that will simply redirect to the value of the `relayState` which is assummed to be a valid URL.
+From here on, if the IDP sends an unsolicited response to Passport ACS, an OIDC authorization request will be issued using the client that appears selected on the top of the form (by default the "Passport IDP-initiated flow Client"). After the user is authenticated in Gluu, a redirection will be made to `https://<your-gluu-host>/oxauth/auth/passport/sample-redirector.htm` that will simply change the browser's location to the value of the `relayState` (which is assummed to be a valid URL).
+
+!!! Note
+    The authorization request generated can be customized by supplying values for parameters `response_type`, `scope`, and more by clicking on `Add` under the `Additional params` panel (fill name/value in the left/right fields respectively).
 
 ### Customization
 
@@ -245,7 +255,7 @@ Follow the guidelines below to run the Demo app in your Gluu Server host:
 
 1. After logging in at the IDP, you will be redirected back to Gluu Server, where you might be prompted to authorize release of your personal data to the Demo app.
 
-   ![](../img/user-authn/passport/demo_2.png)
+    ![](../img/user-authn/passport/demo_2.png)
    
 1. After consenting to release the requested claims, you'll be sent to the Demo app with an authorization code that is needed for retrieving your personal data.
 

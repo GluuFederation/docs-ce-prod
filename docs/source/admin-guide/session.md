@@ -1,6 +1,6 @@
 # Session Management
 
-The Gluu Server OP stores user session data in its cache, whether it's in-memory, redis, memcached, or LDAP, depending on the `cacheProviderType` configuration property. 
+The Gluu Server OP stores user session data in its cache, whether it's in-memory, redis, memcached or the databse, depending on the `cacheProviderType` configuration property. 
 
 The OP session can have one of two states:
 
@@ -51,7 +51,7 @@ The OP updates `lastUsedAt` property of the OP session object:
 It is important to note that the OP session `lastUsedAt` property is not updated during RP usage.
 
 A list of oxAuth Properties for reference can be found in 
-[OxAuth JSON Properties](../reference/JSON-oxauth-prop.md)
+[oxAuth JSON Properties](../reference/JSON-oxauth-prop.md)
 
 ## FAQ
 

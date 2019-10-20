@@ -1,16 +1,23 @@
-# Inbound identity using Passport
+# Inbound identity
 
 ## Overview
 
-The Gluu Server bundles the Passport authentication middleware to enable inbound identity for SAML, OAuth, and OpenID Connect (all of which can be referred to as "inbound identity"). Passport normalizes the process of supporting user authentication at external identity providers and user registration in your Gluu Server.
+Gluu bundles the [Passport.js authentication middleware](https://passportjs.org) project to support user authentication at external SAML, OAuth, and OpenID Connect providers (a.k.a. "inbound identity"). 
 
-Passport consists of a Node.js application and a couple of oxAuth custom interception scripts and custom pages, which together coordinate the flows required for an inbound identity solution.
+The integration consists of custom authentication scripts and web pages for oxAuth, and the Passport Node.js application. Together, these assets coordinate the flows and interfaces required to configure the Gluu Server to support inbound identity with a range of external providers.
 
-Starting with Gluu Server CE 4.0, all actions required to configure the inbound identity environment can be achieved via the oxTrust admin UI.
+!!! Attention
+    From Gluu Server CE 4.0 onwards, all inbound identity configurations can be made in the oxTrust admin UI.
  
 ## Passport setup
 
-Passport is available as an optional component during [Gluu Server installation](https://gluu.org/docs/ce/installation-guide/). After installation, Passport can be added to an existing Gluu Server installation by performing the following actions (requires Internet access):
+Passport can either be included in a new Gluu installation, or added to an existing deployment. 
+
+### During Gluu installation 
+For new Gluu Server deployments, simply opt-in during setup to include Passport.
+
+### Post Gluu installation
+Alternatively, Passport can be added to an existing Gluu Server deployment by performing the following actions (requires Internet access):
 
 1. Log in to the Gluu Server chroot
 
@@ -58,8 +65,7 @@ When adding a provider, administrators will be asked to assign an ID to it. Inst
 
 ### Strategies
 
-Gluu Passport is built upon the popular authentication middleware [Passport.js](http://www.passportjs.org/), which supports plugins (AKA "*Strategies*") that allow integration of identity providers easily. There are hundreds of strategies available in [npm](https://www.npmjs.com/) (the Node.js Package Registry). You can integrate any strategy as long as it is under the OAuth umbrella.
-
+Gluu Passport is built upon the popular authentication middleware [Passport.js](http://www.passportjs.org/), which supports plugins (AKA "*Strategies*") that allow integration of identity providers easily. There are hundreds of strategies available in the Node.js Package Registry: [npm](https://www.npmjs.com/). Any OAuth strategy can be supported.
 
 ## Passport configuration
 
