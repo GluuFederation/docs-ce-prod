@@ -48,7 +48,7 @@ In oxTrust, navigate to `Radius` > `Server Configuration` and select the `OpenID
    - `OpenID Scopes`: These are the scopes used during the password grant token request. For proper operation, the scope list *must* contain the `openid` scope.
 
 !!! Note 
-    A change to any of these configuration parameters will require a restart of the `gluu-radius` service.
+    A change to any of these configuration parameters will require a [restart](../../operation/services.md) of the `gluu-radius` service.
     
 ![gluu-radius-openid-config](../../img/admin-guide/radius-server/gluu-radius-openid-config.png)
 
@@ -82,7 +82,7 @@ This section covers optional advanced configuration topics.
 ### Gluu Radius config file 
  The Gluu Radius configuration file can be found under `/etc/gluu/conf/radius/gluu-radius.properties` 
 in the linux container. There are a couple things you can change from the configuration file.
-Any change to this file will take effect only after restarting the `gluu-radius` service.
+Any change to this file will take effect only after [restarting](../../operation/services.md) the `gluu-radius` service.
 
 #### Turning on/off listening. 
 It is possible to turn listening on/off for the radius server. This feature is useful when using gluu-radius
