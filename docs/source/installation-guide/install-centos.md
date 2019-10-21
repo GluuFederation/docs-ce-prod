@@ -8,6 +8,9 @@ Single-node Gluu Server Linux packages are available for CentOS 7. Follow the in
 4. [Sign in via browser](#sign-in-via-browser)
 5. [Disable Gluu repositories](#disable-gluu-repositories)
 
+!!! Attention
+    To upgrade an existing Gluu Server installation, follow the [upgrade guide](../upgrade/index.md).
+
 ## Prerequisites
 
 - Make sure the target server or VM meets **all minimum requirements** specified in the [VM Preparation Guide](../installation-guide/index.md).   
