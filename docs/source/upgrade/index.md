@@ -29,7 +29,9 @@ another way.
 
 !!! Note
     If you are using custom schema:  
-    (a) OpenDJ Users: Please backup you schema file, (b) OpenLDAP users: Please convert your schema according to [this guide](https://backstage.forgerock.com/docs/opendj/3.5/admin-guide/#chap-schema)  
+    (a) OpenDJ Users: Back up the schema file  
+    (b) OpenLDAP users: Convert the schema according to [this guide](https://backstage.forgerock.com/docs/opendj/3.5/admin-guide/#chap-schema)  
+    
     When the upgrade scripts prompt:  
     
     ```
