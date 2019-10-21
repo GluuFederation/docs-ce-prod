@@ -110,23 +110,27 @@ In the Radiator configuration file, add the plugin as an authenticator, as shown
 
 ## Plugin Cryptographic Material Generation and Management Using Gluu Radius 
 Gluu Radius can be used to generate cryptographic material used for authentication and signature verification 
-for the plugin. [Install Gluu Radius](./gluu-radius.md#installation) on the server which will be used for 
-authentication and (optionally) disable key regeneration and listening for Gluu Radius (see [the docs](./gluu-radius.md)).
-Open a terminal and login to the server's container , then change the current working directory to 
-`/opt/gluu/radius/`.
+for the plugin. 
+
+[Install Gluu Radius](./gluu-radius.md#installation) on the server to will be used for authentication and (optionally) disable key regeneration and listening for Gluu Radius (see [the docs](./gluu-radius.md)).
+
+Open a terminal and log in to the server's container , then change the current working directory to `/opt/gluu/radius/`.
+
 Use the following command to generate / update authentication cryptographic material:
+
 ```
 java -Dlog4j.configurationFile=file:"/etc/gluu/conf/radius/gluu-radius-logging.xml" -jar super-gluu-radius-server.jar \
 -config_file /etc/gluu/conf/radius/gluu-radius.properties -cryptogen -private_key_out <private_key_file> \
 -radiator_config_out <radiator_config_file>
 ```
-This command will generate cryptographic material i.e. public and private keys used for authentication. It will also 
-update the OpenID client's configuration used for authentication.
-- `<private_key_file>` is the path of the file where the private key will be saved (pem format suited for GluuRadiator).
-- `<radiator_config_out>` is the path of the file where the partial Radiator configuration for the plugin will be stored. This is 
-optional.
 
-The radiator configuration file generated looks like this.
+This command will generate cryptographic material, i.e. public and private keys, used for authentication. It will also 
+update the OpenID client's configuration used for authentication.  
+- `<private_key_file>` is the path of the file where the private key will be saved (the `pem` format is suited for Gluu Radiator).  
+- `<radiator_config_out>` is the path of the file where the partial Radiator configuration for the plugin will be stored. This is optional.
+
+The Radiator configuration file generated looks like this:
+
 ```
 <AuthBy GLUU>
     gluuServerUrl <url>
@@ -142,9 +146,6 @@ The radiator configuration file generated looks like this.
 
 It contains most of the configuration parameters for Radiator. A script can be written to call this tool, generate 
 this partial configuration and use it in the larger Radiator configuration.
-
-
-
 
 ### Plugin Configuration Parameters 
 The `AuthGLUU` plugin takes many parameters. They will be described below. 
