@@ -25,6 +25,7 @@ will be moved to `gluuPassportConfiguration.json` for future reference
 `update_error.log`
 - All files will be backed up with `file_name.gluu-version-#~` where # is a consecutive number, unless backup is specified in
 another way.
+- Sets the OpenID Connect `claimsParameterSupported` property to `false` by default to ensure clients are unable to gather unwanted claims. If a client in use depends on this property, it can be set back to `true` in the JSON configuration.
 
 There are two options to perform the upgrade (both methods work inside the container):
 
