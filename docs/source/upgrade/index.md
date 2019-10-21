@@ -32,7 +32,7 @@ another way.
     (a) OpenDJ Users: Back up the schema file  
     (b) OpenLDAP users: Convert the schema according to [this guide](https://backstage.forgerock.com/docs/opendj/3.5/admin-guide/#chap-schema)  
     
-    When the upgrade scripts prompt:  
+    When the upgrade script prompts:  
     
     ```
     If you have custom ldap schema, add them now and press c  
