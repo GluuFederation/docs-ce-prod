@@ -27,6 +27,19 @@ will be moved to `gluuPassportConfiguration.json` for future reference
 another way.
 - Sets the OpenID Connect `claimsParameterSupported` property to `false` by default to ensure clients are unable to gather unwanted claims. If a client in use depends on this property, it can be set back to `true` in the JSON configuration.
 
+!!! Note
+    If you are using custom schema:
+    (a) OpenDJ Users: Please backup you schema file, (b) OpenLDAP users: Please convert your schema according to this guide https://backstage.forgerock.com/docs/opendj/3.5/admin-guide/#chap-schema
+    When upgrade scripts prompt:
+    
+    ```
+    If you have custom ldap schema, add them now and press c
+    If yuo don't have any custom schema you can continue with pressing c
+    ```
+    
+    Put schema file to `/opt/opendj/config/schema/`
+
+
 There are two options to perform the upgrade (both methods work inside the container):
 
 #### Online Upgrade
