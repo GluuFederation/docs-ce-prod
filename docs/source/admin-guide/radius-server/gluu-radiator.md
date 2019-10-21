@@ -51,7 +51,7 @@ Install Gluu Radius by following the instructions [here](./gluu-radius.md).
 
 If Radiator and the Gluu Server will run on the same system, one additional step needs to be taken: configure Gluu Radius to use different listening ports than the ones Radiator will use. Instructions can be found [here](./gluu-radius.md#basic-configuration).
 
-### Authentication Keys Generation 
+### Authentication Keys Generation using OpenSSL
 
 The plugin, same as Gluu Radius uses private key JWT authentication to perform authentication against the Gluu Radius Server. This implies the usage of private and public keys. In this section, we'll generate them. The examples here will assume generation of an 2048 RSA KeyPair , and the signing algorithm used will be RS512.
 
@@ -70,6 +70,7 @@ The plugin, same as Gluu Radius uses private key JWT authentication to perform a
     ```
     
     Enter the passphrase from step `1` when prompted for a passphrase
+
 
 ### Gluu RO OpenID Configuration 
 
@@ -106,6 +107,45 @@ In the Radiator configuration file, add the plugin as an authenticator, as shown
      </AuthBy>
 </Handler>
 ```
+
+## Plugin Cryptographic Material Generation and Management Using Gluu Radius 
+Gluu Radius can be used to generate cryptographic material used for authentication and signature verification 
+for the plugin. 
+
+[Install Gluu Radius](./gluu-radius.md#installation) on the server to will be used for authentication and (optionally) disable key regeneration and listening for Gluu Radius (see [the docs](./gluu-radius.md)).
+
+Open a terminal and log in to the server's container , then change the current working directory to `/opt/gluu/radius/`.
+
+Use the following command to generate / update authentication cryptographic material:
+
+```
+java -Dlog4j.configurationFile=file:"/etc/gluu/conf/radius/gluu-radius-logging.xml" -jar super-gluu-radius-server.jar \
+-config_file /etc/gluu/conf/radius/gluu-radius.properties -cryptogen -private_key_out <private_key_file> \
+-radiator_config_out <radiator_config_file>
+```
+
+This command will generate cryptographic material, i.e. public and private keys, used for authentication. It will also 
+update the OpenID client's configuration used for authentication.  
+- `<private_key_file>` is the path of the file where the private key will be saved (the `pem` format is suited for Gluu Radiator).  
+- `<radiator_config_out>` is the path of the file where the partial Radiator configuration for the plugin will be stored. This is optional.
+
+The Radiator configuration file generated looks like this:
+
+```
+<AuthBy GLUU>
+    gluuServerUrl <url>
+    clientId 0008-4297f5f2-9047-43c4-89ad-beadc93706cc
+    signaturePkeyPassword c71N0TykuZAo
+    signaturePkey file:"//opt/gluu/radius/./auth-key.pem"
+    signaturePkeyId d15c0c5a-37b7-4768-8c70-f40617e267a6_sig_rs512
+    signatureAlgorithm RS512
+    sslVerifyCert yes
+    authScheme twostep
+</AuthBy>
+```
+
+It contains most of the configuration parameters for Radiator. A script can be written to call this tool, generate 
+this partial configuration and use it in the larger Radiator configuration.
 
 ### Plugin Configuration Parameters 
 The `AuthGLUU` plugin takes many parameters. They will be described below. 
@@ -150,9 +190,15 @@ marked as failed
 
 - `httpMaxRequestTime`. This is an optional integer containing the maximum time (in seconds) an http request can last.
 
-- `authTimeout`. This is an optional integer containing the maximum time (in seconds).an entire authentication cycle can last. Set larger values if authentication is expected to take (too) long. Default of 30 seconds
+- `authTimeout`. This is an optional integer containing the maximum time (in seconds).an entire authentication cycle can last.
+Set larger values if authentication is expected to take (too) long. Default of 30 seconds
 
-- `pollInterval`. This is an optional integer containing the interval (in seconds) responses will be polled from the server via HTTP. Default is 1 second
+- `pollInterval`. This is an optional integer containing the interval (in seconds) responses will be polled from the server via
+http. Default is 1 second
+
+- `authScheme`. This is an optional string containing the authentication scheme to use. The valid values are `onestep` and `twostep`. `onestep` will simply authenticate the user against the Gluu Server and return the result in the form of a radius
+authentication status. `twostep` , which is the default , authenticates the user's credentials against gluu server , and 
+performs an additional authentication verification (the default script uses SuperGluu). 
 
 ## Testing 
 
@@ -161,12 +207,3 @@ marked as failed
 1. Run Radiator (see Radiator documentation)    
 
 1. Use a RADIUS client (e.g. `NTRadPing`) to attempt to authenticate. A Super Gluu authentication prompt should appear on the user's device. Tap `Approve` to proceed with authentication. Radiator will then return an `Access-Accept`response.
-
-
-
-
-
-
-
-
-

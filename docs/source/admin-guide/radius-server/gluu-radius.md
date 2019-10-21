@@ -25,7 +25,7 @@ In addition, the Gluu Radius config file can be found in the Linux container und
 ### Basic Configuration 
  In oxTrust, navigate to `Radius` > `Server` Configuration and select the `Basic Configuration` tab.
  
- You can configure the following:
+ The following settings can be configured:
  
    - `Authentication Listen Port`: This is the port on which the server listens for authentication requests.
    
@@ -48,7 +48,7 @@ In oxTrust, navigate to `Radius` > `Server Configuration` and select the `OpenID
    - `OpenID Scopes`: These are the scopes used during the password grant token request. For proper operation, the scope list *must* contain the `openid` scope.
 
 !!! Note 
-    A change to any of these configuration parameters will require a restart of the `gluu-radius` service.
+    A change to any of these configuration parameters will require a [restart](../../operation/services.md) of the `gluu-radius` service.
     
 ![gluu-radius-openid-config](../../img/admin-guide/radius-server/gluu-radius-openid-config.png)
 
@@ -79,6 +79,42 @@ From the oxTrust UI, go to 'Radius > Radius Clients' , then click on `Add Radius
 ## Advanced Topics 
 This section covers optional advanced configuration topics. 
 
+### Gluu Radius config file 
+ The Gluu Radius configuration file can be found under `/etc/gluu/conf/radius/gluu-radius.properties` 
+in the linux container. There are a couple things you can change from the configuration file.
+Any change to this file will take effect only after [restarting](../../operation/services.md) the `gluu-radius` service.
+
+#### Turning on/off listening. 
+It is possible to turn listening on/off for the radius server. This feature is useful when using gluu-radius
+exclusively for key re-generation. 
+
+The configuration key can have two values,  `true` or `false` 
+```
+
+radius.listen.enable = true
+```
+
+#### Authentication Scheme 
+There are two available authentication schemes:
+
+- `onestep`, as its name suggests, is the single step authentication scheme. Enabling it will have the 
+Radius server authenticate the user and return the authentication status immediately.
+- `twostep`, as its name suggests, is two-step (two factor authentication). This is the default. In its 
+current implementation , it performs two step authentication using super-gluu.
+
+```
+radius.auth.scheme = twostep
+```
+
+#### Key Re-generation interval 
+
+This configuration parameter controls how often the keys used for authentication are re-generated. The value is in days. A value of 0 disables key re-generation.
+
+```
+# regenerates the keys every day 
+radius.jwt.keygen.interval = 1
+```
+
 ### Change JWT authentication algorithm
 By default, the algorithm used by Gluu Radius for authentication is `RS512` (RSASSA-PKCS1-v1_5 using SHA-512). 
 
@@ -105,12 +141,23 @@ Using an external jwks requires the contents of the jwks to be pasted into the `
 A keystore must also be provided, which contains all of the keys, with each entry name having the corresponding `kid` for each JWKS entry. Generation of a keystore file and/or a `JWKS` is outside the scope of this document. Change the following in the configuration file:
 
 ```
+radius.jwt.auth.keyId = <kid>
+```
+
+#### External jwks 
+Using an external jwks requires you pasting the contents of the jwks into the `JWKS` section in the `Encryption/Signing` tab
+of the OpenID client used by `gluu-radius` for authentication.
+You also need to provide a keystore , which contains all of the keys , with each entry name having the corresponding `kid`
+for each JWKS entry. Generation of a keystore file and/or a `JWKS` is outside the scope of this document.
+You will need to change the following in the configuration file.
+
+```
 radius.jwt.keyStoreFile = <location of keystore file>
 radius.jwt.auth.keyId = <kid of public key used for authentication>
 radius.jwt.auth.keyStorePin = <encrypted pin for the keystore>
 ```
 
-Use the utility `/opt/gluu/bin/encode.py` to encrypt the plaintext keyStore password.
+Use the `/opt/gluu/bin/encode.py` utility to encrypt the plaintext keyStore password.
 
 
 ### Custom OpenID client 
@@ -135,7 +182,8 @@ Likewise, there are a few additional constraints if a custom authentication scri
 1. The script *must* accept and process a `__password` http post parameter containing the user's password and not the `password`
    http post parameter.
 1. The script *must* accept and process a `__step` http post parameter.
-   1. When `__step` is equal to `initiate_auth` , the custom script *must* authenticate the user using the provided credentials      and *must* create a session on the server (authenticated or not) and return the session id in the idtoken with a claim name of `__session_id`. If the user can't be authenticated, the script must return false. 
+   1. When `__step` is equal to `initiate_auth` , the custom script *must* authenticate the user using the provided credentials and *must* create a session on the server (authenticated or not) and return the session id in the idtoken with a claim name of `__session_id`. If the user can't be authenticated, the script must return false. 
    1. When `__step` is equal to `verify_auth`, the custom script *must* get the http post parameter called `__session_id` and verify if the associated session is authenticated. If it's not authenticated , the script *must* return `false`.
    
 To see an example, review the default authentication script that ships with Gluu Radius.
+
