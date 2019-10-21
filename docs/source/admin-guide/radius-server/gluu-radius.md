@@ -79,7 +79,6 @@ From the oxTrust UI, go to 'Radius > Radius Clients' , then click on `Add Radius
 ## Advanced Topics 
 This section covers optional advanced configuration topics. 
 
-<<<<<<< HEAD
 ### Gluu Radius config file 
  The Gluu Radius configuration file can be found under `/etc/gluu/conf/radius/gluu-radius.properties` 
 in the linux container. There are a couple things you can change from the configuration file.
@@ -88,33 +87,36 @@ Any change to this file will take effect only after restarting the `gluu-radius`
 #### Turning on/off listening. 
 It is possible to turn listening on/off for the radius server. This feature is useful when using gluu-radius
 exclusively for key re-generation. 
-The configuration key can have two values,  `true` and `false` 
+
+The configuration key can have two values,  `true` or `false` 
 ```
+
 radius.listen.enable = true
 ```
 
 #### Authentication Scheme 
 There are two available authentication schemes:
-- `onestep` as it's name suggests is the single step authentication scheme. Enabling it will have the 
-radius server authenticate the user and return the authentication status immediately.
-- `twostep` as it's name suggests is two-step (two factor authentication). This is the default. And in it's 
+
+- `onestep`, as its name suggests, is the single step authentication scheme. Enabling it will have the 
+Radius server authenticate the user and return the authentication status immediately.
+- `twostep`, as its name suggests, is two-step (two factor authentication). This is the default. In its 
 current implementation , it performs two step authentication using super-gluu.
+
 ```
 radius.auth.scheme = twostep
 ```
 
 #### Key Re-generation interval 
-This configuration parameter controls how often the keys used for authentication are re-generated. 
-The value is in days. A value of 0 disables key re-generation.
+
+This configuration parameter controls how often the keys used for authentication are re-generated. The value is in days. A value of 0 disables key re-generation.
+
 ```
 # regenerates the keys every day 
 radius.jwt.keygen.interval = 1
 ```
 
-=======
 ### Change JWT authentication algorithm
 By default, the algorithm used by Gluu Radius for authentication is `RS512` (RSASSA-PKCS1-v1_5 using SHA-512). 
->>>>>>> upstream/4.0
 
 To change the algorithm, follow these steps: 
 
@@ -138,7 +140,6 @@ Using an external jwks requires the contents of the jwks to be pasted into the `
 
 A keystore must also be provided, which contains all of the keys, with each entry name having the corresponding `kid` for each JWKS entry. Generation of a keystore file and/or a `JWKS` is outside the scope of this document. Change the following in the configuration file:
 
-<<<<<<< HEAD
 ```
 radius.jwt.auth.keyId = <kid>
 ```
@@ -149,20 +150,14 @@ of the OpenID client used by `gluu-radius` for authentication.
 You also need to provide a keystore , which contains all of the keys , with each entry name having the corresponding `kid`
 for each JWKS entry. Generation of a keystore file and/or a `JWKS` is outside the scope of this document.
 You will need to change the following in the configuration file.
-=======
->>>>>>> upstream/4.0
+
 ```
 radius.jwt.keyStoreFile = <location of keystore file>
 radius.jwt.auth.keyId = <kid of public key used for authentication>
 radius.jwt.auth.keyStorePin = <encrypted pin for the keystore>
 ```
-<<<<<<< HEAD
-Use  the utility `/opt/gluu/bin/encode.py` to encrypt the plaintext keyStore password.
 
-=======
->>>>>>> upstream/4.0
-
-Use the utility `/opt/gluu/bin/encode.py` to encrypt the plaintext keyStore password.
+Use the `/opt/gluu/bin/encode.py` utility to encrypt the plaintext keyStore password.
 
 
 ### Custom OpenID client 
@@ -187,23 +182,8 @@ Likewise, there are a few additional constraints if a custom authentication scri
 1. The script *must* accept and process a `__password` http post parameter containing the user's password and not the `password`
    http post parameter.
 1. The script *must* accept and process a `__step` http post parameter.
-<<<<<<< HEAD
-   1. When `__step` is equal to `initiate_auth` , the custom script *must* authenticate the user using the provided credentials      and *must* create a session on the server (authenticated or not) and return the session id in the idtoken with a claim
-      name of `__session_id`. If the user can't be authenticated, the script must return false. 
-   1. When `__step` is equal to `verify_auth`, the custom script *must* get the http post parameter called `__session_id`
-      and verify if the associated session is authenticated. If it's not authenticated , the script *must* return `false`.
-Take a look at the default Custom Script that ships with gluu radius to have an idea.
-
-
-
-
-
-
-     
-
-=======
-   1. When `__step` is equal to `initiate_auth` , the custom script *must* authenticate the user using the provided credentials      and *must* create a session on the server (authenticated or not) and return the session id in the idtoken with a claim name of `__session_id`. If the user can't be authenticated, the script must return false. 
+   1. When `__step` is equal to `initiate_auth` , the custom script *must* authenticate the user using the provided credentials and *must* create a session on the server (authenticated or not) and return the session id in the idtoken with a claim name of `__session_id`. If the user can't be authenticated, the script must return false. 
    1. When `__step` is equal to `verify_auth`, the custom script *must* get the http post parameter called `__session_id` and verify if the associated session is authenticated. If it's not authenticated , the script *must* return `false`.
    
 To see an example, review the default authentication script that ships with Gluu Radius.
->>>>>>> upstream/4.0
+
