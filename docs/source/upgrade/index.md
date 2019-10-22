@@ -25,6 +25,22 @@ will be moved to `gluuPassportConfiguration.json` for future reference
 `update_error.log`
 - All files will be backed up with `file_name.gluu-version-#~` where # is a consecutive number, unless backup is specified in
 another way.
+- Sets the OpenID Connect `claimsParameterSupported` property to `false` by default to ensure clients are unable to gather unwanted claims. If a client in use depends on this property, it can be set back to `true` in the JSON configuration.
+
+!!! Note
+    If you are using custom schema:  
+    (a) OpenDJ Users: Back up the schema file  
+    (b) OpenLDAP users: Convert the schema according to [this guide](https://backstage.forgerock.com/docs/opendj/3.5/admin-guide/#chap-schema)  
+    
+    When the upgrade script prompts:  
+    
+    ```
+    If you have custom ldap schema, add them now and press c  
+    If you don't have any custom schema you can continue with pressing c
+    ```
+    
+    Put the schema file in `/opt/opendj/config/schema/`
+
 
 There are two options to perform the upgrade (both methods work inside the container):
 

@@ -127,13 +127,13 @@ To check the actual profile data received during the authentication transaction,
 
 ### Overview
 
-The inbound SAML flow resembles the [generic flow](./passport.md#sample-authentication-flow) of inbound identity used in Gluu. However in certain circumstances, the IDP may attempt to initiate the flow by delivering a SAML response without any previously existing SAML request. This is called "IPD-initiated inbound" flow.
+In certain circumstances, an external IDP may initiate the authentication flow by delivering a SAML response without any previously existing SAML request. This is called IPD-initiated inbound SAML.
 
-The approach in Gluu to handle this scenario consists of detecting if SAML responses are unsolicited (ie. not associated to preliminary SAML requests) by examining the SAML `inResponseTo` attribute. If `inResponseTo` is missing, it is considered an action initiated by the IDP.
+Gluu handles this scenario by examining the SAML `inResponseTo` attribute to detect whether the SAML response is unsolicited (i.e. not associated with preliminary SAML requests). If `inResponseTo` is missing, it is considered an action initiated by an external IDP.
 
-When this kind of request is received by Passport SP, the usual profile mapping takes place, and then the profile data is sent (encoded) in the parameters of an OpenID Connect authorization request to Gluu Server. The request is processed by oxAuth and the user provisioning occurs locally, as it does with the standard flow.
+When this kind of request is received by Passport, the usual profile mapping takes place, and then the profile data is sent (encoded) in the parameters of an OpenID Connect authorization request to the Gluu Server. The request is processed by oxAuth and the user provisioning occurs locally, as it does with the standard flow.
 
-Finally, this will generate a redirect to a URL whose handler logic should be able to take the user to its final destination. This logic can be deemed part of an OpenID Connect Requesting party (the analog of an SP in the SAML world).
+Finally, this will generate a redirect to a URL whose handler logic should be able to take the user to its final destination. This logic can be deemed part of an OpenID Connect Requesting Party (the analog of an SP in the SAML world).
 
 The following diagram depicts the flow:
 

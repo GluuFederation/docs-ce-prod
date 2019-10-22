@@ -48,7 +48,7 @@ In oxTrust, navigate to `Radius` > `Server Configuration` and select the `OpenID
    - `OpenID Scopes`: These are the scopes used during the password grant token request. For proper operation, the scope list *must* contain the `openid` scope.
 
 !!! Note 
-    A change to any of these configuration parameters will require a restart of the `gluu-radius` service.
+    A change to any of these configuration parameters will require a [restart](../../operation/services.md) of the `gluu-radius` service.
     
 ![gluu-radius-openid-config](../../img/admin-guide/radius-server/gluu-radius-openid-config.png)
 
@@ -79,42 +79,44 @@ From the oxTrust UI, go to 'Radius > Radius Clients' , then click on `Add Radius
 ## Advanced Topics 
 This section covers optional advanced configuration topics. 
 
-<<<<<<< HEAD
 ### Gluu Radius config file 
  The Gluu Radius configuration file can be found under `/etc/gluu/conf/radius/gluu-radius.properties` 
 in the linux container. There are a couple things you can change from the configuration file.
-Any change to this file will take effect only after restarting the `gluu-radius` service.
+Any change to this file will take effect only after [restarting](../../operation/services.md) the `gluu-radius` service.
 
 #### Turning on/off listening. 
 It is possible to turn listening on/off for the radius server. This feature is useful when using gluu-radius
 exclusively for key re-generation. 
-The configuration key can have two values,  `true` and `false` 
+
+The configuration key can have two values,  `true` or `false` 
 ```
+
 radius.listen.enable = true
 ```
 
 #### Authentication Scheme 
 There are two available authentication schemes:
-- `onestep` as it's name suggests is the single step authentication scheme. Enabling it will have the 
-radius server authenticate the user and return the authentication status immediately.
-- `twostep` as it's name suggests is two-step (two factor authentication). This is the default. And in it's 
+
+- `onestep`, as its name suggests, is the single step authentication scheme. Enabling it will have the 
+Radius server authenticate the user and return the authentication status immediately.
+- `twostep`, as its name suggests, is two-step (two factor authentication). This is the default. In its 
 current implementation , it performs two step authentication using super-gluu.
+
 ```
 radius.auth.scheme = twostep
 ```
 
 #### Key Re-generation interval 
-This configuration parameter controls how often the keys used for authentication are re-generated. 
-The value is in days. A value of 0 disables key re-generation.
+
+This configuration parameter controls how often the keys used for authentication are re-generated. The value is in days. A value of 0 disables key re-generation.
+
 ```
 # regenerates the keys every day 
 radius.jwt.keygen.interval = 1
 ```
 
-=======
 ### Change JWT authentication algorithm
 By default, the algorithm used by Gluu Radius for authentication is `RS512` (RSASSA-PKCS1-v1_5 using SHA-512). 
->>>>>>> upstream/4.0
 
 To change the algorithm, follow these steps: 
 
