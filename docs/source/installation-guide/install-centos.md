@@ -26,7 +26,7 @@ The Gluu Server will create its file system under `/root/` and will be installed
 For **CentOS 7**, run the following commands to install:
 
 ```
-wget https://repo.gluu.org/centos/Gluu-centos-7-beta.repo -O /etc/yum.repos.d/Gluu.repo
+wget https://repo.gluu.org/centos/Gluu-centos7.repo -O /etc/yum.repos.d/Gluu.repo
 ```
 
 ```
