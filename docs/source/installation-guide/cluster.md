@@ -9,7 +9,7 @@ A few notes before getting started:
 
 - Clustering for production scenarios is not a simple task. Individual environments should *always* be benchmarked, tested, and documented in order to ensure organizational requirements for uptime are met. 
 
-- For VIP Customers, Gluu offers two alternatives to the "manual clustering" documentation below: 
+- For [VIP Customers](https://www.gluu.org/pricing/#vip), there are two alternatives to the "manual clustering" documentation below: 
 
     1. For VM-based clustered deployments, we offer a tool called [Cluster Manager](https://gluu.org/docs/cm) to automate the steps below. 
 
