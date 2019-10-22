@@ -26,7 +26,7 @@ The Gluu Server will create its file system under `/root/` and will be installed
 For **RHEL 7**, run the following commands:
 
 ```
-wget https://repo.gluu.org/rhel/Gluu-rhel-7-beta.repo -O /etc/yum.repos.d/Gluu.repo
+wget https://repo.gluu.org/rhel/Gluu-rhel7.repo -O /etc/yum.repos.d/Gluu.repo
 ```
 
 ```
