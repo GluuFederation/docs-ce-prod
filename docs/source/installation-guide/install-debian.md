@@ -26,7 +26,7 @@ The Gluu Server will create its file system under `/root/` and will be installed
 For **Debian 9 (Stretch)**, run the following commands:
 
 ```
-echo "deb https://repo.gluu.org/debian/ stretch-beta main" > /etc/apt/sources.list.d/gluu-repo.list
+echo "deb https://repo.gluu.org/debian/ stretch main" > /etc/apt/sources.list.d/gluu-repo.list
 ```
 
 ```
