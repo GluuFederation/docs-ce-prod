@@ -4,7 +4,16 @@
 ## Introduction
 The tutorial below offers detailed steps for configuring high availability (HA) across multiple instances of the Gluu Server. 
 
-Clustering for production scenarios is not a simple task. Individual environments should *always* be benchmarked, tested, and documented in order to ensure organizational requirements for uptime are met. 
+## Notes
+A few notes before getting started: 
+
+- Clustering for production scenarios is not a simple task. Individual environments should *always* be benchmarked, tested, and documented in order to ensure organizational requirements for uptime are met. 
+
+- For VIP Customers, Gluu offers two alternatives to the "manual clustering" documentation below: 
+
+   - For VM-based clustered deployments, we offer a tool called [Cluster Manager](https://gluu.org/docs/cm) to automate the steps below. 
+
+   - For multi-node container deployments (i.e. Docker Swarm & Kubernetes), we offer [separate guides and documentation](https://gluu.org/docs/de). 
 
 ## Concept
 
