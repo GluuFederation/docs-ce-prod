@@ -279,6 +279,8 @@ is our **recommended** logout strategy. Using front channel logout, an html page
 
 Front channel logout is also not perfect. If the end user's web browser is blocking third party cookies, it may break front channel logout. Also, the Gluu Server has no record if the logout is successful--only the browser knows. This means that if the logout fails, it will not be logged or retried. The good thing about front channel logout is that the application can clear application cookies in the end user's browser. To use front channel logout, the client should register logout_uri's, or `frontchannel_logout_uri` for clients using the Dynamic Client Registration API.
 
+See the [Logout doc](../operation/logout.md) for details on configuring Front Channel Logout.
+
 ## OpenID Connect Relying Party (RP)
 
 In order to leverage your Gluu Server OpenID Provider (OP) for central authentication, web and mobile apps will need to support OpenID Connect. In OpenID Connect jargon, your app will act as an OpenID Connect Relying Party (RP) or "client".
