@@ -1,5 +1,8 @@
 # Gluu Server VM Preparation Guide
 
+!!! Note
+    For a quick demo deployment of the Gluu Server, try our new [Test Drive](./test-drive.md) installation process.  
+
 ## Overview
 
 This document provides instructions for preparing a VM for a standard, single-node Gluu Server deployment. Once the server is ready, install Gluu on one of the [supported operating systems](#supported-operating-systems). 
