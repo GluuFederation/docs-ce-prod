@@ -19,7 +19,7 @@ For Docker deployments on Linux, provision a VM with:
 
 ### OS X (Mac) Requirements
 
-For Docker deployments on OS X, provision a VM with:
+For Docker deployments on OS X, make sure you have the following:
 
 - The minimum [system requirements](https://docs.docker.com/docker-for-mac/install/)
 
