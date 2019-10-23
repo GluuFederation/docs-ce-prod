@@ -48,6 +48,9 @@ The following is a five-day Gluu Server training curriculum. Each day's activiti
 Gluu Docs:
 http://gluu.org/docs/ce
 
+Gluu book: 
+https://gluu.co/book
+
 Application integration guide:
 https://gluu.org/docs/ce/integration/
 
