@@ -11,7 +11,7 @@ Follow the instructions below to quickly deploy a single-node Gluu Server demo u
 
 ### Linux Requirements
 
-For Docker deployments, provision a VM with: 
+For Docker deployments on Linux, provision a VM with: 
 
 - The minimum system requirements, as described in the [VM Preparation Guide](../installation-guide/index.md#system-requirements). 
 
@@ -19,9 +19,11 @@ For Docker deployments, provision a VM with:
 
 ### OS X (Mac) Requirements
 
-1)  Meet the [system requirements](https://docs.docker.com/docker-for-mac/install/)
+For Docker deployments on OS X, provision a VM with:
 
-1)  Install [Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac)
+- The minimum [system requirements](https://docs.docker.com/docker-for-mac/install/)
+
+- [Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac) 
 
 ## Instructions
 
