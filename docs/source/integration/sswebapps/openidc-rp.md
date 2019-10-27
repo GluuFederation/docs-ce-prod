@@ -14,7 +14,7 @@ If you don't have the Apache HTTPD server installed, use apt-get to install the 
 The SSL Module is necessary for the Apache OpenID Connect Module. Please use the following commands to activate the `ssl module`.
 
 ```
-# a2enmod ssl
+a2enmod ssl
 ```
 
 The next step is to create a self-signed SSL Certificate.
@@ -22,8 +22,8 @@ The next step is to create a self-signed SSL Certificate.
 * Create a directory to put the generate the ssl certificate
 
 ``` text
-# mkdir /etc/apache2/ssl
-# openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+mkdir /etc/apache2/ssl
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
 ```
 
 * Answer the questions that are asked. A template is given below
@@ -68,8 +68,10 @@ At this point, its a good time to test to make sure SSL and CGI are working. Poi
 For Ubuntu 16.04
 
 ```
-# apt-get install libjansson4 libhiredis0.13
-# apt-get install libcurl3
+apt-get install libjansson4 libhiredis0.13
+```
+```
+apt-get install libcurl3
 ```
 
 You'll also need the mod_auth_openidc and libjose packages which can be downloaded from the [Releases Page](https://github.com/zmartzone/mod_auth_openidc/releases).
@@ -78,13 +80,19 @@ For example, at this time the current release for mod_auth_openidc is 2.3.3 and 
 
 For Ubuntu 16.04
 
-``` text
-# wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.0/libcjose0_0.5.1-1.xenial.1_amd64.deb
-# wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.8/libapache2-mod-auth-openidc_2.3.8-1.xenial+1_amd64.deb
-# dpkg -i libcjose0_0.5.1-1.xenial.1_amd64.deb
-# dpkg -i libapache2-mod-auth-openidc_2.3.8-1.xenial+1_amd64.deb
-
+``` 
+wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.0/libcjose0_0.5.1-1.xenial.1_amd64.deb
 ```
+```
+wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.8/libapache2-mod-auth-openidc_2.3.8-1.xenial+1_amd64.deb
+```
+```
+dpkg -i libcjose0_0.5.1-1.xenial.1_amd64.deb
+```
+```
+dpkg -i libapache2-mod-auth-openidc_2.3.8-1.xenial+1_amd64.deb
+```
+
 
 !!! Note
     Get the latest packages here: https://github.com/zmartzone/mod_auth_openidc/releases
