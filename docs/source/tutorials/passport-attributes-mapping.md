@@ -41,7 +41,26 @@ module.exports = profile => {
 	}
 }
 ```
-    
+
+## Custom object classes
+
+Since properties of the returned object map directly to LDAP attributes, you **must** also supply object classes in case some attributes do not belong to `gluuPerson`. As an example, if you plan to set `mobile` attribute, you have to set `objectClass` values explicitly:
+
+```
+module.exports = profile => {
+	return {
+		objectClass: ["gluuPerson", "gluuCustomPerson"],
+		mobile: ...
+		...
+	}
+}
+```
+
+For instance, in order to set `eduPersonPrincipalName` attribute, you must provide `["gluuPerson", "eduPerson"]` for `objectClass`.
+
+
+!!! Note:
+    If all attributes simply belong to `gluuPerson` there is no need to explicitly set `objectClass`.
 
 ## About assigning mappings
 
