@@ -47,11 +47,6 @@ For Docker deployments on OS X, make sure you have the following:
     ```
     chmod +x run_all.sh
     ```   
-<!--
-    1. For this Test Drive, we recommend continuing with the default settings. If a more customized deployment is needed, see the [Custom Installation Options](#custom-installation-options) section at the bottom of the page.
-
-    ### Deploying Gluu Server
--->
 
 1.  Run the following command and follow the prompts:
 
