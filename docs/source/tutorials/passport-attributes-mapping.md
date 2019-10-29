@@ -4,7 +4,7 @@
 
 A mapping is a mechanism that defines how profile data released by an external provider (eg. a SAML IDP) is saved to local Gluu LDAP.
 
-In Passport 3.1.x, attribute mappings worked in a declarative manner, where administrators potentially had to supply information at different places: custom scripts (via config properties), JSON files, and sometimes in Javascript (Node.js) code. Starting with version 4.0, mappings were moved to Javascript files entirely.
+In Passport 3.1.x, attribute mappings worked in a declarative manner, where administrators potentially had to supply information at different places: custom scripts (via config properties), JSON files, and sometimes in Javascript (Node.js) code. Starting with version 4.1, mappings were moved to Javascript files entirely.
 
 Physically, a mapping is stored in a node module file with a single function that receives as input a profile object and returns an object whose properties (ie. dictionary keys) are the names of Gluu LDAP attributes. The value(s) of each key will contain the data that will be persisted to LDAP.
 

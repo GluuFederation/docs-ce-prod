@@ -3,7 +3,7 @@
 ## Notice
 
 This document, also known as the Gluu Release Note, 
-relates to the Gluu Server Release versioned 4.0. The work is licensed under “The MIT License” 
+relates to the Gluu Server Release versioned 4.1. The work is licensed under “The MIT License” 
 allowing the use, copy, modify, merge, publish, distribute, sub-license and sale without 
 limitation and liability. This document extends only to the aforementioned release version 
 in the heading.
@@ -16,7 +16,7 @@ OR USING THE RELEASE.
 
 ## Purpose
 
-The document is released with the Version 4.0 of the Gluu Software. The purpose of this document is to provide the changes made/new features included in this release of the Gluu Software. The list is not exhaustive and there might be some omission of negligible issues, but the noteworthy features, enhancements and fixes are covered. 
+The document is released with the Version 4.1 of the Gluu Software. The purpose of this document is to provide the changes made/new features included in this release of the Gluu Software. The list is not exhaustive and there might be some omission of negligible issues, but the noteworthy features, enhancements and fixes are covered. 
 
 ## Background
 
@@ -29,11 +29,11 @@ The most common use cases for the Gluu Server include single sign-on (SSO), mobi
 Please visit the [Gluu Documentation Page](http://www.gluu.org/docs/ce) for the complete 
 documentation and administrative guide. 
 
-## Available components in Gluu Server 4.0
-- oxAuth, oxTrust, oxCore v4.0
+## Available components in Gluu Server 4.1
+- oxAuth, oxTrust, oxCore v4.1
 - Gluu OpenDJ v3.0.1
 - Shibboleth v3.4.4
-- Passport v4.0
+- Passport v4.1
 - Java v1.8.0_112
 - Node.js v9.9.0
 - Jetty-distribution-9.4.12.v20180830
@@ -45,7 +45,7 @@ documentation and administrative guide.
 ## New features
 
 ## Fixes / Enhancements
-### [GluuFederation/oxTrust](https://github.com/GluuFederation/oxTrust/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
+### [GluuFederation/oxTrust](https://github.com/GluuFederation/oxTrust/issues?utf8=?&q=is%3Aissue+milestone%3A4.1+)
 
 - [#1860](https://github.com/GluuFederation/oxTrust/issues/1860) Prefill issuer field in passport provider form
 
@@ -225,7 +225,7 @@ documentation and administrative guide.
 
 - [#551](https://github.com/GluuFederation/oxTrust/issues/551)  Remove ou=appliances 
 
-### [GluuFederation/oxAuth](https://github.com/GluuFederation/oxAuth/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
+### [GluuFederation/oxAuth](https://github.com/GluuFederation/oxAuth/issues?utf8=?&q=is%3Aissue+milestone%3A4.1+)
 
 - [#1158](https://github.com/GluuFederation/oxAuth/issues/1158)  PKCE : If `code_challenge_method` is not set it should fall back to `plain` value during validation 
 
@@ -365,7 +365,7 @@ documentation and administrative guide.
 
 - [#207](https://github.com/GluuFederation/oxAuth/issues/207)  User Review of Persistent Client Scope Authorizations 
 
-### [GluuFederation/gluu-passport](https://github.com/GluuFederation/gluu-passport/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
+### [GluuFederation/gluu-passport](https://github.com/GluuFederation/gluu-passport/issues?utf8=?&q=is%3Aissue+milestone%3A4.1+)
 
 - [#62](https://github.com/GluuFederation/gluu-passport/issues/62)  Verify linkedIn integration is working properly 
 
@@ -379,7 +379,7 @@ documentation and administrative guide.
 
 - [#19](https://github.com/GluuFederation/gluu-passport/issues/19)  Passport should support dynamic mapping 
 
-### [GluuFederation/community-edition-setup](https://github.com/GluuFederation/community-edition-setup/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
+### [GluuFederation/community-edition-setup](https://github.com/GluuFederation/community-edition-setup/issues?utf8=?&q=is%3Aissue+milestone%3A4.1+)
 
 - [#588](https://github.com/GluuFederation/community-edition-setup/issues/588)  Issue random inum for admin user 
 
@@ -461,7 +461,7 @@ documentation and administrative guide.
 
 - [#275](https://github.com/GluuFederation/community-edition-setup/issues/275)  Configure firewall on host to open https port after installing CE 
 
-### [GluuFederation/SCIM-Client](https://github.com/GluuFederation/SCIM-Client/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
+### [GluuFederation/SCIM-Client](https://github.com/GluuFederation/SCIM-Client/issues?utf8=?&q=is%3Aissue+milestone%3A4.1+)
 
 - [#62](https://github.com/GluuFederation/SCIM-Client/issues/62)  Add support for boolean custom attributes 
 
@@ -531,7 +531,7 @@ documentation and administrative guide.
 
 - [#25](https://github.com/GluuFederation/SCIM-Client/issues/25)  Validate timezone attribute 
 
-### [GluuFederation/oxcore](https://github.com/GluuFederation/oxcore/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
+### [GluuFederation/oxcore](https://github.com/GluuFederation/oxcore/issues?utf8=?&q=is%3Aissue+milestone%3A4.1+)
 
 - [#152](https://github.com/GluuFederation/oxCore/issues/152)  Support multi valued caustom attributes with single value 
 
@@ -587,7 +587,7 @@ documentation and administrative guide.
 
 - [#28](https://github.com/GluuFederation/oxCore/issues/28)  Create generic CacheService (without dependencies to ehcache) 
 
-### [GluuFederation/oxShibboleth](https://github.com/GluuFederation/oxShibboleth/issues?utf8=?&q=is%3Aissue+milestone%3A4.0+)
+### [GluuFederation/oxShibboleth](https://github.com/GluuFederation/oxShibboleth/issues?utf8=?&q=is%3Aissue+milestone%3A4.1+)
 
 - [#65](https://github.com/GluuFederation/oxShibboleth/issues/65)  IDP throws exception after CE install 
 

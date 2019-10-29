@@ -113,7 +113,7 @@ For `oxAuth`:
 ```
 git clone https://github.com/GluuFederation/oxAuth.git
 cd oxAuth
-git checkout version_4.0
+git checkout version_4.1
 ```
 
 For `identity`:
@@ -121,7 +121,7 @@ For `identity`:
 ```
 git clone https://github.com/GluuFederation/oxTrust.git
 cd oxTrust
-git checkout version_4.0
+git checkout version_4.1
 ```
 
 ## Find your Gluu Server version

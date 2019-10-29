@@ -77,14 +77,14 @@ The administrator can use the following command line options to include addition
 * __--import-ldif=custom-ldif-dir__ Render ldif templates from custom-ldif-dir and import them in LDAP
 * __--listen_all_interfaces__ Allow the LDAP server to listen on all server interfaces. This is required for clustered installations to replicate between LDAP servers. If not enabled, the LDAP server listens only to localhost
 * __---allow-pre-released-features__ Enable options to install experimental features, not yet officially supported.
-* __--remote-ldap__ Allows use of a remote LDAP server. <!-- For further information see https://github.com/GluuFederation/support-docs/blob/master/howto/4.0/setup_remote_LDAP.md -->
-* __--remote-couchbase__ Allows use of a remote Couchbase server. <!-- For further information see https://github.com/GluuFederation/support-docs/blob/master/howto/4.0/CE_with_remote_CB.md -->
+* __--remote-ldap__ Allows use of a remote LDAP server.
+* __--remote-couchbase__ Allows use of a remote Couchbase server.
 
 Example Command: `# ./setup.py -ps` This command will install Gluu Server with Passport and Shibboleth IDP.
 
 <!-- 
 #### Couchbase Server Setup (Experimental)
-Starting in CE 4.0, Gluu Server supports Couchbase Server as a database backend. To install with Couchbase, you need to download the OS-specific Couchbase package from https://www.couchbase.com/downloads (Enterprise version only), and save to `/opt/dist/couchbase`. For example, for Ubuntu 18,
+Starting in CE 4.1, Gluu Server supports Couchbase Server as a database backend. To install with Couchbase, you need to download the OS-specific Couchbase package from https://www.couchbase.com/downloads (Enterprise version only), and save to `/opt/dist/couchbase`. For example, for Ubuntu 18,
 
 ```
 # ls /opt/dist/couchbase

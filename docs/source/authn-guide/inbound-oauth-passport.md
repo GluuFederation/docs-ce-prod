@@ -94,7 +94,7 @@ When using oxd, administrators can follow the steps similar as [above](#integrat
 
 - For provider `type`, select "openidconnect-oxd"
 
-- Instead of creating a client directly, a call to the oxd server [`register-site` API method](https://gluu.org/docs/oxd/4.0/api/#register-site) must be issued. [Here](https://github.com/GluuFederation/passport-oxd#create-a-client) is an example. From this action, the `oxdID` will be obtained. Ensure the client created actually has the scopes requested.
+- Instead of creating a client directly, a call to the oxd server [`register-site` API method](https://gluu.org/docs/oxd/4.1/api/#register-site) must be issued. [Here](https://github.com/GluuFederation/passport-oxd#create-a-client) is an example. From this action, the `oxdID` will be obtained. Ensure the client created actually has the scopes requested.
 
 - Supply values for the properties required. These properties are explained [here](https://github.com/GluuFederation/passport-oxd#configure-strategy) (see the options parameter). 
 

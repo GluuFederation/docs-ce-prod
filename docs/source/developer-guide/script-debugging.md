@@ -3,7 +3,7 @@ The following guide will explain how to debug [custom interception scripts](../a
 
 ## Setup
 
-The following instructions assume Gluu Server 4.0 is already installed and available. If not, perform a standard [Gluu Server installation](../installation-guide/index.md), then do the following: 
+The following instructions assume Gluu Server 4.1 is already installed and available. If not, perform a standard [Gluu Server installation](../installation-guide/index.md), then do the following: 
 
 1. Install `https://repo.gluu.org/tools/tools-install.sh`
 1. Log out of CE

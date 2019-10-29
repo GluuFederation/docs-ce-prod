@@ -91,7 +91,7 @@ The following is an example for `redisCacheOptions` value. Note that keys are wr
 ```
 
 !!! Note
-    Navigate in oxTrust to `Configuration` > `JSON configuration` > `Cache provider configuration`. If `cacheProviderType` is set to REDIS, you are safe to go and can reuse some of the parameters found under the `redisConfiguration` section for `redisCacheOptions`. If the clustered setup is using a different cache provider, please check the corresponding Cluster Manager [docs](https://gluu.org/docs/cm/4.0/deploy/#cache) or open a support [ticket](https://support.gluu.org).
+    Navigate in oxTrust to `Configuration` > `JSON configuration` > `Cache provider configuration`. If `cacheProviderType` is set to REDIS, you are safe to go and can reuse some of the parameters found under the `redisConfiguration` section for `redisCacheOptions`. If the clustered setup is using a different cache provider, please check the corresponding Cluster Manager [docs](https://gluu.org/docs/cm/4.1/deploy/#cache) or open a support [ticket](https://support.gluu.org).
 
 
 ### Register Passport metadata with external IDP

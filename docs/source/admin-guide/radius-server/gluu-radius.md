@@ -9,7 +9,7 @@ As mentioned above, Gluu Radius is based on the TinyRadius Java library. The lib
 -->
 
 ## Installation  
-Gluu Radius is an available component from version 4.0. During installation, while [running setup.py](../../installation-guide/setup-py.md), simply select `Y` when you are asked to install Gluu Radius.
+Gluu Radius is an available component in Community Edition. During installation, while [running setup.py](../../installation-guide/setup-py.md), simply select `Y` when you are asked to install Gluu Radius.
 
 ## Service 
 Gluu Radius runs as a service from within the Linux container. Certain configuration settings will require a service restart. View the [Services Commands](../../operation/services.md) doc for commands for the OS in use. 

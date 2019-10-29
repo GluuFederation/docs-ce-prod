@@ -8,9 +8,9 @@ This tutorial offers a step-by-step guide for setting up a basic proof-of-concep
 
 For the sake of illustration we'll use the following three abstract servers:
 
- - `[passport_dns_name]` is the host where Gluu Server v4.0 with Shibboleth IDP and Passport components is installed
+ - `[passport_dns_name]` is the host where Gluu Server v4.1 with Shibboleth IDP and Passport components is installed
  
- - `[remote_idp_dns_name]` is another Gluu Server v4.0 instance with Shibboleth IDP installed which will serve as remote IDP in this example
+ - `[remote_idp_dns_name]` is another Gluu Server v4.1 instance with Shibboleth IDP installed which will serve as remote IDP in this example
  
  - `[sp_dns_name]` is the remote SP Gluu Server with the Shibboleth SP v2.6.1 installed
 

@@ -41,8 +41,8 @@ The following ports are used by different components to communicate with their p
       
 ```bash
 45.55.232.15    loadbalancer.example.org (NGINX server)
-159.203.126.10  cluster.example.org (Gluu Server 4.0 on Ubuntu 16.04 ) (Node -1 )
-138.197.65.243  cluster.example.org (Gluu Server 4.0 on Ubuntu 16.04 ) (Node -2 )
+159.203.126.10  cluster.example.org (Gluu Server 4.1 on Ubuntu 16.04 ) (Node -1 )
+138.197.65.243  cluster.example.org (Gluu Server 4.1 on Ubuntu 16.04 ) (Node -2 )
 All server nodes will have the same hostname
 197.122.32.421  redis.example.org (Redis Server)
 ```
@@ -57,7 +57,7 @@ Some prerequisites are necessary for setting up Gluu with delta-syncrepl MMR:
 
 - To create the following instructions we used an NGINX load balancer/proxy, however if you have your own load balancer, like F5 or Cisco, you should use that instead and disregard the instructions about configuring NGINX   
 
-- Gluu Server 4.0 using OpenDJ 
+- Gluu Server 4.1 using OpenDJ 
 
 - Redis-server for caching short-lived tokens   
 
@@ -103,7 +103,7 @@ apt-get install openssh-client
 ```bash
 45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
 197.122.32.421  redis.example.org (Redis Server) -- for us this has not been setup yet
-159.203.126.10  cluster.example.org (Gluu Server 4.0 on Ubuntu 16.04) (Node 1)
+159.203.126.10  cluster.example.org (Gluu Server 4.1 on Ubuntu 16.04) (Node 1)
 ```
     
 #### Node 2 `/etc/hosts`
@@ -112,7 +112,7 @@ apt-get install openssh-client
 
 45.55.232.15    loadbalancer.example.org (NGINX server) -- for us this has not been setup yet
 197.122.32.421  redis.example.org (Redis Server) -- for us this has not been setup yet
-138.197.65.243  cluster.example.org (Gluu Server 4.0 on Ubuntu 16.04) (Node 2)
+138.197.65.243  cluster.example.org (Gluu Server 4.1 on Ubuntu 16.04) (Node 2)
 ```
     
 !!! Warning

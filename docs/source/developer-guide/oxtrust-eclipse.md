@@ -26,13 +26,13 @@ We will be building latest branch
 
 # yum clean all 
 
-# yum install gluu-server-4.0
+# yum install gluu-server
 
-# /sbin/gluu-serverd-4.0 start 
+# /sbin/gluu-serverd start 
 
-# /sbin/gluu-serverd-4.0 enable 
+# /sbin/gluu-serverd enable 
 
-# /sbin/gluu-serverd-4.0 login 
+# /sbin/gluu-serverd login 
 ```
 !!! Note: 
     This documentation is prepared based on CentOS, follow the appropriate installation guide based on your OS.
@@ -74,9 +74,9 @@ Now leave chroot
 # logout 
 ```
 
-root directory of gluu chroot jail is `/opt/gluu-server-4.0/` 
+root directory of gluu chroot jail is `/opt/gluu-server/` 
 
-download `/opt/gluu-server-4.0/root/configs.tgz` to your machine. 
+download `/opt/gluu-server/root/configs.tgz` to your machine. 
 
 ## Download Software
 Download below mentioned required softwares. And this assumes you're using Windows 64-bit operating sytsem. 
@@ -219,7 +219,7 @@ into the conf subdirectory you created (e.g. C:\home\gluu\conf\ox-ldap.propertie
 
 2\. Create folder for custom Gluu schema: `C:\Program Files (x86)\symas-openldap\etc\openldap\schema`
 
-3\. Copy into custom Gluu schema folder 2 files from CE `/opt/gluu-server-4.0/opt/gluu/schema/openldap`
+3\. Copy into custom Gluu schema folder 2 files from CE `/opt/gluu-server-4.1/opt/gluu/schema/openldap`
 
 4\. Copy `C:\Program Files (x86)\symas-openldap\etc\openldap\slapd.conf.default` into `C:\Program Files (x86)\symas-openldap\etc\openldap\slapd.conf`
 
@@ -243,7 +243,7 @@ into the conf subdirectory you created (e.g. C:\home\gluu\conf\ox-ldap.propertie
    moduleload	unique.la
 ```
 
- - Copy from CE file /opt/gluu-server-4.0/opt/symas/etc/openldap/slapd.conf sections into `C:\Program Files (x86)\symas-openldap\etc\openldap\slapd.conf`:
+ - Copy from CE file /opt/gluu-server-4.1/opt/symas/etc/openldap/slapd.conf sections into `C:\Program Files (x86)\symas-openldap\etc\openldap\slapd.conf`:
 ```
    #######################################################################
    # Main Database housing all the o=gluu info
