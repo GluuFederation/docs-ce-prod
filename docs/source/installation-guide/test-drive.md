@@ -25,6 +25,8 @@ For Docker deployments on OS X, make sure you have the following:
 
 - [Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac) 
 
+- Allow file sharing. Go to docker preferences, add the folder path to file sharing and restart docker. [Read the docs](https://docs.docker.com/docker-for-mac/osxfs/#namespaces) 
+
 ## Instructions
 
 1. Log in as root:
