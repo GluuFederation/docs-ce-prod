@@ -104,7 +104,11 @@ New authentication flows and methods should **always** be tested in a different 
 
 ## Extending the Authentication Flow
 
-The oxAuth Person Authenticator Script (ACR) interface includes methods extend the user authentication flow. There are two entry points of this flow, `prepareForStep` and `authenticate`. oxAuth calls `prepareForStep` from XTHML, and its role is to prepare data to render the login page or redirect to a third party system for authentication. oxAuth expects `authenticate` to call from the login page or from `/oxauth/postlogin.htm` (the callback from a third party system). Its role is to verify user data that is submitted by the user.
+The oxAuth Person Authenticator Script (ACR) interface includes methods extend the user authentication flow. There are two entry points of this flow, `prepareForStep` and `authenticate`.
+
+oxAuth calls `prepareForStep` from XTHML, and its role is to prepare data to render the login page or redirect to a third party system for authentication. 
+
+oxAuth expects `authenticate` to call from the login page or from `/oxauth/postlogin.htm` (the callback from a third party system). Its role is to verify user data that is submitted by the user.
 
 The following diagram demonstrates the `authenticate` flow:
 
