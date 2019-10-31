@@ -116,4 +116,4 @@ The following diagram demonstrates the `authenticate` flow:
 
 The following diagram demonstrates the `prepareForStep` flow:
 
-![prepareForStep flow diagram](../img/user-authn/authn_prepareforstep_flow.png)
+[![prepareForStep flow diagram](../img/user-authn/authn_prepareforstep_flow.png)](../img/user-authn/authn_prepareforstep_flow.png)
