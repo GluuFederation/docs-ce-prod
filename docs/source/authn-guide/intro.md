@@ -112,7 +112,7 @@ oxAuth expects `authenticate` to call from the login page or from `/oxauth/postl
 
 The following diagram demonstrates the `authenticate` flow:
 
-![authenticate flow diagram](../img/user-authn/authn_authenticate_flow.png)
+[![authenticate flow diagram](../img/user-authn/authn_authenticate_flow.png)](../img/user-authn/authn_authenticate_flow.png))
 
 The following diagram demonstrates the `prepareForStep` flow:
 
