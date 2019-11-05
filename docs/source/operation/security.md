@@ -1,6 +1,8 @@
 # Security recommendations
 
-The Gluu Server is designed to be easy to deploy. Its default security settings may not be strict enough for certain organizations or use cases. This document highlights important security controls and offers best practices for increasing security related to a Gluu Server infrastructure
+The Gluu Server is designed to be easy to deploy. Its default security settings may not be strict enough for all organizations or use cases. This document highlights important security controls and offers best practices for increasing security related to a Gluu Server infrastructure. 
+
+To report security issues, please send details to: [security@gluu.org](mailto:security@gluu.org). 
 
 ## Storing setup.properties.last 
 
@@ -136,4 +138,8 @@ Regardless of how specialized application is, general considerations still apply
 
 ## Ongoing Security Audits
 
-Even with all possible requirements met, regular security audits conducted by experienced security professionals are invaluable source of objective opinions on how secure your environment really is. Feel free to contact us at [here](mailto:security@gluu.org) with head-ups on any issues discovered during your internal investigations - we'll try our best to offer remediation instructions ASAP. We greatly appreciate your efforts in making Gluu products better and safer for everyone!
+Even with all possible requirements met, regular security audits conducted by experienced security professionals are an invaluable source of objective opinions. 
+
+## Reporting security issues
+If you've discovered a new security issue, please send a report to [security@gluu.org](mailto:security@gluu.org) - we'll do our best to remediate the issue ASAP. We greatly appreciate your help making Gluu products better and safer for everyone in the community!
+
