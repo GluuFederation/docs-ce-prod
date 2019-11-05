@@ -2,7 +2,8 @@
 
 The Gluu Server is designed to be easy to deploy. Its default security settings may not be strict enough for all organizations or use cases. This document highlights important security controls and offers best practices for increasing security related to a Gluu Server infrastructure. 
 
-To report security issues, please send details to: [security@gluu.org](mailto:security@gluu.org). 
+!!! Important
+    To report security issues, please send details to: [security@gluu.org](mailto:security@gluu.org). 
 
 ## Storing setup.properties.last 
 
