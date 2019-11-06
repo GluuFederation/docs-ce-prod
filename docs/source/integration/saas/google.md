@@ -86,7 +86,9 @@ Edit the `/opt/gluu/jetty/identity/conf/shibboleth3/idp/saml-nameid.xml.vm` file
             p:attributeSourceIds="#{ {'mail'} }" />
 ```               
 
-[Restart](../../operation/services.md#restart) the `identity` and `idp` services.
+- [Restart](../../operation/services.md#restart) the `identity` service.
+
+- [Restart](../../operation/services.md#restart) the `idp` service.
  
 ### Create a SAML Trust Relationship
 - Create Trust Relationship for Google Apps: 
