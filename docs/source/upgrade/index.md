@@ -15,23 +15,6 @@ Find your existing version below for instructions to upgrade to the latest versi
 
 - Scripts and directories outside the Chroot will still reflect the version from which you upgraded. For example, if you started with version 3.1.3, the directory will still be gluu-server-3.1.3, even after upgrading to 3.1.7.
 
-## Upgrade from 3.1.7 to 3.1.7
-
-To perform an in-place upgrade from Gluu Server 3.1.7 to 3.1.7, download and run our in-place upgrade script, following these instructions:
-
-1. Log in to your server with `service gluu-server-3.1.7 login`
-
-1. Download the upgrade script with `wget https://repo.gluu.org/upd/3.1.7-upg.sh`
-
-1. Run the script with `sh 3.1.7-upg.sh`
-
-1. When the script has finished, restart your server:
-
-```
-logout
-service gluu-server-3.1.7 restart
-```
-
 ## Upgrade from 3.1.x to 3.1.7
 
 !!! Note 
