@@ -2,7 +2,7 @@
 
 ## Overview
 
-This tutorial offers a step-by-step guide for setting up a basic proof-of-concept environment showcasing an creation SSO cookie in `passowrd` grant flow. Refer to general documentation describing each component for more details.
+This tutorial offers a step-by-step guide for setting up a basic proof-of-concept environment showcasing an creation SSO cookie in `password` grant flow. Refer to general documentation describing each component for more details.
 
 ## Testing
 
