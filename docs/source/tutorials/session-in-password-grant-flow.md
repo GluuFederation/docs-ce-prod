@@ -29,7 +29,7 @@ This tutorial offers a step-by-step guide for setting up a basic proof-of-concep
    - Run `mvn spring-boot:run` in `./oxAuth/rp-spring-boot` folder
    - Open in browser `http://localhost:8080`
    - Login/Logout to make sure that demo RP works well      
-8. Issue code via `passowrd` flow. For this step we need to use client_id/client_secret client added in step 5.
+8. Issue code via `password` flow. For this step we need to use client_id/client_secret client added in step 5.
    - Get access token:
    
 curl -k -u '<client_id>:<client_secret>' \
