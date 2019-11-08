@@ -2,7 +2,7 @@
 
 ## Overview
 
-This tutorial offers a step-by-step guide for setting up a basic proof-of-concept environment showcasing an creation SSO cookie in `passowrd` grant flow. Refer to general documentation describing each component for more details.
+This tutorial offers a step-by-step guide for setting up a basic proof-of-concept environment showcasing an creation SSO cookie in `password` grant flow. Refer to general documentation describing each component for more details.
 
 ## Testing
 
@@ -93,8 +93,8 @@ introspection_resp_json = json.loads(introspection_resp_data)
 session_id = introspection_resp_json['session_id']
 
 print("Content-Type: text/html")
-print("Set-Cookie: session_id=%s; Path=/; Secure; HttpOnly; Expires=Fri, 08 Nov 2030 18:52:39 +0000; HttpOnly" % session_id)
-#print("Set-Cookie: session_id=%s; domain=%s; Path=/; Secure; HttpOnly; Expires=Fri, 08 Nov 2030 18:52:39 +0000; HttpOnly" % (session_id, session_id_cookie_domain))
+#print("Set-Cookie: session_id=%s; Path=/; Secure; HttpOnly; Expires=Fri, 08 Nov 2030 18:52:39 +0000; HttpOnly" % session_id)
+print("Set-Cookie: session_id=%s; domain=%s; Path=/; Secure; HttpOnly; Expires=Fri, 08 Nov 2030 18:52:39 +0000; HttpOnly" % (session_id, session_id_cookie_domain))
 print("\n")
 
 print("<title>RP script output</title>")
