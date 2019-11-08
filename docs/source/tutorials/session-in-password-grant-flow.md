@@ -119,6 +119,7 @@ print("<pre>" + introspection_resp_data + "</pre>")
    
 ## Note
    1. In order to full support this flow we need to resolve issue: https://github.com/GluuFederation/oxAuth/issues/1196
-      Without this issue resolution after logout from oxTrust user not able to loging until he restart browser.
+      Without this issue resolution after logout from oxTrust user not able to logging until he restart browser.
+      
    
    
