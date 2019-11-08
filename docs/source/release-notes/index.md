@@ -46,6 +46,10 @@ documentation and administrative guide.
 
 ### [GluuFederation/oxAuth](https://github.com/GluuFederation/oxAuth/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.7+)
 
+- [#1184](https://github.com/GluuFederation/oxAuth/issues/1184) Added proper validation of access token on /clientinfo endpoint
+
+- [#1177](https://github.com/GluuFederation/oxAuth/issues/1177) Backport session script changes
+
 - [#1153](https://github.com/GluuFederation/oxAuth/issues/1153) allowPostLogoutRedirectWithoutValidation oxAuth feature doesn't work
 
 -  [#1109](https://github.com/GluuFederation/oxAuth/issues/1109) oxauth does not take care requested scopes while creating client dynamically
@@ -62,13 +66,35 @@ documentation and administrative guide.
 
 - [#1003](https://github.com/GluuFederation/oxAuth/issues/1003) Allow to refresh 'ID Token' with grant_type refresh_token
 
+- Update jackson-databind library
+
+- Backported ROPC flow update from CE 4.0
+
+- Added secure flag to `org.gluu.i18n.Locale` cookie
+
+- Disabled request host redirect to authorization page
+
+- Set unauthenticated session state when applicaiton session script returns false
+
 ### [GluuFederation/oxTrust](https://github.com/GluuFederation/oxTrust/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.7+)
 
 - [#1646](https://github.com/GluuFederation/oxTrust/pull/1646) Add a config value to allow to share the same subject identifier between two Clients with the same sector identifier
 
 - [#1061](https://github.com/GluuFederation/oxTrust/issues/1061) Add search box to attribute inventory
 
+- Update jackson-databind library
+
+- Fixed metadata validation
+
+### [GluuFederation/oxShibboleth](https://github.com/GluuFederation/oxShibboleth/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.7+)
+
+- Update Shibboleth from 3.3.3 to 3.4.4
+
 ### [GluuFederation/community-edition-setup](https://github.com/GluuFederation/community-edition-setup/issues?utf8=?&q=is%3Aissue+milestone%3A3.1.7+)
 
 - [#534](https://github.com/GluuFederation/community-edition-setup/pull/534) Add a config value to allow to share the same subject identifier between two Clients with the same sector identifier
+
+- Migrate to amazon-corretto
+
+- Update keystore creation for latest Shibboleth
 
