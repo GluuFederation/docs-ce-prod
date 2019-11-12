@@ -15,18 +15,14 @@ For Docker deployments, provision a VM with:
 
 ### Obtain files for deployment:
 
-    ```
+
     wget https://github.com/GluuFederation/community-edition-containers/archive/4.0.0.zip \
         && unzip 4.0.0.zip
-    ```
-    
-    ```
+
     cd community-edition-containers-4.0.0/examples/single-host
-    ```
     
-    ```
     chmod +x run_all.sh
-    ```
+ 
 
 ### Choose services
 
