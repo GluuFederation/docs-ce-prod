@@ -28,19 +28,15 @@ oxAuth contains the following resource bundles:
 These properties files store the translatable text of the messages to be displayed. The default properties file, `messages_en.properties`, contains the following lines:
 
 
-	.......
 	login.login=Login
 	login.register=Register
-	.......
-
+	
 Now that the messages are in a properties file, they can be translated into various languages. No changes to the source code are required. For example, to use the French version of oxAuth, the messages_fr.properties should contain these lines:
 
 	
-	.......
 	login.login=S'identifier
 	login.register=Registre
-	.......
-	
+		
 Notice that the values to the right of the equal sign have been translated but the keys on the left side have not changed. These keys must not change, because they will be referenced when oxAuth fetches the translated text.
 
 To add a translation for not yet supported languages, just create new properties file in resource folder and name it `messages_[language_code].properties`, then add the language code as supported-locale to the `faces-config.xml`.
