@@ -61,9 +61,9 @@ By default, the FIDO2 endpoints are disabled in the Gluu Server for compatibilit
 
 1. Click on the `oxAuth Configuration` tab
 
-1. Scroll down to the Fido2 Specification
+1. Scroll down to the Fido2 Configuration
 
-1. Set the `disable` field to `False`
+1. Set the `disableFido2` field to `False`
 
 1. Set the `mdsAccessToken` field value. This is access token which FIDO Alliance provides to access MDS and TOC data.
 
