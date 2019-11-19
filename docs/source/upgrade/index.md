@@ -61,6 +61,7 @@ python update.py -o
 
 Your upgrade directory will be the current directory. The script will create these directories: `app`, `war`, `temp`, `setup`
 
+<!--
 #### Static Upgrade
 The static, self-extracting upgrade package contains all components for the upgrade. You still need an internet connection to install the libraries that are needed by the upgrade script. To perform a static upgrade, follow these steps:
 
@@ -77,3 +78,4 @@ sh 4-0-upg.sh
 ```
 
 The upgrade directory will be `/opt/upd/4.0-upg`
+-->
