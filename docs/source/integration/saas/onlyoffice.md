@@ -11,7 +11,6 @@
    * Now you need to add the information of your Gluu Server here, And Click Save
      ![image](../../img/integration/onlyoffice_portal_control_panel_sso_settings.png)
   * Click DOWNLOAD SP METADATA XML
-     ![image](../../img/integration/Salesforce_SSO_setting_gluu4_confirmation.png)
      
      ********************************************************************************************
 
