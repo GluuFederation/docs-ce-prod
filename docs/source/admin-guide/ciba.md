@@ -233,15 +233,15 @@ ping or push.
 
 In the *Push* mode, the OP will post the full authentication result to the Client.
 
-![CIBA Push Mode](../img/admin-guide/ciba/CIBA Push Mode.png)
+![CIBA Push Mode](../img/admin-guide/ciba/CIBAPushMode.png)
 
 In the *Ping* mode, the OP will post the unique identifier of the authentication session to
 the Client, the Client will then retrieve the authentication result from the token endpoint
 using the new grant type.
 
-![CIBA Ping Mode](../img/admin-guide/ciba/CIBA Ping Mode.png)
+![CIBA Ping Mode](../img/admin-guide/ciba/CIBAPingMode.png)
 
 In the *Poll* mode, the authentication result is retrieved by the Client by polling the OP's
 token endpoint using the new grant type.
 
-![CIBA Poll Mode](../img/admin-guide/ciba/CIBA Poll Mode.png)
+![CIBA Poll Mode](../img/admin-guide/ciba/CIBAPollMode.png)
