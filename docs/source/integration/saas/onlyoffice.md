@@ -1,32 +1,43 @@
 
-# Single Sign-On (SSO) to ONLYOffice
+# Single Sign-On (SSO) to OnlyOffice
 
-## Prepare ONLYOffice
+Follow these instructions to configure the Gluu Server and OnlyOffice for SSO. 
 
-- Log into ONLYOffice Portal with your administrative account.
-- Click on Control Panel on the page.
+## Configure OnlyOffice
+Follow the instructions below to configure OnlyOffice for SSO.
+
+!!! Note
+    Review the docs for [configuring OnlyOffice SSO](https://helpcenter.onlyoffice.com/server/controlpanel/enterprise/sso-description.aspx). 
+
+- Sign in to OnlyOffice Portal with your administrative account
+
+- Navigate to the Control Panel 
  ![image](../../img/integration/onlyoffice_portal.png)
-- Click on SSO Option (on Left), And Select Enable Single Sign-on Authentication
+
+- Click on SSO (on the left), and select `Enable Single Sign-on Authentication`
   ![image](../../img/integration/onlyoffice_portal_control_panel_sso.png)
-   * Now you need to add the information of your Gluu Server here, And Click Save
+
+- Add the information of your Gluu Server here, and click Save
      ![image](../../img/integration/onlyoffice_portal_control_panel_sso_settings.png)
-  * Click DOWNLOAD SP METADATA XML
-     
-     ********************************************************************************************
 
-## Prepare Gluu Server
+- Click DOWNLOAD SP METADATA XML 
 
-* How to create SAML trust relationship is available [here](../../admin-guide/saml.md). 
-* Grab ONLYOffice metadata from the ONLYOffice website. There is
-  an option named `Download Metadata`. 
+## Configure Gluu Server
+
+Now, follow the instructions below to create a SAML Trust Relationship (TR) for OnlyOffice in the Gluu Server.
+
+!!! Note
+    Review the docs for [creating SAML TR's](../../admin-guide/saml.md). 
+
+* Download the OnlyOffice metadata from the OnlyOffice website. 
 * Create Trust Relationship:
-  * _Display Name_: Anything, whichever is easier for you to recognize this trust relationship.
-  * _Description_: Anything, whichever is easier for you to recognize this trust relationship
+  * _Display Name_: Name the TR (e.g. OnlyOffice SSO)
+  * _Description_: Provide a description for the TR
   * _Metadata Type_: 'File'
-  * Upload salesforce's metadata
+  * Upload OnlyOffice metadata (obtained during OnlyOffice configuration)
   * Releases attributes: TransientID and Email
-  * 'Add' this trust
-  * Configure Specific Relying: It can be done from Gluu Server's GUI (named: oxTrust)
+  * 'Add' the TR
+  * Configure Relying Party: From the GUI, add the following configurations: 
     * Select `SAML2SSO`
         * includeAttributeStatement: Enabled
         * assertionLifetime: keep the default one
@@ -36,6 +47,8 @@
         * signRequests: conditional
         * encryptAssertions: never
         * encryptNameIds: never
-        * Save it
+        * Save
   * `Update` the trust relationship
+  
+
 
