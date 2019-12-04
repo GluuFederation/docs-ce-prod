@@ -9,18 +9,30 @@ Follow the instructions below to configure OnlyOffice for SSO.
 !!! Note
     Review the docs for [configuring OnlyOffice SSO](https://helpcenter.onlyoffice.com/server/controlpanel/enterprise/sso-description.aspx). 
 
-- Sign in to OnlyOffice Portal with your administrative account
+- Sign in to the OnlyOffice portal with an administrative account
 
 - Navigate to the Control Panel 
  ![image](../../img/integration/onlyoffice_portal.png)
 
-- Click on SSO (on the left), and select `Enable Single Sign-on Authentication`
-  ![image](../../img/integration/onlyoffice_portal_control_panel_sso.png)
+- Click on SSO, and select `Enable Single Sign-on Authentication`
+ ![image](../../img/integration/onlyoffice_portal_control_panel_sso.png)
 
-- Add the information of your Gluu Server here, and click Save
-     ![image](../../img/integration/onlyoffice_portal_control_panel_sso_settings.png)
+- Add your Gluu Server's SAML IDP metadata 
 
-- Click DOWNLOAD SP METADATA XML 
+!!! Note
+    The required fields can be filled automatically by uploading your SAML IDP metadata file. Download the `shibboleth.xml` file from your IDP endpoint (`https://<hostname>/idp/shibboleth`) and upload it using the `Select File` button.  
+
+- Name ID format must be `Transient` 
+
+- In the public Certificates section, check the box for both `Verify Authentication Response Signature` and `Verify Logout Request Signature` 
+
+- Inside the SP Certificates section, keep the default values for Attribute Mapping
+
+- Click `Save` 
+
+  ![image](../../img/integration/onlyoffice_portal_control_panel_sso_settings.png)
+     
+- Click `DOWNLOAD SP METADATA XML`
 
 ## Configure Gluu Server
 
@@ -29,26 +41,36 @@ Now, follow the instructions below to create a SAML Trust Relationship (TR) for 
 !!! Note
     Review the docs for [creating SAML TR's](../../admin-guide/saml.md). 
 
-* Download the OnlyOffice metadata from the OnlyOffice website. 
-* Create Trust Relationship:
-  * _Display Name_: Name the TR (e.g. OnlyOffice SSO)
-  * _Description_: Provide a description for the TR
-  * _Metadata Type_: 'File'
-  * Upload OnlyOffice metadata (obtained during OnlyOffice configuration)
-  * Releases attributes: TransientID and Email
-  * 'Add' the TR
-  * Configure Relying Party: From the GUI, add the following configurations: 
-    * Select `SAML2SSO`
-        * includeAttributeStatement: Enabled
-        * assertionLifetime: keep the default one
-        * assertionProxyCount: keep the default one
-        * signResponses: conditional
-        * signAssertions: never
-        * signRequests: conditional
-        * encryptAssertions: never
-        * encryptNameIds: never
-        * Save
-  * `Update` the trust relationship
-  
+Create a TR with the following fields:
+
+- Display Name: Name the TR (e.g. OnlyOffice SSO)
+- Description: Provide a description for the TR (e.g. SAML SSO TR for OnlyOffice)
+- Metadata Type: Select File
+- Upload your OnlyOffice metadata (downloaded during OnlyOffice configuration)
+- Release the following attributes: TransientID and Email
+- 'Add' the TR
+- Select `Configure Relying Party` 
+- Add the following configurations: 
+  - Select `SAML2SSO`
+  - `includeAttributeStatement`: Enabled
+  - `assertionLifetime`: keep the default
+  - `assertionProxyCount`: keep the default
+  - `signResponses`: conditional
+  - `signAssertions`: never
+  - `signRequests`: conditional
+  - `encryptAssertions`: never
+  - `encryptNameIds`: never
+  - Save  
+- Click `Update` 
+- Click `Activate` 
+
+Now, configure the NameID: 
+
+- Navigate to `Configure custom NameID`
+- Click `Add NameID Configuration`
+- Check `Enabled`
+- For Source Attribute, select `Email` for the Source Attribute
+- For NameId Type, select `urn:oasis:names:tc:SAML:1:1:nameid-format:emailAddress` 
+- Click `Update`  
 
 
