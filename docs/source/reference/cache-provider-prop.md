@@ -40,13 +40,12 @@ defaultPutExpiration          | defaultPutExpiration timeout value in seconds
 
 Name                          | Description
 ------------------------------|-----------
-redisProviderType             | Type of connection: standalone, clustered, sharded, sentinel
+redisProviderType             | Type of connection: standalone, clustered, or sharded
 Servers                       | Server details separated by commas (e.g. 'server1:8080,server2:8081')
 password                      | Redis password
 defaultPutExpiration          | Default expiration time for the object put into cache in seconds
 useSSL                        | Enable SSL communication between Gluu Server and Redis cache
 sslTrustStoreFilePath         | Directory Path to Trust Store
-sentinelMasterName            | Sentinel Master Name (required if SENTINEL type of connection is selected) 
 
 #### Native Persistence Configuration
 
