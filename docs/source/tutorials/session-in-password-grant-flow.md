@@ -2,7 +2,9 @@
 
 ## Overview
 
-This tutorial offers a step-by-step guide for setting up a basic proof-of-concept environment showcasing an creation SSO cookie in `password` grant flow. Refer to general documentation describing each component for more details.
+So you don't want the login page... you just want to send credentials and get back an SSO cookie. It's the anti-pattern of federated identity, with well-known negative security implications. But you don't care! The product team has their vision of what the login page should look like.  The security team has no power to prevent this terrible practice with a semblance of security hygiene, so here we are! 
+
+This tutorial offers a step-by-step guide for a basic proof-of-concept environment using the OAuth `password` grant flow. Refer to general documentation describing each component for more details.
 
 ## Testing
 
@@ -115,10 +117,10 @@ print("<pre>" + introspection_resp_data + "</pre>")
    - Open in browser `https://<server>/cgi-bin/rp.py`
    - As result this demo pge should produce page with `token` and `introspection responses`. Also it should set `session_id` cookie      
 
-   8. Open in browser `https://<server>` to log into oxTrust. oxAuth should accept cookie which `rp.py` set and allow log into application without entering credentials.
+   8. Open in browser `https://<server>` to login to oxTrust. oxAuth should accept cookie which `rp.py` set and allow login to the application without entering credentials.
    
 ## Note
-   1. In order to full support this flow we need to resolve issue: https://github.com/GluuFederation/oxAuth/issues/1196
+   1. In order to fully support this flow we need to resolve issue: https://github.com/GluuFederation/oxAuth/issues/1196
       Without this issue resolution after logout from oxTrust user not able to logging until he restart browser.
       
    
