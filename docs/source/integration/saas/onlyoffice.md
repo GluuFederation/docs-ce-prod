@@ -14,7 +14,7 @@ Follow the instructions below to configure OnlyOffice for SSO.
 - Navigate to the Control Panel 
  ![image](../../img/integration/onlyoffice_portal.png)
 
-- Click on SSO, and select `Enable Single Sign-on Authentication`
+- Click SSO, and select `Enable Single Sign-on Authentication`
  ![image](../../img/integration/onlyoffice_portal_control_panel_sso.png)
 
 - Add your Gluu Server's SAML IDP metadata 
