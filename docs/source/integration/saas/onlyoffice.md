@@ -19,8 +19,8 @@ Follow the instructions below to configure OnlyOffice for SSO.
 
 - Add your Gluu Server's SAML IDP metadata 
 
-!!! Note
-    The required fields can be filled automatically by uploading your SAML IDP metadata file. Download the `shibboleth.xml` file from your IDP endpoint (`https://<hostname>/idp/shibboleth`) and upload it using the `Select File` button.  
+    !!! Note
+        The required fields can be filled automatically by uploading your SAML IDP metadata file. Download the `shibboleth.xml` file from your IDP endpoint (`https://<hostname>/idp/shibboleth`) and upload it using the `Select File` button.  
 
 - Name ID format must be `Transient` 
 
