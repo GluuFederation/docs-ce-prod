@@ -46,7 +46,7 @@ password                      | Redis password
 defaultPutExpiration          | Default expiration time for the object put into cache in seconds
 useSSL                        | Enable SSL communication between Gluu Server and Redis cache
 sslTrustStoreFilePath         | Directory Path to Trust Store
-sentinelMasterName            | Sentinel Master Name (required if SENTINEL type of connection is selected) 
+sentinelMasterGroupName       | Sentinel Master Group Name (required if SENTINEL type of connection is selected) 
 
 #### Native Persistence Configuration
 
