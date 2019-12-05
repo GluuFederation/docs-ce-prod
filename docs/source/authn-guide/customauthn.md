@@ -4,12 +4,12 @@
 
 [Interception scripts](../admin-guide/custom-script.md) enable you to customize many aspects of your Gluu Server identity and access management service. 
 
-This tutorial explains how to write an interception script to implement a two-step out-of-band authentication using username / password as the first step, and Twilio to send an SMS with a one-time password (OTP) as the second step. At the end of this tutorial, you should have a better understanding of how to write your own custom scripts. 
+This tutorial explains how to write an interception script to implement a two-step out-of-band authentication using username / password for step 1, and a one-time password (OTP) sent via SMS using [Twilio](https://www.twilio.com/) for step 2. 
 
-For reference, review the completed Twilio custom authentication script [here](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/twilio_sms/twilio2FA.py). 
+For reference, review the completed [OTP authentication script](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/twilio_sms/twilio2FA.py). 
 
 !!! Warning
-    Be aware that while testing authentication scripts you may lock yourself out of web the UI. It's always advised to test authentication scripts in a separate incognito browser. If you do find yourself locked out, follow [these steps](../operation/faq.md#revert-authentication-method) to revert the authentication method. 
+    While testing authentication scripts, you may lock yourself out of web the UI. It's always advised to test authentication scripts in a separate incognito browser. If you do find yourself locked out, follow [these steps](../operation/faq.md#revert-authentication-method) to revert the authentication method. 
     
 ## Suggested Development Environment
 
