@@ -26,9 +26,13 @@ For Docker deployments, provision a VM with:
 ```
 wget https://github.com/GluuFederation/community-edition-containers/archive/4.0.zip \
     && unzip 4.0.zip
+```
 
+```
 cd community-edition-containers-4.0/examples/single-host
-    
+```
+
+```
 chmod +x run_all.sh
 ```
 
@@ -96,7 +100,7 @@ To choose a persistence backend, create a file called `settings.sh` (if it wasn'
 ```
 PERSISTENCE_TYPE="couchbase"    # Couchbase will be selected
 PERSISTENCE_LDAP_MAPPING="user" # store user mapping in LDAP
-COUCBASE_USER="admin"           # Couchbase user
+COUCHBASE_USER="admin"           # Couchbase user
 COUCHBASE_URL="192.168.100.4"   # Host or IP address of Couchbase
 ```
 
