@@ -74,13 +74,15 @@ Now, configure the NameID:
 
 1. Navigate to `Configure custom NameID`
 1. Click `Add NameID Configuration`
+    - Check `Enabled`
+    - For Source Attribute, select `Email` for the Source Attribute
+    - For NameId Type, select `emailAddress` 
 
     ![image](../../img/integration/onlyoffice/oo-name-id.png)
     
-1. Check `Enabled`
-1. For Source Attribute, select `Email` for the Source Attribute
-1. For NameId Type, select `urn:oasis:names:tc:SAML:1:1:nameid-format:emailAddress` 
 1. Click `Update`  
+
+### Finishing configuration
 
 1. Enable the PASSPORT_SAML
     - Go to configuration
@@ -98,6 +100,6 @@ Now, configure the NameID:
     - Click on Default authentication method
     - Keep Passport_Saml inside Default acr
     - Click on `Update`
-    -Click on `Manage LDAP Authetication`
+    - Click on `Manage LDAP Authetication`
         - `Active` LDAP connection
         - Click the `Update` button
