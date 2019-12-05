@@ -4,14 +4,16 @@
 
 [Interception scripts](../admin-guide/custom-script.md) enable you to customize many aspects of your Gluu Server identity and access management service. 
 
-This tutorial explains how to write an authentication interception script to implement a two-step out-of-band authentication using Twilio to send an SMS with a one-time password. At the end of this tutorial you should have a better understanding of how to write your own custom scripts. For reference, you can review the completed Twilio custom authentication script [here](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/twilio_sms/twilio2FA.py). 
+This tutorial explains how to write an interception script to implement a two-step out-of-band authentication using username / password as the first step, and Twilio to send an SMS with a one-time password (OTP) as the second step. At the end of this tutorial, you should have a better understanding of how to write your own custom scripts. 
+
+For reference, review the completed Twilio custom authentication script [here](https://raw.githubusercontent.com/GluuFederation/oxAuth/master/Server/integrations/twilio_sms/twilio2FA.py). 
 
 !!! Warning
     Be aware that while testing authentication scripts you may lock yourself out of web the UI. It's always advised to test authentication scripts in a separate incognito browser. If you do find yourself locked out, follow [these steps](../operation/faq.md#revert-authentication-method) to revert the authentication method. 
     
 ## Suggested Development Environment
 
-Gluu Server custom scripts are written in [Jython](http://www.jython.org/). We recommended using Eclipse for coding purposes.
+Interception scripts are written in [Jython](http://www.jython.org/). We recommended using [Eclipse](https://www.eclipse.org/ide/) for coding purposes.
 
 ## Custom Script Location
 
@@ -19,9 +21,7 @@ The GUI for custom authentication scripts can be found by navigating to
 
 `Configuration` > `Manage Custom Scripts` > `Person Authentication`. 
 
-Custom scripts can either be inserted directly into the GUI or you can 
-specify a path to the script. We recommend specifying a path in order to 
-make development easier. To specify a path, select `File` from the `Script Location Type` field in oxTrust and the `Script Path` input box will be displayed:
+Custom scripts can either be inserted directly into the GUI, or a path can be specified to the script. We recommend specifying a path in order to make development easier. To specify a path, select `File` from the `Script Location Type` field in oxTrust and the `Script Path` input box will be displayed:
 
 ![image](../img/admin-guide/multi-factor/script_upload_box.png)
 
