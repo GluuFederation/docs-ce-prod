@@ -37,18 +37,18 @@ For Docker deployments on OS X, make sure you have the following:
 
 1. Obtain the files for deployment:
     
-    ```
-    wget https://github.com/GluuFederation/community-edition-containers/archive/4.0.0.zip \
-        && unzip 4.0.0.zip
-    ```
-    
-    ```
-    cd community-edition-containers-4.0.0/examples/single-host
-    ```
-    
-    ```
-    chmod +x run_all.sh
-    ```   
+```
+wget https://github.com/GluuFederation/community-edition-containers/archive/4.0.zip \
+    && unzip 4.0.zip
+```
+
+```
+cd community-edition-containers-4.0/examples/single-host
+```   
+
+```
+chmod +x run_all.sh
+```
 
 1.  Run the following command and follow the prompts:
 
@@ -58,6 +58,7 @@ For Docker deployments on OS X, make sure you have the following:
     
     Do not be alarmed about the `warning` alerts that may show up. Wait until it prompts you for information or loads the previous configuration found. If this is a fresh install, the output will look like this :
 
+    
     ```
     ./run_all.sh
     [I] Determining OS Type and Attempting to Gather External IP Address
