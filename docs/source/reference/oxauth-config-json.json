@@ -981,6 +981,12 @@
             "description": "Accept access token to call end_session endpoint.",
             "type": "boolean"
         },
+        "сookieDomain": {
+            "id": "сookieDomain",
+            "description": "Cookie domain.",
+            "type": "string",
+            "minLength": 1
+        },
         "clientWhiteList": {
             "id": "clientWhiteList",
             "description": "White List for Client Redirection URIs.",
