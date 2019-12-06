@@ -120,6 +120,7 @@ dnName                                             | DN of certificate issuer
 keyStoreFile                                       | The Key Store File (JKS)
 keyStoreSecret                                     | The Key Store password
 endSessionWithAccessToken                          | Choose whether to accept access tokens to call end_session endpoint
+сookieDomain                                       | Sets cookie domain for all cookies created by OP
 clientWhiteList                                    | This list specifies which client redirection URIs are white-listed
 clientBlackList                                    | This list specified which client redirection URIs are black-listed
 legacyIdTokenClaims                                | Choose whether to include claims in ID tokens
