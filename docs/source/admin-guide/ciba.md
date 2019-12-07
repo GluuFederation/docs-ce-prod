@@ -101,7 +101,7 @@ Configuration Request:
  
 ```
 GET /.well-known/openid-configuration HTTP/1.1
-Host: ce.gluu.info
+Host: idp.example.com
 ```
 
 Configuration Response:
@@ -114,7 +114,7 @@ Server: Jetty(9.4.11.v20180605)
 
 {
   .....
-  "backchannel_authentication_endpoint" : "https://ce.gluu.info:8443/restv1/bc-authorize",
+  "backchannel_authentication_endpoint" : "https://idp.example.com:8443/restv1/bc-authorize",
   "backchannel_token_delivery_modes_supported" : [ "poll", "ping", "push" ],
   "backchannel_authentication_request_signing_alg_values_supported" : [
     "RS512",
@@ -181,12 +181,12 @@ Registration Request:
 POST /restv1/register HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Host: ce.gluu.info
+Host: idp.example.com
 
 {
   "grant_types" : [ "urn:openid:params:grant-type:ciba" ],
   "application_type" : "web",
-  "backchannel_client_notification_endpoint" : "https://ce.gluu.info:8443/oxauth-ciba-client-test/client-notification-endpoint",
+  "backchannel_client_notification_endpoint" : "https://idp.example.com:8443/oxauth-ciba-client-test/client-notification-endpoint",
   "backchannel_user_code_parameter" : true,
   "backchannel_authentication_request_signing_alg" : "RS256",
   "client_name" : "oxAuth test app",
@@ -206,7 +206,7 @@ Server: Jetty(9.4.11.v20180605)
 
 {
     "application_type": "web",
-    "registration_client_uri": "https://ce.gluu.info:8443/restv1/register?client_id=4251a8c4-69e3-4d3e-a807-758ecbc51118",
+    "registration_client_uri": "https://idp.example.com:8443/restv1/register?client_id=4251a8c4-69e3-4d3e-a807-758ecbc51118",
     "registration_access_token": "e9ecb1a1-001c-4d04-b2f2-b42e35664975",
     "client_id": "4251a8c4-69e3-4d3e-a807-758ecbc51118",
     "token_endpoint_auth_method": "client_secret_basic",
@@ -221,7 +221,7 @@ Server: Jetty(9.4.11.v20180605)
     "grant_types": ["urn:openid:params:grant-type:ciba"],
     "subject_type": "pairwise",
     "client_secret_expires_at": 1574917571,
-    "backchannel_client_notification_endpoint": "https://ce.gluu.info:8443/oxauth-ciba-client-test/client-notification-endpoint",
+    "backchannel_client_notification_endpoint": "https://idp.example.com:8443/oxauth-ciba-client-test/client-notification-endpoint",
     "access_token_signing_alg": "RS256",
 }
 ```
