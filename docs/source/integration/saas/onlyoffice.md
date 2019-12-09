@@ -82,24 +82,9 @@ Now, configure the NameID:
     
 1. Click `Update`  
 
-### Finishing configuration
+## Testing  
 
-1. Enable the PASSPORT_SAML
-    - Go to configuration
-    - Click on manage custom scripts
-    - Click  passport_saml
-    - Click on enable option 
-
-1. Enable PASSPORT_SUPPORT
-    - Go  to configuration
-    - Click on organization Configuration option
-    - Enable on Passport Support
-
-1. Update Configuration
-    - Go to Manage Authentication
-    - Click on Default authentication method
-    - Keep Passport_Saml inside Default acr
-    - Click on `Update`
-    - Click on `Manage LDAP Authetication`
-        - `Active` LDAP connection
-        - Click the `Update` button
+- Attempt to access the Only Office dashboard.
+- Click the button `Single Sign-On`
+- Enter your credentials in Gluu and login
+- You will be redirected back to the OnlyOffice dashboard with an active session 
