@@ -49,7 +49,8 @@ Gluu includes interception scripts for the following forms of 2FA:
 - [U2F](./U2F.md)
 - [Super Gluu](./supergluu.md)  
 - [OTP apps](./otp.md)
-- [SMS OTP](./sms-otp.md)
+- [SMS OTP using Twilio](./sms-otp.md)
+- [SMS OTP using SMPP](./sms-otp-smpp.md)
 - [Duo Security](./duo.md)
 - [Certificate Authentication](./cert-auth.md)
 
