@@ -6,13 +6,13 @@ SMS is a common technology used for the delivery of OTPs. Text messages provide 
 This document explains how to configure the Gluu Server for two-step, two-factor authentication (2FA) with username / password as the first step, and an OTP sent via text message as the second step. 
 
 !!! Note
-    Messages are delivered using an [SMPP](https://smpp.org) server. The SMPP (Short Message Peer-to-Peer) protocol is an open, industry standard protocol for the transfer of short message data.
+    Messages are delivered leveraging an [SMPP](https://smpp.org) server. The SMPP (Short Message Peer-to-Peer) protocol is an open, industry standard protocol for the transfer of short message data.
     
 ## Prerequisites 
 
 - A Gluu Server (installation instructions [here](../installation-guide/index.md));    
 - The [SMPP SMS OTP script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/smpp/smpp2FA.py) (included in the default Gluu Server distribution);   
-- An SMPP server     
+- An SMPP server
 - The SMPP [jar library](https://search.maven.org/remotecontent?filepath=org/jsmpp/jsmpp/2.3.7/jsmpp-2.3.7.jar) added to oxAuth
 - A mobile device and phone number that can receive SMS text messages
 
@@ -33,13 +33,19 @@ This document explains how to configure the Gluu Server for two-step, two-factor
 
 The custom script has the following properties:    
 
-|	Property	|	Description		| Input value     |
-|-----------------------|-------------------------------|---------------|
+|	Property	|	Description		|
+|-----------------------|-------------------------------|
+|smpp_server|SMPP server|
+|smpp_port|Server port|
+|system_id|SMPP system_id|
+|password|SMPP password|
+|source_addr_ton|Source type of number|
+|source_addr|From number / name|
 
 
 ## Enable SMS OTP
 
-Follow the steps below to enable U2F authentication:
+Follow the steps below to enable SMS OTP authentication:
 
 1. Navigate to `Configuration` > `Manage Custom Scripts`.    
 
@@ -49,9 +55,14 @@ Follow the steps below to enable U2F authentication:
 
 1. Populate the properties table with the details from your setup:    
 
-   -  `twilio_sid`: Paste the *"Account SID"* of your recently created Twilio account. You can find this value in your account dashboard.   
-   - `twilio_token`: Similar to your SID, you were also given a token upon registration.     
-   - `from_number`: Use the Twilio number that was provided when you created your account (not your personal number).      
+   - `smpp_server`: IP or FQDN of your SMPP server.
+   - `smpp_port`: TCP port of SMPP server.
+   - `system_id`: SMPP system_id in case authentication is required.
+   - `password`: Password in case authentication is required.
+   - `source_addr_ton`: Type of number (default: ALPHANUMERIC). See https://jar-download.com/javaDoc/org.jsmpp/jsmpp/2.3.2/org/jsmpp/bean/TypeOfNumber.html
+   - source_addr: From number / name, allowed values depends on `source_addr_ton`.
+   - `dest_addr_ton`: Type of number (default: INTERNATIONAL).
+   - `dest_addr_npi`: Numbering plan indicator (default: ISDN). See https://jar-download.com/javaDoc/org.jsmpp/jsmpp/2.3.2/org/jsmpp/bean/NumberingPlanIndicator.html
 
 1. Enable the script by checking the box 
 
@@ -84,7 +95,7 @@ The Gluu Server includes one page for SMS OTP:
 1. A **login** page that is displayed for all SMS OTP authentications. 
 ![sms](../img/user-authn/sms.png)
 
-The designs are being rendered from the [Twilio SMS xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/otp_sms/otp_sms.xhtml). To customize the look and feel of the pages, follow the [customization guide](../operation/custom-design.md).
+The designs are being rendered from the [SMS xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/otp_sms/otp_sms.xhtml). To customize the look and feel of the pages, follow the [customization guide](../operation/custom-design.md).
 
 
 ## Using SMS OTP

@@ -51,7 +51,7 @@ The custom script has the following properties:
 
 ## Enable SMS OTP
 
-Follow the steps below to enable U2F authentication:
+Follow the steps below to enable SMS OTP authentication:
 
 1. Navigate to `Configuration` > `Manage Custom Scripts`.    
 
@@ -63,7 +63,7 @@ Follow the steps below to enable U2F authentication:
 
 1. Populate the properties table with the details from your Twilio account:    
 
-   -  `twilio_sid`: Paste the *"Account SID"* of your recently created Twilio account. You can find this value in your account dashboard.   
+   - `twilio_sid`: Paste the *"Account SID"* of your recently created Twilio account. You can find this value in your account dashboard.   
    - `twilio_token`: Similar to your SID, you were also given a token upon registration.     
    - `from_number`: Use the Twilio number that was provided when you created your account (not your personal number).      
 
@@ -100,7 +100,7 @@ The Gluu Server includes one page for SMS OTP:
 1. A **login** page that is displayed for all SMS OTP authentications. 
 ![sms](../img/user-authn/sms.png)
 
-The designs are being rendered from the [Twilio SMS xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/otp_sms/otp_sms.xhtml). To customize the look and feel of the pages, follow the [customization guide](../operation/custom-design.md).
+The designs are being rendered from the [SMS xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/otp_sms/otp_sms.xhtml). To customize the look and feel of the pages, follow the [customization guide](../operation/custom-design.md).
 
 
 ## Using SMS OTP
