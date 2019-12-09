@@ -215,11 +215,11 @@ Follow these steps to configure your Gluu Server for login with external OAuth s
     |Windows Live|windowslive|
     |Yahoo!|yahoo|
 
-    If the provider of interest is not listed, a mapping file must be created. A mapping is a mechanism that defines how the profile data released by the external provider will be saved locally by Gluu. 
+    If the provider of interest is not listed, a mapping file must be created. A mapping is a mechanism that defines how the profile data released by the external provider will be saved locally in Gluu. 
     
-    It is recommended to create mappings based on existing mapping files. Make a copy of any file listed in the table above (see directory `/opt/gluu/node/passport/server/mappings` in Gluu chroot) and name it appropriately. Enter the name (without file extension) in the form field. The [tutorial](../tutorials/passport-attributes-mapping.md) contains instructions on how to write attribute mappings. It is an easy task and generally does not require programming skills.
+    Use an existing mapping file to create the new mapping. Make a copy of any file listed in the table above (see directory `/opt/gluu/node/passport/server/mappings` in Gluu chroot) and name it appropriately. Enter the name (without file extension) in the form field. The [tutorial](../tutorials/passport-attributes-mapping.md) contains instructions for writing attribute mappings.
     
-1. If the provider being added is present in the table above, enter `img/<mapping>.png` (we already bundle images for the social sites supported out-of-the-box). Otherwise, check this [section](./passport.md#about-logo-images) of the introductory page.
+1. For the `Logo path` field, add `img/<mapping>.png` if the provider *is* present in the table above (images are bundled by default for social sites supported out-of-the-box). Otherwise, check this [section](./passport.md#about-logo-images) of the introductory page for instructions to add a new provider icon.
     
     ![oauth_provider](../img/user-authn/passport/oauth_provider.png) 
     
