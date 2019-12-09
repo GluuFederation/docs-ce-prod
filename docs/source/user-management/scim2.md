@@ -1,8 +1,6 @@
 # SCIM 2.0 User Management
 ## Overview 
-The Gluu Server implements an open web standard called [SCIM](http://www.simplecloud.info/) to offer REST APIs for performing CRUD functionality (create, read, update and delete) against user data stored in the local DB. 
-
-In the Gluu Server, the SCIM APIs can be used to manipulate the following [resource types](../api-guide/scim-api.md/#resource-types): users, groups, and FIDO U2F / FIDO2 devices. 
+The Gluu Server implements [SCIM](http://www.simplecloud.info/) to offer standard REST APIs for performing CRUD operations (create, read, update and delete) against user data. The SCIM APIs can be used to manipulate the following [resource types](../api-guide/scim-api.md/#resource-types): users, groups, and FIDO U2F / FIDO2 devices. 
 
 ## Reference materials
 The current version of the standard is governed by the following documents: 
