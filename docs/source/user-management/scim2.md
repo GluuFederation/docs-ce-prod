@@ -14,7 +14,7 @@ The current version of the standard is governed by the following documents:
 ## API Protection
 The SCIM API should never be anonymously accessed. However, the standard itself doesn't define a mechanism to prevent unauthorized requests to endpoints. There are just a few guidelines for authentication and authorization in section 2 of [RFC 7644](https://tools.ietf.org/html/rfc7644). 
 
-In the Gluu Server, the default protection mechanism for SCIM APIs is [UMA](#scim-protected-by-uma), a profile of [OAuth 2.0](http://tools.ietf.org/html/rfc6749). UMA offers a secure, standardized approach for controlling access to web resources like SCIM. Gluu also provides a "Test Mode" whcih reduces complexity in order to provide a quick and easy way to start interacting with your service and learning about SCIM.
+In the Gluu Server, the default protection mechanism for SCIM APIs is [UMA](#scim-protected-by-uma), a profile of [OAuth 2.0](http://tools.ietf.org/html/rfc6749). UMA offers a secure, standardized approach for controlling access to web resources like SCIM. Gluu also provides a "Test Mode" which reduces complexity in order to provide a quick and easy way to start interacting with your service and learning about SCIM.
 
 ### Protection using UMA
 
