@@ -1164,6 +1164,7 @@
         "updateUserLastLogonTime",
         "updateClientAccessTime",
 	    "enableClientGrantUpdate",
-        "loggingLevel"
+        "loggingLevel",
+        "useLocalCache":true
     ]
 }

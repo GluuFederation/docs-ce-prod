@@ -146,6 +146,7 @@ externalLoggerConfiguration                        | The path to the external lo
 disableU2fEndpoint                                 | Choose whether to disable U2F endpoints
 disableJdkLogger                                   | Choose whether to disable JDK loggers
 errorHandlingMethod                                | A list of possible error handling methods
+useLocalCache                                      | Cache in local memory cache attributes, scopes, clients and organization entry with expiration 60 seconds
 
 ### Brute Force Protection
 
