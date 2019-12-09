@@ -100,7 +100,7 @@ The Gluu Server includes one page for SMS OTP:
 1. A **login** page that is displayed for all SMS OTP authentications. 
 ![sms](../img/user-authn/sms.png)
 
-The designs are being rendered from the [Twilio SMS xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/twiliosms/twiliosms.xhtml). To customize the look and feel of the pages, follow the [customization guide](../operation/custom-design.md).
+The designs are being rendered from the [Twilio SMS xhtml page](https://github.com/GluuFederation/oxAuth/blob/master/Server/src/main/webapp/auth/otp_sms/otp_sms.xhtml). To customize the look and feel of the pages, follow the [customization guide](../operation/custom-design.md).
 
 
 ## Using SMS OTP
