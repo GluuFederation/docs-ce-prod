@@ -20,9 +20,10 @@ Follow these instructions to configure the Gluu Server and OnlyOffice for SSO.
 
 1. Load metadata to fill the required fields automatically. Shibboleth provides the IdP metadata file at `https://{shibboleth-idp-domain}/idp/shibboleth`. Store the `shibboleth.xml` filein the local machine and upload it with the `SELECT FILE` button.
 
+1. The Name ID format must be `Transient` <!--Check this, might be Persistent-->
+
     ![image](../../img/integration/onlyoffice/oo-add-metadata.png)
 
-1. The Name ID format must be `Transient` <!--Check this, might be Persistent-->
 
 1. In the Public Certificates section, check the box for both `Verify Authentication Response Signature` and `Verify Logout Request Signature` 
 
