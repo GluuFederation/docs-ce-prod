@@ -9,7 +9,9 @@ The current version of the standard is governed by the following documents:
 
 - [RFC 7642](https://tools.ietf.org/html/rfc7642)
 - [RFC 7643](https://tools.ietf.org/html/rfc7643)
-- [RFC 7644](https://tools.ietf.org/html/rfc7644) 
+- [RFC 7644](https://tools.ietf.org/html/rfc7644)
+
+In addition, more details about Gluu's implementation are available in the [SCIM API docs](../api-guide/scim-api.md).
 
 ## API Protection
 The SCIM API should never be anonymously accessed. However, the standard itself doesn't define a mechanism to prevent unauthorized requests to endpoints. There are just a few guidelines for authentication and authorization in section 2 of [RFC 7644](https://tools.ietf.org/html/rfc7644). 
