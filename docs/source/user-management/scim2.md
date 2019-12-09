@@ -1,20 +1,22 @@
 # SCIM 2.0 User Management
+## Overview 
+The Gluu Server implements an open web standard called [SCIM](http://www.simplecloud.info/) to offer REST APIs for performing CRUD functionality (create, read, update and delete) against user data stored in the local DB. 
 
-SCIM is a specification designed to reduce the complexity of user management operations by providing a common user schema and the patterns for exchanging such schema using HTTP in a platform-neutral fashion. The aim of SCIM is achieving interoperability, security, and scalability in the context of identity management.
+In the Gluu Server, the SCIM APIs can be used to manipulate the following [resource types](../api-guide/scim-api.md/#resource-types): users, groups, and FIDO U2F / FIDO2 devices. 
 
-Developers can think of **SCIM** merely as a **REST API** with endpoints exposing **CRUD** functionality (create, read, update and delete).
+## Reference materials
+The current version of the standard is governed by the following documents: 
 
-For your reference, the current version of the standard is governed by the following documents: [RFC 7642](https://tools.ietf.org/html/rfc7642), [RFC 7643](https://tools.ietf.org/html/rfc7643), and [RFC 7644](https://tools.ietf.org/html/rfc7644).
+- [RFC 7642](https://tools.ietf.org/html/rfc7642)
+- [RFC 7643](https://tools.ietf.org/html/rfc7643)
+- [RFC 7644](https://tools.ietf.org/html/rfc7644) 
 
 ## API Protection
+The SCIM API should never be anonymously accessed. However, the standard itself doesn't define a mechanism to prevent unauthorized requests to endpoints. There are just a few guidelines for authentication and authorization in section 2 of [RFC 7644](https://tools.ietf.org/html/rfc7644). 
 
-Clearly, this API must not be anonymously accessed. However, the basic SCIM standard does not define a specific mechanism to prevent unauthorized requests to endpoints. There are just a few guidelines in section 2 of [RFC 7644](https://tools.ietf.org/html/rfc7644) concerned with authentication and authorization. 
+In the Gluu Server, the default protection mechanism for SCIM APIs is [UMA](#scim-protected-by-uma), a profile of [OAuth 2.0](http://tools.ietf.org/html/rfc6749). UMA offers a secure, standardized approach for controlling access to web resources like SCIM. Gluu also provides a "Test Mode" whcih reduces complexity in order to provide a quick and easy way to start interacting with your service and learning about SCIM.
 
-Gluu Server CE allows you to protect your endpoints with [UMA](#scim-protected-by-uma) (a profile of [OAuth 2.0](http://tools.ietf.org/html/rfc6749)). This is a safe and standardized approach for controlling access to web resources. For SCIM protection, we **strongly recommend** its usage. 
-
-Alternatively, for testing purposes you can temporarily enable the test mode. In this mode, some complexity is taken out so that it serves as a quick and easy way to start interacting with your service, as well as learning about SCIM.
-
-### Protection Using UMA
+### Protection using UMA
 
 By default, the API is not active, so the first step is just to enable it:
 
@@ -30,7 +32,7 @@ Then, enable UMA protection mode:
 
 ![enable uma](../img/scim/enable_uma.png)
 
-### Protection Using Test Mode
+### Protection using Test Mode
 
 By default the API is not active, so the first step is just to enable it:
 
