@@ -90,12 +90,18 @@ Thus, a modified `login.xhtml` page put under `custom/pages/` will be used inste
 !!! Note
     This approach is for XHTML pages only. Other resources like `faces-config.xml` cannot be overridden with this method.
 
-Customized `libs` used by oxAuth should be placed in the following directories:
+Additional `libs` used by oxAuth should be placed in the following directories:
 
 ```
 /opt/gluu/jetty/identity/custom/libs
 /opt/gluu/jetty/oxauth/custom/libs
 ```
+
+!!! Note
+    Jar files copied to `/opt/gluu/jetty/identity/custom/libs` are not accessible to custom scripts which run in oxauth 
+    context. Only the ones in `/opt/gluu/jetty/identity/custom/libs` are. 
+    Jar files copied to `/opt/gluu/jetty/identity/custom/libs` are only accessible to oxTrust code. This is relevant 
+    for individuals who are doing customization of oxtrust beyond UI changes.
 
 Additional libs/plugins should be registered in `/opt/gluu/jetty/oxauth/webapps/oxauth.xml` or `/opt/gluu/jetty/identity/webapps/identity.xml` in attribute `<Set name="extraClasspath"></Set>`
 
