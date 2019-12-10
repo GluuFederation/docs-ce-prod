@@ -101,3 +101,19 @@ Learn how to customize the look and feel of Gluu Server login pages in the [Desi
 ## Revert Authentication 
 
 New authentication flows and methods should **always** be tested in a different browser to reduce the chance of lockout. However, in case you find yourself locked out of the GUI, refer to the [revert authentication mechanism docs](../operation/faq.md#revert-an-authentication-method). 
+
+## Extending the Authentication Flow
+
+The oxAuth Person Authenticator Script (ACR) interface includes methods extend the user authentication flow. There are two entry points of this flow, `prepareForStep` and `authenticate`.
+
+oxAuth calls `prepareForStep` from XTHML, and its role is to prepare data to render the login page or redirect to a third party system for authentication. 
+
+oxAuth expects `authenticate` to call from the login page or from `/oxauth/postlogin.htm` (the callback from a third party system). Its role is to verify user data that is submitted by the user.
+
+The following diagram demonstrates the `authenticate` flow:
+
+[![authenticate flow diagram](../img/user-authn/authn_authenticate_flow.png)](../img/user-authn/authn_authenticate_flow.png))
+
+The following diagram demonstrates the `prepareForStep` flow:
+
+[![prepareForStep flow diagram](../img/user-authn/authn_prepareforstep_flow.png)](../img/user-authn/authn_prepareforstep_flow.png)

@@ -14,7 +14,7 @@ If you don't have the Apache HTTPD server installed, use apt-get to install the 
 The SSL Module is necessary for the Apache OpenID Connect Module. Please use the following commands to activate the `ssl module`.
 
 ```
-# a2enmod ssl
+a2enmod ssl
 ```
 
 The next step is to create a self-signed SSL Certificate.
@@ -22,8 +22,8 @@ The next step is to create a self-signed SSL Certificate.
 * Create a directory to put the generate the ssl certificate
 
 ``` text
-# mkdir /etc/apache2/ssl
-# openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+mkdir /etc/apache2/ssl
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
 ```
 
 * Answer the questions that are asked. A template is given below
@@ -68,8 +68,10 @@ At this point, its a good time to test to make sure SSL and CGI are working. Poi
 For Ubuntu 16.04
 
 ```
-# apt-get install libjansson4 libhiredis0.13
-# apt-get install libcurl3
+apt-get install libjansson4 libhiredis0.13
+```
+```
+apt-get install libcurl3
 ```
 
 You'll also need the mod_auth_openidc and libjose packages which can be downloaded from the [Releases Page](https://github.com/zmartzone/mod_auth_openidc/releases).
@@ -78,13 +80,19 @@ For example, at this time the current release for mod_auth_openidc is 2.3.3 and 
 
 For Ubuntu 16.04
 
-``` text
-# wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.0/libcjose0_0.5.1-1.xenial.1_amd64.deb
-# wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.8/libapache2-mod-auth-openidc_2.3.8-1.xenial+1_amd64.deb
-# dpkg -i libcjose0_0.5.1-1.xenial.1_amd64.deb
-# dpkg -i libapache2-mod-auth-openidc_2.3.8-1.xenial+1_amd64.deb
-
+``` 
+wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.0/libcjose0_0.5.1-1.xenial.1_amd64.deb
 ```
+```
+wget https://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.8/libapache2-mod-auth-openidc_2.3.8-1.xenial+1_amd64.deb
+```
+```
+dpkg -i libcjose0_0.5.1-1.xenial.1_amd64.deb
+```
+```
+dpkg -i libapache2-mod-auth-openidc_2.3.8-1.xenial+1_amd64.deb
+```
+
 
 !!! Note
     Get the latest packages here: https://github.com/zmartzone/mod_auth_openidc/releases
@@ -128,7 +136,7 @@ Make a note of the `client_secret` (you won't get to see it again)! You'll also 
 This cgi-script makes for a good test page! 
 
 ``` text
-# vi /usr/lib/cgi-bin/printHeaders.cgi
+vi /usr/lib/cgi-bin/printHeaders.cgi
 
 ```
 
@@ -156,8 +164,10 @@ print "</BODY></HTML>"
 Then you'll need to make the script executable by the Apache2
 
 ``` text
-# chown www-data:www-data /usr/lib/cgi-bin/printHeaders.cgi
-# chmod ug+x /usr/lib/cgi-bin/printHeaders.cgi
+chown www-data:www-data /usr/lib/cgi-bin/printHeaders.cgi
+```
+```text
+chmod ug+x /usr/lib/cgi-bin/printHeaders.cgi
 
 ```
 
@@ -166,7 +176,7 @@ Then you'll need to make the script executable by the Apache2
 You are almost done! You'll need to configure mod_auth_openidc to protect your server.
 
 ``` text
-# vi /etc/apache2/sites-available/default-ssl.conf
+vi /etc/apache2/sites-available/default-ssl.conf
 
 ```
 
@@ -207,7 +217,7 @@ We assume that all the hostnames will be dns resolvable. If not, then add the ac
 
 Run the following command to __Add EPEL Repo__.
 
-* `# rpm -ivh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm`
+* `rpm -ivh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm`
 
 ### Apache Web Server
 
@@ -217,16 +227,20 @@ To set up __Apache2 SSL__, run the following commands:
     If the hiredis package is not found by the `yum` command, please download it manually from [this page](https://centos.pkgs.org/6/puias-unsupported-x86_64/hiredis-0.12.1-1.sdl6.x86_64.rpm.html) and install it.
 
 ```
-# yum install httpd mod_ssl
-# yum install curl hiredis jansson
+yum install httpd mod_ssl
+```
+```
+yum install curl hiredis jansson
 ```
 
 ### Configure SSL Module
 This section will guide you to create SSL certificates. Use the following commands to crete a  directory and generate the certificates.
 
 ```
-# mkdir /etc/httpd/ssl
-# openssl req -new -x509 -sha256 -days 365 -nodes -out /etc/httpd/ssl/httpd.pem -keyout /etc/httpd/ssl/httpd.key
+mkdir /etc/httpd/ssl
+```
+```
+openssl req -new -x509 -sha256 -days 365 -nodes -out /etc/httpd/ssl/httpd.pem -keyout /etc/httpd/ssl/httpd.key
 ```
 
 You will be prompted to enter some values such as company name, country etc. Please enter them and your certificate will be ready. A template is given below
@@ -243,7 +257,7 @@ You will be prompted to enter some values such as company name, country etc. Ple
 
 The next step is to configure Apache to use the certificates and use the following command to edit the `ssl.conf` file. 
 ```
-# vi /etc/httpd/conf.d/ssl.conf
+vi /etc/httpd/conf.d/ssl.conf
 ```
 
 The important part of the configuration is to enter the path to the created SSL certificates. The example is given below.  
@@ -278,7 +292,7 @@ rpm -ivhhttps://github.com/zmartzone/mod_auth_openidc/releases/download/v2.3.8/m
 try to update the package database of your system using the command below.
 
 ```
-# yum upgrade
+yum upgrade
 ```
 
 #### Load Authentication Module 
@@ -291,7 +305,7 @@ ls -l /usr/lib64/httpd/modules/mod_auth_openidc.so
 The test page is made using the cgi-script. Please use the following command to create the script.
 
 ```
-# vi /var/www/cgi-bin/printHeaders.cgi
+vi /var/www/cgi-bin/printHeaders.cgi
 ```
 
 Please paste the following code to prepare the script
@@ -318,8 +332,10 @@ for item in k:
 The next step is to make the script executable by HTTPD
 
 ```text
-# chown apache:apache /var/www/cgi-bin/printHeaders.cgi
-# chmod ug+x /var/www/cgi-bin/printHeaders.cgi
+chown apache:apache /var/www/cgi-bin/printHeaders.cgi
+```
+```
+chmod ug+x /var/www/cgi-bin/printHeaders.cgi
 ```
 
 ### Client Registration
@@ -349,7 +365,7 @@ Response Types: code
 The Apache module is confgured in the defautl ssl configuration file. Please use the command below to open the file
 
 ```text
-# vi /etc/httpd/conf.d/ssl.conf 
+vi /etc/httpd/conf.d/ssl.conf 
 ```
 
 Please add the following at the bottom of the file

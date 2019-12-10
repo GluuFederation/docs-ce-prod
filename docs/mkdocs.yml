@@ -14,7 +14,6 @@ edit_uri: edit/4.0/docs/source
 # Configuration
 theme: 
     name: material
-#    custom_dir: 'theme'
     palette:
         primary: 'green'
         accent: 'green'
@@ -123,7 +122,8 @@ nav:
             - 'GitHub Enterprise': 'integration/saas/github-enterprise.md'
             - 'Cisco WebEx': 'integration/saas/webex.md'
             - 'Amazon Web Services (AWS)': 'integration/saas/aws.md'
-            - 'Rocketchat': 'integration/saas/rocketchat.md'
+            - 'Rocket.Chat': 'integration/saas/rocketchat.md'
+            - 'OnlyOffice': 'integration/saas/onlyoffice.md'
             - 'SAMLtest.id': 'integration/saas/saml_test_id.md'
 - Reference:
         - Gluu API Guide:
@@ -162,4 +162,5 @@ nav:
         - 'Inbound SAML with Passport': 'tutorials/passport-inbound-flow.md'
         - 'Forgot PW': 'tutorials/forgot-pw.md'
         - 'Kafka Logging': 'tutorials/kafka.md'
+        - 'Custom Authn Tutorial': 'authn-guide/customauthn.md'
 - FAQ & Troubleshooting: 'operation/faq.md'

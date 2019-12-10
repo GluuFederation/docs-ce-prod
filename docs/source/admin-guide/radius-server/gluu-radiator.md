@@ -9,10 +9,14 @@ Gluu offers an authentication plugin for [Radiator](https://radiatorsoftware.com
 
 ## Prerequisites
 
-### Perl
-[Radiator](https://radiatorsoftware.com/products/radiator/) and its plugins are written in Perl. Consult the [Radiator documentation](https://open.com.au/radiator/ref.pdf) for information about how to install Perl and Radiator. 
+### Radiator
+Consult the [Radiator documentation](https://open.com.au/radiator/ref.pdf) for information about how to install Radiator. 
 
-In addition to Perl and the Perl modules Radiator is dependent upon, this authentication plugin has the following Perl module dependencies:
+!!! Attention
+    We recommend installing Radiator on Linux, since some Perl module dependencies are difficult to get working on Windows. 
+
+### Perl
+[Radiator](https://radiatorsoftware.com/products/radiator/) and its plugins are written in Perl. In addition to Perl and the Perl modules Radiator is dependent upon, this authentication plugin has the following Perl module dependencies:
 
 - `Data::UUID`
 - `Encode`
@@ -32,9 +36,6 @@ If using Perl on Linux or [Strawberry Perl](http://strawberryperl.com/), modules
 ```
 cpan <module_name>
 ```
-
-!!! Attention
-    We recommend installing Radiator on Linux, since some Perl module dependencies are difficult to get working on Windows. 
 
 ### OpenSSL 
 A working OpenSSL installation is required to generate keys used to authenticate against the Gluu Server.

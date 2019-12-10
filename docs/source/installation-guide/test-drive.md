@@ -11,7 +11,7 @@ Follow the instructions below to quickly deploy a single-node Gluu Server demo u
 
 ### Linux Requirements
 
-For Docker deployments, provision a VM with: 
+For Docker deployments on Linux, provision a VM with: 
 
 - The minimum system requirements, as described in the [VM Preparation Guide](../installation-guide/index.md#system-requirements). 
 
@@ -19,9 +19,13 @@ For Docker deployments, provision a VM with:
 
 ### OS X (Mac) Requirements
 
-1)  Meet the [system requirements](https://docs.docker.com/docker-for-mac/install/)
+For Docker deployments on OS X, make sure you have the following:
 
-1)  Install [Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac)
+- The minimum [system requirements](https://docs.docker.com/docker-for-mac/install/)
+
+- [Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac) 
+
+- Allow file sharing. Go to docker preferences, add the folder path to file sharing and restart docker. [Read the docs](https://docs.docker.com/docker-for-mac/osxfs/#namespaces) 
 
 ## Instructions
 
@@ -33,23 +37,18 @@ For Docker deployments, provision a VM with:
 
 1. Obtain the files for deployment:
     
-    ```
-    wget https://github.com/GluuFederation/community-edition-containers/archive/4.0.0.zip \
-        && unzip 4.0.0.zip
-    ```
-    
-    ```
-    cd community-edition-containers-4.0.0/examples/single-host
-    ```
-    
-    ```
-    chmod +x run_all.sh
-    ```   
-<!--
-    1. For this Test Drive, we recommend continuing with the default settings. If a more customized deployment is needed, see the [Custom Installation Options](#custom-installation-options) section at the bottom of the page.
+```
+wget https://github.com/GluuFederation/community-edition-containers/archive/4.0.zip \
+    && unzip 4.0.zip
+```
 
-    ### Deploying Gluu Server
--->
+```
+cd community-edition-containers-4.0/examples/single-host
+```   
+
+```
+chmod +x run_all.sh
+```
 
 1.  Run the following command and follow the prompts:
 
@@ -59,6 +58,7 @@ For Docker deployments, provision a VM with:
     
     Do not be alarmed about the `warning` alerts that may show up. Wait until it prompts you for information or loads the previous configuration found. If this is a fresh install, the output will look like this :
 
+    
     ```
     ./run_all.sh
     [I] Determining OS Type and Attempting to Gather External IP Address

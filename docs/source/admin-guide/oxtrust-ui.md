@@ -1,7 +1,7 @@
-# oxTrust Administrative Graphical User Interface (GUI)
+# oxTrust Admin GUI
 
 ## Overview 
-This section covers various features associated with managing your federation service via the Gluu Server interface ("oxTrust"). There is a corresponding page in the Gluu Server user interface for most of the sections below. When necessary, this document will link to dedicated sections within the docs where additional operational details are provided.
+This section covers various features associated with managing your federation service via the Gluu Server's administration graphical user interface (GUI), called oxTrust. There is a corresponding page in the Gluu Server user interface for most of the sections below. When necessary, this document will link to dedicated sections within the docs where additional operational details are provided.
 
 ## Accessing the UI
 The Gluu Server administration interface is accessible by navigating to `https://hostname` (the one you provided during setup). When you first complete an installation, the default username is `admin` and the password is the same as the `LDAP superuser` password. 
@@ -15,32 +15,36 @@ After successful authentication, the administrator is taken to the Dashboard. So
 
 The oxTrust UI supports localization. The default language is English. To set a new preferred language, edit a few properties file, found within `identity.war`. The path for `identity.war` is `/opt/gluu/jetty/identity`, which can be found in the `chroot` container.
 
-oxAuth contains the following resource bundles:   
+oxAuth contains the following resource bundles:  
+
 - [messages_en.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.0/Server/src/main/resources/oxauth_en.properties)       
+
 - [messages_bg.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.0/Server/src/main/resources/oxauth_bg.properties)      
+
 - [messages_de.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.0/Server/src/main/resources/oxauth_de.properties)        
+
 - [messages_es.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.0/Server/src/main/resources/oxauth_es.properties)       
+
 - [messages_fr.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.0/Server/src/main/resources/oxauth_fr.properties)     
+
 - [messages_it.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.0/Server/src/main/resources/oxauth_it.properties)    
+
 - [messages_ru.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.0/Server/src/main/resources/oxauth_ru.properties)      
+
 - [messages_tr.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.0/Server/src/main/resources/oxauth_tr.properties)      
 
 These properties files store the translatable text of the messages to be displayed. The default properties file, `messages_en.properties`, contains the following lines:
 
 
-	.......
 	login.login=Login
 	login.register=Register
-	.......
-
+	
 Now that the messages are in a properties file, they can be translated into various languages. No changes to the source code are required. For example, to use the French version of oxAuth, the messages_fr.properties should contain these lines:
 
 	
-	.......
 	login.login=S'identifier
 	login.register=Registre
-	.......
-	
+		
 Notice that the values to the right of the equal sign have been translated but the keys on the left side have not changed. These keys must not change, because they will be referenced when oxAuth fetches the translated text.
 
 To add a translation for not yet supported languages, just create new properties file in resource folder and name it `messages_[language_code].properties`, then add the language code as supported-locale to the `faces-config.xml`.

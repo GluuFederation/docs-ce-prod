@@ -1,4 +1,4 @@
-# Upgrade to Gluu Server 4.0 Beta
+# Upgrade to Gluu Server 4.0
 
 ## Overview
 The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will need to either use our in-place upgrade script or explicitly install the new version and export/import your data. Find the existing version below for upgrade instructions to Gluu Server 4.0. 
@@ -10,7 +10,7 @@ The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will
 
 ### Upgrading from 3.1.x to 4.0
 
-At this time, only Gluu Server version 3.1.x can be upgraded to version 4.0 Beta. The upgrade script works on CentOS 7, Ubuntu 16, and RedHat 7. Upgrade script performs the following steps:
+At this time, only Gluu Server version 3.1.x can be upgraded to version 4.0. The upgrade script works on CentOS 7, Ubuntu 16, and RedHat 7. Upgrade script performs the following steps:
 
 - Upgrades Java to Amazon Corretto. Extracts certificates from the existing Java keystore to `hostname_service.crt` in the upgrade directory. After upgrading Java, imports to keystore
 - Upgrades all Gluu WAR files, NodeJS, and Passport components
@@ -61,6 +61,7 @@ python update.py -o
 
 Your upgrade directory will be the current directory. The script will create these directories: `app`, `war`, `temp`, `setup`
 
+<!--
 #### Static Upgrade
 The static, self-extracting upgrade package contains all components for the upgrade. You still need an internet connection to install the libraries that are needed by the upgrade script. To perform a static upgrade, follow these steps:
 
@@ -77,3 +78,4 @@ sh 4-0-upg.sh
 ```
 
 The upgrade directory will be `/opt/upd/4.0-upg`
+-->

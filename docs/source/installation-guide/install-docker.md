@@ -7,26 +7,34 @@ This guide provides instructions for deploying the Gluu Server on a single node 
 
 For Docker deployments, provision a VM with: 
 
+### Linux users
+
 - The minimum system requirements, as described in the [VM Preparation Guide](../installation-guide/index.md#system-requirements). 
 
 - Both [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script) and [Docker Compose](https://docs.docker.com/compose/install/#install-compose) installed. 
+
+### Mac users
+
+- The minimum system requirements for [Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
+
+- [Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac)
 
 ## Instructions
 
 ### Obtain files for deployment:
 
-    ```
-    wget https://github.com/GluuFederation/community-edition-containers/archive/4.0.0.zip \
-        && unzip 4.0.0.zip
-    ```
-    
-    ```
-    cd community-edition-containers-4.0.0/examples/single-host
-    ```
-    
-    ```
-    chmod +x run_all.sh
-    ```
+```
+wget https://github.com/GluuFederation/community-edition-containers/archive/4.0.zip \
+    && unzip 4.0.zip
+```
+
+```
+cd community-edition-containers-4.0/examples/single-host
+```
+
+```
+chmod +x run_all.sh
+```
 
 ### Choose services
 
@@ -41,8 +49,8 @@ The following services are available during deployment:
 | `oxauth`            | `SVC_OXAUTH`           | no        | yes     |
 | `oxtrust`           | `SVC_OXTRUST`          | no        | yes     |
 | `ldap`              | `SVC_LDAP`             | no        | yes     |
-| `oxpassport`        | `SVC_OXPASSPORT`       | no        | yes     |
-| `oxshibboleth`      | `SVC_OXSHIBBOLETH`     | no        | yes     |
+| `oxpassport`        | `SVC_OXPASSPORT`       | no        | no     |
+| `oxshibboleth`      | `SVC_OXSHIBBOLETH`     | no        | no     |
 | `redis`             | `SVC_REDIS`            | no        | no      |
 | `radius`            | `SVC_RADIUS`           | no        | no      |
 | `vault` auto-unseal | `SVC_VAULT_AUTOUNSEAL` | no        | no      |
@@ -61,6 +69,22 @@ SVC_VAULT_AUTOUNSEAL="yes"  # enable Vault auto-unseal with GCP KMS API
 
 Any services not specified in `settings.sh` will follow the default settings.
 
+To override manifests (i.e. changing oxAuth service definition), add `ENABLE_OVERRIDE=yes` in `settings.sh`, for example:
+
+```python
+ENABLE_OVERRIDE="yes"
+```
+
+Then define overrides in `docker-compose.override.yml` (create the file if not exists):
+
+```yaml
+version: "2.4"
+
+services:
+  oxauth:
+    container_name: my-oxauth
+```
+
 If `docker-compose.override.yml` exists, this file will be added as the last Compose file. For reference on multiple Compose file, please take a look at https://docs.docker.com/compose/extends/#multiple-compose-files.
 
 ### Choose persistence backends
@@ -76,7 +100,7 @@ To choose a persistence backend, create a file called `settings.sh` (if it wasn'
 ```
 PERSISTENCE_TYPE="couchbase"    # Couchbase will be selected
 PERSISTENCE_LDAP_MAPPING="user" # store user mapping in LDAP
-COUCBASE_USER="admin"           # Couchbase user
+COUCHBASE_USER="admin"           # Couchbase user
 COUCHBASE_URL="192.168.100.4"   # Host or IP address of Couchbase
 ```
 
@@ -84,6 +108,7 @@ If `couchbase` or `hybrid` is selected, there are 2 additional steps required to
 
 - put Couchbase cluster certificate into the `couchbase.crt` file
 - put Couchbase password into the `couchbase_password` file
+- the Couchbase cluster must have `data`, `index`, and `query` services at minimum
 
 ### Set up Vault auto-unseal
 
@@ -198,4 +223,4 @@ docker exec -ti ldap /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "c
 
 ## Documentation
 
-Please refer to the [Gluu Server Docker Edition Documentation](https://gluu.org/docs/de/4.0.0) for further reading on Docker image implementations.
+Please refer to the [Gluu Server Docker Edition Documentation](https://gluu.org/docs/de/4.0) for further reading on Docker image implementations.

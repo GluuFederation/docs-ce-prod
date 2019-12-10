@@ -7,7 +7,7 @@ This document will explain how to configure G Suite and the Gluu Server for sing
     
 ## Create a G Suite account
 
-You can do that [here](https://gsuite.google.com/signup/basic/welcome). Don't forget to add at least one more user account(we are going to use that user to test SSO) other than default 'admin' account you are using in Google Admin panel.
+You can do that [here](https://gsuite.google.com/signup/basic/welcome). Don't forget to add at least one more user account (we are going to use that user to test SSO) other than default 'admin' account you are using in Google Admin panel.
 
 If you already have an account skip to the next section.
    
@@ -86,7 +86,9 @@ Edit the `/opt/gluu/jetty/identity/conf/shibboleth3/idp/saml-nameid.xml.vm` file
             p:attributeSourceIds="#{ {'mail'} }" />
 ```               
 
-[Restart](../../operation/services.md#restart) the `identity` and `idp` services.
+- [Restart](../../operation/services.md#restart) the `identity` service.
+
+- [Restart](../../operation/services.md#restart) the `idp` service.
  
 ### Create a SAML Trust Relationship
 - Create Trust Relationship for Google Apps: 

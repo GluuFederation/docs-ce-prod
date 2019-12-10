@@ -1,12 +1,8 @@
 # SCIM API
+## Overview
+The Gluu Server implements [SCIM](http://www.simplecloud.info/) to offer REST APIs for performing CRUD functionality (create, read, update and delete) against user data. The SCIM APIs can be used to manipulate the following [resource types](#resource-types): users, groups, and FIDO U2F / FIDO2 devices. 
 
-Gluu Server Community Edition supports the System for Cross-domain Identity Management (SCIM) version 2.0 out of the box.
-
-To enable SCIM open the oxTrust administration interface and navigate to `Organization Configuration` > `System Configuration`. Find `SCIM Support` and select `Enabled`.
-
-![enable](../img/scim/enable.png)
-
-Then enable the protection mode you want for your API, see details [here](../user-management/scim2.md#api-protection).
+For usage instructions, visit the [SCIM docs](../user-management/scim2.md) in the admin guide. 
 
 ## HTTP verbs
 

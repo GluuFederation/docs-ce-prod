@@ -1,23 +1,21 @@
 # Gluu Radius
 
 ## Overview
-The Gluu Server now ships with a [RADIUS](https://en.wikipedia.org/wiki/RADIUS) server called Gluu Radius. It is based on the [TinyRadius](http://tinyradius.sourceforge.net/) Java library. It supports RADIUS authentication, but does not provide RADIUS accounting support. RADIUS accounting packets are simply ignored.
+The Gluu Server can now be configured to include a [RADIUS](https://en.wikipedia.org/wiki/RADIUS) server based on the [TinyRadius](http://tinyradius.sourceforge.net/) Java library. The implementation ("Gluu Radius") supports RADIUS authentication, but does not provide RADIUS accounting support. RADIUS accounting packets are simply ignored.
 
-<!--
-### Performance Considerations 
-As mentioned above, Gluu Radius is based on the TinyRadius Java library. The library uses a single-threaded, synchronous model to handle requests. This implies significant performance degradation when handling a large volume of requests, or long lived requests. To handle larger volumes, we recommend purchasing [Radiator](https://radiatorsoftware.com/products/radiator/) and using [our plugin](./gluu-radiator.md) for authentication.
--->
-
+!!! Note
+    For a more performant RADIUS solution, try our [plugin for Radiator](./gluu-radiator.md), a robust AAA server built for ISPs and carriers. 
+    
 ## Installation  
-Gluu Radius is an available component from version 4.0. During installation, while [running setup.py](../../installation-guide/setup-py.md), simply select `Y` when you are asked to install Gluu Radius.
+During installation, while [running setup.py](../../installation-guide/setup-py.md), simply select `Y` when you are asked to install Gluu Radius.
 
 ## Service 
 Gluu Radius runs as a service from within the Linux container. Certain configuration settings will require a service restart. View the [Services Commands](../../operation/services.md) doc for commands for the OS in use. 
 
 ## Configuration 
-With Gluu Radius installed, a sidebar menu item called `Radius` will appear in the oxTrust UI which can be used to perform the following operations:
+With Gluu Radius installed, a sidebar menu item for `Radius` will appear in oxTrust. The GUI can be used to perform the following operations:
 
-  - Configure the running instance of gluu-radius   
+  - Configure the running instance of Gluu Radius   
   - Add/Edit/Remove NAS/Radius clients    
 
 In addition, the Gluu Radius config file can be found in the Linux container under: `/etc/gluu/conf/radius/gluu-radius.properties`
