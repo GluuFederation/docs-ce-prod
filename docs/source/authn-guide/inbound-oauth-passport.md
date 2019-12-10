@@ -162,6 +162,9 @@ Follow these steps to configure your Gluu Server for login with external OAuth s
 1. Supply strategy parameters
 1. Protect the application with `passport_social` authentication
 
+!!! Note
+    **Apple Sign In** integration requires some pre-requisite configurations and to deal with a number of technical subtleties. We have written a complete [guide](../tutorial/passport-apple.md) for Apple integration. You can skip safely the rest of this guide if desired.
+
 ### Add the provider in the admin UI
 
 1. In oxTrust navigate to `Configuration` > `Passport` > `Providers`
@@ -178,6 +181,7 @@ Follow these steps to configure your Gluu Server for login with external OAuth s
     
     |Provider|Strategy|
     |-|-|
+    |Apple Sign In|@nicokaiser/passport-apple|
     |Dropbox|passport-dropbox-oauth2|
     |Facebook|passport-facebook|
     |Github|passport-github|
@@ -205,6 +209,7 @@ Follow these steps to configure your Gluu Server for login with external OAuth s
 
     |Provider|Mapping|
     |-|-|
+    |Apple Sign in|apple|
     |Dropbox|dropbox|
     |Facebook|facebook|
     |Github|github|
@@ -238,12 +243,12 @@ Follow these steps to configure your Gluu Server for login with external OAuth s
 1. Leave the fields under the `Providers Options` empty and click `Add`.
 
 ### Obtain client credentials
-
+    
 Every provider has its own procedure for issuing client credentials (AKA client ID and client secret). Check the developer docs of the specific social site (or OAuth provider) for more information. The aim is to get to a page that allows creation of applications. Here are links for a few popular providers: 
 
 - [GitHub](https://github.com/settings/applications/new)   
 - [Twitter](https://apps.twitter.com)   
-- [Facebook](https://developers.facebook.com)       
+- [Facebook](https://developers.facebook.com)
 
 To create an application, you will need to provide information like an application name or ID, domain name of your application, and authorization callback URLs. The callback URL is shown in the field labeled "Callback URL" of provider's form. The URL looks like
 
