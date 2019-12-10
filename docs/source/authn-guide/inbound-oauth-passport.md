@@ -162,6 +162,9 @@ Follow these steps to configure your Gluu Server for login with external OAuth s
 1. Supply strategy parameters
 1. Protect the application with `passport_social` authentication
 
+!!! Note
+    **Apple Sign In** integration requires some pre-requisite configurations and to deal with a number of technical subtleties. We have written a complete [guide](../tutorial/passport-apple.md) for Apple integration. You can skip safely the rest of this guide if desired.
+
 ### Add the provider in the admin UI
 
 1. In oxTrust navigate to `Configuration` > `Passport` > `Providers`
