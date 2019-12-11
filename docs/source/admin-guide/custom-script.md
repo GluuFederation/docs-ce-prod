@@ -8,7 +8,32 @@ The web interface for Custom Scripts can be accessed by navigating to `Configura
 ### Jython
 Interception scripts are written in [Jython](http://www.jython.org), enabling Java or Python classes to be imported.
 
-While the syntax of the script requires Python, most of the functionality can be written in Java. If Python classes are imported, they must be "pure python." For example, a class that wraps C libraries can not be imported.
+While the syntax of the script requires Python, most of the functionality can be written in Java.
+
+!!! Note
+    If Python classes are imported, they must be "pure Python." For example, a class that wraps C libraries can not be imported. The same goes for Python packages which require `cython` during compiling.
+
+#### Manually installing additional Python code  
+  For the benefit of modularity and code reuse, Python code for interception scripts may be split in different files. 
+An example would be code that's used by multiple interception scripts to communicate with a REST service for different 
+purposes (e.g. additional user authentication against a legacy system). 
+
+ Copy the code for such a module or package to `/opt/gluu/python/libs/` in Gluu Server's container. 
+
+#### Using pip to install additional Python packages
+
+   Sometimes, it saves time to use an existing Python package and the way to install it is with `pip`. As already 
+stated above, Python packages and modules which are not "pure Python" will simply not work, so keep that in mind. An example
+would be the `psycopg2` library used to connect to PostgreSQL from Python. Since it's basically a C wrapper around `libpq`,
+it won't work with Jython. Also, Python 3 packages / modules are not supported.
+
+In order to install additional modules via `pip` , do the following:
+
+1. Find out about your Jython version first. `cd` into the `/opt` directory in your Gluu Server container and run `ls`. A directory named `jython-<version>` should be listed too where `<version>` will correspond to the Jython version. Note the version. 
+1. Open the file `/etc/gluu/conf/gluu.properties` and look for the line starting with `pythonModulesDir=`. Append the value `/opt/jython-<version>/Lib/site-packages` to any existing value. Each value is separater by a colon (`:`). It should look something like this `pythonModulesDir=/opt/gluu/python/libs:/opt/jython-2.7.2a/Lib/site-packages`
+1. Run the following command `/opt/jython-<version>/bin/jython -m ensurepip` 
+1. Install your library  with `/opt/jython-<version>/bin/pip install <library_name>` where `<library_name>` is the name of the library to install.
+1. Restart the `oxauth` service.
 
 ### Methods
 There are three methods that inherit a base interface:
