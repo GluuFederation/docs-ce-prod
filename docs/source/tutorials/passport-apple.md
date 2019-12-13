@@ -46,7 +46,7 @@ SSH to your Gluu server and copy the **key file** to `/etc/certs` inside chroot.
 ### Install nicokaiser's passport-apple strategy
 
 !!! Note:
-    Skip this section if your Gluu version is 4.1 or higher
+    Skip this section if your Gluu version is 4.2 or higher
 
 Next, let's add the passport strategy that allows us to "talk" to Apple identity provider:
 
@@ -63,12 +63,12 @@ Next, let's add the passport strategy that allows us to "talk" to Apple identity
 ### Add/Patch javascript files
 
 !!! Note:
-    Skip this section if your Gluu version is 4.1 or higher
+    Skip this section if your Gluu version is 4.2 or higher
     
 Apple doesn't redirect the users' browsers to the callback URL (`redirect_uri`) once they login sucessfully, but makes a POST to the URL. This is not an expected behavior for and Oauth2 authorization server, so it requires adding support for this kind of custom behavior.
 
 1. `cd` to `/opt/gluu/node/passport/server`
-1. Replace files `providers.js` and `routes.js` using those found [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/version_4.1/server/providers.js) and [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/version_4.0.1/server/routes.js) respectively.
+1. Replace files `providers.js` and `routes.js` using those found [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/master/server/providers.js) and [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/version_4.1/server/routes.js) respectively.
 1. Copy this [file](https://github.com/GluuFederation/gluu-passport/raw/master/server/mappings/apple.js) to `/opt/gluu/node/passport/server/mappings`.
 
 
@@ -83,7 +83,7 @@ In this section we'll onboard Apple to the list of known providers for inbound i
 1. For type choose `oauth`
 1. For strategy enter `@nicokaiser/passport-apple`
 1. For mapping enter `apple` (it references file `apple.js` previously added)
-1. Supply a logo location if desired. More info [here](../authn-guide/passport.md#about-logo-images). If you Gluu server version is 4.1 or higher, you can simply use `img/apple.png`.
+1. Supply a logo location if desired. More info [here](../authn-guide/passport.md#about-logo-images). If you Gluu server version is 4.2 or higher, you can simply use `img/apple.png`.
 1. Enter the **service ID** in `client ID` field
 1. Enter a dummy value for `Client Secret`. Atypically, Apple Sign In does not require a secret, however, do not remove this property. 
 1. Add a new property `keyID` and fill its value with the **key id** you collected [earlier](#creating-an-apple-application)
