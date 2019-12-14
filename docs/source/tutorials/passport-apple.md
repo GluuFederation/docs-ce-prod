@@ -68,7 +68,7 @@ Next, let's add the passport strategy that allows us to "talk" to Apple identity
 Apple doesn't redirect the users' browsers to the callback URL (`redirect_uri`) once they login sucessfully, but makes a POST to the URL. This is not an expected behavior for and Oauth2 authorization server, so it requires adding support for this kind of custom behavior.
 
 1. `cd` to `/opt/gluu/node/passport/server`
-1. Replace files `providers.js` and `routes.js` using those found [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/master/server/providers.js) and [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/version_4.1/server/routes.js) respectively.
+1. Replace files `providers.js` and `routes.js` using those found [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/master/server/providers.js) and [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/version_4.1.0/server/routes.js) respectively.
 1. Copy this [file](https://github.com/GluuFederation/gluu-passport/raw/master/server/mappings/apple.js) to `/opt/gluu/node/passport/server/mappings`.
 
 
