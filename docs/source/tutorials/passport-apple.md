@@ -23,7 +23,7 @@ There are a number of configurations that must be performed using your Apple dev
 - A team ID
 - A key ID and a key file 
 
-You will be prompted to enter a redirect URL. Please provide `https://<your-gluu-domain>/passport/server/auth/apple/callback`.
+You will be prompted to enter a redirect URL. Please provide `https://<your-gluu-domain>/passport/auth/apple/callback`.
 
 For domain verification purposes you will be given a file that it is supposed to be accessible at `https://<your-gluu-domain>/.well-known/apple-developer-domain-association.txt`. To do so follow the steps below:
 
