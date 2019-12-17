@@ -45,7 +45,7 @@ SSH to your Gluu server and copy the **key file** to `/etc/certs` inside chroot.
 
 ### Install nicokaiser's passport-apple strategy
 
-!!! Note:
+!!! Note
     Skip this section if your Gluu version is 4.2 or higher
 
 Next, let's add the passport strategy that allows us to "talk" to Apple identity provider:
@@ -62,13 +62,23 @@ Next, let's add the passport strategy that allows us to "talk" to Apple identity
 
 ### Add/Patch javascript files
 
-!!! Note:
+!!! Note
     Skip this section if your Gluu version is 4.2 or higher
     
 Apple doesn't redirect the users' browsers to the callback URL (`redirect_uri`) once they login sucessfully, but makes a POST to the URL. This is not an expected behavior for and Oauth2 authorization server, so it requires adding support for this kind of custom behavior.
 
 1. `cd` to `/opt/gluu/node/passport/server`
-1. Replace files `providers.js` and `routes.js` using those found [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/master/server/providers.js) and [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/version_4.1.0/server/routes.js) respectively.
+1. Replace file `providers.js` using the one found [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/master/server/providers.js)
+1. Add to file `routes.js` the following snippet (around line 21) and save:
+
+    ``` 
+    router.post('/auth/:provider/callback',
+	 validateProvider,
+	 require('express').urlencoded(),
+	 authenticateRequestCallback,
+       callbackResponse)
+    ```
+    
 1. Copy this [file](https://github.com/GluuFederation/gluu-passport/raw/master/server/mappings/apple.js) to `/opt/gluu/node/passport/server/mappings`.
 
 
