@@ -339,7 +339,7 @@ Snippet
         return True
 ```
 
-Full version of introspection script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_4.0/static/extension/introspection/introspection.py). 
+Full version of introspection script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_4.1/static/extension/introspection/introspection.py). 
 
 It is also possible to run introspection script during `access_token` creation as JWT. It can be controlled by `run_introspection_script_before_access_token_as_jwt_creation_and_include_claims` client property which is set to false by default.
 
@@ -369,4 +369,4 @@ Snippet
         return False
 ```
 
-Full version of the script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_4.0/static/extension/resource_owner_password_credentials/resource_owner_password_credentials.py). 
+Full version of the script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_4.1/static/extension/resource_owner_password_credentials/resource_owner_password_credentials.py). 

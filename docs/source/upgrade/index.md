@@ -1,16 +1,16 @@
-# Upgrade to Gluu Server 4.0
+# Upgrade to Gluu Server 4.1
 
 ## Overview
-The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will need to either use our in-place upgrade script or explicitly install the new version and export/import your data. Find the existing version below for upgrade instructions to Gluu Server 4.0. 
+The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will need to either use our in-place upgrade script or explicitly install the new version and export/import your data. Find the existing version below for upgrade instructions to Gluu Server 4.1. 
 
 ### Pre-requisites
 
 - Before upgrading, make sure to [back up](../operation/backup.md) the Gluu container or LDAP LDIF. 
 - Upgrades should always be thoroughly scoped and tested on a development environment *first*.
 
-### Upgrading from 3.1.x to 4.0
+### Upgrading from 3.1.x to 4.1
 
-At this time, only Gluu Server version 3.1.x can be upgraded to version 4.0. The upgrade script works on CentOS 7, Ubuntu 16, and RedHat 7. Upgrade script performs the following steps:
+At this time, only Gluu Server version 3.1.x can be upgraded to version 4.1. The upgrade script works on CentOS 7, Ubuntu 16, and RedHat 7. Upgrade script performs the following steps:
 
 - Upgrades Java to Amazon Corretto. Extracts certificates from the existing Java keystore to `hostname_service.crt` in the upgrade directory. After upgrading Java, imports to keystore
 - Upgrades all Gluu WAR files, NodeJS, and Passport components
@@ -50,7 +50,7 @@ The upgrade script can download all needed software and applications from the in
 * Download the upgrade script
 
 ```
-wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.0/update.py
+wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.1/update.py
 ```
 
 * Execute the script with `-o` argument
@@ -68,14 +68,14 @@ The static, self-extracting upgrade package contains all components for the upgr
 * Download the self-extracting package
 
 ```
-wget http:// ...... /4-0-upg.sh
+wget http:// ...... /4.1-upg.sh
 ```
 
 * Execute the script
 
 ```
-sh 4-0-upg.sh
+sh 4.1-upg.sh
 ```
 
-The upgrade directory will be `/opt/upd/4.0-upg`
+The upgrade directory will be `/opt/upd/4.1-upg`
 -->

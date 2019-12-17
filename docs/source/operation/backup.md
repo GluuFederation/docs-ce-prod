@@ -48,7 +48,7 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
     sudo su -
     ```
 
-    - Log in to Gluu-Server-4.0:   
+    - Log in to Gluu-Server-4.1:   
 
     ```bash
     service gluu-server login

@@ -1,5 +1,5 @@
 # Project information
-site_name: Gluu Server 4.0 Docs
+site_name: Gluu Server 4.1 Docs
 site_description: Documentation for Gluu Server Community Edition
 
 # Copyright
@@ -9,7 +9,7 @@ copyright: Copyright &copy; 2019, Gluu, Inc.
 docs_dir: source
 repo_name: GluuFederation/docs-ce-prod
 repo_url: https://github.com/GluuFederation/docs-ce-prod/
-edit_uri: edit/4.0/docs/source
+edit_uri: edit/4.1/docs/source
 
 # Configuration
 theme: 
@@ -20,7 +20,7 @@ theme:
     logo: 'gluu.jpg'
     favicon: 'favicon.ico'
 extra:
-    version: '4.0'
+    version: '4.1'
     
 # Extensions
 markdown_extensions:

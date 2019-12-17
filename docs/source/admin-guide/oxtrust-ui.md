@@ -17,21 +17,21 @@ The oxTrust UI supports localization. The default language is English. To set a 
 
 oxAuth contains the following resource bundles:  
 
-- [messages_en.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.0/Server/src/main/resources/oxauth_en.properties)       
+- [messages_en.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.1/Server/src/main/resources/oxauth_en.properties)       
 
-- [messages_bg.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.0/Server/src/main/resources/oxauth_bg.properties)      
+- [messages_bg.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.1/Server/src/main/resources/oxauth_bg.properties)      
 
-- [messages_de.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.0/Server/src/main/resources/oxauth_de.properties)        
+- [messages_de.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.1/Server/src/main/resources/oxauth_de.properties)        
 
-- [messages_es.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.0/Server/src/main/resources/oxauth_es.properties)       
+- [messages_es.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.1/Server/src/main/resources/oxauth_es.properties)       
 
-- [messages_fr.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.0/Server/src/main/resources/oxauth_fr.properties)     
+- [messages_fr.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.1/Server/src/main/resources/oxauth_fr.properties)     
 
-- [messages_it.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.0/Server/src/main/resources/oxauth_it.properties)    
+- [messages_it.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.1/Server/src/main/resources/oxauth_it.properties)    
 
-- [messages_ru.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.0/Server/src/main/resources/oxauth_ru.properties)      
+- [messages_ru.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.1/Server/src/main/resources/oxauth_ru.properties)      
 
-- [messages_tr.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.0/Server/src/main/resources/oxauth_tr.properties)      
+- [messages_tr.properties](https://github.com/GluuFederation/oxAuth/tree/version_4.1/Server/src/main/resources/oxauth_tr.properties)      
 
 These properties files store the translatable text of the messages to be displayed. The default properties file, `messages_en.properties`, contains the following lines:
 
@@ -193,7 +193,7 @@ This section allows the Gluu Server administrator to define how and where the se
 
 * _Use SSL:_ Enable SSL if the authentication server requires a secured port (e.g. 636)
 
-* _Activate:_ This button enables and disables corresponding remote LDAP server as an authentication option; please note that starting CE 4.0 clicking this button is mandatory step when setting LDAP authentication!
+* _Activate:_ This button enables and disables corresponding remote LDAP server as an authentication option; please note that starting CE 4.1 clicking this button is mandatory step when setting LDAP authentication!
 
 * _Test LDAP Connection:_ Use this button to check whether the provided information is sufficient to connect to the authentication server. The scan is done in real time
 

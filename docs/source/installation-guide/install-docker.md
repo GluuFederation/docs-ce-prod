@@ -24,12 +24,12 @@ For Docker deployments, provision a VM with:
 ### Obtain files for deployment:
 
 ```
-wget https://github.com/GluuFederation/community-edition-containers/archive/4.0.zip \
-    && unzip 4.0.zip
+wget https://github.com/GluuFederation/community-edition-containers/archive/4.1.zip \
+    && unzip 4.1.zip
 ```
 
 ```
-cd community-edition-containers-4.0/examples/single-host
+cd community-edition-containers-4.1/examples/single-host
 ```
 
 ```
@@ -223,4 +223,4 @@ docker exec -ti ldap /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "c
 
 ## Documentation
 
-Please refer to the [Gluu Server Docker Edition Documentation](https://gluu.org/docs/de/4.0) for further reading on Docker image implementations.
+Please refer to the [Gluu Server Docker Edition Documentation](https://gluu.org/docs/de/4.1) for further reading on Docker image implementations.

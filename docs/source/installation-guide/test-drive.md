@@ -38,12 +38,12 @@ For Docker deployments on OS X, make sure you have the following:
 1. Obtain the files for deployment:
     
 ```
-wget https://github.com/GluuFederation/community-edition-containers/archive/4.0.zip \
-    && unzip 4.0.zip
+wget https://github.com/GluuFederation/community-edition-containers/archive/4.1.zip \
+    && unzip 4.1.zip
 ```
 
 ```
-cd community-edition-containers-4.0/examples/single-host
+cd community-edition-containers-4.1/examples/single-host
 ```   
 
 ```
@@ -103,7 +103,7 @@ chmod +x run_all.sh
     
 ## Uninstall the Gluu demo
 
-To remove all deployed objects, run the following command inside `community-edition-containers-4.0.0/examples/single-host`: 
+To remove all deployed objects, run the following command inside `community-edition-containers-4.1.0/examples/single-host`: 
     
     ```
     ./run_all.sh down
