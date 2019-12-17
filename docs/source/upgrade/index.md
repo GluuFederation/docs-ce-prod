@@ -24,9 +24,9 @@ To perform an in-place upgrade to Gluu Server 3.1.7, download and run our in-pla
 
 1. Log in to your server with `service gluu-server-3.1.x login`
 
-1. Download the upgrade script with `wget https://repo.gluu.org/upd/3.1.7-upg.sh`
+1. Download the upgrade script with `https://repo.gluu.org/upd/3-1-7-upg.sh`
 
-1. Run the script with `sh 3.1.7-upg.sh`
+1. Run the script with `sh 3-1-7-upg.sh`
 
 1. When the script has finished, restart your server:
 
