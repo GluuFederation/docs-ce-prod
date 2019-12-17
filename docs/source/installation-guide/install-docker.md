@@ -16,12 +16,12 @@ For Docker deployments, provision a VM with:
 ### Obtain files for deployment:
 
     ```
-    wget https://github.com/GluuFederation/community-edition-containers/archive/4.1.0.zip \
-        && unzip 4.1.0.zip
+    wget https://github.com/GluuFederation/community-edition-containers/archive/4.2.0.zip \
+        && unzip 4.2.0.zip
     ```
     
     ```
-    cd community-edition-containers-4.1.0/examples/single-host
+    cd community-edition-containers-4.2.0/examples/single-host
     ```
     
     ```

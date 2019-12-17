@@ -219,7 +219,7 @@ into the conf subdirectory you created (e.g. C:\home\gluu\conf\ox-ldap.propertie
 
 2\. Create folder for custom Gluu schema: `C:\Program Files (x86)\symas-openldap\etc\openldap\schema`
 
-3\. Copy into custom Gluu schema folder 2 files from CE `/opt/gluu-server-4.1/opt/gluu/schema/openldap`
+3\. Copy into custom Gluu schema folder 2 files from CE `/opt/gluu-server/opt/gluu/schema/openldap`
 
 4\. Copy `C:\Program Files (x86)\symas-openldap\etc\openldap\slapd.conf.default` into `C:\Program Files (x86)\symas-openldap\etc\openldap\slapd.conf`
 

@@ -3,7 +3,7 @@
 ## Notice
 
 This document, also known as the Gluu Release Note, 
-relates to the Gluu Server Release versioned 4.1. The work is licensed under “The MIT License” 
+relates to the Gluu Server Release versioned 4.2. The work is licensed under “The MIT License” 
 allowing the use, copy, modify, merge, publish, distribute, sub-license and sale without 
 limitation and liability. This document extends only to the aforementioned release version 
 in the heading.
@@ -16,7 +16,7 @@ OR USING THE RELEASE.
 
 ## Purpose
 
-The document is released with the Version 4.1 of the Gluu Software. The purpose of this document is to provide the changes made/new features included in this release of the Gluu Software. The list is not exhaustive and there might be some omission of negligible issues, but the noteworthy features, enhancements and fixes are covered. 
+The document is released with the Version 4.2 of the Gluu Software. The purpose of this document is to provide the changes made/new features included in this release of the Gluu Software. The list is not exhaustive and there might be some omission of negligible issues, but the noteworthy features, enhancements and fixes are covered. 
 
 ## Background
 
@@ -29,8 +29,8 @@ The most common use cases for the Gluu Server include single sign-on (SSO), mobi
 Please visit the [Gluu Documentation Page](http://www.gluu.org/docs/ce) for the complete 
 documentation and administrative guide. 
 
-## Available components in Gluu Server 4.1
-- oxAuth, oxTrust, oxCore v4.1
+## Available components in Gluu Server 4.2
+- oxAuth, oxTrust, oxCore v4.2
 - Gluu OpenDJ v3.0.1
 - Shibboleth v3.4.4
 - Passport v4.1
