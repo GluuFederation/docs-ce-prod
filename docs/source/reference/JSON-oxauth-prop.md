@@ -104,6 +104,7 @@ sessionIdUnauthenticatedUnusedLifetime             | The lifetime for unused una
 sessionIdLifetime                                  | The lifetime of session id in seconds. If 0 or -1 then expiration is not set. `session_id` cookie expires when browser session ends.
 sessionIdEnabled                                   | Boolean value specifying whether to enable session ID parameter
 sessionIdPersistOnPromptNone                       | Boolean value specifying whether to persist session ID on prompt none
+spontaneousScopeLifetime                           | The lifetime of spontaneous scope in seconds.
 configurationUpdateInterval                        | The interval for configuration update in seconds
 cssLocation                                        | The location for CSS files
 jsLocation                                         | The location for JavaScript files

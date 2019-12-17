@@ -835,6 +835,16 @@
             "type": "string",
             "minLength": 1
         },
+        "spontaneousScopeLifetime": {
+          "id": "spontaneousScopeLifetime",
+          "description": "The lifetime of spontaneous scope in seconds.",
+          "type": "integer",
+          "multipleOf": 1,
+          "maximum": 2147483647,
+          "minimum": 1,
+          "exclusiveMaximum": false,
+          "exclusiveMinimum": false
+        },
         "sessionIdUnusedLifetime": {
             "id": "sessionIdUnusedLifetime",
             "description": "The lifetime for unused session IDs.",

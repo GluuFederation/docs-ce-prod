@@ -1083,6 +1083,9 @@ Registers new dynamic client in oxAuth.
 |access_token_signing_alg|signing algorithm that has to be used during JWT signing. If it's not specified, then the default OP signing algorithm will be used (specified via `defaultSignatureAlgorithm` oxAuth configuration property).|
 |run_introspection_script_before_access_token_as_jwt_creation_and_include_claims|Boolean value with default value false. If true and `access_token_as_jwt=true` then run introspection script and transfer claims into JWT.|
 |keep_client_authorization_after_expiration|Boolean value with default value false. If true then client authorization will not be removed afer expiration (expiration date is same as client's expiration that created it).|
+|allow_spontaneous_scopes|Boolean value with default value false. Whether spontaneous scopes are allowed for given client |
+|spontaneous_scopes|Array of strings. Regular expressions which should match to scope. If matched scope is allowed. Example: `["^transaction:.+$"]`. It matches `transaction:245` but not `transaction:`.|
+
 
 #### Response
 

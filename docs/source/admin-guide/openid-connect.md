@@ -160,6 +160,34 @@ A description of the fields in the add scope page:
        
 - Allow for dynamic registration: Select whether a client using the scope is allowed to dynamically register the scope, as well.
 
+### Spontaneous scopes
+
+Spontaneous scopes are scopes with random part in it which are not known in advance. For example: `transaction:4685456787`, `pis-552fds` where `4685456787` or `552fds` are generated part of the scope.
+
+Spontaneous scopes are disabled by default and can be enabled per client. There are following client properties available during dynamic registration of the client related to spontaneous scopes:
+
+- `allow_spontaneous_scopes` - OPTIONAL, boolean, false by default. Whether spontaneous scopes are allowed for given client 
+- `spontaneous_scopes` - OPTIONAL, array of strings. Regular expressions which should match to scope. If matched scope is allowed. Example: `["^transaction:.+$"]`. It matches `transaction:245` but not `transaction:`.
+
+Dynamic registration example:
+```
+...
+"allow_spontaneous_scopes": true,
+"spontaneous_scopes": ["^transaction:.+$"]
+...
+```
+
+Authorization request example (note `transaction:245` and `transaction:8645` scopes in request)
+```
+https://example.gluu.org/oxauth/restv1/authorize?response_type=code&scope=openid+profile+transaction%3A245+transaction%3A8645&client_id=c8592b26-8984-484d-8aba-9f475be73af0&redirect_uri=https%3A%2F%2Fexample.gluu.org%2Foxauth-rp%2Fhome.htm&state=2dccaf64-c0b9-4c35-8008-f754ad964c3b&nonce=9cf5c813-578b-44e5-a353-b7446c1b9358
+```
+
+If `allow_spontaneous_scopes=true` and `spontaneous_scopes` regular expression has match then spontaneous scope is persisted and allowed to be handled as usual scope.
+Spontaneous scope has lifetime and is cleaned up from persistence when expired (and thus not available anymore). Configuration property `spontaneousScopeLifetime` specifies lifetime in seconds.
+
+In addition there is spontaneous scope interception scripts which give additional flexibility. 
+The sample spontaneous scope script is [available here](./sample-spontaneous-script.py).
+
 ### Customizing scopes
 Similar to client registration, scopes can be customized using interception scripts. The interface can be found in oxTrust by navigating to `Configuration` > `Manage Custom Scripts` > `Dynamic Scopes`. 
 
