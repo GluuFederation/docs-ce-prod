@@ -8,7 +8,7 @@ This tutorial offers a step-by-step guide for a basic proof-of-concept environme
 
 ## Testing
 
-1. Install CE 4.0.1
+1. Install CE 4.2
 2. Log into oxTrust admin GUI
 3. Enable `resource_owner_password_credentials_custom_params_example` Resource Owner Password Credentials script
 4. Enable `introspection_custom_params` 	Introspection script
