@@ -102,6 +102,7 @@ clientAuthenticationFilters                        | This list details filters f
 sessionIdUnusedLifetime                            | The lifetime for unused session states
 sessionIdUnauthenticatedUnusedLifetime             | The lifetime for unused unauthenticated session states
 sessionIdLifetime                                  | The lifetime of session id in seconds. If 0 or -1 then expiration is not set. `session_id` cookie expires when browser session ends.
+serverSessionIdLifetime                            | Dedicated property to control lifetime of the server side OP session object in seconds. Overrides `sessionIdLifetime`. By default value is 0, so object lifetime equals `sessionIdLifetime` (which sets both cookie and object expiration). It can be useful if goal is to keep different values for client cookie and server object.
 sessionIdEnabled                                   | Boolean value specifying whether to enable session ID parameter
 sessionIdPersistOnPromptNone                       | Boolean value specifying whether to persist session ID on prompt none
 spontaneousScopeLifetime                           | The lifetime of spontaneous scope in seconds.
