@@ -54,13 +54,10 @@ Avoid setup issues by acknowledging the following:
 
 If a resolvable DNS host is not used, then it must be added to the hostname of the Operating System hosts file on the server running the browser.
 
-!!! Warning
-    Remove or encrypt the setup.properties.last file as it contains the clear text passwords for *LDAP, admin user, keystores, and 3DES salt*.
-
 Errors can be found the the `setup_errors.log` file and a detailed step by step installation is found in the `setup.log` file under the `/install/community-edition-setup` folder.
 
 ## Script Command Line Options
-The setup script can be used to configure your Gluu Server and to add initial data for oxAuth and oxTrust to start. If `setup.properties` is found in this folder, these properties will automatically be used instead of the interactive setup.
+The setup script can be used to configure your Gluu Server and to add initial data for oxAuth and oxTrust to start. If `setup.properties` or `setup.properties.last.enc` is found in this folder, these properties will automatically be used instead of the interactive setup.
 
 The administrator can use the following command line options to include additional components:
 
