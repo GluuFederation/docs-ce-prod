@@ -17,6 +17,7 @@ Refer to the following table for details about available setup options:
 | Enter email address for support at your organization | Used to generate X.509 certificates. | 
 | Optional: Enter oxTrust Admin Password | Used as the default admin user for oxTrust. |
 | Optional: Enter Password for LDAP Admin | Used as the LDAP directory manager password, if you not provided it will be same as oxTrust admin password. |
+| Install Local WrenDS Server? | If you use local or remote couchbase server, you will be asked if you want to install WrendDS (OpenDJ) locally to enable hybrid installation |
 | Install oxAuth OAuth2 Authorization Server | Required. Includes Gluu's OpenID Connect provider (OP) and UMA authorization server (AS) implementations.|
 | Install oxTrust Admin UI | Required. This is the Gluu server admin dashboard. |
 | Install Backend DB Server | Required. Installs OpenDJ, used to store user info and configuration data. |
