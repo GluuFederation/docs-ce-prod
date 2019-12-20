@@ -78,7 +78,7 @@ The administrator can use the following command line options to include addition
 * __---allow-pre-released-features__ Enable options to install experimental features, not yet officially supported.
 * __--remote-ldap__ Allows use of a remote LDAP server. <!-- For further information see https://github.com/GluuFederation/support-docs/blob/master/howto/4.1/setup_remote_LDAP.md -->
 * __--remote-couchbase__ Allows use of a remote Couchbase server. <!-- For further information see https://github.com/GluuFederation/support-docs/blob/master/howto/4.1/CE_with_remote_CB.md -->
-* __-properties-password__Encoded setup.properties file password (startinig from 4.1.0, setup.py saves encoded propertes files with name `setup.properties.last.enc`) 
+* __-properties-password__ Encoded setup.properties file password (startinig from 4.1.0, setup.py saves encoded propertes files with name `setup.properties.last.enc`) 
 Example Command: `# ./setup.py -ps` This command will install Gluu Server with Passport and Shibboleth IDP.
 
 !!! Note
