@@ -20,7 +20,6 @@ Refer to the following table for details about available setup options:
 | Install Local WrenDS Server? | If you use local or remote couchbase server, you will be asked if you want to install WrendDS (OpenDJ) locally to enable hybrid installation |
 | Install oxAuth OAuth2 Authorization Server | Required. Includes Gluu's OpenID Connect provider (OP) and UMA authorization server (AS) implementations.|
 | Install oxTrust Admin UI | Required. This is the Gluu server admin dashboard. |
-| Install Backend DB Server | Required. Installs OpenDJ, used to store user info and configuration data. |
 | Install Apache 2 web server | Required |
 | Install Shibboleth SAML IDP | Optional. Only install if a SAML identity provider (IDP) is needed. |
 | Install oxAuth RP | Optional. OpenID Connect test client: useful for test environments, for more details see [here](../admin-guide/openid-connect/#oxauth-rp) |
