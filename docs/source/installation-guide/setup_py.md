@@ -82,10 +82,6 @@ The administrator can use the following command line options to include addition
 
 Example Command: `# ./setup.py -ps` This command will install Gluu Server with Passport and Shibboleth IDP.
 
-!!! Note
-    `setup.py` will save encyrpyted properties file with name `setup.properties.last.enc`. The password is the same as your oxTrust admin password. Please don't forget this password so that you can use this file for next installations. You can decrypt the file with the following command if you want to re-use:
-    `openssl enc -d -aes-256-cbc -in setup.properties.last.enc -out setup.properties.last`
-    When you asked password enter oxTrust admin password.
     
 <!-- 
 #### Couchbase Server Setup (Experimental)
