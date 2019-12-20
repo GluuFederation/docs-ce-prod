@@ -95,7 +95,7 @@ In this section we'll onboard Apple to the list of known providers for inbound i
 1. For mapping enter `apple` (it references file `apple.js` previously added)
 1. Supply a logo location if desired. More info [here](../authn-guide/passport.md#about-logo-images). If you Gluu server version is 4.2 or higher, you can simply use `img/apple.png`.
 1. Enter the **service ID** in `client ID` field
-1. Enter a dummy value for `Client Secret`. Atypically, Apple Sign In does not require a secret, however, do not remove this property. 
+1. Remove `Client Secret`.
 1. Add a new property `keyID` and fill its value with the **key id** you collected [earlier](#creating-an-apple-application)
 1. Add a new property `teamID` and fill its value with the **team ID**
 1. Add a new property `key` supplying the path to the key file, eg. `/etc/certs/AuthKey_blah_blah.p8`
