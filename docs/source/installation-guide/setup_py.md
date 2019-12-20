@@ -75,12 +75,13 @@ The administrator can use the following command line options to include addition
 * __-w__ get the development head war files
 * __-t__ Load test data
 * __-x__ Load test data and exit
+* __-stm__ Enable Scim Test Mode
 * __--import-ldif=custom-ldif-dir__ Render ldif templates from custom-ldif-dir and import them in LDAP
 * __--listen_all_interfaces__ Allow the LDAP server to listen on all server interfaces. This is required for clustered installations to replicate between LDAP servers. If not enabled, the LDAP server listens only to localhost
 * __---allow-pre-released-features__ Enable options to install experimental features, not yet officially supported.
 * __--remote-ldap__ Allows use of a remote LDAP server. <!-- For further information see https://github.com/GluuFederation/support-docs/blob/master/howto/4.1/setup_remote_LDAP.md -->
 * __--remote-couchbase__ Allows use of a remote Couchbase server. <!-- For further information see https://github.com/GluuFederation/support-docs/blob/master/howto/4.1/CE_with_remote_CB.md -->
-
+* __-properties-password__Encoded setup.properties file password (startinig from 4.1.0, setup.py saves encoded propertes files with name `setup.properties.last.enc`) 
 Example Command: `# ./setup.py -ps` This command will install Gluu Server with Passport and Shibboleth IDP.
 
 <!-- 
