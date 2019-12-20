@@ -15,7 +15,8 @@ Refer to the following table for details about available setup options:
 | Enter two letter Country Code | Used to generate X.509 certificates. |
 | Enter Organization Name | Used to generate X.509 certificates. |
 | Enter email address for support at your organization | Used to generate X.509 certificates. | 
-| Optional: enter password for oxTrust and LDAP superuser | Used as the LDAP directory manager password, and for the default admin user for oxTrust. |
+| Optional: Enter oxTrust Admin Password | Used as the default admin user for oxTrust. |
+| Optional: Enter Password for LDAP Admin | Used as the LDAP directory manager password, if you not provided it will be same as oxTrust admin password. |
 | Install oxAuth OAuth2 Authorization Server | Required. Includes Gluu's OpenID Connect provider (OP) and UMA authorization server (AS) implementations.|
 | Install oxTrust Admin UI | Required. This is the Gluu server admin dashboard. |
 | Install Backend DB Server | Required. Installs OpenDJ, used to store user info and configuration data. |
