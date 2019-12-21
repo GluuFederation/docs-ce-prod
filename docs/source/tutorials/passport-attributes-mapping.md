@@ -4,7 +4,7 @@
 
 A mapping is a mechanism that defines how profile data released by an external provider (eg. a SAML IDP) is saved to local Gluu LDAP.
 
-In Passport 3.1.x, attribute mappings worked in a declarative manner, where administrators potentially had to supply information at different places: custom scripts (via config properties), JSON files, and sometimes in Javascript (Node.js) code. Starting with version 4.1, mappings were moved to Javascript files entirely.
+In Passport 3.1.x, attribute mappings worked in a declarative manner, where administrators potentially had to supply information at different places: custom scripts (via config properties), JSON files, and sometimes in Javascript (Node.js) code. Starting with version 4.0, mappings were moved to Javascript files entirely.
 
 Physically, a mapping is stored in a node module file with a single function that receives as input a profile object and returns an object whose properties (ie. dictionary keys) are the names of Gluu LDAP attributes. The value(s) of each key will contain the data that will be persisted to LDAP.
 
@@ -117,3 +117,65 @@ module.exports = profile => {
 ```
 
 Note that being a node module, any third-party library can be imported to aid the processing. The library must be installed in `/opt/gluu/jetty/node/passport` as a prerequisite.
+
+## Advanced: sending more than profile data to custom script
+
+As mentioned [above](#how-mappings-work), the value returned by the mapping function is sent to oxAuth for further processing at the custom script. There may be cases where data other than profile data is desired to be passed. 
+
+A trivial case is that of sending a constant value. That can be achieved by using something like:
+
+```
+module.exports = profile => {
+	return {
+		...
+		myattribute: value, 
+		...
+	}
+}
+```
+where `value` is a constant literal such as `"banana"`, `false`, or `[50, 60]`. Note that `myattribute` may or may not be an existing attribute in LDAP. If existing the value will be stored, otherwise the flow will throw an error. In the case of Couchbase the value will be persisted since it is schemaless database.
+
+When you want to explicitly skip the attempt to persist a certain attribute part of the mapping, you have to edit the corresponding script (`passport_social` or `passport_saml`) so that:
+
+a) The attribute is ignored for user provisioning
+b) Some custom manipulation takes place with the attribute received
+
+For *a*, add proper logic in method `fillUser` so that `attribute` is skipped. Actually `"provider"` is already left out as you will see.
+
+For *b*, the attribute value can be obtained from `user_profile` variable of the script (see `authenticate` method for step 1). Use something like `user_profile['fruit']`. The value obtained will always be an array: if `value` was assigned a simple expression in the mapping, the array will contain a single element.
+
+### Accessing extra data from the passport strategy
+
+Depending on the strategy in use, eg. `passport-github`, `passport-saml`, etc., it is possible to get information other than actual profile data. This may include an access token, refresh token, and other contextual information specific to every strategy.
+
+To get an idea of what you may have access to, consult the documentation (preferably the code) of the strategy with regards to the **verify** function. Here we describe an example of how to get the access token obtained from an OpenID Connect provider when the `passport-openidconnect` is used. Note that this is not the Gluu access token but that of an external OP integrated for inbound identity using passport.
+
+To start, glance at the function `onProfileLoaded` of [passport-openidconnect](https://github.com/jaredhanson/passport-openidconnect/blob/master/lib/strategy.js). You will see different calls to a "verify" function where the number of parameters supplied varies. Note that besides `profile` there are more interesting pieces of data such as `iss` (issuer), `sub`, `accessToken`, and `jwtClaims`. These names are familiar if you have some acquaintance with OIDC. Particularly, if you inspect the code more deeply, you will find that `jwtClaims` contains the claims of the `id_token` received by the OP.
+
+To access these kind of data do:
+
+1. Pick the most convenient call of `verify` (the one that exhibits the data of your interest) and count the number of parameters in the call (this is called the "arity" of a function). 
+1. In Gluu chroot edit the file `/opt/gluu/node/passport/server/extra-passport-params.js` by adding a new item in function `params` this way (replace `<ARITY>` with a suitable value):
+    ```
+    {
+    	  strategy: 'passport-openidconnect',
+        verifyCallbackArity: <ARITY>
+    }
+    ```
+1. Edit the mapping in use (eg. `/opt/gluu/node/passport/server/mappings/openidconnect-default.js`) so that the function now has 2 arguments, like:
+    ```
+    module.exports = (profile, params) => {
+    ```
+1. Manipulate `params` as desired. It contains an array with all the parameters of the `verify` call you picked except for the last one and the profile (which is the first argument of the mapping function). For example, if arity was 6, to get the access token you can do:
+    ```
+        let token = params[2]
+        //The call to verify was self._verify(iss, sub, profile, accessToken, refreshToken, verified)
+        //enumerate the arguments starting with zero (skipping profile), thus, accessToken corresponds to index 2
+        console.log("access token was " + token)
+        return {
+            ...
+            access_token: token
+        }
+    ```
+1. Save your changes and restart passport
+1. Edit your custom script so that `access_token` is processed as desired.
