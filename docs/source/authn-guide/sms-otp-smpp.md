@@ -6,35 +6,25 @@ SMS is a common technology used for the delivery of OTPs. Text messages provide 
 This document explains how to configure the Gluu Server for two-step, two-factor authentication (2FA) with username / password as the first step, and an OTP sent via text message as the second step. 
 
 !!! Note
-    As indicated, this script uses the [Twilio cloud communications platform](https://www.twilio.com) to deliver SMS messages.     
+    Messages are delivered leveraging an [SMPP](https://smpp.org) server. The SMPP (Short Message Peer-to-Peer) protocol is an open, industry standard protocol for the transfer of short message data.
     
 ## Prerequisites 
 
 - A Gluu Server (installation instructions [here](../installation-guide/index.md));    
-- The [Twilio SMS OTP script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/twilio_sms/twilio2FA.py) (included in the default Gluu Server distribution);   
-- A [Twilio account](https://www.twilio.com/).     
-- The twilio [jar library](http://search.maven.org/remotecontent?filepath=com/twilio/sdk/twilio/7.17.6/twilio-7.17.6.jar) added to oxAuth
+- The [SMPP SMS OTP script](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/smpp/smpp2FA.py) (included in the default Gluu Server distribution);   
+- An SMPP server
+- The SMPP [jar library](https://search.maven.org/remotecontent?filepath=org/jsmpp/jsmpp/2.3.7/jsmpp-2.3.7.jar) added to oxAuth
 - A mobile device and phone number that can receive SMS text messages
-    
 
-## Twilio Configuration
 
-Twilio offers Voice, SMS, and MMS capabilities, but we will only need SMS for the purpose of this document. 
+## Add SMPP library to oxAuth
 
-When registering for a Twilio account, you will be asked to verify your personal phone number, and then will be given a Twilio phone number. 
-
-Ensure the number given is [SMS enabled](https://support.twilio.com/hc/en-us/articles/223183068-Twilio-international-phone-number-availability-and-their-capabilities) and supports sending messages to the countries you are targeting. You may need to enable countries manually (see the [Geo permissions page](https://www.twilio.com/console/sms/settings/geo-permissions)).
-
-Twilio trial accounts only allow sending messages to mobile numbers already linked to the account, so for testing you will want to add (and verify) some additional numbers besides your personal one to make sure the integration is working as expected. When you are ready to move to production, you will want to purchase a Twilio plan.
-
-## Add Twilio library to oxAuth
-
-- Copy the Twilio jar file to the following oxAuth folder inside the Gluu Server chroot: `/opt/gluu/jetty/oxauth/custom/libs` 
+- Copy the SMPP jar file to the following oxAuth folder inside the Gluu Server chroot: `/opt/gluu/jetty/oxauth/custom/libs` 
 
 - Edit `/opt/gluu/jetty/oxauth/webapps/oxauth.xml` and add the following line:
 
     ```
-    <Set name="extraClasspath">/opt/gluu/jetty/oxauth/custom/libs/twilio.jar</Set>
+    <Set name="extraClasspath">/opt/gluu/jetty/oxauth/custom/libs/jsmpp-2.3.7.jar</Set>
     ```
     
 - [Restart](../operation/services.md#restart) the `oxauth` service     
@@ -43,11 +33,15 @@ Twilio trial accounts only allow sending messages to mobile numbers already link
 
 The custom script has the following properties:    
 
-|	Property	|	Description		| Input value     |
-|-----------------------|-------------------------------|---------------|
-|twilio_sid		|Twilio account SID		| Obtain from your Twilio account|
-|twilio_token		|Access token associated to Twilio account| Obtain from your Twilio account|
-|from_number            |Twilio phone number assigned to the account| Obtain from your Twilio account|
+|	Property	|	Description		|
+|-----------------------|-------------------------------|
+|smpp_server|SMPP server|
+|smpp_port|Server port|
+|system_id|SMPP system_id|
+|password|SMPP password|
+|source_addr_ton|Source type of number|
+|source_addr|From number / name|
+
 
 ## Enable SMS OTP
 
@@ -57,15 +51,18 @@ Follow the steps below to enable SMS OTP authentication:
 
 1. Click on the `Person Authentication` tab       
 
-1. Find the `twilio_sms` script.
+1. Find the `smpp` script.
 
-    ![twilio_sms](../img/admin-guide/multi-factor/twilio-custom-script.png)
+1. Populate the properties table with the details from your setup:    
 
-1. Populate the properties table with the details from your Twilio account:    
-
-   - `twilio_sid`: Paste the *"Account SID"* of your recently created Twilio account. You can find this value in your account dashboard.   
-   - `twilio_token`: Similar to your SID, you were also given a token upon registration.     
-   - `from_number`: Use the Twilio number that was provided when you created your account (not your personal number).      
+   - `smpp_server`: IP or FQDN of your SMPP server.
+   - `smpp_port`: TCP port of SMPP server.
+   - `system_id`: SMPP system_id in case authentication is required.
+   - `password`: Password in case authentication is required.
+   - `source_addr_ton`: Type of number (default: ALPHANUMERIC). See https://jar-download.com/javaDoc/org.jsmpp/jsmpp/2.3.2/org/jsmpp/bean/TypeOfNumber.html
+   - source_addr: From number / name, allowed values depends on `source_addr_ton`.
+   - `dest_addr_ton`: Type of number (default: INTERNATIONAL).
+   - `dest_addr_npi`: Numbering plan indicator (default: ISDN). See https://jar-download.com/javaDoc/org.jsmpp/jsmpp/2.3.2/org/jsmpp/bean/NumberingPlanIndicator.html
 
 1. Enable the script by checking the box 
 
@@ -74,7 +71,7 @@ Follow the steps below to enable SMS OTP authentication:
 Now SMS OTP is an available authentication mechanism for your Gluu Server. This means that, using OpenID Connect `acr_values`, applications can now request OTP SMS authentication for users. 
 
 !!! Note 
-    To make sure OTP SMS has been enabled successfully, you can check your Gluu Server's OpenID Connect configuration by navigating to the following URL: `https://<hostname>/.well-known/openid-configuration`. Find `"acr_values_supported":` and you should see `"twilio_sms"`. 
+    To make sure OTP SMS has been enabled successfully, you can check your Gluu Server's OpenID Connect configuration by navigating to the following URL: `https://<hostname>/.well-known/openid-configuration`. Find `"acr_values_supported":` and you should see `"smpp"`. 
 
 ## Make SMS OTP the Default
 If SMS OTP should be the default authentication mechanism, follow these instructions: 
@@ -85,13 +82,11 @@ If SMS OTP should be the default authentication mechanism, follow these instruct
 
 1. In the Default Authentication Method window you will see two options: `Default acr` and `oxTrust acr`. 
 
-![twilio_sms](../img/admin-guide/multi-factor/twilio-sms.png)
-
  - `oxTrust acr` sets the authentication mechanism for accessing the oxTrust dashboard GUI (only managers should have acccess to oxTrust).    
 
  - `Default acr` sets the default authentication mechanism for accessing all applications that leverage your Gluu Server for authentication (unless otherwise specified).    
 
-If SMS OTP should be the default authentication mechanism for all access, change both fields to twilio_sms.  
+If SMS OTP should be the default authentication mechanism for all access, change both fields to smpp.  
     
 ## SMS OTP Login Pages
 
@@ -117,14 +112,14 @@ All <!--subsequent--> authentications will trigger an SMS with an OTP to the reg
 A user's registered phone number can be removed by a Gluu administrator either via the oxTrust UI in `Users` > `Manage People`, or in LDAP under the user entry. Once the phone number has been removed from the user's account, the user can re-enroll a new phone number following the [phone number enrollment](#phone-number-enrollment) instructions above. 
 
 ## Troubleshooting    
-If problems are encountered, take a look at the logs, specifically `/opt/gluu/jetty/oxauth/logs/oxauth_script.log`. Inspect all messages related to Twilio. For instance, the following messages show an example of correct script initialization:
+If problems are encountered, take a look at the logs, specifically `/opt/gluu/jetty/oxauth/logs/oxauth_script.log`. Inspect all messages related to SMPP. For instance, the following messages show an example of correct script initialization:
 
 ```
-Twilio SMS. Initialization
-Twilio SMS. Initialized successfully
+SMPP Initialization
+SMPP Initialized successfully
 ```
 
-Also make sure you are using the latest version of the script that can be found [here](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/twilio_sms/twilio2FA.py).
+Also make sure you are using the latest version of the script that can be found [here](https://github.com/GluuFederation/oxAuth/blob/master/Server/integrations/smpp/smpp2FA.py).
 
 ## Self-service account security
 
