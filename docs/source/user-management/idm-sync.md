@@ -23,7 +23,7 @@ The API document is self-explanatory, but here are some key facts:
 The following is a sample request with a corresponding response:
 
 ```
-GET /identity/restv1/scim/UpdatedUsers?timeStamp=2019-12-24T12:00:03-05:00&start=10&pagesize=100
+GET /identity/restv1/scim/UpdatedUsers?timeStamp=2019-12-24T12:00:03-05:00&start=10&pageSize=100
    Host: example.com
    Authorization: Bearer ACCESS_TOKEN_HERE
 ```
