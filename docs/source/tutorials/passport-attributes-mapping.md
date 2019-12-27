@@ -82,12 +82,12 @@ module.exports = profile => {
 
 The above simply prints the profile object in JSON notation. Note that any number of (valid Javascript) statements can be added before the `return` keyword.
 
-Save the file in `/opt/gluu/node/passport/server/mappings`, restart Passport and trigger the authentication flow in the browser for the attribute mapping to take place. To see the printed output, tail the `/opt/gluu/node/passport/server/logs/start.log` file.
+Save the file in `/opt/gluu/node/passport/server/mappings`, restart Passport (by using `/opt/dist/scripts/passport restart`) and trigger the authentication flow in the browser for the attribute mapping to take place. To see the printed output, tail the `/opt/gluu/node/passport/server/logs/start.log` file.
 
 Once debugging is finished, all log statements should be removed or commented out.
 
 !!! Note
-    If you are not able to see any printed messages, there might be an issue in a previous step of the flow. Check the [logs](../authn-guide/passport.md#logging) to troubleshoot.
+    If you are not able to see any printed messages, there might be an issue in a previous step of the flow. Check the [logs](../authn-guide/passport.md#logging) to troubleshoot and ensure you have restarted passport as instructed above.
 
 
 ## Applying attributes transformation
