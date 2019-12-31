@@ -56,7 +56,7 @@ If a resolvable DNS host is not used, then it must be added to the hostname of t
 Errors can be found the the `setup_errors.log` file and a detailed step by step installation is found in the `setup.log` file under the `/install/community-edition-setup` folder.
 
 ## Script Command Line Options
-The setup script can be used to configure your Gluu Server and to add initial data for oxAuth and oxTrust to start. If `setup.properties` or `setup.properties.last.enc` is found in this folder, these properties will automatically be used instead of t-he interactive setup.
+The setup script can be used to configure your Gluu Server and to add initial data for oxAuth and oxTrust to start. If `setup.properties` or `setup.properties.last.enc` is found in this folder, these properties will automatically be used instead of the interactive setup.
 
 The administrator can use the following command line options to include additional components:
 
@@ -82,11 +82,11 @@ The administrator can use the following command line options to include addition
 Example Command: `# ./setup.py -ps` This command will install Gluu Server with Passport and Shibboleth IDP.
 
 !!! Note
-    `setup.py` will save encyrpyted properties file with name `setup.properties.last.enc`. The password is the same as your oxTrust admin password. Please don't forget this password so that you can use this file for next installations. You can decrypt the file with the following command if you want to re-use:
+    `setup.py` will save an encrypted properties file named `setup.properties.last.enc`. The password is the same as the oxTrust admin password. Retain this password to use this file for future installations. To reuse the file, it needs to be decrypted with the following command:
     ```
     openssl enc -d -aes-256-cbc -in setup.properties.last.enc -out setup.properties.last
     ```
-    When you asked password enter oxTrust admin password.
+    When prompted, enter the oxTrust admin password.
 <!-- 
 #### Couchbase Server Setup (Experimental)
 Starting in CE 4.1, Gluu Server supports Couchbase Server as a database backend. To install with Couchbase, you need to download the OS-specific Couchbase package from https://www.couchbase.com/downloads (Enterprise version only), and save to `/opt/dist/couchbase`. For example, for Ubuntu 18,
