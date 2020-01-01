@@ -4,7 +4,7 @@
 
 Gluu Server components have cryptographic keys and X.509 certificates that are stored inside the`chroot`. Details for certificates associated with each component are provided below. The following certificates are available in the `/etc/certs` folder.
 
-|IDP		                  |Shibboleth	       |APACHE		       |OPENDJ         |
+|IDP		                  |Shibboleth	       |APACHE		       |WrenDS         |
 |---------------        |---------------   |---------------|---------------  |
 |idp-encryption.crt    	|shibIDP.crt	      |httpd.crt	     |opendj.crt	   |
 |idp-encryption.csr    	|shibIDP.csr	      |https.csr	     |opendj.pksc12	   |
