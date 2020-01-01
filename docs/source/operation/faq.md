@@ -284,32 +284,22 @@ In such a situation, you can use the following methods to revert back to the pre
 ### Manual Method: 
 
 This method relies on an LDIF file to change the authentication mode in LDAP directly.
-
-- Run the following command to collect the `inum` for the Gluu Server installation:   
-    
-    ```
-    /opt/opendj/bin/ldapsearch -h localhost -p 1636 -Z -X -D "cn=directory manager" -w 'yourPassword' -b "ou=appliances,o=gluu" -s one "objectclass=*" dn
-    ```
     
 - Create an `LDIF` file with the contents below:
- 
-    `dn: inum=@!1E3B.F133.14FA.5062!0002!4B66.CF9C,ou=appliances,o=gluu`
     
-    `changetype: modify`
-    
-    `replace: oxAuthenticationMode` (Add `replace: oxAuthenticationMode` if you move to change oxTrust login method)
-    
-    `oxAuthenticationMode: auth_ldap_server` (Add `oxTrustAuthenticaitonMode: auth_ldap_server` if you move to change oxTrust login method)
+    ```
+    dn: ou=configuration,o=gluu
+    changetype: modify
+    replace: oxTrustAuthenticationMode
+    oxTrustAuthenticationMode: simple_password_auth
+    ```
     
     As an example, we shall call this file `changeAuth.ldif`.
-    
-!!! Note
-    Replace the `inum` from the example above with the `inum` of your Gluu Server from the `ldapsearch` command.
 
 - Replace the authentication mode using `ldapmodify` command.
 
     ```
-    ./ldapmodify -h localhost -p 1636 -D "cn=directory manager" -w "{password provided during setup}" -f revert.ldif
+    ./ldapmodify -h localhost -p 1636 -D "cn=directory manager" -w "{password provided during setup}" -f changeAuth.ldif
     ```
     
 ### Graphical method:
