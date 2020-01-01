@@ -97,7 +97,7 @@ Please follow these steps shown below to update the Apache SSL cert:
     `/opt/amazon-corretto-x.x.x.x-linux-x64/bin/keytool -delete -alias <hostname_of_your_Gluu_Server>_httpd -keystore /opt/amazon-corretto-x.x.x.x/jre/lib/security/cacerts -storepass changeit`
     - Import certificate into the Java Keystore(cacerts):
     `opt/amazon-corretto-x.x.x.x-linux-x64/bin/keytool -importcert -file httpd.der -keystore /opt/amazon-corretto-x.x.x.x/jre/lib/security/cacerts -alias <hostname_of_your_Gluu_Server>_httpd -storepass changeit`
-- [Restart](../operation/services.md#restart) `opendj`, `apache2/httpd`, `oxauth` and `identity` services.
+- [Restart](../operation/services.md#restart) `WrenDS`, `apache2/httpd`, `oxauth` and `identity` services.
 
 ## Install Intermediate Certificates
 Please follow the steps below to install intermediate certificates:
