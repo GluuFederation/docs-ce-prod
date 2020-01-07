@@ -30,9 +30,9 @@ The following ports are used by different components to communicate with their p
 -----|------------- | ---
 | 22 | SSH | Utility |
 | 443| SSL/TLS | Load-balancer to oxAuth |
-|4444| OpenDJ Replication| Between Gluu Servers |
+|4444| OpenDJ Replication| Between Gluu Servers (administration)|
 |16379| Redis Server through stunnel | From oxAuth to stunnel to Redis |
-|8989| OpenDJ Replication|  Between Gluu Servers |
+|8989| OpenDJ Replication|  Between Gluu Servers (replication) |
 |30865| Csync2 Default |  Between Gluu Servers |
 
 ### Software
