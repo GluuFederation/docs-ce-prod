@@ -23,16 +23,18 @@ In oxTrust, navigate to `OpenID Connect` > `Client` and click `Add Client`. You'
 
 ![image](../../img/integration/gri_blank_client_creation_form.png)
 
+Add at least the following details: 
+
 - The `Client ID` is generated automatically.
-- Keep sufficiently strong `Client Secret`.
-- Add optional `Client Description`.
+- Use a sufficiently strong `Client Secret`.
+- Add an optional `Client Description`.
 - Add `Redirect Login URIs` (use the **Callback URL** from Rocket Chat as [noted above](#note))
-- Add at least the following scopes `Scopes`: **email**, **openid**, **profile** and **user_name**.
-- Add the following `Response Types`: **code**, **token**, **id_token**.
+- Add at least the following `Scopes`: **email**, **openid**.
+- Add the following `Response Types`: **code**.
 - Add the following `Grant Types`: **authorization_code**.
-- Set `Pre-Authorization` to **Yes**
 - Set `Application Type` to **Web**.
 - Set ` Authentication method for the Token Endpoint` to **client_secret_post**.
+- Set `Pre-Authorization` to **Yes**
 
 After completing these fields, click the `Add` button. 
 
