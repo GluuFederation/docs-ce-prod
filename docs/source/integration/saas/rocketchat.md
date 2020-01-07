@@ -21,7 +21,7 @@ During creation of your client in the Gluu Server, this URL is used as the `Redi
 
 In oxTrust, navigate to `OpenID Connect` > `Client` and click `Add Client`. You'll see the following form to create the client for Rocket Chat:  
 
-![image](../img/integration/gri_blank_client_creation_form.png)
+![image](../../img/integration/gri_blank_client_creation_form.png)
 
 - The `Client ID` is generated automatically.
 - Keep sufficiently strong `Client Secret`.
@@ -38,12 +38,12 @@ After completing these fields, click the `Add` button.
 
 The configured client should look similar to this:
 
-![image](../img/integration/gri_GluuServerClientSettings.png)
+![image](../../img/integration/gri_GluuServerClientSettings.png)
 
 
 ## Configuring Rocket Chat
  
-In rocketchat Administration area, find the page for `OAuth` and click `Add custom oauth`. 
+In the Rocketchat Administration area, find the page for `OAuth` and click `Add custom oauth`. 
 
 Add a name for your server, we called ours: `Gluu Server`.
 
@@ -60,27 +60,27 @@ Add a name for your server, we called ours: `Gluu Server`.
 
 Once you set all the parameters and save the changes, the screenshots look like below two screenshots.
 
-![image](../img/integration/gri_Rocketchatsettings1.png)
+![image](../../img/integration/gri_Rocketchatsettings1.png)
 
-![image](../img/integration/gri_Rocketchatsettings2.png)
+![image](../../img/integration/gri_Rocketchatsettings2.png)
 
 ## Testing
 Access your Rocket Chat server and you should see two options to login: username and password and the custom text you just added, e.g **Gluu OpenID**. 
 
 This is shown as below:
 
-![image](../img/integration/gri_RocketchatLoginForm.png)
+![image](../../img/integration/gri_RocketchatLoginForm.png)
 
 After we click the link, e.g. Gluu OpenID, we're redirected to the Gluu Server for login. We had created a test user, so we added the username and password as shown below:
 
-![image](../img/integration/gri_GluuServerLoginScreen.png)
+![image](../../img/integration/gri_GluuServerLoginScreen.png)
 
 Once authentication is complete, we're redirected back to Rocket Chat where we're asked to create a new username. It's purely a matter of personal choice. We chose to keep it the same, i.e **test**. 
 
 See the screen below asking us to provide the username:
 
-![image](../img/integration/gri_RocketchatUserRegistration.png)
+![image](../../img/integration/gri_RocketchatUserRegistration.png)
 
 Once done, we're granted access to Rocket Chat.
 
-![image](../img/integration/gri_AfterLogin.png)
+![image](../../img/integration/gri_AfterLogin.png)
