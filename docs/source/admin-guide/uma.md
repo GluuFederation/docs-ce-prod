@@ -449,5 +449,29 @@ If you need to secure apps with OpenID Connect RP and UMA 2 RS code, you might w
 ## UMA API
 Learn more about the Gluu Server's [UMA-API](../api-guide/uma-api.md). 
 
+## FAQ
 
+### Pass parameters (request URL, HTTP Method etc) from RS to AS and use in interception script.
 
+Sometime it can be useful to pass to RPT Authorization script additional parameters. RS can do it via `params` field during ticket registration at Permission Endpoint.
+
+```
+POST /perm HTTP/1.1
+Content-Type: application/json
+Host: as.example.com
+Authorization: Bearer 204c69636b6c69
+
+{  
+   "resource_id":"112210f47de98100",
+   "resource_scopes":[  
+       "view",
+       "http://photoz.example.com/dev/actions/print"
+   ],
+   "params":{
+       "url":"https://rs.example.com/policy/123456?action=read&subject=09876"
+       "method":"GET"
+   }   
+}
+```
+
+Then in RPT Authorization script to get `url` following code can be used `context.getPermissions().get(0).getAttributes().get("url")`
