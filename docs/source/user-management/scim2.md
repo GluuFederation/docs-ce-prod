@@ -82,8 +82,6 @@ To interact with the service in test mode, you will have to:
 
     - It's convenient to set the logging level for both applications to **TRACE** while in Test Mode. See the [log management](../operation/logs.md) page for more information
 
-- If acquainted with Gluu's SCIM service, quickly glance at [this section](#differences-between-current-31x-and-older-test-mode) to contrast the current approach employed in test mode with the older one (3.0.2 and earlier)
-
 - If familiar with the Java programming language, skip the steps listed above and simply use the [SCIM-Client](#testing-with-the-scim-client): a Java library developed by Gluu. Those steps are already implemented in the library, so usage of the service is more straightforward  
 
 ### Create an OpenID Client
@@ -250,17 +248,6 @@ To do this, just do the same as in [this section above](https://github.com/jgome
 
 !!! Note 
     To request an access token, the OpenId client acting on your behalf must be current: its password expiration also counts. Update your client expiration or create a new client if necessary. Just proceed as you did the first time.
-
-
-### Differences between current (3.1.x) and Older Test Mode
-
-Versions 3.0.x and earlier employed a (very) long-lived OAuth2 access token to send requests to the service. The current Gluu server uses a safer short-lived token approach in combination with an OpenId Connect client. 
-
-That token was previously passed as an extra query parameter. We have changed this to using the Authorization header, which is a more standard and safer practice.
-
-If you are still interested in how the older approach worked, visit the [3.0.2 page](https://gluu.org/docs/ce/3.0.2/admin-guide/user-scim/#using-test-mode).
-
-In version 3.1.0 onwards the root endpoint has been shortened: now, your service is exposed at `https://<your-host>/identity/restv1/scim/v2/`.
 
 ## Raw HTTP Requests
 
