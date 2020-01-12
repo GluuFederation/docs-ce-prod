@@ -82,7 +82,10 @@ In case you are interested in signing the authentication requests, you can suppl
 
 When `validateInResponseTo` is set to `true`, a simple in-memory cache is used to store the IDs of the SAML requests sent by Passport. Then the `InResponseTo` of SAML responses are validated against the cache. Check [here](https://github.com/bergie/passport-saml/#cache-provider) to learn more. 
 
-This cache can lead to validation errors when the Gluu Passport environment consists of more than one server (such as a clustered setup). To account for this scenario, we provide a safe cache for validation based on Redis. In most cases, a clustered Gluu installation already leverages a Redis cache, so we can reuse it here. To use this cache, add a property named `redisCacheOptions`, with a dictionary with keys as explained [here](https://github.com/NodeRedis/node_redis#options-object-properties) as its value.
+This cache can lead to validation errors when the Gluu Passport environment consists of more than one server (such as a clustered setup). To account for this scenario, we provide means so that a Redis or memcached can be used for this purposes. In most cases, a clustered Gluu installation already leverages a memcached or Redis cache, so we can reuse it here. 
+
+##### Redis
+To use this cache, add a property named `redisCacheOptions` whose values is a dictionary with keys as explained [here](https://github.com/NodeRedis/node_redis#options-object-properties) as its value.
 
 The following is an example for `redisCacheOptions` value. Note that keys are wrapped with `"` and string values use `"` instead of `'`:
 
@@ -91,8 +94,17 @@ The following is an example for `redisCacheOptions` value. Note that keys are wr
 ```
 
 !!! Note
-    Navigate in oxTrust to `Configuration` > `JSON configuration` > `Cache provider configuration`. If `cacheProviderType` is set to REDIS, you are safe to go and can reuse some of the parameters found under the `redisConfiguration` section for `redisCacheOptions`. If the clustered setup is using a different cache provider, please check the corresponding Cluster Manager [docs](https://gluu.org/docs/cm/4.1/deploy/#cache) or open a support [ticket](https://support.gluu.org).
+    Navigate in oxTrust to `Configuration` > `JSON configuration` > `Cache provider configuration`. If `cacheProviderType` is set to REDIS, you are safe to go and can reuse some of the parameters found under the `redisConfiguration` section for `redisCacheOptions`.
 
+##### Memcached
+
+To use this cache, add a property named `memcachedCacheOptions` whose value is a dictionary with keys `server_locations` and `options` (the latter is optional). To learn more on how to supply those values check the [docs](https://github.com/3rd-Eden/memcached#setting-up-the-client) of the underlying client we employ.
+
+This is an example for a `memcachedCacheOptions` value:
+
+```
+{ "server_locations": "my.memcached.org:11211"}
+```
 
 ### Register Passport metadata with external IDP
 
