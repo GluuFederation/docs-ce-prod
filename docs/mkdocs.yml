@@ -21,7 +21,12 @@ theme:
     favicon: 'favicon.ico'
 extra:
     version: '3.0.1'
-    
+
+# Tracking
+google_analytics:
+  - 'UA-31008645-7'
+  - 'auto'
+  
 # Extensions
 markdown_extensions:
 - admonition
