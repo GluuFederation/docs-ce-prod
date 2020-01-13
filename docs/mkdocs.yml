@@ -30,6 +30,11 @@ markdown_extensions:
 - codehilite     
 - pymdownx.superfences
 
+# Tracking
+google_analytics:
+  - 'UA-31008645-7'
+  - 'auto'
+  
 # Navigation
 nav:
 - 'Versions':
