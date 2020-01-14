@@ -368,7 +368,7 @@ It can be handled with spontaneous scopes which works via regular expressions.
 1. Allow spontaneous scopes for client via `allow_spontaneous_scopes` client property.
 2. Register resource with scope `^/user/.+$`
 3. Register and assign UMA RPT Authorization Policies to `^/user/.+$` 
-4. RS should sent explicit scope in permission, e.g. `/user/1` (AS validates whether `/user/1` matches regexp `^/user/.+$`). After validation AS persists `/user/1` scope and during RPT creation puts permission with explicit scope.
+4. RS should sent explicit scope in permission during ticket registration, e.g. `/user/1` (AS validates whether `/user/1` matches regexp `^/user/.+$`). After validation AS persists `/user/1` scope and during RPT creation puts permission with explicit scope.
 
 In this way AS can validate and persist scopes dynamically. Spontaneous scopes have lifetime which is controlled by `spontaneousScopeLifetime` global oxauth configuration property.
 
