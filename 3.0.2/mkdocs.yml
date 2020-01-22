@@ -70,7 +70,7 @@ nav:
         - 'Interception Scripts': 'admin-guide/custom-script.md'
         - User Authentication Guide:
             - 'User Authentication Introduction': 'authn-guide/intro.md'
-            - 'Basic Authenticatoin': 'authn-guide/basic.md'
+            - 'Basic Authentication': 'authn-guide/basic.md'
             - 'Social Authentication': 'authn-guide/passport.md'
             - 'Super Gluu': 'authn-guide/supergluu.md'
             - 'FIDO U2F': 'authn-guide/U2F.md'
