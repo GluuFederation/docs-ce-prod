@@ -207,7 +207,7 @@ The Gluu Server is configured to support this SAML flow out-of-the-box. To emplo
 1. Send the user to the composed URL (e.g. via redirection by on-page JS, an action triggered by a button, etc.)
 
 ## Federation Configuration     
-If your target SP is part of a federation like [InCommon](https://www.incommon.org/federation/), a TR can be created for the SP using the federation's metadata. To achieve this, add a TR for the federation in the Gluu Server first, then create TRs for each target SP in the federation. 
+If your target SP is part of a federation like [InCommon](https://www.incommon.org/federation/), a TR can be created for the SP using the federation's metadata. To achieve this, add a TR for the federation in the Gluu Server first, then create TRs for each target SP in the federation. If working with large metadata files, make sure the backend has enough resources to handle such a large operation.
 
 The example below shows how to add a TR for InCommon.
 
