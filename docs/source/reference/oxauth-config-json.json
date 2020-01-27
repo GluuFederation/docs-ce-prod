@@ -880,6 +880,11 @@
             "description": "Boolean value specifying whether to enable session ID parameter.",
             "type": "boolean"
         },
+        "sessionIdRequestParameterEnabled": {
+            "id": "sessionIdRequestParameterEnabled",
+            "description": "Boolean value specifying whether to enable session_id HTTP request parameter.",
+            "type": "boolean"
+        },
         "sessionIdPersistOnPromptNone": {
             "id": "sessionIdPersistOnPromptNone",
             "description": "Boolean value specifying whether to persist session ID on prompt none.",
