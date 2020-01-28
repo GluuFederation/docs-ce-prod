@@ -2,7 +2,9 @@
 
 ## Overview
 
-The Gluu Server includes a feature for Forgot Password functionality that enables users to perform self-service password resets. In order to use this feature, follow these steps:
+The Gluu Server includes a basic feature to enable users to perform self-service password resets. This feature only works for passwords stored in the Gluu Server, i.e. if passwords are stored in a backend system, this feature will not work.  
+
+In order to use this feature, follow these steps:
 
 1. Complete SMTP Server configuration
 1. Enable password reset in oxTrust
