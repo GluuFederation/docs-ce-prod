@@ -320,6 +320,28 @@ It is also possible to run introspection script during `access_token` creation a
 
 If `run_introspection_script_before_access_token_as_jwt_creation_and_include_claims` set to true and `access_token_as_jwt` set to true then introspection script will be run before JWT (`access_token`) is created and all JSON values will be transfered to JWT. Also `context` inside script has additional method which allows to cancel transfering of claims if needed `context.setTranferIntrospectionPropertiesIntoJwtClaims(false)` 
 
+## End Session (Logout)
+
+End Session scripts allows to modify HTML response for Frontchannel logout ([spec](http://openid.net/specs/openid-connect-frontchannel-1_0.html)).
+
+The End Session interception script extends the base script type with the `init`, `destroy` and `getApiVersion` methods but also adds the following method(s):
+
+|Method|`def getFrontchannelHtml(self, context)`|
+|---|---|
+|**Method Parameter**|`context` is `org.gluu.oxauth.service.external.context.EndSessionContext`|
+
+Snippet
+```
+    # Returns string, it must be valid HTML (with iframes according to spec http://openid.net/specs/openid-connect-frontchannel-1_0.html)
+    # This method is called on `/end_session` after actual session is killed and oxauth construct HTML to return to RP.
+    # Note :
+    # context is reference of org.gluu.oxauth.service.external.context.EndSessionContext (in https://github.com/GluuFederation/oxauth project, )
+    def getFrontchannelHtml(self, context):
+        return ""
+```
+
+Full version of the script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_4.1/static/extension/end_session/end_session.py). 
+
 ## Resource Owner Password Credentials
 
 Resource Owner Password Credentials script allows modifying the behavior of Resource Owner Password Credentials Grant.

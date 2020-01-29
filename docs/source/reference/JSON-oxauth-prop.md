@@ -106,6 +106,7 @@ serverSessionIdLifetime                            | Dedicated property to contr
 sessionIdEnabled                                   | Boolean value specifying whether to enable session ID parameter
 sessionIdRequestParameterEnabled                   | Boolean value specifying whether to enable session_id HTTP request parameter
 sessionIdPersistOnPromptNone                       | Boolean value specifying whether to persist session ID on prompt none
+fapiCompatibility                                  | Boolean value specifying whether turn on FAPI compatibility mode. If true AS behaves in more strict mode.
 spontaneousScopeLifetime                           | The lifetime of spontaneous scope in seconds.
 configurationUpdateInterval                        | The interval for configuration update in seconds
 cssLocation                                        | The location for CSS files

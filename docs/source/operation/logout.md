@@ -25,6 +25,10 @@ There are a few important points to note:
 
 `post_logout_redirect_uri` is validated against client which take part in SSO. If the session does not exist or can not be identified, an error page is shown. However, it is possible to allow redirect to the RP without validation if `allowPostLogoutRedirectWithoutValidation` is set to `true` and it is whitelisted via `clientWhiteList` (by default, the `*` wildcard is used which makes it white listed).
 
+There is `End Session` interception script which allows to modify HTML returned during frontchannel logout.
+
+The sample `End Session` script is [available here](./sample-end-session.py)
+
 Read the [OpenID Connect Front-Channel Logout Specifications](http://openid.net/specs/openid-connect-frontchannel-1_0.html) to learn more about logout with OpenID Connect.
 
 ## SAML Logout
