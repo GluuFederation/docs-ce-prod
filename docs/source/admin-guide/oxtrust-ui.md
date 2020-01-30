@@ -106,6 +106,13 @@ The Gluu Server needs a mail server in order to send notifications. All fields i
 
 From the Organization Settings page, the administrator can manage the organization name, logo, and favicon. This page also contains the name of the Gluu Server manager group. Users added to this group will have administrator access to the Gluu Server.
 
+#### Extra libraries  
+
+!!!please add screenshot here
+
+From the Extra libraries page, the administrator can add extra libraries to gluu components respectively oxtrust and oxauth.
+Every library added require the restart of the corresponding service to which it is added.
+
 ## JSON Configuration      
 The following tabs are included in the `JSON Configuration` menu:
 
