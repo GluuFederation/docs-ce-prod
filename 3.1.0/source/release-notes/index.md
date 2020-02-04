@@ -20,9 +20,9 @@ OR USING THE RELEASE.
 
 Status: Active Release
 
-| Released | EOL |
-| --- | --- |
-| September 2017 | April 2020 |
+| Released | Community EOL | Enterprise EOL |
+| --- | --- | --- |
+| September 2017 | April 2020 | April 2021 |
 
 ### Purpose
 
