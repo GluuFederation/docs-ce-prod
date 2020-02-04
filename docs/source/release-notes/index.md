@@ -14,6 +14,14 @@ EXPRESS OR IMPLIED. UNDER NO CIRCUMSTANCE, THE AUTHOR, OR GLUU SHALL BE LIABLE F
 CLAIMS OR DAMAGES CAUSED DIRECTLY OR INDIRECTLY TO ANY PROPERTY OR LIFE WHILE INSTALLING 
 OR USING THE RELEASE.
 
+## Lifecycle
+
+Status: In Development
+
+| Released | EOL |
+| --- | --- |
+| Upcoming | TBD |
+
 ## Purpose
 
 The document is released with the Version 4.1 of the Gluu Software. The purpose of this document is to provide the changes made/new features included in this release of the Gluu Software. The list is not exhaustive and there might be some omission of negligible issues, but the noteworthy features, enhancements and fixes are covered. 
