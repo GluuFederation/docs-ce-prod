@@ -18,9 +18,9 @@ OR USING THE RELEASE.
 
 Status: In Development
 
-| Released | EOL |
-| --- | --- |
-| Upcoming | TBD |
+| Released | Community EOL | Enterprise EOL |
+| --- | --- | --- |
+| Upcoming | TBD | TBD |
 
 ## Purpose
 
