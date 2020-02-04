@@ -18,7 +18,7 @@ Status: Active Release
 
 | Released | Community EOL | Enterprise EOL |
 | --- | --- | --- |
-| April 2019 | October 2020 | October 2021 |
+| April 2019 | October 2020 | April 2021 |
 
 ## Purpose
 
