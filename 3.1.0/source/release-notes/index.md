@@ -1,4 +1,6 @@
-# Notice
+# Release Notes
+
+## Notice
 
 This document, also known as the Gluu Release Note, 
 relates to the Gluu Release versioned 3.1.0. The work is licensed under “The MIT License” 
@@ -14,17 +16,25 @@ OR USING THE RELEASE.
 
 ## Overview
 
-## Purpose
+### Lifecycle
+
+Status: Active Release
+
+| Released | EOL |
+| --- | --- |
+| September 2017 | April 2020 |
+
+### Purpose
 
 The document is released with the Version 3.1.0 of the Gluu Software. The purpose of this document is to provide the changes made/new features included in this release of the Gluu Software. The list is not exhaustive and there might be some omission of negligible issues, but the noteworthy features, enhancements and fixes are covered. 
 
-## Background
+### Background
 
 The Gluu Server is a free open source identity and access management (IAM) platform. The Gluu Server is a container distribution composed of software written by Gluu and incorporated from other open source projects. 
 
 The most common use cases for the Gluu Server include single sign-on (SSO), mobile authentication, API access management, two-factor authentication, customer identity and access management (CIAM) and identity federation.
 
-## Documentation
+### Documentation
 
 Please visit the [Gluu Documentation Page](http://www.gluu.org/docs) for the complete 
 documentation and administrative guide. 
