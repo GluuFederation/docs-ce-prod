@@ -1,13 +1,5 @@
 # Release Notes
 
-## Lifecycle
-
-Status: EOL
-
-| Release | EOL |
-| --- | --- |
-| July 2016 | December 2018 |
-
 ## Notice
 
 This document, also known as the Gluu Release Note, relates to the Gluu Release versioned 3.0.1. The work is licensed under “The MIT License” allowing the use, copy, modify, merge, publish, distribute, sub-license and sale without limitation and liability. This document extends only to the aforementioned release version in the heading.
@@ -15,6 +7,14 @@ This document, also known as the Gluu Release Note, relates to the Gluu Release 
 UNLESS IT HAS BEEN EXPRESSLY AGREED UPON BY ANY WRITTEN AGREEMENT BEFOREHAND, THE WORK/RELEASE IS PROVIDED “AS IS”, WITHOUT ANY WARRANTY OR GUARANTEE OF ANY KIND EXPRESS OR IMPLIED. UNDER NO CIRCUMSTANCE, THE AUTHOR, OR GLUU SHALL BE LIABLE FOR ANY CLAIMS OR DAMAGES CAUSED DIRECTLY OR INDIRECTLY TO ANY PROPERTY OR LIFE WHILE INSTALLING OR USING THE RELEASE.
 
 ## Overview
+
+### Lifecycle
+
+Status: EOL
+
+| Released | Community EOL | Enterprise EOL |
+| --- | --- | --- |
+| July 2016 | December 2018 | December 2019|
 
 ### Purpose
 
