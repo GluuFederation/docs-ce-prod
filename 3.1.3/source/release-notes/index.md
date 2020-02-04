@@ -1,3 +1,5 @@
+# Release Notes
+
 ## Notice
 
 This document, also known as the Gluu Release Note, 
@@ -11,6 +13,14 @@ THE WORK/RELEASE IS PROVIDED “AS IS”, WITHOUT ANY WARRANTY OR GUARANTEE OF A
 EXPRESS OR IMPLIED. UNDER NO CIRCUMSTANCE, THE AUTHOR, OR GLUU SHALL BE LIABLE FOR ANY 
 CLAIMS OR DAMAGES CAUSED DIRECTLY OR INDIRECTLY TO ANY PROPERTY OR LIFE WHILE INSTALLING 
 OR USING THE RELEASE.
+
+## Lifecycle
+
+Status: Active Release
+
+| Released | EOL |
+| --- | --- |
+| May 2018 | April 2020 |
 
 ## Purpose
 
@@ -43,7 +53,6 @@ documentation and administrative guide.
 - Redis
 
 ## New features
-
 
 ## Fixes / Enhancements
 
