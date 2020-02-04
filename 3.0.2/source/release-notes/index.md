@@ -1,13 +1,5 @@
 # Release Notes
 
-## Lifecycle
-
-Status: EOL
-
-| Released | EOL |
-| --- | --- |
-| March 2017 | September 2019 |
-
 ## Notice
 
 This document, also known as the Gluu Release Note, 
@@ -22,7 +14,16 @@ EXPRESS OR IMPLIED. UNDER NO CIRCUMSTANCE, THE AUTHOR, OR GLUU SHALL BE LIABLE F
 CLAIMS OR DAMAGES CAUSED DIRECTLY OR INDIRECTLY TO ANY PROPERTY OR LIFE WHILE INSTALLING 
 OR USING THE RELEASE.
 
-### Overview
+## Overview
+
+### Lifecycle
+
+Status: EOL
+
+| Released | EOL |
+| --- | --- |
+| March 2017 | September 2019 |
+
 
 ### Purpose
 
@@ -39,7 +40,7 @@ The most common use cases for the Gluu Server include single sign-on (SSO), mobi
 Please visit the [Gluu Documentation Page](http://www.gluu.org/docs) for the complete 
 documentation and administrative guide. 
 
-### Components included in Gluu Server CE 3.0.2
+## Components included in Gluu Server CE 3.0.2
 - oxAuth, oxTrust,oxCore v3.0.2
 - OpenLDAP v2.4.44-5
 - Shibboleth v3.2.1
@@ -50,31 +51,31 @@ documentation and administrative guide.
 - Jetty-distribution-9.3.15.v20161220
 - Jython v2.7.0
 
-### What's new in version 3.0.2
+## What's new in version 3.0.2
 
-#### New Features
-##### oxAuth
+### New Features
+#### oxAuth
 - Default CORS support in web.xml file [#523](https://github.com/GluuFederation/oxAuth/issues/523)
 - Client registration allowed with http for localhost [#496](https://github.com/GluuFederation/oxAuth/issues/496)
 - UMA RPT audit logs contain client_id and user_id [#483](https://github.com/GluuFederation/oxAuth/issues/483)
-##### oxTrust
+#### oxTrust
 - Central log4j2.xml location [#522](https://github.com/GluuFederation/oxTrust/issues/522)
 - TR download metadata file in background [#349](https://github.com/GluuFederation/oxTrust/issues/349)
 - Validated id_token acr claim equals specified oxTrust authn method [#513](https://github.com/GluuFederation/oxTrust/issues/513)
 - IDP v3 CAS configuration in oxTrust [#377](https://github.com/GluuFederation/oxTrust/issues/377)
 - Password reminder action uses wrong condition to enable/disable this functionality [#334](https://github.com/GluuFederation/oxTrust/issues/334)
 - Support inetOrgPerson [#516](https://github.com/GluuFederation/oxTrust/issues/516)
-##### Community Edition
+#### Community Edition
 - Check LDAP passwords and reject invalid shell characters like $ [#299](https://github.com/GluuFederation/community-edition-setup/issues/299)
 
 
-#### Deprecated Features
+### Deprecated Features
 
-##### oxTrust
+#### oxTrust
 - Extra Update Password button[ #224](https://github.com/GluuFederation/oxTrust/issues/224)
 
-#### Fixes
-##### oxAuth
+### Fixes
+#### oxAuth
 - CORS filter not processing pre-flight requests #541 [#458](https://github.com/GluuFederation/oxAuth/issues/458)
 - "X-Frame-Options" header set by Apache prevents opiframe from being used by RP [#543](https://github.com/GluuFederation/oxAuth/issues/543)
 - Security error thrown using implicit flow when request the userinfo endpoint [#529](https://github.com/GluuFederation/oxAuth/issues/529)
@@ -84,7 +85,7 @@ documentation and administrative guide.
 - UMA resource_set name is mandatory [#468](https://github.com/GluuFederation/oxAuth/issues/468)
 - Certificate authentication jetty support [#481](https://github.com/GluuFederation/oxAuth/issues/481)
 
-##### oxTrust
+#### oxTrust
 - Default authentication method names changed [#518](https://github.com/GluuFederation/oxTrust/issues/518) [#506](https://github.com/GluuFederation/oxTrust/issues/506) [#521](https://github.com/GluuFederation/oxTrust/issues/521)
 - Birthday attribute schema does not match format [#562](https://github.com/GluuFederation/oxTrust/issues/562)
 - SAML metadata fix [#561](https://github.com/GluuFederation/oxTrust/issues/561) [#529](https://github.com/GluuFederation/oxTrust/issues/529)
@@ -93,7 +94,7 @@ documentation and administrative guide.
 - UMA resource set GUI corrupts scopes field [#484](https://github.com/GluuFederation/oxTrust/issues/484)
 - SAML TR add issue [#505](https://github.com/GluuFederation/oxTrust/issues/505) [#351](https://github.com/GluuFederation/oxTrust/issues/351)
 - User entry created via oxTrust lacks "eduPerson" objectclass [#499](https://github.com/GluuFederation/oxTrust/issues/499)
-##### Community Edition
+#### Community Edition
 - Remove IP address from https config [#300](https://github.com/GluuFederation/community-edition-setup/issues/300)
 - Gluu Server 3.0.1 fails to start after VM reboot[#274](https://github.com/GluuFederation/community-edition-setup/issues/274)
 - Error in import30.py script [#279](https://github.com/GluuFederation/community-edition-setup/issues/279)
