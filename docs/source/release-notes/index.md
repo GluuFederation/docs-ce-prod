@@ -1,26 +1,36 @@
-# Notice
+# Release Notes
+
+## Lifecycle
+
+Status: EOL
+
+| Release | EOL |
+| --- | --- |
+| July 2016 | December 2018 |
+
+## Notice
 
 This document, also known as the Gluu Release Note, relates to the Gluu Release versioned 3.0.1. The work is licensed under “The MIT License” allowing the use, copy, modify, merge, publish, distribute, sub-license and sale without limitation and liability. This document extends only to the aforementioned release version in the heading.
 
 UNLESS IT HAS BEEN EXPRESSLY AGREED UPON BY ANY WRITTEN AGREEMENT BEFOREHAND, THE WORK/RELEASE IS PROVIDED “AS IS”, WITHOUT ANY WARRANTY OR GUARANTEE OF ANY KIND EXPRESS OR IMPLIED. UNDER NO CIRCUMSTANCE, THE AUTHOR, OR GLUU SHALL BE LIABLE FOR ANY CLAIMS OR DAMAGES CAUSED DIRECTLY OR INDIRECTLY TO ANY PROPERTY OR LIFE WHILE INSTALLING OR USING THE RELEASE.
 
-# Overview
+## Overview
 
-## Purpose
+### Purpose
 
 The document is released with the Version 3.0.1 of the Gluu Software. The purpose of this document is to provide the changes made/new features included in this release of the Gluu Software. The list is not exhaustive and there might be some omission of negligible issues, but the noteworthy features, enhancements and fixes are covered. 
 
-## Background
+### Background
 
 The Gluu Server is a free open source identity and access management (IAM) platform. The Gluu Server is a container distribution composed of software written by Gluu and incorporated from other open source projects.
 
 The most common use cases for the Gluu Server include single sign-on (SSO), mobile authentication, API access management, two-factor authentication, customer identity and access management (CIAM) and identity federation.
 
-## Documentation
+### Documentation
 
 Please visit [Gluu Documentation Page](http://www.gluu.org/docs) for the complete documentation and administrative guide. 
 
-## Components included in Gluu Server CE 3.0.1
+### Components included in Gluu Server CE 3.0.1
 
 - oxAuth, oxTrust,oxCore v3.0.1
 - OpenLDAP v2.4.44-5
@@ -32,13 +42,13 @@ Please visit [Gluu Documentation Page](http://www.gluu.org/docs) for the complet
 - Jetty-distribution-9.3.15.v20161220
 - Jython v2.7.0
 
-## What's new in version 3.0.1
+### What's new in version 3.0.1
 
 There are some major changes in Gluu Server Community Edition 3.0.1 from replacing `tomcat` with `jetty` to dropping `opendj` for `openldap`. The changes are available in the documentation hosted at https://gluu.org/docs/operation/intro. 
 Please see the specific component release pages for details.
 
-### New Features
-#### oxAuth
+#### New Features
+##### oxAuth
 - Escape parameter values to prevent XSS attack [#459](https://github.com/GluuFederation/oxAuth/issues/459)
 - EndSession endpoint accepts id_token or session_state to end session [#439](https://github.com/GluuFederation/oxAuth/issues/439)
 - Support JSON Property for HTTPOnly [#412](https://github.com/GluuFederation/oxAuth/issues/412)
@@ -46,7 +56,7 @@ Please see the specific component release pages for details.
 - log4j: 2.x from log4j 1.x [$416](https://github.com/GluuFederation/oxAuth/issues/416)
 - Login page [#414](https://github.com/GluuFederation/oxAuth/issues/414)
 - Jquery library updated to 1.12.4 [#411](https://github.com/GluuFederation/oxAuth/issues/411)
-#### oxTrust
+##### oxTrust
 - Toggle persist authorization to false when pre-authorization = true [#444](https://github.com/GluuFederation/oxTrust/issues/444)
 - Logging updated to log4j 2.x [#434](https://github.com/GluuFederation/oxTrust/issues/434)
 - JQuery Library updated to 1.12.4 [#421](https://github.com/GluuFederation/oxTrust/issues/421)
@@ -54,19 +64,19 @@ Please see the specific component release pages for details.
 - oxTrust UMA properties renamed [#407](https://github.com/GluuFederation/oxTrust/issues/407)
 - Creation and update stamp for users in LDAP [#406](https://github.com/GluuFederation/oxTrust/issues/406)
 - Display Name used to identify users in oxTrust [#398](https://github.com/GluuFederation/oxTrust/issues/398)
-#### Community Edition Setup
+##### Community Edition Setup
 - o=site uses different filesystem folder [#261](https://github.com/GluuFederation/community-edition-setup/issues/261)
 - Jetty - Basic Hardening [#251](https://github.com/GluuFederation/community-edition-setup/issues/251)
 - oxAuth default configuration [#246](https://github.com/GluuFederation/community-edition-setup/issues/246)
 
-### Deprecated Features
-#### oxTrust
+#### Deprecated Features
+##### oxTrust
 - White Pages tab and option [#423](https://github.com/GluuFederation/oxTrust/issues/423)
 - Password from TR attribute list [#466](https://github.com/GluuFederation/oxTrust/issues/466)
 - SAML 1 and ShibbolethSSO [#465](https://github.com/GluuFederation/oxTrust/issues/465)
 
-### Fixes
-#### oxAuth
+#### Fixes
+##### oxAuth
 - NPE in 3.0.0 [#347](https://github.com/GluuFederation/oxAuth/issues/347)
 - UMA AM validation for oxauth behind proxy [#472](https://github.com/GluuFederation/oxAuth/issues/472)
 - oxLastLoginTime fail : print also exception
@@ -128,7 +138,7 @@ Please see the specific component release pages for details.
 - Removed Add Resource button from UMA [#480](https://github.com/GluuFederation/oxTrust/issues/480)
 - Federation SP list not loading [#488](https://github.com/GluuFederation/oxTrust/issues/488)
 
-#### Community Edition Setup
+##### Community Edition Setup
 - LDAP running as root [#262](https://github.com/GluuFederation/community-edition-setup/issues/262)
 - Setup script in CentOS 6.x [#260](https://github.com/GluuFederation/community-edition-setup/issues/260)
 - OpenDJ schema [#259](https://github.com/GluuFederation/community-edition-setup/issues/259)
