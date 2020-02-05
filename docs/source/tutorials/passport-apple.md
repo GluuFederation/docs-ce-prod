@@ -68,7 +68,20 @@ Next, let's add the passport strategy that allows us to "talk" to Apple identity
 Apple doesn't redirect the users' browsers to the callback URL (`redirect_uri`) once they login sucessfully, but makes a POST to the URL. This is not an expected behavior for and Oauth2 authorization server, so it requires adding support for this kind of custom behavior.
 
 1. `cd` to `/opt/gluu/node/passport/server`
-1. Replace file `providers.js` using the one found [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/master/server/providers.js)
+1. Add to file `providers.js` the following snippet **after** line 145:
+
+    ```
+    if (p.passportStrategyId.indexOf('passport-apple') >= 0 && options.key) {
+        try {
+            options.key = require('fs').readFileSync(options.key, 'utf8')
+        } catch (e) {
+            logger.log2('warn', `There was a problem reading file ${options.key}. Ensure the file exists and is readable`)
+            logger.log2('error', e.stack)
+            options.key = ''
+        }
+    }
+    ```
+    
 1. Add to file `routes.js` the following snippet (around line 21) and save:
 
     ``` 
