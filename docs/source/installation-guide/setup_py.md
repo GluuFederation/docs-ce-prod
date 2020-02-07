@@ -17,7 +17,7 @@ Refer to the following table for details about available setup options:
 | Enter email address for support at your organization | Used to generate X.509 certificates. | 
 | Optional: Enter oxTrust Admin Password | Used as the default admin user for oxTrust. |
 | Optional: Enter Password for LDAP Admin | Used as the LDAP directory manager password, if you not provided it will be same as oxTrust admin password. |
-| Install Local WrenDS Server? | If you use local or remote couchbase server, you will be asked if you want to install WrendDS (OpenDJ) locally to enable hybrid installation |
+| Install Local WrenDS Server? | Optional: Installs a local DB, used to store user info and configuration data. Can be omitted if using a remote LDAP or Couchbase. |
 | Install oxAuth OAuth2 Authorization Server | Required. Includes Gluu's OpenID Connect provider (OP) and UMA authorization server (AS) implementations.|
 | Install oxTrust Admin UI | Required. This is the Gluu server admin dashboard. |
 | Install Apache 2 web server | Required |
@@ -88,28 +88,3 @@ Example Command: `# ./setup.py -ps` This command will install Gluu Server with P
     openssl enc -d -aes-256-cbc -in setup.properties.last.enc -out setup.properties.last
     ```
     When prompted, enter the oxTrust admin password.
-<!-- 
-#### Couchbase Server Setup (Experimental)
-Starting in CE 4.1, Gluu Server supports Couchbase Server as a database backend. To install with Couchbase, you need to download the OS-specific Couchbase package from https://www.couchbase.com/downloads (Enterprise version only), and save to `/opt/dist/couchbase`. For example, for Ubuntu 18,
-
-```
-# ls /opt/dist/couchbase
-couchbase-server-enterprise_6.0.1-ubuntu18.04_amd64.deb
-```
-
-If both Couchbase and LDAP (either locally or remote) are available, you will be asked if you want to use hybrid backends:
-
-```
-Install (1) Gluu OpenDj (2) Couchbase (3) Hybrid [1|2|3] [1] : 3
-  Please note that you have to update your firewall configuration to
-  allow connections to the following ports:
-  4369, 28091 to 28094, 9100 to 9105, 9998, 9999, 11207, 11209 to 11211,
-  11214, 11215, 18091 to 18093, and from 21100 to 21299.
-By using this software you agree to the End User License Agreement.
-See /opt/couchbase/LICENSE.txt.
-Use Gluu OpenDj to store (1) default (2) user (3) cache (4) statistic (5) site : 14
-```
-
-In this example, both OpenDJ and Couchbase will be used for storing data. Default storage (system configurations, attributes, clients, etc.) will be OpenDJ and also metric data (statistic) will be stored in OpenDJ. Other data will be stored in Couchbase server.
-
--->
