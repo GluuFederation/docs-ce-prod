@@ -24,6 +24,7 @@ Refer to the following table for details about available setup options:
 | Install Shibboleth SAML IDP | Optional. Only install if a SAML identity provider (IDP) is needed. |
 | Install oxAuth RP | Optional. OpenID Connect test client: useful for test environments, for more details see [here](../admin-guide/openid-connect/#oxauth-rp) |
 | Install Passport |  Optional. Install if you want to support external IDP, for instance to offer users social login. |
+| Install Casa | Optional. Install if you want to support self-service 2FA. More information is available [here](https://gluu.org/docs/casa). Selecting yes also prompts for [oxd installation](https://gluu.org/docs/oxd) |
 | Install Gluu Radius | Optional. Installs Radius server. More information is available [here](../admin-guide/radius-server/gluu-radius.md)
 
 When complete, the setup script will show the selections and prompt for confirmation. If everything looks OK, select Y to finish installation. 
