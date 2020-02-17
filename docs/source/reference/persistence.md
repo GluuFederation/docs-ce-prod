@@ -190,8 +190,8 @@ This module combines other persistence layers, so all layers used should be corr
 ```
 storages: couchbase, ldap
 storage.default: couchbase
-storage.ldap.mapping: people, groups
-storage.couchbase.mapping: clients, cache, site, tokens, statistic, authorization
+storage.ldap.mapping: user
+storage.couchbase.mapping: tokens, cache, cache-refresh
 ```
 
 In this example, CE applications will use LDAP for `ou=people` and `ou=groups`. All other data will be stored in the Couchbase DB.
@@ -203,7 +203,7 @@ In 4.1, the base configuration details is stored in the `/etc/gluu/conf/gluu.pro
 The following is a self-explanatory sample configuration:
 
 ```
-persistence.type=couchbase
+persistence.type=hybrid
 
 oxauth_ConfigurationEntryDN=ou=oxauth,ou=configuration,o=gluu
 oxtrust_ConfigurationEntryDN=ou=oxtrust,ou=configuration,o=gluu
@@ -215,4 +215,5 @@ oxradius_ConfigurationEntryDN=ou=oxradius,ou=configuration,o=gluu
 certsDir=/etc/certs
 confDir=
 pythonModulesDir=/opt/gluu/python/libs
+
 ```
