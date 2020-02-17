@@ -127,12 +127,11 @@ The table below specifies the list of entry types that applications store in buc
 
 | Bucket | Entry Type |
 | --- | --- |
-|gluu | <ul> <li> gluuOrganization </li> <li> gluuConfiguration </li> <li> oxAuthConfiguration </li> <li> oxTrustConfiguration </li> <li> oxPassportConfiguration </li> <li> oxApplicationConfiguration </li> <li> gluuAttribute </li> <li> oxCustomScript </li> <li> oxAuthCustomScope </li> <li> oxSectorIdentifier </li> <li> oxUmaResource </li> <li> oxUmaResourcePermission </li> <li> oxAuthUmaRPT </li> <li> oxAuthUmaPCT </li> <li> oxDeviceRegistration </li> <li> oxU2fRequest </li> <li> oxClientAuthorization </li> <li> oxAuthClient </li></ul> |
+|gluu | <ul> <li> gluuOrganization </li> <li> gluuConfiguration </li> <li> oxAuthConfiguration </li> <li> oxTrustConfiguration </li> <li> oxPassportConfiguration </li> <li> oxApplicationConfiguration </li> <li> gluuAttribute </li> <li> oxCustomScript </li> <li> oxAuthCustomScope </li> <li> oxSectorIdentifier </li> <li> oxUmaResource </li> <li> oxUmaResourcePermission </li> <li> oxAuthUmaRPT </li> <li> oxAuthUmaPCT </li> <li> oxDeviceRegistration </li> <li> oxU2fRequest </li> <li> oxClientAuthorization </li> <li> oxAuthClient </li> <li>oxMetric</li></ul> |
 | gluu_cache | oxCacheEntity |
 | gluu_site | gluuInumMap |
 | gluu_token | oxAuthToken |
 | gluu_user | <ul> <li> gluuPerson </li> <li> gluuGroup </li> <li> pairwiseIdentifier </li> <li> oxDeviceRegistration </li> <li> oxFido2AuthenticationEntry </li> <li> oxFido2RegistrationEntry </li> </ul> |
-| gluu_statistic | oxMetric |
 
 Both LDAP and Couchbase persistence layers use the [Gluu Filter API](https://github.com/GluuFederation/oxCore/blob/master/persistence-filter/src/main/java/org/gluu/search/filter/Filter.java) to minimize the Gluu Server's dependency on a specific DB. At runtime, the Couchbase persistence layer converts them to the N1QL query language.
 
