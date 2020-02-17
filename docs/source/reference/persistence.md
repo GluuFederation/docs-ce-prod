@@ -158,16 +158,13 @@ connection.scan-consistency: not_bounded
 auth.userName: <couchbase_server_user>
 auth.userPassword: <encoded_couchbase_server_pw>
 
-buckets: gluu, gluu_client, gluu_cache, gluu_site, gluu_token, gluu_authorization, gluu_user, gluu_statistic
+buckets: gluu, gluu_token, gluu_cache, gluu_user, gluu_site
 
 bucket.default: gluu
-bucket.gluu_user.mapping: people, groups
+bucket.gluu_user.mapping: people, groups, authorizations
 bucket.gluu_cache.mapping: cache
-bucket.gluu_statistic.mapping: statistic
 bucket.gluu_site.mapping: cache-refresh
-bucket.gluu_authorization.mapping: authorizations
 bucket.gluu_token.mapping: tokens
-bucket.gluu_client.mapping: clients
 
 password.encryption.method: <encryption_method>
 
