@@ -81,6 +81,8 @@ The administrator can use the following command line options to include addition
 * __--remote-couchbase__ Allows use of a remote Couchbase server. <!-- For further information see https://github.com/GluuFederation/support-docs/blob/master/howto/4.1/CE_with_remote_CB.md -->
 * __-properties-password__ Encoded setup.properties file password (startinig from 4.1.0, setup.py saves encoded propertes files with name `setup.properties.last.enc`) 
 Example Command: `# ./setup.py -ps` This command will install Gluu Server with Passport and Shibboleth IDP.
+* __--install-casa__ Install Casa
+* __--install-oxd__ Install Oxd Server
 
 !!! Note
     `setup.py` will save an encrypted properties file named `setup.properties.last.enc`. The password is the same as the oxTrust admin password. Retain this password to use this file for future installations. To reuse the file, it needs to be decrypted with the following command:
