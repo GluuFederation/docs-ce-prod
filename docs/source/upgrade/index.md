@@ -3,14 +3,36 @@
 ## Overview
 The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will need to either use our in-place upgrade script or explicitly install the new version and export/import your data. Find the existing version below for upgrade instructions to Gluu Server 4.1. 
 
-### Pre-requisites
+## Prerequisites
 
 - Before upgrading, make sure to [back up](../operation/backup.md) the Gluu container or LDAP LDIF. 
 - Upgrades should always be thoroughly scoped and tested on a development environment *first*.
 
-### Upgrading from 3.1.x to 4.1
+## Upgrade with Scripts
 
-At this time, only Gluu Server version 3.1.x can be upgraded to version 4.1. The upgrade script works on CentOS 7, Ubuntu 16, and RedHat 7. Upgrade script performs the following steps:
+Community Edition version 4.1 must be upgraded from version 4.0.x. Instructions to upgrade from 3.1.x to 4.0 are included [below](#upgrade-31x-to-40).
+
+### Upgrade 4.0 to 4.1
+
+* Create directory
+```
+# mkdir /root/upg410
+```
+
+* Download the upgrade script
+```
+# wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.1.0/upg40to410.py -O /root/upg410/upg40to410.py
+```
+
+* Execute the script:
+
+```
+# cd /root/upg410/
+# python upg40to410.py
+```
+### Upgrade 3.1.x to 4.0 
+
+The 4.0 upgrade script performs the following tasks:
 
 - Upgrades Java to Amazon Corretto. Extracts certificates from the existing Java keystore to `hostname_service.crt` in the upgrade directory. After upgrading Java, imports to keystore
 - Upgrades all Gluu WAR files, NodeJS, and Passport components
@@ -41,15 +63,7 @@ another way.
     
     Put the schema file in `/opt/opendj/config/schema/`
 
-
-There are two options to perform the upgrade (both methods work inside the container):
-
-#### Upgrade with Scripts
-There are two steps upgrading 3.1.x to 4.1: first upgrade from 3.1.x to 4.0 and then upgrade to 4.1
-We need two scripts:
-
-##### 1) Upgrade 3.1.x to 4.0 
-The upgrade script can download all needed software and applications from the internet. Please run each script in different directory. You can perform an online upgrade by following these steps:
+The upgrade script can download all needed software and applications from the internet. Please run each script in a different directory. You can perform an online upgrade by following these steps:
 
 * Create directory
 ```
@@ -68,23 +82,4 @@ The upgrade script can download all needed software and applications from the in
 ```
 
 Your upgrade directory will be the current directory. The script will create these directories: `app`, `war`, `temp`, `setup`
-
-##### 2) Upgrade 4.0 to 4.1
-
-* Create directory
-```
-# mkdir /root/upg410
-```
-
-* Download the upgrade script
-```
-# wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.1.0/upg40to410.py -O /root/upg410/upg40to410.py
-```
-
-* Execute the script:
-
-```
-# cd /root/upg410/
-# python upg40to410.py
-```
 
