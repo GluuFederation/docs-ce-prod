@@ -70,7 +70,7 @@ Your upgrade directory will be the current directory. The script will create the
 * Download the upgrade script
 
 ```
-wget https://github.com/GluuFederation/community-edition-package/blob/master/update/4.1.0/upg40to410.py
+wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.1.0/upg40to410.py
 ```
 
 * Execute the script:
