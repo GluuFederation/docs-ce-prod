@@ -44,13 +44,17 @@ another way.
 
 There are two options to perform the upgrade (both methods work inside the container):
 
-#### Online Upgrade
+#### Upgrade with Scripts
+There are two steps upgrading 3.1.x to 4.1: first upgrade from 3.1.x to 4.0 and then upgrade to 4.1
+We need two scripts:
+
+##### 1) Upgrade 3.1.x to 4.0 
 The upgrade script can download all needed software and applications from the internet. You can perform an online upgrade by following these steps:
 
 * Download the upgrade script
 
 ```
-wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.1/update.py
+wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.0/update.py
 ```
 
 * Execute the script with `-o` argument
@@ -61,21 +65,17 @@ python update.py -o
 
 Your upgrade directory will be the current directory. The script will create these directories: `app`, `war`, `temp`, `setup`
 
-<!--
-#### Static Upgrade
-The static, self-extracting upgrade package contains all components for the upgrade. You still need an internet connection to install the libraries that are needed by the upgrade script. To perform a static upgrade, follow these steps:
+##### 2) Upgrade 4.0 to 4.1
 
-* Download the self-extracting package
+* Download the upgrade script
 
 ```
-wget http:// ...... /4.1-upg.sh
+wget https://github.com/GluuFederation/community-edition-package/blob/master/update/4.1.0/upg40to410.py
 ```
 
-* Execute the script
+* Execute the script:
 
 ```
-sh 4.1-upg.sh
+python upg40to410.py
 ```
 
-The upgrade directory will be `/opt/upd/4.1-upg`
--->
