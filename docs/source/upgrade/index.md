@@ -10,7 +10,41 @@ The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will
 
 ## Upgrade with Scripts
 
-Community Edition version 4.1 must be upgraded from version 4.0.x. Instructions to upgrade from 3.1.x to 4.0 are included [below](#upgrade-31x-to-40).
+Community Edition version 4.1 must be upgraded from version 4.0.x. Explanations what upgrade script performs are included [below](#upgrade-31x-to-40).
+
+### Upgrade 3.1.x to 4.1
+
+The upgrade script can download all needed software and applications from the internet. You can perform an online upgrade by following these steps:
+
+* Create directory
+```
+# mkdir /root/upg40
+```
+
+* Download the upgrade script
+```
+# wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.0/update.py -O /root/upg40/update.py
+```
+
+* Execute the script with `-o` argument
+```
+# cd /root/upg40
+# python update.py -o
+```
+
+Your upgrade directory will be the current directory. The script will create these directories: `app`, `war`, `temp`, `setup`
+
+When the upgrade script prompts:  
+    
+    ```
+    If you have custom ldap schema, add them now and press c  
+    If you don't have any custom schema you can continue with pressing c
+    ```
+    
+    Put the schema file in `/opt/opendj/config/schema/`
+
+
+
 
 ### Upgrade 4.0 to 4.1
 
@@ -52,34 +86,4 @@ another way.
 !!! Note
     If you are using custom schema:  
     (a) OpenDJ Users: Back up the schema file  
-    (b) OpenLDAP users: Convert the schema according to [this guide](https://backstage.forgerock.com/docs/opendj/3.5/admin-guide/#chap-schema)  
-    
-    When the upgrade script prompts:  
-    
-    ```
-    If you have custom ldap schema, add them now and press c  
-    If you don't have any custom schema you can continue with pressing c
-    ```
-    
-    Put the schema file in `/opt/opendj/config/schema/`
-
-The upgrade script can download all needed software and applications from the internet. Please run each script in a different directory. You can perform an online upgrade by following these steps:
-
-* Create directory
-```
-# mkdir /root/upg40
-```
-
-* Download the upgrade script
-```
-# wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.0/update.py -O /root/upg40/update.py
-```
-
-* Execute the script with `-o` argument
-```
-# cd /root/upg40
-# python update.py -o
-```
-
-Your upgrade directory will be the current directory. The script will create these directories: `app`, `war`, `temp`, `setup`
-
+    (b) OpenLDAP users: Convert the schema according to [this guide](https://backstage.forgerock.com/docs/opendj/3.5/admin-guide/#chap-schema)
