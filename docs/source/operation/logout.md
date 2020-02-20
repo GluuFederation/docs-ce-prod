@@ -41,5 +41,19 @@ The user will be directed to the following confirmation page.
 
 ![SAML2 SLO Confirmation Page](../img/saml/saml_slo_confirm.png)
 
+## CAS Logout
+CAS Logout can be performed by allowing CAS apps to participate in Gluu Server's SLO. If you want to make your CAS apps appear in SLO area, you have to add `p:singleLogoutParticipant="true"` while registering your CAS app in Gluu Server. As for example the bean of test CAS app ( https://cas.gluu.org/example_simple.php ) can be registered like below. 
+
+```
+                <bean class="net.shibboleth.idp.cas.service.ServiceDefinition"
+                      c:regex="https:\/\/cas\.gluu\.org\/example_simple\.php"
+                      p:group="institutional-services"
+                      p:authorizedToProxy="false"
+                      p:singleLogoutParticipant="true" />
+```
+
+
+After that, CAS app logout can be called with same Gluu Server's SLO link which is `https://[hostname]/idp/Authn/oxAuth/logout`
+
 ## Customizing Logout
 It is possible to use a custom authentication script to call individual logout methods for both SAML and OpenID Connect and log out of the desired SP/RPs when the user logs out of the Gluu Server. Please see the [Custom Script Guide](../authn-guide/customauthn.md) to start writing your own custom scripts. 
