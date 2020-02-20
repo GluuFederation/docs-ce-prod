@@ -64,7 +64,7 @@ When the upgrade script prompts:
 # cd /root/upg410/
 # python upg40to410.py
 ```
-### Upgrade 3.1.x to 4.0 
+### Upgrade 3.1.x to 4.1
 
 The 4.0 upgrade script performs the following tasks:
 
