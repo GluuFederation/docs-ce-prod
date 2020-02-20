@@ -41,8 +41,18 @@ It is possible to use backchannel logout. Here is was spec says:
 Thus it's up to RP what logout to support, Front-channel or Back-channel.
 During client registration it is recommended to specify `frontchannel_logout_uri` or `backchannel_logout_uri`. If both are specified then AS perform logout for `backchannel_logout_uri` (and ignores `frontchannel_logout_uri`). 
 
-During Back-channel logout AS collects all `backchannel_logout_uri`s from all involved clients in SSO session and calls them asynchronously.
-If `post_logout_redirect_uri` is validated successfully then AS sends redirect to it or otherwise send back OK (200) response code (independently whether involved RPs sends back successfull response or failure). 
+During Back-channel logout AS collects all `backchannel_logout_uri`s from all involved clients in SSO session and calls them asynchronously with `logout_token`.
+
+```
+POST /backchannel_logout HTTP/1.1
+Host: rp.example.org
+Content-Type: application/x-www-form-urlencoded
+
+logout_token=eyJhbGci ... .eyJpc3Mi ... .T3BlbklE ...
+```
+
+If `post_logout_redirect_uri` is validated successfully then AS sends redirect to it or otherwise send back OK (200) response code (independently whether involved RPs sends back successfull response or failure).
+AS redirect to `post_logout_redirect_uri` or OK (200) response indicates that AS session is ended. It doesn't mean that all RP's backchannel calls are completed successfully.
 
 ![image](../img/openid/backchannel-client-ui.png)
 
