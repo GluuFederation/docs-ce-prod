@@ -51,35 +51,40 @@ We need two scripts:
 ##### 1) Upgrade 3.1.x to 4.0 
 The upgrade script can download all needed software and applications from the internet. Please run each script in different directory. You can perform an online upgrade by following these steps:
 
-* Create directory: `mkdir /root/upg40`
+* Create directory
+```
+# mkdir /root/upg40
+```
 
 * Download the upgrade script
-
 ```
-wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.0/update.py -O /root/upg40/update.py
+# wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.0/update.py -O /root/upg40/update.py
 ```
 
 * Execute the script with `-o` argument
-
 ```
-python /root/upg40/update.py -o
+# cd /root/upg40
+# python update.py -o
 ```
 
 Your upgrade directory will be the current directory. The script will create these directories: `app`, `war`, `temp`, `setup`
 
 ##### 2) Upgrade 4.0 to 4.1
 
-* Create directory: `mkdir /root/upg410`
+* Create directory
+```
+# mkdir /root/upg410
+```
 
 * Download the upgrade script
-
 ```
-wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.1.0/upg40to410.py -O /root/upg410/upg40to410.py
+# wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.1.0/upg40to410.py -O /root/upg410/upg40to410.py
 ```
 
 * Execute the script:
 
 ```
-python /root/upg410/upg40to410.py
+# cd /root/upg410/
+# python upg40to410.py
 ```
 
