@@ -31,6 +31,23 @@ The sample `End Session` script is [available here](./sample-end-session.py)
 
 Read the [OpenID Connect Front-Channel Logout Specifications](http://openid.net/specs/openid-connect-frontchannel-1_0.html) to learn more about logout with OpenID Connect.
 
+## Back-channel logout
+
+It is possible to use backchannel logout. Here is was spec says:
+
+- An upside of back-channel communication is that it can be more reliable than communication through the User Agent, since in the front-channel, the RP's browser session must be active for the communication to succeed.
+- A downside of back-channel communication is that the session state maintained between the OP and RP over the front-channel, such as cookies and HTML5 local storage, are not available when using back-channel communication. As a result, all needed state must be explicitly communicated between the parties.
+
+Thus it's up to RP what logout to support, Front-channel or Back-channel.
+During client registration it is recommended to specify `frontchannel_logout_uri` or `backchannel_logout_uri`. If both are specified then AS perform logout for `backchannel_logout_uri` (and ignores `frontchannel_logout_uri`). 
+
+During Back-channel logout AS collects all `backchannel_logout_uri`s from all involved clients in SSO session and calls them asynchronously.
+If `post_logout_redirect_uri` is validated successfully then AS sends redirect to it or otherwise send back OK (200) response code (independently whether involved RPs sends back successfull response or failure). 
+
+![image](../img/openid/backchannel-client-ui.png)
+
+Read the [OpenID Connect Backchannel Logout Specifications](https://openid.net/specs/openid-connect-backchannel-1_0.html) to learn more about logout with OpenID Connect.
+
 ## SAML Logout
 Gluu Server now supports SAML Single Logout. Once it's [enabled by the administrator](../admin-guide/saml.md#saml-single-logout), the logout URL is `https://[hostname]/idp/Authn/oxAuth/logout`.
 

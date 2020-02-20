@@ -1085,7 +1085,10 @@ Registers new dynamic client in oxAuth.
 |keep_client_authorization_after_expiration|Boolean value with default value false. If true then client authorization will not be removed afer expiration (expiration date is same as client's expiration that created it).|
 |allow_spontaneous_scopes|Boolean value with default value false. Whether spontaneous scopes are allowed for given client |
 |spontaneous_scopes|Array of strings. Regular expressions which should match to scope. If matched scope is allowed. Example: `["^transaction:.+$"]`. It matches `transaction:245` but not `transaction:`.|
-
+|frontchannel_logout_uri|Array of strings. RP frontchannel logout uris|
+|frontchannel_logout_session_required|Boolean value specifying whether the RP requires that a sid (session ID)|
+|backchannel_logout_uri|Array of strings. RP URL that will cause the RP to log itself out when sent a Logout Token by the OP.|
+|backchannel_logout_session_required|Boolean value specifying whether the RP requires that a sid (session ID) Claim be included in the Logout Token to identify the RP session with the OP when the backchannel_logout_uri is used. If omitted, the default value is false.|
 
 #### Response
 
