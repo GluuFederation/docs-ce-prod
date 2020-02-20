@@ -108,7 +108,7 @@ From the Organization Settings page, the administrator can manage the organizati
 
 #### Extra libraries  
 
-!!!please add screenshot here
+![Extra Libraries Form](../img/admin-guide/oxtrust/extra-libaries.png)
 
 From the Extra libraries page, the administrator can add extra libraries to gluu components respectively oxtrust and oxauth.
 Every library added require the restart of the corresponding service to which it is added.
