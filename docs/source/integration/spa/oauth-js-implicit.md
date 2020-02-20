@@ -19,11 +19,8 @@ The OpenID Connect Implicit Flow follows the following steps:
 
 ## Installation
 
-To use this library, include the openidconnect.js dependency to your HTML page. You can get it from the Github CDN.
+To use this library, include the openidconnect.js dependency to your HTML page. You can find it [here](https://github.com/GluuFederation/openid-implicit-client).
 
-```html
-<script src="https://gitcdn.link/repo/GluuFederation/openid-implicit-client/master/openidconnect.js"></script>
-```
 The next steps for the installation are:
 
 - Setting the provider and client configuration info through JSON objects;
