@@ -1,4 +1,41 @@
-# Replacing expired JKS files for SCIM
+# Replace Expired Key Files
+
+## oxAuth
+
+### Backup
+
+ - Back up the existing `/etc/certs/oxauth-keys.jks` and `/etc/certs/oxauth-keys.json` 
+ - Back up the full `o=gluu` LDAP data
+ 
+### Manually generate and apply key
+ 
+1. Log in to the chroot - `gluu-serverd login`
+1. Backup existing `oxauth-keys.jks` and `oxauth-keys.json` from `/etc/certs/`
+1. Grab the password/keypass/keypasswd of your oxauth jsk with: `cat /install/community-edition-setup/setup.properties.last | grep -i oxauth_openid_jks_pass`
+1. Replace above `oxauth_openid_jks_pass` in below command and run command.
+    
+```
+/opt/jre/bin/java -Dlog4j.defaultInitOverride=true -cp "/home/jetty/lib/*" org.gluu.oxauth.util.KeyGenerator -keystore oxauth-keys.jks -keypasswd <oxauth_openid_jks_pass> -sig_keys RS256 RS384 RS512 ES256 ES384 ES512 PS256 PS384 PS512 RSA1_5 -enc_keys RSA1_5 RSA-OAEP -dnname "CN=oxAuth CA Certificates" -expiration 365 > oxauth-keys.json
+```
+
+1. `cp oxauth-keys.j* /etc/certs/`
+1. Inject the new key in LDAP (Gluu CE Database) as well
+1. Download and install JXplorer in your local machine http://jxplorer.org/downloads/users.html
+1. Create a tunnel to the server - `ssh -L 1636:localhost:1636 [username]@[server_host]`
+1. Open JXplorer and fill it per the below screenshot
+1. Get the LDAP password inside chroot `cat /install/community-edition-setup/setup.properties.last|grep 'ldapPass='`. Use this password in JXplorer connection and click on `OK` button and in next popup click on `This Session Only` button.
+
+      ![ldap-jsxplorer-connection](https://user-images.githubusercontent.com/2329776/73589144-71337f80-44f8-11ea-86c0-9b9dadc305d3.png)
+      
+1. Next is to copy content of `oxauth-keys.json` into LDAP. Navigate to path as per below screenshot and replace content in the `oxAuthConfWebKeys` field. `gluu > configuration > oxauth` --> `Table Editor` tab --> click on `oxAuthConfWebKeys` value --> Replace value --> click on `Submit`.
+      
+      ![ldap_oxauth_key_replace](https://user-images.githubusercontent.com/2329776/73589260-e0f63a00-44f9-11ea-91f9-c6aab2cf1609.png)
+      
+1. Exit from chroot
+1. `gluu-serverd stop`
+1. `gluu-serverd start`
+
+## SCIM
 
 When your SCIM service is protected with UMA, your client application uses the `scim-rp.jks` file bundled with your Gluu Server. Additionally, the server uses the `scim-rs.jks` file. These Java Keystore files are generated upon installation and expire after one year. 
 
