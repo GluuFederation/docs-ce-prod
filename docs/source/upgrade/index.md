@@ -10,11 +10,11 @@ The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will
 
 ## Upgrade with Scripts
 
-Community Edition version 4.1 must be upgraded from version 4.0.x. Explanations what upgrade script performs are included [below](#upgrade-31x-to-40).
+Community Edition version 4.1 must be upgraded from version 4.0.x. Explanations of what actions the upgrade script performs are included [below](#40-upgrade-script-details).
 
 ### Upgrade 3.1.x to 4.1
 
-The upgrade script can download all needed software and applications from the internet. You can perform an online upgrade by following these steps:
+The upgrade script can download all needed software and applications from the internet. [Skip this step](#upgrade-40-to-41) if already using 4.0. You can perform an online upgrade by following these steps:
 
 * Create directory
 ```
@@ -41,7 +41,7 @@ When the upgrade script prompts:
     If you don't have any custom schema you can continue with pressing c
     ```
     
-    Put the schema file in `/opt/opendj/config/schema/`
+Put the schema file in `/opt/opendj/config/schema/`
 
 
 
@@ -64,7 +64,7 @@ When the upgrade script prompts:
 # cd /root/upg410/
 # python upg40to410.py
 ```
-### Upgrade 3.1.x to 4.1
+### 4.0 upgrade script details
 
 The 4.0 upgrade script performs the following tasks:
 
