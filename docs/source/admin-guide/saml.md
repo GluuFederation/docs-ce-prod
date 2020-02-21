@@ -219,6 +219,13 @@ In the example below, we are creating a TR for the 'Internet2 Wiki', which is an
 
 ![Incommon_affiliated_SP_Trust.png](../img/saml/InCommon_affiliated_SP_Trust.png)
 
+## IDP cache support
+
+IDP requires `shibboleth.StorageService` to store user sessions. This is defined in `/opt/shibboleth-idp/conf/idp.properties` configuration file in property `idp.replayCache.StorageService`.
+Default IDP installation uses `shibboleth.StorageService` service. This service stores data in server memory. As result it does not survive restarts and is not replicated across a cluster. In order to resolve these limitations starting from 4.1 IDP uses `shibboleth.GluuStorageService`. This implementation is based on Gluu [cache](https://github.com/GluuFederation/oxCore/tree/master/core-cache). This library provides Memory, Memcached, Redis, Redis + Sentinel, Native (LDAP or Cocuhbase) cache implementations. The active mode is defined globally for oxAuth/oxTrust/IDP in oxTrust GUI. After changing cache type it's mandatory to restart these services to apply new changes.
+
+This new CE 4.1 implementation allows to use IDP in cluster without extrac configuration changes.
+
 ## Customizing IDP pages
 
 See [this page](../operation/custom-design.md#customizing-saml-idp-pages) for instructions on customizing user-facing IDP pages.
