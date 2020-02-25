@@ -222,7 +222,10 @@ In the example below, we are creating a TR for the 'Internet2 Wiki', which is an
 ## IDP cache support
 
 IDP requires `shibboleth.StorageService` to store user sessions. This is defined in the `/opt/shibboleth-idp/conf/idp.properties` configuration file in the `idp.replayCache.StorageService` property.
-The default IDP installation uses the `shibboleth.StorageService` service. This service stores data in server memory. As a result, it does not survive restarts and is not replicated across a cluster. In order to resolve these limitations, starting with 4.1, the IDP uses `shibboleth.GluuStorageService`. This implementation is based on the Gluu [cache](https://github.com/GluuFederation/oxCore/tree/master/core-cache). This library provides Memory, Memcached, Redis, Redis + Sentinel, Native (LDAP or Cocuhbase) cache implementations. The active mode is defined globally for oxAuth/oxTrust/IDP in the oxTrust GUI. After changing the cache type, it's mandatory to restart these services to apply new changes.
+
+The default IDP installation uses the `shibboleth.StorageService` service. This service stores data in server memory. As a result, it does not survive restarts and is not replicated across a cluster. 
+
+In order to resolve these limitations, starting with 4.1, the IDP uses `shibboleth.GluuStorageService`. This implementation is based on the Gluu [cache](https://github.com/GluuFederation/oxCore/tree/master/core-cache). This library provides Memory, Memcached, Redis, Redis + Sentinel, Native (LDAP or Cocuhbase) cache implementations. The active mode is defined globally for oxAuth/oxTrust/IDP in the oxTrust GUI. After changing the cache type, it's mandatory to restart these services to apply new changes.
 
 This new CE 4.1 implementation allows to use IDP in cluster without extra configuration changes.
 
