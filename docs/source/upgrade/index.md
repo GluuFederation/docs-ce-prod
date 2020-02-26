@@ -12,7 +12,7 @@ The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will
 
 Community Edition version 4.1 must be upgraded from version 4.0.x. Explanations of what actions the upgrade script performs are included [below](#40-upgrade-script-details).
 
-### Upgrade 3.1.x to 4.1
+### Upgrade 3.1.x to 4.0
 
 The upgrade script can download all needed software and applications from the internet. [Skip this step](#upgrade-40-to-41) if already using 4.0. You can perform an online upgrade by following these steps:
 
@@ -44,6 +44,11 @@ When the upgrade script prompts:
 Put the schema file in `/opt/opendj/config/schema/`
 
 
+!!! Note
+ * This upgrade replaces all the default Gluu Server scripts WITH SCRIPTS FROM 4.0 and removes other custom scripts. (This will replace any customization you may have made to these default script entries) 
+ * Default authentication mode will be set to auth_ldap_server
+ * Cache provider configuration will be set to 4.0 default
+ * Reconfigure your logo and favicon
 
 
 ### Upgrade 4.0 to 4.1
