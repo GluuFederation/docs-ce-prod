@@ -32,15 +32,20 @@ another way.
     (a) OpenDJ Users: Back up the schema file  
     (b) OpenLDAP users: Convert the schema according to [this guide](https://backstage.forgerock.com/docs/opendj/3.5/admin-guide/#chap-schema)  
     
-    When the upgrade script prompts:  
+When the upgrade script prompts:  
     
     ```
     If you have custom ldap schema, add them now and press c  
     If you don't have any custom schema you can continue with pressing c
     ```
     
-    Put the schema file in `/opt/opendj/config/schema/`
+Put the schema file in `/opt/opendj/config/schema/`
 
+!!! Note
+ * This upgrade replaces all the default Gluu Server scripts WITH SCRIPTS FROM 4.0 and removes other custom scripts. (This will replace any customization you may have made to these default script entries) 
+ * Default authentication mode will be set to auth_ldap_server
+ * Cache provider configuration will be set to 4.0 default
+ * Reconfigure your logo and favicon
 
 There are two options to perform the upgrade (both methods work inside the container):
 
