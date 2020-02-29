@@ -102,6 +102,10 @@ In this section we'll onboard Apple to the list of known providers for inbound i
 1. Add a new property `scope` with value `["name", "email"]`
 1. Click on `Add`
 
+Here is an example of how the form might look:
+
+![Sample form](../img/user-authn/passport/sample-apple-form.png)
+
 ## Test
 
 Almost done...
