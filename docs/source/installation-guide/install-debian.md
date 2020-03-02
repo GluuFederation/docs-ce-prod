@@ -41,6 +41,24 @@ apt-get update
 apt-get install gluu-server
 ```
 
+For **Debian 10 (Buster)**, run the following commands:
+
+```
+echo "deb https://repo.gluu.org/debian/ buster-stable main" > /etc/apt/sources.list.d/gluu-repo.list
+```
+
+```
+# curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -
+```
+
+```
+apt-get update
+```
+
+```
+apt-get install gluu-server
+```
+
 ### Start the server and log in
 
 The Gluu Server is a chroot container, which must be started to proceed. 
