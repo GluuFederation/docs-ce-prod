@@ -30,7 +30,7 @@ echo "deb https://repo.gluu.org/debian/ stretch-stable main" > /etc/apt/sources.
 ```
 
 ```
-# curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -
+curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -
 ```
 
 ```
@@ -48,7 +48,7 @@ echo "deb https://repo.gluu.org/debian/ buster-stable main" > /etc/apt/sources.l
 ```
 
 ```
-# curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -
+curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -
 ```
 
 ```
