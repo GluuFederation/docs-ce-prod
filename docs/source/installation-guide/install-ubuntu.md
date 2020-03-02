@@ -36,7 +36,7 @@ apt-get update
 ```
 
 ```
-apt-get install gluu-server
+apt-get install gluu-server_4.0~bionic
 ```
 
 For **Ubuntu 16.04.x** run the following commands:  
@@ -54,7 +54,7 @@ apt-get update
 ```
 
 ```
-apt-get install gluu-server
+apt-get install gluu-server_4.0~xenial
 ```
 
 ### Start the server and log in
