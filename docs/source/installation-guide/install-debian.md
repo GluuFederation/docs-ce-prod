@@ -1,6 +1,6 @@
 # Debian Installation 
 ## Overview
-Single-node Gluu Server Linux packages are available for Debian 8. Follow the instructions below:
+Single-node Gluu Server Linux packages are available for Debian 9 and 10. Follow the instructions below:
 
 1. [Install the Linux package](#install-the-package)
 2. [Start the Server and log in to the container](#start-the-server-and-log-in)
