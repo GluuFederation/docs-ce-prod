@@ -79,9 +79,11 @@ The license for each software component included in the container is listed belo
 
 |	Component	|	License	            |
 |-----------------------|---------------|
-|	oxAuth      | [MIT License](http://opensource.org/licenses/MIT)|
-|	oxTrust      | [MIT License](http://opensource.org/licenses/MIT)|
+|	oxAuth      | [Apache2](https://www.apache.org/licenses/LICENSE-2.0)|
+|	oxTrust      | [Apache2](https://www.apache.org/licenses/LICENSE-2.0)|
 |	Shibboleth IDP      | [Apache2](http://www.apache.org/licenses/LICENSE-2.0)|
+|   Gluu Casa           | [Apache2](http://www.apache.org/licenses/LICENSE-2.0)|
+|   oxd                 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0)|
 |   OpenDJ              | [CDDL](https://opensource.org/licenses/CDDL-1.0)
 | Passport-JS           | [MIT License](https://github.com/jaredhanson/passport/blob/master/LICENSE) |
 | TinyRADIUS           | [LGPL v2.1](https://opensource.org/licenses/LGPL-2.1) |
