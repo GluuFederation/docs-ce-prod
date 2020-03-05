@@ -27,6 +27,8 @@ There are a few important points to note:
 
 There is `End Session` interception script which allows to modify HTML returned during frontchannel logout.
 
+To force `id_token_hint` presence, please set `forceIdTokenHintPrecense` oxauth configuration property to `true`.
+
 The sample `End Session` script is [available here](./sample-end-session.py)
 
 Read the [OpenID Connect Front-Channel Logout Specifications](http://openid.net/specs/openid-connect-frontchannel-1_0.html) to learn more about logout with OpenID Connect.
