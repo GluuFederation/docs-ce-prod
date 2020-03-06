@@ -43,9 +43,9 @@
 
 1. Security group of EFS allows all connections from the EKS nodes
   
-# GCE (Google Cloud Engine) - GKE
+## GCE (Google Cloud Engine) - GKE
 
-## Setup Cluster
+### Setup Cluster
 
 1.  Install [gcloud](https://cloud.google.com/sdk/docs/quickstarts)
 
@@ -68,10 +68,10 @@
 1.  If a connection is not made to google consul using google account the call to the api will fail. Either connect to google consul using an associated google account and run any `kubectl` command like `kubectl get pod` or create a service account using a json key [file](https://cloud.google.com/docs/authentication/getting-started).
 
 
-# Azure - AKS
+## Azure - AKS
 ![CDNJS](https://img.shields.io/badge/status-pending-yellow.svg)
 
-## Requirements
+### Requirements
 
 -  Follow this [guide](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) to install Azure CLI on the VM that will be managing the cluster and nodes. Check to make sure.
 
@@ -81,9 +81,9 @@
 
 -  Follow this [section](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough#connect-to-the-cluster) to connect to the AKS cluster
 
-# Minikube
+## Minikube
 
-## Requirements
+### Requirements
 
 1. Install [minikube](https://github.com/kubernetes/minikube/releases).
 
@@ -105,9 +105,9 @@
     ```
 
 
-# MicroK8s
+## MicroK8s
 
-## Requirements
+### Requirements
 
 1. Install [MicroK8s](https://microk8s.io/)
 
@@ -120,7 +120,7 @@
     ```
 
 
-# Install Gluu using `pygluu-kubernetes` with Kustomize
+## Install Gluu using `pygluu-kubernetes` with Kustomize
 
 1. Download [`pygluu-kubernetes.pyz`](https://github.com/GluuFederation/enterprise-edition/releases). This package can be built [manually](https://github.com/GluuFederation/enterprise-edition/blob/4.1/README.md#build-pygluu-kubernetespyz-manually).
 
@@ -130,9 +130,10 @@
     ./pygluu-kubernetes.pyz install
     ```
     
- > **_NOTE:_**  Prompts will ask for the rest of the information needed. You may generate the manifests (yaml files) and continue to deployment or just generate the  manifests (yaml files) during the execution of `pygluu-kubernetes.pyz`. `pygluu-kubernetes.pyz` will output a file called `previous-settings.json` holding all the parameters and can be used for a non-interactive setup by changing its name to `settings.json`. More information about this file and the vars it holds is [below](#settingsjson-parameters-file-contents) but  please don't manually create this file as the script can generate it using [`pygluu-kubernetes.pyz generate-settings`](https://github.com/GluuFederation/enterprise-edition/releases). 
+!!!note
+    Prompts will ask for the rest of the information needed. You may generate the manifests (yaml files) and continue to deployment or just generate the  manifests (yaml files) during the execution of `pygluu-kubernetes.pyz`. `pygluu-kubernetes.pyz` will output a file called `previous-settings.json` holding all the parameters and can be used for a non-interactive setup by changing its name to `settings.json`. More information about this file and the vars it holds is [below](#settingsjson-parameters-file-contents) but  please don't manually create this file as the script can generate it using [`pygluu-kubernetes.pyz generate-settings`](https://github.com/GluuFederation/enterprise-edition/releases). 
 
-## `settings.json` parameters file contents
+### `settings.json` parameters file contents
 
  > **_NOTE:_** Please generate this file using [`pygluu-kubernetes.pyz generate-settings`](https://github.com/GluuFederation/enterprise-edition/releases).
 
@@ -279,7 +280,7 @@
 | `17`     | Azure                    | LDAP Persistent Disk  dynamically provisioned |
 | `18`     | Azure                    | LDAP Persistent Disk  statically provisioned  |
 
-## Uninstall Gluu using Kustomize
+### Uninstall Gluu using Kustomize
 
 1. Run :
 
@@ -287,15 +288,15 @@
     ./pygluu-kubernetes.pyz uninstall
     ```
     
-# Install Gluu using Helm
+## Install Gluu using Helm
 
-## Prerequisites
+### Prerequisites
 
 - Kubernetes 1.x
 - Persistent volume provisioner support in the underlying infrastructure
 - Install [Helm3](https://helm.sh/docs/using_helm/)
 
-## Quickstart
+### Quickstart
 
 1) Download [`pygluu-kubernetes.pyz`](https://github.com/GluuFederation/enterprise-edition/releases). This package can be built [manually](https://github.com/GluuFederation/enterprise-edition/blob/4.1/README.md#build-pygluu-kubernetespyz-manually).
 
@@ -344,8 +345,8 @@
    helm install <release-name> -f values.yaml -n <namespace> .
    ```
 
-  ## EKS helm notes
-  ### Required changes to the `values.yaml`
+### EKS helm notes
+#### Required changes to the `values.yaml`
 
   Inside the global `values.yaml` change the marked keys with `CHANGE-THIS`  to the appropriate values :
 
@@ -389,9 +390,9 @@
 
   Tweak the optional [parameters](#configuration) in `values.yaml` to fit the setup needed.
 
-  ## GKE helm notes
+### GKE helm notes
 
-  ### Required changes to the `values.yaml`
+#### Required changes to the `values.yaml`
 
   Inside the global `values.yaml` change the marked keys with `CHANGE-THIS`  to the appopriate values :
 
@@ -421,9 +422,9 @@
 
   Tweak the optional [parameteres](#configuration) in `values.yaml` to fit the setup needed.
 
-  ## Minikube helm notes
+### Minikube helm notes
 
-  ### Required changes to the `values.yaml`
+#### Required changes to the `values.yaml`
 
   Inside the global `values.yaml` change the marked keys with `CHANGE-THIS`  to the appopriate values :
 
@@ -465,9 +466,9 @@
   ::1             localhost
   ```
 
-  ## Microk8s helm notes
+### Microk8s helm notes
   
-  ### Required changes to the `values.yaml`
+#### Required changes to the `values.yaml`
 
   Inside the global `values.yaml` change the marked keys with `CHANGE-THIS`  to the appopriate values :
 
@@ -509,7 +510,7 @@
   ::1             localhost
   ```
   
-## Uninstalling the Chart
+### Uninstalling the Chart
 
 To uninstall/delete `my-release` deployment:
 
@@ -517,7 +518,7 @@ To uninstall/delete `my-release` deployment:
 
 If during installation the release was not defined, release name is checked by running `$ helm ls` then deleted using the previous command and the default release name.
 
-## Configuration
+### Configuration
 
 | Parameter                                          | Description                                                                                                                      | Default                             |
 | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
@@ -574,10 +575,10 @@ If during installation the release was not defined, release name is checked by r
 | `nginx.ingress.enabled`                            | Set routing rules to different services                                                                                          | `true`                              |
 | `nginx.ingress.hosts`                              | Gluu FQDN                                                                                                                        | `demoexample.gluu.org`              |
 
-## Persistence
+### Persistence
 
-**_NOTE_** Enabling support of `oxtrust API` and `oxtrust TEST_MODE`
- To enable `oxtrust API` support and or `oxtrust TEST_MODE` , set  `gluuOxtrustApiEnabled`  and `gluuOxtrustApiTestMode` true respectively.
+!!!NOTE
+    Enabling support of `oxtrust API` and `oxtrust TEST_MODE`. To enable `oxtrust API` support and or `oxtrust TEST_MODE` , set  `gluuOxtrustApiEnabled`  and `gluuOxtrustApiTestMode` true respectively.
 
  ```yaml
  # persistence layer
@@ -597,7 +598,7 @@ persistence:
 
 ```
 
-## Instructions on how to install different services
+### Instructions on how to install different services
 
 Enabling the following services automatically install the corresponding associated chart. To enable/disable them set `true` or `false` in the persistence configs as shown below.  
 
@@ -613,7 +614,7 @@ persistence:
     gluuSamlEnabled: false
 ```
 
-### OXD-server
+### oxd-server
 
 > **_NOTE:_** If these two are not provided `oxd-server` will fail to start.   
 > **_NOTE:_** For these passwords, stick to digits and numbers only.
@@ -661,13 +662,13 @@ global:
     enabled: true
 ```
 
-# Use Couchbase solely as the persistence layer
+## Use Couchbase solely as the persistence layer
 ![CDNJS](https://img.shields.io/badge/AWS-supported-green.svg)
 ![CDNJS](https://img.shields.io/badge/GKE-supported-green.svg)
 ![CDNJS](https://img.shields.io/badge/microk8s-supported-green.svg)
 ![CDNJS](https://img.shields.io/badge/minikube-supported-green.svg)
 
-## Requirements
+### Requirements
   - If you are installing on microk8s or minikube please ignore the below notes as a low resource `couchbase-cluster.yaml` will be applied automatically, however the VM being used must at least have 8GB RAM and 2 cpu available .
   
   - An `m5.xlarge` EKS cluster with 3 nodes at the minimum or `n2-standard-4` GKE cluster with 3 nodes. We advice contacting Gluu regarding production setups.
@@ -684,7 +685,7 @@ global:
 - Run `./pygluu-kubernetes.pyz install-couchbase` and follow the prompts to install couchbase solely with Gluu.
 
 
-# Use remote Couchbase as the persistence layer
+## Use remote Couchbase as the persistence layer
 
 - [Install couchbase](https://docs.couchbase.com/server/current/install/install-intro.html)
 
@@ -695,7 +696,7 @@ global:
 - Couchbase URL base , user, and password will be needed for installation when running `pygluu-kubernetes.pyz`
 
 
-## How to expand EBS volumes
+### How to expand EBS volumes
 
 1. Make sure the `StorageClass` used in your deployment has the `allowVolumeExpansion` set to true. If you have used our EBS volume deployment strategy then you will find that this property has already been set for you.
 
@@ -704,7 +705,7 @@ global:
 1. Restart the associated services
 
 
-## Scaling pods
+### Scaling pods
 
 > **_NOTE:_** When using Mircok8s substitute  `kubectl` with `microk8s.kubectl` in the below commands.
 
@@ -729,21 +730,21 @@ Examples:
     ```
     kubectl scale --replicas=2 statefulset oxtrust
     ```
-# Build pygluu-kubernetes installer
+## Build pygluu-kubernetes installer
 
-## Overview
+### Overview
 [`pygluu-kubernetes.pyz`](https://github.com/GluuFederation/enterprise-edition/releases) is periodically released and does not need to be built manually. However, the process of building the installer package is listed [below](#build-pygluu-kubernetespyz-manually).
 
-## Build `pygluu-kubernetes.pyz` manually
+### Build `pygluu-kubernetes.pyz` manually
 
-## Prerequisites
+### Prerequisites
 
 1.  Python 3.6+.
 1.  Python `pip3` package.
 
-## Installation
+### Installation
 
-### Standard Python package
+#### Standard Python package
 
 1.  Create virtual environment and activate:
 
@@ -760,7 +761,7 @@ Examples:
 
     This command will install executable called `pygluu-kubernetes` available in virtual environment `PATH`.
 
-### Python zipapp
+#### Python zipapp
 
 1.  Install [shiv](https://shiv.readthedocs.io/) using `pip3`:
 
@@ -776,21 +777,21 @@ Examples:
 
     This command will generate executable called `pygluu-kubernetes.pyz` under the same directory.
 
-# Build pygluu-kubernetes installer
+## Build pygluu-kubernetes installer
 
-## Overview
+### Overview
 [`pygluu-kubernetes.pyz`](https://github.com/GluuFederation/enterprise-edition/releases) is periodically released and does not need to be built manually. However, the process of building the installer package is listed [below](#build-pygluu-kubernetespyz-manually).
 
-## Build `pygluu-kubernetes.pyz` manually
+### Build `pygluu-kubernetes.pyz` manually
 
-## Prerequisites
+### Prerequisites
 
 1.  Python 3.6+.
 1.  Python `pip3` package.
 
-## Installation
+### Installation
 
-### Standard Python package
+#### Standard Python package
 
 1.  Create virtual environment and activate:
 
@@ -807,7 +808,7 @@ Examples:
 
     This command will install executable called `pygluu-kubernetes` available in virtual environment `PATH`.
 
-### Python zipapp
+#### Python zipapp
 
 1.  Install [shiv](https://shiv.readthedocs.io/) using `pip3`:
 
@@ -823,7 +824,7 @@ Examples:
 
     This command will generate executable called `pygluu-kubernetes.pyz` under the same directory.
 
-### Known bug
+#### Known bug
 
 - Bug in line 101   File `/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/kubernetes/client/models/v1beta1_custom_resource_definition_status.py`, line 101, in conditions. The error will look similar to the following:
   
