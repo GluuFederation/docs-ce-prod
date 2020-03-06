@@ -12,7 +12,7 @@ repo_url: https://github.com/GluuFederation/docs-ce-prod/
 edit_uri: edit/4.1/docs/source
 
 # Configuration
-theme: 
+theme:
     name: material
     palette:
         primary: 'green'
@@ -21,18 +21,18 @@ theme:
     favicon: 'favicon.ico'
 extra:
     version: '4.1'
-      
+
 # Tracking
 google_analytics:
   - 'UA-31008645-7'
   - 'auto'
-  
+
 # Extensions
 markdown_extensions:
 - admonition
 - toc:
      permalink: '#'
-- codehilite     
+- codehilite
 - pymdownx.superfences
 
 # Navigation
@@ -56,9 +56,9 @@ nav:
 - Whats new in v4: '4.x-intro.md'
 - Installation Guide:
         - 'VM Preparation': 'installation-guide/index.md'
-        - 'Installation': 
+        - 'Installation':
 #            - 'Start here': 'installation-guide/install.md'
-            - 'Test Drive': 'installation-guide/test-drive.md'
+            # - 'Test Drive': 'installation-guide/test-drive.md'
             - 'Kubernetes': 'installation-guide/install-kubernetes.md'
             - 'Docker': 'installation-guide/install-docker.md'
             - 'Ubuntu': 'installation-guide/install-ubuntu.md'
