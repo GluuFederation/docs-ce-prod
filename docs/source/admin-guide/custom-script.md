@@ -15,7 +15,7 @@ There are three methods that inherit a base interface:
 
 |Inherited Methods|Method description|
 |-----------------|------------------|
-|`def init(self, configurationAttributes)` |This method is only called once during the script initialization. It can be used for global script initialization, initiate objects etc|
+|`def init(self, customScript, configurationAttributes)` |This method is only called once during the script initialization. It can be used for global script initialization, initiate objects etc|
 |`def destroy(self, configurationAttributes)` |This method is called once to destroy events. It can be used to free resource and objects created in the `init()` method|
 |`def getApiVersion(self)` |The `getApiVersion` method allows API changes in order to do transparent migration from an old script to a new API. Currently all scripts should return `1`|
 
