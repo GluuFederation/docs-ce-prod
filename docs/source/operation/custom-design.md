@@ -235,3 +235,127 @@ cp /opt/jetty-9.3/temp/jetty-localhost-8081-oxauth.war-_oxauth-any-9071517269463
 ```
 
   Don't forget to apply appropriate file system permissions if needed. [Restart](./services.md#restart) the `oxauth` service inside the chroot.`   
+
+## Custom oxAuth Login Page Example Using Kubernetes ConfigMaps
+
+
+This guide will show how to customize HTML pages and CSS in oxAuth for Gluu Server EE.
+
+Here's the screenshot of the default oxAuth login page.
+
+![Screenshot](../img/kubernetes/oxauth-default-login.png)
+
+As an example, add text to the top of the form and change the color of the button by following these steps:
+
+1.  Get the `login.xhtml` from oxAuth pod:
+
+    ```sh
+    kubectl cp oxauth:opt/gluu/jetty/oxauth/webapps/oxauth/login.xhtml ./login.xhtml
+    ```
+
+1.  Copy the following text and save it as `./custom.css`:
+
+    ```css
+    #loginForm .btn-primary {
+        background: #1a9db2
+    }
+    ```
+
+1. Create a config file to store the content of `login.xhtml` and `custom.css`.
+
+   ```sh
+   kubectl create cm oxauth-custom-html --from-file=login.xhtml
+   kubectl create cm oxauth-custom-css --from-file=custom.css
+   ```
+
+1. Attach the config to Pod using YAML file:
+
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: oxauth
+    spec:
+      containers:
+      - name: oxauth
+        image: gluufederation/oxauth:4.0.1_06
+        volumeMounts:
+          - name: oxauth-pages-volume
+            mountPath: /opt/gluu/jetty/oxauth/custom/pages # login.xthml will be mounted under this directory
+          - name: oxauth-static-volume
+            mountPath: /opt/gluu/jetty/oxauth/custom/static # custom.css will be mounted under this directory
+        volumes:
+          - name: oxauth-pages-volume
+            configMap:
+              name: oxauth-custom-html
+          - name: oxauth-static-volume
+            configMap:
+              name: oxauth-custom-css         <div class="login_bx">
+    ```
+
+    Save the file and login to oxAuth/oxTrust UI via browser.
+
+Here's the screenshot of customized oxAuth login page.
+
+![Screenshot](../img/kubernetes/oxauth-custom-login.png)
+
+## Custom oxTrust Logout Page Example Using Kubernetes ConfigMaps
+
+This guide will show examples of how to customize HTML pages and CSS in oxTrust for Gluu Server EE.
+
+Here's the screenshot of default oxTrust logout page.
+
+![Screenshot](../img/kubernetes/oxtrust-default-logout.png)
+
+As an example, add text to the top of the form and change the color of the button by following these steps:
+
+1.  Get the `finishlogout.xhtml` from oxTrust pod:
+
+    ```sh
+    kubectl cp oxtrust:opt/gluu/jetty/identity/webapps/identity/finishlogout.xhtml ./finishlogout.xhtml
+    ```
+
+1.  Copy the following text and save it as `volumes/oxtrust/custom/static/custom.css`:
+
+    ```css
+    .lockscreen-wrapper .btn-primary {
+        background-color: #b79933 !important;
+    }
+    ```
+
+1. Create a config file to store the contents of `finishlogout.xhtml` and `custom.css`.
+
+   ```sh
+   kubectl create cm oxtrust-custom-html --from-file=finishlogout.xhtml
+   kubectl create cm oxtrust-custom-css --from-file=custom.css
+   ```
+
+1. Attach the config to Pod using YAML file:
+
+	```yaml
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: oxtrust
+	spec:
+	  containers:
+	  image: gluufederation/oxtrust:4.0.1_05
+	  volumeMounts:
+	    - name: oxtrust-pages-volume
+	      mountPath: /opt/gluu/jetty/identity/custom/pages # finishlogout.xthml will be mounted under this directory
+	    - name: oxtrust-static-volume
+	      mountPath: /opt/gluu/jetty/identity/custom/static # custom.css will be mounted under this directory
+	  volumes:
+	    - name: oxtrust-pages-volume
+	      configMap:
+	        name: oxtrust-custom-html
+	    - name: oxtrust-static-volume
+	      configMap:
+	        name: oxtrust-custom-css
+	```
+
+    Save the file and log in to oxAuth/oxTrust UI via browser.
+
+Here's the screenshot of customized oxTrust logout page.
+
+![Screenshot](../img/kubernetes/oxtrust-custom-logout.png)
