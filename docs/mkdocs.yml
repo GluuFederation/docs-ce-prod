@@ -147,7 +147,7 @@ nav:
             - 'oxLDAP Properties': 'reference/oxldap.md'
             - 'LDAP Schema': 'reference/schema.md'
         - 'Kubernetes and Containers Technical Reference':
-            - 'Configuration Keys': 'reference/container-configs.md'
+            - 'Config and Secret Keys': 'reference/container-configs.md'
             - 'Image References': 'reference/container-image-refs.md'
 - Operation Guide:
         - 'Service Commands': 'operation/services.md'
