@@ -16,14 +16,14 @@
      * [Kustomize](#install-gluu-using-pygluu-kubernetes-with-kustomize)
      * [Helm](#install-gluu-using-helm)
      
-# Amazon Web Services (AWS) - EKS
+## Amazon Web Services (AWS) - EKS
   
-## Setup Cluster
+### Setup Cluster
 
 -  Follow this [guide](https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html)
  to install a cluster with worker nodes. Please make sure that you have all the `IAM` policies for the AWS user that will be creating the cluster and volumes.
 
-## Requirements
+### Requirements
 
 -   The above guide should also walk you through installing `kubectl` , `aws-iam-authenticator` and `aws cli` on the VM you will be managing your cluster and nodes from. Check to make sure.
 
@@ -33,7 +33,7 @@
 
 > **_NOTE:_**  ![CDNJS](https://img.shields.io/badge/CLB--green.svg) Following any AWS deployment will install a classic load balancer with an `IP` that is not static. Don't worry about the `IP` changing. All pods will be updated automatically with our script when a change in the `IP` of the load balancer occurs. However, when deploying in production, **DO NOT** use our script. Instead, assign a CNAME record for the LoadBalancer DNS name, or use Amazon Route 53 to create a hosted zone. More details in this [AWS guide](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/using-domain-names-with-elb.html?icmpid=docs_elb_console).
 
-## EFS notes
+### EFS notes
 
 1. EFS is created
 
@@ -131,7 +131,7 @@
     ```
     
 !!!note
-    Prompts will ask for the rest of the information needed. You may generate the manifests (yaml files) and continue to deployment or just generate the  manifests (yaml files) during the execution of `pygluu-kubernetes.pyz`. `pygluu-kubernetes.pyz` will output a file called `previous-settings.json` holding all the parameters and can be used for a non-interactive setup by changing its name to `settings.json`. More information about this file and the vars it holds is [below](#settingsjson-parameters-file-contents) but  please don't manually create this file as the script can generate it using [`pygluu-kubernetes.pyz generate-settings`](https://github.com/GluuFederation/enterprise-edition/releases). 
+    Prompts will ask for the rest of the information needed. You may generate the manifests (yaml files) and continue to deployment or just generate the  manifests (yaml files) during the execution of `pygluu-kubernetes.pyz`. `pygluu-kubernetes.pyz` will output a file called `settings.json` holding all the parameters. More information about this file and the vars it holds is [below](#settingsjson-parameters-file-contents) but  please don't manually create this file as the script can generate it using [`pygluu-kubernetes.pyz generate-settings`](https://github.com/GluuFederation/enterprise-edition/releases). 
 
 ### `settings.json` parameters file contents
 
@@ -305,7 +305,7 @@
   ```bash
   ./pygluu-kubernetes.pyz helm-install
   ```
-### Installing Gluu using Helm manually
+#### Installing Gluu using Helm manually
 
 1) Install [nginx-ingress](https://github.com/kubernetes/ingress-nginx) Helm [Chart](https://github.com/helm/charts/tree/master/stable/nginx-ingress).
 
@@ -663,10 +663,6 @@ global:
 ```
 
 ## Use Couchbase solely as the persistence layer
-![CDNJS](https://img.shields.io/badge/AWS-supported-green.svg)
-![CDNJS](https://img.shields.io/badge/GKE-supported-green.svg)
-![CDNJS](https://img.shields.io/badge/microk8s-supported-green.svg)
-![CDNJS](https://img.shields.io/badge/minikube-supported-green.svg)
 
 ### Requirements
   - If you are installing on microk8s or minikube please ignore the below notes as a low resource `couchbase-cluster.yaml` will be applied automatically, however the VM being used must at least have 8GB RAM and 2 cpu available .
@@ -730,52 +726,6 @@ Examples:
     ```
     kubectl scale --replicas=2 statefulset oxtrust
     ```
-## Build pygluu-kubernetes installer
-
-### Overview
-[`pygluu-kubernetes.pyz`](https://github.com/GluuFederation/enterprise-edition/releases) is periodically released and does not need to be built manually. However, the process of building the installer package is listed [below](#build-pygluu-kubernetespyz-manually).
-
-### Build `pygluu-kubernetes.pyz` manually
-
-### Prerequisites
-
-1.  Python 3.6+.
-1.  Python `pip3` package.
-
-### Installation
-
-#### Standard Python package
-
-1.  Create virtual environment and activate:
-
-    ```sh
-    python3 -m venv .venv
-    source .venv/bin/activate
-    ```
-
-1.  Install the package:
-
-    ```
-    make install
-    ```
-
-    This command will install executable called `pygluu-kubernetes` available in virtual environment `PATH`.
-
-#### Python zipapp
-
-1.  Install [shiv](https://shiv.readthedocs.io/) using `pip3`:
-
-    ```sh
-    pip3 install shiv
-    ```
-
-1.  Install the package:
-
-    ```sh
-    make zipapp
-    ```
-
-    This command will generate executable called `pygluu-kubernetes.pyz` under the same directory.
 
 ## Build pygluu-kubernetes installer
 
