@@ -48,7 +48,6 @@ root@localhost:/opt/gluu/jetty/oxauth/webapps# cat /opt/gluu/jetty/oxauth/webapp
         <Set name="extractWAR">true</Set>
 
         <Set name="extraClasspath">/opt/gluu/jetty/identity/custom/libs/kafka-clients-2.4.0.jar</Set>
-        <!-- <Set name="extraClasspath"> /opt/gluu/jetty/identity/custom/libs/kafka-clients-2.4.0.jar</Set> -->
 </Configure>
 ```
 1. Make the following changes to `log4j2.xml` in both `/opt/gluu/jetty/oxauth/resources` and `/opt/gluu/jetty/identity/resources`:
