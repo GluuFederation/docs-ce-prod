@@ -27,7 +27,7 @@ This tutorial offers a step-by-step guide to enable [Apache Kafka log aggregatio
         ```
         <Kafka name="Kafka" topic="my-gluu-topic">
         <PatternLayout pattern="%d %-5p [oxauth] [%t] [%C{6}] (%F:%L) - %m%n"/>  
-        <Property name="bootstrap.servers"=>KAFKA-1.MY.DOMAIN:9094,KAFKA-2.MY.DOMAIN:9094,...</Property>
+        <Property name="bootstrap.servers"=>KAFKA-1.MY.DOMAIN:9092,KAFKA-2.MY.DOMAIN:9092,...</Property>
     
         <Property name="compression.type">gzip</Property>
         <Property name="ssl.truststore.location">/PATH/TO/truststore.jks</Property>
@@ -42,7 +42,7 @@ This tutorial offers a step-by-step guide to enable [Apache Kafka log aggregatio
         <AppenderRef ref="Kafka" />
         ```
         
-1. Add "-dlog4j.configurationfile=resources/log4j2.xml" to `java_options` in both `/etc/default/oxauth` and `/etc/default/identity`
+1. Add "-Dlog4j.configurationFile=/opt/gluu/jetty/oxauth/resources/log4j2.xml" to `java_options` in `/etc/default/oxauth` and  "-Dlog4j.configurationFile=/opt/gluu/jetty/oxauth/resources/log4j2.xml" to `java_options` in `/etc/default/identity`.
 
 1. [Restart](../operation/services.md#restart) the `oxauth` and `identity` services
 
