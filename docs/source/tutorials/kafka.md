@@ -33,9 +33,9 @@ root@localhost:/opt/gluu/jetty/oxauth/webapps# cat /opt/gluu/jetty/oxauth/webapp
 <Set name="extraClasspath">/opt/gluu/jetty/oxauth/custom/libs/kafka-clients-2.4.0.jar</Set>
 </Configure>
 ```
-If already some jar files are existing in **extraClasspath**, just append the kafka-clients-x.y.z additionally.
+ If already some jar files are existing in **extraClasspath**, just append the kafka-clients-x.y.z additionally.
 
-Similarly, update `/opt/gluu/jetty/identity/webapps/identity.xml`. Example is as below:
+ Similarly, update `/opt/gluu/jetty/identity/webapps/identity.xml`. Example is as below:
 ```
 <?xml version="1.0"  encoding="ISO-8859-1"?>
 <!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_0.dtd">
@@ -51,7 +51,6 @@ Similarly, update `/opt/gluu/jetty/identity/webapps/identity.xml`. Example is as
         <!-- <Set name="extraClasspath"> /opt/gluu/jetty/identity/custom/libs/kafka-clients-2.4.0.jar</Set> -->
 </Configure>
 ```
-
 1. Make the following changes to `log4j2.xml` in both `/opt/gluu/jetty/oxauth/resources` and `/opt/gluu/jetty/identity/resources`:
     - Under section appenders, add:
 
@@ -72,7 +71,6 @@ Similarly, update `/opt/gluu/jetty/identity/webapps/identity.xml`. Example is as
         ```
         <AppenderRef ref="Kafka" />
         ```
-
 1. Add **-Dlog4j.configurationFile=/opt/gluu/jetty/oxauth/resources/log4j2.xml** to `java_options` in `/etc/default/oxauth` and  **-Dlog4j.configurationFile=/opt/gluu/jetty/identity/resources/log4j2.xml** to `java_options` in `/etc/default/identity`.
 
 1. [Restart](../operation/services.md#restart) the `oxauth` and `identity` services
