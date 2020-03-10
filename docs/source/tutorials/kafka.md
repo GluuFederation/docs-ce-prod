@@ -25,7 +25,7 @@ This tutorial offers a step-by-step guide to enable [Apache Kafka log aggregatio
 
         ```
         <Kafka name="Kafka" topic="my-gluu-topic">
-        <PatternLayout pattern="%d %-5p [oxauth] [%t] [%C{6}] (%F:%L) - %m%n"/>  
+        <PatternLayout pattern="%d %-5p [kafka] [%t] [%C{6}] (%F:%L) - %m%n"/>  
         <Property name="bootstrap.servers"=>KAFKA-1.MY.DOMAIN:9092,KAFKA-2.MY.DOMAIN:9092,...</Property>
     
         <Property name="compression.type">gzip</Property>
