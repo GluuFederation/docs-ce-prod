@@ -41,7 +41,7 @@ This tutorial offers a step-by-step guide to enable [Apache Kafka log aggregatio
         <AppenderRef ref="Kafka" />
         ```
         
-1. Add "-Dlog4j.configurationFile=/opt/gluu/jetty/oxauth/resources/log4j2.xml" to `java_options` in `/etc/default/oxauth` and  "-Dlog4j.configurationFile=/opt/gluu/jetty/identity/resources/log4j2.xml" to `java_options` in `/etc/default/identity`.
+1. Add **-Dlog4j.configurationFile=/opt/gluu/jetty/oxauth/resources/log4j2.xml** to `java_options` in `/etc/default/oxauth` and  **-Dlog4j.configurationFile=/opt/gluu/jetty/identity/resources/log4j2.xml** to `java_options` in `/etc/default/identity`.
 
 1. [Restart](../operation/services.md#restart) the `oxauth` and `identity` services
 
