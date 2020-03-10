@@ -12,7 +12,6 @@ This tutorial offers a step-by-step guide to enable [Apache Kafka log aggregatio
     # unzip -p /opt/gluu/jetty/oxauth/webapps/oxauth.war WEB-INF/classes/log4j2.xml > /opt/gluu/jetty/oxauth/resources/log4j2.xml
     # unzip -p /opt/gluu/jetty/identity/webapps/identity.war WEB-INF/classes/log4j2.xml > /opt/gluu/jetty/identity/resources/log4j2.xml
     ```
-    
 1. Download the Kafka Clients jar file and copy it into oxAuth and Identity.
 
     ```
@@ -51,8 +50,8 @@ Similarly, update `/opt/gluu/jetty/identity/webapps/identity.xml`. Example is as
         <Set name="extraClasspath">/opt/gluu/jetty/identity/custom/libs/kafka-clients-2.4.0.jar</Set>
         <!-- <Set name="extraClasspath"> /opt/gluu/jetty/identity/custom/libs/kafka-clients-2.4.0.jar</Set> -->
 </Configure>
-
 ```
+
 1. Make the following changes to `log4j2.xml` in both `/opt/gluu/jetty/oxauth/resources` and `/opt/gluu/jetty/identity/resources`:
     - Under section appenders, add:
 
@@ -73,8 +72,7 @@ Similarly, update `/opt/gluu/jetty/identity/webapps/identity.xml`. Example is as
         ```
         <AppenderRef ref="Kafka" />
         ```
-      
-        
+
 1. Add **-Dlog4j.configurationFile=/opt/gluu/jetty/oxauth/resources/log4j2.xml** to `java_options` in `/etc/default/oxauth` and  **-Dlog4j.configurationFile=/opt/gluu/jetty/identity/resources/log4j2.xml** to `java_options` in `/etc/default/identity`.
 
 1. [Restart](../operation/services.md#restart) the `oxauth` and `identity` services
