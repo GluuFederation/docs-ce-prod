@@ -142,7 +142,7 @@ kubectl get configmap  gluu -n <namespace> -o yaml
 | `scim_test_client_secret`                 | base64                  |                                   |
 | `shibIDP_cert`                            | pyDes + base64          | /etc/certs/shibIDP.crt            |
 | `shibIDP_jks_base64`                      | pyDes + base64          | /etc/certs/shibIDP.jks            |
-| `shibIDP_key`                             | pyDes + bae64           | /etc/certs/shibIDP.key            |
+| `shibIDP_key`                             | pyDes + base64           | /etc/certs/shibIDP.key           |
 | `shibJksPass`                             | base64                  |                                   |
 | `ssl_cert`                                | base64                  | /etc/certs/gluu_https.crt         |
 | `ssl_cert_pass`                           | base64                  |                                   |
