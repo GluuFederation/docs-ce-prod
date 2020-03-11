@@ -173,7 +173,7 @@ Follow these steps to configure your Gluu Server for login with external OAuth s
 
 1. Enter an identifier for this provider (letters, digits, and underscore characters allowed). Check [here](./passport.md#identifiers) to learn more about identifiers usage
 
-1. Enter a display name for the provider (e.g "Yahoo!", "Windows Live", "Foursquare", etc.)
+1. Enter a display name for the provider (e.g "Goooogle", "Windows Live", "Foursquare", etc.)
 
 1. In `type` choose "oauth"
 
@@ -190,7 +190,6 @@ Follow these steps to configure your Gluu Server for login with external OAuth s
     |Tumblr|passport-tumblr|
     |Twitter|passport-twitter|
     |Windows Live|passport-windowslive|
-    |Yahoo!|passport-yahoo-oauth2|
 
     If the provider of interest is not listed, find the proper [node package](https://www.npmjs.com/) for that provider and install it. The package **must be** a Passport.js strategy based on OAuth 1.0 or OAuth 2.0.
 
@@ -218,7 +217,6 @@ Follow these steps to configure your Gluu Server for login with external OAuth s
     |Tumblr|tumblr|
     |Twitter|twitter|
     |Windows Live|windowslive|
-    |Yahoo!|yahoo|
 
     If the provider of interest is not listed, a mapping file must be created. A mapping is a mechanism that defines how the profile data released by the external provider will be saved locally by Gluu. 
     
