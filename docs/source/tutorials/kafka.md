@@ -56,12 +56,14 @@ For that, update `/opt/gluu/jetty/oxauth/webapps/oxauth.xml`. Example is as belo
         ```
         <Kafka name="Kafka" topic="my-gluu-topic">
         <PatternLayout pattern="%d %-5p [kafka] [%t] [%C{6}] (%F:%L) - %m%n"/>  
-        <Property name="bootstrap.servers"=>KAFKA-1.MY.DOMAIN:9092,KAFKA-2.MY.DOMAIN:9092,...</Property>
+        <Property name="bootstrap.servers">KAFKA-1.MY.DOMAIN:9092,KAFKA-2.MY.DOMAIN:9092,...</Property>
     
         <Property name="compression.type">gzip</Property>
+	    <!--
         <Property name="ssl.truststore.location">/PATH/TO/truststore.jks</Property>
         <Property name="ssl.truststore.password">PASSWORD_FOR_TRUSTSTORE</Property>
         <Property name="security.protocol">SSL</Property>
+	    -->
         </Kafka>
         ```
     
