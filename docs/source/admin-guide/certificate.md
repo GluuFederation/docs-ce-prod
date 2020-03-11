@@ -107,3 +107,124 @@ Please follow the steps below to install intermediate certificates:
 3. Modify `/etc/httpd/conf.d/https_gluu.conf`, and add  
   `SSLCertificateChainFile /etc/certs/name_of_your_interm_root_cert.crt`.
 4. [Restart](../operation/services.md#restart) the `httpd` service.
+
+## Updating  Certificates and keys instructions for Kubernetes
+
+The following table shows all the keys that can be replaced inside the gluu secret.
+
+| Key                                       |
+| ----------------------------------------- |
+| `api_rp_jks_base64`                       |
+| `api_rs_jks_base64`                       |
+| `gluu_ro_client_base64_jwks`              |
+| `idp3EncryptionCertificateText`           |
+| `idp3EncryptionKeyText`                   |
+| `idp3SigningCertificateText`              |
+| `idp3SigningKeyText`                      |
+| `ldap_pkcs12_base64`                      |
+| `ldap_ssl_cacert`                         |
+| `ldap_ssl_cert`                           |
+| `ldap_ssl_key`                            |
+| `oxauth_jks_base64`                       |
+| `oxauth_openid_key_base64`                |
+| `passport_rp_client_base64_jwks`          |
+| `passport_rp_client_cert_base64`          |
+| `passport_rp_jks_base64`                  |
+| `passport_rs_client_base64_jwks`          |
+| `passport_rs_jks_base64`                  |
+| `passport_sp_cert_base64`                 |
+| `passport_sp_key_base64`                  |
+| `radius_jks_base64`                       |
+| `scim_rp_client_base64_jwks`              |
+| `scim_rp_jks_base64`                      |
+| `scim_rs_client_base64_jwks`              |
+| `scim_rs_jks_base64`                      |
+| `shibIDP_cert`                            |
+| `shibIDP_jks_base64`                      |
+| `shibIDP_key`                             |
+| `ssl_cert`                                |
+| `ssl_key`                                 |
+
+1. Login the vm controlling the kubernetes cluster. 
+
+1. Make a directory called `update`.
+
+    ```bash
+    mkdir update && cd update
+    ```
+
+1. Grab the gluu secret and store it as `gluu_secret.yaml`
+
+    ```bash
+    kubectl get secrets gluu -n <namespace> -o yaml > gluu_secret.yaml
+    ```
+
+1. Optional: If the gluu https crt and key are being updated the ingress tls needs to be copied as well.
+
+    ```bash
+    kubectl get secrets tls-certificate -n <namespace> -o yaml > gluu_tls_certificate.yaml
+    ```
+1. Optional: Make a copy of this secret.
+
+    ```bash
+    cp gluu_tls_certificate.yaml original_gluu_tls_certificate.yaml
+    ```
+    
+1. Make a copy of the gluu secret.
+
+    ```bash
+    cp gluu_secret.yaml original_secret.yaml
+    ```
+
+1. For every key in the table above that will be updated create a file with the same name as the key name and the contents of the key that will be updated. Forexample, we will update `ssl_cert` and `ssl_key`.
+
+    ```
+    vi ssl_cert
+    ```
+    and pasted the new cert content i.e `-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----`
+
+    ```
+    vi ssl_key
+    ```
+    and pasted the new key content i.e `-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----`
+    
+
+1. Download latest [`pygluu-kubernetes.pyz`](https://github.com/GluuFederation/enterprise-edition/releases) and run `update-secret` command.
+
+    ```bash
+    ./pygluu-kubernetes.pyz update-secret
+    ```
+    
+1. `gluu_secret.yaml` should have been modified now. Delete the existing secret so the updated one can replace it. 
+
+    ```bash
+    kubectl delete secret gluu -n <namespace>
+    ```
+    
+1. Create the modified secret. 
+
+    ```bash
+    kubectl create -f gluu_secret.yaml
+    ```
+
+1. Optional: If the gluu https crt and key are being updated the ingress tls needs to be updated as well.
+
+    ```bash
+    kubectl apply -f  gluu_tls_certificate.yaml
+    ```
+    
+    Please update  the certificate and key  associated with the load balancer on cloud deployments.
+ 
+ 1. Restart pods to reload crts and keys in order `oxauth`, `oxtrust`, `oxpassport`, `oxshibboleth`, `radius`
+ 
+    ```bash
+    kubectl scale deploy oxauth -n <namespace> --replicas=0
+    kubectl scale deploy oxauth -n <namespace> --replicas=1
+    # Wait until oxauth is up
+    kubectl scale statefulset oxtrust -n <namespace> --replicas=0
+    kubectl scale statefulset oxtrust -n <namespace> --replicas=0
+    ...
+    ```
+    
+    
+    
