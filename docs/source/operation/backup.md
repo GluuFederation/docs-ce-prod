@@ -151,15 +151,15 @@ If your Gluu Server is backed by OpenDJ, follow these steps to backup your data:
 
 You should be done and everything should be working perfectly. You may notice your Gluu Server responding slower than before. That is expected -- your LDAP is adjusting to the new data, and indexing might be in process. Give it some time and it should be back to normal.
 
-# Backing up data and restoring from backup Kubernetes instructions
+## Backing up data and restoring from backup Kubernetes instructions
 
-## Overview
+### Overview
 
 This guide introduces how to backup data and restore from a backup file.
 
-## Couchbase
+### Couchbase
 
-### Install backup strategy
+#### Install backup strategy
 
 A typical installation of Gluu using [`pygluu-kubernetes.pyz`](https://github.com/GluuFederation/enterprise-edition/releases)  will automatiically install a backup strategy that will backup Couchbase every 5 mins to a persistent volume. However, the Couchbase backup can be setup manually:
 
@@ -174,7 +174,7 @@ A typical installation of Gluu using [`pygluu-kubernetes.pyz`](https://github.co
 !!! Note
     `./pygluu-kubernetes.pyz install-couchbase-backup` will not install couchbase.
 
-### Uninstall backup strategy
+#### Uninstall backup strategy
 
 A file named `couchbase-backup.yaml` will have been generated during installation of backup strategy. Use that as follows to remove the backup strategy:
 
@@ -182,7 +182,7 @@ A file named `couchbase-backup.yaml` will have been generated during installatio
 kubectl delete -f ./couchbase-backup.yaml
 ```
 
-### Restore from backup
+#### Restore from backup
 
 Please save a copy of the configurations to a file.
 
@@ -193,7 +193,7 @@ kubectl get secret gluu -n <Gluu-namespace> -o yaml > secrets-<date>.yaml
 !!! Note
     An existing Gluu setup must exist for this to work. Please do not attempt to delete any resources and be very careful in handling Gluu configurations and secrets.
 
-#### Couchbase restore step
+##### Couchbase restore step
 
 1.  Install a new Couchbase if needed.
 
@@ -263,7 +263,7 @@ kubectl get secret gluu -n <Gluu-namespace> -o yaml > secrets-<date>.yaml
     kubectl delete -f restore-cb-pod.yaml -n cbns
     ```
     
-#### Gluu restore step
+##### Gluu restore step
 
 1.  Download [`pygluu-kubernetes.pyz`](https://github.com/GluuFederation/enterprise-edition/releases). This package can be built [manually](https://github.com/GluuFederation/enterprise-edition/blob/4.1/README.md#build-pygluu-kubernetespyz-manually).
 
@@ -273,9 +273,9 @@ kubectl get secret gluu -n <Gluu-namespace> -o yaml > secrets-<date>.yaml
      ./pygluu-kubernetes.pyz restore
      ```
 
-## OpenDJ / Wren:DS
+### OpenDJ / Wren:DS
 
-### Install backup strategy
+#### Install backup strategy
 
 A typical installation of Gluu using [`pygluu-kubernetes.pyz`](https://github.com/GluuFederation/enterprise-edition/releases)  will automatiically install a backup strategy that will backup opendj / wren:ds every 10 mins `/opt/opendj/ldif`. However, the couchbase backup can be setup manually:
 
@@ -290,7 +290,7 @@ A typical installation of Gluu using [`pygluu-kubernetes.pyz`](https://github.co
 !!! Note
     Up to 6 backups will be stored at `/opt/opendj/ldif` on the running `opendj` pod. The backups will carry the name `backup-0.ldif` to `backup-5.ldif` and will be overwritten to save data.
 
-### Uninstall backup strategy
+#### Uninstall backup strategy
 
 A file named `ldap-backup.yaml` will have been generated during installation of backup strategy. Use that as follows to remove the backup strategy:
 
@@ -298,12 +298,12 @@ A file named `ldap-backup.yaml` will have been generated during installation of 
 kubectl delete -f ./couchbase-backup.yaml
 ```
 
-### Restore from backup
+#### Restore from backup
 
 !!! Note
     An existing Gluu setup must exist for this to work. Please do not attempt to delete any resources and be very careful in handling Gluu configurations and secrets.
 
-#### OpenDJ / Wren:DS restore step
+##### OpenDJ / Wren:DS restore step
 
 1.  Opendj volume attached should carry the backups at `/opt/opendj/ldif`
 
