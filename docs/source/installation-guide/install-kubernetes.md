@@ -51,9 +51,9 @@
 
 1.  Install kubectl using `gcloud components install kubectl` command
 
-1.  Create cluster:
+1.  Create cluster using a command such as the following as an example:
 
-        gcloud container clusters create CLUSTER_NAME --zone ZONE_NAME
+        gcloud container clusters create exploringgluu --num-nodes 2 --machine-type n1-standard-2 --zone us-west1-a --additional-zones us-west1-b,us-west1-c
 
     where `CLUSTER_NAME` is the name you choose for the cluster and `ZONE_NAME` is the name of [zone](https://cloud.google.com/compute/docs/regions-zones/) where the cluster resources live in.
 
@@ -160,7 +160,7 @@
 | `COUCHBASE_VOLUME_TYPE`                         | Persistence Volume type                                                          | `"io1"`,`"ps-ssd"`, `"Premium_LRS"`                                                         |
 | `COUCHBASE_CLUSTER_NAME`                        | Couchbase cluster name                                                           | `"<name>"`                                                                                  |
 | `COUCHBASE_FQDN`                                | Couchbase FQDN                                                                   | `""` or i.e `"<clustername>.<namespace>.gluu.org"`                                          |
-| `COUCHBASE_URL`                                 | Couchbase internal address to the cluster                                        | `""` or i.e `"<clustername>.<namespace>.cluster.local"`                                     |
+| `COUCHBASE_URL`                                 | Couchbase internal address to the cluster                                        | `""` or i.e `"<clustername>.<namespace>.svc.cluster.local"`                                     |
 | `COUCHBASE_USER`                                | Couchbase username                                                               | `""` or i.e `"admin"`                                                                       |
 | `COUCHBASE_CRT`                                 | Couchbase CA certification                                                       | `""` or i.e `<crt content not encoded>`                                                     |
 | `COUCHBASE_CN`                                  | Couchbase certificate common name                                                | `""`                                                                                        |
