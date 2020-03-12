@@ -56,7 +56,7 @@ By default, only a small set of parameters for a working setup are shown in the 
 - `identifierFormat`: Identifier format to request from IDP
 - `authnRequestBinding`: SAML binding for requesting authentication, only `HTTP-POST` or `HTTP-Redirect` are supported. If not provided, the default is `HTTP-Redirect`
 - `issuer`: `entityID` of Passport as SP (eg. `urn:test:example`). You can use different values or the same across different added IDPs
-- `cert`: The IDP's public PEM-encoded X.509 certificate used to validate incoming SAML responses. Include only the body of the certificate: suppress the `BEGIN CERTIFICATE` and `END CERTIFICATE` lines, any whitespace, and all line breaking characters (new line/carriage return).
+- `cert`: The IDP's public PEM-encoded X.509 certificate used to validate incoming SAML responses. Include only the body of the certificate: suppress the `BEGIN CERTIFICATE` and `END CERTIFICATE` lines, any whitespace, and all line breaking characters (new line/carriage return). As for example if your remote IDP is another Gluu Server, you need to grab the `idp-signing.crt` from that server. Command can be used: `cat /etc/certs/idp-signing.crt | grep -v '^---' | tr -d '\n';`
 
 !!! Note 
     Regarding the value of `cert`, if you are using Shibboleth bundled in a Gluu Server instance, visit `https://<remote-gluu-host>/idp/shibboleth` and see the contents of XML tag `KeyDescriptor` where `use="signing"` inside `IDPSSODescriptor` tag.
