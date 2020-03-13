@@ -59,7 +59,8 @@ For that, update `/opt/gluu/jetty/oxauth/webapps/oxauth.xml`. Example is as belo
         <Property name="bootstrap.servers">KAFKA-1.MY.DOMAIN:9092,KAFKA-2.MY.DOMAIN:9092,...</Property>
     
         <Property name="compression.type">gzip</Property>
-	    <!--
+	    <!-- Below should be included if kafka works on ssl ports
+	      -- Change ports of bootstrap.servers accordingly in that case --
         <Property name="ssl.truststore.location">/PATH/TO/truststore.jks</Property>
         <Property name="ssl.truststore.password">PASSWORD_FOR_TRUSTSTORE</Property>
         <Property name="security.protocol">SSL</Property>
