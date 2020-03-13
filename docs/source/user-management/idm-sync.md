@@ -1,7 +1,7 @@
 # IDM Synchronization
 
 ## Overview
-Gluu exposes a REST service to obtain user entries that have been updated in the local Gluu database after a specified timestamp. The endpoint resides alongside the [SCIM endpoints](../api-guide/scim-api.md/) and reuses the same [protection policy](./scim2.md/#api-protection), however, it is not part of the SCIM standard itself.
+Gluu exposes a REST service to obtain user entries that have been updated or have been added in the local Gluu database after a specified timestamp. The endpoint resides alongside the [SCIM endpoints](../api-guide/scim-api.md/) and reuses the same [protection policy](./scim2.md/#api-protection), however, it is not part of the SCIM standard itself.
 
 ## Service specification
 
@@ -16,7 +16,7 @@ The API document is self-explanatory, but here are some key facts:
 - The operation returns a set of entries matching the search criteria. Each entry consists of a dictionary (key/value pairs), where keys are attribute names (as stored in Gluu database), and every value is an array of actual values for such attribute. In addition to the entries, the size of the result set is returned as well as the timestamp of the most recently updated entry in the set.
 
 !!! Warning
-    The computation of results is based on attribute `updatedAt`. If entries are ever modified manually (e.g. by using ldap commands), these updates will not be accounted for by the service.
+    The computation of results is based on attributes `updatedAt` and `oxCreationTimestamp`. This covers several sources of data manipulation (eg. SCIM, oxTrust UI, and custom scripts). If entries are ever modified manually (e.g. by using ldap commands) or by external apps, these updates will not be accounted by the service.
 
 ## Example
 
@@ -56,4 +56,4 @@ Content-Type: application/json; charset=utf-8
 }
 ```
 
-For the above example, all entries returned have a modified timestamp newer than `2019-12-24T17:00:03` (UTC time).
+For the above example, all entries returned have a modified timestamp earlier than `2019-12-24T17:00:03` (UTC time).
