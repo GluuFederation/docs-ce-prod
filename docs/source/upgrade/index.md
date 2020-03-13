@@ -103,13 +103,13 @@ This guide introduces how to upgrade from one version to another.
 
 1.  Download [`pygluu-kubernetes.pyz`](https://github.com/GluuFederation/enterprise-edition/releases). This package can be built [manually](https://github.com/GluuFederation/enterprise-edition/blob/4.1/README.md#build-pygluu-kubernetespyz-manually).
 
-1.  Create connfigmap for `101-ox.ldif` file.
+1.  **If using LDAP**: Create configmap for `101-ox.ldif` file.
 
     ```bash
     kubectl create cm oxldif -n gluu --from-file=101-ox.ldif
     ```
     
-1.  Mount [101-ox.ldif](https://raw.githubusercontent.com/GluuFederation/enterprise-edition/4.1/pygluu/kubernetes/templates/ldap/base/101-ox.ldif) in opendj-pods. Open opendj yaml or edit the statefulset directly `kubectl edit statefulset opendj -n gluu`
+1.  **If using LDAP**: Mount [101-ox.ldif](https://raw.githubusercontent.com/GluuFederation/enterprise-edition/4.1/pygluu/kubernetes/templates/ldap/base/101-ox.ldif) in opendj-pods. Open opendj yaml or edit the statefulset directly `kubectl edit statefulset opendj -n gluu`
 
     ```yaml
       volumes:
