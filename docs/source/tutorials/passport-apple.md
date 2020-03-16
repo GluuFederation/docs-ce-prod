@@ -6,7 +6,7 @@ While steps covered in the [Inbound identity using OIDC and OAuth](../authn-guid
 
 ## Pre-requisites
 
-- No previous knowledge of [passport](../auth-guide/passport.md) (the key Gluu server component for inbound identity) is required to follow this document, however, it is assumed your Gluu server has Passport already [enabled](../auth-guide/inbound-oauth-passport.md#enable-passport).
+- No previous knowledge of [passport](../authn-guide/passport.md) (the key Gluu server component for inbound identity) is required to follow this document, however, it is assumed your Gluu server has Passport already [enabled](../authn-guide/inbound-oauth-passport.md#enable-passport).
 
 - Ideally, your Gluu instance has to be publicly accessible to Internet. This is due to Apple URL verification processes. If this is a problem for your organization, it is possible to workaround it using proxy techniques. 
 
