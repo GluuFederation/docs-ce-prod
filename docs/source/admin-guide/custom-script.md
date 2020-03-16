@@ -370,3 +370,47 @@ Snippet
 ```
 
 Full version of the script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_4.1/static/extension/resource_owner_password_credentials/resource_owner_password_credentials.py). 
+
+## Additional Tips
+
+### Dynamically Implementing Beans
+
+CdiUtil.bean() allows the application to dynamically obtain instances of beans inside the script. 
+
+For example:
+
+- To access the `org.gluu.oxauth.service.UserService` and `org.gluu.oxauth.service.UserService.AuthenticationService` services inside a script, use the following syntax:
+
+```
+userService = CdiUtil.bean(UserService)
+```
+
+```
+authenticationService = CdiUtil.bean(AuthenticationService)
+```
+
+Other useful services with bean instances that can be dynamically obtained in the scripts are:
+- `org.gluu.oxauth.security.Identity`
+- `org.gluu.oxauth.service.SessionIdService`
+- `org.gluu.oxauth.service.EncryptionService`
+- `org.gluu.oxauth.service.net import HttpService org.gluu.jsf2.message.FacesMessages from org.gluu.service.CacheService`
+
+### Displaying error conditions to users
+
+The FacesMessage service can be used to pass specific error conditions to be displayed to the webpage. Just do the following:
+
+1. Obtain an instance of FacesMessages using
+
+    ```
+    facesMessages = CdiUtil.bean(FacesMessages) 
+    ```
+    
+    ```
+    facesMessages.setKeepMessages()
+    ```
+    
+1. To handle the error condition, use the following: 
+    
+    ```
+    facesMessages.add(FacesMessage.SEVERITY_ERROR, "Wrong username / password")
+    ```
