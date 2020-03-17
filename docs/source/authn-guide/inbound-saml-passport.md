@@ -82,7 +82,7 @@ In case you are interested in signing the authentication requests, you can suppl
 
 When `validateInResponseTo` is set to `true`, a simple in-memory cache is used to store the IDs of the SAML requests sent by Passport. Then the `InResponseTo` of SAML responses are validated against the cache. Check [here](https://github.com/bergie/passport-saml/#cache-provider) to learn more. 
 
-This cache can lead to validation errors when the Gluu Passport environment consists of more than one server (such as a clustered setup). To account for this scenario, we provide means so that a Redis or memcached can be used for this purposes. In most cases, a clustered Gluu installation already leverages a memcached or Redis cache, so we can reuse it here. 
+This cache can lead to validation errors in the case of a Gluu cluster setup if no sticky sessions are in place for passport. To account for this scenario, we provide means so that a Redis or memcached can be used for this purposes. In most cases, a clustered Gluu installation already leverages a memcached or Redis cache, so we can reuse it here. 
 
 ##### Redis
 To use this cache, add a property named `redisCacheOptions` whose values is a dictionary with keys as explained [here](https://github.com/NodeRedis/node_redis#options-object-properties) as its value.
