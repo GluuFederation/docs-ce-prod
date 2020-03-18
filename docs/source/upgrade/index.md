@@ -93,13 +93,13 @@ another way.
     (a) OpenDJ Users: Back up the schema file  
     (b) OpenLDAP users: Convert the schema according to [this guide](https://backstage.forgerock.com/docs/opendj/3.5/admin-guide/#chap-schema)
 
-# Kubernetes upgrading instructions 
+## Kubernetes upgrading instructions 
 
-## Overview
+### Overview
 
 This guide introduces how to upgrade from one version to another.
 
-## Upgrade
+### Upgrade
 
 1.  Download [`pygluu-kubernetes.pyz`](https://github.com/GluuFederation/enterprise-edition/releases). This package can be built [manually](https://github.com/GluuFederation/enterprise-edition/blob/4.1/README.md#build-pygluu-kubernetespyz-manually).
 
@@ -135,7 +135,7 @@ This guide introduces how to upgrade from one version to another.
      ```bash
      ./pygluu-kubernetes.pyz upgrade
      ```
-## Exporting Data
+### Exporting Data
 
 !!! Note
  * This step is not needed.
