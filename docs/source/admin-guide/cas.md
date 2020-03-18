@@ -46,17 +46,14 @@ Please follow next steps to enable the feature:
 
 #### Configuring service registry
 
-Let's start by configuring a very basic CAS setup which only returns user's id to requesting application (will use it as a foundation to build a more functional setup(s) upon later on)
+Let's start by configuring a very basic CAS setup which only returns a user's id to requesting application (will use it as a foundation to build a more functional setup(s) upon later on)
 
-1. Move into the Gluu CE container: 
-
-    `service gluu-server login` or `sbin/gluu-serverd login`
-    
-2. Edit `/opt/gluu/jetty/identity/conf/shibboleth3/idp/cas-protocol.xml.vm` template file by putting a `ServiceDefinition` bean inside pre-existing `reloadableServiceRegistry` bean as exemplified below. You must use a regexp defining your application instead of `"https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*"`. Pattern like `".*"` may be used as a wildcard to create an "allow-all" definition for a test setup.
-   
-3. [Restart](../operation/services.md#restart) the `identity` service to re-generate new files from updated templates.
-    
-4. [Restart](../operation/services.md#restart) the `idp` service to apply your changes.
+- Find `identity.war` in `/opt/gluu/jetty/identity/webapps/` 
+- Unwar it with `/opt/amazon-corretto-8.222.10.1-linux-x64/bin/jar -xvf identity.war` 
+- Find `oxtrust-configuration-4.1.1.Final.jar` in `WEB-INF/lib` and unwar it. 
+- Get 'cas-protocol.xml.vm' from `META-INF/shibboleth3/idp/`
+- Copy this velocity template inside `/opt/gluu/jetty/identity/conf/shibboleth/idp/`
+- Add the following snippet (regex for your service URL):
 
 ```
     <bean id="reloadableServiceRegistry"
@@ -73,23 +70,17 @@ Let's start by configuring a very basic CAS setup which only returns user's id t
                       c:regex="$casParams.unauthorizedToProxyPattern"
                       p:group="non-proxying-services"
                       p:authorizedToProxy="false" />
+
+
                 <bean class="net.shibboleth.idp.cas.service.ServiceDefinition"
-                      c:regex=".*"
+                      c:regex="https:\/\/cas\.gluu\.org\/example_simple\.php"
                       p:group="non-proxying-services"
                       p:authorizedToProxy="false" />
-
-           <!-- Custom user's service definition beans -->
-                <bean class="net.shibboleth.idp.cas.service.ServiceDefinition"
-                      c:regex="https:\/\/([A-Za-z0-9_-]+\.)*example\.org(:\d+)?\/.*"
-                      p:group="institutional-services"
-                      p:authorizedToProxy="false" />
-#end
-            </list>
-        </property>
-    </bean>
 ```
 
-At this point you should start getting a successful CAS ticket validation response from your Gluu server containing at least your user ID (which is taken from `uid` attribute by default).
+- [Restart](../operation/services.md#restart) the `identity` and `idp` services
+- Test
+
 
 #### Enabling attributes you plan to release in Shibboleth IdP
 
