@@ -110,16 +110,13 @@ The list of buckets is not hardcoded and can be changed via the `gluu-couchbase.
 The following is an example of the default mapping configuration:
 
 ```
-buckets: gluu, gluu_client, gluu_cache, gluu_site, gluu_token, gluu_authorization, gluu_user, gluu_statistic
+buckets: gluu, gluu_token, gluu_cache, gluu_user, gluu_site
 
 bucket.default: gluu
-bucket.gluu_user.mapping: people, groups
+bucket.gluu_user.mapping: people, groups, authorizations
 bucket.gluu_cache.mapping: cache
-bucket.gluu_statistic.mapping: statistic
 bucket.gluu_site.mapping: cache-refresh
-bucket.gluu_authorization.mapping: authorizations
 bucket.gluu_token.mapping: tokens
-bucket.gluu_client.mapping: clients
 ```
 
 There are two mandatory keys in this configuration, `buckets` and `bucket.default`. `buckets` provides information about all available buckets. `bucket.default` is the main bucket that applications should use if other mapping rules were not applied.
@@ -130,14 +127,11 @@ The table below specifies the list of entry types that applications store in buc
 
 | Bucket | Entry Type |
 | --- | --- |
-|gluu | <ul> <li> gluuOrganization </li> <li> gluuConfiguration </li> <li> oxAuthConfiguration </li> <li> oxTrustConfiguration </li> <li> oxPassportConfiguration </li> <li> oxApplicationConfiguration </li> <li> gluuAttribute </li> <li> oxCustomScript </li> <li> oxAuthCustomScope </li> <li> oxSectorIdentifier </li> <li> oxUmaResource </li> <li> oxUmaResourcePermission </li> <li> oxAuthUmaRPT </li> <li> oxAuthUmaPCT </li> <li> oxDeviceRegistration </li> <li> oxU2fRequest </li> </ul> |
-| gluu_client | oxAuthClient |
+|gluu | <ul> <li> gluuOrganization </li> <li> gluuConfiguration </li> <li> oxAuthConfiguration </li> <li> oxTrustConfiguration </li> <li> oxPassportConfiguration </li> <li> oxApplicationConfiguration </li> <li> gluuAttribute </li> <li> oxCustomScript </li> <li> oxAuthCustomScope </li> <li> oxSectorIdentifier </li> <li> oxUmaResource </li> <li> oxUmaResourcePermission </li> <li> oxAuthUmaRPT </li> <li> oxAuthUmaPCT </li> <li> oxDeviceRegistration </li> <li> oxU2fRequest </li> <li> oxAuthClient </li> <li>oxMetric</li></ul> |
 | gluu_cache | oxCacheEntity |
 | gluu_site | gluuInumMap |
-| gluu_authorization | oxClientAuthorization |
 | gluu_token | oxAuthToken |
-| gluu_user | <ul> <li> gluuPerson </li> <li> gluuGroup </li> <li> pairwiseIdentifier </li> <li> oxDeviceRegistration </li> <li> oxFido2AuthenticationEntry </li> <li> oxFido2RegistrationEntry </li> </ul> |
-| gluu_statistic | oxMetric |
+| gluu_user | <ul> <li> gluuPerson </li> <li> gluuGroup </li> <li> pairwiseIdentifier </li> <li> oxDeviceRegistration </li> <li> oxFido2AuthenticationEntry </li> <li> oxFido2RegistrationEntry </li> <li> oxClientAuthorization </li> </ul> |
 
 Both LDAP and Couchbase persistence layers use the [Gluu Filter API](https://github.com/GluuFederation/oxCore/blob/master/persistence-filter/src/main/java/org/gluu/search/filter/Filter.java) to minimize the Gluu Server's dependency on a specific DB. At runtime, the Couchbase persistence layer converts them to the N1QL query language.
 
@@ -164,16 +158,13 @@ connection.scan-consistency: not_bounded
 auth.userName: <couchbase_server_user>
 auth.userPassword: <encoded_couchbase_server_pw>
 
-buckets: gluu, gluu_client, gluu_cache, gluu_site, gluu_token, gluu_authorization, gluu_user, gluu_statistic
+buckets: gluu, gluu_token, gluu_cache, gluu_user, gluu_site
 
 bucket.default: gluu
-bucket.gluu_user.mapping: people, groups
+bucket.gluu_user.mapping: people, groups, authorizations
 bucket.gluu_cache.mapping: cache
-bucket.gluu_statistic.mapping: statistic
 bucket.gluu_site.mapping: cache-refresh
-bucket.gluu_authorization.mapping: authorizations
 bucket.gluu_token.mapping: tokens
-bucket.gluu_client.mapping: clients
 
 password.encryption.method: <encryption_method>
 
@@ -199,8 +190,8 @@ This module combines other persistence layers, so all layers used should be corr
 ```
 storages: couchbase, ldap
 storage.default: couchbase
-storage.ldap.mapping: people, groups
-storage.couchbase.mapping: clients, cache, site, tokens, statistic, authorization
+storage.ldap.mapping: user
+storage.couchbase.mapping: tokens, cache, cache-refresh
 ```
 
 In this example, CE applications will use LDAP for `ou=people` and `ou=groups`. All other data will be stored in the Couchbase DB.
@@ -212,7 +203,7 @@ In 4.1, the base configuration details is stored in the `/etc/gluu/conf/gluu.pro
 The following is a self-explanatory sample configuration:
 
 ```
-persistence.type=couchbase
+persistence.type=hybrid
 
 oxauth_ConfigurationEntryDN=ou=oxauth,ou=configuration,o=gluu
 oxtrust_ConfigurationEntryDN=ou=oxtrust,ou=configuration,o=gluu
@@ -224,4 +215,5 @@ oxradius_ConfigurationEntryDN=ou=oxradius,ou=configuration,o=gluu
 certsDir=/etc/certs
 confDir=
 pythonModulesDir=/opt/gluu/python/libs
+
 ```

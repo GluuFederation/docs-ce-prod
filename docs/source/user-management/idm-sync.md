@@ -56,4 +56,4 @@ Content-Type: application/json; charset=utf-8
 }
 ```
 
-For the above example, all entries returned have a modified timestamp newer than `2019-12-24T17:00:03` (UTC time).
+For the above example, all entries returned have a modified timestamp earlier than `2019-12-24T17:00:03` (UTC time).

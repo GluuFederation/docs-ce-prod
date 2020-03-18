@@ -7,7 +7,7 @@ The Gluu Server can now be configured to include a [RADIUS](https://en.wikipedia
     For a more performant RADIUS solution, try our [plugin for Radiator](./gluu-radiator.md), a robust AAA server built for ISPs and carriers. 
     
 ## Installation  
-During installation, while [running setup.py](../../installation-guide/setup-py.md), simply select `Y` when you are asked to install Gluu Radius.
+During installation, while [running setup.py](../../installation-guide/setup_py.md), simply select `Y` when you are asked to install Gluu Radius.
 
 ## Service 
 Gluu Radius runs as a service from within the Linux container. Certain configuration settings will require a service restart. View the [Services Commands](../../operation/services.md) doc for commands for the OS in use. 

@@ -207,7 +207,7 @@ The Gluu Server is configured to support this SAML flow out-of-the-box. To emplo
 1. Send the user to the composed URL (e.g. via redirection by on-page JS, an action triggered by a button, etc.)
 
 ## Federation Configuration     
-If your target SP is part of a federation like [InCommon](https://www.incommon.org/federation/), a TR can be created for the SP using the federation's metadata. To achieve this, add a TR for the federation in the Gluu Server first, then create TRs for each target SP in the federation. 
+If your target SP is part of a federation like [InCommon](https://www.incommon.org/federation/), a TR can be created for the SP using the federation's metadata. To achieve this, add a TR for the federation in the Gluu Server first, then create TRs for each target SP in the federation. If working with large metadata files, make sure the backend has enough resources to handle such a large operation.
 
 The example below shows how to add a TR for InCommon.
 
@@ -218,6 +218,16 @@ Once a TR has been established with the federation, TRs can be configured for an
 In the example below, we are creating a TR for the 'Internet2 Wiki', which is an InCommon Federation affiliated SP (meaning, the SPs entityID is available in InCommon metadata). 
 
 ![Incommon_affiliated_SP_Trust.png](../img/saml/InCommon_affiliated_SP_Trust.png)
+
+## IDP cache support
+
+IDP requires `shibboleth.StorageService` to store user sessions. This is defined in the `/opt/shibboleth-idp/conf/idp.properties` configuration file in the `idp.replayCache.StorageService` property.
+
+The default IDP installation uses the `shibboleth.StorageService` service. This service stores data in server memory. As a result, it does not survive restarts and is not replicated across a cluster. 
+
+In order to resolve these limitations, starting with 4.1, the IDP uses `shibboleth.GluuStorageService`. This implementation is based on the Gluu [cache](https://github.com/GluuFederation/oxCore/tree/master/core-cache). This library provides Memory, Memcached, Redis, Redis + Sentinel, Native (LDAP or Cocuhbase) cache implementations. The active mode is defined globally for oxAuth/oxTrust/IDP in the oxTrust GUI. After changing the cache type, it's mandatory to restart these services to apply new changes.
+
+This new CE 4.1 implementation allows to use IDP in cluster without extra configuration changes.
 
 ## Customizing IDP pages
 

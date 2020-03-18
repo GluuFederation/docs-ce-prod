@@ -12,7 +12,7 @@ repo_url: https://github.com/GluuFederation/docs-ce-prod/
 edit_uri: edit/4.1/docs/source
 
 # Configuration
-theme: 
+theme:
     name: material
     palette:
         primary: 'green'
@@ -21,19 +21,25 @@ theme:
     favicon: 'favicon.ico'
 extra:
     version: '4.1'
-    
+
+# Tracking
+google_analytics:
+  - 'UA-31008645-7'
+  - 'auto'
+
 # Extensions
 markdown_extensions:
 - admonition
 - toc:
      permalink: '#'
-- codehilite     
+- codehilite
 - pymdownx.superfences
 
 # Navigation
 nav:
 - 'Versions':
     - '4.0': 'https://gluu.org/docs/ce/4.0/'
+    - '3.1.7': 'https://gluu.org/docs/ce/3.1.7/'
     - '3.1.6': 'https://gluu.org/docs/ce/3.1.6/'
     - '3.1.5': 'https://gluu.org/docs/ce/3.1.5/'
     - '3.1.4': 'https://gluu.org/docs/ce/3.1.4/'
@@ -42,9 +48,7 @@ nav:
     - '3.1.2': 'https://gluu.org/docs/ce/3.1.2/'
     - '3.1.1': 'https://gluu.org/docs/ce/3.1.1/'
     - '3.1.0': 'https://gluu.org/docs/ce/3.1.0/'
-    - '3.0.2': 'https://gluu.org/docs/ce/3.0.2/'
-    - '3.0.1': 'https://gluu.org/docs/ce/3.0.1/'
-    - '2.4.4': 'https://gluu.org/docs/ce/2.4.4/'
+    - 'eol': 'https://gluu.org/docs/eol/'
 - ' ': 'https://gluu.org/docs'
 - ' ': 'https://gluu.org/docs'
 - Home: 'index.md'
@@ -52,9 +56,10 @@ nav:
 - Whats new in v4: '4.x-intro.md'
 - Installation Guide:
         - 'VM Preparation': 'installation-guide/index.md'
-        - 'Installation': 
+        - 'Installation':
 #            - 'Start here': 'installation-guide/install.md'
-            - 'Test Drive': 'installation-guide/test-drive.md'
+            # - 'Test Drive': 'installation-guide/test-drive.md'
+            - 'Kubernetes': 'installation-guide/install-kubernetes.md'
             - 'Docker': 'installation-guide/install-docker.md'
             - 'Ubuntu': 'installation-guide/install-ubuntu.md'
             - 'Debian': 'installation-guide/install-debian.md'
@@ -141,6 +146,9 @@ nav:
             - 'Persistence Mechanisms': 'reference/persistence.md'
             - 'oxLDAP Properties': 'reference/oxldap.md'
             - 'LDAP Schema': 'reference/schema.md'
+        - 'Kubernetes and Containers Technical Reference':
+            - 'Config and Secret Keys': 'reference/container-configs.md'
+            - 'Image References': 'reference/container-image-refs.md'
 - Operation Guide:
         - 'Service Commands': 'operation/services.md'
         - 'Upgrades': 'upgrade/index.md'

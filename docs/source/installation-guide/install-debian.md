@@ -1,6 +1,6 @@
 # Debian Installation 
 ## Overview
-Single-node Gluu Server Linux packages are available for Debian 8. Follow the instructions below:
+Single-node Gluu Server Linux packages are available for Debian 9 and 10. Follow the instructions below:
 
 1. [Install the Linux package](#install-the-package)
 2. [Start the Server and log in to the container](#start-the-server-and-log-in)
@@ -30,7 +30,25 @@ echo "deb https://repo.gluu.org/debian/ stretch-stable main" > /etc/apt/sources.
 ```
 
 ```
-# curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -
+curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -
+```
+
+```
+apt-get update
+```
+
+```
+apt-get install gluu-server
+```
+
+For **Debian 10 (Buster)**, run the following commands:
+
+```
+echo "deb https://repo.gluu.org/debian/ buster-stable main" > /etc/apt/sources.list.d/gluu-repo.list
+```
+
+```
+curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -
 ```
 
 ```

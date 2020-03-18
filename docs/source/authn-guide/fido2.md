@@ -75,6 +75,8 @@ By default, the FIDO2 endpoints are disabled in the Gluu Server for compatibilit
 
 1. `wget https://mds2.fidoalliance.org/?token=<access_token>`
 
+1. Put the `https://mds.fidoalliance.org/Root.cer` certificate file into the `/etc/gluu/conf/fido2/mds/cert` folder
+
 1. Restart oxauth services
 
 ## Make FIDO2 the Default

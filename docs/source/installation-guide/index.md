@@ -31,7 +31,7 @@ Deploy Gluu on a server or VM with one of the following supported operating syst
 - [Ubuntu 16, 18](./install-ubuntu.md)
 - [CentOS 7.x](./install-centos.md)
 - [RHEL 7.x](./install-rhel.md)
-- [Debian 8, 9](./install-debian.md)
+- [Debian 9, 10](./install-debian.md)
 
 ## Ports
 

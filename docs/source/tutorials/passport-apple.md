@@ -6,7 +6,7 @@ While steps covered in the [Inbound identity using OIDC and OAuth](../authn-guid
 
 ## Pre-requisites
 
-- No previous knowledge of [passport](../auth-guide/passport.md) (the key Gluu server component for inbound identity) is required to follow this document, however, it is assumed your Gluu server has Passport already [enabled](../auth-guide/inbound-oauth-passport.md#enable-passport).
+- No previous knowledge of [passport](../authn-guide/passport.md) (the key Gluu server component for inbound identity) is required to follow this document, however, it is assumed your Gluu server has Passport already [enabled](../authn-guide/inbound-oauth-passport.md#enable-passport).
 
 - Ideally, your Gluu instance has to be publicly accessible to Internet. This is due to Apple URL verification processes. If this is a problem for your organization, it is possible to workaround it using proxy techniques. 
 
@@ -27,6 +27,8 @@ You will be prompted to enter a redirect URL. Please provide `https://<your-gluu
 
 For domain verification purposes you will be given a file that it is supposed to be accessible at `https://<your-gluu-domain>/.well-known/apple-developer-domain-association.txt`. To do so follow the steps below:
 
+### VM instructions
+
 1. SSH to your Gluu server
 1. Copy the file to `/opt/gluu/jetty/oxauth/custom/static` inside chroot
 1. In chroot, locate the Apache config file. In most cases it is `/etc/apache2/sites-available/https_gluu.conf`
@@ -39,14 +41,94 @@ For domain verification purposes you will be given a file that it is supposed to
 1. Save the file and [restart](../operation/services.md#restart) Apache, eg. `# service apache2 restart`
 1. Ensure the file is correctly loaded. Open a browser, and hit `https://<your-gluu-domain>/.well-known/apple-developer-domain-association.txt`
 
+### Kubernetes Instructions
+
+1. Create file `apple-ing.yaml` with the following content.
+
+    ```yaml
+    apiVersion: extensions/v1beta1
+    kind: Ingress
+    metadata:
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        nginx.ingress.kubernetes.io/configuration-snippet: rewrite /.well-known/apple-developer-domain-association.txt
+          /oxauth/ext/resources/apple-developer-domain-association.txt$1 break;
+        nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+        nginx.ingress.kubernetes.io/rewrite-target: /oxauth/ext/resources/apple-developer-domain-association.txt
+        nginx.ingress.kubernetes.io/ssl-redirect: "false"
+      generation: 3
+      name: gluu-ingress-apple-configuration
+      namespace: gluu
+    spec:
+      rules:
+      - host: demoexample.gluu.org
+        http:
+          paths:
+          - backend:
+              serviceName: oxauth
+              servicePort: 8080
+            path: /.well-known/apple-developer-domain-association.txt
+      tls:
+      - hosts:
+        - demoexample.gluu.org
+        secretName: tls-certificate
+    ```
+
+1. Apply the ing in the namespace where Gluu is installed in:
+
+    ```bash
+    kubectl apply -f apple-ing.yaml -n gluu
+    ```
+
+1. Mount `apple-developer-domain-association.txt` in oxauth pods by first creating the configmap.
+
+    ```bash
+    kubectl create configmap apple-developer-domain-association-cm -n gluu --from-file=apple-developer-domain-association.txt
+    ```
+    
+1. Mount the `apple-developer-domain-association-cm` inside the oxauth pods.
+
+    ```yaml
+        volumeMounts:
+        - mountPath: /opt/gluu/jetty/oxauth/custom/static/apple-developer-domain-association.txt
+          name: apple-developer-domain-association
+          subPath: apple-developer-domain-association.txt                
+      volumes: 
+      - name: apple-developer-domain-association
+        configMap:
+          name: apple-developer-domain-association-cm 
+    ```
 ## Low level configurations
 
 SSH to your Gluu server and copy the **key file** to `/etc/certs` inside chroot. 
 
+### Kubernetes Instructions
+
+Mount **key file** into `/etc/certs` inside oxpassport pod.
+
+1. Mount `AuthKey_88EXAMPLE.p8` in oxpassport pods by first creating the configmap.
+
+    ```bash
+    kubectl create configmap apple-auth-key-cm -n gluu --from-file=AuthKey_88EXAMPLE.p8
+    ```
+    
+1. Mount the `apple-auth-key-cm` inside the oxpassport pods.
+
+    ```yaml
+        volumeMounts:
+        - mountPath: /etc/certs/AuthKey_88EXAMPLE.p8
+          name: apple-auth-key
+          subPath: AuthKey_88EXAMPLE.p8                
+      volumes: 
+      - name: apple-auth-key
+        configMap:
+          name: apple-auth-key-cm
+    ```
+
 ### Install nicokaiser's passport-apple strategy
 
 !!! Note
-    Skip this section if your Gluu version is 4.2 or higher
+    Skip this section if your Gluu version is 4.2 or higher or using any of the Kubernetes recipes.
 
 Next, let's add the passport strategy that allows us to "talk" to Apple identity provider:
 
@@ -63,12 +145,24 @@ Next, let's add the passport strategy that allows us to "talk" to Apple identity
 ### Add/Patch javascript files
 
 !!! Note
-    Skip this section if your Gluu version is 4.2 or higher
+    Skip this section if your Gluu version is 4.2 or higher or using any of the Kubernetes recipes.
     
 Apple doesn't redirect the users' browsers to the callback URL (`redirect_uri`) once they login sucessfully, but makes a POST to the URL. This is not an expected behavior for and Oauth2 authorization server, so it requires adding support for this kind of custom behavior.
 
 1. `cd` to `/opt/gluu/node/passport/server`
-1. Replace file `providers.js` using the one found [here](https://raw.githubusercontent.com/GluuFederation/gluu-passport/master/server/providers.js)
+1. Add to file `providers.js` the following snippet at line 190:
+
+    ```
+    if (strategyId.indexOf('passport-apple') >= 0 && options.key) {
+        try {
+            options.key = require('fs').readFileSync(options.key, 'utf8')
+        } catch (e) {
+            logger.log2('warn', `There was a problem reading file ${options.key}. Ensure the file exists and is readable`)
+            logger.log2('error', e.stack)
+            options.key = ''
+        }
+    }
+    ```
 1. Add to file `routes.js` the following snippet (around line 21) and save:
 
     ``` 

@@ -3,14 +3,75 @@
 ## Overview
 The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will need to either use our in-place upgrade script or explicitly install the new version and export/import your data. Find the existing version below for upgrade instructions to Gluu Server 4.1. 
 
-### Pre-requisites
+## Prerequisites
 
 - Before upgrading, make sure to [back up](../operation/backup.md) the Gluu container or LDAP LDIF. 
 - Upgrades should always be thoroughly scoped and tested on a development environment *first*.
 
-### Upgrading from 3.1.x to 4.1
+## Upgrade with Scripts
 
-At this time, only Gluu Server version 3.1.x can be upgraded to version 4.1. The upgrade script works on CentOS 7, Ubuntu 16, and RedHat 7. Upgrade script performs the following steps:
+Community Edition version 4.1 must be upgraded from version 4.0.x. Explanations of what actions the upgrade script performs are included [below](#40-upgrade-script-details).
+
+### Upgrade 3.1.x to 4.0
+
+The upgrade script can download all needed software and applications from the internet. [Skip this step](#upgrade-40-to-41) if already using 4.0. You can perform an online upgrade by following these steps:
+
+* Create directory
+```
+# mkdir /root/upg40
+```
+
+* Download the upgrade script
+```
+# wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.0/update.py -O /root/upg40/update.py
+```
+
+* Execute the script with `-o` argument
+```
+# cd /root/upg40
+# python update.py -o
+```
+
+Your upgrade directory will be the current directory. The script will create these directories: `app`, `war`, `temp`, `setup`
+
+When the upgrade script prompts:  
+    
+    ```
+    If you have custom ldap schema, add them now and press c  
+    If you don't have any custom schema you can continue with pressing c
+    ```
+    
+Put the schema file in `/opt/opendj/config/schema/`
+
+
+!!! Note
+ * This upgrade replaces all the default Gluu Server scripts WITH SCRIPTS FROM 4.0 and removes other custom scripts. (This will replace any customization you may have made to these default script entries) 
+ * Default authentication mode will be set to auth_ldap_server
+ * Cache provider configuration will be set to 4.0 default
+ * Reconfigure your logo and favicon
+
+
+### Upgrade 4.0 to 4.1
+
+* Create directory
+```
+# mkdir /root/upg410
+```
+
+* Download the upgrade script
+```
+# wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.1.0/upg40to410.py -O /root/upg410/upg40to410.py
+```
+
+* Execute the script:
+
+```
+# cd /root/upg410/
+# python upg40to410.py
+```
+### 4.0 upgrade script details
+
+The 4.0 upgrade script performs the following tasks:
 
 - Upgrades Java to Amazon Corretto. Extracts certificates from the existing Java keystore to `hostname_service.crt` in the upgrade directory. After upgrading Java, imports to keystore
 - Upgrades all Gluu WAR files, NodeJS, and Passport components
@@ -30,52 +91,106 @@ another way.
 !!! Note
     If you are using custom schema:  
     (a) OpenDJ Users: Back up the schema file  
-    (b) OpenLDAP users: Convert the schema according to [this guide](https://backstage.forgerock.com/docs/opendj/3.5/admin-guide/#chap-schema)  
-    
-    When the upgrade script prompts:  
-    
+    (b) OpenLDAP users: Convert the schema according to [this guide](https://backstage.forgerock.com/docs/opendj/3.5/admin-guide/#chap-schema)
+
+# Kubernetes upgrading instructions 
+
+## Overview
+
+This guide introduces how to upgrade from one version to another.
+
+## Upgrade
+
+1.  Download [`pygluu-kubernetes.pyz`](https://github.com/GluuFederation/enterprise-edition/releases). This package can be built [manually](https://github.com/GluuFederation/enterprise-edition/blob/4.1/README.md#build-pygluu-kubernetespyz-manually).
+
+1.  **If using LDAP**: Create configmap for `101-ox.ldif` file.
+
+    ```bash
+    kubectl create cm oxldif -n gluu --from-file=101-ox.ldif
     ```
-    If you have custom ldap schema, add them now and press c  
-    If you don't have any custom schema you can continue with pressing c
+    
+1.  **If using LDAP**: Mount [101-ox.ldif](https://raw.githubusercontent.com/GluuFederation/enterprise-edition/4.1/pygluu/kubernetes/templates/ldap/base/101-ox.ldif) in opendj-pods. Open opendj yaml or edit the statefulset directly `kubectl edit statefulset opendj -n gluu`
+
+    ```yaml
+      volumes:
+      - name: ox-ldif-cm
+        configMap:
+          name: oxldif
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: opendj-cm-b9g25hk457
+        image: gluufederation/wrends:4.1.0_01
+        ...
+        ...
+        volumeMounts:
+        - name: ox-ldif-cm
+          mountPath: /opt/opendj/config/schema/101-ox.ldif
+          subPath: 101-ox.ldif
+
     ```
     
-    Put the schema file in `/opt/opendj/config/schema/`
+1.  Run :
+
+     ```bash
+     ./pygluu-kubernetes.pyz upgrade
+     ```
+## Exporting Data
+
+!!! Note
+ * This step is not needed.
 
 
-There are two options to perform the upgrade (both methods work inside the container):
+1.  Make sure to backup existing LDAP data
 
-#### Online Upgrade
-The upgrade script can download all needed software and applications from the internet. You can perform an online upgrade by following these steps:
+1.  Set environment variable as a placeholder for LDAP server password (for later use):
 
-* Download the upgrade script
+    ```sh
+    export LDAP_PASSWD=YOUR_PASSWORD_HERE
+    ```
 
-```
-wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.1/update.py
-```
+1.  Assuming that existing LDAP container called `ldap` has data, export data from each backend:
 
-* Execute the script with `-o` argument
+    1.  Export `o=gluu`
 
-```
-python update.py -o
-```
+        ```sh
+        kubectl exec -ti ldap /opt/opendj/bin/ldapsearch \
+            -Z \
+            -X \
+            -D "cn=directory manager" \
+            -w $LDAP_PASSWD \
+            -p 1636 \
+            -b "o=gluu" \
+            -s sub \
+            'objectClass=*' > gluu.ldif
+        ```
 
-Your upgrade directory will be the current directory. The script will create these directories: `app`, `war`, `temp`, `setup`
+    1.  Export `o=site`
 
-<!--
-#### Static Upgrade
-The static, self-extracting upgrade package contains all components for the upgrade. You still need an internet connection to install the libraries that are needed by the upgrade script. To perform a static upgrade, follow these steps:
+        ```sh
+        kubectl exec -ti ldap /opt/opendj/bin/ldapsearch \
+            -Z \
+            -X \
+            -D "cn=directory manager" \
+            -w $LDAP_PASSWD \
+            -p 1636 \
+            -b "o=site" \
+            -s sub \
+            'objectClass=*' > site.ldif
+        ```
 
-* Download the self-extracting package
+    1.  Export `o=metric`
 
-```
-wget http:// ...... /4.1-upg.sh
-```
+        ```sh
+        kubectl exec -ti ldap /opt/opendj/bin/ldapsearch \
+            -Z \
+            -X \
+            -D "cn=directory manager" \
+            -w $LDAP_PASSWD \
+            -p 1636 \
+            -b "o=metric" \
+            -s sub \
+            'objectClass=*' > metric.ldif
+        ```
 
-* Execute the script
-
-```
-sh 4.1-upg.sh
-```
-
-The upgrade directory will be `/opt/upd/4.1-upg`
--->
+1.  Unset `LDAP_PASSWD` environment variable
