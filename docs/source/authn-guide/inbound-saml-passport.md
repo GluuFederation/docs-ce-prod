@@ -178,6 +178,9 @@ To enable IDP-initiated inbound capabilities for an existing IDP, follow these s
 
 ![IDP-initiated config for an IDP](../img/user-authn/passport/ii_choose_provider.png)
 
+!!! Warning
+    Enabling IDP-initiated automatically turns off `inResponseTo` validation. That is, if the IDP is also used for regular SP-initiated authentication, no validation of the `inResponseTo` field found in the SAML response will take place.
+
 From here on, if the IDP sends an unsolicited response to Passport ACS, an OIDC authorization request will be issued using the client that appears selected on the top of the form (by default the "Passport IDP-initiated flow Client"). After the user is authenticated in Gluu, a redirection will be made to `https://<your-gluu-host>/oxauth/auth/passport/sample-redirector.htm` that will simply change the browser's location to the value of the `relayState` (which is assummed to be a valid URL).
 
 !!! Note
