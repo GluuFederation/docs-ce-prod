@@ -135,6 +135,7 @@ nav:
 - Reference:
         - Gluu API Guide:
             - 'Gluu Server API': 'api-guide/api.md'
+            - 'oxTrust API': 'api-guide/oxtrust-api.md'
             - 'OpenID Connect API': 'api-guide/openid-connect-api.md'
             - 'SCIM API': 'api-guide/scim-api.md'
             - 'UMA API': 'api-guide/uma-api.md'
