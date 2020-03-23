@@ -1,6 +1,6 @@
 # oxAuth Configurations
 ## Overview
-This page explains the JSON Configuration which can be accessed by navigating to `Configuration` > `JSON Configuration` > `oxAuth Configuration`. 
+This page explains the JSON Configuration which can be accessed by navigating to `Configuration` > `JSON Configuration` > `oxAuth Configuration`.
 
 ## oxAuth.properties
 ![image](../img/reference/config-json_oxauthpropertiesv4.png)
@@ -146,6 +146,7 @@ externalLoggerConfiguration                        | The path to the external lo
 disableU2fEndpoint                                 | Choose whether to disable U2F endpoints
 disableJdkLogger                                   | Choose whether to disable JDK loggers
 errorHandlingMethod                                | A list of possible error handling methods
+jwksAlgorithmsSupported                            | A list of algorithms that will be used in JWKS endpoint.
 
 ### Brute Force Protection
 
@@ -153,7 +154,7 @@ The Gluu Server comes with a feature to help protect against brute force attacks
 
 Name                                  | Description
 --------------------------------------|------------
-attemptExpiration                     | How long, in minutes, to store a login attempt. 
+attemptExpiration                     | How long, in minutes, to store a login attempt.
 maximumAllowedAttemptsWithoutDelay    | How many attempts the application allows before delaying
 delayTime                             | How long, in seconds, to delay a login attempt that exceeds the maximum allowed
 bruteForceProtectionEnabled           | Choose whether to enable this feature
