@@ -495,9 +495,9 @@
             "items": {
                 "type": "string",
                 "enum": [
-                    "authorization_code", 
-		            "implicit", 
-		            "refresh_token", 
+                    "authorization_code",
+		            "implicit",
+		            "refresh_token",
 		            "client_credentials"
                 ]
             }
@@ -1072,6 +1072,30 @@
                 "TRACE",
                 "ALL"
             ]
+        },
+        "jwksAlgorithmsSupported": {
+            "id": "jwksAlgorithmsSupported",
+            "description": "A list of algorithms that will be used in JWKS endpoint.",
+            "type": "array",
+            "format": "select",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "enum": [
+                    "RS256",
+                    "RS384",
+                    "RS512",
+                    "ES256",
+                    "ES384",
+                    "ES512",
+                    "PS256",
+                    "PS384",
+                    "PS512",
+                    "RSA1_5",
+                    "RSA-OAEP"
+                ]
+            }
         }
     },
     "required": [
@@ -1180,6 +1204,7 @@
         "updateClientAccessTime",
 	    "enableClientGrantUpdate",
         "loggingLevel",
-        "useLocalCache":true
+        "useLocalCache",
+        "jwksAlgorithmsSupported"
     ]
 }

@@ -151,6 +151,7 @@ disableU2fEndpoint                                 | Choose whether to disable U
 disableJdkLogger                                   | Choose whether to disable JDK loggers
 errorHandlingMethod                                | A list of possible error handling methods
 useLocalCache                                      | Cache in local memory cache attributes, scopes, clients and organization entry with expiration 60 seconds
+jwksAlgorithmsSupported                            | A list of algorithms that will be used in JWKS endpoint.
 
 ### Brute Force Protection
 
