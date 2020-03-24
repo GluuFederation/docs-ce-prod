@@ -373,9 +373,12 @@ Full version of the script example can be found [here](https://github.com/GluuFe
 
 ## Additional Tips
 
-### Dynamically Implementing Beans
+### Using Managed Beans in your script
+oxAuth is a Weld+JSF application. In the facelets templates you can use EL expressions to get/bind values or call methods part of (Weld) managed beans.
 
-CdiUtil.bean() allows the application to dynamically obtain instances of beans inside the script. 
+Any class annotated with javax.inject.Named found in the app's WAR file can be used. So practically all @Named beans belonging to oxAuth or oxCore repos are potential candidates. 
+
+CdiUtil.bean() allows the application to dynamically obtain instances of Weld managed beans inside the script. 
 
 For example:
 
@@ -389,11 +392,19 @@ userService = CdiUtil.bean(UserService)
 authenticationService = CdiUtil.bean(AuthenticationService)
 ```
 
-Other useful services with bean instances that can be dynamically obtained in the scripts are:
-- `org.gluu.oxauth.security.Identity`
+While there are many such examples, the following are the most commonly used:
+
+oxAuth:
+- `org.gluu.oxauth.auth.Authenticator`
 - `org.gluu.oxauth.service.SessionIdService`
 - `org.gluu.oxauth.service.EncryptionService`
-- `org.gluu.oxauth.service.net import HttpService org.gluu.jsf2.message.FacesMessages from org.gluu.service.CacheService`
+- `org.gluu.oxauth.service.net.HttpService`
+- `org.gluu.jsf2.message.FacesMessages`
+- `org.gluu.service.CacheService`
+
+oxCore:
+- `org.gluu.model.security.Identity`
+- `org.gluu.model.security.Credentials`
 
 ### Displaying error conditions to users
 
@@ -412,5 +423,6 @@ The FacesMessage service can be used to pass specific error conditions to be dis
 1. To handle the error condition, use the following: 
     
     ```
-    facesMessages.add(FacesMessage.SEVERITY_ERROR, "Wrong username / password")
+    if user_name is None
+    facesMessages.add(FacesMessage.SEVERITY_ERROR, "Please enter the username")
     ```
