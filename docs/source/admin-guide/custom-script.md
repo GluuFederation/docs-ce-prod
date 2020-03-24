@@ -367,3 +367,58 @@ Snippet
 ```
 
 Full version of the script example can be found [here](https://github.com/GluuFederation/community-edition-setup/blob/version_4.1/static/extension/resource_owner_password_credentials/resource_owner_password_credentials.py). 
+
+## Additional Tips
+
+### Using Managed Beans in your script
+oxAuth is a Weld+JSF application. In the facelets templates you can use EL expressions to get/bind values or call methods part of (Weld) managed beans.
+
+Any class annotated with javax.inject.Named found in the app's WAR file can be used. So practically all @Named beans belonging to oxAuth or oxCore repos are potential candidates. 
+
+CdiUtil.bean() allows the application to dynamically obtain instances of Weld managed beans inside the script. 
+
+For example:
+
+- To access the `org.gluu.oxauth.service.UserService` and `org.gluu.oxauth.service.UserService.AuthenticationService` services inside a script, use the following syntax:
+
+```
+userService = CdiUtil.bean(UserService)
+```
+
+```
+authenticationService = CdiUtil.bean(AuthenticationService)
+```
+
+While there are many such examples, the following are the most commonly used:
+
+oxAuth:
+- `org.gluu.oxauth.auth.Authenticator`
+- `org.gluu.oxauth.service.SessionIdService`
+- `org.gluu.oxauth.service.EncryptionService`
+- `org.gluu.oxauth.service.net.HttpService`
+- `org.gluu.jsf2.message.FacesMessages`
+- `org.gluu.service.CacheService`
+
+oxCore:
+- `org.gluu.model.security.Identity`
+- `org.gluu.model.security.Credentials`
+
+### Displaying error conditions to users
+
+The FacesMessage service can be used to pass specific error conditions to be displayed to the webpage. Just do the following:
+
+1. Obtain an instance of FacesMessages using
+
+    ```
+    facesMessages = CdiUtil.bean(FacesMessages) 
+    ```
+    
+    ```
+    facesMessages.setKeepMessages()
+    ```
+    
+1. To handle the error condition, use the following: 
+    
+    ```
+    if user_name is None
+    facesMessages.add(FacesMessage.SEVERITY_ERROR, "Please enter the username")
