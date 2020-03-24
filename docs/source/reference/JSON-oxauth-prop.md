@@ -146,7 +146,7 @@ externalLoggerConfiguration                        | The path to the external lo
 disableU2fEndpoint                                 | Choose whether to disable U2F endpoints
 disableJdkLogger                                   | Choose whether to disable JDK loggers
 errorHandlingMethod                                | A list of possible error handling methods
-jwksAlgorithmsSupported                            | A list of algorithms that will be used in JWKS endpoint.
+jwksAlgorithmsSupported                            | A list of algorithms that will be used in JWKS endpoint. (Since version 4.1.1)
 
 ### Brute Force Protection
 
