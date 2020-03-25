@@ -1,4 +1,4 @@
-# Coding custom scripts and pages: a developer's reference
+# A reference for coding custom scripts and pages
 
 ## Objects available
 
