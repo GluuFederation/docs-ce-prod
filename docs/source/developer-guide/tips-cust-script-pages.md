@@ -72,7 +72,8 @@ Relevant methods:
 |`void setCustomAttribute(User user, String attributeName, String attributeValue)`|Sets the value of the attribute `attributeName` with the single value `attributeValue` for the user representation passes as parameter. This method does not persist changes|
 |`User updateUser(User user)`|Updates the user represented by `user` object in the database|
 
-See also: 
+See also:
+
 - [User](#class-user) data object
 - [CustomAttribute](#class-customattribute) data object
 
