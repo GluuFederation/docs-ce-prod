@@ -167,7 +167,8 @@ nav:
 - Developer Guide:
 #        - 'Build oxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'
         - 'Localization': 'developer-guide/localization.md'
-        - 'Script Debugging': 'developer-guide/script-debugging.md'
+        - 'Script Debugging': 'developer-guide/script-debugging.md' 
+        - 'Reference for coding custom scripts and pages': 'developer-guide/tips-cust-script-pages.md'
 - Tutorials:
         - 'Attributes mapping and transformation in Passport': 'tutorials/passport-attributes-mapping.md'
         - 'Inbound Identity with Apple Sign In': 'tutorials/passport-apple.md'
