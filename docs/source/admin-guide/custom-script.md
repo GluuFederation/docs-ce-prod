@@ -373,4 +373,4 @@ Full version of the script example can be found [here](https://github.com/GluuFe
 
 ## Additional Tips
 
-Visit [this page](../developer-guide/tips-cust-scripts-pages.md) for code references on building custom scripts and pages.
+Visit [this page](../developer-guide/tips-cust-script-pages.md) for code references on building custom scripts and pages.
