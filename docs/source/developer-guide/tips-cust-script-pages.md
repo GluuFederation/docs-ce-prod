@@ -1,8 +1,10 @@
 # A reference for coding custom scripts and pages
 
-## Objects available
+## Overview
 
 oxAuth is a Weld+JSF application. That means custom scripts and custom pages (JSF facelets) can make use of business logic already encapsulated in the (Weld) managed beans available.
+
+## Objects available
 
 Specifically, custom pages can use EL expressions to get/bind values or call methods of classes annotated with `javax.inject.Named` as long as they are part of the application's WAR file or [external libraries](../operation/custom-design.md#subdirectories) added to the classpath. Thus, practically all `@Named` beans belonging to [oxAuth](https://github.com/GluuFederation/oxAuth) or [oxCore](https://github.com/GluuFederation/oxCore) subprojects are potential candidates.
 
@@ -11,7 +13,7 @@ In addition to that, there are the usual implicit JSP/JSF [objects](http://incep
 In the case of custom scripts, any class in oxAuth's classpath can be used as well as the standard Java 8 classes. 
 
 !!! Note
-    Relevant javadocs links: [oxAuth](https://ox.gluu.org/javadocs/oxauth/) <!--and [oxCore](?)--> (choose the version matching your Gluu Server version).
+    Find the javadocs here: [oxAuth](https://ox.gluu.org/javadocs/oxauth/) <!--and [oxCore](?)--> (choose the version matching your Gluu Server version).
 
 While there are hundreds of classes available for reuse, the following summarizes the most commonly used:
 
