@@ -3,7 +3,7 @@ site_name: Gluu Server 4.1 Docs
 site_description: Documentation for Gluu Server Community Edition
 
 # Copyright
-copyright: Copyright &copy; 2019, Gluu, Inc.
+copyright: Copyright &copy; 2020, Gluu, Inc.
 
 # Repository
 docs_dir: source
@@ -38,6 +38,7 @@ markdown_extensions:
 # Navigation
 nav:
 - 'Versions':
+    - '4.1': 'https://gluu.org/docs/ce/4.1/'
     - '4.0': 'https://gluu.org/docs/ce/4.0/'
     - '3.1.7': 'https://gluu.org/docs/ce/3.1.7/'
     - '3.1.6': 'https://gluu.org/docs/ce/3.1.6/'
@@ -168,7 +169,7 @@ nav:
 #        - 'Build oxTrust with Eclipse': 'developer-guide/oxtrust-eclipse.md'
         - 'Localization': 'developer-guide/localization.md'
         - 'Script Debugging': 'developer-guide/script-debugging.md' 
-        - 'Reference for coding custom scripts and pages': 'developer-guide/tips-cust-script-pages.md'
+        - 'Coding custom scripts and pages': 'developer-guide/tips-cust-script-pages.md'
 - Tutorials:
         - 'Attributes mapping and transformation in Passport': 'tutorials/passport-attributes-mapping.md'
         - 'Inbound Identity with Apple Sign In': 'tutorials/passport-apple.md'
