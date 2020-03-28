@@ -38,7 +38,7 @@ apt-get update
 ```
 
 ```
-apt-get install gluu-server_4.0~stretch
+apt-get install gluu-server=4.0~stretch
 ```
 
 ### Start the server and log in
