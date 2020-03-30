@@ -1,1 +1,5 @@
 /.project
+# PyCharm
+.idea
+# Mac
+.DS_Store

@@ -147,3 +147,63 @@ kubectl get configmap  gluu -n <namespace> -o yaml
 | `ssl_cert`                                | base64                  | /etc/certs/gluu_https.crt         |
 | `ssl_cert_pass`                           | base64                  |                                   |
 | `ssl_key`                                 | base64                  | /etc/certs/gluu_https.key         |
+
+## Examples decoding passwords
+
+### Opening `/etc/certs/scim-rp.jks` file
+
+!!! Note
+    We assume the namespace gluu is installed in is called `gluu`
+
+1. Make a directory called `delete_me`
+
+    ```bash
+    mkdir delete_me && cd delete_me
+    ```
+   
+1. Get the `scim_rp_client_jks_pass`  from backend secret and save `scim_rp_client_jks_pass`  a file called `scim_rp_client_jks_pass`
+
+    ```bash
+    kubectl get secret gluu -o json -n gluu | grep '"scim_rp_client_jks_pass":' | sed -e 's#.*:\(\)#\1#' | tr -d '"' | tr -d "," | tr -d '[:space:]' > scim_rp_client_jks_pass
+    ```
+
+1. Base64 decode the `scim_rp_client_jks_pass` and save the decoded `scim_rp_client_jks_pass` in a file called `scim_rp_client_jks_pass_decoded`
+
+    ```bash
+    base64 -d scim_rp_client_jks_pass > scim_rp_client_jks_pass_decoded
+    ```
+
+1. Use `scim_rp_client_jks_pass_decoded` to unlock `/etc/certs/scim-rp.jks` in oxauth pod.
+
+    ```bash
+    keytool -list -v -keystore /etc/certs/scim-rp.jks --storepass unsalted_pw
+    ```
+   
+### Opening `/etc/certs/scim-rs.jks` file
+
+!!! Note
+    We assume the namespace gluu is installed in is called `gluu`
+
+1. Make a directory called `delete_me`
+
+    ```bash
+    mkdir delete_me && cd delete_me
+    ```
+   
+1. Get the `scim_rs_client_jks_pass`  from backend secret and save `scim_rs_client_jks_pass`  a file called `scim_rs_client_jks_pass`
+
+    ```bash
+    kubectl get secret gluu -o json -n gluu | grep '"scim_rs_client_jks_pass":' | sed -e 's#.*:\(\)#\1#' | tr -d '"' | tr -d "," | tr -d '[:space:]' > scim_rs_client_jks_pass
+    ```
+
+1. Base64 decode the `scim_rs_client_jks_pass` and save the decoded `scim_rs_client_jks_pass` in a file called `scim_rs_client_jks_pass_decoded`
+
+    ```bash
+    base64 -d scim_rs_client_jks_pass > scim_rs_client_jks_pass_decoded
+    ```
+
+1. Use `scim_rs_client_jks_pass_decoded` to unlock `/etc/certs/scim-rs.jks` in oxauth pod.
+
+    ```bash
+    keytool -list -v -keystore /etc/certs/scim-rp.jks --storepass unsalted_pw
+    ```
