@@ -37,7 +37,7 @@ Couchbase needs sufficient resources to run and under higher loads this becomes 
 | Grand Total                              |             |          |     | 610 GB        | 434       |
 
 !!!note
-   This hits `/token`. Hence the minimum TPS(Transactions per second) must be 11.5K to achieve one billion authentications in a day.
+    This hits `/token`. Hence the minimum TPS(Transactions per second) must be 11.5K to achieve one billion authentications in a day.
    
 ##### Example EKS cluster create command used:
 
@@ -443,8 +443,8 @@ spec:
 | oxAuth                                   | 500         |  2.5     | 2.5 | 1000           | 1000      |
 | Grand Total                              |             |          |     | 1850 GB        | 1406      |
 
-Note!!!
-   This needs a lot more resources as it hits  a total of 5 steps, 3 authorization steps `/token` , `/authorize`, `/oxauth/login` and 2 redirects. Hence the minimum TPS(Transactions per second) must be 60K to achieve one billion authentications in a day.
+!!!note
+    This needs a lot more resources as it hits  a total of 5 steps, 3 authorization steps `/token` , `/authorize`, `/oxauth/login` and 2 redirects. Hence the minimum TPS(Transactions per second) must be 60K to achieve one billion authentications in a day.
 
 ##### Example EKS cluster create command used:
 
@@ -841,7 +841,7 @@ spec:
 ```
 
 !!!note
-   The combination of flows in this case does mean the combination of grand total resources if the authentication is to reach one billion for each flow.
+    The combination of flows in this case does mean the combination of grand total resources if the authentication is to reach one billion for each flow.
 
 ### Install Gluu
 
@@ -864,7 +864,7 @@ spec:
     ```  
 
 !!!note
-    Prompts will ask for the rest of the information needed. You may generate the manifests (yaml files) and continue to deployment or just generate the  manifests (yaml files) during the execution of `pygluu-kubernetes.pyz`. `pygluu-kubernetes.pyz` will output a file called `settings.json` holding all the parameters. More information about this file and the vars it holds is [below](../installation-guide/install-kubernetes.md#settingsjson-parameters-file-contents) but  please don't manually create this file as the script can generate it using [`pygluu-kubernetes.pyz generate-settings`](https://github.com/GluuFederation/enterprise-edition/releases). 
+    Prompts will ask for the rest of the information needed. You may generate the manifests (yaml files) and continue to deployment or just generate the  manifests (yaml files) during the execution of `pygluu-kubernetes.pyz`. `pygluu-kubernetes.pyz` will output a file called `settings.json` holding all the parameters. More information about this file and the vars it holds is [here](../installation-guide/install-kubernetes.md#settingsjson-parameters-file-contents) but  please don't manually create this file as the script can generate it using [`pygluu-kubernetes.pyz generate-settings`](https://github.com/GluuFederation/enterprise-edition/releases). 
 
 #### Example `settings.json` used.
 
@@ -1060,7 +1060,7 @@ Our tests used 50 million users that were loaded to our `gluu_user` bucket. We h
 1. Copy the following yaml into the folder under the name `load_users.yaml`.
 
     !!!note
-       This job uses parallel jobs and needs at minimum of `18000m` CPU to function at the level needed. 
+        This job uses parallel jobs and needs at minimum of `18000m` CPU to function at the level needed. 
 
     ```yaml
     apiVersion: v1
@@ -1116,7 +1116,7 @@ Our tests used 50 million users that were loaded to our `gluu_user` bucket. We h
     ```
    
 !!!note
-   It takes around 23 mins to load 50 million users to couchbase `gluu_user` bucket.
+    It takes around 23 mins to load 50 million users to couchbase `gluu_user` bucket.
    
 #### Load testing
 
@@ -1162,7 +1162,7 @@ Our tests used 50 million users that were loaded to our `gluu_user` bucket. We h
 1. Save `Client ID` and `Client Secret`
 
 !!!note
-   A seperate client can be created for this test similar to oxTrust client
+    A seperate client can be created for this test similar to oxTrust client
 
 ##### Initiate load test
 
@@ -1269,7 +1269,7 @@ Our tests used 50 million users that were loaded to our `gluu_user` bucket. We h
 ### Install Monitoring tools
 
 !!!note
-   This section is used for testing purposes and setup of these tools in production should consult official docs for each tool. 
+    This section is used for testing purposes and setup of these tools in production should consult official docs for each tool. 
 
 1. Create a folder called `monitor`.
 
