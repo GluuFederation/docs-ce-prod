@@ -178,4 +178,5 @@ nav:
         - 'Forgot PW': 'tutorials/forgot-pw.md'
         - 'Kafka Logging': 'tutorials/kafka.md'
         - 'Custom Authn Tutorial': 'authn-guide/customauthn.md'
+        - 'Monitoring': 'tutorials/monitoring.md'
 - FAQ & Troubleshooting: 'operation/faq.md'
