@@ -36,15 +36,17 @@
 
     ```bash
     kubectl create -f "https://raw.githubusercontent.com/DataDog/datadog-agent/master/Dockerfiles/manifests/rbac/clusterrole.yaml" -ns datadog
+   
     kubectl create -f "https://raw.githubusercontent.com/DataDog/datadog-agent/master/Dockerfiles/manifests/rbac/serviceaccount.yaml" -ns datadog
+   
     kubectl create -f "https://raw.githubusercontent.com/DataDog/datadog-agent/master/Dockerfiles/manifests/rbac/serviceaccount.yaml" -ns datadog
-   ```
+    ```
    
 1. Create a `Secret` containing datadog API key. It will be used in datadog agent Daemonset.
 
-   !!!warning
+    !!!warning
        If the name of the secret below is to be changed , change it in the respective `DaemonSet` as well.
-
+    
     ```bash
     kubectl create secret generic datadog-secret --from-literal api-key="<API-KEY>"
     ```
@@ -147,5 +149,5 @@
                 - targets: ['kube-state-kube-state-metrics.default.svc.cluster.local:8080']
       ```
 
-!!!note
-    All the metrics will be exported to datadog `metrics` -> `summary`
+    !!!note
+        All the metrics will be exported to datadog `metrics` -> `summary`
