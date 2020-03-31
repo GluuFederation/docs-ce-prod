@@ -172,6 +172,7 @@ nav:
         - 'Coding custom scripts and pages': 'developer-guide/tips-cust-script-pages.md'
 - Tutorials:
         - 'Attributes mapping and transformation in Passport': 'tutorials/passport-attributes-mapping.md'
+        - 'The 1 billion load test': 'tutorials/load-test.md'
         - 'Inbound Identity with Apple Sign In': 'tutorials/passport-apple.md'
         - 'Inbound SAML with Passport': 'tutorials/passport-inbound-flow.md'
         - 'Forgot PW': 'tutorials/forgot-pw.md'
