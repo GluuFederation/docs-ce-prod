@@ -54,6 +54,7 @@
     ```bash
     kubectl apply -f datadog/
     ```
+   
 1. Install Prometheus
 
     ```bash
