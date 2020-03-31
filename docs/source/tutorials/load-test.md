@@ -843,6 +843,9 @@ spec:
 !!!note
     The combination of flows in this case does mean the combination of grand total resources if the authentication is to reach one billion for each flow.
 
+!!!warning
+    Before proceeding follow this [doc](https://docs.couchbase.com/server/current/manage/manage-settings/configure-compact-settings.html) to change `Tombstones Purge Interval` to `0.04`.
+
 ### Install Gluu
 
 ### Install Gluu using `pygluu-kubernetes` with Kustomize
