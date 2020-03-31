@@ -9,11 +9,11 @@ A few notes before getting started:
 
 - Clustering for production scenarios is not a simple task. Individual environments should *always* be benchmarked, tested, and documented in order to ensure organizational requirements for uptime are met. 
 
-- For [VIP Customers](https://www.gluu.org/pricing/#vip), there are two alternatives to the "manual clustering" documentation below: 
+- There are two alternatives to the "manual clustering" documentation below: 
 
-    1. For VM-based clustered deployments, we offer a tool called [Cluster Manager](https://gluu.org/docs/cm) to automate the steps below. 
+    1. For VM-based clustered deployments, we offer a licensed tool called [Cluster Manager](https://gluu.org/docs/cm) to automate the steps below. 
 
-    1. For multi-node container deployments (i.e. Docker Swarm & Kubernetes), we offer [separate guides and documentation](https://gluu.org/docs/de). 
+    1. We also offer multi-node container deployments (i.e. [Docker](./install-docker.md) & [Kubernetes](./install-kubernetes.md)).
 
 ## Concept
 
