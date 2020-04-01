@@ -765,7 +765,7 @@ vi /etc/stunnel/redis-client.conf
 cert = /etc/stunnel/secureredis.pem
 pid = /var/run/stunnel.pid
 [redis]
-accept = 159.203.126.10:16379
+accept = 159.203.126.10:6379
 connect = 197.122.32.421:16379
 ```
   
@@ -775,7 +775,7 @@ connect = 197.122.32.421:16379
 cert = /etc/stunnel/secureredis.pem
 pid = /var/run/stunnel.pid
 [redis]
-accept = 138.197.65.243:16379
+accept = 138.197.65.243:6379
 connect = 197.122.32.421:16379
 ```
   
@@ -784,8 +784,12 @@ connect = 197.122.32.421:16379
 ```bash
 /etc/init.d/stunnel4 start
 ```
-  
-  - Test that the server is talking to the clients and vice versa:
+
+**This is the end of the commands that had to be done on both nodes**
+ 
+**Test**
+
+- Test that the server is talking to the clients and vice versa:
 
 ```bash
 redis-cli -h <hostname> -a <password> 
@@ -793,8 +797,29 @@ redis-cli -h <hostname> -a <password>
   
 In the `<hostname>`, both IP (`197.122.32.421`) and hostname (`redis.example.org`) have to be working on all clients and the main redis server. Try to `Ping`, and you should get a `PONG`.
 
-**This is the end of the commands that had to be done on both nodes**
- 
+Test 1 :
+
+Test `localhost` or `127.0.0.1` on each node:
+
+```bash
+ redis-cli -h 127.0.0.1 -p 6379 -a <password>
+```
+
+This should fail with the following error `Could not connect to Redis at 127.0.0.1:6379` on all your nodes. However, on your redis server this will work.
+
+Test 2 :
+
+Test node 1 and node 2 from each site including the redis server, here we have three :
+
+```bash
+ redis-cli -h <ip of each node> -p 6379 -a <password>
+```
+
+This should succeed when you `PING` you should recieve a `PONG`.
+
+!!! Note
+    You should not be able to connect to the redis server using `port 16379` using the `redis-cli` directly like the following `redis-cli -h <ip of each node> -p 16379 -a <password>`. If you manage to connect using this command then your stunnel setup is of no use. The stunnel uses the certificate to initialize the communication  from `port 6379` to the stunnel on redis server on `port 16379` which  is also using same certificate to connect to the redis server on `port 6379`. Under no case should you be able to connect to the redis server directly.
+    
 !!! Info
     For more information or if you're having trouble, please see [this redis how-to guide.](https://redislabs.com/blog/using-stunnel-to-secure-redis/)
 
