@@ -12,6 +12,9 @@ The Gluu Server **cannot** be upgraded with a simple `apt-get upgrade`. You will
 
 Community Edition version 4.1 must be upgraded from version 4.0.x. Explanations of what actions the upgrade script performs are included [below](#40-upgrade-script-details).
 
+!!! Note
+    All scripts should be run inside the Gluu Server container.
+    
 ### Upgrade 3.1.x to 4.0
 
 The upgrade script can download all needed software and applications from the internet. [Skip this step](#upgrade-40-to-41) if already using 4.0. You can perform an online upgrade by following these steps:
